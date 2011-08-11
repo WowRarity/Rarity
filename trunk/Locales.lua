@@ -38,6 +38,8 @@ L["Unlucky"] = true
 L["Mounts"] = true
 L[" (Group)"] = true
 L["Click to open options"] = true
+L["%d attempt - %.2f%%"] = true
+L["%d attempts - %.2f%%"] = true
 
 
 
@@ -57,6 +59,7 @@ L["Reins of the Azure Drake"] = true
 L["Sea Turtle"] = true
 L["Scepter of Azj'Aqir"] = true
 L["Scorched Stone"] = true
+L["Parrot Cage (Hyacinth Macaw)"] = true
 
 
 

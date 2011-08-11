@@ -45,6 +45,7 @@ local tooltipLeftText1 = _G["GameTooltipTextLeft1"]
 local fishing = false
 local fishingTimer
 local FISHING_DELAY = 19
+local trackedItem
 
 local red = { r = 1.0, g = 0.2, b = 0.2 }
 local blue = { r = 0.4, g = 0.4, b = 1.0 }
@@ -166,6 +167,8 @@ do
 		end
 
   self:UpdateInterestingThings()
+  self:FindTrackedItem()
+  self:UpdateText()
 		
 		self:UnregisterAllEvents()
   self:RegisterEvent("BAG_UPDATE", "OnEvent")
@@ -728,7 +731,20 @@ do
 	local headers = {}
 
  function R:UpdateText()
-  
+  if not trackedItem or (trackedItem and not trackedItem.itemId) then
+   dataobj.text = L["None"]
+   return
+  end
+  itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(trackedItem.itemId)
+  if not itemTexture then dataobj.icon = [[Interface\Icons\spell_nature_forceofnature]]
+  else dataobj.icon = itemTexture end
+  local attempts = 0
+  if trackedItem.attempts then attempts = trackedItem.attempts end
+  local dropChance = (1.00 / (trackedItem.chance or 100))
+  if trackedItem.method == BOSS and trackedItem.groupSize ~= nil and trackedItem.groupSize > 1 then dropChance = dropChance / trackedItem.groupSize end
+  local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
+  if attempts == 1 then dataobj.text = format(L["%d attempt - %.2f%%"], attempts, chance)
+  else dataobj.text = format(L["%d attempts - %.2f%%"], attempts, chance) end
  end
 
 	function dataobj.OnEnter(self)
@@ -826,6 +842,26 @@ do
  end
 
 
+ function onClickItem(cell, item)
+  if not item or not item.itemId then return end
+  R.db.profile.trackedItem = item.itemId
+  for k, v in pairs(R.db.profile.groups) do
+   if type(v) == "table" then
+    for kk, vv in pairs(v) do
+     if type(vv) == "table" then
+      if vv.itemId == item.itemId then
+       R.db.profile.trackedGroup = k
+      end
+     end
+    end
+   end
+  end
+  R:FindTrackedItem()
+  R:ShowTooltip()
+  R:UpdateText()
+ end
+
+
  function addGroup(group, requiresGroup)
   if type(group) ~= "table" then return end
   if group.name == nil then return end
@@ -859,7 +895,10 @@ do
      local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
      local lucky = L["Lucky"]
      if medianLoots < attempts then lucky = L["Unlucky"] end
-     line = tooltip:AddLine("", (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, format("%.2f%%", chance), "4:41", lucky)
+     local icon = ""
+     if trackedItem == v then icon = [[|TInterface\Buttons\UI-CheckBox-Check:0|t]] end
+     line = tooltip:AddLine(icon, (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, format("%.2f%%", chance), "4:41", lucky)
+     tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
      added = true
     end
 
@@ -1050,5 +1089,24 @@ function R:FoundItem(itemId, item)
   if self:InTooltip() then self:ShowTooltip() end
   self:UpdateText()
  end
+end
+
+
+function R:FindTrackedItem()
+ trackedItem = self.db.profile.groups.pets["Parrot Cage (Hyacinth Macaw)"]
+
+ if self.db.profile.trackedGroup and self.db.profile.groups[self.db.profile.trackedGroup] then
+  if self.db.profile.trackedItem then
+   for k, v in pairs(self.db.profile.groups[self.db.profile.trackedGroup]) do
+    if type(v) == "table" and v.itemId and v.itemId == self.db.profile.trackedItem then
+     trackedItem = v
+    end
+   end
+  end
+ end
+
+	if self.db.profile.debugMode then
+  R.trackedItem = trackedItem
+	end
 end
 
