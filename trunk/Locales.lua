@@ -56,6 +56,7 @@ L["Flametalon of Alysrazor"] = true
 L["Reins of the Azure Drake"] = true
 L["Sea Turtle"] = true
 L["Scepter of Azj'Aqir"] = true
+L["Scorched Stone"] = true
 
 
 

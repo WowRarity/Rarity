@@ -396,7 +396,7 @@ function R:OnEvent(event, ...)
   if fishing then
    self:Debug("Successfully fished from a pool")
    if fishzones[zone] then
-    -- We're interested in the fishing here, let's find the item(s) involved
+    -- We're interested in fishing in this zone; let's find the item(s) involved
     for k, v in pairs(self.db.profile.groups) do
      if type(v) == "table" then
       for kk, vv in pairs(v) do
