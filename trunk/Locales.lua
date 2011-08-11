@@ -40,6 +40,12 @@ L[" (Group)"] = true
 L["Click to open options"] = true
 L["%d attempt - %.2f%%"] = true
 L["%d attempts - %.2f%%"] = true
+L["Found on your first attempt!"] = true
+L["Found after %d attempts!"] = true
+L["Items"] = true
+L["User"] = true
+L["%s: %d attempt (%d total)"] = true
+L["%s: %d attempts (%d total)"] = true
 
 
 

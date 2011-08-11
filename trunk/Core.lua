@@ -47,6 +47,12 @@ local fishingTimer
 local FISHING_DELAY = 19
 local trackedItem
 
+local inSession = false
+local sessionStarted = 0
+local sessionLast = 0
+local SESSION_LENGTH = 60 * 5 -- 5 minutes
+local sessionTimer
+
 local red = { r = 1.0, g = 0.2, b = 0.2 }
 local blue = { r = 0.4, g = 0.4, b = 1.0 }
 local green = { r = 0.2, g = 1.0, b = 0.2 }
@@ -186,6 +192,7 @@ do
 	 self:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED", "SpellFailed") -- Fishing detection
   self:RegisterEvent("LOOT_CLOSED", "GatherCompleted") -- Fishing detection
   self:RegisterEvent("ARTIFACT_HISTORY_READY", "ScanAllArch")
+  self:RegisterEvent("PLAYER_LOGOUT", "OnEvent")
 
 		if R.Options_DoEnable then R:Options_DoEnable() end
 		self.db.profile.lastRevision = R.MINOR_VERSION
@@ -370,6 +377,29 @@ function R:IsHeroic()
 end
 
 
+function R:FormatTime(t)
+	if t == 0 then
+		return "0:00"
+	end
+
+	local h = math.floor(t / (60 * 60))
+	t = t - (60 * 60 * h)
+	local m = math.floor(t / 60)
+	t = t - (60 * m)
+	local s = t
+
+	if h > 0 then
+		return format("%d:%02d:%02d", h, m, s)
+	end
+
+	if m > 0 then
+		return format("%d:%02d", m, s)
+	end
+
+	return format("%d", s).."s"
+end
+
+
 
 --[[
       OBTAIN DETECTION ---------------------------------------------------------------------------------------------------------
@@ -378,21 +408,10 @@ end
 
 function R:OnEvent(event, ...)
 
- -- You opened the bank or guild bank. This turns off item use detection.
- if event == "BANKFRAME_OPENED" then
-  bankOpen = true
- elseif event == "GUILDBANKFRAME_OPENED" then
-  guildBankOpen = true
- elseif event == "BANKFRAME_CLOSED" then
-  bankOpen = false
- elseif event == "GUILDBANKFRAME_CLOSED" then
-  guildBankOpen = false
-
-
  -------------------------------------------------------------------------------------
  -- You opened a loot window on a corpse or fishing node.
  -------------------------------------------------------------------------------------
-	elseif event == "LOOT_OPENED" then
+	if event == "LOOT_OPENED" then
   local zone = GetRealZoneText()
 
   -- Handle fishing
@@ -532,6 +551,21 @@ function R:OnEvent(event, ...)
   end
 
 
+ -- You opened the bank or guild bank. This turns off item use detection.
+ elseif event == "BANKFRAME_OPENED" then
+  bankOpen = true
+ elseif event == "GUILDBANKFRAME_OPENED" then
+  guildBankOpen = true
+ elseif event == "BANKFRAME_CLOSED" then
+  bankOpen = false
+ elseif event == "GUILDBANKFRAME_CLOSED" then
+  guildBankOpen = false
+
+ -- Logging out; end any open session
+ elseif event == "PLAYER_LOGOUT" then
+  if inSession then self:EndSession() end
+
+
  end
 end
 
@@ -553,11 +587,12 @@ function R:ScanBags()
 					bagitems[id] = bagitems[id] + qty
 					if items[id] then
       -- We came into possession of an item we were looking for!
-      if items[id].method ~= FISHING then -- FISHING properly increments attempts before you get the item. BOSS does not (because you don't necessarily see a loot window before you obtain the item), so we increment here.
+      if items[id].method ~= NPC and items[id].method ~= ZONE and items[id].method ~= FISHING then -- Only support bag scans for certain methods
        if items[id].attempts == nil then items[id].attempts = 0 end
        items[id].attempts = items[id].attempts + 1
+       self:OutputAttempts(items[id])
+       self:FoundItem(id, items[id])
       end
-      self:FoundItem(id, items[id])
      end
 				end
 			end
@@ -740,11 +775,18 @@ do
   else dataobj.icon = itemTexture end
   local attempts = 0
   if trackedItem.attempts then attempts = trackedItem.attempts end
-  local dropChance = (1.00 / (trackedItem.chance or 100))
-  if trackedItem.method == BOSS and trackedItem.groupSize ~= nil and trackedItem.groupSize > 1 then dropChance = dropChance / trackedItem.groupSize end
-  local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
-  if attempts == 1 then dataobj.text = format(L["%d attempt - %.2f%%"], attempts, chance)
-  else dataobj.text = format(L["%d attempts - %.2f%%"], attempts, chance) end
+  if trackedItem.lastAttempts then attempts = attempts - trackedItem.lastAttempts end
+  if trackedItem.realAttempts and trackedItem.found then attempts = trackedItem.realAttempts end
+  if trackedItem.found then
+   if attempts == 1 then dataobj.text = format(L["Found on your first attempt!"], attempts)
+   else dataobj.text = format(L["Found after %d attempts!"], attempts) end
+  else
+   local dropChance = (1.00 / (trackedItem.chance or 100))
+   if trackedItem.method == BOSS and trackedItem.groupSize ~= nil and trackedItem.groupSize > 1 then dropChance = dropChance / trackedItem.groupSize end
+   local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
+   if attempts == 1 then dataobj.text = format(L["%d attempt - %.2f%%"], attempts, chance)
+   else dataobj.text = format(L["%d attempts - %.2f%%"], attempts, chance) end
+  end
  end
 
 	function dataobj.OnEnter(self)
@@ -843,22 +885,8 @@ do
 
 
  function onClickItem(cell, item)
-  if not item or not item.itemId then return end
-  R.db.profile.trackedItem = item.itemId
-  for k, v in pairs(R.db.profile.groups) do
-   if type(v) == "table" then
-    for kk, vv in pairs(v) do
-     if type(vv) == "table" then
-      if vv.itemId == item.itemId then
-       R.db.profile.trackedGroup = k
-      end
-     end
-    end
-   end
-  end
-  R:FindTrackedItem()
-  R:ShowTooltip()
-  R:UpdateText()
+  if trackedItem ~= item and inSession then R:EndSession() end
+  R:UpdateTrackedItem(item)
  end
 
 
@@ -889,6 +917,7 @@ do
     if ((not requiresGroup and group.collapsed ~= true) or (requiresGroup and group.collapsedGroup ~= true)) and v.itemId ~= nil then
      local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
      local attempts = v.attempts or 0
+     if v.lastAttempts then attempts = attempts - v.lastAttempts end
      local dropChance = (1.00 / (v.chance or 100))
      if v.method == BOSS and v.groupSize ~= nil and v.groupSize > 1 then dropChance = dropChance / v.groupSize end
      local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
@@ -897,7 +926,23 @@ do
      if medianLoots < attempts then lucky = L["Unlucky"] end
      local icon = ""
      if trackedItem == v then icon = [[|TInterface\Buttons\UI-CheckBox-Check:0|t]] end
-     line = tooltip:AddLine(icon, (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, format("%.2f%%", chance), "4:41", lucky)
+     local time = 0
+     if v.time then time = v.time end
+     if v.lastTime then time = v.time - v.lastTime end
+     if inSession and trackedItem == v then
+      local len = sessionLast - sessionStarted
+      time = time + len
+     end
+     time = R:FormatTime(time)
+     local likelihood = format("%.2f%%", chance)
+     if attempts == 0 then
+      attempts = ""
+      lucky = ""
+      time = ""
+      likelihood = ""
+     end
+     if time == "0:00" then time = "" end
+     line = tooltip:AddLine(icon, (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky)
      tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
      added = true
     end
@@ -949,7 +994,7 @@ end
 
 
 --[[
-      PRESENTATION -------------------------------------------------------------------------------------------------------------
+      CORE FUNCTIONALITY -------------------------------------------------------------------------------------------------------
   ]]
 
 function R:ShowFoundAlert(itemId, attempts)
@@ -1029,24 +1074,36 @@ end
 
 function R:OutputAttempts(item)
  if type(item) == "table" and item.enabled ~= false and item.found ~= true and item.itemId ~= nil and item.attempts ~= nil then
+  -- Output the attempt count
   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
   local s
-  if item.attempts == 1 then s = format(L["%s: %d attempt"], itemLink, item.attempts)
-  else s = format(L["%s: %d attempts"], itemLink, item.attempts) end
+  local attempts = item.attempts or 1
+  local total = item.attempts or 1
+  if item.lastAttempts then attempts = attempts - item.lastAttempts end
+  if total <= attempts then
+   if attempts == 1 then s = format(L["%s: %d attempt"], itemLink, attempts)
+   else s = format(L["%s: %d attempts"], itemLink, attempts) end
+  else
+   if attempts == 1 then s = format(L["%s: %d attempt (%d total)"], itemLink, attempts, total)
+   else s = format(L["%s: %d attempts (%d total)"], itemLink, attempts, total) end
+  end
   self:Pour(s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
+
+  -- Handle time tracking
+  if trackedItem == item then
+   self:UpdateSession()
+  else
+   self:EndSession()
+   self:StartSession()
+  end
  end
- self:UpdateText()
+ self:UpdateTrackedItem(item)
 end
 
 
-
---[[
-      CORE FUNCTIONALITY -------------------------------------------------------------------------------------------------------
-  ]]
-
 function R:ScanExistingItems(reason)
  self:Debug("Scanning for existing items ("..reason..")")
- -- Look for mount and pet spell IDs and mark as found/disabled
+ -- Look for mount and pet spell IDs and mark as found/disabled (if repeatable set to off)
 
  -- Scan all archaeology races and set any item attempts to the number of solves for that race
  local s = 0
@@ -1082,12 +1139,26 @@ function R:FoundItem(itemId, item)
  if (item.heroic == true and self:IsHeroic()) or (item.heroic == false and not self:IsHeroic()) or item.heroic == nil then
   self:Debug("FOUND ITEM %d!", itemId)
   if item.attempts == nil then item.attempts = 1 end
-  self:ShowFoundAlert(itemId, item.attempts)
+  if item.lastAttempts == nil then item.lastAttempts = 0 end
+  self:ShowFoundAlert(itemId, item.attempts - item.lastAttempts)
+  if inSession then self:EndSession() end
+  item.realAttempts = item.attempts - item.lastAttempts
+  item.lastAttempts = item.attempts
+  item.lastTime = item.time
   item.enabled = false
   item.found = true
+  item.totalFinds = (item.totalFinds or 0) + 1
+  self:UpdateTrackedItem(item)
   self:UpdateInterestingThings()
-  if self:InTooltip() then self:ShowTooltip() end
-  self:UpdateText()
+  if item.repeatable and (item.method == NPC or item.method == ZONE or item.method == FISHING) then self:ScheduleTimer(function()
+   -- If this is a repeatable item, turn it back on in a few seconds.
+   -- FoundItem() gets called repeatedly when we get an item, so we need to lock it out for 2 seconds.
+   item.enabled = nil
+   item.found = nil
+   self:UpdateInterestingThings()
+   self:UpdateText()
+   if R:InTooltip() then R:ShowTooltip() end
+  end, 5) end
  end
 end
 
@@ -1107,6 +1178,68 @@ function R:FindTrackedItem()
 
 	if self.db.profile.debugMode then
   R.trackedItem = trackedItem
+	end
+end
+
+
+function R:UpdateTrackedItem(item)
+ if not item or not item.itemId then return end
+ self.db.profile.trackedItem = item.itemId
+ for k, v in pairs(R.db.profile.groups) do
+  if type(v) == "table" then
+   for kk, vv in pairs(v) do
+    if type(vv) == "table" then
+     if vv.itemId == item.itemId then
+      self.db.profile.trackedGroup = k
+     end
+    end
+   end
+  end
+ end
+ self:FindTrackedItem()
+ self:UpdateText()
+ if self:InTooltip() then self:ShowTooltip() end
+end
+
+
+function R:EndSession()
+	if inSession then
+  local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(trackedItem.itemId)
+  self:Debug("Ending session for %s", itemLink)
+		local len = sessionLast - sessionStarted
+  if trackedItem then trackedItem.time = (trackedItem.time or 0) + len end
+  self:Debug(trackedItem.time)
+	end
+	inSession = false
+end
+
+
+function timeoutSession()
+ R:Debug("Nothing happened in 5 minutes. Ending your session.")
+ sessionTimer = nil
+ R:EndSession()
+end
+
+
+function R:StartSession()
+ self:Debug("Starting a session")
+	inSession = true
+	sessionStarted = GetTime()
+	sessionLast = sessionStarted
+	sessionStarted = sessionStarted - 1
+ if sessionTimer then self:CancelTimer(sessionTimer, true) end
+ sessionTimer = self:ScheduleTimer(timeoutSession, SESSION_LENGTH)
+end
+
+
+function R:UpdateSession()
+	if inSession then
+		sessionLast = GetTime()
+  self:Debug("Extending current session")
+  if sessionTimer then self:CancelTimer(sessionTimer, true) end
+  sessionTimer = self:ScheduleTimer(timeoutSession, SESSION_LENGTH)
+	else
+		self:StartSession()
 	end
 end
 
