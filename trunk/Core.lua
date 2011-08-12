@@ -36,6 +36,10 @@ local architems = {}
 
 local bankOpen = false
 local guildBankOpen = false
+local auctionOpen = false
+local tradeOpen = false
+local tradeSkillOpen = false
+
 local prevSpell, curSpell, foundTarget, gatherEvents, ga
 local fishSpell = (GetSpellInfo(33095))
 local spells = {
@@ -193,6 +197,12 @@ do
   self:RegisterEvent("LOOT_CLOSED", "GatherCompleted") -- Fishing detection
   self:RegisterEvent("ARTIFACT_HISTORY_READY", "ScanAllArch")
   self:RegisterEvent("PLAYER_LOGOUT", "OnEvent")
+  self:RegisterEvent("AUCTION_HOUSE_CLOSED", "OnEvent")
+  self:RegisterEvent("AUCTION_HOUSE_SHOW", "OnEvent")
+  self:RegisterEvent("TRADE_CLOSED", "OnEvent")
+  self:RegisterEvent("TRADE_SHOW", "OnEvent")
+  self:RegisterEvent("TRADE_SKILL_SHOW", "OnEvent")
+  self:RegisterEvent("TRADE_SKILL_CLOSE", "OnEvent")
 
 		if R.Options_DoEnable then R:Options_DoEnable() end
 		self.db.profile.lastRevision = R.MINOR_VERSION
@@ -538,7 +548,7 @@ function R:OnEvent(event, ...)
   self:ScanBags()
 
   -- Check for a decrease in quantity of any items we're watching for
-  if not bankOpen and not guildBankOpen then
+  if not bankOpen and not guildBankOpen and not auctionOpen and not tradeOpen and not tradeSkillOpen then
    for k, v in pairs(tempbagitems) do
     if (bagitems[k] and bagitems[k] < tempbagitems[k]) or not bagitems[k] then -- An inventory item went down in count or disappeared
      if used[k] then -- It's an item we care about
@@ -551,15 +561,28 @@ function R:OnEvent(event, ...)
   end
 
 
- -- You opened the bank or guild bank. This turns off item use detection.
+ -- Detect bank, guild bank, auction house, tradeskill, and trade. This turns off item use detection.
  elseif event == "BANKFRAME_OPENED" then
   bankOpen = true
  elseif event == "GUILDBANKFRAME_OPENED" then
   guildBankOpen = true
+ elseif event == "AUCTION_HOUSE_SHOW" then
+  auctionOpen = true
+ elseif event == "TRADE_SHOW" then
+  tradeOpen = true
+ elseif event == "TRADE_SKILL_SHOW" then
+  tradeSkillOpen = true
+
  elseif event == "BANKFRAME_CLOSED" then
   bankOpen = false
  elseif event == "GUILDBANKFRAME_CLOSED" then
   guildBankOpen = false
+ elseif event == "AUCTION_HOUSE_CLOSED" then
+  auctionOpen = false
+ elseif event == "TRADE_CLOSED" then
+  tradeOpen = false
+ elseif event == "TRADE_SKILL_CLOSE" then
+  tradeSkillOpen = false
 
  -- Logging out; end any open session
  elseif event == "PLAYER_LOGOUT" then
@@ -705,7 +728,6 @@ function R:ScanAllArch(event)
 end
 
 function R:ScanArchFragments()
- self:Debug("Scanning archaeology fragments")
  local scan = false
  if GetNumArchaeologyRaces() == 0 then return end
 	for race_id = 1, GetNumArchaeologyRaces() do
@@ -814,38 +836,85 @@ do
 	end
 	
 	
-	local function showSubTooltip(cell, group, suffix)
-		local self = E
+	local function showSubTooltip(cell, item)
+  if not item or not item.itemId then return end
+		local self = R
 		if qtip:IsAcquired("RaritySubTooltip") and tooltip2 then
 			qtip:Release(tooltip2)
 			tooltip2 = nil
 		end
-		tooltip2 = qtip:Acquire("RaritySubTooltip", 4, "LEFT")
+		tooltip2 = qtip:Acquire("RaritySubTooltip", 3, "LEFT", "RIGHT")
 		tooltip2:ClearAllPoints()
 		tooltip2:SetClampedToScreen(true)
-		if self.db.profile.subtipAnchor == 2 then
-			tooltip2:SetPoint("LEFT", cell, "RIGHT", 10, 0)
-		else
-			tooltip2:SetPoint("RIGHT", cell, "LEFT", -10, 0)
-		end
-		tooltip2:AddHeader(group.name)
+		tooltip2:SetPoint("LEFT", cell, "RIGHT", 10, 0) -- Right side
+		--tooltip2:SetPoint("RIGHT", cell, "LEFT", -10, 0) -- Left side
+
+  local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
+
+  -- Item's game tooltip
+  if itemName then
+   GameTooltip:SetOwner(cell, "ANCHOR_LEFT");
+   GameTooltip:SetHyperlink(itemLink);
+   GameTooltip_ShowCompareItem();
+  end
+
+  -- Rarity extended information tooltip
+		tooltip2:AddHeader(itemLink or item.name)
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
-		local lastCastByHeader = ""
-		if self.db.profile.recentCaster ~= 1 then lastCastByHeader = colorize(L["Last Seen From"], blue) end
-		tooltip2:AddLine(colorize(L["Buff/Consumable"], blue), colorize(L["Providers"], blue), lastCastByHeader)
+
+  tooltip2:AddLine(colorize(R.string_types[item.type], yellow))
+  if item.groupSize and item.groupSize > 1 then
+   tooltip2:AddLine(colorize(format(L["Usually requires a group of around %d players"], item.groupSize), red))
+  end
+  tooltip2:AddLine(colorize(R.string_methods[item.method], blue))
+  if item.method == ZONE or item.method == FISHING then
+   if item.zones and type(item.zones) == "table" then
+    for k, v in pairs(item.zones) do
+     local zone = lbz[v]
+     if not zone then zone = v end
+     tooltip2:AddLine(colorize("    "..v, gray))
+    end
+   end
+  end
+  if item.method == ARCH then
+   if item.raceId then
+    tooltip2:AddLine(colorize("    "..R.string_archraces[item.raceId], gray))
+   end
+  end
+  tooltip2:AddLine(colorize(format(L["1 in %d chance"], item.chance or 100), white))
+  local dropChance = (1.00 / (item.chance or 100))
+  if item.method == BOSS and item.groupSize ~= nil and item.groupSize > 1 then dropChance = dropChance / item.groupSize end
+  local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
+  tooltip2:AddLine(colorize(format(L["Lucky if you obtain in %d or less"], medianLoots), gray))
+
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
+
+  if item.totalFinds then
+   tooltip2:AddLine(colorize(L["Since last drop"], yellow))
+  end
+  local attempts = (item.attempts or 0) - (item.lastAttempts or 0)
+  tooltip2:AddLine(L["Attempts"], attempts)
+  if item.method == NPC or item.method == ZONE or item.method == FISHING then
+   tooltip2:AddLine(L["Time spent farming"], R:FormatTime((item.time or 0) - (item.lastTime or 0)))
+  end
+  if attempts > 0 then
+   local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
+   tooltip2:AddLine(L["Chance so far"], format("%.2f%%", chance))
+  end
+  -- Chance so far
+  
+  if item.totalFinds then
+		 tooltip2:AddSeparator(1, 1, 1, 1, 1)
+   tooltip2:AddLine(colorize(L["Total"], yellow))
+   local attempts = (item.attempts or 0)
+   tooltip2:AddLine(L["Attempts"], attempts)
+   if item.method == NPC or item.method == ZONE or item.method == FISHING then
+    tooltip2:AddLine(L["Time spent farming"], R:FormatTime((item.time or 0)))
+   end
+   tooltip2:AddLine(L["Total found"], item.totalFinds)
+  end
 		
-  
-  
-  
-  		
-		if onlyItems then
-			qtip:Release(tooltip2)
-			tooltip2 = nil
-			return
-		end
-		
-		tooltip2:UpdateScrolling()
+		--tooltip2:UpdateScrolling()
 		tooltip2:Show()
 	end
 
@@ -944,6 +1013,8 @@ do
      if time == "0:00" then time = "" end
      line = tooltip:AddLine(icon, (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky)
      tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
+				 tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
+				 tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
      added = true
     end
 
@@ -1205,10 +1276,9 @@ end
 function R:EndSession()
 	if inSession then
   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(trackedItem.itemId)
-  self:Debug("Ending session for %s", itemLink)
 		local len = sessionLast - sessionStarted
-  if trackedItem then trackedItem.time = (trackedItem.time or 0) + len end
-  self:Debug(trackedItem.time)
+  if trackedItem and (trackedItem.method == NPC or trackedItem.method == ZONE or trackedItem.method == FISHING) then trackedItem.time = (trackedItem.time or 0) + len end
+  self:Debug("Ending session for %s (%s)", itemLink, self:FormatTime(trackedItem.time))
 	end
 	inSession = false
 end
@@ -1242,4 +1312,3 @@ function R:UpdateSession()
 		self:StartSession()
 	end
 end
-

@@ -7,6 +7,12 @@ local MOUNT = "MOUNT"
 local PET = "PET"
 local ITEM = "ITEM"
 
+R.string_types = {
+ [MOUNT] = L["Mount"],
+ [PET] = L["Companion"],
+ [ITEM] = L["Item"],
+}
+
 -- Methods of obtaining
 local NPC = "NPC"
 local BOSS = "BOSS"
@@ -15,19 +21,28 @@ local USE = "USE"
 local FISHING = "FISHING"
 local ARCH = "ARCH"
 
--- Archaeology race IDs
---[[
-1 Dwarf
-2 Draenei
-3 Fossil
-4 Night Elf
-5 Nerubian
-6 Orc
-7 Tol'vir
-8 Troll
-9 Vrykul
-10 Other
-]]
+R.string_methods = {
+ [NPC] = L["Drops from NPC(s)"],
+ [BOSS] = L["Drops from a boss requiring a group"],
+ [ZONE] = L["Drops from any mob in a zone"],
+ [USE] = L["Obtained by using an item or opening a container"],
+ [FISHING] = L["Obtained by fishing from pools in a zone"],
+ [ARCH] = L["Obtained as an archaeology project"],
+}
+
+-- Archaeology races
+R.string_archraces = {
+ [1] = L["Dwarf"],
+ [2] = L["Draenei"],
+ [3] = L["Fossil"],
+ [4] = L["Night Elf"],
+ [5] = L["Nerubian"],
+ [6] = L["Orc"],
+ [7] = L["Tol'vir"],
+ [8] = L["Troll"],
+ [9] = L["Vrykul"],
+ [10] = L["Other"],
+}
 
 function R:PrepareDefaults()
 

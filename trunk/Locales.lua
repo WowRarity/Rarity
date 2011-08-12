@@ -46,6 +46,34 @@ L["Items"] = true
 L["User"] = true
 L["%s: %d attempt (%d total)"] = true
 L["%s: %d attempts (%d total)"] = true
+L["Dwarf"] = true
+L["Draenei"] = true
+L["Fossil"] = true
+L["Night Elf"] = true
+L["Nerubian"] = true
+L["Orc"] = true
+L["Tol'vir"] = true
+L["Troll"] = true
+L["Vrykul"] = true
+L["Other"] = true
+L["Drops from NPC(s)"] = true
+L["Drops from a boss requiring a group"] = true
+L["Drops from any mob in a zone"] = true
+L["Obtained by using an item or opening a container"] = true
+L["Obtained by fishing from pools in a zone"] = true
+L["Obtained as an archaeology project"] = true
+L["Mount"] = true
+L["Companion"] = true
+L["Item"] = true
+L["Usually requires a group of around %d players"] = true
+L["1 in %d chance"] = true
+L["Lucky if you obtain in %d or less"] = true
+L["Since last drop"] = true
+L["Time spent farming"] = true
+L["Chance so far"] = true
+L["Total"] = true
+L["Total found"] = true
+
 
 
 
