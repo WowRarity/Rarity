@@ -29,7 +29,6 @@ L["Progress"] = true
 L["Likelihood"] = true
 L["Time"] = true
 L["Companions"] = true
-L["Reins of the Raven Lord"] = true
 L["%s: %d attempt"] = true
 L["%s: %d attempts"] = true
 L["Luckiness"] = true
@@ -94,6 +93,31 @@ L["Sea Turtle"] = true
 L["Scepter of Azj'Aqir"] = true
 L["Scorched Stone"] = true
 L["Parrot Cage (Hyacinth Macaw)"] = true
+L["Parrot Cage (Green Wing Macaw)"] = true
+L["Deviate Hatchling"] = true
+L["Gundrak Hatchling"] = true
+L["Dark Whelpling"] = true
+L["Tiny Emerald Whelpling"] = true
+L["Captured Firefly"] = true
+L["Phoenix Hatchling"] = true
+L["Sprite Darter Egg"] = true
+L["Fox Kit"] = true
+L["Deathcharger's Reins"] = true
+L["The Horseman's Reins"] = true
+L["Invincible's Reins"] = true
+L["Mimiron's Head"] = true
+L["Razzashi Hatchling"] = true
+L["Tiny Crimson Whelpling"] = true
+L["Cat Carrier (Black Tabby)"] = true
+L["Reins of the Blue Drake"] = true
+L["Reins of the Green Proto-Drake"] = true
+L["Big Love Rocket"] = true
+L["Armored Razzashi Raptor"] = true
+L["Fossilized Raptor"] = true
+L["Reins of the Drake of the North Wind"] = true
+L["Reins of the Drake of the South Wind"] = true
+L["Swift Zulian Panther"] = true
+
 
 
 

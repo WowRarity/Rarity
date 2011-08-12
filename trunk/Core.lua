@@ -142,9 +142,7 @@ do
 	
 	function R:DoEnable()
 		if isInitialized then return end
-
   -- If not ready to initialize, bail here
-
 		isInitialized = true
 	
 		self:PrepareDefaults() -- Loads in any new items
@@ -157,9 +155,6 @@ do
 		
 		dbicon:Register("Rarity", dataobj, self.db.profile.minimap)
 
-		self:ScanExistingItems("INITIALIZING") -- Checks for items you already have
-  self:ScanBags() -- Initialize our inventory list, as well as checking if you've obtained an item
-		
 		if self.db.profile.debugMode then
    -- Expose normally private objects publically
    R.npcs = npcs
@@ -176,6 +171,8 @@ do
    R.architems = architems
 		end
 
+		self:ScanExistingItems("INITIALIZING") -- Checks for items you already have
+  self:ScanBags() -- Initialize our inventory list, as well as checking if you've obtained an item
   self:UpdateInterestingThings()
   self:FindTrackedItem()
   self:UpdateText()
@@ -265,8 +262,17 @@ end
 
 function R:OnProfileChanged(event, database, newProfileKey)
 	self:Debug("Profile changed. Reinitializing.")
+ inSession = false
+ if sessionTimer then self:CancelTimer(sessionTimer, true) end
+ sessionTimer = nil
 	self.db:RegisterDefaults(self.defaults)
-	self:ScanExistingItems("PROFILE CHANGED")
+ self:UpdateInterestingThings()
+ self:ScanAllArch(event)
+	self:ScanExistingItems(event)
+ self:ScanBags()
+ self:FindTrackedItem()
+ self:UpdateText()
+ if self:InTooltip() then self:ShowTooltip() end
 	self.db.profile.lastRevision = R.MINOR_VERSION
 end
 
@@ -387,6 +393,20 @@ function R:IsHeroic()
 end
 
 
+function R:IsRaid25()
+	local name, type, difficultyIndex, difficultyName, maxPlayers, dynamicDifficulty, isDynamic = GetInstanceInfo()
+ if maxPlayers == 25 then return true end
+ return false
+end
+
+
+function R:IsHorde()
+ local _, r = UnitRace("player")
+ if r == "Tauren" or r == "Orc" or r == "Troll" or r == "Scourge" or r == "Blood Elf" or r == "Undead" or r == "Goblin" then return true end
+ return false
+end
+
+
 function R:FormatTime(t)
 	if t == 0 then
 		return "0:00"
@@ -466,8 +486,8 @@ function R:OnEvent(event, ...)
   if guids[guid] then return end -- Already saw this corpse
 
   local npcid = self:GetNPCIDFromGUID(guid)
-  if npcs[npcid] == nil then -- Not an NPC we need
-   if zones[zone] == nil and zones[lbz[zone]] == nil then return end -- Not a zone we need either
+  if npcs[npcid] == nil then -- Not an NPC we need, abort
+   if zones[zone] == nil and zones[lbz[zone]] == nil then return end -- Not a zone we need either, abort
   end
 
 	 -- We're interested in this loot, process further
@@ -610,7 +630,7 @@ function R:ScanBags()
 					bagitems[id] = bagitems[id] + qty
 					if items[id] then
       -- We came into possession of an item we were looking for!
-      if items[id].method ~= NPC and items[id].method ~= ZONE and items[id].method ~= FISHING then -- Only support bag scans for certain methods
+      if not items[id].repeatable and not items[id].found and items[id].enabled then -- Only support bag scans for non-repeatable items
        if items[id].attempts == nil then items[id].attempts = 0 end
        items[id].attempts = items[id].attempts + 1
        self:OutputAttempts(items[id])
@@ -641,8 +661,10 @@ function R:OnCombat(event, timestamp, eventType, hideCaster, srcGuid, srcName, s
       for k, v in pairs(npcs_to_items[npcid]) do
        if v.enabled ~= false and v.method == BOSS then
         if (v.heroic == true and self:IsHeroic()) or (v.heroic == false and not self:IsHeroic()) or v.heroic == nil then
-         if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
-         self:OutputAttempts(v)
+         if (v.raid25 and self:IsRaid25()) or not v.raid25 then
+          if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+          self:OutputAttempts(v)
+         end
         end
        end
       end
@@ -804,7 +826,7 @@ do
    else dataobj.text = format(L["Found after %d attempts!"], attempts) end
   else
    local dropChance = (1.00 / (trackedItem.chance or 100))
-   if trackedItem.method == BOSS and trackedItem.groupSize ~= nil and trackedItem.groupSize > 1 then dropChance = dropChance / trackedItem.groupSize end
+   if trackedItem.method == BOSS and trackedItem.groupSize ~= nil and trackedItem.groupSize > 1 and not trackedItem.equalOdds then dropChance = dropChance / trackedItem.groupSize end
    local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
    if attempts == 1 then dataobj.text = format(L["%d attempt - %.2f%%"], attempts, chance)
    else dataobj.text = format(L["%d attempts - %.2f%%"], attempts, chance) end
@@ -875,15 +897,21 @@ do
      tooltip2:AddLine(colorize("    "..v, gray))
     end
    end
-  end
-  if item.method == ARCH then
+  elseif item.method == ARCH then
    if item.raceId then
     tooltip2:AddLine(colorize("    "..R.string_archraces[item.raceId], gray))
+   end
+  elseif item.method == USE then
+   if item.items and type(item.items) == "table" then
+    for k, v in pairs(item.items) do
+     local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v)
+     if itemLink then tooltip2:AddLine("    "..itemLink) end
+    end
    end
   end
   tooltip2:AddLine(colorize(format(L["1 in %d chance"], item.chance or 100), white))
   local dropChance = (1.00 / (item.chance or 100))
-  if item.method == BOSS and item.groupSize ~= nil and item.groupSize > 1 then dropChance = dropChance / item.groupSize end
+  if item.method == BOSS and item.groupSize ~= nil and item.groupSize > 1 and not item.equalOdds then dropChance = dropChance / item.groupSize end
   local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
   tooltip2:AddLine(colorize(format(L["Lucky if you obtain in %d or less"], medianLoots), gray))
 
@@ -901,7 +929,6 @@ do
    local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
    tooltip2:AddLine(L["Chance so far"], format("%.2f%%", chance))
   end
-  -- Chance so far
   
   if item.totalFinds then
 		 tooltip2:AddSeparator(1, 1, 1, 1, 1)
@@ -934,10 +961,11 @@ do
 			qtip:Release(tooltip2)
 			tooltip2 = nil
 		end
+  GameTooltip:Hide()
 	end
 
 
- function onClickGroup(cell, group)
+ local function onClickGroup(cell, group)
   if type(group) == "table" then
    if group.collapsed == true then group.collapsed = false else group.collapsed = true end
    R:ShowTooltip()
@@ -945,7 +973,7 @@ do
  end
 
 
- function onClickGroup2(cell, group)
+ local function onClickGroup2(cell, group)
   if type(group) == "table" then
    if group.collapsedGroup == true then group.collapsedGroup = false else group.collapsedGroup = true end
    R:ShowTooltip()
@@ -953,19 +981,44 @@ do
  end
 
 
- function onClickItem(cell, item)
+ local function onClickItem(cell, item)
   if trackedItem ~= item and inSession then R:EndSession() end
   R:UpdateTrackedItem(item)
  end
 
 
- function addGroup(group, requiresGroup)
+ local function comparator(a, b)
+  return (a.name or "") < (b.name or "")
+ end
+
+
+ local function sort(t)
+  local nt = {}
+  local i, j, n, min = 0, 0, 0, 0
+  local k, v
+  for k, v in pairs(t) do
+   n = n + 1
+   nt[n] = v
+  end
+  for i = 1, n, 1 do
+	  min = i
+	  for j = i + 1, n, 1 do
+		  if comparator(nt[j], nt[min]) then min = j end
+	  end
+	  nt[i], nt[min] = nt[min], nt[i]
+  end
+  return nt
+ end
+
+
+ local function addGroup(group, requiresGroup)
   if type(group) ~= "table" then return end
   if group.name == nil then return end
 
   local line
   local added = false
-  for k, v in pairs(group) do
+  local g = sort(group)
+  for k, v in pairs(g) do
    if type(v) == "table" and v.enabled ~= false and ((requiresGroup and v.groupSize ~= nil and v.groupSize > 1) or (not requiresGroup and (v.groupSize == nil or v.groupSize <= 1))) then
 
     -- Header
@@ -988,7 +1041,7 @@ do
      local attempts = v.attempts or 0
      if v.lastAttempts then attempts = attempts - v.lastAttempts end
      local dropChance = (1.00 / (v.chance or 100))
-     if v.method == BOSS and v.groupSize ~= nil and v.groupSize > 1 then dropChance = dropChance / v.groupSize end
+     if v.method == BOSS and v.groupSize ~= nil and v.groupSize > 1 and not v.equalOdds then dropChance = dropChance / v.groupSize end
      local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
      local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
      local lucky = L["Lucky"]
@@ -1174,6 +1227,10 @@ end
 
 function R:ScanExistingItems(reason)
  self:Debug("Scanning for existing items ("..reason..")")
+
+ -- Sprite Darter Egg is farmed by horde only. Alliance get it as part of a quest.
+ if not self:IsHorde() then self.db.profile.groups.pets["Sprite Darter Egg"].enabled = false end
+
  -- Look for mount and pet spell IDs and mark as found/disabled (if repeatable set to off)
 
  -- Scan all archaeology races and set any item attempts to the number of solves for that race
@@ -1207,30 +1264,28 @@ end
 
 function R:FoundItem(itemId, item)
  if item.found then return end
- if (item.heroic == true and self:IsHeroic()) or (item.heroic == false and not self:IsHeroic()) or item.heroic == nil then
-  self:Debug("FOUND ITEM %d!", itemId)
-  if item.attempts == nil then item.attempts = 1 end
-  if item.lastAttempts == nil then item.lastAttempts = 0 end
-  self:ShowFoundAlert(itemId, item.attempts - item.lastAttempts)
-  if inSession then self:EndSession() end
-  item.realAttempts = item.attempts - item.lastAttempts
-  item.lastAttempts = item.attempts
-  item.lastTime = item.time
-  item.enabled = false
-  item.found = true
-  item.totalFinds = (item.totalFinds or 0) + 1
-  self:UpdateTrackedItem(item)
+ self:Debug("FOUND ITEM %d!", itemId)
+ if item.attempts == nil then item.attempts = 1 end
+ if item.lastAttempts == nil then item.lastAttempts = 0 end
+ self:ShowFoundAlert(itemId, item.attempts - item.lastAttempts)
+ if inSession then self:EndSession() end
+ item.realAttempts = item.attempts - item.lastAttempts
+ item.lastAttempts = item.attempts
+ item.lastTime = item.time
+ item.enabled = false
+ item.found = true
+ item.totalFinds = (item.totalFinds or 0) + 1
+ self:UpdateTrackedItem(item)
+ self:UpdateInterestingThings()
+ if item.repeatable and (item.method == NPC or item.method == ZONE or item.method == FISHING) then self:ScheduleTimer(function()
+  -- If this is a repeatable item, turn it back on in a few seconds.
+  -- FoundItem() gets called repeatedly when we get an item, so we need to lock it out for 2 seconds.
+  item.enabled = nil
+  item.found = nil
   self:UpdateInterestingThings()
-  if item.repeatable and (item.method == NPC or item.method == ZONE or item.method == FISHING) then self:ScheduleTimer(function()
-   -- If this is a repeatable item, turn it back on in a few seconds.
-   -- FoundItem() gets called repeatedly when we get an item, so we need to lock it out for 2 seconds.
-   item.enabled = nil
-   item.found = nil
-   self:UpdateInterestingThings()
-   self:UpdateText()
-   if R:InTooltip() then R:ShowTooltip() end
-  end, 5) end
- end
+  self:UpdateText()
+  if R:InTooltip() then R:ShowTooltip() end
+ end, 5) end
 end
 
 
