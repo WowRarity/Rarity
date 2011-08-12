@@ -72,6 +72,10 @@ L["Time spent farming"] = true
 L["Chance so far"] = true
 L["Total"] = true
 L["Total found"] = true
+L["Bunny Hunter is running. Would you like Rarity to import data from Bunny Hunter now? Disable Bunny Hunter or click Yes if you don't want to be asked again."] = true
+L["Data has been imported from Bunny Hunter"] = true
+L["#%d: %d attempt (%.2f%%)"] = true
+L["#%d: %d attempts (%.2f%%)"] = true
 
 
 
@@ -117,7 +121,6 @@ L["Fossilized Raptor"] = true
 L["Reins of the Drake of the North Wind"] = true
 L["Reins of the Drake of the South Wind"] = true
 L["Swift Zulian Panther"] = true
-
 
 
 

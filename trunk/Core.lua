@@ -176,6 +176,8 @@ do
   self:UpdateInterestingThings()
   self:FindTrackedItem()
   self:UpdateText()
+
+  self:ImportFromBunnyHunter()
 		
 		self:UnregisterAllEvents()
   self:RegisterEvent("BAG_UPDATE", "OnEvent")
@@ -294,6 +296,62 @@ function R:tcopy(to, from)
 end
 
 
+local function compareName(a, b)
+ if not a or not b then return 0 end
+ if type(a) ~= "table" or type(b) ~= "table" then return 0 end
+ return (a.name or "") < (b.name or "")
+end
+
+
+local function compareNum(a, b)
+ if not a or not b then return 0 end
+ if type(a) ~= "table" or type(b) ~= "table" then return 0 end
+ return (a.num or 0) < (b.num or 0)
+end
+
+
+local function sort(t)
+ local nt = {}
+ local i, j, n, min = 0, 0, 0, 0
+ local k, v
+ for k, v in pairs(t) do
+  if type(v) == "table" and v.name then
+   n = n + 1
+   nt[n] = v
+  end
+ end
+ for i = 1, n, 1 do
+	 min = i
+	 for j = i + 1, n, 1 do
+		 if compareName(nt[j], nt[min]) then min = j end
+	 end
+	 nt[i], nt[min] = nt[min], nt[i]
+ end
+ return nt
+end
+
+
+local function sort2(t)
+ local nt = {}
+ local i, j, n, min = 0, 0, 0, 0
+ local k, v
+ for k, v in pairs(t) do
+  if type(v) == "table" and v.num then
+   n = n + 1
+   nt[n] = v
+  end
+ end
+ for i = 1, n, 1 do
+	 min = i
+	 for j = i + 1, n, 1 do
+		 if compareNum(nt[j], nt[min]) then min = j end
+	 end
+	 nt[i], nt[min] = nt[min], nt[i]
+ end
+ return nt
+end
+
+
 function round(num)
  return math.floor(num + 0.5)
 end
@@ -408,6 +466,7 @@ end
 
 
 function R:FormatTime(t)
+ if not t then return "0:00" end
 	if t == 0 then
 		return "0:00"
 	end
@@ -936,9 +995,20 @@ do
    local attempts = (item.attempts or 0)
    tooltip2:AddLine(L["Attempts"], attempts)
    if item.method == NPC or item.method == ZONE or item.method == FISHING then
-    tooltip2:AddLine(L["Time spent farming"], R:FormatTime((item.time or 0)))
+    tooltip2:AddLine(L["Time spent farming"], R:FormatTime(item.time or 0))
    end
    tooltip2:AddLine(L["Total found"], item.totalFinds)
+   if item.finds then
+		  tooltip2:AddSeparator(1, 1, 1, 1, 1)
+    local f = sort2(item.finds)
+    for k, v in pairs(f) do
+     local dropChance = (1.00 / (item.chance or 100))
+     local chance = 100 * (1 - math.pow(1 - dropChance, v.attempts))
+     if item.method == BOSS and item.groupSize ~= nil and item.groupSize > 1 and not item.equalOdds then dropChance = dropChance / item.groupSize end
+     if v.attempts == 1 then tooltip2:AddLine(format(L["#%d: %d attempt (%.2f%%)"], v.num, v.attempts, chance), R:FormatTime(v.time or 0))
+     else tooltip2:AddLine(format(L["#%d: %d attempts (%.2f%%)"], v.num, v.attempts, chance), R:FormatTime(v.time or 0)) end
+    end
+   end
   end
 		
 		--tooltip2:UpdateScrolling()
@@ -987,30 +1057,6 @@ do
  end
 
 
- local function comparator(a, b)
-  return (a.name or "") < (b.name or "")
- end
-
-
- local function sort(t)
-  local nt = {}
-  local i, j, n, min = 0, 0, 0, 0
-  local k, v
-  for k, v in pairs(t) do
-   n = n + 1
-   nt[n] = v
-  end
-  for i = 1, n, 1 do
-	  min = i
-	  for j = i + 1, n, 1 do
-		  if comparator(nt[j], nt[min]) then min = j end
-	  end
-	  nt[i], nt[min] = nt[min], nt[i]
-  end
-  return nt
- end
-
-
  local function addGroup(group, requiresGroup)
   if type(group) ~= "table" then return end
   if group.name == nil then return end
@@ -1024,7 +1070,7 @@ do
     -- Header
     local groupName = group.name
     if requiresGroup then groupName = groupName..L[" (Group)"] end
-		  if not headers[groupName] then
+		  if not headers[groupName] and v.itemId ~= nil then
 			  headers[groupName] = true
      local collapsed = group.collapsed or false
      if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
@@ -1044,8 +1090,8 @@ do
      if v.method == BOSS and v.groupSize ~= nil and v.groupSize > 1 and not v.equalOdds then dropChance = dropChance / v.groupSize end
      local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
      local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
-     local lucky = L["Lucky"]
-     if medianLoots < attempts then lucky = L["Unlucky"] end
+     local lucky = colorize(L["Lucky"], green)
+     if medianLoots < attempts then lucky = colorize(L["Unlucky"], red) end
      local icon = ""
      if trackedItem == v then icon = [[|TInterface\Buttons\UI-CheckBox-Check:0|t]] end
      local time = 0
@@ -1064,6 +1110,7 @@ do
       likelihood = ""
      end
      if time == "0:00" then time = "" end
+     if v.method ~= NPC and v.method ~= ZONE and v.method ~= FISHING then time = "" end
      line = tooltip:AddLine(icon, (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky)
      tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
 				 tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
@@ -1271,10 +1318,20 @@ function R:FoundItem(itemId, item)
  if inSession then self:EndSession() end
  item.realAttempts = item.attempts - item.lastAttempts
  item.lastAttempts = item.attempts
- item.lastTime = item.time
  item.enabled = false
  item.found = true
  item.totalFinds = (item.totalFinds or 0) + 1
+ if not item.finds then item.finds = {} end
+ local count = 0
+ for k, v in pairs(item.finds) do count = count + 1 end
+ table.insert(item.finds, {
+  num = count + 1,
+  totalAttempts = item.attempts,
+  totalTime = item.time,
+  attempts = item.realAttempts,
+  time = (item.time or 0) - (item.lastTime or 0)
+ })
+ item.lastTime = item.time
  self:UpdateTrackedItem(item)
  self:UpdateInterestingThings()
  if item.repeatable and (item.method == NPC or item.method == ZONE or item.method == FISHING) then self:ScheduleTimer(function()
@@ -1333,7 +1390,7 @@ function R:EndSession()
   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(trackedItem.itemId)
 		local len = sessionLast - sessionStarted
   if trackedItem and (trackedItem.method == NPC or trackedItem.method == ZONE or trackedItem.method == FISHING) then trackedItem.time = (trackedItem.time or 0) + len end
-  self:Debug("Ending session for %s (%s)", itemLink, self:FormatTime(trackedItem.time))
+  self:Debug("Ending session for %s (%s)", itemLink, self:FormatTime(trackedItem.time or 0))
 	end
 	inSession = false
 end
@@ -1367,3 +1424,110 @@ function R:UpdateSession()
 		self:StartSession()
 	end
 end
+
+
+function R:ImportFromBunnyHunter()
+ if self.db.profile.importedFromBunnyHunter then return end
+
+ if BunnyHunterDB then
+  StaticPopupDialogs["RARITY_IMPORT_FROM_BUNNYHUNTER"] = {
+	  text = L["Bunny Hunter is running. Would you like Rarity to import data from Bunny Hunter now? Disable Bunny Hunter or click Yes if you don't want to be asked again."],
+	  button1 = YES,
+   button2 = NO,
+	  hideOnEscape = 1,
+	  timeout = 0,
+	  exclusive = 1,
+	  whileDead = 1,
+	  OnAccept = function()
+    local self = R
+		  -- Do the import
+    if BunnyHunterDB.loots and type(BunnyHunterDB.loots) == "table" then
+     for k, v in pairs(BunnyHunterDB.loots) do
+      for groupkey, group in pairs(self.db.profile.groups) do
+       for itemkey, item in pairs(group) do
+        if item.itemId == tonumber(k) then
+         self:Debug("Resetting found record for %s", itemkey)
+         item.finds = nil
+         item.totalFinds = nil
+        end
+       end
+      end
+     end
+     for k, v in pairs(BunnyHunterDB.loots) do
+      for groupkey, group in pairs(self.db.profile.groups) do
+       for itemkey, item in pairs(group) do
+        if item.itemId == tonumber(k) then
+         for kk, vv in pairs(v) do
+          self:Debug("%s: adding a kill after %d attempts, %s time", itemkey, vv.loots, self:FormatTime(vv.time))
+          if not item.finds then item.finds = {} end
+          local count = 0
+          for x, y in pairs(item.finds) do count = count + 1 end
+          table.insert(item.finds, {
+            num = count + 1,
+            totalAttempts = vv.loots,
+            totalTime = vv.time,
+            attempts = vv.loots,
+            time = vv.time
+           })
+           item.totalFinds = (item.totalFinds or 0) + 1
+          end
+         end
+       end
+      end
+     end
+    end
+    if BunnyHunterDB.kills_by_id and type(BunnyHunterDB.kills_by_id) == "table" then
+     for k, v in pairs(BunnyHunterDB.kills_by_id) do
+      for groupkey, group in pairs(self.db.profile.groups) do
+       for itemkey, item in pairs(group) do
+        if item.npcs then
+         for npckey, npcid in pairs(item.npcs) do
+          if npcid == tonumber(k) then
+           self:Debug("Resetting attempts for %s", itemkey)
+           item.attempts = 0
+           item.lastAttempts = nil
+          end
+         end
+        end
+       end
+      end
+     end
+     for k, v in pairs(BunnyHunterDB.kills_by_id) do
+      for groupkey, group in pairs(self.db.profile.groups) do
+       for itemkey, item in pairs(group) do
+        if item.npcs then
+         for npckey, npcid in pairs(item.npcs) do
+          if npcid == tonumber(k) then
+           self:Debug("%s: adding %d attempt(s)", itemkey, v)
+           item.attempts = (item.attempts or 0) + v
+          end
+         end
+        end
+       end
+      end
+     end
+    end
+    if BunnyHunterDB.times and type(BunnyHunterDB.times) == "table" then
+     for k, v in pairs(BunnyHunterDB.times) do
+      for groupkey, group in pairs(self.db.profile.groups) do
+       for itemkey, item in pairs(group) do
+        if item.itemId == tonumber(k) then
+         self:Debug("%s: updating time to %f", itemkey, v)
+         item.time = v
+         item.lastTime = nil
+        end
+       end
+      end
+     end
+    end
+    self:UpdateInterestingThings()
+    self:UpdateText()
+    if self:InTooltip() then self:ShowTooltip() end
+    self.db.profile.importedFromBunnyHunter = true
+    self:Print(L["Data has been imported from Bunny Hunter"])
+	  end
+  }
+		StaticPopup_Show("RARITY_IMPORT_FROM_BUNNYHUNTER")
+ end
+end
+
