@@ -69,7 +69,7 @@ function R:PrepareDefaults()
      ["Fossilized Raptor"] =                    { type = MOUNT, method = ARCH, name = GetItemInfo(60954) or L["Fossilized Raptor"], spellId = 84751, itemId = 60954, raceId = 3, chance = 30, },
      ["Swift White Hawkstrider"] =              { type = MOUNT, method = NPC, name = GetItemInfo(35513) or L["Swift White Hawkstrider"], spellId = 46628, itemId = 35513, npcs = { 24664 }, chance = 33, heroic = true, },
      ["Deathcharger's Reins"] =                 { type = MOUNT, method = NPC, name = GetItemInfo(13335) or L["Deathcharger's Reins"], spellId = 17481, itemId = 13335, npcs = { 45412 }, chance = 100, },
-     ["Red Qiraji Resonating Crystal"] =        { type = MOUNT, method = NPC, name = GetItemInfo(21321) or L["The Horseman's Reins"], spellId = 26054, itemId = 21321, npcs = { 15311, 15250, 15247, 15246, 15264, 15262, 15277, 15312, 15252, 15249 }, chance = 66, },
+     ["Red Qiraji Resonating Crystal"] =        { type = MOUNT, method = NPC, name = GetItemInfo(21321) or L["Red Qiraji Resonating Crystal"], spellId = 26054, itemId = 21321, npcs = { 15311, 15250, 15247, 15246, 15264, 15262, 15277, 15312, 15252, 15249 }, chance = 66, },
      ["Reins of the Green Proto-Drake"] =       { type = MOUNT, method = USE, name = GetItemInfo(44707) or L["Reins of the Green Proto-Drake"], spellId = 61294, itemId = 44707, items = { 39883 }, chance = 20, },
      -- Requires a group (some of these are soloable by specific classes, but not in general)
      ["Ashes of Al'ar"] =                       { type = MOUNT, method = BOSS, name = GetItemInfo(32458) or L["Ashes of Al'ar"], spellId = 40192, itemId = 32458, npcs = { 19622 }, chance = 100, groupSize = 2, },
@@ -98,7 +98,7 @@ function R:PrepareDefaults()
      ["Dark Whelpling"] =                       { type = PET, method = NPC, name = GetItemInfo(10822) or L["Dark Whelpling"], spellId = 10695, itemId = 10822, npcs = { 4324, 42042, 2725, 46916, 7049, 4323, 46914 }, chance = 1000, repeatable = true, },
      ["Tiny Emerald Whelpling"] =               { type = PET, method = NPC, name = GetItemInfo(8498) or L["Tiny Emerald Whelpling"], spellId = 10698, itemId = 8498, npcs = { 740, 741, 39384 }, chance = 1000, repeatable = true, },
      ["Captured Firefly"] =                     { type = PET, method = NPC, name = GetItemInfo(29960) or L["Captured Firefly"], spellId = 36034, itemId = 29960, npcs = { 20197 }, chance = 1000, repeatable = true, },
-     ["Phoenix Hatchling"] =                    { type = PET, method = NPC, name = GetItemInfo(35504) or L["Phoenix Hatchling"], spellId = 46599, itemId = 35504, npcs = { 24664 }, chance = 11, repeatable = true, },
+     ["Phoenix Hatchling"] =                    { type = PET, method = NPC, name = GetItemInfo(35504) or L["Phoenix Hatchling"], spellId = 46599, itemId = 35504, npcs = { 24664 }, chance = 11, },
      ["Sprite Darter Egg"] =                    { type = PET, method = NPC, name = GetItemInfo(11474) or L["Sprite Darter Egg"], spellId = 15067, itemId = 11474, npcs = { 5278 }, chance = 11, repeatable = true, },
      ["Fox Kit"] =                              { type = PET, method = NPC, name = GetItemInfo(64403) or L["Fox Kit"], spellId = 90637, itemId = 64403, npcs = { 47676 }, chance = 1000, },
      ["Razzashi Hatchling"] =                   { type = PET, method = ZONE, name = GetItemInfo(48126) or L["Razzashi Hatchling"], spellId = 67420, itemId = 48126, zones = { "Stranglethorn Vale", "Northern Stranglethorn", "The Cape of Stranglethorn" }, chance = 1000, repeatable = true, },

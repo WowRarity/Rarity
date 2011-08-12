@@ -76,6 +76,7 @@ L["Bunny Hunter is running. Would you like Rarity to import data from Bunny Hunt
 L["Data has been imported from Bunny Hunter"] = true
 L["#%d: %d attempt (%.2f%%)"] = true
 L["#%d: %d attempts (%.2f%%)"] = true
+L["Already known"] = true
 
 
 
@@ -121,7 +122,7 @@ L["Fossilized Raptor"] = true
 L["Reins of the Drake of the North Wind"] = true
 L["Reins of the Drake of the South Wind"] = true
 L["Swift Zulian Panther"] = true
-
+L["Red Qiraji Resonating Crystal"] = true
 
 
 

@@ -941,6 +941,16 @@ do
 
   -- Rarity extended information tooltip
 		tooltip2:AddHeader(itemLink or item.name)
+  if item.spellId then
+   for id = 1, GetNumCompanions("MOUNT") do
+		  local spellId = select(3, GetCompanionInfo("MOUNT", id))
+    if spellId == item.spellId then tooltip2:AddLine(colorize(L["Already known"], green)) end
+   end
+   for id = 1, GetNumCompanions("CRITTER") do
+		  local spellId = select(3, GetCompanionInfo("CRITTER", id))
+    if spellId == item.spellId then tooltip2:AddLine(colorize(L["Already known"], green)) end
+   end
+  end
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
 
   tooltip2:AddLine(colorize(R.string_types[item.type], yellow))
@@ -1279,6 +1289,38 @@ function R:ScanExistingItems(reason)
  if not self:IsHorde() then self.db.profile.groups.pets["Sprite Darter Egg"].enabled = false end
 
  -- Look for mount and pet spell IDs and mark as found/disabled (if repeatable set to off)
+ for id = 1, GetNumCompanions("MOUNT") do
+		local spellId = select(3, GetCompanionInfo("MOUNT", id))
+  for k, v in pairs(R.db.profile.groups) do
+   if type(v) == "table" then
+    for kk, vv in pairs(v) do
+     if type(vv) == "table" then
+      if vv.spellId and vv.spellId == spellId and not vv.repeatable then
+       vv.enabled = false
+       vv.found = true
+       --self:Debug("You already know %s", vv.name)
+      end
+     end
+    end
+   end
+  end
+ end
+ for id = 1, GetNumCompanions("CRITTER") do
+		local spellId = select(3, GetCompanionInfo("CRITTER", id))
+  for k, v in pairs(R.db.profile.groups) do
+   if type(v) == "table" then
+    for kk, vv in pairs(v) do
+     if type(vv) == "table" then
+      if vv.spellId and vv.spellId == spellId and not vv.repeatable then
+       vv.enabled = false
+       vv.found = true
+       --self:Debug("You already know %s", vv.name)
+      end
+     end
+    end
+   end
+  end
+ end
 
  -- Scan all archaeology races and set any item attempts to the number of solves for that race
  local s = 0
