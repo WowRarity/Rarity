@@ -44,11 +44,19 @@ R.string_archraces = {
  [10] = L["Other"],
 }
 
+-- Feed text
+local FEED_MINIMAL = "FEED_MINIMAL"
+local FEED_NORMAL = "FEED_NORMAL"
+local FEED_VERBOSE = "FEED_VERBOSE"
+
 function R:PrepareDefaults()
 
 	self.defaults = {
 		profile = {
 			minimap = { hide = true },
+
+   enableAnnouncements = true,
+   feedText = FEED_NORMAL,
 
    trackedGroup = "pets",
    trackedItem = 8494,
@@ -110,7 +118,7 @@ function R:PrepareDefaults()
     },
     user = {
      name = L["User"],
-     --["Test 1"] =      { type = PET, method = NPC, name = GetItemInfo(25467) or "Test 1", spellId = 10682, itemId = 25467, npcs = { 16520, 16516 }, chance = 100, repeatable = true, },
+     ["Test 1"] =      { type = PET, method = NPC, name = GetItemInfo(25467) or "Test 1", spellId = 10682, itemId = 25467, npcs = { 16520, 16516 }, chance = 100, repeatable = true, },
     },
 
    }, -- groups

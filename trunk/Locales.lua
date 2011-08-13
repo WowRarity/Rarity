@@ -77,6 +77,23 @@ L["Data has been imported from Bunny Hunter"] = true
 L["#%d: %d attempt (%.2f%%)"] = true
 L["#%d: %d attempts (%.2f%%)"] = true
 L["Already known"] = true
+L["General"] = true
+L["Show minimap icon"] = true
+L["Turns on a minimap icon for Rarity. Use this option if you don't have an LDB display add-on."] = true
+L["Announcements"] = true
+L["Enable announcements"] = true
+L["Enables announcements whenever you complete a new attempt toward anything Rarity is tracking. You can also enable announcements per-item, but this is the master switch."] = true
+L["Display"] = true
+L["Feed text"]= true
+L["Controls what type of text is shown in Rarity's LDB feed. Minimal shows just the number of attempts. Normal adds the likelihood percent, and verbose adds the item link."] = true
+L["Minimal"] = true
+L["Normal"] = true
+L["Verbose"] = true
+L["%d attempts"] = true
+L["%d attempt"] = true
+L["%s: %d attempt - %.2f%%"] = true
+L["%s: %d attempts - %.2f%%"] = true
+
 
 
 

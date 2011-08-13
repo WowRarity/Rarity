@@ -21,6 +21,8 @@ local lbz = LibStub("LibBabble-Zone-3.0"):GetLookupTable()
       VARIABLES ----------------------------------------------------------------------------------------------------------------
   ]]
 
+R.modulesEnabled = {}
+
 local npcs = {}
 local bosses = {}
 local zones = {}
@@ -83,7 +85,12 @@ local ZONE = "ZONE"
 local USE = "USE"
 local FISHING = "FISHING"
 local ARCH = "ARCH"
-  
+
+-- Feed text
+local FEED_MINIMAL = "FEED_MINIMAL"
+local FEED_NORMAL = "FEED_NORMAL"
+local FEED_VERBOSE = "FEED_VERBOSE"
+
 
 
 --[[
@@ -887,8 +894,16 @@ do
    local dropChance = (1.00 / (trackedItem.chance or 100))
    if trackedItem.method == BOSS and trackedItem.groupSize ~= nil and trackedItem.groupSize > 1 and not trackedItem.equalOdds then dropChance = dropChance / trackedItem.groupSize end
    local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
-   if attempts == 1 then dataobj.text = format(L["%d attempt - %.2f%%"], attempts, chance)
-   else dataobj.text = format(L["%d attempts - %.2f%%"], attempts, chance) end
+   if self.db.profile.feedText == FEED_MINIMAL then
+    if attempts == 1 then dataobj.text = format(L["%d attempt"], attempts)
+    else dataobj.text = format(L["%d attempts"], attempts) end
+   elseif self.db.profile.feedText == FEED_VERBOSE then
+    if attempts == 1 then dataobj.text = format(L["%s: %d attempt - %.2f%%"], itemLink or trackedItem.name, attempts, chance)
+    else dataobj.text = format(L["%s: %d attempts - %.2f%%"], itemLink or trackedItem.name, attempts, chance) end
+   else
+    if attempts == 1 then dataobj.text = format(L["%d attempt - %.2f%%"], attempts, chance)
+    else dataobj.text = format(L["%d attempts - %.2f%%"], attempts, chance) end
+   end
   end
  end
 
@@ -1254,6 +1269,7 @@ end
 
 
 function R:OutputAttempts(item)
+ if self.db.profile.enableAnnouncements == false then return end
  if type(item) == "table" and item.enabled ~= false and item.found ~= true and item.itemId ~= nil and item.attempts ~= nil then
   -- Output the attempt count
   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
@@ -1571,5 +1587,14 @@ function R:ImportFromBunnyHunter()
   }
 		StaticPopup_Show("RARITY_IMPORT_FROM_BUNNYHUNTER")
  end
+end
+
+
+function R:Update(reason)
+ self:ScanExistingItems(reason)
+ self:UpdateInterestingThings(reason)
+ self:FindTrackedItem()
+ self:UpdateText()
+ if self:InTooltip() then self:ShowTooltip() end
 end
 
