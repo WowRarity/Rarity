@@ -600,10 +600,12 @@ function R:OnEvent(event, ...)
 			local _, _, qty = GetLootSlotInfo(slotID)
 			if qty > 0 then -- Coins have quantity of 0, so skip those
 				local itemLink = GetLootSlotLink(slotID)
-				local _, itemId = strsplit(":", itemLink)
-    itemId = tonumber(itemId)
-    if items[itemId] ~= nil then
-     self:FoundItem(itemId, items[itemId])
+    if itemLink then
+				 local _, itemId = strsplit(":", itemLink)
+     itemId = tonumber(itemId)
+     if items[itemId] ~= nil then
+      self:FoundItem(itemId, items[itemId])
+     end
     end
 			end
 		end
