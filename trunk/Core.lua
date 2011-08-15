@@ -1036,6 +1036,10 @@ do
    end
   end
 		
+		tooltip2:AddSeparator(1, 1, 1, 1, 1)
+  tooltip2:AddLine(colorize(L["Click to switch to this item"], gray))
+  tooltip2:AddLine(colorize(L["Shift-Click to link your progress to chat"], gray))
+
 		--tooltip2:UpdateScrolling()
 		tooltip2:Show()
 	end
@@ -1077,8 +1081,26 @@ do
 
 
  local function onClickItem(cell, item)
-  if trackedItem ~= item and inSession then R:EndSession() end
-  R:UpdateTrackedItem(item)
+  if IsShiftKeyDown() then
+   if not item or type(item) ~= "table" or not item.itemId then return end
+   local v = item
+   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
+   local attempts = v.attempts or 0
+   if v.lastAttempts then attempts = attempts - v.lastAttempts end
+   local dropChance = (1.00 / (v.chance or 100))
+   if v.method == BOSS and v.groupSize ~= nil and v.groupSize > 1 and not v.equalOdds then dropChance = dropChance / v.groupSize end
+   local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
+   local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
+   local lucky = L["lucky"]
+   if medianLoots < attempts then lucky = L["unlucky"] end
+   local s = format(L["%s: 0/%d attempts so far (%.2f%% - %s)"], itemLink or item.name, attempts, chance, lucky)
+   if attempts == 1 then s = format(L["%s: 0/%d attempt so far (%.2f%% - %s)"], itemLink or item.name, attempts, chance, lucky) end
+   if attempts <= 0 then s = format("%s", itemLink or item.name) end
+   ChatEdit_InsertLink(s)
+  else
+   if trackedItem ~= item and inSession then R:EndSession() end
+   R:UpdateTrackedItem(item)
+  end
  end
 
 

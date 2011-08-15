@@ -780,7 +780,7 @@ function R:CreateGroup(options, group, isUser)
      hidden = function() return item.method ~= BOSS and item.method ~= USE end,
 				},
 
-			 spacer4 = { type = "header", name = "", order = newOrder(), },
+			 spacer4 = { type = "header", name = "", order = newOrder(), hidden = not isUser },
 
 			 delete = {
 				 type = "execute",
