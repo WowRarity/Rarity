@@ -289,7 +289,7 @@ output = self:GetSinkAce3OptionsDataTable(),
 
 -- Items ----------------------------------------------------------------------------------------------------------------------------------------
 
-			items = {
+			--[[items = {
 				type = "group",
 				name = L["Items"],
 				order = newOrder(),
@@ -299,7 +299,7 @@ output = self:GetSinkAce3OptionsDataTable(),
 					-- Filled in by Rarity:CreateGroup(...)
 			
 				}, -- args
-			}, -- items
+			},]] -- items
 
 -- Custom ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -324,7 +324,7 @@ output = self:GetSinkAce3OptionsDataTable(),
  -- Create the options for each group of items
 	self:CreateGroup(self.options.args.mounts, self.db.profile.groups.mounts, false)
 	self:CreateGroup(self.options.args.companions, self.db.profile.groups.pets, false)
-	self:CreateGroup(self.options.args.items, self.db.profile.groups.items, false)
+	--self:CreateGroup(self.options.args.items, self.db.profile.groups.items, false)
 	self:CreateGroup(self.options.args.custom, self.db.profile.groups.user, true)
 
 	self.PrepareOptions = nil
