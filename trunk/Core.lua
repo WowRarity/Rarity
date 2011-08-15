@@ -1270,6 +1270,7 @@ end
 
 function R:OutputAttempts(item)
  if self.db.profile.enableAnnouncements == false then return end
+ if item.announce == false then return end
  if type(item) == "table" and item.enabled ~= false and item.found ~= true and item.itemId ~= nil and item.attempts ~= nil then
   -- Output the attempt count
   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)

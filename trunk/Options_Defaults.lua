@@ -82,7 +82,7 @@ function R:PrepareDefaults()
      -- Requires a group (some of these are soloable by specific classes, but not in general)
      ["Ashes of Al'ar"] =                       { type = MOUNT, method = BOSS, name = GetItemInfo(32458) or L["Ashes of Al'ar"], spellId = 40192, itemId = 32458, npcs = { 19622 }, chance = 100, groupSize = 2, },
      ["Flametalon of Alysrazor"] =              { type = MOUNT, method = BOSS, name = GetItemInfo(71665) or L["Flametalon of Alysrazor"], spellId = 101542, itemId = 71665, npcs = { 52530 }, chance = 100, groupSize = 10, },
-     ["Reins of the Azure Drake"] =             { type = MOUNT, method = BOSS, name = GetItemInfo(43952) or L["Reins of the Azure Drake"], spellId = 59567, itemId = 43952, npcs = { 28859 }, chance = 100, groupSize = 3, },
+     ["Reins of the Azure Drake"] =             { type = MOUNT, method = BOSS, name = GetItemInfo(43952) or L["Reins of the Azure Drake"], spellId = 59567, itemId = 43952, npcs = { 28859 }, chance = 100, groupSize = 2, },
      ["Reins of the Blue Drake"] =              { type = MOUNT, method = BOSS, name = GetItemInfo(43953) or L["Reins of the Blue Drake"], spellId = 59568, itemId = 43953, npcs = { 28859 }, chance = 100, groupSize = 2, },
      ["Reins of the Onyxian Drake"] =           { type = MOUNT, method = BOSS, name = GetItemInfo(49636) or L["Reins of the Onyxian Drake"], spellId = 69395, itemId = 49636, npcs = { 10184 }, chance = 100, groupSize = 2, },
      ["Invincible's Reins"] =                   { type = MOUNT, method = BOSS, name = GetItemInfo(50818) or L["Invincible's Reins"], spellId = 72286, itemId = 50818, npcs = { 36597 }, chance = 100, heroic = true, raid25 = true, groupSize = 25, },
@@ -117,7 +117,7 @@ function R:PrepareDefaults()
      name = L["Items"],
     },
     user = {
-     name = L["User"],
+     name = L["Custom"],
      ["Test 1"] =      { type = PET, method = NPC, name = GetItemInfo(25467) or "Test 1", spellId = 10682, itemId = 25467, npcs = { 16520, 16516 }, chance = 100, repeatable = true, },
     },
 

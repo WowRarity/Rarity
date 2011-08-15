@@ -42,7 +42,6 @@ L["%d attempts - %.2f%%"] = true
 L["Found on your first attempt!"] = true
 L["Found after %d attempts!"] = true
 L["Items"] = true
-L["User"] = true
 L["%s: %d attempt (%d total)"] = true
 L["%s: %d attempts (%d total)"] = true
 L["Dwarf"] = true
@@ -93,6 +92,72 @@ L["%d attempts"] = true
 L["%d attempt"] = true
 L["%s: %d attempt - %.2f%%"] = true
 L["%s: %d attempts - %.2f%%"] = true
+L["Create a new item to track"] = true
+L["Delete this item"] = true
+L["Are you sure you want to delete this item?"] = true
+L["Create a New Item"] = true
+L["New item"] = true
+L["Custom"] = true
+L["To create a new item, enter a unique name for the item, and click Okay. The name will be used if the server does not return the item link or if the item is invalid.\n\nYou can't change this name after you create the item, so choose it well."] = true
+L["Item ID"] = true
+L["The item ID to track. This is the item as it appears in your inventory or in a loot window. Use WowHead or a similar service to lookup item IDs. This must be a valid number and must be unique."] = true
+L["You must enter an item ID."] = true
+L["You must enter a valid number."] = true
+L["You entered an item ID that is already being used by another item."] = true
+L["How likely the item is to appear, expressed as 1 in X, where X is the number you enter here."] = true
+L["Chance"] = true
+L["You must enter an amount."] = true
+L["You must enter a number larger than 1."] = true
+L["You must enter a number larger than or equal to 0."] = true
+L["How many attempts you've made so far."] = true
+L["Track this"] = true
+L["Determines whether tracking should be enabled for this item. Items that are disabled will not appear in the tooltip."] = true
+L["Repeatable"] = true
+L["Determines whether you want to repeatedly farm this item. If you turn this on and find the item, Rarity will mark the item as un-found after a few seconds."] = true
+L["Enables announcements whenever you complete a new attempt toward this item."] = true
+L["Type of item"] = true
+L["Announce"] = true
+L["Determines what type of item this is."] = true
+L["Identify the Item"] = true
+L["Toggles"] = true
+L["Statistics"] = true
+L["Spell ID"] = true
+L["You must enter a spell ID."] = true
+L["You entered a spell ID that is already being used by another item."] = true
+L["The spell ID of the item once you've learned it. This applies only to mounts and companions, and is the spell as it appears in your spell book after learning the item. Use WowHead or a similar service to lookup spell IDs. This must be a valid number and must be unique."] = true
+L["You must enter a number larger than 0."] = true
+L["Method of obtaining"] = true
+L["Determines how this item is obtained."] = true
+L["Group size"] = true
+L["The number of players it takes to obtain the item. This will lower your chances of obtaining the item."] = true
+L["Requires a 25-player raid"] = true
+L["Determines whether this item can only be obtained in 25-player mode."] = true
+L["Equal odds"] = true
+L["Turn this on if the item requires a group to obtain, but every player gets an equal chance to obtain the item. This currently only applies to some of the holiday mounts. When you turn this on, Rarity will stop lowering your chance to obtain based on the group size."] = true
+L["Archaeology race"] = true
+L["Determines which race includes this archaeology project."] = true
+L["Zones"] = true
+L["A comma-separated list of the zones this item can be found in. Enter zone names with proper spelling, capitalization, and punctuation. They can be entered either in US English or your client's local language. Use WowHead or a similar service to make sure you're entering the zone names perfectly."] = true
+L["You must enter at least one zone."] = true
+L["Please enter a comma-separated list of zones."] = true
+L["One of the zones you entered (%s) cannot be found. Check that it is spelled correctly, and is either US English or your client's local language."] = true
+L["Items to Use"] = true
+L["A comma-separated list of item IDs which, when used or opened, can give you this item. Use WowHead or a similar service to lookup item IDs."] = true
+L["You must enter at least one item ID."] = true
+L["Please enter a comma-separated list of item IDs."] = true
+L["Every item ID must be a number greater than 0."] = true
+L["NPCs"] = true
+L["A comma-separated list of NPC IDs who drop this item. Use WowHead or a similar service to lookup NPC IDs."] = true
+L["You must enter at least one NPC ID."] = true
+L["Please enter a comma-separated list of NPC IDs."] = true
+L["Every NPC ID must be a number greater than 0."] = true
+L["The name you entered is already being used by another item. Please enter a unique name."] = true
+L["You entered a reserved name. Please enter the correct item name as it appears in game."] = true
+
+
+
+
+
 
 
 
