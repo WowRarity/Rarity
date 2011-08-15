@@ -160,10 +160,10 @@ end
 
 local function allitems()
  local t = {}
- for k, v in pairs(R.db.profile.groups.mounts) do t[k] = v end
- for k, v in pairs(R.db.profile.groups.pets) do t[k] = v end
- for k, v in pairs(R.db.profile.groups.items) do t[k] = v end
- for k, v in pairs(R.db.profile.groups.user) do t[k] = v end
+ for k, v in pairs(R.db.profile.groups.mounts) do if type(v) == "table" then t[k] = v end end
+ for k, v in pairs(R.db.profile.groups.pets) do if type(v) == "table" then t[k] = v end end
+ for k, v in pairs(R.db.profile.groups.items) do if type(v) == "table" then t[k] = v end end
+ for k, v in pairs(R.db.profile.groups.user) do if type(v) == "table" then t[k] = v end end
  return t
 end
 
