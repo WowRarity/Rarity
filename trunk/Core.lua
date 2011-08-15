@@ -14,7 +14,7 @@ local dataobj = ldb:NewDataObject("Rarity", {
  icon = [[Interface\Icons\spell_nature_forceofnature]]
 })
 local lbz = LibStub("LibBabble-Zone-3.0"):GetLookupTable()
----
+--
 
 
 --[[

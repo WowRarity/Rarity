@@ -115,10 +115,11 @@ function R:PrepareDefaults()
     },
     items = {
      name = L["Items"],
+     ["Sulfuron Ingot"] =                       { type = ITEM, method = NPC, name = GetItemInfo(17203) or L["Sulfuron Ingot"], itemId = 17203, npcs = { 11988 }, chance = 3, repeatable = true, },
     },
     user = {
      name = L["Custom"],
-     ["Test 1"] =      { type = PET, method = NPC, name = GetItemInfo(25467) or "Test 1", spellId = 10682, itemId = 25467, npcs = { 16520, 16516 }, chance = 100, repeatable = true, },
+     --["Test 1"] =      { type = PET, method = NPC, name = GetItemInfo(25467) or "Test 1", spellId = 10682, itemId = 25467, npcs = { 16520, 16516 }, chance = 100, repeatable = true, },
     },
 
    }, -- groups

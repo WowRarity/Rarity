@@ -153,7 +153,7 @@ L["Please enter a comma-separated list of NPC IDs."] = true
 L["Every NPC ID must be a number greater than 0."] = true
 L["The name you entered is already being used by another item. Please enter a unique name."] = true
 L["You entered a reserved name. Please enter the correct item name as it appears in game."] = true
-
+L["Sulfuron Ingot"] = true
 
 
 
