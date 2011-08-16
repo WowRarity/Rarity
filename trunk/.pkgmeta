@@ -43,6 +43,9 @@ externals:
     Libs/LibBabble-Zone-3.0:
         url: svn://svn.wowace.com/wow/libbabble-zone-3-0/mainline/trunk
         tag: latest
+    Libs/LibBabble-SubZone-3.0:
+        url: svn://svn.wowace.com/wow/libbabble-subzone-3-0/mainline/trunk
+        tag: latest
     Libs/LibSink-2.0:
         url: svn://svn.wowace.com/wow/libsink-2-0/mainline/trunk
         tag: latest

@@ -58,7 +58,7 @@ L["Drops from NPC(s)"] = true
 L["Drops from a boss requiring a group"] = true
 L["Drops from any mob in a zone"] = true
 L["Obtained by using an item or opening a container"] = true
-L["Obtained by fishing from pools in a zone"] = true
+L["Obtained by fishing"] = true
 L["Obtained as an archaeology project"] = true
 L["Mount"] = true
 L["Companion"] = true
@@ -137,10 +137,10 @@ L["Turn this on if the item requires a group to obtain, but every player gets an
 L["Archaeology race"] = true
 L["Determines which race includes this archaeology project."] = true
 L["Zones"] = true
-L["A comma-separated list of the zones this item can be found in. Enter zone names with proper spelling, capitalization, and punctuation. They can be entered either in US English or your client's local language. Use WowHead or a similar service to make sure you're entering the zone names perfectly."] = true
+L["A comma-separated list of the zones or sub-zones this item can be found in. Enter zone names with proper spelling, capitalization, and punctuation. They can be entered either in US English or your client's local language. Use WowHead or a similar service to make sure you're entering the zone names perfectly."] = true
 L["You must enter at least one zone."] = true
 L["Please enter a comma-separated list of zones."] = true
-L["One of the zones you entered (%s) cannot be found. Check that it is spelled correctly, and is either US English or your client's local language."] = true
+L["One of the zones or sub-zones you entered (%s) cannot be found. Check that it is spelled correctly, and is either US English or your client's local language."] = true
 L["Items to Use"] = true
 L["A comma-separated list of item IDs which, when used or opened, can give you this item. Use WowHead or a similar service to lookup item IDs."] = true
 L["You must enter at least one item ID."] = true
@@ -153,13 +153,80 @@ L["Please enter a comma-separated list of NPC IDs."] = true
 L["Every NPC ID must be a number greater than 0."] = true
 L["The name you entered is already being used by another item. Please enter a unique name."] = true
 L["You entered a reserved name. Please enter the correct item name as it appears in game."] = true
---L["Sulfuron Ingot"] = true
 L["Click to switch to this item"] = true
 L["Shift-Click to link your progress to chat"] = true
 L["%s: 0/%d attempts so far (%.2f%% - %s)"] = true
 L["%s: 0/%d attempt so far (%.2f%% - %s)"] = true
 L["lucky"] = true
 L["unlucky"] = true
+L["Requires a pool"] = true
+L["Determines whether the item can only be obtained from fishing in pools. In order for this option to work, the fishing pools must have all been translated into your client's language."] = true
+
+
+
+
+
+
+
+
+L["Floating Wreckage"] = true
+L["Patch of Elemental Water"] = true
+L["Floating Debris"] = true
+L["Oil Spill"] = true
+L["Firefin Snapper School"] = true
+L["Greater Sagefish School"] = true
+L["Oily Blackmouth School"] = true
+L["Sagefish School"] = true
+L["School of Deviate Fish"] = true
+L["Stonescale Eel Swarm"] = true
+L["Muddy Churning Water"] = true
+L["Highland Mixed School"] = true
+L["Pure Water"] = true
+L["Bluefish School"] = true
+L["Feltail School"] = true
+L["Brackish Mixed School"] = true
+L["Mudfish School"] = true
+L["School of Darter"] = true
+L["Sporefish School"] = true
+L["Steam Pump Flotsam"] = true
+L["School of Tastyfish"] = true
+L["Borean Man O' War School"] = true
+L["Deep Sea Monsterbelly School"] = true
+L["Dragonfin Angelfish School"] = true
+L["Fangtooth Herring School"] = true
+L["Floating Wreckage Pool"] = true
+L["Glacial Salmon School"] = true
+L["Glassfin Minnow School"] = true
+L["Imperial Manta Ray School"] = true
+L["Moonglow Cuttlefish School"] = true
+L["Musselback Sculpin School"] = true
+L["Nettlefish School"] = true
+L["Strange Pool"] = true
+L["Schooner Wreckage"] = true
+L["Waterlogged Wreckage"] = true
+L["Bloodsail Wreckage"] = true
+L["Lesser Sagefish School"] = true
+L["Lesser Oily Blackmouth School"] = true
+L["Sparse Oily Blackmouth School"] = true
+L["Abundant Oily Blackmouth School"] = true
+L["Teeming Oily Blackmouth School"] = true
+L["Lesser Firefin Snapper School"] = true
+L["Sparse Firefin Snapper School"] = true
+L["Abundant Firefin Snapper School"] = true
+L["Teeming Firefin Snapper School"] = true
+L["Lesser Floating Debris"] = true
+L["Sparse Schooner Wreckage"] = true
+L["Abundant Bloodsail Wreckage"] = true
+L["Teeming Floating Wreckage"] = true
+L["Albino Cavefish School"] = true
+L["Algaefin Rockfish School"] = true
+L["Blackbelly Mudfish School"] = true
+L["Fathom Eel Swarm"] = true
+L["Highland Guppy School"] = true
+L["Mountain Trout School"] = true
+L["Pool of Fire"] = true
+L["Shipwreck Debris"] = true
+
 
 
 
@@ -211,6 +278,13 @@ L["Reins of the Drake of the North Wind"] = true
 L["Reins of the Drake of the South Wind"] = true
 L["Swift Zulian Panther"] = true
 L["Red Qiraji Resonating Crystal"] = true
+L["Giant Sewer Rat"] = true
+L["Mr. Pinchy"] = true
+
+
+
+
+
 
 
 

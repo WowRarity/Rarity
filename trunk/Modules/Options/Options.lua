@@ -3,6 +3,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Rarity", false)
 local R = Rarity
 local mod = R:NewModule("Options")
 local lbz = LibStub("LibBabble-Zone-3.0")
+local lbsz = LibStub("LibBabble-SubZone-3.0")
 
 
 -- Types of items
@@ -29,7 +30,7 @@ R.string_methods = {
  [BOSS] = L["Drops from a boss requiring a group"],
  [ZONE] = L["Drops from any mob in a zone"],
  [USE] = L["Obtained by using an item or opening a container"],
- [FISHING] = L["Obtained by fishing from pools in a zone"],
+ [FISHING] = L["Obtained by fishing"],
  [ARCH] = L["Obtained as an archaeology project"],
 }
 
@@ -289,7 +290,7 @@ output = self:GetSinkAce3OptionsDataTable(),
 
 -- Items ----------------------------------------------------------------------------------------------------------------------------------------
 
-			--[[items = {
+			items = {
 				type = "group",
 				name = L["Items"],
 				order = newOrder(),
@@ -299,7 +300,7 @@ output = self:GetSinkAce3OptionsDataTable(),
 					-- Filled in by Rarity:CreateGroup(...)
 			
 				}, -- args
-			},]] -- items
+			}, -- items
 
 -- Custom ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -324,7 +325,7 @@ output = self:GetSinkAce3OptionsDataTable(),
  -- Create the options for each group of items
 	self:CreateGroup(self.options.args.mounts, self.db.profile.groups.mounts, false)
 	self:CreateGroup(self.options.args.companions, self.db.profile.groups.pets, false)
-	--self:CreateGroup(self.options.args.items, self.db.profile.groups.items, false)
+	self:CreateGroup(self.options.args.items, self.db.profile.groups.items, false)
 	self:CreateGroup(self.options.args.custom, self.db.profile.groups.user, true)
 
 	self.PrepareOptions = nil
@@ -397,7 +398,7 @@ function R:CreateGroup(options, group, isUser)
       [BOSS] = L["Drops from a boss requiring a group"],
       [ZONE] = L["Drops from any mob in a zone"],
       [USE] = L["Obtained by using an item or opening a container"],
-      [FISHING] = L["Obtained by fishing from pools in a zone"],
+      [FISHING] = L["Obtained by fishing"],
       [ARCH] = L["Obtained as an archaeology project"],
 					},
 					get = function() return item.method end,
@@ -513,7 +514,7 @@ function R:CreateGroup(options, group, isUser)
      order = newOrder(),
      width = "double",
 			  name = L["Zones"],
-     desc = L["A comma-separated list of the zones this item can be found in. Enter zone names with proper spelling, capitalization, and punctuation. They can be entered either in US English or your client's local language. Use WowHead or a similar service to make sure you're entering the zone names perfectly."],
+     desc = L["A comma-separated list of the zones or sub-zones this item can be found in. Enter zone names with proper spelling, capitalization, and punctuation. They can be entered either in US English or your client's local language. Use WowHead or a similar service to make sure you're entering the zone names perfectly."],
 			  set = function(info, val)
 				  if strtrim(val) == "" then alert(L["You must enter at least one zone."])
       else
@@ -523,8 +524,8 @@ function R:CreateGroup(options, group, isUser)
          alert(L["Please enter a comma-separated list of zones."])
          return
         else
-         if lbz:GetUnstrictLookupTable()[v] == nil and lbz:GetReverseLookupTable()[v] == nil then
-          alert(format(L["One of the zones you entered (%s) cannot be found. Check that it is spelled correctly, and is either US English or your client's local language."], v))
+         if lbz:GetUnstrictLookupTable()[v] == nil and lbz:GetReverseLookupTable()[v] == nil and lbsz:GetUnstrictLookupTable()[v] == nil and lbsz:GetReverseLookupTable()[v] == nil then
+          alert(format(L["One of the zones or sub-zones you entered (%s) cannot be found. Check that it is spelled correctly, and is either US English or your client's local language."], v))
           return
          end
         end
@@ -636,6 +637,24 @@ function R:CreateGroup(options, group, isUser)
 			  disabled = not isUser,
 		  },
 							
+				requiresPool = {
+					order = newOrder(),
+					type = "toggle",
+					name = L["Requires a pool"],
+					desc = L["Determines whether the item can only be obtained from fishing in pools. In order for this option to work, the fishing pools must have all been translated into your client's language."],
+					get = function()
+      if item.requiresPool == true then return true else return false end
+     end,
+					set = function(info, val)
+						item.enabled = val
+						self:Update("OPTIONS")
+					end,
+     hidden = function()
+      if item.method == FISHING then return false else return true end
+     end,
+     disabled = not isUser,
+				},
+
 			 spacer2 = { type = "header", name = L["Toggles"], order = newOrder(), },
 
 				enabled = {
@@ -651,6 +670,23 @@ function R:CreateGroup(options, group, isUser)
 						item.enabled = val
 						self:Update("OPTIONS")
 					end,
+				},
+
+				found = {
+					order = newOrder(),
+					type = "toggle",
+					name = "Found",
+     width = "half",
+					get = function()
+      if item.found == true then return true else return false end
+     end,
+					set = function(info, val)
+						item.found = val
+						self:Update("OPTIONS")
+					end,
+     hidden = function()
+      return not R.db.profile.debugMode
+     end,
 				},
 
 				repeatable = {

@@ -26,7 +26,7 @@ R.string_methods = {
  [BOSS] = L["Drops from a boss requiring a group"],
  [ZONE] = L["Drops from any mob in a zone"],
  [USE] = L["Obtained by using an item or opening a container"],
- [FISHING] = L["Obtained by fishing from pools in a zone"],
+ [FISHING] = L["Obtained by fishing"],
  [ARCH] = L["Obtained as an archaeology project"],
 }
 
@@ -72,7 +72,7 @@ function R:PrepareDefaults()
      ["Reins of the Vitreous Stone Drake"] =    { type = MOUNT, method = NPC, name = GetItemInfo(63043) or L["Reins of the Vitreous Stone Drake"], spellId = 88746, itemId = 63043, npcs = { 43214 }, chance = 100, },
      ["Reins of the Drake of the North Wind"] = { type = MOUNT, method = NPC, name = GetItemInfo(63040) or L["Reins of the Drake of the North Wind"], spellId = 88742, itemId = 63040, npcs = { 43873 }, chance = 100, },
      ["Reins of the White Polar Bear"] =        { type = MOUNT, method = USE, name = GetItemInfo(43962) or L["Reins of the White Polar Bear"], spellId = 54753, itemId = 43962, items = { 44751, 69903 }, chance = 50, },
-     ["Sea Turtle"] =                           { type = MOUNT, method = FISHING, name = GetItemInfo(46109) or L["Sea Turtle"], spellId = 64731, itemId = 46109, zones = { "Grizzly Hills", "Crystalsong Forest", "Dragonblight", "Howling Fjord", "Borean Tundra", "Sholazar Basin", "Tol Barad Peninsula", "Twilight Highlands", "Uldum", "Deepholm", "Mount Hyjal" }, chance = 10000, },
+     ["Sea Turtle"] =                           { type = MOUNT, method = FISHING, name = GetItemInfo(46109) or L["Sea Turtle"], spellId = 64731, itemId = 46109, zones = { "Grizzly Hills", "Crystalsong Forest", "Dragonblight", "Howling Fjord", "Borean Tundra", "Sholazar Basin", "Tol Barad Peninsula", "Twilight Highlands", "Uldum", "Deepholm", "Mount Hyjal" }, chance = 10000, requiresPool = true, },
      ["Scepter of Azj'Aqir"] =                  { type = MOUNT, method = ARCH, name = GetItemInfo(64883) or L["Scepter of Azj'Aqir"], spellId = 92155, itemId = 64883, raceId = 7, chance = 500, },
      ["Fossilized Raptor"] =                    { type = MOUNT, method = ARCH, name = GetItemInfo(60954) or L["Fossilized Raptor"], spellId = 84751, itemId = 60954, raceId = 3, chance = 30, },
      ["Swift White Hawkstrider"] =              { type = MOUNT, method = NPC, name = GetItemInfo(35513) or L["Swift White Hawkstrider"], spellId = 46628, itemId = 35513, npcs = { 24664 }, chance = 33, heroic = true, },
@@ -112,10 +112,12 @@ function R:PrepareDefaults()
      ["Razzashi Hatchling"] =                   { type = PET, method = ZONE, name = GetItemInfo(48126) or L["Razzashi Hatchling"], spellId = 67420, itemId = 48126, zones = { "Stranglethorn Vale", "Northern Stranglethorn", "The Cape of Stranglethorn" }, chance = 1000, repeatable = true, },
      ["Tiny Crimson Whelpling"] =               { type = PET, method = ZONE, name = GetItemInfo(8499) or L["Tiny Crimson Whelpling"], spellId = 10697, itemId = 8499, zones = { "Wetlands" }, chance = 1000, repeatable = true, },
      ["Cat Carrier (Black Tabby)"] =            { type = PET, method = ZONE, name = GetItemInfo(8491) or L["Cat Carrier (Black Tabby)"], spellId = 10675, itemId = 8491, zones = { "Hillsbrad Foothills" }, chance = 1000, repeatable = true, },
+     ["Giant Sewer Rat"] =                      { type = MOUNT, method = FISHING, name = GetItemInfo(43698) or L["Giant Sewer Rat"], spellId = 59250, itemId = 43698, zones = { "Cantrips & Crows", "Circle of Wills", "The Underbelly", "The Black Market" }, chance = 1000, requiresPool = false, },
     },
     items = {
      name = L["Items"],
      --["Sulfuron Ingot"] =                       { type = ITEM, method = NPC, name = GetItemInfo(17203) or L["Sulfuron Ingot"], itemId = 17203, npcs = { 11988 }, chance = 3, repeatable = true, },
+     ["Mr. Pinchy"] =                           { type = ITEM, method = FISHING, name = GetItemInfo(27388) or L["Mr. Pinchy"], spellId = 33050, itemId = 27388, zones = { "Lake Jorune", "Lake Ere'Noru", "Skethyl Mountains", "Blackwind Landing", "Blackwind Valley", "Skettis", "Blackwind Lake", "Veil Harr'ik", "Veil Ala'rak", "Terokk's Rest" }, chance = 500, requiresPool = true, },
     },
     user = {
      name = L["Custom"],

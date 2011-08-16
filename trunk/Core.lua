@@ -13,7 +13,8 @@ local dataobj = ldb:NewDataObject("Rarity", {
  tocname = "Rarity",
  icon = [[Interface\Icons\spell_nature_forceofnature]]
 })
-local lbz = LibStub("LibBabble-Zone-3.0"):GetLookupTable()
+local lbz = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
+local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 --
 
 
@@ -52,6 +53,7 @@ local fishing = false
 local fishingTimer
 local FISHING_DELAY = 19
 local trackedItem
+local isPool = false
 
 local inSession = false
 local sessionStarted = 0
@@ -66,6 +68,66 @@ local yellow = { r = 1.0, g = 1.0, b = 0.2 }
 local gray = { r = 0.5, g = 0.5, b = 0.5 }
 local black = { r = 0.0, g = 0.0, b = 0.0 }
 local white = { r = 1.0, g = 1.0, b = 1.0 }
+
+R.fishnodes = {
+ [L["Floating Wreckage"]] = true,
+ [L["Patch of Elemental Water"]] = true,
+ [L["Floating Debris"]] = true,
+ [L["Oil Spill"]] = true,
+ [L["Firefin Snapper School"]] = true,
+ [L["Greater Sagefish School"]] = true,
+ [L["Oily Blackmouth School"]] = true,
+ [L["Sagefish School"]] = true,
+ [L["School of Deviate Fish"]] = true,
+ [L["Stonescale Eel Swarm"]] = true,
+ [L["Muddy Churning Water"]] = true,
+ [L["Highland Mixed School"]] = true,
+ [L["Pure Water"]] = true,
+ [L["Bluefish School"]] = true,
+ [L["Feltail School"]] = true,
+ [L["Brackish Mixed School"]] = true,
+ [L["Mudfish School"]] = true,
+ [L["School of Darter"]] = true,
+ [L["Sporefish School"]] = true,
+ [L["Steam Pump Flotsam"]] = true,
+ [L["School of Tastyfish"]] = true,
+ [L["Borean Man O' War School"]] = true,
+ [L["Deep Sea Monsterbelly School"]] = true,
+ [L["Dragonfin Angelfish School"]] = true,
+ [L["Fangtooth Herring School"]] = true,
+ [L["Floating Wreckage Pool"]] = true,
+ [L["Glacial Salmon School"]] = true,
+ [L["Glassfin Minnow School"]] = true,
+ [L["Imperial Manta Ray School"]] = true,
+ [L["Moonglow Cuttlefish School"]] = true,
+ [L["Musselback Sculpin School"]] = true,
+ [L["Nettlefish School"]] = true,
+ [L["Strange Pool"]] = true,
+ [L["Schooner Wreckage"]] = true,
+ [L["Waterlogged Wreckage"]] = true,
+ [L["Bloodsail Wreckage"]] = true,
+ [L["Lesser Sagefish School"]] = true,
+ [L["Lesser Oily Blackmouth School"]] = true,
+ [L["Sparse Oily Blackmouth School"]] = true,
+ [L["Abundant Oily Blackmouth School"]] = true,
+ [L["Teeming Oily Blackmouth School"]] = true,
+ [L["Lesser Firefin Snapper School"]] = true,
+ [L["Sparse Firefin Snapper School"]] = true,
+ [L["Abundant Firefin Snapper School"]] = true,
+ [L["Teeming Firefin Snapper School"]] = true,
+ [L["Lesser Floating Debris"]] = true,
+ [L["Sparse Schooner Wreckage"]] = true,
+ [L["Abundant Bloodsail Wreckage"]] = true,
+ [L["Teeming Floating Wreckage"]] = true,
+ [L["Albino Cavefish School"]] = true,
+ [L["Algaefin Rockfish School"]] = true,
+ [L["Blackbelly Mudfish School"]] = true,
+ [L["Fathom Eel Swarm"]] = true,
+ [L["Highland Guppy School"]] = true,
+ [L["Mountain Trout School"]] = true,
+ [L["Pool of Fire"]] = true,
+ [L["Shipwreck Debris"]] = true,
+}
 
 
 
@@ -413,7 +475,8 @@ function R:UpdateInterestingThings()
        end
       elseif vv.method == ZONE and vv.zones ~= nil and type(vv.zones) == "table" then
        for kkk, vvv in pairs(vv.zones) do
-        zones[lbz[vvv]] = vv
+        if lbz[vvv] then zones[lbz[vvv]] = vv end
+        if lbsz[vvv] then zones[lbsz[vvv]] = vv end
         zones[vvv] = vv
        end
       elseif vv.method == USE and vv.items ~= nil and type(vv.items) == "table" then
@@ -422,7 +485,8 @@ function R:UpdateInterestingThings()
        end
       elseif vv.method == FISHING and vv.zones ~= nil and type(vv.zones) == "table" then
        for kkk, vvv in pairs(vv.zones) do
-        fishzones[lbz[vvv]] = vv
+        if lbz[vvv] then fishzones[lbz[vvv]] = vv end
+        if lbsz[vvv] then fishzones[lbsz[vvv]] = vv end
         fishzones[vvv] = vv
        end
       elseif vv.method == ARCH and vv.itemId ~= nil then
@@ -509,11 +573,13 @@ function R:OnEvent(event, ...)
  -------------------------------------------------------------------------------------
 	if event == "LOOT_OPENED" then
   local zone = GetRealZoneText()
+  local subzone = GetSubZoneText()
 
   -- Handle fishing
   if fishing then
-   self:Debug("Successfully fished from a pool")
-   if fishzones[zone] then
+   if isPool then self:Debug("Successfully fished from a pool")
+   else self:Debug("Successfully fished") end
+   if fishzones[zone] or fishzones[subzone] then
     -- We're interested in fishing in this zone; let's find the item(s) involved
     for k, v in pairs(self.db.profile.groups) do
      if type(v) == "table" then
@@ -522,7 +588,13 @@ function R:OnEvent(event, ...)
         if vv.enabled ~= false then
          local found = false
          if vv.method == FISHING and vv.zones ~= nil and type(vv.zones) == "table" then
-          for kkk, vvv in pairs(vv.zones) do if vvv == zone or vvv == lbz[zone] then found = true end end
+          for kkk, vvv in pairs(vv.zones) do
+           if vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv == lbsz[subzone] then
+            if (vv.requiresPool and isPool) or not vv.requiresPool then
+             found = true
+            end
+           end
+          end
          end
          if found then
           if (vv.heroic == true and self:IsHeroic()) or (vv.heroic == false and not self:IsHeroic()) or vv.heroic == nil then
@@ -540,6 +612,7 @@ function R:OnEvent(event, ...)
   if fishingTimer then self:CancelTimer(fishingTimer, true) end
   fishingTimer = nil
   fishing = false
+  isPool = false
 
   -- Handle normal NPC looting
 		local guid = UnitGUID("target")
@@ -553,7 +626,7 @@ function R:OnEvent(event, ...)
 
   local npcid = self:GetNPCIDFromGUID(guid)
   if npcs[npcid] == nil then -- Not an NPC we need, abort
-   if zones[zone] == nil and zones[lbz[zone]] == nil then return end -- Not a zone we need either, abort
+   if zones[zone] == nil and zones[lbz[zone] or "."] == nil and zones[lbsz[zone] or "."] == nil then return end -- Not a zone we need either, abort
   end
 
 	 -- We're interested in this loot, process further
@@ -579,7 +652,7 @@ function R:OnEvent(event, ...)
       if vv.enabled ~= false then
        local found = false
        if vv.method == ZONE and vv.zones ~= nil and type(vv.zones) == "table" then
-        for kkk, vvv in pairs(vv.zones) do if vvv == zone or vvv == lbz[zone] then found = true end end
+        for kkk, vvv in pairs(vv.zones) do if vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv == lbsz[subzone] then found = true end end
        end
        if found then
         if (vv.heroic == true and self:IsHeroic()) or (vv.heroic == false and not self:IsHeroic()) or vv.heroic == nil then
@@ -776,6 +849,13 @@ function R:SpellFailed(event, unit)
 	prevSpell, curSpell = nil, nil
 end
 
+local function cancelFish()
+ R:Debug("You didn't loot anything from that fishing. Giving up.")
+ fishingTimer = nil
+ fishing = false
+ isPool = false
+end
+
 function R:SpellStarted(event, unit, spellcast, rank, target)
 	if unit ~= "player" then return end
 	foundTarget = false
@@ -783,6 +863,9 @@ function R:SpellStarted(event, unit, spellcast, rank, target)
 	if spells[spellcast] then
 		curSpell = spellcast
 		prevSpell = spellcast
+  fishing = true
+  if fishingTimer then self:CancelTimer(fishingTimer, true) end
+  fishingTimer = self:ScheduleTimer(cancelFish, FISHING_DELAY)
 		self:GetWorldTarget()
 	else
 		prevSpell, curSpell = nil, nil
@@ -793,15 +876,12 @@ function R:GetWorldTarget()
 	if foundTarget or not spells[curSpell] then return end
 	if (MinimapCluster:IsMouseOver()) then return end
 	local what = tooltipLeftText1:GetText()
-	if what and prevSpell and what ~= prevSpell then
+	if what and prevSpell and what ~= prevSpell and R.fishnodes[what] then
   self:Debug("------YOU HAVE STARTED FISHING FROM A NODE------")
 		fishing = true
+  isPool = true
   if fishingTimer then self:CancelTimer(fishingTimer, true) end
-  fishingTimer = self:ScheduleTimer(function()
-   R:Debug("You didn't loot anything from that fishing node. Giving up.")
-   fishingTimer = nil
-   fishing = false
-  end, FISHING_DELAY)
+  fishingTimer = self:ScheduleTimer(cancelFish, FISHING_DELAY)
 		foundTarget = true
 	end
 end
@@ -979,6 +1059,7 @@ do
    if item.zones and type(item.zones) == "table" then
     for k, v in pairs(item.zones) do
      local zone = lbz[v]
+     if not zone then zone = lbsz[v] end
      if not zone then zone = v end
      tooltip2:AddLine(colorize("    "..v, gray))
     end
@@ -1324,6 +1405,7 @@ end
 
 
 function R:ScanExistingItems(reason)
+ --if true then return end
  self:Debug("Scanning for existing items ("..reason..")")
 
  -- Sprite Darter Egg is farmed by horde only. Alliance get it as part of a quest.
