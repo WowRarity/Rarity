@@ -929,7 +929,12 @@ function R:ScanArchFragments()
  end
 
  -- We solved an artifact; scan projects
- if scan then self:ScanArchProjects("SOLVED AN ARTIFACT") end
+ if scan then
+  -- Scan now, and later. The server takes a second to decide on the next project.
+  self:ScanArchProjects("SOLVED AN ARTIFACT")
+  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED") end, 2)
+  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 2") end, 5)
+ end
 end
 
 function R:ScanArchProjects(reason)
