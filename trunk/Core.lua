@@ -1409,7 +1409,7 @@ function R:ScanExistingItems(reason)
  self:Debug("Scanning for existing items ("..reason..")")
 
  -- Sprite Darter Egg is farmed by horde only. Alliance get it as part of a quest.
- if not self:IsHorde() then self.db.profile.groups.pets["Sprite Darter Egg"].enabled = false end
+ --if not self:IsHorde() then self.db.profile.groups.pets["Sprite Darter Egg"].enabled = false end
 
  -- Look for mount and pet spell IDs and mark as found/disabled (if repeatable set to off)
  for id = 1, GetNumCompanions("MOUNT") do
