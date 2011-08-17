@@ -646,7 +646,7 @@ function R:CreateGroup(options, group, isUser)
       if item.requiresPool == true then return true else return false end
      end,
 					set = function(info, val)
-						item.enabled = val
+						item.requiresPool = val
 						self:Update("OPTIONS")
 					end,
      hidden = function()
