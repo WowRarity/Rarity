@@ -573,12 +573,14 @@ function R:OnEvent(event, ...)
 	if event == "LOOT_OPENED" then
   local zone = GetRealZoneText()
   local subzone = GetSubZoneText()
+  local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
+  local subzone_t = LibStub("LibBabble-SubZone-3.0"):GetReverseLookupTable()[subzone]
 
   -- Handle fishing
   if fishing then
    if isPool then self:Debug("Successfully fished from a pool")
    else self:Debug("Successfully fished") end
-   if fishzones[zone] or fishzones[subzone] then
+   if fishzones[zone] or fishzones[subzone] or fishzones[zone_t] or fishzones[subzone_t] then
     -- We're interested in fishing in this zone; let's find the item(s) involved
     for k, v in pairs(self.db.profile.groups) do
      if type(v) == "table" then
@@ -588,7 +590,7 @@ function R:OnEvent(event, ...)
          local found = false
          if vv.method == FISHING and vv.zones ~= nil and type(vv.zones) == "table" then
           for kkk, vvv in pairs(vv.zones) do
-           if vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv == lbsz[subzone] then
+           if vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv == lbsz[subzone] or vvv == zone_t or vvv == subzone_t or vvv == lbz[zone_t] or vvv == subzone or vvv == lbsz[subzone_t] then
             if (vv.requiresPool and isPool) or not vv.requiresPool then
              found = true
             end
@@ -625,7 +627,8 @@ function R:OnEvent(event, ...)
 
   local npcid = self:GetNPCIDFromGUID(guid)
   if npcs[npcid] == nil then -- Not an NPC we need, abort
-   if zones[zone] == nil and zones[lbz[zone] or "."] == nil and zones[lbsz[subzone] or "."] == nil then return end -- Not a zone we need either, abort
+   -- Not a zone we need either, abort
+   if zones[zone] == nil and zones[lbz[zone] or "."] == nil and zones[lbsz[subzone] or "."] == nil and zones[zone_t] == nil and zones[subzone_t] == nil and zones[lbz[zone_t] or "."] == nil and zones[lbsz[subzone_t] or "."] == nil then return end
   end
 
 	 -- We're interested in this loot, process further
@@ -651,7 +654,9 @@ function R:OnEvent(event, ...)
       if vv.enabled ~= false then
        local found = false
        if vv.method == ZONE and vv.zones ~= nil and type(vv.zones) == "table" then
-        for kkk, vvv in pairs(vv.zones) do if vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv == lbsz[subzone] then found = true end end
+        for kkk, vvv in pairs(vv.zones) do
+         if vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv == lbsz[subzone] or vvv == zone_t or vvv == subzone_t or vvv == lbz[zone_t] or vvv == subzone or vvv == lbsz[subzone_t] then found = true end
+        end
        end
        if found then
         if (vv.heroic == true and self:IsHeroic()) or (vv.heroic == false and not self:IsHeroic()) or vv.heroic == nil then
