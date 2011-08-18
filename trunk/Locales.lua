@@ -226,6 +226,7 @@ L["Highland Guppy School"] = true
 L["Mountain Trout School"] = true
 L["Pool of Fire"] = true
 L["Shipwreck Debris"] = true
+L["Mr. Grubbs"] = true
 
 
 

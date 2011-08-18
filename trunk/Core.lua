@@ -17,7 +17,6 @@ local lbz = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
 local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 ---
 
-
 --[[
       VARIABLES ----------------------------------------------------------------------------------------------------------------
   ]]
@@ -626,7 +625,7 @@ function R:OnEvent(event, ...)
 
   local npcid = self:GetNPCIDFromGUID(guid)
   if npcs[npcid] == nil then -- Not an NPC we need, abort
-   if zones[zone] == nil and zones[lbz[zone] or "."] == nil and zones[lbsz[zone] or "."] == nil then return end -- Not a zone we need either, abort
+   if zones[zone] == nil and zones[lbz[zone] or "."] == nil and zones[lbsz[subzone] or "."] == nil then return end -- Not a zone we need either, abort
   end
 
 	 -- We're interested in this loot, process further
@@ -771,7 +770,7 @@ function R:ScanBags()
 					bagitems[id] = bagitems[id] + qty
 					if items[id] then
       -- We came into possession of an item we were looking for!
-      if not items[id].repeatable and not items[id].found and items[id].enabled then -- Only support bag scans for non-repeatable items
+      if not items[id].repeatable and not items[id].found and items[id].enabled ~= false then -- Only support bag scans for non-repeatable items
        if items[id].attempts == nil then items[id].attempts = 0 end
        items[id].attempts = items[id].attempts + 1
        self:OutputAttempts(items[id])
@@ -1094,7 +1093,7 @@ do
   end
   local attempts = (item.attempts or 0) - (item.lastAttempts or 0)
   tooltip2:AddLine(L["Attempts"], attempts)
-  if item.method == NPC or item.method == ZONE or item.method == FISHING then
+  if item.method == NPC or item.method == ZONE or item.method == FISHING or item.method == USE then
    tooltip2:AddLine(L["Time spent farming"], R:FormatTime((item.time or 0) - (item.lastTime or 0)))
   end
   if attempts > 0 then
@@ -1107,7 +1106,7 @@ do
    tooltip2:AddLine(colorize(L["Total"], yellow))
    local attempts = (item.attempts or 0)
    tooltip2:AddLine(L["Attempts"], attempts)
-   if item.method == NPC or item.method == ZONE or item.method == FISHING then
+   if item.method == NPC or item.method == ZONE or item.method == FISHING or item.method == USE then
     tooltip2:AddLine(L["Time spent farming"], R:FormatTime(item.time or 0))
    end
    tooltip2:AddLine(L["Total found"], item.totalFinds)
@@ -1245,7 +1244,7 @@ do
       likelihood = ""
      end
      if time == "0:00" then time = "" end
-     if v.method ~= NPC and v.method ~= ZONE and v.method ~= FISHING then time = "" end
+     if v.method ~= NPC and v.method ~= ZONE and v.method ~= FISHING and v.method ~= USE then time = "" end
      line = tooltip:AddLine(icon, (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky)
      tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
 				 tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
@@ -1524,14 +1523,15 @@ function R:FindTrackedItem()
    for k, v in pairs(self.db.profile.groups[self.db.profile.trackedGroup]) do
     if type(v) == "table" and v.itemId and v.itemId == self.db.profile.trackedItem then
      trackedItem = v
+	    if self.db.profile.debugMode then
+      R.trackedItem = trackedItem
+	    end
+     return v
     end
    end
   end
  end
 
-	if self.db.profile.debugMode then
-  R.trackedItem = trackedItem
-	end
 end
 
 
@@ -1559,7 +1559,8 @@ function R:EndSession()
 	if inSession then
   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(trackedItem.itemId)
 		local len = sessionLast - sessionStarted
-  if trackedItem and (trackedItem.method == NPC or trackedItem.method == ZONE or trackedItem.method == FISHING) then trackedItem.time = (trackedItem.time or 0) + len end
+  local i = R:FindTrackedItem()
+  if i then i.time = (i.time or 0) + len end
   self:Debug("Ending session for %s (%s)", itemLink, self:FormatTime(trackedItem.time or 0))
 	end
 	inSession = false
