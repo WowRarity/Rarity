@@ -921,7 +921,8 @@ end
 function R:CursorChange(event)
 	if foundTarget then return end
 	if (MinimapCluster:IsMouseOver()) then return end
-	lastNode = tooltipLeftText1:GetText()
+	local t = tooltipLeftText1:GetText()
+ if self.miningnodes[t] or self.fishnodes[t] then lastNode = t end
 	if spells[prevSpell] then
 		self:GetWorldTarget()
 	end
@@ -959,8 +960,6 @@ function R:SpellStarted(event, unit, spellcast, rank, target)
    if fishingTimer then self:CancelTimer(fishingTimer, true) end
    fishingTimer = self:ScheduleTimer(cancelFish, FISHING_DELAY)
 		 self:GetWorldTarget()
-  elseif spellcast == miningSpell then
-		 self:GetWorldTarget()
   end
 	else
 		prevSpell, curSpell = nil, nil
@@ -970,8 +969,8 @@ end
 function R:GetWorldTarget()
 	if foundTarget or not spells[curSpell] then return end
 	if (MinimapCluster:IsMouseOver()) then return end
-	lastNode = tooltipLeftText1:GetText()
-	if lastNode and prevSpell and lastNode ~= prevSpell and R.fishnodes[what] then
+	local t = tooltipLeftText1:GetText()
+	if t and prevSpell and t ~= prevSpell and R.fishnodes[what] then
   self:Debug("------YOU HAVE STARTED FISHING FROM A NODE------")
 		fishing = true
   isPool = true
