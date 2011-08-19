@@ -161,6 +161,10 @@ L["lucky"] = true
 L["unlucky"] = true
 L["Requires a pool"] = true
 L["Determines whether the item can only be obtained from fishing in pools. In order for this option to work, the fishing pools must have all been translated into your client's language."] = true
+L["Special case"] = true
+L["Obtained by mining"] = true
+L["Obtained from Mysterious Camel Figurines"] = true
+L["Mysterious Camel Figurine"] = true
 
 
 
@@ -168,7 +172,7 @@ L["Determines whether the item can only be obtained from fishing in pools. In or
 
 
 
-
+-- Fishing pools
 L["Floating Wreckage"] = true
 L["Patch of Elemental Water"] = true
 L["Floating Debris"] = true
@@ -227,6 +231,46 @@ L["Mountain Trout School"] = true
 L["Pool of Fire"] = true
 L["Shipwreck Debris"] = true
 
+-- Mining nodes
+L["Copper Vein"] = true
+L["Tin Vein"] = true
+L["Iron Deposit"] = true
+L["Silver Vein"] = true
+L["Gold Vein"] = true
+L["Mithril Deposit"] = true
+L["Ooze Covered Mithril Deposit"] = true
+L["Truesilver Deposit"] = true
+L["Ooze Covered Silver Vein"] = true
+L["Ooze Covered Gold Vein"] = true
+L["Ooze Covered Truesilver Deposit"] = true
+L["Ooze Covered Rich Thorium Vein"] = true
+L["Ooze Covered Thorium Vein"] = true
+L["Small Thorium Vein"] = true
+L["Rich Thorium Vein"] = true
+L["Dark Iron Deposit"] = true
+L["Lesser Bloodstone Deposit"] = true
+L["Incendicite Mineral Vein"] = true
+L["Indurium Mineral Vein"] = true
+L["Fel Iron Deposit"] = true
+L["Adamantite Deposit"] = true
+L["Rich Adamantite Deposit"] = true
+L["Khorium Vein"] = true
+L["Large Obsidian Chunk"] = true
+L["Small Obsidian Chunk"] = true
+L["Nethercite Deposit"] = true
+L["Cobalt Deposit"] = true
+L["Rich Cobalt Deposit"] = true
+L["Titanium Vein"] = true
+L["Saronite Deposit"] = true
+L["Rich Saronite Deposit"] = true
+L["Obsidium Deposit"] = true
+L["Huge Obsidian Slab"] = true
+L["Pure Saronite Deposit"] = true
+L["Elementium Vein"] = true
+L["Rich Elementium Vein"] = true
+L["Pyrite Deposit"] = true
+L["Rich Obsidium Deposit"] = true
+L["Rich Pyrite Deposit"] = true
 
 
 
@@ -235,7 +279,7 @@ L["Shipwreck Debris"] = true
 
 
 
-
+-- Tracked items
 L["Reins of the Vitreous Stone Drake"] = true
 L["Ashes of Al'ar"] = true
 L["Reins of the Blue Proto-Drake"] = true
@@ -281,15 +325,7 @@ L["Red Qiraji Resonating Crystal"] = true
 L["Giant Sewer Rat"] = true
 L["Mr. Pinchy"] = true
 L["Mr. Grubbs"] = true
-
-
-
-
-
-
-
-
-
+L["Reins of the Grey Riding Camel"] = true
 
 
 

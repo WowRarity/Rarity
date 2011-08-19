@@ -20,6 +20,8 @@ local ZONE = "ZONE"
 local USE = "USE"
 local FISHING = "FISHING"
 local ARCH = "ARCH"
+local SPECIAL = "SPECIAL"
+local MINING = "MINING"
 
 R.string_methods = {
  [NPC] = L["Drops from NPC(s)"],
@@ -28,6 +30,8 @@ R.string_methods = {
  [USE] = L["Obtained by using an item or opening a container"],
  [FISHING] = L["Obtained by fishing"],
  [ARCH] = L["Obtained as an archaeology project"],
+ [SPECIAL] = L["Special case"],
+ [MINING] = L["Obtained by mining"],
 }
 
 -- Archaeology races
@@ -79,6 +83,7 @@ function R:PrepareDefaults()
      ["Deathcharger's Reins"] =                 { type = MOUNT, method = NPC, name = GetItemInfo(13335) or L["Deathcharger's Reins"], spellId = 17481, itemId = 13335, npcs = { 45412 }, chance = 100, },
      ["Red Qiraji Resonating Crystal"] =        { type = MOUNT, method = NPC, name = GetItemInfo(21321) or L["Red Qiraji Resonating Crystal"], spellId = 26054, itemId = 21321, npcs = { 15311, 15250, 15247, 15246, 15264, 15262, 15277, 15312, 15252, 15249 }, chance = 66, },
      ["Reins of the Green Proto-Drake"] =       { type = MOUNT, method = USE, name = GetItemInfo(44707) or L["Reins of the Green Proto-Drake"], spellId = 61294, itemId = 44707, items = { 39883 }, chance = 20, },
+     ["Reins of the Grey Riding Camel"] =       { type = MOUNT, method = SPECIAL, name = GetItemInfo(63046) or L["Reins of the Grey Riding Camel"], spellId = 88750, itemId = 63046, obtain = L["Obtained from Mysterious Camel Figurines"], chance = 20, },
      -- Requires a group (some of these are soloable by specific classes, but not in general)
      ["Ashes of Al'ar"] =                       { type = MOUNT, method = BOSS, name = GetItemInfo(32458) or L["Ashes of Al'ar"], spellId = 40192, itemId = 32458, npcs = { 19622 }, chance = 100, groupSize = 2, },
      ["Flametalon of Alysrazor"] =              { type = MOUNT, method = BOSS, name = GetItemInfo(71665) or L["Flametalon of Alysrazor"], spellId = 101542, itemId = 71665, npcs = { 52530 }, chance = 100, groupSize = 10, },

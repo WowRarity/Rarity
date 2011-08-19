@@ -146,6 +146,48 @@ R.fishnodes = {
  [L["Shipwreck Debris"]] = true,
 }
 
+R.miningnodes = {
+ [L["Copper Vein"]] = true,
+ [L["Tin Vein"]] = true,
+ [L["Iron Deposit"]] = true,
+ [L["Silver Vein"]] = true,
+ [L["Gold Vein"]] = true,
+ [L["Mithril Deposit"]] = true,
+ [L["Ooze Covered Mithril Deposit"]] = true,
+ [L["Truesilver Deposit"]] = true,
+ [L["Ooze Covered Silver Vein"]] = true,
+ [L["Ooze Covered Gold Vein"]] = true,
+ [L["Ooze Covered Truesilver Deposit"]] = true,
+ [L["Ooze Covered Rich Thorium Vein"]] = true,
+ [L["Ooze Covered Thorium Vein"]] = true,
+ [L["Small Thorium Vein"]] = true,
+ [L["Rich Thorium Vein"]] = true,
+ [L["Dark Iron Deposit"]] = true,
+ [L["Lesser Bloodstone Deposit"]] = true,
+ [L["Incendicite Mineral Vein"]] = true,
+ [L["Indurium Mineral Vein"]] = true,
+ [L["Fel Iron Deposit"]] = true,
+ [L["Adamantite Deposit"]] = true,
+ [L["Rich Adamantite Deposit"]] = true,
+ [L["Khorium Vein"]] = true,
+ [L["Large Obsidian Chunk"]] = true,
+ [L["Small Obsidian Chunk"]] = true,
+ [L["Nethercite Deposit"]] = true,
+ [L["Cobalt Deposit"]] = true,
+ [L["Rich Cobalt Deposit"]] = true,
+ [L["Titanium Vein"]] = true,
+ [L["Saronite Deposit"]] = true,
+ [L["Rich Saronite Deposit"]] = true,
+ [L["Obsidium Deposit"]] = true,
+ [L["Huge Obsidian Slab"]] = true,
+ [L["Pure Saronite Deposit"]] = true,
+ [L["Elementium Vein"]] = true,
+ [L["Rich Elementium Vein"]] = true,
+ [L["Pyrite Deposit"]] = true,
+ [L["Rich Obsidium Deposit"]] = true,
+ [L["Rich Pyrite Deposit"]] = true,
+}
+
 
 
 --[[
@@ -164,6 +206,8 @@ local ZONE = "ZONE"
 local USE = "USE"
 local FISHING = "FISHING"
 local ARCH = "ARCH"
+local SPECIAL = "SPECIAL"
+local MINING = "MINING"
 
 -- Feed text
 local FEED_MINIMAL = "FEED_MINIMAL"
@@ -812,8 +856,9 @@ end
 
 -------------------------------------------------------------------------------------
 -- Handle boss kills. You may not ever open a loot window on a boss, so we need to watch the combat log for it's death.
+-- This event also handles special cases.
 -------------------------------------------------------------------------------------
-function R:OnCombat(event, timestamp, eventType, hideCaster, srcGuid, srcName, srcFlags, srcRaidFlags, dstGuid, dstName, dstFlags, dstRaidFlags, ...)
+function R:OnCombat(event, timestamp, eventType, hideCaster, srcGuid, srcName, srcFlags, srcRaidFlags, dstGuid, dstName, dstFlags, dstRaidFlags, spellId, spellName, spellSchool, auraType, ...)
  -- This event fires tens of thousands of times per minute at peak, so we must be extremely efficient
  if eventType == "UNIT_DIED" then -- A unit died near you
   local npcid = self:GetNPCIDFromGUID(dstGuid)
@@ -839,6 +884,16 @@ function R:OnCombat(event, timestamp, eventType, hideCaster, srcGuid, srcName, s
     end
    end
   end
+
+ elseif eventType == "SPELL_CAST_SUCCESS" then
+  if spellName == sandStormSpell and srcName == L["Mysterious Camel Figurine"] then
+   local v = self.db.profile.groups.mounts["Reins of the Grey Riding Camel"]
+   if v then
+    if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+    self:OutputAttempts(v)
+   end
+  end
+
  end
 
 end
@@ -1086,7 +1141,11 @@ do
   if item.groupSize and item.groupSize > 1 then
    tooltip2:AddLine(colorize(format(L["Usually requires a group of around %d players"], item.groupSize), red))
   end
-  tooltip2:AddLine(colorize(R.string_methods[item.method], blue))
+  if item.method == SPECIAL and item.obtain then
+   tooltip2:AddLine(colorize(item.obtain, blue))
+  else
+   tooltip2:AddLine(colorize(R.string_methods[item.method], blue))
+  end
   if item.method == ZONE or item.method == FISHING then
    if item.zones and type(item.zones) == "table" then
     for k, v in pairs(item.zones) do
