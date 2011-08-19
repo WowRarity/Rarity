@@ -43,9 +43,27 @@ local tradeOpen = false
 local tradeSkillOpen = false
 
 local prevSpell, curSpell, foundTarget, gatherEvents, ga
+local miningSpell = (GetSpellInfo(2575))
+local herbSpell = (GetSpellInfo(2366))
 local fishSpell = (GetSpellInfo(33095))
+local gasSpell = (GetSpellInfo(30427))
+local openSpell = (GetSpellInfo(3365))
+local openNoTextSpell = (GetSpellInfo(22810))
+local pickSpell = (GetSpellInfo(1804))
+local archSpell = (GetSpellInfo(73979))
+local sandStormSpell = (GetSpellInfo(93473))
+local skinSpell = (GetSpellInfo(8613))
 local spells = {
+	[miningSpell] = "Mining",
+	[herbSpell] = "Herb Gathering",
 	[fishSpell] = "Fishing",
+	[gasSpell] = "Extract Gas",
+	[openSpell] = "Treasure",
+	[openNoTextSpell] = "Treasure",
+	[pickSpell] = "Treasure",
+	[archSpell] = "Archaeology",
+	[sandStormSpell] = "Treasure",
+ [skinSpell] = "Skinning",
 }
 local tooltipLeftText1 = _G["GameTooltipTextLeft1"]
 local fishing = false
@@ -631,6 +649,9 @@ function R:OnEvent(event, ...)
    if zones[zone] == nil and zones[lbz[zone] or "."] == nil and zones[lbsz[subzone] or "."] == nil and zones[zone_t] == nil and zones[subzone_t] == nil and zones[lbz[zone_t] or "."] == nil and zones[lbsz[subzone_t] or "."] == nil then return end
   end
 
+  -- If the loot is the result of certain spell casts (mining, herbing, opening, picklock, archaeology, etc), stop here
+  if spells[curSpell] then return end
+
 	 -- We're interested in this loot, process further
   guids[guid] = true
   
@@ -824,7 +845,7 @@ end
 
 
 -------------------------------------------------------------------------------------
--- Fishing detection. It's not easy. Thanks to GatherMate2 for this code.
+-- Gathering detection (fishing, mining, etc.)
 -------------------------------------------------------------------------------------
 
 function R:GatherCompleted(event)
@@ -867,10 +888,12 @@ function R:SpellStarted(event, unit, spellcast, rank, target)
 	if spells[spellcast] then
 		curSpell = spellcast
 		prevSpell = spellcast
-  fishing = true
-  if fishingTimer then self:CancelTimer(fishingTimer, true) end
-  fishingTimer = self:ScheduleTimer(cancelFish, FISHING_DELAY)
-		self:GetWorldTarget()
+  if spellcast == fishSpell then
+   fishing = true
+   if fishingTimer then self:CancelTimer(fishingTimer, true) end
+   fishingTimer = self:ScheduleTimer(cancelFish, FISHING_DELAY)
+		 self:GetWorldTarget()
+  end
 	else
 		prevSpell, curSpell = nil, nil
 	end
