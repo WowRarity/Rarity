@@ -71,6 +71,7 @@ local fishingTimer
 local FISHING_DELAY = 19
 local trackedItem
 local isPool = false
+local lastNode
 
 local inSession = false
 local sessionStarted = 0
@@ -677,6 +678,15 @@ function R:OnEvent(event, ...)
   fishing = false
   isPool = false
 
+  -- Handle special cases
+  if prevSpell == miningSpell and (lastNode == L["Elementium Vein"] or lastNode == L["Rich Elementium Vein"]) then
+   local v = self.db.profile.groups.pets["Elementium Geode"]
+   if v then
+    if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+    self:OutputAttempts(v)
+   end
+  end
+
   -- Handle normal NPC looting
 		local guid = UnitGUID("target")
 		local name = UnitName("target")
@@ -948,6 +958,8 @@ function R:SpellStarted(event, unit, spellcast, rank, target)
    if fishingTimer then self:CancelTimer(fishingTimer, true) end
    fishingTimer = self:ScheduleTimer(cancelFish, FISHING_DELAY)
 		 self:GetWorldTarget()
+  elseif spellcast == miningSpell then
+   
   end
 	else
 		prevSpell, curSpell = nil, nil
@@ -957,8 +969,8 @@ end
 function R:GetWorldTarget()
 	if foundTarget or not spells[curSpell] then return end
 	if (MinimapCluster:IsMouseOver()) then return end
-	local what = tooltipLeftText1:GetText()
-	if what and prevSpell and what ~= prevSpell and R.fishnodes[what] then
+	lastNode = tooltipLeftText1:GetText()
+	if lastNode and prevSpell and lastNode ~= prevSpell and R.fishnodes[what] then
   self:Debug("------YOU HAVE STARTED FISHING FROM A NODE------")
 		fishing = true
   isPool = true

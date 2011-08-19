@@ -119,6 +119,7 @@ function R:PrepareDefaults()
      ["Cat Carrier (Black Tabby)"] =            { type = PET, method = ZONE, name = GetItemInfo(8491) or L["Cat Carrier (Black Tabby)"], spellId = 10675, itemId = 8491, zones = { "Hillsbrad Foothills" }, chance = 1000, repeatable = true, },
      ["Giant Sewer Rat"] =                      { type = MOUNT, method = FISHING, name = GetItemInfo(43698) or L["Giant Sewer Rat"], spellId = 59250, itemId = 43698, zones = { "Cantrips & Crows", "Circle of Wills", "The Underbelly", "The Black Market" }, chance = 1000, requiresPool = false, },
      ["Mr. Grubbs"] =                           { type = PET, method = USE, name = GetItemInfo(66076) or L["Mr. Grubbs"], spellId = 93739, itemId = 66076, items = { 61387 }, chance = 50, },
+     ["Elementium Geode"] =                     { type = PET, method = SPECIAL, name = GetItemInfo(67282) or L["Elementium Geode"], spellId = 93838, itemId = 67282, obtain = L["Obtained by mining Elementium Vein"], chance = 1000, },
     },
     items = {
      name = L["Items"],

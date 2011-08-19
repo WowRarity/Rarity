@@ -165,6 +165,7 @@ L["Special case"] = true
 L["Obtained by mining"] = true
 L["Obtained from Mysterious Camel Figurines"] = true
 L["Mysterious Camel Figurine"] = true
+L["Obtained by mining Elementium Vein"] = true
 
 
 
@@ -326,6 +327,7 @@ L["Giant Sewer Rat"] = true
 L["Mr. Pinchy"] = true
 L["Mr. Grubbs"] = true
 L["Reins of the Grey Riding Camel"] = true
+L["Elementium Geode"] = true
 
 
 
