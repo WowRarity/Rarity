@@ -333,6 +333,7 @@ do
   self:RegisterEvent("TRADE_SHOW", "OnEvent")
   self:RegisterEvent("TRADE_SKILL_SHOW", "OnEvent")
   self:RegisterEvent("TRADE_SKILL_CLOSE", "OnEvent")
+  self:RegisterEvent("UPDATE_MOUSEOVER_UNIT", "OnMouseOver")
 
 		if R.Options_DoEnable then R:Options_DoEnable() end
 		self.db.profile.lastRevision = R.MINOR_VERSION
@@ -681,7 +682,7 @@ function R:OnEvent(event, ...)
   -- Handle special cases
   if prevSpell == miningSpell and (lastNode == L["Elementium Vein"] or lastNode == L["Rich Elementium Vein"]) then
    local v = self.db.profile.groups.pets["Elementium Geode"]
-   if v then
+   if v and type(v) == "table" and v.enabled ~= false then
     if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
     self:OutputAttempts(v)
    end
@@ -895,15 +896,6 @@ function R:OnCombat(event, timestamp, eventType, hideCaster, srcGuid, srcName, s
    end
   end
 
- elseif eventType == "SPELL_CAST_SUCCESS" then
-  if spellName == sandStormSpell and srcName == L["Mysterious Camel Figurine"] then
-   local v = self.db.profile.groups.mounts["Reins of the Grey Riding Camel"]
-   if v then
-    if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
-    self:OutputAttempts(v)
-   end
-  end
-
  end
 
 end
@@ -1044,6 +1036,29 @@ function R:ScanArchProjects(reason)
   end
  end
 end
+
+
+-------------------------------------------------------------------------------------
+-- Mouseover detection, currently used for Mysterious Camel Figurine
+-------------------------------------------------------------------------------------
+
+function R:OnMouseOver(event)
+ local guid = UnitGUID("mouseover")
+ local npcid = self:GetNPCIDFromGUID(guid)
+
+ if npcid == 50409 or npcid == 50410 then
+  if not guids[guid] then
+   guids[guid] = true
+   local v = self.db.profile.groups.mounts["Reins of the Grey Riding Camel"]
+   if v and type(v) == "table" and v.enabled ~= false then
+    if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+    self:OutputAttempts(v)
+   end
+  end
+ end
+
+end
+
 
 
 
