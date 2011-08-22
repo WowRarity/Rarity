@@ -51,7 +51,6 @@ local openSpell = (GetSpellInfo(3365))
 local openNoTextSpell = (GetSpellInfo(22810))
 local pickSpell = (GetSpellInfo(1804))
 local archSpell = (GetSpellInfo(73979))
-local sandStormSpell = (GetSpellInfo(93473))
 local skinSpell = (GetSpellInfo(8613))
 local spells = {
 	[miningSpell] = "Mining",
@@ -62,7 +61,6 @@ local spells = {
 	[openNoTextSpell] = "Treasure",
 	[pickSpell] = "Treasure",
 	[archSpell] = "Archaeology",
-	[sandStormSpell] = "Treasure",
  [skinSpell] = "Skinning",
 }
 local tooltipLeftText1 = _G["GameTooltipTextLeft1"]
@@ -908,6 +906,7 @@ end
 function R:GatherCompleted(event)
 	prevSpell, curSpell = nil, nil
 	foundTarget = false
+ lastNode = nil
 end
 
 function R:CursorChange(event)
@@ -1523,11 +1522,7 @@ end
 
 
 function R:ScanExistingItems(reason)
- --if true then return end
  self:Debug("Scanning for existing items ("..reason..")")
-
- -- Sprite Darter Egg is farmed by horde only. Alliance get it as part of a quest.
- --if not self:IsHorde() then self.db.profile.groups.pets["Sprite Darter Egg"].enabled = false end
 
  -- Look for mount and pet spell IDs and mark as found/disabled (if repeatable set to off)
  for id = 1, GetNumCompanions("MOUNT") do
@@ -1539,7 +1534,6 @@ function R:ScanExistingItems(reason)
       if vv.spellId and vv.spellId == spellId and not vv.repeatable then
        vv.enabled = false
        vv.found = true
-       --self:Debug("You already know %s", vv.name)
       end
      end
     end
@@ -1555,7 +1549,6 @@ function R:ScanExistingItems(reason)
       if vv.spellId and vv.spellId == spellId and not vv.repeatable then
        vv.enabled = false
        vv.found = true
-       --self:Debug("You already know %s", vv.name)
       end
      end
     end
@@ -1619,7 +1612,7 @@ function R:FoundItem(itemId, item)
  self:UpdateInterestingThings()
  if item.repeatable and (item.method == NPC or item.method == ZONE or item.method == FISHING) then self:ScheduleTimer(function()
   -- If this is a repeatable item, turn it back on in a few seconds.
-  -- FoundItem() gets called repeatedly when we get an item, so we need to lock it out for 2 seconds.
+  -- FoundItem() gets called repeatedly when we get an item, so we need to lock it out for a few seconds.
   item.enabled = nil
   item.found = nil
   self:UpdateInterestingThings()
