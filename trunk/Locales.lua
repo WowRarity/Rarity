@@ -328,6 +328,7 @@ L["Mr. Pinchy"] = true
 L["Mr. Grubbs"] = true
 L["Reins of the Grey Riding Camel"] = true
 L["Elementium Geode"] = true
+L["Smoldering Egg of Millagazor"] = true
 
 
 
