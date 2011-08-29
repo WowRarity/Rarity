@@ -389,3 +389,8 @@ L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "zhTW")
 if L then
 --@localization(locale="zhTW", format="lua_additive_table", handle-subnamespaces="concat", same-key-is-true="true")@
 end
+
+L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "ptBR")
+if L then
+--@localization(locale="ptBR", format="lua_additive_table", handle-subnamespaces="concat", same-key-is-true="true")@
+end
