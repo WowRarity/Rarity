@@ -676,6 +676,7 @@ function R:CreateGroup(options, group, isUser)
 						self:Update("OPTIONS")
 					end,
      hidden = function()
+      if R.db.profile.debugMode then return false end
       if item.method == USE then return true end
       if item.type == MOUNT or item.type == ARCH then return true else return false end
      end,

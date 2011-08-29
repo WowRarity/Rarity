@@ -1,4 +1,4 @@
-Rarity = LibStub("AceAddon-3.0"):NewAddon("Rarity", "AceConsole-3.0", "AceEvent-3.0", "AceTimer-3.0", "LibSink-2.0")
+Rarity = LibStub("AceAddon-3.0"):NewAddon("Rarity", "AceConsole-3.0", "AceEvent-3.0", "AceTimer-3.0", "LibSink-2.0", "AceBucket-3.0")
 Rarity.MINOR_VERSION = tonumber(("$Revision$"):match("%d+"))
 local FORCE_PROFILE_RESET_BEFORE_REVISION = 1 -- Set this to one higher than the Revision on the line above this
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
@@ -309,7 +309,7 @@ do
   self:ImportFromBunnyHunter()
 		
 		self:UnregisterAllEvents()
-  self:RegisterEvent("BAG_UPDATE", "OnEvent")
+  self:RegisterBucketEvent("BAG_UPDATE", 0.5, "OnBagUpdate")
   self:RegisterEvent("LOOT_OPENED", "OnEvent")
   self:RegisterEvent("CURRENCY_DISPLAY_UPDATE", "ScanArchFragments") -- The high tech method by which we detect archaeology solves
   self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED", "OnCombat") -- Used to detect boss kills that we didn't solo
@@ -765,41 +765,6 @@ function R:OnEvent(event, ...)
   if self:InTooltip() then self:ShowTooltip() end
 
 
- -------------------------------------------------------------------------------------
- -- Something in your bags changed.
- -- This is used for a couple things. First, for boss drops that require a group, you may not have obtained the item even if it dropped from the boss.
- -- Therefore, we only say you obtained it when it appears in your inventory. Secondly, this is useful as a second line of defense in case
- -- you somehow obtain an item without us noticing it. This even fires a lot, so we need to be fast.
- --
- -- We also store how many of every item you have on you at the moment. If we notice an item decreasing in quantity, and it's something we care
- -- about, you just used an item or opened a container.
- -------------------------------------------------------------------------------------
- elseif event == "BAG_UPDATE" then
-  local numSlots, id, qty, i
-
-  -- Save a copy of your bags before this event
-  table.wipe(tempbagitems)
-  for k, v in pairs(bagitems) do
-   tempbagitems[k] = v
-  end
-
-  -- Get a list of the items you have now, alerting if we find anything we're looking for
-  self:ScanBags()
-
-  -- Check for a decrease in quantity of any items we're watching for
-  if not bankOpen and not guildBankOpen and not auctionOpen and not tradeOpen and not tradeSkillOpen then
-   for k, v in pairs(tempbagitems) do
-    if (bagitems[k] and bagitems[k] < tempbagitems[k]) or not bagitems[k] then -- An inventory item went down in count or disappeared
-     if used[k] then -- It's an item we care about
-      local i = used[k]
-      if i.attempts == nil then i.attempts = 1 else i.attempts = i.attempts + 1 end
-      self:OutputAttempts(i)
-     end
-    end
-   end
-  end
-
-
  -- Detect bank, guild bank, auction house, tradeskill, and trade. This turns off item use detection.
  elseif event == "BANKFRAME_OPENED" then
   bankOpen = true
@@ -823,11 +788,51 @@ function R:OnEvent(event, ...)
  elseif event == "TRADE_SKILL_CLOSE" then
   tradeSkillOpen = false
 
+
  -- Logging out; end any open session
  elseif event == "PLAYER_LOGOUT" then
   if inSession then self:EndSession() end
 
 
+ end
+end
+
+
+-------------------------------------------------------------------------------------
+-- Something in your bags changed.
+-- This is used for a couple things. First, for boss drops that require a group, you may not have obtained the item even if it dropped from the boss.
+-- Therefore, we only say you obtained it when it appears in your inventory. Secondly, this is useful as a second line of defense in case
+-- you somehow obtain an item without us noticing it. This even fires a lot, so we need to be fast.
+--
+-- We also store how many of every item you have on you at the moment. If we notice an item decreasing in quantity, and it's something we care
+-- about, you just used an item or opened a container.
+--
+-- This event is bucketed because it tends to fire tons of times in a row rapidly, leading to innaccurate results.
+-------------------------------------------------------------------------------------
+function R:OnBagUpdate()
+ local numSlots, id, qty, i
+ self:Debug("BAG_UPDATE")
+
+ -- Save a copy of your bags before this event
+ table.wipe(tempbagitems)
+ for k, v in pairs(bagitems) do
+  tempbagitems[k] = v
+ end
+
+ -- Get a list of the items you have now, alerting if we find anything we're looking for
+ self:ScanBags()
+
+ -- Check for a decrease in quantity of any items we're watching for
+ if not bankOpen and not guildBankOpen and not auctionOpen and not tradeOpen and not tradeSkillOpen then
+  for k, v in pairs(tempbagitems) do
+   if (bagitems[k] and bagitems[k] < tempbagitems[k]) or not bagitems[k] then -- An inventory item went down in count or disappeared
+    if used[k] then -- It's an item we care about
+     local i = used[k]
+     if i.attempts == nil then i.attempts = 1 else i.attempts = i.attempts + 1 end
+     self:OutputAttempts(i)
+    end
+   end
+  end
  end
 end
 
@@ -1491,6 +1496,7 @@ end
 
 
 function R:OutputAttempts(item)
+ self:Debug("New attempt found for %s", item.name)
  if self.db.profile.enableAnnouncements == false then return end
  if item.announce == false then return end
  if type(item) == "table" and item.enabled ~= false and item.found ~= true and item.itemId ~= nil and item.attempts ~= nil then

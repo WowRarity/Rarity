@@ -4,6 +4,9 @@ externals:
     Libs/AceAddon-3.0:
         url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceAddon-3.0
         tag: latest
+    Libs/AceBucket-3.0:
+        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceBucket-3.0
+        tag: latest
     Libs/AceConfig-3.0:
         url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceConfig-3.0
         tag: latest
