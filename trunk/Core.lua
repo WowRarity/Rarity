@@ -952,6 +952,7 @@ function R:SpellStarted(event, unit, spellcast, rank, target)
 		curSpell = spellcast
 		prevSpell = spellcast
   if spellcast == fishSpell then
+   self:Debug("Fishing something")
    fishing = true
    if fishingTimer then self:CancelTimer(fishingTimer, true) end
    fishingTimer = self:ScheduleTimer(cancelFish, FISHING_DELAY)
@@ -966,7 +967,7 @@ function R:GetWorldTarget()
 	if foundTarget or not spells[curSpell] then return end
 	if (MinimapCluster:IsMouseOver()) then return end
 	local t = tooltipLeftText1:GetText()
-	if t and prevSpell and t ~= prevSpell and R.fishnodes[what] then
+	if t and prevSpell and t ~= prevSpell and R.fishnodes[t] then
   self:Debug("------YOU HAVE STARTED FISHING FROM A NODE------")
 		fishing = true
   isPool = true
