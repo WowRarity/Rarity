@@ -343,6 +343,17 @@ do
 
   RequestArtifactCompletionHistory() -- Request archaeology info from the server
   self:ScheduleTimer(function() R:ScanBags() end, 10) -- Also scan bags 10 seconds after init
+
+  -- Clean up session info
+  for k, v in pairs(self.db.profile.groups) do
+   if type(v) == "table" then
+    for kk, vv in pairs(v) do
+     if type(vv) == "table" then
+      vv.session = nil
+     end
+    end
+   end
+  end
 		
 		self:Debug(L["Loaded (running in debug mode)"])
 	end
@@ -423,6 +434,12 @@ function R:tcopy(to, from)
    to[k] = v
   end
  end
+end
+
+
+function getDate(delta)
+ local dt = date("*t", time() - (delta or 0))
+ return dt.year * 10000 + dt.month * 100 + dt.day
 end
 
 
@@ -802,7 +819,7 @@ end
 -- Something in your bags changed.
 -- This is used for a couple things. First, for boss drops that require a group, you may not have obtained the item even if it dropped from the boss.
 -- Therefore, we only say you obtained it when it appears in your inventory. Secondly, this is useful as a second line of defense in case
--- you somehow obtain an item without us noticing it. This even fires a lot, so we need to be fast.
+-- you somehow obtain an item without us noticing it. This event fires a lot, so we need to be fast.
 --
 -- We also store how many of every item you have on you at the moment. If we notice an item decreasing in quantity, and it's something we care
 -- about, you just used an item or opened a container.
@@ -870,7 +887,7 @@ end
 
 -------------------------------------------------------------------------------------
 -- Handle boss kills. You may not ever open a loot window on a boss, so we need to watch the combat log for it's death.
--- This event also handles special cases.
+-- This event also handles some special cases.
 -------------------------------------------------------------------------------------
 function R:OnCombat(event, timestamp, eventType, hideCaster, srcGuid, srcName, srcFlags, srcRaidFlags, dstGuid, dstName, dstFlags, dstRaidFlags, spellId, spellName, spellSchool, auraType, ...)
  -- This event fires tens of thousands of times per minute at peak, so we must be extremely efficient
@@ -1044,7 +1061,7 @@ end
 
 
 -------------------------------------------------------------------------------------
--- Mouseover detection, currently used for Mysterious Camel Figurine
+-- Mouseover detection, currently used for Mysterious Camel Figurine as a special case
 -------------------------------------------------------------------------------------
 
 function R:OnMouseOver(event)
@@ -1207,13 +1224,17 @@ do
 
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
 
+  local len = (sessionLast or 0) - (sessionStarted or 0)
+  local tracked = R:FindTrackedItem()
+  if not inSession or not len or tracked ~= item then len = 0 end
+
   if item.totalFinds then
    tooltip2:AddLine(colorize(L["Since last drop"], yellow))
   end
   local attempts = (item.attempts or 0) - (item.lastAttempts or 0)
   tooltip2:AddLine(L["Attempts"], attempts)
   if item.method == NPC or item.method == ZONE or item.method == FISHING or item.method == USE then
-   tooltip2:AddLine(L["Time spent farming"], R:FormatTime((item.time or 0) - (item.lastTime or 0)))
+   tooltip2:AddLine(L["Time spent farming"], R:FormatTime((item.time or 0) - (item.lastTime or 0) + len))
   end
   if attempts > 0 then
    local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
@@ -1226,7 +1247,7 @@ do
    local attempts = (item.attempts or 0)
    tooltip2:AddLine(L["Attempts"], attempts)
    if item.method == NPC or item.method == ZONE or item.method == FISHING or item.method == USE then
-    tooltip2:AddLine(L["Time spent farming"], R:FormatTime(item.time or 0))
+    tooltip2:AddLine(L["Time spent farming"], R:FormatTime((item.time or 0) + len))
    end
    tooltip2:AddLine(L["Total found"], item.totalFinds)
    if item.finds then
@@ -1236,10 +1257,52 @@ do
      local dropChance = (1.00 / (item.chance or 100))
      local chance = 100 * (1 - math.pow(1 - dropChance, v.attempts))
      if item.method == BOSS and item.groupSize ~= nil and item.groupSize > 1 and not item.equalOdds then dropChance = dropChance / item.groupSize end
-     if v.attempts == 1 then tooltip2:AddLine(format(L["#%d: %d attempt (%.2f%%)"], v.num, v.attempts, chance), R:FormatTime(v.time or 0))
-     else tooltip2:AddLine(format(L["#%d: %d attempts (%.2f%%)"], v.num, v.attempts, chance), R:FormatTime(v.time or 0)) end
+     if v.attempts == 1 then tooltip2:AddLine(format(L["#%d: %d attempt (%.2f%%)"], v.num, v.attempts, chance), R:FormatTime((v.time or 0) + len))
+     else tooltip2:AddLine(format(L["#%d: %d attempts (%.2f%%)"], v.num, v.attempts, chance), R:FormatTime((v.time or 0) + len)) end
     end
    end
+  end
+
+  if item.dates then
+   tooltip2:AddSeparator(1, 1, 1, 1, 1)
+
+   if item.session then
+    local sessionAttempts = item.session.attempts or 0
+    local sessionTime = item.session.time or 0
+    tooltip2:AddLine(L["Session"], format("%d (%s)", sessionAttempts, R:FormatTime(sessionTime + len)))
+   end
+
+   local todayDate = getDate() 
+   local yesterDate = getDate(86400)
+   local todayAttempts = item.dates[todayDate] and item.dates[todayDate].attempts or 0
+   local todayTime = item.dates[todayDate] and item.dates[todayDate].time or 0
+   if tracked == item and inSession then todayTime = todayTime + len end
+   local yesterAttempts = item.dates[yesterDate] and item.dates[yesterDate].attempts or 0
+   local yesterTime = item.dates[yesterDate] and item.dates[yesterDate].time or 0
+   local weekAttempts = (todayAttempts or 0) + (yesterAttempts or 0)
+   local weekTime = (todayTime or 0) + (yesterTime or 0)
+   for day = 2, 6 do
+    local dt = getDate(day * 86400)
+	   local dayAttempts = item.dates[dt] and item.dates[dt].attempts or 0
+    local dayTime = item.dates[dt] and item.dates[dt].time or 0
+    weekAttempts = weekAttempts + dayAttempts
+    weekTime = weekTime + dayTime
+   end
+   local monthAttempts = weekAttempts
+   local monthTime = weekTime
+   for day = 7, 29 do
+    local dt = getDate(day * 86400)
+	   local dayAttempts = item.dates[dt] and item.dates[dt].attempts or 0
+    local dayTime = item.dates[dt] and item.dates[dt].time or 0
+    monthAttempts = monthAttempts + dayAttempts
+    monthTime = monthTime + dayTime
+   end
+
+   tooltip2:AddLine(L["Today"], format("%d (%s)", todayAttempts or 0, R:FormatTime((todayTime or 0) + len)))
+   tooltip2:AddLine(L["Yesterday"], format("%d (%s)", yesterAttempts or 0, R:FormatTime(yesterTime or 0)))
+   tooltip2:AddLine(L["Last Week"], format("%d (%s)", weekAttempts or 0, R:FormatTime(weekTime or 0)))
+   tooltip2:AddLine(L["Last Month"], format("%d (%s)", monthAttempts or 0, R:FormatTime(monthTime or 0)))
+
   end
 		
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
@@ -1422,7 +1485,6 @@ end
   ]]
 
 function R:ShowFoundAlert(itemId, attempts)
- --itemId = 8494 -- Hyacinth Macaw, for testing
  local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(itemId)
  if itemName == nil then return end -- Server doesn't know this item, we can't award it
  if itemTexture == nil then itemTexture = [[Interface\Icons\INV_Misc_PheonixPet_01]] end
@@ -1515,6 +1577,16 @@ function R:OutputAttempts(item)
    else s = format(L["%s: %d attempts (%d total)"], itemLink, attempts, total) end
   end
   self:Pour(s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
+
+  -- Increment attempt counter for today
+  local dt = getDate()
+  if not item.dates then item.dates = {} end
+  if not item.dates[dt] then item.dates[dt] = {} end
+  if not item.dates[dt].attempts then item.dates[dt].attempts = 0 end
+  item.dates[dt].attempts = item.dates[dt].attempts + 1
+  if not item.session then item.session = {} end
+  if not item.session.attempts then item.session.attempts = 0 end
+  item.session.attempts = item.session.attempts + 1
 
   -- Handle time tracking
   if trackedItem == item then
@@ -1674,7 +1746,15 @@ function R:EndSession()
   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(trackedItem.itemId)
 		local len = sessionLast - sessionStarted
   local i = R:FindTrackedItem()
-  if i then i.time = (i.time or 0) + len end
+  if i then
+   i.time = (i.time or 0) + len
+   local dt = getDate()
+   if not i.dates then i.dates = {} end
+   if not i.dates[dt] then i.dates[dt] = {} end
+   i.dates[dt].time = (i.dates[dt].time or 0) + len
+   if not i.session then i.session = {} end
+   i.session.time = (i.session.time or 0) + len
+  end
   self:Debug("Ending session for %s (%s)", itemLink, self:FormatTime(trackedItem.time or 0))
 	end
 	inSession = false

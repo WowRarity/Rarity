@@ -166,6 +166,12 @@ L["Obtained by mining"] = true
 L["Obtained from Mysterious Camel Figurines"] = true
 L["Mysterious Camel Figurine"] = true
 L["Obtained by mining Elementium Vein"] = true
+L["Session"] = true
+L["Today"] = true
+L["Yesterday"] = true
+L["Last Week"] = true
+L["Last Month"] = true
+
 
 
 
