@@ -26,6 +26,11 @@ local FEED_MINIMAL = "FEED_MINIMAL"
 local FEED_NORMAL = "FEED_NORMAL"
 local FEED_VERBOSE = "FEED_VERBOSE"
 
+-- Tooltip position
+local TIP_LEFT = "TIP_LEFT"
+local TIP_RIGHT = "TIP_RIGHT"
+local TIP_HIDDEN = "TIP_HIDDEN"
+
 
 
 do
@@ -214,6 +219,38 @@ function R:PrepareOptions()
 								end,
 								order = newOrder(),
 							}, -- feedText
+
+							itemTip = {
+								type = "select",
+								name = L["Item tooltip"],
+								values = {
+									[TIP_LEFT] = L["Left"],
+									[TIP_RIGHT] = L["Right"],
+									[TIP_HIDDEN] = L["Hidden"],
+								},
+								get = function() return self.db.profile.itemTip or TIP_LEFT end,
+								set = function(info, val)
+									self.db.profile.itemTip = val
+									self:Update("OPTIONS")
+								end,
+								order = newOrder(),
+							}, -- itemTip
+
+							statusTip = {
+								type = "select",
+								name = L["Status tooltip"],
+								values = {
+									[TIP_LEFT] = L["Left"],
+									[TIP_RIGHT] = L["Right"],
+									[TIP_HIDDEN] = L["Hidden"],
+								},
+								get = function() return self.db.profile.statusTip or TIP_RIGHT end,
+								set = function(info, val)
+									self.db.profile.statusTip = val
+									self:Update("OPTIONS")
+								end,
+								order = newOrder(),
+							}, -- statusTip
 
 						}, -- args
 					}, -- display

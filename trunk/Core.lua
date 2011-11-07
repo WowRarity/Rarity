@@ -213,6 +213,11 @@ local FEED_MINIMAL = "FEED_MINIMAL"
 local FEED_NORMAL = "FEED_NORMAL"
 local FEED_VERBOSE = "FEED_VERBOSE"
 
+-- Tooltip position
+local TIP_LEFT = "TIP_LEFT"
+local TIP_RIGHT = "TIP_RIGHT"
+local TIP_HIDDEN = "TIP_HIDDEN"
+
 
 
 --[[
@@ -437,7 +442,7 @@ function R:tcopy(to, from)
 end
 
 
-function getDate(delta)
+local function getDate(delta)
  local dt = date("*t", time() - (delta or 0))
  return dt.year * 10000 + dt.month * 100 + dt.day
 end
@@ -1153,6 +1158,7 @@ do
 	local function showSubTooltip(cell, item)
   if not item or not item.itemId then return end
 		local self = R
+
 		if qtip:IsAcquired("RaritySubTooltip") and tooltip2 then
 			qtip:Release(tooltip2)
 			tooltip2 = nil
@@ -1160,17 +1166,29 @@ do
 		tooltip2 = qtip:Acquire("RaritySubTooltip", 3, "LEFT", "RIGHT")
 		tooltip2:ClearAllPoints()
 		tooltip2:SetClampedToScreen(true)
-		tooltip2:SetPoint("LEFT", cell, "RIGHT", 10, 0) -- Right side
-		--tooltip2:SetPoint("RIGHT", cell, "LEFT", -10, 0) -- Left side
+
+  if R.db.profile.statusTip == TIP_RIGHT then
+		 tooltip2:SetPoint("LEFT", cell, "RIGHT", 10, 0)
+  elseif R.db.profile.statusTip == TIP_LEFT then
+		 tooltip2:SetPoint("RIGHT", cell, "LEFT", -10, 0)
+  end
 
   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
 
   -- Item's game tooltip
   if itemName then
-   GameTooltip:SetOwner(cell, "ANCHOR_LEFT");
-   GameTooltip:SetHyperlink(itemLink);
-   GameTooltip_ShowCompareItem();
+   if R.db.profile.itemTip == TIP_LEFT then 
+    GameTooltip:SetOwner(cell, "ANCHOR_LEFT");
+   elseif R.db.profile.itemTip == TIP_RIGHT then
+    GameTooltip:SetOwner(cell, "ANCHOR_RIGHT");
+   end
+   if R.db.profile.itemTip ~= TIP_HIDDEN then
+    GameTooltip:SetHyperlink(itemLink);
+    GameTooltip_ShowCompareItem();
+   end
   end
+
+  if R.db.profile.statusTip == TIP_HIDDEN then return end
 
   -- Rarity extended information tooltip
 		tooltip2:AddHeader(itemLink or item.name)

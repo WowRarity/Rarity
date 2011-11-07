@@ -171,6 +171,11 @@ L["Today"] = true
 L["Yesterday"] = true
 L["Last Week"] = true
 L["Last Month"] = true
+L["Left"] = true
+L["Right"] = true
+L["Hidden"] = true
+L["Item tooltip"] = true
+L["Status tooltip"] = true
 
 
 

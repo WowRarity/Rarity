@@ -53,6 +53,12 @@ local FEED_MINIMAL = "FEED_MINIMAL"
 local FEED_NORMAL = "FEED_NORMAL"
 local FEED_VERBOSE = "FEED_VERBOSE"
 
+-- Tooltip position
+local TIP_LEFT = "TIP_LEFT"
+local TIP_RIGHT = "TIP_RIGHT"
+local TIP_HIDDEN = "TIP_HIDDEN"
+
+
 function R:PrepareDefaults()
 
 	self.defaults = {
@@ -61,6 +67,8 @@ function R:PrepareDefaults()
 
    enableAnnouncements = true,
    feedText = FEED_NORMAL,
+   itemTip = TIP_LEFT,
+   statusTip = TIP_RIGHT,
 
    trackedGroup = "pets",
    trackedItem = 8494,
