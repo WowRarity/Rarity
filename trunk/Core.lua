@@ -1606,8 +1606,8 @@ function R:OutputAttempts(item, skipTimeUpdate)
     if attempts == 1 then s = format(L["%s: %d attempt"], itemLink or itemName, attempts)
     else s = format(L["%s: %d attempts"], itemLink, attempts) end
    else
-    if attempts == 1 then s = format(L["%s: %d attempt (%d total)"], itemLink, attempts, total)
-    else s = format(L["%s: %d attempts (%d total)"], itemLink, attempts, total) end
+    if attempts == 1 then s = format(L["%s: %d attempt (%d total)"], itemLink or itemName, attempts, total)
+    else s = format(L["%s: %d attempts (%d total)"], itemLink or itemName, attempts, total) end
    end
    self:Pour(s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
   end
