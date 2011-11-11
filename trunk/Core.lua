@@ -251,6 +251,7 @@ local GetNumArchaeologyRaces = _G.GetNumArchaeologyRaces
 local GetArchaeologyRaceInfo = _G.GetArchaeologyRaceInfo
 local SetSelectedArtifact = _G.SetSelectedArtifact
 local GetSelectedArtifactInfo = _G.GetSelectedArtifactInfo
+local GetStatistic = _G.GetStatistic
 
 local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
 local COMBATLOG_OBJECT_AFFILIATION_MINE = _G.COMBATLOG_OBJECT_AFFILIATION_MINE
@@ -1596,18 +1597,20 @@ function R:OutputAttempts(item, skipTimeUpdate)
  if type(item) == "table" and item.enabled ~= false and item.found ~= true and item.itemId ~= nil and item.attempts ~= nil then
   -- Output the attempt count
   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
-  local s
-  local attempts = item.attempts or 1
-  local total = item.attempts or 1
-  if item.lastAttempts then attempts = attempts - item.lastAttempts end
-  if total <= attempts then
-   if attempts == 1 then s = format(L["%s: %d attempt"], itemLink, attempts)
-   else s = format(L["%s: %d attempts"], itemLink, attempts) end
-  else
-   if attempts == 1 then s = format(L["%s: %d attempt (%d total)"], itemLink, attempts, total)
-   else s = format(L["%s: %d attempts (%d total)"], itemLink, attempts, total) end
+  if itemLink or itemName then
+   local s
+   local attempts = item.attempts or 1
+   local total = item.attempts or 1
+   if item.lastAttempts then attempts = attempts - item.lastAttempts end
+   if total <= attempts then
+    if attempts == 1 then s = format(L["%s: %d attempt"], itemLink or itemName, attempts)
+    else s = format(L["%s: %d attempts"], itemLink, attempts) end
+   else
+    if attempts == 1 then s = format(L["%s: %d attempt (%d total)"], itemLink, attempts, total)
+    else s = format(L["%s: %d attempts (%d total)"], itemLink, attempts, total) end
+   end
+   self:Pour(s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
   end
-  self:Pour(s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
 
   if skipTimeUpdate == nil or skipTimeUpdate == false then
    -- Increment attempt counter for today
