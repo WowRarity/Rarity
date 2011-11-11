@@ -647,6 +647,48 @@ function R:CreateGroup(options, group, isUser)
 			  disabled = not isUser,
 		  },
 							
+		  statistics = {
+			  type = "input",
+     order = newOrder(),
+     width = "double",
+			  name = L["Kill Statistic IDs"],
+     desc = L["A comma-separated list of Statistic IDs that track the number of kills toward obtaining this item. These statistics will be added together. Use WowHead or a similar service to locate statistic IDs."],
+			  set = function(info, val)
+				  if strtrim(val) == "" then alert(L["You must enter at least one Statistic ID."])
+      else
+       local list = { strsplit(",", val) }
+       for k, v in pairs(list) do
+        if strtrim(v) == "" or tonumber(strtrim(v)) == nil then
+         alert(L["Please enter a comma-separated list of Statistic IDs."])
+         return
+        elseif tonumber(strtrim(v)) <= 0 then
+         alert(L["Every Statistic ID must be a number greater than 0."])
+         return
+        end
+       end
+       item.statisticId = {}
+       for k, v in pairs(list) do
+        table.insert(item.statisticId, tonumber(strtrim(v)))
+       end
+				  end
+						self:Update("OPTIONS")
+			  end,
+     get = function(into)
+      if item.statisticId and type(item.statisticId) == "table" then
+       local s = ""
+       for k, v in pairs(item.statisticId) do
+        if strlen(s) > 0 then s = s.."," end
+        s = s..tostring(v)
+       end
+       return s
+      else return "" end
+     end,
+			  hidden = function()
+      if item.method == NPC or item.method == BOSS then return false else return true end
+     end,
+			  disabled = not isUser,
+		  },
+							
 				requiresPool = {
 					order = newOrder(),
 					type = "toggle",

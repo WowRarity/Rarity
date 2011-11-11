@@ -337,6 +337,7 @@ do
   self:RegisterEvent("TRADE_SKILL_SHOW", "OnEvent")
   self:RegisterEvent("TRADE_SKILL_CLOSE", "OnEvent")
   self:RegisterEvent("UPDATE_MOUSEOVER_UNIT", "OnMouseOver")
+  self:RegisterEvent("PLAYER_REGEN_ENABLED", "OnCombatEnded")
 
 		if R.Options_DoEnable then R:Options_DoEnable() end
 		self.db.profile.lastRevision = R.MINOR_VERSION
@@ -923,6 +924,18 @@ function R:OnCombat(event, timestamp, eventType, hideCaster, srcGuid, srcName, s
 
  end
 
+end
+
+
+
+-------------------------------------------------------------------------------------
+-- When combat ends, we scan your statistics a few times. This helps catch some items that can't be tracked by normal means (i.e. Ragnaros),
+-- as well as acting as another backup to detect attempts if we missed one.
+-------------------------------------------------------------------------------------
+function R:OnCombatEnded(event)
+ self:ScheduleTimer(function() R:ScanStatistics(event.." 1") end, 2)
+ self:ScheduleTimer(function() R:ScanStatistics(event.." 2") end, 5)
+ self:ScheduleTimer(function() R:ScanStatistics(event.." 3") end, 10)
 end
 
 
@@ -1576,7 +1589,7 @@ function R:ShowFoundAlert(itemId, attempts)
 end
 
 
-function R:OutputAttempts(item)
+function R:OutputAttempts(item, skipTimeUpdate)
  self:Debug("New attempt found for %s", item.name)
  if self.db.profile.enableAnnouncements == false then return end
  if item.announce == false then return end
@@ -1596,23 +1609,26 @@ function R:OutputAttempts(item)
   end
   self:Pour(s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
 
-  -- Increment attempt counter for today
-  local dt = getDate()
-  if not item.dates then item.dates = {} end
-  if not item.dates[dt] then item.dates[dt] = {} end
-  if not item.dates[dt].attempts then item.dates[dt].attempts = 0 end
-  item.dates[dt].attempts = item.dates[dt].attempts + 1
-  if not item.session then item.session = {} end
-  if not item.session.attempts then item.session.attempts = 0 end
-  item.session.attempts = item.session.attempts + 1
+  if skipTimeUpdate == nil or skipTimeUpdate == false then
+   -- Increment attempt counter for today
+   local dt = getDate()
+   if not item.dates then item.dates = {} end
+   if not item.dates[dt] then item.dates[dt] = {} end
+   if not item.dates[dt].attempts then item.dates[dt].attempts = 0 end
+   item.dates[dt].attempts = item.dates[dt].attempts + 1
+   if not item.session then item.session = {} end
+   if not item.session.attempts then item.session.attempts = 0 end
+   item.session.attempts = item.session.attempts + 1
 
-  -- Handle time tracking
-  if trackedItem == item then
-   self:UpdateSession()
-  else
-   self:EndSession()
-   self:StartSession()
+   -- Handle time tracking
+   if trackedItem == item then
+    self:UpdateSession()
+   else
+    self:EndSession()
+    self:StartSession()
+   end
   end
+
  end
  self:UpdateTrackedItem(item)
 end
@@ -1679,6 +1695,33 @@ function R:ScanExistingItems(reason)
   end
  end
 
+ -- Scan for kill statistics
+ self:ScanStatistics(reason)
+end
+
+
+function R:ScanStatistics(reason)
+ self:Debug("Scanning statistics ("..reason..")")
+
+ for k, v in pairs(R.db.profile.groups) do
+  if type(v) == "table" then
+   for kk, vv in pairs(v) do
+    if type(vv) == "table" then
+     if vv.statisticId and type(vv.statisticId) == "table" then
+      local count = 0
+      for kkk, vvv in pairs(vv.statisticId) do
+       local s = GetStatistic(vvv)
+       count = count + (tonumber(s or "0") or 0)
+      end
+      if count > (vv.attempts or 0) then
+       vv.attempts = count
+       self:OutputAttempts(vv, true)
+      end
+     end
+    end
+   end
+  end
+ end
 end
 
 
