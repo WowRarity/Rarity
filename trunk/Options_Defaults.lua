@@ -23,6 +23,11 @@ local ARCH = "ARCH"
 local SPECIAL = "SPECIAL"
 local MINING = "MINING"
 
+-- Sort modes
+local SORT_NAME = "SORT_NAME"
+local SORT_DIFFICULTY = "SORT_DIFFICULTY"
+local SORT_PROGRESS = "SORT_PROGRESS"
+
 R.string_methods = {
  [NPC] = L["Drops from NPC(s)"],
  [BOSS] = L["Drops from a boss requiring a group"],
@@ -69,6 +74,7 @@ function R:PrepareDefaults()
    feedText = FEED_NORMAL,
    itemTip = TIP_LEFT,
    statusTip = TIP_RIGHT,
+   sortMode = SORT_NAME,
 
    trackedGroup = "pets",
    trackedItem = 8494,

@@ -218,6 +218,11 @@ local TIP_LEFT = "TIP_LEFT"
 local TIP_RIGHT = "TIP_RIGHT"
 local TIP_HIDDEN = "TIP_HIDDEN"
 
+-- Sort modes
+local SORT_NAME = "SORT_NAME"
+local SORT_DIFFICULTY = "SORT_DIFFICULTY"
+local SORT_PROGRESS = "SORT_PROGRESS"
+
 
 
 --[[
@@ -457,6 +462,52 @@ local function compareName(a, b)
 end
 
 
+local function compareDifficulty(a, b)
+ if not a or not b then return 0 end
+ if type(a) ~= "table" or type(b) ~= "table" then return 0 end
+
+ local item
+ item = a
+ local dropChance = (1.00 / (item.chance or 100))
+ if item.method == BOSS and item.groupSize ~= nil and item.groupSize > 1 and not item.equalOdds then dropChance = dropChance / item.groupSize end
+ local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
+ local median1 = medianLoots
+
+ item = b
+ dropChance = (1.00 / (item.chance or 100))
+ if item.method == BOSS and item.groupSize ~= nil and item.groupSize > 1 and not item.equalOdds then dropChance = dropChance / item.groupSize end
+ medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
+ local median2 = medianLoots
+
+ return (median1 or 0) < (median2 or 0)
+end
+
+
+local function compareProgress(a, b)
+ if not a or not b then return 0 end
+ if type(a) ~= "table" or type(b) ~= "table" then return 0 end
+
+ local item
+ item = a
+ local dropChance = (1.00 / (item.chance or 100))
+ if item.method == BOSS and item.groupSize ~= nil and item.groupSize > 1 and not item.equalOdds then dropChance = dropChance / item.groupSize end
+ local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
+ local median1 = medianLoots
+ local progress1 = 0
+ if item.attempts or 0 > 0 then progress1 = 100 * (1 - math.pow(1 - dropChance, item.attempts or 0)) end
+
+ item = b
+ dropChance = (1.00 / (item.chance or 100))
+ if item.method == BOSS and item.groupSize ~= nil and item.groupSize > 1 and not item.equalOdds then dropChance = dropChance / item.groupSize end
+ medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
+ local median2 = medianLoots
+ local progress2 = 0
+ if item.attempts or 0 > 0 then progress2 = 100 * (1 - math.pow(1 - dropChance, item.attempts or 0)) end
+
+ return progress1 > progress2
+end
+
+
 local function compareNum(a, b)
  if not a or not b then return 0 end
  if type(a) ~= "table" or type(b) ~= "table" then return 0 end
@@ -504,6 +555,49 @@ local function sort2(t)
  end
  return nt
 end
+
+
+local function sort_difficulty(t)
+ local nt = {}
+ local i, j, n, min = 0, 0, 0, 0
+ local k, v
+ for k, v in pairs(t) do
+  if type(v) == "table" and v.name then
+   n = n + 1
+   nt[n] = v
+  end
+ end
+ for i = 1, n, 1 do
+	 min = i
+	 for j = i + 1, n, 1 do
+		 if compareDifficulty(nt[j], nt[min]) then min = j end
+	 end
+	 nt[i], nt[min] = nt[min], nt[i]
+ end
+ return nt
+end
+
+
+local function sort_progress(t)
+ local nt = {}
+ local i, j, n, min = 0, 0, 0, 0
+ local k, v
+ for k, v in pairs(t) do
+  if type(v) == "table" and v.name then
+   n = n + 1
+   nt[n] = v
+  end
+ end
+ for i = 1, n, 1 do
+	 min = i
+	 for j = i + 1, n, 1 do
+		 if compareProgress(nt[j], nt[min]) then min = j end
+	 end
+	 nt[i], nt[min] = nt[min], nt[i]
+ end
+ return nt
+end
+
 
 
 function round(num)
@@ -1160,12 +1254,20 @@ do
 
 
 	function dataobj:OnClick(button)
-		LoadAddOn("Rarity_Options")
-		if R.optionsFrame then
-			InterfaceOptionsFrame_OpenToCategory(R.optionsFrame)
-		else
-			R:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
-		end
+  if IsShiftKeyDown() then
+   if R.db.profile.sortMode == SORT_NAME then R.db.profile.sortMode = SORT_DIFFICULTY
+   elseif R.db.profile.sortMode == SORT_DIFFICULTY then R.db.profile.sortMode = SORT_PROGRESS
+   else R.db.profile.sortMode = SORT_NAME
+   end
+   R:ShowTooltip()
+  else
+		 LoadAddOn("Rarity_Options")
+		 if R.optionsFrame then
+			 InterfaceOptionsFrame_OpenToCategory(R.optionsFrame)
+		 else
+			 R:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
+		 end
+  end
 	end
 	
 	
@@ -1411,7 +1513,11 @@ do
 
   local line
   local added = false
-  local g = sort(group)
+  local g
+  if R.db.profile.sortMode == SORT_NAME then g = sort(group)
+  elseif R.db.profile.sortMode == SORT_DIFFICULTY then g = sort_difficulty(group)
+  else g = sort_progress(group)
+  end
   for k, v in pairs(g) do
    if type(v) == "table" and v.enabled ~= false and ((requiresGroup and v.groupSize ~= nil and v.groupSize > 1) or (not requiresGroup and (v.groupSize == nil or v.groupSize <= 1))) then
 
@@ -1481,6 +1587,14 @@ do
 		
 		table.wipe(headers)
   local addedLast
+
+  -- Sort header
+  local sortDesc = L["Sorting by name"]
+  if self.db.profile.sortMode == SORT_DIFFICULTY then sortDesc = L["Sorting by difficulty"]
+  elseif self.db.profile.sortMode == SORT_PROGRESS then sortDesc = L["Sorting by percent complete"]
+  end
+		local line = tooltip:AddLine()
+		tooltip:SetCell(line, 1, colorize(sortDesc, green), nil, nil, 3)
 		
   -- Item groups
   addedLast = addGroup(self.db.profile.groups.mounts)
@@ -1499,9 +1613,11 @@ do
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
   addedLast = addGroup(self.db.profile.groups.user, true)
 		
-		-- Hint
-		local line = tooltip:AddLine()
+		-- Footer
+		line = tooltip:AddLine()
 		tooltip:SetCell(line, 1, colorize(L["Click to open options"], gray), nil, nil, 3)
+		line = tooltip:AddLine()
+		tooltip:SetCell(line, 1, colorize(L["Shift-Click to change sort order"], gray), nil, nil, 3)
 
 		tooltip:SetAutoHideDelay(0.01, frame)
 		tooltip:SmartAnchorTo(frame)

@@ -181,6 +181,10 @@ L["A comma-separated list of Statistic IDs that track the number of kills toward
 L["You must enter at least one Statistic ID."] = true
 L["Please enter a comma-separated list of Statistic IDs."] = true
 L["A comma-separated list of Statistic IDs that track the number of kills toward obtaining this item. These statistics will be added together. Use WowHead or a similar service to locate statistic IDs."] = true
+L["Shift-Click to change sort order"] = true
+L["Sorting by name"] = true
+L["Sorting by difficulty"] = true
+L["Sorting by percent complete"] = true
 
 
 
