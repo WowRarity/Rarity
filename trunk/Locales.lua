@@ -341,6 +341,7 @@ L["Reins of the Grey Riding Camel"] = true
 L["Elementium Geode"] = true
 L["Smoldering Egg of Millagazor"] = true
 L["Sea Pony"] = true
+L["Ice Chip"] = true
 
 
 
