@@ -1604,7 +1604,7 @@ function R:OutputAttempts(item, skipTimeUpdate)
    if item.lastAttempts then attempts = attempts - item.lastAttempts end
    if total <= attempts then
     if attempts == 1 then s = format(L["%s: %d attempt"], itemLink or itemName, attempts)
-    else s = format(L["%s: %d attempts"], itemLink, attempts) end
+    else s = format(L["%s: %d attempts"], itemLink or itemName, attempts) end
    else
     if attempts == 1 then s = format(L["%s: %d attempt (%d total)"], itemLink or itemName, attempts, total)
     else s = format(L["%s: %d attempts (%d total)"], itemLink or itemName, attempts, total) end
