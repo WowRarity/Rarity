@@ -32,6 +32,7 @@ Libs\LibBabble-Zone-3.0\lib.xml
 Libs\LibSink-2.0\LibSink-2.0\lib.xml
 Libs\LibBabble-Zone-3.0\lib.xml
 Libs\LibBabble-SubZone-3.0\lib.xml
+Libs\LibBars-1.0\lib.xml
 #@end-no-lib-strip@
 
 Locales.lua

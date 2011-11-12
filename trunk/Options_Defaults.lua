@@ -79,6 +79,19 @@ function R:PrepareDefaults()
    trackedGroup = "pets",
    trackedItem = 8494,
 
+   bar = {
+    point = "TOPLEFT",
+    relativePoint = "TOPLEFT",
+    x = 100,
+    y = -100,
+    width = 150,
+    height = 12,
+    scale = 1.0,
+    visible = false,
+    anchor = true,
+    locked = false,
+   },
+
    groups = {
 
     mounts = {

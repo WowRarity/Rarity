@@ -255,6 +255,83 @@ function R:PrepareOptions()
 						}, -- args
 					}, -- display
 
+					bar = {
+						type = "group",
+						name = L["Progress Bar"],
+						order = newOrder(),
+						inline = true,
+						args = {
+						
+					  anchor = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Show anchor"],
+						  get = function() return self.db.profile.bar.anchor end,
+						  set = function(info, val)
+							  self.db.profile.bar.anchor = val
+							  self:UpdateText()
+						  end,
+					  },
+
+					  locked = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Locked"],
+						  get = function() return self.db.profile.bar.locked end,
+						  set = function(info, val)
+							  self.db.profile.bar.locked = val
+							  self:UpdateText()
+						  end,
+					  },
+
+				   width = {
+					   order = newOrder(),
+					   type = "range",
+        width = "double",
+					   name = L["Width"],
+					   min = 10,
+					   max = 1000,
+					   step = 1,
+					   get = function() return self.db.profile.bar.width or 150 end,
+					   set = function(_, val)
+         self.db.profile.bar.width = val
+         self:UpdateText()
+        end,
+				   },
+
+				   height = {
+					   order = newOrder(),
+					   type = "range",
+        width = "double",
+					   name = L["Height"],
+					   min = 1,
+					   max = 300,
+					   step = 1,
+					   get = function() return self.db.profile.bar.height or 12 end,
+					   set = function(_, val)
+         self.db.profile.bar.height = val
+         self:UpdateText()
+        end,
+				   },
+
+				   scale = {
+					   order = newOrder(),
+					   type = "range",
+        width = "double",
+					   name = L["Scale"],
+					   min = .1,
+					   max = 5,
+					   step = .05,
+					   get = function() return self.db.profile.bar.scale or 1 end,
+					   set = function(_, val)
+         self.db.profile.bar.scale = val
+         self:UpdateText()
+        end,
+				   },
+
+						}, -- args
+					}, -- bar
+
 					announcements = {
 						type = "group",
 						name = L["Announcements"],

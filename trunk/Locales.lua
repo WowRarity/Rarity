@@ -36,7 +36,8 @@ L["Lucky"] = true
 L["Unlucky"] = true
 L["Mounts"] = true
 L[" (Group)"] = true
-L["Click to open options"] = true
+L["Shift-Click to open options"] = true
+L["Click to toggle the progress bar"] = true
 L["%d attempt - %.2f%%"] = true
 L["%d attempts - %.2f%%"] = true
 L["Found on your first attempt!"] = true
@@ -181,10 +182,17 @@ L["A comma-separated list of Statistic IDs that track the number of kills toward
 L["You must enter at least one Statistic ID."] = true
 L["Please enter a comma-separated list of Statistic IDs."] = true
 L["A comma-separated list of Statistic IDs that track the number of kills toward obtaining this item. These statistics will be added together. Use WowHead or a similar service to locate statistic IDs."] = true
-L["Shift-Click to change sort order"] = true
+L["Ctrl-Click to change sort order"] = true
 L["Sorting by name"] = true
 L["Sorting by difficulty"] = true
 L["Sorting by percent complete"] = true
+L["Progress Bar"] = true
+L["Width"] = true
+L["Height"] = true
+L["Scale"] = true
+L["Show anchor"] = true
+L["Locked"] = true
+
 
 
 

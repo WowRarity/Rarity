@@ -1,4 +1,4 @@
-Rarity = LibStub("AceAddon-3.0"):NewAddon("Rarity", "AceConsole-3.0", "AceEvent-3.0", "AceTimer-3.0", "LibSink-2.0", "AceBucket-3.0")
+Rarity = LibStub("AceAddon-3.0"):NewAddon("Rarity", "AceConsole-3.0", "AceEvent-3.0", "AceTimer-3.0", "LibSink-2.0", "AceBucket-3.0", "LibBars-1.0")
 Rarity.MINOR_VERSION = tonumber(("$Revision$"):match("%d+"))
 local FORCE_PROFILE_RESET_BEFORE_REVISION = 1 -- Set this to one higher than the Revision on the line above this
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
@@ -311,6 +311,20 @@ do
    R.architems = architems
 		end
 
+  -- Initialize bar
+  self.barGroup = self:NewBarGroup("Rarity", nil, self.db.profile.bar.width, self.db.profile.bar.height)
+	 self.barGroup:SetFont(nil, 8)
+	 self.barGroup:SetColorAt(1.00, 1, 0, 0, 1)
+	 self.barGroup:SetColorAt(0.66, 1, 1, 0, 1)
+	 self.barGroup:SetColorAt(0.33, 0, 1, 1, 1)
+	 self.barGroup:SetColorAt(0.00, 0, 0, 1, 1)
+  self.barGroup:ClearAllPoints()
+	 self.barGroup:SetPoint(self.db.profile.bar.point, UIParent, self.db.profile.bar.relativePoint, self.db.profile.bar.x, self.db.profile.bar.y)
+	 self.barGroup:SetScale(self.db.profile.bar.scale)
+	 self.barGroup.RegisterCallback(self, "AnchorClicked", "BarAnchorClicked")
+  if not self.db.profile.bar.visible then self.barGroup:Hide() end
+  self.bar = nil
+
 		self:ScanExistingItems("INITIALIZING") -- Checks for items you already have
   self:ScanBags() -- Initialize our inventory list, as well as checking if you've obtained an item
   self:UpdateInterestingThings()
@@ -369,6 +383,16 @@ do
 		
 		self:Debug(L["Loaded (running in debug mode)"])
 	end
+end
+
+
+function R:BarAnchorClicked(cbk, group, button)
+ local point, relativeTo, relativePoint, x, y = self.barGroup:GetPoint()
+ self:Debug("Clicked anchor", point, relativePoint, x, y)
+ self.db.profile.bar.x = x
+ self.db.profile.bar.y = y
+ self.db.profile.bar.point = point
+ self.db.profile.bar.relativePoint = relativePoint
 end
 
 
@@ -1207,24 +1231,29 @@ do
 	local headers = {}
 
  function R:UpdateText()
+  local attempts, dropChance, chance = 0, 0, 0
+
   if not trackedItem or (trackedItem and not trackedItem.itemId) then
    dataobj.text = L["None"]
    return
   end
+
+  -- Feed text
   itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(trackedItem.itemId)
   if not itemTexture then dataobj.icon = [[Interface\Icons\spell_nature_forceofnature]]
   else dataobj.icon = itemTexture end
-  local attempts = 0
+  attempts = 0
   if trackedItem.attempts then attempts = trackedItem.attempts end
   if trackedItem.lastAttempts then attempts = attempts - trackedItem.lastAttempts end
   if trackedItem.realAttempts and trackedItem.found then attempts = trackedItem.realAttempts end
   if trackedItem.found then
    if attempts == 1 then dataobj.text = format(L["Found on your first attempt!"], attempts)
    else dataobj.text = format(L["Found after %d attempts!"], attempts) end
+   chance = 1.0
   else
-   local dropChance = (1.00 / (trackedItem.chance or 100))
+   dropChance = (1.00 / (trackedItem.chance or 100))
    if trackedItem.method == BOSS and trackedItem.groupSize ~= nil and trackedItem.groupSize > 1 and not trackedItem.equalOdds then dropChance = dropChance / trackedItem.groupSize end
-   local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
+   chance = 100 * (1 - math.pow(1 - dropChance, attempts))
    if self.db.profile.feedText == FEED_MINIMAL then
     if attempts == 1 then dataobj.text = format(L["%d attempt"], attempts)
     else dataobj.text = format(L["%d attempts"], attempts) end
@@ -1236,6 +1265,24 @@ do
     else dataobj.text = format(L["%d attempts - %.2f%%"], attempts, chance) end
    end
   end
+
+  -- Bar
+  if self.bar then
+   self.barGroup:RemoveBar(self.bar)
+  end
+  if not chance then chance = 0 end
+  if chance > 100 then chance = 100 end
+  if chance < 0 then chance = 0 end
+  local text = format("%s (%.2f%%)", itemLink or trackedItem.name, chance)
+  self.barGroup:NewCounterBar("Track", text, chance, 100, itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
+  self.barGroup:ClearAllPoints()
+	 self.barGroup:SetPoint(self.db.profile.bar.point, UIParent, self.db.profile.bar.relativePoint, self.db.profile.bar.x, self.db.profile.bar.y)
+	 self.barGroup:SetScale(self.db.profile.bar.scale)
+  self.barGroup:SetWidth(self.db.profile.bar.width)
+  self.barGroup:SetHeight(self.db.profile.bar.height)
+  if not self.db.profile.bar.visible then self.barGroup:Hide() else self.barGroup:Show() end
+  if not self.db.profile.bar.anchor then self.barGroup:HideAnchor() else self.barGroup:ShowAnchor() end
+  if not self.db.profile.bar.locked then self.barGroup:Unlock() else self.barGroup:Lock() end
  end
 
 	function dataobj.OnEnter(self)
@@ -1255,18 +1302,24 @@ do
 
 	function dataobj:OnClick(button)
   if IsShiftKeyDown() then
-   if R.db.profile.sortMode == SORT_NAME then R.db.profile.sortMode = SORT_DIFFICULTY
-   elseif R.db.profile.sortMode == SORT_DIFFICULTY then R.db.profile.sortMode = SORT_PROGRESS
-   else R.db.profile.sortMode = SORT_NAME
-   end
-   R:ShowTooltip()
-  else
+   -- Show options
 		 LoadAddOn("Rarity_Options")
 		 if R.optionsFrame then
 			 InterfaceOptionsFrame_OpenToCategory(R.optionsFrame)
 		 else
 			 R:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
 		 end
+  elseif IsControlKeyDown() then
+   -- Change sort order
+   if R.db.profile.sortMode == SORT_NAME then R.db.profile.sortMode = SORT_DIFFICULTY
+   elseif R.db.profile.sortMode == SORT_DIFFICULTY then R.db.profile.sortMode = SORT_PROGRESS
+   else R.db.profile.sortMode = SORT_NAME
+   end
+   R:ShowTooltip()
+  else
+   -- Toggle progress bar visibility
+   R.db.profile.bar.visible = not R.db.profile.bar.visible
+   R:UpdateText()
   end
 	end
 	
@@ -1615,9 +1668,11 @@ do
 		
 		-- Footer
 		line = tooltip:AddLine()
-		tooltip:SetCell(line, 1, colorize(L["Click to open options"], gray), nil, nil, 3)
+		tooltip:SetCell(line, 1, colorize(L["Click to toggle the progress bar"], gray), nil, nil, 3)
 		line = tooltip:AddLine()
-		tooltip:SetCell(line, 1, colorize(L["Shift-Click to change sort order"], gray), nil, nil, 3)
+		tooltip:SetCell(line, 1, colorize(L["Shift-Click to open options"], gray), nil, nil, 3)
+		line = tooltip:AddLine()
+		tooltip:SetCell(line, 1, colorize(L["Ctrl-Click to change sort order"], gray), nil, nil, 3)
 
 		tooltip:SetAutoHideDelay(0.01, frame)
 		tooltip:SmartAnchorTo(frame)
