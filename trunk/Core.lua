@@ -1273,7 +1273,7 @@ do
   if not chance then chance = 0 end
   if chance > 100 then chance = 100 end
   if chance < 0 then chance = 0 end
-  local text = format("%s (%.2f%%)", itemLink or trackedItem.name, chance)
+  local text = format("%s %d (%.2f%%)", itemLink or trackedItem.name, attempts, chance)
   self.barGroup:NewCounterBar("Track", text, chance, 100, itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
   self.barGroup:ClearAllPoints()
 	 self.barGroup:SetPoint(self.db.profile.bar.point, UIParent, self.db.profile.bar.relativePoint, self.db.profile.bar.x, self.db.profile.bar.y)
