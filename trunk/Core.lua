@@ -74,7 +74,7 @@ local lastNode
 local inSession = false
 local sessionStarted = 0
 local sessionLast = 0
-local SESSION_LENGTH = 60 * 5 -- 5 minutes
+local SESSION_LENGTH = 60 * 10 -- 10 minutes
 local sessionTimer
 
 local red = { r = 1.0, g = 0.2, b = 0.2 }
