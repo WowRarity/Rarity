@@ -1767,25 +1767,8 @@ function R:OutputAttempts(item, skipTimeUpdate)
  if not item then return end
  if (item.requiresHorde and R:IsHorde()) or (item.requiresAlliance and not R:IsHorde()) or (not item.requiresHorde and not item.requiresAlliance) then
   self:Debug("New attempt found for %s", item.name)
-  if self.db.profile.enableAnnouncements == false then return end
-  if item.announce == false then return end
+
   if type(item) == "table" and item.enabled ~= false and item.found ~= true and item.itemId ~= nil and item.attempts ~= nil then
-   -- Output the attempt count
-   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
-   if itemLink or itemName then
-    local s
-    local attempts = item.attempts or 1
-    local total = item.attempts or 1
-    if item.lastAttempts then attempts = attempts - item.lastAttempts end
-    if total <= attempts then
-     if attempts == 1 then s = format(L["%s: %d attempt"], itemLink or itemName, attempts)
-     else s = format(L["%s: %d attempts"], itemLink or itemName, attempts) end
-    else
-     if attempts == 1 then s = format(L["%s: %d attempt (%d total)"], itemLink or itemName, attempts, total)
-     else s = format(L["%s: %d attempts (%d total)"], itemLink or itemName, attempts, total) end
-    end
-    self:Pour(s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
-   end
 
    if skipTimeUpdate == nil or skipTimeUpdate == false then
     -- Increment attempt counter for today
@@ -1807,8 +1790,29 @@ function R:OutputAttempts(item, skipTimeUpdate)
     end
    end
 
+   -- Don't go any further if we don't want to announce this
+   if self.db.profile.enableAnnouncements == false then return end
+   if item.announce == false then return end
+
+   -- Output the attempt count
+   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
+   if itemLink or itemName then
+    local s
+    local attempts = item.attempts or 1
+    local total = item.attempts or 1
+    if item.lastAttempts then attempts = attempts - item.lastAttempts end
+    if total <= attempts then
+     if attempts == 1 then s = format(L["%s: %d attempt"], itemLink or itemName, attempts)
+     else s = format(L["%s: %d attempts"], itemLink or itemName, attempts) end
+    else
+     if attempts == 1 then s = format(L["%s: %d attempt (%d total)"], itemLink or itemName, attempts, total)
+     else s = format(L["%s: %d attempts (%d total)"], itemLink or itemName, attempts, total) end
+    end
+    self:Pour(s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
+   end
+
+   self:UpdateTrackedItem(item)
   end
-  self:UpdateTrackedItem(item)
  end
 end
 
