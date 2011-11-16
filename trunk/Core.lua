@@ -1790,6 +1790,9 @@ function R:OutputAttempts(item, skipTimeUpdate)
     end
    end
 
+   -- Switch to track this item
+   self:UpdateTrackedItem(item)
+
    -- Don't go any further if we don't want to announce this
    if self.db.profile.enableAnnouncements == false then return end
    if item.announce == false then return end
@@ -1811,7 +1814,6 @@ function R:OutputAttempts(item, skipTimeUpdate)
     self:Pour(s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
    end
 
-   self:UpdateTrackedItem(item)
   end
  end
 end
