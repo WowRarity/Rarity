@@ -125,6 +125,8 @@ function R:PrepareDefaults()
      ["Reins of the Drake of the South Wind"] = { type = MOUNT, method = BOSS, name = GetItemInfo(63041) or L["Reins of the Drake of the South Wind"], spellId = 88744, itemId = 63041, npcs = { 46753 }, chance = 100, groupSize = 10, statisticId = { 5576, 5577 }, },
      ["Swift Zulian Panther"] =                 { type = MOUNT, method = BOSS, name = GetItemInfo(68824) or L["Swift Zulian Panther"], spellId = 96499, itemId = 68824, npcs = { 52059 }, chance = 100, groupSize = 5, },
      ["Smoldering Egg of Millagazor"] =         { type = MOUNT, method = BOSS, name = GetItemInfo(69224) or L["Smoldering Egg of Millagazor"], spellId = 97493, itemId = 69224, npcs = { 52409 }, chance = 100, groupSize = 10, statisticId = { 5976, 5977 }, },
+     ["Reins of the Grand Black War Mammoth Horde"] = { type = MOUNT, method = BOSS, name = GetItemInfo(44083) or L["Reins of the Grand Black War Mammoth"], spellId = 61467, itemId = 44083, npcs = { 35013, 31125, 38433, 33993 }, chance = 100, groupSize = 3, requiresHorde = true, statisticId = { 1753, 1754, 2870, 3236, 4074, 4075, 4657, 4658 }, },
+     ["Reins of the Grand Black War Mammoth Alliance"] = { type = MOUNT, method = BOSS, name = GetItemInfo(43959) or L["Reins of the Grand Black War Mammoth"], spellId = 61465, itemId = 43959, npcs = { 35013, 31125, 38433, 33993 }, chance = 100, groupSize = 3, requiresAlliance = true, statisticId = { 1753, 1754, 2870, 3236, 4074, 4075, 4657, 4658 }, },
     },
     pets = {
      name = L["Companions"],

@@ -853,7 +853,7 @@ function R:CreateGroup(options, group, isUser)
 					end,
 				},
 
-			 spacer3 = { type = "header", name = L["Statistics"], order = newOrder(), },
+			 spacer3 = { type = "header", name = L["Attempts"], order = newOrder(), },
 
 		  attempts = {
 			  type = "input",
@@ -896,6 +896,8 @@ function R:CreateGroup(options, group, isUser)
      get = function(into) if item.chance then return tostring(item.chance) else return nil end end,
 		  },
 							
+			 spacer3 = { type = "header", name = L["Other Requirements"], order = newOrder(), },
+
 		  groupSize = {
 			  type = "input",
      order = newOrder(),
@@ -945,6 +947,38 @@ function R:CreateGroup(options, group, isUser)
 						self:Update("OPTIONS")
 					end,
      hidden = function() return item.method ~= BOSS and item.method ~= USE end,
+				},
+
+				requiresHorde = {
+					order = newOrder(),
+					type = "toggle",
+					name = L["Horde only"],
+					desc = L["This item is only available to Horde players."],
+     width = "half",
+					get = function()
+      if item.requiresHorde == true then return true else return false end
+     end,
+					set = function(info, val)
+						item.requiresHorde = val
+      if val then item.requiresAlliance = false end
+						self:Update("OPTIONS")
+					end,
+				},
+
+				requiresAlliance = {
+					order = newOrder(),
+					type = "toggle",
+					name = L["Alliance only"],
+					desc = L["This item is only available to Alliance players."],
+     width = "half",
+					get = function()
+      if item.requiresAlliance == true then return true else return false end
+     end,
+					set = function(info, val)
+						item.requiresAlliance = val
+      if val then item.requiresHorde = false end
+						self:Update("OPTIONS")
+					end,
 				},
 
 			 spacer4 = { type = "header", name = "", order = newOrder(), hidden = not isUser },

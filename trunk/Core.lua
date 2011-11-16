@@ -1590,39 +1590,41 @@ do
 
     -- Item
     if ((not requiresGroup and group.collapsed ~= true) or (requiresGroup and group.collapsedGroup ~= true)) and v.itemId ~= nil then
-     local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
-     local attempts = v.attempts or 0
-     if v.lastAttempts then attempts = attempts - v.lastAttempts end
-     local dropChance = (1.00 / (v.chance or 100))
-     if v.method == BOSS and v.groupSize ~= nil and v.groupSize > 1 and not v.equalOdds then dropChance = dropChance / v.groupSize end
-     local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
-     local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
-     local lucky = colorize(L["Lucky"], green)
-     if medianLoots < attempts then lucky = colorize(L["Unlucky"], red) end
-     local icon = ""
-     if trackedItem == v then icon = [[|TInterface\Buttons\UI-CheckBox-Check:0|t]] end
-     local time = 0
-     if v.time then time = v.time end
-     if v.lastTime then time = v.time - v.lastTime end
-     if inSession and trackedItem == v then
-      local len = sessionLast - sessionStarted
-      time = time + len
+     if (v.requiresHorde and R:IsHorde()) or (v.requiresAlliance and not R:IsHorde()) or (not v.requiresHorde and not v.requiresAlliance) then
+      local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
+      local attempts = v.attempts or 0
+      if v.lastAttempts then attempts = attempts - v.lastAttempts end
+      local dropChance = (1.00 / (v.chance or 100))
+      if v.method == BOSS and v.groupSize ~= nil and v.groupSize > 1 and not v.equalOdds then dropChance = dropChance / v.groupSize end
+      local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
+      local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
+      local lucky = colorize(L["Lucky"], green)
+      if medianLoots < attempts then lucky = colorize(L["Unlucky"], red) end
+      local icon = ""
+      if trackedItem == v then icon = [[|TInterface\Buttons\UI-CheckBox-Check:0|t]] end
+      local time = 0
+      if v.time then time = v.time end
+      if v.lastTime then time = v.time - v.lastTime end
+      if inSession and trackedItem == v then
+       local len = sessionLast - sessionStarted
+       time = time + len
+      end
+      time = R:FormatTime(time)
+      local likelihood = format("%.2f%%", chance)
+      if attempts == 0 then
+       attempts = ""
+       lucky = ""
+       time = ""
+       likelihood = ""
+      end
+      if time == "0:00" then time = "" end
+      if v.method ~= NPC and v.method ~= ZONE and v.method ~= FISHING and v.method ~= USE then time = "" end
+      line = tooltip:AddLine(icon, (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky)
+      tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
+				  tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
+				  tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
+      added = true
      end
-     time = R:FormatTime(time)
-     local likelihood = format("%.2f%%", chance)
-     if attempts == 0 then
-      attempts = ""
-      lucky = ""
-      time = ""
-      likelihood = ""
-     end
-     if time == "0:00" then time = "" end
-     if v.method ~= NPC and v.method ~= ZONE and v.method ~= FISHING and v.method ~= USE then time = "" end
-     line = tooltip:AddLine(icon, (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky)
-     tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
-				 tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
-				 tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
-     added = true
     end
 
    end
@@ -1762,49 +1764,52 @@ end
 
 
 function R:OutputAttempts(item, skipTimeUpdate)
- self:Debug("New attempt found for %s", item.name)
- if self.db.profile.enableAnnouncements == false then return end
- if item.announce == false then return end
- if type(item) == "table" and item.enabled ~= false and item.found ~= true and item.itemId ~= nil and item.attempts ~= nil then
-  -- Output the attempt count
-  local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
-  if itemLink or itemName then
-   local s
-   local attempts = item.attempts or 1
-   local total = item.attempts or 1
-   if item.lastAttempts then attempts = attempts - item.lastAttempts end
-   if total <= attempts then
-    if attempts == 1 then s = format(L["%s: %d attempt"], itemLink or itemName, attempts)
-    else s = format(L["%s: %d attempts"], itemLink or itemName, attempts) end
-   else
-    if attempts == 1 then s = format(L["%s: %d attempt (%d total)"], itemLink or itemName, attempts, total)
-    else s = format(L["%s: %d attempts (%d total)"], itemLink or itemName, attempts, total) end
+ if not item then return end
+ if (item.requiresHorde and R:IsHorde()) or (item.requiresAlliance and not R:IsHorde()) or (not item.requiresHorde and not item.requiresAlliance) then
+  self:Debug("New attempt found for %s", item.name)
+  if self.db.profile.enableAnnouncements == false then return end
+  if item.announce == false then return end
+  if type(item) == "table" and item.enabled ~= false and item.found ~= true and item.itemId ~= nil and item.attempts ~= nil then
+   -- Output the attempt count
+   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
+   if itemLink or itemName then
+    local s
+    local attempts = item.attempts or 1
+    local total = item.attempts or 1
+    if item.lastAttempts then attempts = attempts - item.lastAttempts end
+    if total <= attempts then
+     if attempts == 1 then s = format(L["%s: %d attempt"], itemLink or itemName, attempts)
+     else s = format(L["%s: %d attempts"], itemLink or itemName, attempts) end
+    else
+     if attempts == 1 then s = format(L["%s: %d attempt (%d total)"], itemLink or itemName, attempts, total)
+     else s = format(L["%s: %d attempts (%d total)"], itemLink or itemName, attempts, total) end
+    end
+    self:Pour(s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
    end
-   self:Pour(s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
-  end
 
-  if skipTimeUpdate == nil or skipTimeUpdate == false then
-   -- Increment attempt counter for today
-   local dt = getDate()
-   if not item.dates then item.dates = {} end
-   if not item.dates[dt] then item.dates[dt] = {} end
-   if not item.dates[dt].attempts then item.dates[dt].attempts = 0 end
-   item.dates[dt].attempts = item.dates[dt].attempts + 1
-   if not item.session then item.session = {} end
-   if not item.session.attempts then item.session.attempts = 0 end
-   item.session.attempts = item.session.attempts + 1
+   if skipTimeUpdate == nil or skipTimeUpdate == false then
+    -- Increment attempt counter for today
+    local dt = getDate()
+    if not item.dates then item.dates = {} end
+    if not item.dates[dt] then item.dates[dt] = {} end
+    if not item.dates[dt].attempts then item.dates[dt].attempts = 0 end
+    item.dates[dt].attempts = item.dates[dt].attempts + 1
+    if not item.session then item.session = {} end
+    if not item.session.attempts then item.session.attempts = 0 end
+    item.session.attempts = item.session.attempts + 1
 
-   -- Handle time tracking
-   if trackedItem == item then
-    self:UpdateSession()
-   else
-    self:EndSession()
-    self:StartSession()
+    -- Handle time tracking
+    if trackedItem == item then
+     self:UpdateSession()
+    else
+     self:EndSession()
+     self:StartSession()
+    end
    end
-  end
 
+  end
+  self:UpdateTrackedItem(item)
  end
- self:UpdateTrackedItem(item)
 end
 
 
@@ -1881,15 +1886,17 @@ function R:ScanStatistics(reason)
   if type(v) == "table" then
    for kk, vv in pairs(v) do
     if type(vv) == "table" then
-     if vv.statisticId and type(vv.statisticId) == "table" then
-      local count = 0
-      for kkk, vvv in pairs(vv.statisticId) do
-       local s = GetStatistic(vvv)
-       count = count + (tonumber(s or "0") or 0)
-      end
-      if count > (vv.attempts or 0) then
-       vv.attempts = count
-       self:OutputAttempts(vv, true)
+     if (vv.requiresHorde and R:IsHorde()) or (vv.requiresAlliance and not R:IsHorde()) or (not vv.requiresHorde and not vv.requiresAlliance) then
+      if vv.statisticId and type(vv.statisticId) == "table" then
+       local count = 0
+       for kkk, vvv in pairs(vv.statisticId) do
+        local s = GetStatistic(vvv)
+        count = count + (tonumber(s or "0") or 0)
+       end
+       if count > (vv.attempts or 0) then
+        vv.attempts = count
+        self:OutputAttempts(vv, true)
+       end
       end
      end
     end

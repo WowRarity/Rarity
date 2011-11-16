@@ -192,6 +192,12 @@ L["Height"] = true
 L["Scale"] = true
 L["Show anchor"] = true
 L["Locked"] = true
+L["Other Requirements"] = true
+L["Horde only"] = true
+L["This item is only available to Horde players."] = true
+L["Alliance only"] = true
+L["This item is only available to Alliance players."] = true
+
 
 
 
@@ -360,6 +366,7 @@ L["Elementium Geode"] = true
 L["Smoldering Egg of Millagazor"] = true
 L["Sea Pony"] = true
 L["Ice Chip"] = true
+L["Reins of the Grand Black War Mammoth"] = true
 
 
 
