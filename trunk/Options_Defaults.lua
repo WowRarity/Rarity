@@ -127,6 +127,8 @@ function R:PrepareDefaults()
      ["Smoldering Egg of Millagazor"] =         { type = MOUNT, method = BOSS, name = GetItemInfo(69224) or L["Smoldering Egg of Millagazor"], spellId = 97493, itemId = 69224, npcs = { 52409 }, chance = 100, groupSize = 10, statisticId = { 5976, 5977 }, },
      ["Reins of the Grand Black War Mammoth Horde"] = { type = MOUNT, method = BOSS, name = GetItemInfo(44083) or L["Reins of the Grand Black War Mammoth"], spellId = 61467, itemId = 44083, npcs = { 35013, 31125, 38433, 33993 }, chance = 100, groupSize = 3, requiresHorde = true, statisticId = { 1753, 1754, 2870, 3236, 4074, 4075, 4657, 4658 }, },
      ["Reins of the Grand Black War Mammoth Alliance"] = { type = MOUNT, method = BOSS, name = GetItemInfo(43959) or L["Reins of the Grand Black War Mammoth"], spellId = 61465, itemId = 43959, npcs = { 35013, 31125, 38433, 33993 }, chance = 100, groupSize = 3, requiresAlliance = true, statisticId = { 1753, 1754, 2870, 3236, 4074, 4075, 4657, 4658 }, },
+     ["Experiment 12-B"] =                      { type = MOUNT, method = BOSS, name = GetItemInfo(78919) or L["Experiment 12-B"], spellId = 110039, itemId = 78919, npcs = { 55294 }, chance = 100, groupSize = 10, statisticId = { 6161, 6162 }, },
+     ["Reins of the Blazing Drake"] =           { type = MOUNT, method = BOSS, name = GetItemInfo(77067) or L["Reins of the Blazing Drake"], spellId = 107842, itemId = 77067, npcs = { 999999 }, chance = 100, groupSize = 10, statisticId = { 6167, 6168 }, },
     },
     pets = {
      name = L["Companions"],
