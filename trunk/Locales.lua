@@ -369,7 +369,7 @@ L["Ice Chip"] = true
 L["Reins of the Grand Black War Mammoth"] = true
 L["Experiment 12-B"] = true
 L["Reins of the Blazing Drake"] = true
-
+L["Lump of Coal"] = true
 
 
 

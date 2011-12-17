@@ -382,11 +382,13 @@ do
   end
 
   -- Update text again several times later - this helps get the icon right after login
-  self:ScheduleTimer("UpdateText", 10)
-  self:ScheduleTimer("UpdateText", 20)
-  self:ScheduleTimer("UpdateText", 60)
-  self:ScheduleTimer("UpdateText", 120)
-  self:ScheduleTimer("UpdateText", 180)
+  self:ScheduleTimer(function() R:UpdateText() end, 10)
+  self:ScheduleTimer(function() R:UpdateText() end, 20)
+  self:ScheduleTimer(function() R:UpdateText() end, 30)
+  self:ScheduleTimer(function() R:UpdateText() end, 60)
+  self:ScheduleTimer(function() R:UpdateText() end, 120)
+  self:ScheduleTimer(function() R:UpdateText() end, 180)
+  self:ScheduleTimer(function() R:UpdateText() end, 240)
 		
 		self:Debug(L["Loaded (running in debug mode)"])
 	end
