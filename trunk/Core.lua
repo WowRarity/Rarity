@@ -143,6 +143,7 @@ R.fishnodes = {
  [L["Mountain Trout School"]] = true,
  [L["Pool of Fire"]] = true,
  [L["Shipwreck Debris"]] = true,
+ [L["Deepsea Sagefish"]] = true,
 }
 
 R.miningnodes = {
