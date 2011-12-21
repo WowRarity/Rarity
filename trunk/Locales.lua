@@ -266,7 +266,7 @@ L["Highland Guppy School"] = true
 L["Mountain Trout School"] = true
 L["Pool of Fire"] = true
 L["Shipwreck Debris"] = true
-L["Deepsea Sagefish"] = true
+L["Deepsea Sagefish School"] = true
 
 -- Mining nodes
 L["Copper Vein"] = true
