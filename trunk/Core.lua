@@ -1148,11 +1148,11 @@ end
 
 function R:ScanAllArch(event)
  self:UnregisterEvent("ARTIFACT_HISTORY_READY")
- self:ScanArchFragments()
+ self:ScanArchFragments(event)
  self:ScanArchProjects(event)
 end
 
-function R:ScanArchFragments()
+function R:ScanArchFragments(event)
  local scan = false
  if GetNumArchaeologyRaces() == 0 then return end
 	for race_id = 1, GetNumArchaeologyRaces() do
@@ -1183,12 +1183,21 @@ function R:ScanArchFragments()
   end
  end
 
+ -- Every time fragment count changes, scan projects just in case
+ self:ScanArchProjects(event)
+
  -- We solved an artifact; scan projects
  if scan then
   -- Scan now, and later. The server takes a second to decide on the next project.
-  self:ScanArchProjects("SOLVED AN ARTIFACT")
-  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED") end, 2)
+  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 1") end, 2)
   self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 2") end, 5)
+  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 3") end, 10)
+  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 4") end, 20)
+  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 5") end, 30)
+  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 6") end, 60)
+  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 7") end, 120)
+  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 8") end, 180)
+  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 9") end, 300)
  end
 end
 
