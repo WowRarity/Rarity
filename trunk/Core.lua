@@ -312,6 +312,15 @@ do
    R.architems = architems
 		end
 
+  -- LibSink still tries to call a non-existent Blizzard function sometimes
+  if not CombatText_StandardScroll then CombatText_StandardScroll = 0 end
+  if not UIERRORS_HOLD_TIME then UIERRORS_HOLD_TIME = 2 end
+  if not CombatText_AddMessage then
+   CombatText_AddMessage = function(text, _, r, g, b, sticky, _)
+    UIErrorsFrame:AddMessage(text, r, g, b, 1, UIERRORS_HOLD_TIME)
+   end
+  end
+
   -- Initialize bar
   self.barGroup = self:NewBarGroup("Rarity", nil, self.db.profile.bar.width, self.db.profile.bar.height)
 	 self.barGroup:SetFont(nil, 8)
@@ -986,6 +995,19 @@ function R:OnBagUpdate()
    end
   end
  end
+
+ -- Check for an increase in quantity of any items we're watching for
+ if not bankOpen and not guildBankOpen and not auctionOpen and not tradeOpen and not tradeSkillOpen then
+  for k, v in pairs(tempbagitems) do
+   if bagitems[k] and bagitems[k] > (tempbagitems[k] or 0) then -- An inventory item went up in count
+    if items[k] and items[k].enabled ~= false then
+    self:Print("fgound");
+     self:FoundItem(k, items[k])
+    end
+   end
+  end
+ end
+
 end
 
 
@@ -1004,15 +1026,6 @@ function R:ScanBags()
 					qty = select(2, GetContainerItemInfo(i, ii))
 					if not bagitems[id] then bagitems[id] = 0 end
 					bagitems[id] = bagitems[id] + qty
-					if items[id] then
-      -- We came into possession of an item we were looking for!
-      if not items[id].repeatable and not items[id].found and items[id].enabled ~= false then -- Only support bag scans for non-repeatable items
-       if items[id].attempts == nil then items[id].attempts = 0 end
-       items[id].attempts = items[id].attempts + 1
-       self:OutputAttempts(items[id])
-       self:FoundItem(id, items[id])
-      end
-     end
 				end
 			end
 		end
@@ -1264,8 +1277,8 @@ do
   attempts = 0
   if trackedItem.attempts then attempts = trackedItem.attempts end
   if trackedItem.lastAttempts then attempts = attempts - trackedItem.lastAttempts end
-  if trackedItem.realAttempts and trackedItem.found then attempts = trackedItem.realAttempts end
-  if trackedItem.found then
+  if trackedItem.realAttempts and trackedItem.found and not trackedItem.repeatable then attempts = trackedItem.realAttempts end
+  if trackedItem.found and not trackedItem.repeatable then
    if attempts == 1 then dataobj.text = format(L["Found on your first attempt!"], attempts)
    else dataobj.text = format(L["Found after %d attempts!"], attempts) end
    chance = 1.0
@@ -1686,6 +1699,7 @@ do
   addedLast = addGroup(self.db.profile.groups.items, true)
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
   addedLast = addGroup(self.db.profile.groups.user, true)
+  if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
 		
 		-- Footer
 		line = tooltip:AddLine()
@@ -1787,7 +1801,7 @@ function R:OutputAttempts(item, skipTimeUpdate)
  if (item.requiresHorde and R:IsHorde()) or (item.requiresAlliance and not R:IsHorde()) or (not item.requiresHorde and not item.requiresAlliance) then
   self:Debug("New attempt found for %s", item.name)
 
-  if type(item) == "table" and item.enabled ~= false and item.found ~= true and item.itemId ~= nil and item.attempts ~= nil then
+  if type(item) == "table" and item.enabled ~= false and (item.found ~= true or item.repeatable == true) and item.itemId ~= nil and item.attempts ~= nil then
 
    if skipTimeUpdate == nil or skipTimeUpdate == false then
     -- Increment attempt counter for today
@@ -1932,7 +1946,7 @@ end
 
 
 function R:FoundItem(itemId, item)
- if item.found then return end
+ if item.found and not item.repeatable then return end
  self:Debug("FOUND ITEM %d!", itemId)
  if item.attempts == nil then item.attempts = 1 end
  if item.lastAttempts == nil then item.lastAttempts = 0 end
@@ -1956,7 +1970,7 @@ function R:FoundItem(itemId, item)
  item.lastTime = item.time
  self:UpdateTrackedItem(item)
  self:UpdateInterestingThings()
- if item.repeatable and (item.method == NPC or item.method == ZONE or item.method == FISHING) then self:ScheduleTimer(function()
+ if item.repeatable then self:ScheduleTimer(function()
   -- If this is a repeatable item, turn it back on in a few seconds.
   -- FoundItem() gets called repeatedly when we get an item, so we need to lock it out for a few seconds.
   item.enabled = nil

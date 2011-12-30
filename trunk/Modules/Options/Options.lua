@@ -829,11 +829,12 @@ function R:CreateGroup(options, group, isUser)
      end,
 					set = function(info, val)
 						item.repeatable = val
+      if val then item.enabled = true end
 						self:Update("OPTIONS")
 					end,
      hidden = function()
       if R.db.profile.debugMode then return false end
-      if item.method == USE then return true end
+      --if item.method == USE then return true end
       if item.type == MOUNT or item.type == ARCH then return true else return false end
      end,
 				},
