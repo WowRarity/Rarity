@@ -874,8 +874,11 @@ function R:OnEvent(event, ...)
    for k, v in pairs(npcs_to_items[npcid]) do
     if v.enabled ~= false and (v.method == NPC or v.method == ZONE) then
      if (v.heroic == true and self:IsHeroic()) or (v.heroic == false and not self:IsHeroic()) or v.heroic == nil then
-      if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
-      self:OutputAttempts(v)
+      -- Don't increment attempts if this NPC also has a statistic defined. This would result in two attempts counting instead of one.
+      if not v.statisticId or type(v.statisticId) ~= "table" or #v.statisticId <= 0 then
+       if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+       self:OutputAttempts(v)
+      end
      end
     end
    end
