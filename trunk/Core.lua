@@ -913,7 +913,7 @@ function R:OnEvent(event, ...)
   local slotID
 		for slotID = 1, numItems, 1 do
 			local _, _, qty = GetLootSlotInfo(slotID)
-			if qty > 0 then -- Coins have quantity of 0, so skip those
+			if (qty or 0) > 0 then -- Coins have quantity of 0, so skip those
 				local itemLink = GetLootSlotLink(slotID)
     if itemLink then
 				 local _, itemId = strsplit(":", itemLink)
@@ -1004,7 +1004,6 @@ function R:OnBagUpdate()
   for k, v in pairs(tempbagitems) do
    if bagitems[k] and bagitems[k] > (tempbagitems[k] or 0) then -- An inventory item went up in count
     if items[k] and items[k].enabled ~= false then
-    self:Print("fgound");
      self:FoundItem(k, items[k])
     end
    end
@@ -1027,8 +1026,10 @@ function R:ScanBags()
 				id = GetContainerItemID(i, ii)
 				if id then
 					qty = select(2, GetContainerItemInfo(i, ii))
-					if not bagitems[id] then bagitems[id] = 0 end
-					bagitems[id] = bagitems[id] + qty
+     if qty and qty > 0 then
+					 if not bagitems[id] then bagitems[id] = 0 end
+					 bagitems[id] = bagitems[id] + qty
+     end
 				end
 			end
 		end
@@ -2027,20 +2028,22 @@ end
 
 function R:EndSession()
 	if inSession then
-  local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(trackedItem.itemId)
-		local len = sessionLast - sessionStarted
-  local i = R:FindTrackedItem()
-  if i then
-   i.time = (i.time or 0) + len
-   local dt = getDate()
-   if not i.dates then i.dates = {} end
-   if not i.dates[dt] then i.dates[dt] = {} end
-   i.dates[dt].time = (i.dates[dt].time or 0) + len
-   if not i.session then i.session = {} end
-   i.session.time = (i.session.time or 0) + len
-  end
-  self:Debug("Ending session for %s (%s)", itemLink, self:FormatTime(trackedItem.time or 0))
-	end
+  if trackedItem and trackedItem.itemId then
+   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(trackedItem.itemId)
+		 local len = sessionLast - sessionStarted
+   local i = R:FindTrackedItem()
+   if i then
+    i.time = (i.time or 0) + len
+    local dt = getDate()
+    if not i.dates then i.dates = {} end
+    if not i.dates[dt] then i.dates[dt] = {} end
+    i.dates[dt].time = (i.dates[dt].time or 0) + len
+    if not i.session then i.session = {} end
+    i.session.time = (i.session.time or 0) + len
+   end
+   self:Debug("Ending session for %s (%s)", itemLink, self:FormatTime(trackedItem.time or 0))
+	 end
+ end
 	inSession = false
 end
 
