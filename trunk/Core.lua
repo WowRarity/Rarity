@@ -964,6 +964,7 @@ end
 
 -------------------------------------------------------------------------------------
 -- Something in your bags changed.
+--
 -- This is used for a couple things. First, for boss drops that require a group, you may not have obtained the item even if it dropped from the boss.
 -- Therefore, we only say you obtained it when it appears in your inventory. Secondly, this is useful as a second line of defense in case
 -- you somehow obtain an item without us noticing it. This event fires a lot, so we need to be fast.
@@ -974,7 +975,6 @@ end
 -- This event is bucketed because it tends to fire tons of times in a row rapidly, leading to innaccurate results.
 -------------------------------------------------------------------------------------
 function R:OnBagUpdate()
- local numSlots, id, qty, i
  self:Debug("BAG_UPDATE")
 
  -- Save a copy of your bags before this event
@@ -989,7 +989,7 @@ function R:OnBagUpdate()
  -- Check for a decrease in quantity of any items we're watching for
  if not bankOpen and not guildBankOpen and not auctionOpen and not tradeOpen and not tradeSkillOpen then
   for k, v in pairs(tempbagitems) do
-   if (bagitems[k] and bagitems[k] < tempbagitems[k]) or not bagitems[k] then -- An inventory item went down in count or disappeared
+   if (bagitems[k] or 0) < (tempbagitems[k] or 0) then -- An inventory item went down in count or disappeared
     if used[k] then -- It's an item we care about
      local i = used[k]
      if i.attempts == nil then i.attempts = 1 else i.attempts = i.attempts + 1 end
@@ -1001,8 +1001,8 @@ function R:OnBagUpdate()
 
  -- Check for an increase in quantity of any items we're watching for
  if not bankOpen and not guildBankOpen and not auctionOpen and not tradeOpen and not tradeSkillOpen then
-  for k, v in pairs(tempbagitems) do
-   if bagitems[k] and bagitems[k] > (tempbagitems[k] or 0) then -- An inventory item went up in count
+  for k, v in pairs(bagitems) do
+   if (bagitems[k] or 0) > (tempbagitems[k] or 0) then -- An inventory item went up in count
     if items[k] and items[k].enabled ~= false then
      self:FoundItem(k, items[k])
     end
@@ -1018,14 +1018,15 @@ end
 -- and also works as a second line of defense in case other methods fail to notice the item.
 -------------------------------------------------------------------------------------
 function R:ScanBags()
+ local i, ii
 	table.wipe(bagitems)
 	for i = 0, NUM_BAG_SLOTS do
-		numSlots = GetContainerNumSlots(i)
+		local numSlots = GetContainerNumSlots(i)
 		if numSlots then
 			for ii = 1, numSlots do
-				id = GetContainerItemID(i, ii)
+				local id = GetContainerItemID(i, ii)
 				if id then
-					qty = select(2, GetContainerItemInfo(i, ii))
+					local qty = select(2, GetContainerItemInfo(i, ii))
      if qty and qty > 0 then
 					 if not bagitems[id] then bagitems[id] = 0 end
 					 bagitems[id] = bagitems[id] + qty
