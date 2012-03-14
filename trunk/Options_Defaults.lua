@@ -156,6 +156,7 @@ function R:PrepareDefaults()
      ["Ice Chip"] =                             { type = PET, method = USE, name = GetItemInfo(53641) or L["Ice Chip"], spellId = 74932, itemId = 53641, items = { 54536 }, chance = 25, groupSize = 5, equalOdds = true, },
      ["Toxic Wasteling"] =                      { type = PET, method = USE, name = GetItemInfo(50446) or L["Toxic Wasteling"], spellId = 71840, itemId = 50446, items = { 54537 }, chance = 14, groupSize = 5, equalOdds = true, },
      ["Lump of Coal"] =                         { type = PET, method = USE, name = GetItemInfo(73797) or L["Lump of Coal"], spellId = 103125, itemId = 73797, items = { 73792 }, chance = 50, },
+     ["Strand Crawler"] =                       { type = PET, method = USE, name = GetItemInfo(44983) or L["Strand Crawler"], spellId = 62561, itemId = 44983, items = { 67414, 46007 }, chance = 100, },
     },
     items = {
      name = L["Items"],

@@ -372,7 +372,7 @@ L["Experiment 12-B"] = true
 L["Reins of the Blazing Drake"] = true
 L["Lump of Coal"] = true
 L["Toxic Wasteling"] = true
-
+L["Strand Crawler"] = true
 
 
 
