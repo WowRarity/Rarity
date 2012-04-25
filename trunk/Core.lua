@@ -1079,10 +1079,16 @@ end
 -- When combat ends, we scan your statistics a few times. This helps catch some items that can't be tracked by normal means (i.e. Ragnaros),
 -- as well as acting as another backup to detect attempts if we missed one.
 -------------------------------------------------------------------------------------
-function R:OnCombatEnded(event)
- self:ScheduleTimer(function() R:ScanStatistics(event.." 1") end, 2)
- self:ScheduleTimer(function() R:ScanStatistics(event.." 2") end, 5)
- self:ScheduleTimer(function() R:ScanStatistics(event.." 3") end, 10)
+do
+ local timer1, timer2, timer3
+ function R:OnCombatEnded(event)
+  self:CancelTimer(timer1, true)
+  self:CancelTimer(timer2, true)
+  self:CancelTimer(timer3, true)
+  timer1 = self:ScheduleTimer(function() R:ScanStatistics(event.." 1") end, 2)
+  timer2 = self:ScheduleTimer(function() R:ScanStatistics(event.." 2") end, 5)
+  timer3 = self:ScheduleTimer(function() R:ScanStatistics(event.." 3") end, 10)
+ end
 end
 
 
