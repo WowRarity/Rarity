@@ -1207,12 +1207,10 @@ function R:ScanArchFragments(event)
   end
  end
 
- -- Every time fragment count changes, scan projects just in case
- self:ScanArchProjects(event)
-
  -- We solved an artifact; scan projects
  if scan then
   -- Scan now, and later. The server takes a second to decide on the next project.
+  self:ScanArchProjects(event)
   self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 1") end, 2)
   self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 2") end, 5)
   self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 3") end, 10)
