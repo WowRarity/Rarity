@@ -1636,7 +1636,7 @@ do
       local attempts = v.attempts or 0
       if v.lastAttempts then attempts = attempts - v.lastAttempts end
       local dropChance = (1.00 / (v.chance or 100))
-      if v.method == BOSS and v.groupSize ~= nil and v.groupSize > 1 and not v.equalOdds then dropChance = dropChance / v.groupSize end
+      if v.method == BOSS and v.groupSize ~= nil and tonumber(v.groupSize) ~= nil and v.groupSize > 1 and not v.equalOdds then dropChance = dropChance / v.groupSize end
       local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
       local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
       local lucky = colorize(L["Lucky"], green)
