@@ -1634,6 +1634,7 @@ do
      if (v.requiresHorde and R:IsHorde()) or (v.requiresAlliance and not R:IsHorde()) or (not v.requiresHorde and not v.requiresAlliance) then
       local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
       local attempts = v.attempts or 0
+      if type(attempts) ~= "number" then attempts = 0 end
       if v.lastAttempts then attempts = attempts - v.lastAttempts end
       local dropChance = (1.00 / (v.chance or 100))
       if v.method == BOSS and v.groupSize ~= nil and tonumber(v.groupSize) ~= nil and v.groupSize > 1 and not v.equalOdds then dropChance = dropChance / v.groupSize end
