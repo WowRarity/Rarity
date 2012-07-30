@@ -373,6 +373,8 @@ L["Reins of the Blazing Drake"] = true
 L["Lump of Coal"] = true
 L["Toxic Wasteling"] = true
 L["Strand Crawler"] = true
+L["Great Brewfest Kodo"] = true
+L["Swift Brewfest Ram"] = true
 
 
 
