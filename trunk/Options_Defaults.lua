@@ -159,6 +159,8 @@ function R:PrepareDefaults()
      ["Toxic Wasteling"] =                      { type = PET, method = USE, name = GetItemInfo(50446) or L["Toxic Wasteling"], spellId = 71840, itemId = 50446, items = { 54537 }, chance = 14, groupSize = 5, equalOdds = true, },
      ["Lump of Coal"] =                         { type = PET, method = USE, name = GetItemInfo(73797) or L["Lump of Coal"], spellId = 103125, itemId = 73797, items = { 73792 }, chance = 50, },
      ["Strand Crawler"] =                       { type = PET, method = USE, name = GetItemInfo(44983) or L["Strand Crawler"], spellId = 62561, itemId = 44983, items = { 67414, 46007 }, chance = 100, },
+     --["Crawling Claw"] =                        { type = PET, method = ARCH, name = GetItemInfo(60847) or L["Crawling Claw"], spellId = 84263, itemId = 60847, raceId = 7, chance = 500, },
+     -- Word on the street is the Crawling Claw actually shows up as Mummified Monkey Paw in your archaeology journal. Rarity cannot at this time support archaeology projects whose name differs from the item itself.
     },
     items = {
      name = L["Items"],

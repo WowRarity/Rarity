@@ -212,6 +212,7 @@ L["This item is only available to Alliance players."] = true
 L["Floating Wreckage"] = true
 L["Patch of Elemental Water"] = true
 L["Floating Debris"] = true
+L["Floating Debris Pool"] = true
 L["Oil Spill"] = true
 L["Firefin Snapper School"] = true
 L["Greater Sagefish School"] = true
@@ -243,8 +244,11 @@ L["Musselback Sculpin School"] = true
 L["Nettlefish School"] = true
 L["Strange Pool"] = true
 L["Schooner Wreckage"] = true
+L["Schooner Wreckage Pool"] = true
 L["Waterlogged Wreckage"] = true
+L["Waterlogged Wreckage Pool"] = true
 L["Bloodsail Wreckage"] = true
+L["Bloodsail Wreckage Pool"] = true
 L["Lesser Sagefish School"] = true
 L["Lesser Oily Blackmouth School"] = true
 L["Sparse Oily Blackmouth School"] = true
@@ -267,6 +271,17 @@ L["Mountain Trout School"] = true
 L["Pool of Fire"] = true
 L["Shipwreck Debris"] = true
 L["Deepsea Sagefish School"] = true
+L["Emperor Salmon School"] = true
+L["Giant Mantis Shrimp Swarm"] = true
+L["Golden Carp School"] = true
+L["Jade Lungfish School"] = true
+L["Krasarang Paddlefish School"] = true
+L["Redbelly Mandarin School"] = true
+L["Reef Octopus Swarm"] = true
+L["Floating Shipwreck Debris"] = true
+L["Jewel Danio School"] = true
+L["Spinefish School"] = true
+L["Tiger Gourami School"] = true
 
 -- Mining nodes
 L["Copper Vein"] = true
@@ -308,6 +323,15 @@ L["Rich Elementium Vein"] = true
 L["Pyrite Deposit"] = true
 L["Rich Obsidium Deposit"] = true
 L["Rich Pyrite Deposit"] = true
+L["Rich Pyrite Deposit"] = true
+L["Ghost Iron Deposit"] = true
+L["Rich Ghost Iron Deposit"] = true
+L["Black Trillium Deposit"] = true
+L["White Trillium Deposit"] = true
+L["Kyparite Deposit"] = true
+L["Rich Kyparite Deposit"] = true
+L["Trillium Vein"] = true
+L["Rich Trillium Vein"] = true
 
 
 

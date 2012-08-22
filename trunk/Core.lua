@@ -89,6 +89,7 @@ R.fishnodes = {
  [L["Floating Wreckage"]] = true,
  [L["Patch of Elemental Water"]] = true,
  [L["Floating Debris"]] = true,
+ [L["Floating Debris Pool"]] = true,
  [L["Oil Spill"]] = true,
  [L["Firefin Snapper School"]] = true,
  [L["Greater Sagefish School"]] = true,
@@ -120,8 +121,11 @@ R.fishnodes = {
  [L["Nettlefish School"]] = true,
  [L["Strange Pool"]] = true,
  [L["Schooner Wreckage"]] = true,
+ [L["Schooner Wreckage Pool"]] = true,
  [L["Waterlogged Wreckage"]] = true,
+ [L["Waterlogged Wreckage Pool"]] = true,
  [L["Bloodsail Wreckage"]] = true,
+ [L["Bloodsail Wreckage Pool"]] = true,
  [L["Lesser Sagefish School"]] = true,
  [L["Lesser Oily Blackmouth School"]] = true,
  [L["Sparse Oily Blackmouth School"]] = true,
@@ -144,6 +148,18 @@ R.fishnodes = {
  [L["Pool of Fire"]] = true,
  [L["Shipwreck Debris"]] = true,
  [L["Deepsea Sagefish School"]] = true,
+ -- New in Mists of Pandaria
+	[L["Emperor Salmon School"]] = true,
+	[L["Giant Mantis Shrimp Swarm"]] = true,
+	[L["Golden Carp School"]] = true,
+	[L["Jade Lungfish School"]] = true,
+	[L["Krasarang Paddlefish School"]] = true,
+	[L["Redbelly Mandarin School"]] = true,
+	[L["Reef Octopus Swarm"]] = true,
+	[L["Floating Shipwreck Debris"]] = true,
+	[L["Jewel Danio School"]] = true,
+	[L["Spinefish School"]] = true,
+	[L["Tiger Gourami School"]] = true,
 }
 
 R.miningnodes = {
@@ -186,6 +202,17 @@ R.miningnodes = {
  [L["Pyrite Deposit"]] = true,
  [L["Rich Obsidium Deposit"]] = true,
  [L["Rich Pyrite Deposit"]] = true,
+ -- New in Mists of Pandaria
+	[L["Rich Pyrite Deposit"]] = true,
+	[L["Ghost Iron Deposit"]] = true,
+	[L["Rich Ghost Iron Deposit"]] = true,
+	[L["Black Trillium Deposit"]] = true,
+	[L["White Trillium Deposit"]] = true,
+	[L["Kyparite Deposit"]] = true,
+	[L["Rich Kyparite Deposit"]] = true,
+	[L["Trillium Vein"]] = true,
+	[L["Rich Trillium Vein"]] = true,
+	-- Kyparite Ore need to find out what this spawns from
 }
 
 
@@ -258,6 +285,7 @@ local GetArchaeologyRaceInfo = _G.GetArchaeologyRaceInfo
 local SetSelectedArtifact = _G.SetSelectedArtifact
 local GetSelectedArtifactInfo = _G.GetSelectedArtifactInfo
 local GetStatistic = _G.GetStatistic
+local GetLootSourceInfo = _G.GetLootSourceInfo
 
 local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
 local COMBATLOG_OBJECT_AFFILIATION_MINE = _G.COMBATLOG_OBJECT_AFFILIATION_MINE
@@ -727,6 +755,7 @@ end
 
 function R:GetNPCIDFromGUID(guid)
 	if guid then
+  if type(guid) == "number" then guid = "0x"..tostring(guid) end
 		return (guid and tonumber(guid:sub(7, 10), 16)) or 0
 	end
 end
@@ -799,7 +828,7 @@ function R:OnEvent(event, ...)
   local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
   local subzone_t = LibStub("LibBabble-SubZone-3.0"):GetReverseLookupTable()[subzone]
 
-  -- Handle fishing
+  -- HANDLE FISHING
   if fishing then
    if isPool then self:Debug("Successfully fished from a pool")
    else self:Debug("Successfully fished") end
@@ -847,66 +876,41 @@ function R:OnEvent(event, ...)
    end
   end
 
-  -- Handle normal NPC looting
+  -- HANDLE NORMAL NPC LOOTING
+		local numItems = GetNumLootItems()
+  local slotID
+
+  -- Legacy support for pre-5.0 single-target looting
 		local guid = UnitGUID("target")
 		local name = UnitName("target")
-
 		if not name or not guid then return end -- No target when looting
 		if not UnitCanAttack("player", "target") then return end -- You targeted something you can't attack
 		if UnitIsPlayer("target") then return end -- You targetted a player
 		if not UnitIsDead("target") then return end -- You're looting something that's alive. It's a little strange
-  if guids[guid] then return end -- Already saw this corpse
 
-  local npcid = self:GetNPCIDFromGUID(guid)
-  if npcs[npcid] == nil then -- Not an NPC we need, abort
-   -- Not a zone we need either, abort
-   if zones[zone] == nil and zones[lbz[zone] or "."] == nil and zones[lbsz[subzone] or "."] == nil and zones[zone_t] == nil and zones[subzone_t] == nil and zones[lbz[zone_t] or "."] == nil and zones[lbsz[subzone_t] or "."] == nil then return end
-  end
-
-  -- If the loot is the result of certain spell casts (mining, herbing, opening, picklock, archaeology, etc), stop here
-  if spells[curSpell] then return end
-
-	 -- We're interested in this loot, process further
-  guids[guid] = true
-  
-  -- Increment attempts counter(s). One NPC might drop multiple things we want, so scan for them all.
-  if npcs_to_items[npcid] and type(npcs_to_items[npcid]) == "table" then
-   for k, v in pairs(npcs_to_items[npcid]) do
-    if v.enabled ~= false and (v.method == NPC or v.method == ZONE) then
-     if (v.heroic == true and self:IsHeroic()) or (v.heroic == false and not self:IsHeroic()) or v.heroic == nil then
-      -- Don't increment attempts if this NPC also has a statistic defined. This would result in two attempts counting instead of one.
-      if not v.statisticId or type(v.statisticId) ~= "table" or #v.statisticId <= 0 then
-       if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
-       self:OutputAttempts(v)
-      end
-     end
-    end
+  local numChecked = 0
+		for slotID = 1, numItems, 1 do -- Loop through all loot slots (for AoE looting)
+   local guidlist
+   if GetLootSourceInfo then
+    guidlist = { GetLootSourceInfo(slotID) }
+   else
+    guidlist = { guid }
    end
-  end
+   local guidIndex
+   for k, v in pairs(guidlist) do -- Loop through all NPC GUIDs being looted (will be 1 for single-target looting pre-5.0)
+    guid = v
+    if guid and type(guid) == "string" then
+     self:Debug("Checking NPC guid: "..guid)
+     self:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell) -- Decide if we should increment an attempt count for this NPC
+     numChecked = numChecked + 1
+    else
+     self:Debug("Didn't check guid: "..guid or "nil")
+    end -- Loop through all NPC GUIDs being looted (will be 1 for single-target looting pre-5.0)
+   end -- Haven't seen this corpse yet
+  end -- Loop through all loot slots (for AoE looting)
 
-  -- Check for zone-wide items and increment them if needed
-  for k, v in pairs(self.db.profile.groups) do
-   if type(v) == "table" then
-    for kk, vv in pairs(v) do
-     if type(vv) == "table" then
-      if vv.enabled ~= false then
-       local found = false
-       if vv.method == ZONE and vv.zones ~= nil and type(vv.zones) == "table" then
-        for kkk, vvv in pairs(vv.zones) do
-         if vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv == lbsz[subzone] or vvv == zone_t or vvv == subzone_t or vvv == lbz[zone_t] or vvv == subzone or vvv == lbsz[subzone_t] then found = true end
-        end
-       end
-       if found then
-        if (vv.heroic == true and self:IsHeroic()) or (vv.heroic == false and not self:IsHeroic()) or vv.heroic == nil then
-         if vv.attempts == nil then vv.attempts = 1 else vv.attempts = vv.attempts + 1 end
-         self:OutputAttempts(vv)
-        end
-       end
-      end
-     end
-    end
-   end
-  end
+  -- If we failed to scan anything, scan the current target
+  if numChecked <= 0 then self:CheckNpcInterest(UnitGUID("target"), zone, subzone, zone_t, subzone_t, curSpell) end
   
   -- Scan the loot to see if we found something we're looking for
 		local numItems = GetNumLootItems()
@@ -958,6 +962,64 @@ function R:OnEvent(event, ...)
   if inSession then self:EndSession() end
 
 
+ end
+end
+
+
+function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell)
+ if guid == nil then return end
+ if type(guid) ~= "string" then return end
+ if guids[guid] ~= nil then return end -- Already seen this NPC
+
+ local npcid = self:GetNPCIDFromGUID(guid)
+ if npcs[npcid] == nil then -- Not an NPC we need, abort
+  -- Not a zone we need either, abort
+  if zones[zone] == nil and zones[lbz[zone] or "."] == nil and zones[lbsz[subzone] or "."] == nil and zones[zone_t] == nil and zones[subzone_t] == nil and zones[lbz[zone_t] or "."] == nil and zones[lbsz[subzone_t] or "."] == nil then return end
+ end
+
+ -- If the loot is the result of certain spell casts (mining, herbing, opening, picklock, archaeology, etc), stop here
+ if spells[curSpell] then return end
+
+	-- We're interested in this loot, process further
+ guids[guid] = true
+  
+ -- Increment attempts counter(s). One NPC might drop multiple things we want, so scan for them all.
+ if npcs_to_items[npcid] and type(npcs_to_items[npcid]) == "table" then
+  for k, v in pairs(npcs_to_items[npcid]) do
+   if v.enabled ~= false and (v.method == NPC or v.method == ZONE) then
+    if (v.heroic == true and self:IsHeroic()) or (v.heroic == false and not self:IsHeroic()) or v.heroic == nil then
+     -- Don't increment attempts if this NPC also has a statistic defined. This would result in two attempts counting instead of one.
+     if not v.statisticId or type(v.statisticId) ~= "table" or #v.statisticId <= 0 then
+      if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+      self:OutputAttempts(v)
+     end
+    end
+   end
+  end
+ end
+
+ -- Check for zone-wide items and increment them if needed
+ for k, v in pairs(self.db.profile.groups) do
+  if type(v) == "table" then
+   for kk, vv in pairs(v) do
+    if type(vv) == "table" then
+     if vv.enabled ~= false then
+      local found = false
+      if vv.method == ZONE and vv.zones ~= nil and type(vv.zones) == "table" then
+       for kkk, vvv in pairs(vv.zones) do
+        if vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv == lbsz[subzone] or vvv == zone_t or vvv == subzone_t or vvv == lbz[zone_t] or vvv == subzone or vvv == lbsz[subzone_t] then found = true end
+       end
+      end
+      if found then
+       if (vv.heroic == true and self:IsHeroic()) or (vv.heroic == false and not self:IsHeroic()) or vv.heroic == nil then
+        if vv.attempts == nil then vv.attempts = 1 else vv.attempts = vv.attempts + 1 end
+        self:OutputAttempts(vv)
+       end
+      end
+     end
+    end
+   end
+  end
  end
 end
 
