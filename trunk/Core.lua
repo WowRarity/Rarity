@@ -316,7 +316,7 @@ do
 	
 		self:PrepareDefaults() -- Loads in any new items
 		
-		self.db = LibStub("AceDB-3.0"):New("RarityDB", self.defaults, false) -- This add-on uses character-specific profiles by default
+		self.db = LibStub("AceDB-3.0"):New("RarityDB", self.defaults, true)
   self:SetSinkStorage(self.db.profile)
 
 		self:RegisterChatCommand("rarity", "ChatCommand")
