@@ -762,19 +762,14 @@ end
 
 
 function R:IsHeroic()
-	local diff = GetInstanceDifficulty()
-	local name, type, difficultyIndex, difficultyName, maxPlayers, dynamicDifficulty, isDynamic = GetInstanceInfo()
-	if isDynamic then
-		if dynamicDifficulty == 1 then return true else return false end
-	end
-	if maxPlayers > 5 and (diff == 3 or diff == 4) then return true end
- if maxPlayers == 5 and diff == 2 then return true end
+ local name, instanceType, difficultyIndex, difficultyName, maxPlayers, dynamicDifficulty, isDynamic, mapID = GetInstanceInfo()
+ if difficultyIndex == 2 or difficultyIndex == 5 or difficultyIndex == 6 then return true end
  return false
 end
 
 
 function R:IsRaid25()
-	local name, type, difficultyIndex, difficultyName, maxPlayers, dynamicDifficulty, isDynamic = GetInstanceInfo()
+ local name, instanceType, difficultyIndex, difficultyName, maxPlayers, dynamicDifficulty, isDynamic, mapID = GetInstanceInfo()
  if maxPlayers == 25 then return true end
  return false
 end
