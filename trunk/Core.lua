@@ -1971,7 +1971,11 @@ function R:ScanExistingItems(reason)
      if type(vv) == "table" then
       if vv.enabled ~= false then
        if vv.method == ARCH and vv.raceId ~= nil then
-        if vv.raceId == x then vv.attempts = a end
+        if vv.raceId == x then
+         if a > (vv.attempts or 0) then
+          vv.attempts = a
+         end
+        end
        end
       end
      end
