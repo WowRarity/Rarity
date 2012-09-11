@@ -45,7 +45,7 @@ local tradeSkillOpen = false
 local prevSpell, curSpell, foundTarget, gatherEvents, ga
 local miningSpell = (GetSpellInfo(2575))
 local herbSpell = (GetSpellInfo(2366))
-local fishSpell = (GetSpellInfo(33095))
+local fishSpell = (GetSpellInfo(131474))
 local gasSpell = (GetSpellInfo(30427))
 local openSpell = (GetSpellInfo(3365))
 local openNoTextSpell = (GetSpellInfo(22810))
