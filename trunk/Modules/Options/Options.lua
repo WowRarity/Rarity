@@ -344,6 +344,17 @@ output = self:GetSinkAce3OptionsDataTable(),
 						}, -- args
 					}, -- announcements
 
+					  debug = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Debug mode"],
+						  get = function() return self.db.profile.debugMode end,
+						  set = function(info, val)
+							  self.db.profile.debugMode = val
+         if self.db.profile.debugMode then	self:Print(L["Debug mode ON"]) else self:Print(L["Debug mode OFF"]) end
+						  end,
+					  }, -- debug
+
 				}, -- args
 			}, -- general
 		

@@ -197,6 +197,7 @@ L["Horde only"] = true
 L["This item is only available to Horde players."] = true
 L["Alliance only"] = true
 L["This item is only available to Alliance players."] = true
+L["Debug mode"] = true
 
 
 

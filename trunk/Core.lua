@@ -35,6 +35,7 @@ local used = {}
 local fishzones = {}
 local archfragments = {}
 local architems = {}
+local stats = {}
 
 local bankOpen = false
 local guildBankOpen = false
@@ -338,6 +339,7 @@ do
    R.fishzones = fishzones
    R.archfragments = archfragments
    R.architems = architems
+   R.stats = stats
 		end
 
   -- LibSink still tries to call a non-existent Blizzard function sometimes
@@ -1954,7 +1956,7 @@ function R:ScanExistingItems(reason)
   end
  end
 
- -- Scan all archaeology races and set any item attempts to the number of solves for that race
+ -- Scan all archaeology races and set any item attempts to the number of solves for that race (if we've never seen attempts for the race before)
  local s = 0
  for x = 1, GetNumArchaeologyRaces() do
   local c = GetNumArtifactsByRace(x)
@@ -1972,6 +1974,7 @@ function R:ScanExistingItems(reason)
       if vv.enabled ~= false then
        if vv.method == ARCH and vv.raceId ~= nil then
         if vv.raceId == x then
+         -- We've never seen any attempts for this race yet, so set our attempts to this character's current amount
          if a > (vv.attempts or 0) then
           vv.attempts = a
          end
@@ -1989,8 +1992,43 @@ function R:ScanExistingItems(reason)
 end
 
 
+function R:BuildStatistics(reason)
+ self:Debug("Building statistics table ("..reason..")")
+
+ local tbl = {}
+
+ for k, v in pairs(R.db.profile.groups) do
+  if type(v) == "table" then
+   for kk, vv in pairs(v) do
+    if type(vv) == "table" then
+     if (vv.requiresHorde and R:IsHorde()) or (vv.requiresAlliance and not R:IsHorde()) or (not vv.requiresHorde and not vv.requiresAlliance) then
+      if vv.statisticId and type(vv.statisticId) == "table" then
+       for kkk, vvv in pairs(vv.statisticId) do
+        local s = GetStatistic(vvv)
+        tbl[vvv] = (tonumber(s or "0") or 0)
+        --self:Debug("Setting stats "..vvv.." to "..tbl[vvv])
+       end
+      end
+     end
+    end
+   end
+  end
+ end
+
+ return tbl
+
+end
+
+
 function R:ScanStatistics(reason)
  self:Debug("Scanning statistics ("..reason..")")
+
+ if stats == nil or #stats <= 0 then
+  self:Debug("Building initial statistics table")
+  stats = self:BuildStatistics(reason)
+ end
+
+ local newStats = self:BuildStatistics(reason, newStats)
 
  for k, v in pairs(R.db.profile.groups) do
   if type(v) == "table" then
@@ -1999,20 +2037,38 @@ function R:ScanStatistics(reason)
      if (vv.requiresHorde and R:IsHorde()) or (vv.requiresAlliance and not R:IsHorde()) or (not vv.requiresHorde and not vv.requiresAlliance) then
       if vv.statisticId and type(vv.statisticId) == "table" then
        local count = 0
+
        for kkk, vvv in pairs(vv.statisticId) do
-        local s = GetStatistic(vvv)
-        count = count + (tonumber(s or "0") or 0)
+        local newAmount = newStats[vvv] or 0
+        local oldAmount = stats[vvv] or 0
+        count = count + newAmount
+
+        -- One of the statistics has gone up; add one attempt for this item
+        if newAmount > oldAmount then
+         vv.attempts = (vv.attempts or 0) + 1
+         self:OutputAttempts(vv, true)
+        end
+
        end
-       if count > (vv.attempts or 0) then
+
+       -- We've never seen any attempts for this yet; update to this player's statistic total
+       if count > 0 and (vv.attempts or 0) <= 0 then
         vv.attempts = count
         self:OutputAttempts(vv, true)
        end
+
       end
      end
     end
    end
   end
  end
+
+ -- Done with scan; update our saved table to the current scan
+ stats = newStats
+
+ if self.db.profile.debugMode then R.stats = stats end
+
 end
 
 
