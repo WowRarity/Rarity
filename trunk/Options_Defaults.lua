@@ -133,6 +133,7 @@ function R:PrepareDefaults()
      ["Swift Brewfest Ram"] =                   { type = MOUNT, method = USE, name = GetItemInfo(33977) or L["Swift Brewfest Ram"], spellId = 43900, itemId = 33977, items = { 54535 }, chance = 25, groupSize = 5, equalOdds = true, },
      ["Son of Galleon's Saddle"] =              { type = MOUNT, method = BOSS, name = GetItemInfo(89783) or L["Son of Galleon's Saddle"], spellId = 130965, itemId = 89783, npcs = { 62346 }, chance = 100, groupSize = 40, equalOdds = true, statisticId = { 6990 } },
      ["Reins of the Astral Cloud Serpent"] =    { type = MOUNT, method = BOSS, name = GetItemInfo(87777) or L["Reins of the Astral Cloud Serpent"], spellId = 127170, itemId = 87777, npcs = { 60410 }, chance = 100, groupSize = 10, statisticId = { 6797, 6798 } },
+     ["Reins of the Heavenly Onyx Cloud Serpent"] = { type = MOUNT, method = BOSS, name = GetItemInfo(87771) or L["Son of Galleon's Saddle"], spellId = 127158, itemId = 87771, npcs = { 60491 }, chance = 100, groupSize = 40, equalOdds = true, statisticId = { 6989 } },
     },
     pets = {
      name = L["Companions"],

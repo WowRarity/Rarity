@@ -402,7 +402,7 @@ L["Great Brewfest Kodo"] = true
 L["Swift Brewfest Ram"] = true
 L["Son of Galleon's Saddle"] = true
 L["Reins of the Astral Cloud Serpent"] = true
-
+L["Reins of the Heavenly Onyx Cloud Serpent"] = true
 
 
 
