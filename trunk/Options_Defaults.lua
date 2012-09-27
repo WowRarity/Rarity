@@ -131,9 +131,9 @@ function R:PrepareDefaults()
      ["Reins of the Blazing Drake"] =           { type = MOUNT, method = BOSS, name = GetItemInfo(77067) or L["Reins of the Blazing Drake"], spellId = 107842, itemId = 77067, npcs = { 999999 }, chance = 100, groupSize = 3, statisticId = { 6167, 6168 }, },
      ["Great Brewfest Kodo"] =                  { type = MOUNT, method = USE, name = GetItemInfo(37828) or L["Great Brewfest Kodo"], spellId = 49379, itemId = 37828, items = { 54535 }, chance = 25, groupSize = 5, equalOdds = true, },
      ["Swift Brewfest Ram"] =                   { type = MOUNT, method = USE, name = GetItemInfo(33977) or L["Swift Brewfest Ram"], spellId = 43900, itemId = 33977, items = { 54535 }, chance = 25, groupSize = 5, equalOdds = true, },
-     ["Son of Galleon's Saddle"] =              { type = MOUNT, method = BOSS, name = GetItemInfo(89783) or L["Son of Galleon's Saddle"], spellId = 130965, itemId = 89783, npcs = { 62346 }, chance = 100, groupSize = 40, equalOdds = true, statisticId = { 6990 } },
+     ["Son of Galleon's Saddle"] =              { type = MOUNT, method = BOSS, name = GetItemInfo(89783) or L["Son of Galleon's Saddle"], spellId = 130965, itemId = 89783, npcs = { 99999 }, chance = 100, groupSize = 40, equalOdds = true, statisticId = { 6990 } },
      ["Reins of the Astral Cloud Serpent"] =    { type = MOUNT, method = BOSS, name = GetItemInfo(87777) or L["Reins of the Astral Cloud Serpent"], spellId = 127170, itemId = 87777, npcs = { 60410 }, chance = 100, groupSize = 10, statisticId = { 6797, 6798 } },
-     ["Reins of the Heavenly Onyx Cloud Serpent"] = { type = MOUNT, method = BOSS, name = GetItemInfo(87771) or L["Reins of the Heavenly Onyx Cloud Serpent"], spellId = 127158, itemId = 87771, npcs = { 60491 }, chance = 100, groupSize = 40, equalOdds = true, statisticId = { 6989 } },
+     ["Reins of the Heavenly Onyx Cloud Serpent"] = { type = MOUNT, method = BOSS, name = GetItemInfo(87771) or L["Reins of the Heavenly Onyx Cloud Serpent"], spellId = 127158, itemId = 87771, npcs = { 99999 }, chance = 100, groupSize = 40, equalOdds = true, statisticId = { 6989 } },
     },
     pets = {
      name = L["Companions"],
