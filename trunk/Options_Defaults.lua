@@ -167,8 +167,8 @@ function R:PrepareDefaults()
     },
     items = {
      name = L["Items"],
-     --["Sulfuron Ingot"] =                       { type = ITEM, method = NPC, name = GetItemInfo(17203) or L["Sulfuron Ingot"], itemId = 17203, npcs = { 11988 }, chance = 3, repeatable = true, },
      ["Mr. Pinchy"] =                           { type = ITEM, method = FISHING, name = GetItemInfo(27388) or L["Mr. Pinchy"], spellId = 33050, itemId = 27388, zones = { "Lake Jorune", "Lake Ere'Noru", "Skethyl Mountains", "Blackwind Landing", "Blackwind Valley", "Skettis", "Blackwind Lake", "Veil Harr'ik", "Veil Ala'rak", "Terokk's Rest" }, chance = 500, requiresPool = true, },
+     ["Skyshard"] =                             { type = ITEM, method = ZONE, name = GetItemInfo(86547) or L["Skyshard"], spellId = 90655, itemId = 86547, zones = { "Vale of Eternal Blossoms" }, chance = 1000, repeatable = true, },
     },
     user = {
      name = L["Custom"],
