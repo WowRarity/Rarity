@@ -132,7 +132,7 @@ function R:PrepareDefaults()
      ["Great Brewfest Kodo"] =                  { type = MOUNT, method = USE, name = GetItemInfo(37828) or L["Great Brewfest Kodo"], spellId = 49379, itemId = 37828, items = { 54535 }, chance = 25, groupSize = 5, equalOdds = true, },
      ["Swift Brewfest Ram"] =                   { type = MOUNT, method = USE, name = GetItemInfo(33977) or L["Swift Brewfest Ram"], spellId = 43900, itemId = 33977, items = { 54535 }, chance = 25, groupSize = 5, equalOdds = true, },
      ["Son of Galleon's Saddle"] =              { type = MOUNT, method = BOSS, name = GetItemInfo(89783) or L["Son of Galleon's Saddle"], spellId = 130965, itemId = 89783, npcs = { 99999 }, chance = 100, groupSize = 40, equalOdds = true, statisticId = { 6990 } },
-     ["Reins of the Astral Cloud Serpent"] =    { type = MOUNT, method = BOSS, name = GetItemInfo(87777) or L["Reins of the Astral Cloud Serpent"], spellId = 127170, itemId = 87777, npcs = { 60410 }, chance = 100, groupSize = 10, statisticId = { 6797, 6798 } },
+     ["Reins of the Astral Cloud Serpent"] =    { type = MOUNT, method = BOSS, name = GetItemInfo(87777) or L["Reins of the Astral Cloud Serpent"], spellId = 127170, itemId = 87777, npcs = { 99999 }, chance = 100, groupSize = 10, statisticId = { 6797, 6798 } },
      ["Reins of the Heavenly Onyx Cloud Serpent"] = { type = MOUNT, method = BOSS, name = GetItemInfo(87771) or L["Reins of the Heavenly Onyx Cloud Serpent"], spellId = 127158, itemId = 87771, npcs = { 99999 }, chance = 100, groupSize = 40, equalOdds = true, statisticId = { 6989 } },
     },
     pets = {
@@ -169,6 +169,7 @@ function R:PrepareDefaults()
      name = L["Items"],
      ["Mr. Pinchy"] =                           { type = ITEM, method = FISHING, name = GetItemInfo(27388) or L["Mr. Pinchy"], spellId = 33050, itemId = 27388, zones = { "Lake Jorune", "Lake Ere'Noru", "Skethyl Mountains", "Blackwind Landing", "Blackwind Valley", "Skettis", "Blackwind Lake", "Veil Harr'ik", "Veil Ala'rak", "Terokk's Rest" }, chance = 500, requiresPool = true, },
      ["Skyshard"] =                             { type = ITEM, method = ZONE, name = GetItemInfo(86547) or L["Skyshard"], spellId = 90655, itemId = 86547, zones = { "Vale of Eternal Blossoms" }, chance = 1000, repeatable = true, },
+     --["Stat Test"] = { type = MOUNT, method = BOSS, name = "Stat Test", spellId = -1, itemId = -1, npcs = { 99999 }, chance = 100, groupSize = 40, equalOdds = true, statisticId = { 107 } },
     },
     user = {
      name = L["Custom"],

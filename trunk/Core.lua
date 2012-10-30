@@ -1927,6 +1927,10 @@ function R:ScanExistingItems(reason)
  -- Look for mount and pet spell IDs and mark as found/disabled (if repeatable set to off)
  for id = 1, GetNumCompanions("MOUNT") do
 		local spellId = select(3, GetCompanionInfo("MOUNT", id))
+  
+  -- Special cases
+  if spellId == 132036 then R.db.profile.groups.items["Skyshard"].enabled = false end -- Skyshard (Reins of the Thundering Ruby Cloud Serpent)
+
   for k, v in pairs(R.db.profile.groups) do
    if type(v) == "table" then
     for kk, vv in pairs(v) do
@@ -2028,7 +2032,7 @@ function R:ScanStatistics(reason)
   stats = self:BuildStatistics(reason)
  end
 
- local newStats = self:BuildStatistics(reason, newStats)
+ local newStats = self:BuildStatistics(reason)
 
  for k, v in pairs(R.db.profile.groups) do
   if type(v) == "table" then
@@ -2055,6 +2059,11 @@ function R:ScanStatistics(reason)
        if count > 0 and (vv.attempts or 0) <= 0 then
         vv.attempts = count
         self:OutputAttempts(vv, true)
+
+       -- We seem to have gathered more attempts on this character than accounted for yet; update to new total
+       elseif count > 0 and count > (vv.attempts or o) then
+        vv.attempts = count
+        self:OutputAttempts(vv, true)
        end
 
       end
@@ -2065,7 +2074,8 @@ function R:ScanStatistics(reason)
  end
 
  -- Done with scan; update our saved table to the current scan
- stats = newStats
+ table.wipe(stats)
+ for k, v in pairs(newStats) do stats[k] = v end
 
  if self.db.profile.debugMode then R.stats = stats end
 
