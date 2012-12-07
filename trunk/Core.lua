@@ -1929,7 +1929,7 @@ function R:ScanExistingItems(reason)
 		local spellId = select(3, GetCompanionInfo("MOUNT", id))
   
   -- Special cases
-  if spellId == 132036 then R.db.profile.groups.items["Skyshard"].enabled = false end -- Skyshard (Reins of the Thundering Ruby Cloud Serpent)
+  --if spellId == 132036 then R.db.profile.groups.items["Skyshard"].enabled = false end -- Skyshard (Reins of the Thundering Ruby Cloud Serpent)
 
   for k, v in pairs(R.db.profile.groups) do
    if type(v) == "table" then
