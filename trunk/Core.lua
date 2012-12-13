@@ -35,7 +35,7 @@ local used = {}
 local fishzones = {}
 local archfragments = {}
 local architems = {}
-local stats = {}
+local rarity_stats = {}
 
 local bankOpen = false
 local guildBankOpen = false
@@ -339,7 +339,7 @@ do
    R.fishzones = fishzones
    R.archfragments = archfragments
    R.architems = architems
-   R.stats = stats
+   R.stats = rarity_stats
 		end
 
   -- LibSink still tries to call a non-existent Blizzard function sometimes
@@ -2027,9 +2027,14 @@ end
 function R:ScanStatistics(reason)
  self:Debug("Scanning statistics ("..reason..")")
 
- if stats == nil or #stats <= 0 then
+	local count = 0;
+	for k, v in pairs(rarity_stats) do
+		count = count + 1
+	end
+
+ if rarity_stats == nil or count <= 0 then
   self:Debug("Building initial statistics table")
-  stats = self:BuildStatistics(reason)
+  rarity_stats = self:BuildStatistics(reason)
  end
 
  local newStats = self:BuildStatistics(reason)
@@ -2044,8 +2049,9 @@ function R:ScanStatistics(reason)
 
        for kkk, vvv in pairs(vv.statisticId) do
         local newAmount = newStats[vvv] or 0
-        local oldAmount = stats[vvv] or 0
+        local oldAmount = rarity_stats[vvv] or 0
         count = count + newAmount
+								--if vvv == 4657 then self:Debug("Toravon: oldAmount "..oldAmount.."; newAmount "..newAmount.."; count "..count) end
 
         -- One of the statistics has gone up; add one attempt for this item
         if newAmount > oldAmount then
@@ -2061,7 +2067,7 @@ function R:ScanStatistics(reason)
         self:OutputAttempts(vv, true)
 
        -- We seem to have gathered more attempts on this character than accounted for yet; update to new total
-       elseif count > 0 and count > (vv.attempts or o) then
+       elseif count > 0 and count > (vv.attempts or o) and vv.doNotUpdateToHighestStat ~= true then -- Some items don't want us doing this (generally when Blizzard has a statistic overcounting bug)
         vv.attempts = count
         self:OutputAttempts(vv, true)
        end
@@ -2074,10 +2080,9 @@ function R:ScanStatistics(reason)
  end
 
  -- Done with scan; update our saved table to the current scan
- table.wipe(stats)
- for k, v in pairs(newStats) do stats[k] = v end
+ rarity_stats = self:BuildStatistics(reason)
 
- if self.db.profile.debugMode then R.stats = stats end
+ if self.db.profile.debugMode then R.stats = rarity_stats end
 
 end
 
