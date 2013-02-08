@@ -915,13 +915,13 @@ function R:CreateGroup(options, group, isUser)
      order = newOrder(),
      width = "half",
 			  name = L["Group size"],
-     desc = L["The number of players it takes to obtain the item. This will lower your chances of obtaining the item."],
+     desc = L["The number of players it takes to obtain the item. This will lower your chances of obtaining the item."].." "..L["Enter 1 to mark the item as soloable."],
 			  set = function(info, val)
 				  if strtrim(val) == "" then alert(L["You must enter an amount."])
       elseif tonumber(val) == nil then alert(L["You must enter a valid number."])
       else
        local n = tonumber(val)
-       if n <= 1 then alert(L["You must enter a number larger than 1."])
+       if n <= 0 then alert(L["You must enter a number larger than 0."])
        else item.groupSize = n end
 				  end
 						self:Update("OPTIONS")

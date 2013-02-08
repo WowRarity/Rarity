@@ -885,6 +885,8 @@ function R:OnEvent(event, ...)
 		if UnitIsPlayer("target") then return end -- You targetted a player
 		if not UnitIsDead("target") then return end -- You're looting something that's alive. It's a little strange
 
+		-- UnitClassification is what we'd use to detect "minus" NPCs here, but you can't pass a GUID to this function (as far as I know), so it can't be done without a unit cache based on the combat log
+
   local numChecked = 0
 		for slotID = 1, numItems, 1 do -- Loop through all loot slots (for AoE looting)
    local guidlist
@@ -1480,7 +1482,9 @@ do
   if item.method == SPECIAL and item.obtain then
    tooltip2:AddLine(colorize(item.obtain, blue))
   else
-   tooltip2:AddLine(colorize(R.string_methods[item.method], blue))
+		local actualMethod = item.method
+		if item.method == BOSS and item.groupSize and item.groupSize > 1 then actualMethod = BOSS else if item.method == BOSS then actualMethod = NPC end end
+   tooltip2:AddLine(colorize(R.string_methods[actualMethod], blue))
   end
   if item.method == ZONE or item.method == FISHING then
    if item.zones and type(item.zones) == "table" then
@@ -2051,7 +2055,6 @@ function R:ScanStatistics(reason)
         local newAmount = newStats[vvv] or 0
         local oldAmount = rarity_stats[vvv] or 0
         count = count + newAmount
-								--if vvv == 4657 then self:Debug("Toravon: oldAmount "..oldAmount.."; newAmount "..newAmount.."; count "..count) end
 
         -- One of the statistics has gone up; add one attempt for this item
         if newAmount > oldAmount then

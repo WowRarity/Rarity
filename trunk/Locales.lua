@@ -198,6 +198,7 @@ L["This item is only available to Horde players."] = true
 L["Alliance only"] = true
 L["This item is only available to Alliance players."] = true
 L["Debug mode"] = true
+L["Enter 1 to mark the item as soloable."] = true
 
 
 
@@ -404,6 +405,18 @@ L["Son of Galleon's Saddle"] = true
 L["Reins of the Astral Cloud Serpent"] = true
 L["Reins of the Heavenly Onyx Cloud Serpent"] = true
 L["Skyshard"] = true
+L["Whistle of Chromatic Bone"] = true
+L["Blackwing Banner"] = true
+L["Unscathed Egg"] = true
+L["Anubisath Idol"] = true
+L["Jewel of Maddening Whispers"] = true
+L["Viscidus Globule"] = true
+L["Core of Hardened Ash"] = true
+L["Mark of Flame"] = true
+L["Blazing Rune"] = true
+L["Blighted Spore"] = true
+L["Dusty Clutch of Eggs"] = true
+L["Gluth's Bone"] = true
 
 
 
