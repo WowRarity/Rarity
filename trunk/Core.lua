@@ -1047,8 +1047,9 @@ function R:OnBagUpdate()
  -- Get a list of the items you have now, alerting if we find anything we're looking for
  self:ScanBags()
 
- -- Check for a decrease in quantity of any items we're watching for
  if not bankOpen and not guildBankOpen and not auctionOpen and not tradeOpen and not tradeSkillOpen then
+
+		-- Check for a decrease in quantity of any items we're watching for
   for k, v in pairs(tempbagitems) do
    if (bagitems[k] or 0) < (tempbagitems[k] or 0) then -- An inventory item went down in count or disappeared
     if used[k] then -- It's an item we care about
@@ -1058,10 +1059,8 @@ function R:OnBagUpdate()
     end
    end
   end
- end
 
- -- Check for an increase in quantity of any items we're watching for
- if not bankOpen and not guildBankOpen and not auctionOpen and not tradeOpen and not tradeSkillOpen then
+		-- Check for an increase in quantity of any items we're watching for
   for k, v in pairs(bagitems) do
    if (bagitems[k] or 0) > (tempbagitems[k] or 0) then -- An inventory item went up in count
     if items[k] and items[k].enabled ~= false then
@@ -1069,6 +1068,7 @@ function R:OnBagUpdate()
     end
    end
   end
+
  end
 
 end
@@ -1089,8 +1089,10 @@ function R:ScanBags()
 				if id then
 					local qty = select(2, GetContainerItemInfo(i, ii))
      if qty and qty > 0 then
-					 if not bagitems[id] then bagitems[id] = 0 end
-					 bagitems[id] = bagitems[id] + qty
+						if used[id] or items[id] then
+							if not bagitems[id] then bagitems[id] = 0 end
+							bagitems[id] = bagitems[id] + qty
+						end
      end
 				end
 			end
@@ -1147,7 +1149,7 @@ do
   self:CancelTimer(timer2, true)
   self:CancelTimer(timer3, true)
   timer1 = self:ScheduleTimer(function() R:ScanStatistics(event.." 1") end, 2)
-  timer2 = self:ScheduleTimer(function() R:ScanStatistics(event.." 2") end, 5)
+  timer2 = self:ScheduleTimer(function() R:ScanStatistics(event.." 2") end, 6)
   timer3 = self:ScheduleTimer(function() R:ScanStatistics(event.." 3") end, 10)
  end
 end

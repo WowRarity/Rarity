@@ -417,8 +417,15 @@ L["Blazing Rune"] = true
 L["Blighted Spore"] = true
 L["Dusty Clutch of Eggs"] = true
 L["Gluth's Bone"] = true
-
-
+L["Reins of the Thundering Cobalt Cloud Serpent"] = true
+L["Reins of the Cobalt Primordial Direhorn"] = true
+L["Hollow Reed"] = true
+L["Imbued Jade Fragment"] = true
+L["Reins of the Slate Primordial Direhorn"] = true
+L["Reins of the Amber Primordial Direhorn"] = true
+L["Reins of the Jade Primordial Direhorn"] = true
+L["Reins of the Green Primal Raptor"] = true
+L["Reins of the Black Primal Raptor"] = true
 
 
 

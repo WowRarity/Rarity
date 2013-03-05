@@ -96,7 +96,11 @@ function R:PrepareDefaults()
 
     mounts = {
      name = L["Mounts"],
+
+					--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
      -- Soloable (some of these may be challenging to solo for certain classes, but in general they should be soloable)
+					--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
      ["Fiery Warhorse's Reins"] =               { type = MOUNT, method = NPC, name = GetItemInfo(30480) or L["Fiery Warhorse's Reins"], spellId = 36702, itemId = 30480, npcs = { 16152 }, chance = 100, },
      ["Reins of the Blue Proto-Drake"] =        { type = MOUNT, method = NPC, name = GetItemInfo(44151) or L["Reins of the Blue Proto-Drake"], spellId = 59996, itemId = 44151, npcs = { 26693 }, chance = 77, heroic = true, },
      ["Reins of the Raven Lord"] =              { type = MOUNT, method = NPC, name = GetItemInfo(32768) or L["Reins of the Raven Lord"], spellId = 41252, itemId = 32768, npcs = { 23035 }, chance = 67, heroic = true, },
@@ -118,8 +122,21 @@ function R:PrepareDefaults()
      ["Swift Zulian Panther"] =                 { type = MOUNT, method = BOSS, name = GetItemInfo(68824) or L["Swift Zulian Panther"], spellId = 96499, itemId = 68824, npcs = { 52059 }, chance = 100, },
      ["Reins of the Grand Black War Mammoth Horde"] = { type = MOUNT, method = BOSS, name = GetItemInfo(44083) or L["Reins of the Grand Black War Mammoth"], spellId = 61467, itemId = 44083, npcs = { 9999 }, chance = 100, requiresHorde = true, statisticId = { 1753, 1754, 2870, 3236, 4074, 4075, 4657, 4658 }, doNotUpdateToHighestStat = true, },
      ["Reins of the Grand Black War Mammoth Alliance"] = { type = MOUNT, method = BOSS, name = GetItemInfo(43959) or L["Reins of the Grand Black War Mammoth"], spellId = 61465, itemId = 43959, npcs = { 9999 }, chance = 100, requiresAlliance = true, statisticId = { 1753, 1754, 2870, 3236, 4074, 4075, 4657, 4658 }, doNotUpdateToHighestStat = true, },
+
+					-- 4.2
      ["Flametalon of Alysrazor"] =              { type = MOUNT, method = BOSS, name = GetItemInfo(71665) or L["Flametalon of Alysrazor"], spellId = 101542, itemId = 71665, npcs = { 52530 }, chance = 100, statisticId = { 5970, 5971 }, },
-     -- Requires a group (some of these may be soloable by certain classes, but not in general)
+
+					-- 5.2
+     ["Reins of the Slate Primordial Direhorn"] = { type = MOUNT, method = NPC, name = GetItemInfo(94229) or L["Reins of the Slate Primordial Direhorn"], spellId = 138425, itemId = 94229, npcs = { 69769 }, chance = 100, },
+     ["Reins of the Amber Primordial Direhorn"] = { type = MOUNT, method = NPC, name = GetItemInfo(94230) or L["Reins of the Amber Primordial Direhorn"], spellId = 138424, itemId = 94230, npcs = { 69841 }, chance = 100, },
+     ["Reins of the Jade Primordial Direhorn"] = { type = MOUNT, method = NPC, name = GetItemInfo(94231) or L["Reins of the Jade Primordial Direhorn"], spellId = 138426, itemId = 94231, npcs = { 69842 }, chance = 100, },
+     ["Reins of the Green Primal Raptor"] =     { type = MOUNT, method = USE, name = GetItemInfo(94293) or L["Reins of the Green Primal Raptor"], spellId = 138643, itemId = 94293, items = { 94295 }, chance = 20, },
+     ["Reins of the Black Primal Raptor"] =     { type = MOUNT, method = USE, name = GetItemInfo(94292) or L["Reins of the Black Primal Raptor"], spellId = 138642, itemId = 94292, items = { 94295 }, chance = 20, },
+     
+					--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+					-- Requires a group (some of these may be soloable by certain classes, but not in general)
+					--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
      ["Invincible's Reins"] =                   { type = MOUNT, method = BOSS, name = GetItemInfo(50818) or L["Invincible's Reins"], spellId = 72286, itemId = 50818, npcs = { 36597 }, chance = 100, heroic = true, raid25 = true, groupSize = 5, statisticId = { 4688 }, },
      ["Mimiron's Head"] =                       { type = MOUNT, method = BOSS, name = GetItemInfo(45693) or L["Mimiron's Head"], spellId = 63796, itemId = 45693, npcs = { 33288 }, chance = 100, raid25 = true, groupSize = 10,  },
      ["The Horseman's Reins"] =                 { type = MOUNT, method = USE, name = GetItemInfo(37012) or L["The Horseman's Reins"], spellId = 48025, itemId = 37012, items = { 54516 }, chance = 666, groupSize = 5, equalOdds = true, },
@@ -131,9 +148,16 @@ function R:PrepareDefaults()
      ["Reins of the Blazing Drake"] =           { type = MOUNT, method = BOSS, name = GetItemInfo(77067) or L["Reins of the Blazing Drake"], spellId = 107842, itemId = 77067, npcs = { 999999 }, chance = 100, groupSize = 3, statisticId = { 6167, 6168 }, },
      ["Great Brewfest Kodo"] =                  { type = MOUNT, method = USE, name = GetItemInfo(37828) or L["Great Brewfest Kodo"], spellId = 49379, itemId = 37828, items = { 54535 }, chance = 25, groupSize = 5, equalOdds = true, },
      ["Swift Brewfest Ram"] =                   { type = MOUNT, method = USE, name = GetItemInfo(33977) or L["Swift Brewfest Ram"], spellId = 43900, itemId = 33977, items = { 54535 }, chance = 25, groupSize = 5, equalOdds = true, },
-     ["Son of Galleon's Saddle"] =              { type = MOUNT, method = BOSS, name = GetItemInfo(89783) or L["Son of Galleon's Saddle"], spellId = 130965, itemId = 89783, npcs = { 99999 }, chance = 100, groupSize = 40, equalOdds = true, statisticId = { 6990 } },
+     
+					-- 5.0
+					["Son of Galleon's Saddle"] =              { type = MOUNT, method = BOSS, name = GetItemInfo(89783) or L["Son of Galleon's Saddle"], spellId = 130965, itemId = 89783, npcs = { 99999 }, chance = 100, groupSize = 40, equalOdds = true, statisticId = { 6990 } },
      ["Reins of the Astral Cloud Serpent"] =    { type = MOUNT, method = BOSS, name = GetItemInfo(87777) or L["Reins of the Astral Cloud Serpent"], spellId = 127170, itemId = 87777, npcs = { 99999 }, chance = 100, groupSize = 10, statisticId = { 6797, 6798 } },
-     ["Reins of the Heavenly Onyx Cloud Serpent"] = { type = MOUNT, method = BOSS, name = GetItemInfo(87771) or L["Reins of the Heavenly Onyx Cloud Serpent"], spellId = 127158, itemId = 87771, npcs = { 99999 }, chance = 100, groupSize = 40, equalOdds = true, statisticId = { 6989 } },
+     ["Reins of the Heavenly Onyx Cloud Serpent"] = { type = MOUNT, method = BOSS, name = GetItemInfo(87771) or L["Reins of the Heavenly Onyx Cloud Serpent"], spellId = 127158, itemId = 87771, npcs = { 99999 }, chance = 2000, groupSize = 40, equalOdds = true, statisticId = { 6989 } },
+
+     -- 5.2
+     ["Reins of the Thundering Cobalt Cloud Serpent"] = { type = MOUNT, method = BOSS, name = GetItemInfo(95057) or L["Reins of the Thundering Cobalt Cloud Serpent"], spellId = 139442, itemId = 95057, npcs = { 99999 }, chance = 2000, groupSize = 40, equalOdds = true, statisticId = { 8146 } },
+     ["Reins of the Cobalt Primordial Direhorn"] = { type = MOUNT, method = BOSS, name = GetItemInfo(94228) or L["Reins of the Cobalt Primordial Direhorn"], spellId = 138423, itemId = 94228, npcs = { 99999 }, chance = 2000, groupSize = 40, equalOdds = true, statisticId = { 8147 } },
+
     },
     pets = {
      name = L["Companions"],
@@ -163,7 +187,11 @@ function R:PrepareDefaults()
      ["Lump of Coal"] =                         { type = PET, method = USE, name = GetItemInfo(73797) or L["Lump of Coal"], spellId = 103125, itemId = 73797, items = { 73792 }, chance = 50, },
      ["Deviate Hatchling"] =                    { type = PET, method = NPC, name = GetItemInfo(48114) or L["Deviate Hatchling"], spellId = 67414, itemId = 48114, npcs = { 3636, 3637 }, chance = 500, repeatable = true, },
 
-					-- 5.1 pets
+					-- 5.0
+     ["Hollow Reed"] =                          { type = PET, method = NPC, name = GetItemInfo(86563) or L["Hollow Reed"], spellId = 126249, itemId = 86563, npcs = { 50776 }, chance = 10, },
+     ["Imbued Jade Fragment"] =                 { type = PET, method = NPC, name = GetItemInfo(86564) or L["Imbued Jade Fragment"], spellId = 126251, itemId = 86564, npcs = { 50347 }, chance = 10, },
+
+					-- 5.1
      ["Whistle of Chromatic Bone"] =              { type = PET, method = NPC, name = GetItemInfo(93038) or L["Whistle of Chromatic Bone"], spellId = 93038, itemId = 93038, npcs = { 14020 }, chance = 10, },
      ["Blackwing Banner"] =              { type = PET, method = NPC, name = GetItemInfo(93037) or L["Blackwing Banner"], spellId = 135265, itemId = 93037, npcs = { 12017 }, chance = 10, },
      ["Unscathed Egg"] =              { type = PET, method = NPC, name = GetItemInfo(93036) or L["Unscathed Egg"], spellId = 135263, itemId = 93036, npcs = { 12435 }, chance = 10, },
@@ -177,8 +205,6 @@ function R:PrepareDefaults()
      ["Dusty Clutch of Eggs"] =              { type = PET, method = NPC, name = GetItemInfo(93030) or L["Dusty Clutch of Eggs"], spellId = 135254, itemId = 93030, npcs = { 15952 }, chance = 10, },
      ["Gluth's Bone"] =              { type = PET, method = NPC, name = GetItemInfo(93029) or L["Gluth's Bone"], spellId = 135257, itemId = 93029, npcs = { 15932 }, chance = 10, },
 
-     --["Crawling Claw"] =                        { type = PET, method = ARCH, name = GetItemInfo(60847) or L["Crawling Claw"], spellId = 84263, itemId = 60847, raceId = 7, chance = 500, },
-     -- Word on the street is the Crawling Claw actually shows up as Mummified Monkey Paw in your archaeology journal. Rarity cannot at this time support archaeology projects whose name differs from the item itself.
     },
     items = {
      name = L["Items"],
