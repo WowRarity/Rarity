@@ -426,6 +426,8 @@ L["Reins of the Amber Primordial Direhorn"] = true
 L["Reins of the Jade Primordial Direhorn"] = true
 L["Reins of the Green Primal Raptor"] = true
 L["Reins of the Black Primal Raptor"] = true
+L["Primal Egg"] = true
+
 
 
 

@@ -275,7 +275,6 @@ local UnitIsDead = _G.UnitIsDead
 local GetNumLootItems = _G.GetNumLootItems
 local GetLootSlotInfo = _G.GetLootSlotInfo
 local GetLootSlotLink = _G.GetLootSlotLink
-local GetInstanceDifficulty = _G.GetInstanceDifficulty
 local GetItemInfo = _G.GetItemInfo
 local GetRealZoneText = _G.GetRealZoneText
 local GetContainerNumSlots = _G.GetContainerNumSlots
@@ -758,7 +757,7 @@ end
 function R:GetNPCIDFromGUID(guid)
 	if guid then
   if type(guid) == "number" then guid = "0x"..tostring(guid) end
-		return (guid and tonumber(guid:sub(7, 10), 16)) or 0
+		return (guid and tonumber(guid:sub(6, 10), 16)) or 0
 	end
 end
 
@@ -989,8 +988,11 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell)
     if (v.heroic == true and self:IsHeroic()) or (v.heroic == false and not self:IsHeroic()) or v.heroic == nil then
      -- Don't increment attempts if this NPC also has a statistic defined. This would result in two attempts counting instead of one.
      if not v.statisticId or type(v.statisticId) ~= "table" or #v.statisticId <= 0 then
-      if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
-      self:OutputAttempts(v)
+						-- Don't increment attempts for unique items if you already have the item in your bags
+						if not (v.unique == true and (bagitems[v.itemId] or 0) > 0) then
+							if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+							self:OutputAttempts(v)
+						end
      end
     end
    end

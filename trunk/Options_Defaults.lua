@@ -130,8 +130,8 @@ function R:PrepareDefaults()
      ["Reins of the Slate Primordial Direhorn"] = { type = MOUNT, method = NPC, name = GetItemInfo(94229) or L["Reins of the Slate Primordial Direhorn"], spellId = 138425, itemId = 94229, npcs = { 69769 }, chance = 100, },
      ["Reins of the Amber Primordial Direhorn"] = { type = MOUNT, method = NPC, name = GetItemInfo(94230) or L["Reins of the Amber Primordial Direhorn"], spellId = 138424, itemId = 94230, npcs = { 69841 }, chance = 100, },
      ["Reins of the Jade Primordial Direhorn"] = { type = MOUNT, method = NPC, name = GetItemInfo(94231) or L["Reins of the Jade Primordial Direhorn"], spellId = 138426, itemId = 94231, npcs = { 69842 }, chance = 100, },
-     ["Reins of the Green Primal Raptor"] =     { type = MOUNT, method = USE, name = GetItemInfo(94293) or L["Reins of the Green Primal Raptor"], spellId = 138643, itemId = 94293, items = { 94295 }, chance = 20, },
-     ["Reins of the Black Primal Raptor"] =     { type = MOUNT, method = USE, name = GetItemInfo(94292) or L["Reins of the Black Primal Raptor"], spellId = 138642, itemId = 94292, items = { 94295 }, chance = 20, },
+     ["Reins of the Green Primal Raptor"] =     { type = MOUNT, method = USE, name = GetItemInfo(94293) or L["Reins of the Green Primal Raptor"], spellId = 138643, itemId = 94293, items = { 94296 }, chance = 20, },
+     ["Reins of the Black Primal Raptor"] =     { type = MOUNT, method = USE, name = GetItemInfo(94292) or L["Reins of the Black Primal Raptor"], spellId = 138642, itemId = 94292, items = { 94296 }, chance = 20, },
      
 					--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 					-- Requires a group (some of these may be soloable by certain classes, but not in general)
@@ -210,6 +210,8 @@ function R:PrepareDefaults()
      name = L["Items"],
      ["Mr. Pinchy"] =                           { type = ITEM, method = FISHING, name = GetItemInfo(27388) or L["Mr. Pinchy"], spellId = 33050, itemId = 27388, zones = { "Lake Jorune", "Lake Ere'Noru", "Skethyl Mountains", "Blackwind Landing", "Blackwind Valley", "Skettis", "Blackwind Lake", "Veil Harr'ik", "Veil Ala'rak", "Terokk's Rest" }, chance = 500, requiresPool = true, },
      ["Skyshard"] =                             { type = ITEM, method = ZONE, name = GetItemInfo(86547) or L["Skyshard"], spellId = 90655, itemId = 86547, zones = { "Vale of Eternal Blossoms" }, chance = 1000, repeatable = true, },
+     ["Primal Egg"] =                           { type = ITEM, method = NPC, name = GetItemInfo(94295) or L["Primal Egg"], itemId = 94295, npcs = { 69983, 69991, 69992, 69993, 70004, 70005, 70006, 70007, 70008, 70009, 70010, 70011, 70012, 70013, 70014, 70015, 70016, 70017, 70018, 70019, 70020, 70021, }, chance = 50, repeatable = true, unique = true, },
+
      --["Stat Test"] = { type = MOUNT, method = BOSS, name = "Stat Test", spellId = -1, itemId = -1, npcs = { 99999 }, chance = 100, groupSize = 40, equalOdds = true, statisticId = { 107 } },
     },
     user = {
