@@ -1746,7 +1746,11 @@ do
 								end
 								if time == "0:00" then time = "" end
 								if v.method ~= NPC and v.method ~= ZONE and v.method ~= FISHING and v.method ~= USE then time = "" end
-								line = tooltip:AddLine(icon, (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky)
+								local status = ""
+								if v.questId then
+									if IsQuestFlaggedCompleted(v.questId) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
+								end
+								line = tooltip:AddLine(icon, (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky, status)
 								tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
 								tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
 								tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
@@ -1766,7 +1770,7 @@ do
 		if qtip:IsAcquired("RarityTooltip") and tooltip then
 			tooltip:Clear()
 		else
-			tooltip = qtip:Acquire("RarityTooltip", 7, "LEFT", "LEFT", "RIGHT", "RIGHT", "RIGHT", "RIGHT") -- intentionally one column more than we need to avoid text clipping
+			tooltip = qtip:Acquire("RarityTooltip", 8, "LEFT", "LEFT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT") -- intentionally one column more than we need to avoid text clipping
 		end
 		
 		table.wipe(headers)

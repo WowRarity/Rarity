@@ -209,7 +209,8 @@ L["Content Category"] = true
 L["These toggles control which items appear in the main Rarity tooltip. Items are categorized by the expansion they were introduced in (although holiday items have a separate category). Turning off these checkboxes does not turn off tracking for any items within the category; it simply hides the item from the tooltip in order to help reduce the number of items in it."] = true
 L["Hide high chance items"] = true
 L["When on, this option hides any item with a drop chance of 1 in 49 or better. The item is merely hidden from the tooltip in order to keep it clean. Items hidden in this fashion are still tracked like normal."] = true
-
+L["Undefeated"] = true
+L["Defeated"] = true
 
 
 
