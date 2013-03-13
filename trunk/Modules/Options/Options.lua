@@ -11,6 +11,14 @@ local MOUNT = "MOUNT"
 local PET = "PET"
 local ITEM = "ITEM"
 
+-- Categories of origin
+local BASE = "BASE"
+local TBC = "TBC"
+local WOTLK = "WOTLK"
+local CATA = "CATA"
+local MOP = "MOP"
+local HOLIDAY = "HOLIDAY"
+
 -- Methods of obtaining
 local NPC = "NPC"
 local BOSS = "BOSS"
@@ -254,6 +262,103 @@ function R:PrepareOptions()
 
 						}, -- args
 					}, -- display
+
+
+					hideHighChance = {
+						type = "toggle",
+						order = newOrder(),
+						name = L["Hide high chance items"],
+						desc = L["When on, this option hides any item with a drop chance of 1 in 49 or better. The item is merely hidden from the tooltip in order to keep it clean. Items hidden in this fashion are still tracked like normal."],
+						get = function() return self.db.profile.hideHighChance end,
+						set = function(info, val)
+							self.db.profile.hideHighChance = val
+							self:UpdateText()
+						end,
+					},
+
+
+					contentCategory = {
+						type = "group",
+						name = L["Content Category"],
+						order = newOrder(),
+						inline = true,
+						args = {
+						
+						desc = {
+							type = "description",
+							name = L["These toggles control which items appear in the main Rarity tooltip. Items are categorized by the expansion they were introduced in (although holiday items have a separate category). Turning off these checkboxes does not turn off tracking for any items within the category; it simply hides the item from the tooltip in order to help reduce the number of items in it."],
+							order = newOrder(),
+						},
+
+					  holiday = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Holiday"],
+						  get = function() return self.db.profile.cats[HOLIDAY] end,
+						  set = function(info, val)
+							  self.db.profile.cats[HOLIDAY] = val
+							  self:UpdateText()
+						  end,
+					  },
+
+					  base = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Classic"],
+						  get = function() return self.db.profile.cats[BASE] end,
+						  set = function(info, val)
+							  self.db.profile.cats[BASE] = val
+							  self:UpdateText()
+						  end,
+					  },
+
+					  tbc = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["The Burning Crusade"],
+						  get = function() return self.db.profile.cats[TBC] end,
+						  set = function(info, val)
+							  self.db.profile.cats[TBC] = val
+							  self:UpdateText()
+						  end,
+					  },
+
+					  wotlk = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Wrath of the Lich King"],
+						  get = function() return self.db.profile.cats[WOTLK] end,
+						  set = function(info, val)
+							  self.db.profile.cats[WOTLK] = val
+							  self:UpdateText()
+						  end,
+					  },
+
+					  cata = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Cataclysm"],
+						  get = function() return self.db.profile.cats[CATA] end,
+						  set = function(info, val)
+							  self.db.profile.cats[CATA] = val
+							  self:UpdateText()
+						  end,
+					  },
+
+					  mop = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Mists of Pandaria"],
+						  get = function() return self.db.profile.cats[MOP] end,
+						  set = function(info, val)
+							  self.db.profile.cats[MOP] = val
+							  self:UpdateText()
+						  end,
+					  },
+
+						}, -- args
+					}, -- contentCategory
+
 
 					bar = {
 						type = "group",

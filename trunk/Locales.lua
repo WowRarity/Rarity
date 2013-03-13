@@ -199,6 +199,16 @@ L["Alliance only"] = true
 L["This item is only available to Alliance players."] = true
 L["Debug mode"] = true
 L["Enter 1 to mark the item as soloable."] = true
+L["Classic"] = true
+L["The Burning Crusade"] = true
+L["Wrath of the Lich King"] = true
+L["Cataclysm"] = true
+L["Mists of Pandaria"] = true
+L["Holiday"] = true
+L["Content Category"] = true
+L["These toggles control which items appear in the main Rarity tooltip. Items are categorized by the expansion they were introduced in (although holiday items have a separate category). Turning off these checkboxes does not turn off tracking for any items within the category; it simply hides the item from the tooltip in order to help reduce the number of items in it."] = true
+L["Hide high chance items"] = true
+L["When on, this option hides any item with a drop chance of 1 in 49 or better. The item is merely hidden from the tooltip in order to keep it clean. Items hidden in this fashion are still tracked like normal."] = true
 
 
 
@@ -427,7 +437,12 @@ L["Reins of the Jade Primordial Direhorn"] = true
 L["Reins of the Green Primal Raptor"] = true
 L["Reins of the Black Primal Raptor"] = true
 L["Primal Egg"] = true
-
+L["Living Sandling"] = true
+L["Son of Animus"] = true
+L["Sunfur Panda"] = true
+L["Snowy Panda"] = true
+L["Mountain Panda"] = true
+L["Ji-Kun Hatchling"] = true
 
 
 

@@ -252,6 +252,22 @@ local SORT_NAME = "SORT_NAME"
 local SORT_DIFFICULTY = "SORT_DIFFICULTY"
 local SORT_PROGRESS = "SORT_PROGRESS"
 
+-- Categories of origin
+local BASE = "BASE"
+local TBC = "TBC"
+local WOTLK = "WOTLK"
+local CATA = "CATA"
+local MOP = "MOP"
+local HOLIDAY = "HOLIDAY"
+local categories = {
+	[BASE] =    L["Classic"],
+	[TBC] =     L["The Burning Crusade"],
+	[WOTLK] =   L["Wrath of the Lich King"],
+	[CATA] =    L["Cataclysm"],
+	[MOP] =     L["Mists of Pandaria"],
+	[HOLIDAY] = L["Holiday"],
+}
+
 
 
 --[[
@@ -1091,10 +1107,10 @@ function R:ScanBags()
 				if id then
 					local qty = select(2, GetContainerItemInfo(i, ii))
      if qty and qty > 0 then
-						if used[id] or items[id] then
+						--if used[id] or items[id] then
 							if not bagitems[id] then bagitems[id] = 0 end
 							bagitems[id] = bagitems[id] + qty
-						end
+						--end
      end
 				end
 			end
@@ -1479,7 +1495,7 @@ do
   end
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
 
-  tooltip2:AddLine(colorize(R.string_types[item.type], yellow))
+  tooltip2:AddLine(colorize(R.string_types[item.type].." ("..categories[item.cat]..")", yellow))
   if item.groupSize and item.groupSize > 1 then
    tooltip2:AddLine(colorize(format(L["Usually requires a group of around %d players"], item.groupSize), red))
   end
@@ -1699,40 +1715,44 @@ do
     -- Item
     if ((not requiresGroup and group.collapsed ~= true) or (requiresGroup and group.collapsedGroup ~= true)) and v.itemId ~= nil then
      if (v.requiresHorde and R:IsHorde()) or (v.requiresAlliance and not R:IsHorde()) or (not v.requiresHorde and not v.requiresAlliance) then
-      local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
-      local attempts = v.attempts or 0
-      if type(attempts) ~= "number" then attempts = 0 end
-      if v.lastAttempts then attempts = attempts - v.lastAttempts end
-      local dropChance = (1.00 / (v.chance or 100))
-      if v.method == BOSS and v.groupSize ~= nil and tonumber(v.groupSize) ~= nil and v.groupSize > 1 and not v.equalOdds then dropChance = dropChance / v.groupSize end
-      local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
-      local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
-      local lucky = colorize(L["Lucky"], green)
-      if medianLoots < attempts then lucky = colorize(L["Unlucky"], red) end
-      local icon = ""
-      if trackedItem == v then icon = [[|TInterface\Buttons\UI-CheckBox-Check:0|t]] end
-      local time = 0
-      if v.time then time = v.time end
-      if v.lastTime then time = v.time - v.lastTime end
-      if inSession and trackedItem == v then
-       local len = sessionLast - sessionStarted
-       time = time + len
-      end
-      time = R:FormatTime(time)
-      local likelihood = format("%.2f%%", chance)
-      if attempts == 0 then
-       attempts = ""
-       lucky = ""
-       time = ""
-       likelihood = ""
-      end
-      if time == "0:00" then time = "" end
-      if v.method ~= NPC and v.method ~= ZONE and v.method ~= FISHING and v.method ~= USE then time = "" end
-      line = tooltip:AddLine(icon, (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky)
-      tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
-				  tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
-				  tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
-      added = true
+						if (R.db.profile.cats[v.cat]) then
+							if not (R.db.profile.hideHighChance and v.chance < 50) then
+								local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
+								local attempts = v.attempts or 0
+								if type(attempts) ~= "number" then attempts = 0 end
+								if v.lastAttempts then attempts = attempts - v.lastAttempts end
+								local dropChance = (1.00 / (v.chance or 100))
+								if v.method == BOSS and v.groupSize ~= nil and tonumber(v.groupSize) ~= nil and v.groupSize > 1 and not v.equalOdds then dropChance = dropChance / v.groupSize end
+								local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
+								local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
+								local lucky = colorize(L["Lucky"], green)
+								if medianLoots < attempts then lucky = colorize(L["Unlucky"], red) end
+								local icon = ""
+								if trackedItem == v then icon = [[|TInterface\Buttons\UI-CheckBox-Check:0|t]] end
+								local time = 0
+								if v.time then time = v.time end
+								if v.lastTime then time = v.time - v.lastTime end
+								if inSession and trackedItem == v then
+									local len = sessionLast - sessionStarted
+									time = time + len
+								end
+								time = R:FormatTime(time)
+								local likelihood = format("%.2f%%", chance)
+								if attempts == 0 then
+									attempts = ""
+									lucky = ""
+									time = ""
+									likelihood = ""
+								end
+								if time == "0:00" then time = "" end
+								if v.method ~= NPC and v.method ~= ZONE and v.method ~= FISHING and v.method ~= USE then time = "" end
+								line = tooltip:AddLine(icon, (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky)
+								tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
+								tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
+								tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
+								added = true
+							end
+						end
      end
     end
 
