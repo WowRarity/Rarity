@@ -147,8 +147,6 @@ function R:PrepareDefaults()
      ["Swift Zulian Panther"] =                          { cat = CATA, type = MOUNT, method = BOSS, name = GetItemInfo(68824) or L["Swift Zulian Panther"], spellId = 96499, itemId = 68824, npcs = { 52059 }, chance = 100, },
 					-- 5.x
      ["Reins of the Amber Primordial Direhorn"] =        { cat = MOP, type = MOUNT, method = NPC, name = GetItemInfo(94230) or L["Reins of the Amber Primordial Direhorn"], spellId = 138424, itemId = 94230, npcs = { 69841 }, chance = 100, },
-     ["Reins of the Black Primal Raptor"] =              { cat = MOP, type = MOUNT, method = USE, name = GetItemInfo(94292) or L["Reins of the Black Primal Raptor"], spellId = 138642, itemId = 94292, items = { 94296 }, chance = 20, },
-     ["Reins of the Green Primal Raptor"] =              { cat = MOP, type = MOUNT, method = USE, name = GetItemInfo(94293) or L["Reins of the Green Primal Raptor"], spellId = 138643, itemId = 94293, items = { 94296 }, chance = 20, },
      ["Reins of the Jade Primordial Direhorn"] =         { cat = MOP, type = MOUNT, method = NPC, name = GetItemInfo(94231) or L["Reins of the Jade Primordial Direhorn"], spellId = 138426, itemId = 94231, npcs = { 69842 }, chance = 100, },
      ["Reins of the Slate Primordial Direhorn"] =        { cat = MOP, type = MOUNT, method = NPC, name = GetItemInfo(94229) or L["Reins of the Slate Primordial Direhorn"], spellId = 138425, itemId = 94229, npcs = { 69769 }, chance = 100, },
      
