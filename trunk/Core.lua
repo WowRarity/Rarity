@@ -1495,7 +1495,9 @@ do
   end
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
 
-  tooltip2:AddLine(colorize(R.string_types[item.type].." ("..categories[item.cat]..")", yellow))
+		local category = ""
+		if item.cat and categories[item.cat] then category = " ("..categories[item.cat]..")" end
+  tooltip2:AddLine(colorize(R.string_types[item.type]..category, yellow))
   if item.groupSize and item.groupSize > 1 then
    tooltip2:AddLine(colorize(format(L["Usually requires a group of around %d players"], item.groupSize), red))
   end
