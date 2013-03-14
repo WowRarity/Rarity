@@ -1715,7 +1715,7 @@ do
     -- Item
     if ((not requiresGroup and group.collapsed ~= true) or (requiresGroup and group.collapsedGroup ~= true)) and v.itemId ~= nil then
      if (v.requiresHorde and R:IsHorde()) or (v.requiresAlliance and not R:IsHorde()) or (not v.requiresHorde and not v.requiresAlliance) then
-						if (R.db.profile.cats[v.cat]) then
+						if (R.db.profile.cats[v.cat]) or v.cat == nil then
 							if not (R.db.profile.hideHighChance and v.chance < 50) then
 								local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
 								local attempts = v.attempts or 0
