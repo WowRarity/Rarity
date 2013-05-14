@@ -83,7 +83,7 @@ function R:PrepareDefaults()
    itemTip = TIP_HIDDEN,
    statusTip = TIP_LEFT,
    sortMode = SORT_NAME,
-			hideHighChance = true,
+			hideHighChance = false,
 
    trackedGroup = "pets",
    trackedItem = 8494,
@@ -120,7 +120,7 @@ function R:PrepareDefaults()
 					--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 					-- 1.x
-     ["Deathcharger's Reins"] =                          { cat = BASE, type = MOUNT, method = NPC, name = GetItemInfo(13335) or L["Deathcharger's Reins"], spellId = 17481, itemId = 13335, npcs = { 45412 }, chance = 100, },
+     ["Deathcharger's Reins"] =                          { cat = BASE, type = MOUNT, method = NPC, name = GetItemInfo(13335) or L["Deathcharger's Reins"], spellId = 17481, itemId = 13335, npcs = { 9999 }, chance = 100, statisticId = { 1097 }, },
      ["Red Qiraji Resonating Crystal"] =                 { cat = BASE, type = MOUNT, method = NPC, name = GetItemInfo(21321) or L["Red Qiraji Resonating Crystal"], spellId = 26054, itemId = 21321, npcs = { 15311, 15250, 15247, 15246, 15264, 15262, 15277, 15312, 15252, 15249 }, chance = 100, },
 					-- 2.x
      ["Ashes of Al'ar"] =                                { cat = TBC, type = MOUNT, method = BOSS, name = GetItemInfo(32458) or L["Ashes of Al'ar"], spellId = 40192, itemId = 32458, npcs = { 9999 }, chance = 100, statisticId = { 1088 }, },
