@@ -437,6 +437,17 @@ function R:PrepareOptions()
 						}, -- args
 					}, -- bar
 
+					  debug = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Debug mode"],
+						  get = function() return self.db.profile.debugMode end,
+						  set = function(info, val)
+							  self.db.profile.debugMode = val
+         if self.db.profile.debugMode then	self:Print(L["Debug mode ON"]) else self:Print(L["Debug mode OFF"]) end
+						  end,
+					  }, -- debug
+
 					announcements = {
 						type = "group",
 						name = L["Announcements"],
@@ -448,17 +459,6 @@ output = self:GetSinkAce3OptionsDataTable(),
 
 						}, -- args
 					}, -- announcements
-
-					  debug = {
-						  type = "toggle",
-						  order = newOrder(),
-						  name = L["Debug mode"],
-						  get = function() return self.db.profile.debugMode end,
-						  set = function(info, val)
-							  self.db.profile.debugMode = val
-         if self.db.profile.debugMode then	self:Print(L["Debug mode ON"]) else self:Print(L["Debug mode OFF"]) end
-						  end,
-					  }, -- debug
 
 				}, -- args
 			}, -- general
@@ -948,11 +948,11 @@ function R:CreateGroup(options, group, isUser)
       if val then item.enabled = true end
 						self:Update("OPTIONS")
 					end,
-     hidden = function()
+     --[[hidden = function()
       if R.db.profile.debugMode then return false end
       --if item.method == USE then return true end
       if item.type == MOUNT or item.type == ARCH then return true else return false end
-     end,
+     end,]]
 				},
 
 				enableAnnouncements = {

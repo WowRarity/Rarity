@@ -1985,8 +1985,8 @@ function R:ScanExistingItems(reason)
     for kk, vv in pairs(v) do
      if type(vv) == "table" then
       if vv.spellId and vv.spellId == spellId and not vv.repeatable then
-       vv.enabled = false
-       vv.found = true
+							vv.enabled = false
+							vv.found = true
       end
      end
     end
