@@ -444,6 +444,22 @@ L["Sunfur Panda"] = true
 L["Snowy Panda"] = true
 L["Mountain Panda"] = true
 L["Ji-Kun Hatchling"] = true
+L["Porcupette"] = true
+L["Direhorn Runt"] = true
+L["Brilliant Phoenix Hawk Feather"] = true
+L["Crystal of the Void"] = true
+L["Dark Quivering Blob"] = true
+L["Dripping Strider Egg"] = true
+L["Half-Empty Food Container"] = true
+L["Instant Arcane Sanctum Security Kit"] = true
+L["Netherspace Portal-Stone"] = true
+L["Pygmy Direhorn"] = true
+L["Quivering Blob"] = true
+L["Satyr Charm"] = true
+L["Shell of Tide-Calling"] = true
+L["Spiky Collar"] = true
+L["Tainted Core"] = true
+L["Tiny Fel Engine Key"] = true
 
 
 
