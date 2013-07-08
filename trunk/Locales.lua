@@ -462,6 +462,7 @@ L["Tainted Core"] = true
 L["Tiny Fel Engine Key"] = true
 L["Spawn of Horridon"] = true
 L["Clutch of Ji-Kun"] = true
+L["Darkmoon Eye"] = true
 
 
 
