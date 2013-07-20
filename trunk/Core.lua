@@ -42,6 +42,7 @@ local guildBankOpen = false
 local auctionOpen = false
 local tradeOpen = false
 local tradeSkillOpen = false
+local mailOpen = false
 
 local prevSpell, curSpell, foundTarget, gatherEvents, ga
 local miningSpell = (GetSpellInfo(2575))
@@ -397,6 +398,8 @@ do
   self:RegisterEvent("BANKFRAME_CLOSED", "OnEvent")
   self:RegisterEvent("GUILDBANKFRAME_OPENED", "OnEvent")
   self:RegisterEvent("GUILDBANKFRAME_CLOSED", "OnEvent")
+  self:RegisterEvent("MAIL_CLOSED", "OnEvent")
+  self:RegisterEvent("MAIL_SHOW", "OnEvent")
   self:RegisterEvent("CURSOR_UPDATE", "CursorChange") -- Fishing detection
   self:RegisterEvent("UNIT_SPELLCAST_SENT", "SpellStarted") -- Fishing detection
 	 self:RegisterEvent("UNIT_SPELLCAST_STOP", "SpellStopped") -- Fishing detection
@@ -958,6 +961,8 @@ function R:OnEvent(event, ...)
   tradeOpen = true
  elseif event == "TRADE_SKILL_SHOW" then
   tradeSkillOpen = true
+ elseif event == "MAIL_SHOW" then
+  mailOpen = true
 
  elseif event == "BANKFRAME_CLOSED" then
   bankOpen = false
@@ -969,6 +974,8 @@ function R:OnEvent(event, ...)
   tradeOpen = false
  elseif event == "TRADE_SKILL_CLOSE" then
   tradeSkillOpen = false
+ elseif event == "MAIL_CLOSED" then
+  mailOpen = false
 
 
  -- Logging out; end any open session
@@ -1065,7 +1072,7 @@ function R:OnBagUpdate()
  -- Get a list of the items you have now, alerting if we find anything we're looking for
  self:ScanBags()
 
- if not bankOpen and not guildBankOpen and not auctionOpen and not tradeOpen and not tradeSkillOpen then
+ if not bankOpen and not guildBankOpen and not auctionOpen and not tradeOpen and not tradeSkillOpen and not mailOpen then
 
 		-- Check for a decrease in quantity of any items we're watching for
   for k, v in pairs(tempbagitems) do
