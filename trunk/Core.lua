@@ -303,6 +303,7 @@ local SetSelectedArtifact = _G.SetSelectedArtifact
 local GetSelectedArtifactInfo = _G.GetSelectedArtifactInfo
 local GetStatistic = _G.GetStatistic
 local GetLootSourceInfo = _G.GetLootSourceInfo
+local pet_journal = _G.C_PetJournal
 
 local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
 local COMBATLOG_OBJECT_AFFILIATION_MINE = _G.COMBATLOG_OBJECT_AFFILIATION_MINE
@@ -1965,7 +1966,7 @@ end
 function R:ScanExistingItems(reason)
  self:Debug("Scanning for existing items ("..reason..")")
 
- -- Look for mount and pet spell IDs and mark as found/disabled (if repeatable set to off)
+ -- Mounts
  for id = 1, GetNumCompanions("MOUNT") do
 		local spellId = select(3, GetCompanionInfo("MOUNT", id))
   
@@ -1985,6 +1986,8 @@ function R:ScanExistingItems(reason)
    end
   end
  end
+
+	-- Companions that this character learned
  for id = 1, GetNumCompanions("CRITTER") do
 		local spellId = select(3, GetCompanionInfo("CRITTER", id))
   for k, v in pairs(R.db.profile.groups) do
@@ -2000,6 +2003,31 @@ function R:ScanExistingItems(reason)
    end
   end
  end
+
+	-- Battle pets across your account
+	pet_journal.SetFlagFilter(_G.LE_PET_JOURNAL_FLAG_COLLECTED, true)
+	pet_journal.SetFlagFilter(_G.LE_PET_JOURNAL_FLAG_FAVORITES, false)
+	pet_journal.SetFlagFilter(_G.LE_PET_JOURNAL_FLAG_NOT_COLLECTED, true)
+	pet_journal.AddAllPetTypesFilter()
+	pet_journal.AddAllPetSourcesFilter()
+ local total, owned = pet_journal.GetNumPets()
+ for i = 1, total do
+  local petID, speciesID, owned, customName, level, favorite, isRevoked, speciesName, icon, petType, creatureId, tooltip, description, isWild, canBattle, isTradeable, isUnique, obtainable = pet_journal.GetPetInfoByIndex(i)
+		if owned then
+			for k, v in pairs(R.db.profile.groups) do
+				if type(v) == "table" then
+					for kk, vv in pairs(v) do
+						if type(vv) == "table" then
+							if vv.creatureId and vv.creatureId == creatureId and not vv.repeatable then
+								vv.enabled = false
+								vv.found = true
+							end
+						end
+					end
+				end
+			end
+		end
+	end
 
  -- Scan all archaeology races and set any item attempts to the number of solves for that race (if we've never seen attempts for the race before)
  local s = 0

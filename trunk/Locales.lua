@@ -211,6 +211,10 @@ L["Hide high chance items"] = true
 L["When on, this option hides any item with a drop chance of 1 in 49 or better. The item is merely hidden from the tooltip in order to keep it clean. Items hidden in this fashion are still tracked like normal."] = true
 L["Undefeated"] = true
 L["Defeated"] = true
+L["Creature ID"] = true
+L["The NPC ID of the creature that is spawned when you summon this pet. This is used to track account-wide battle pets."] = true
+L["You must enter a creature ID."] = true
+L["You entered a creature ID that is already being used by another item."] = true
 
 
 

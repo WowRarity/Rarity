@@ -685,6 +685,34 @@ function R:CreateGroup(options, group, isUser)
 			  disabled = not isUser,
 		  },
 							
+		  creatureId = {
+			  type = "input",
+     order = newOrder(),
+     width = "half",
+			  name = L["Creature ID"],
+     desc = L["The NPC ID of the creature that is spawned when you summon this pet. This is used to track account-wide battle pets."],
+			  set = function(info, val)
+				  if strtrim(val) == "" then alert(L["You must enter a creature ID."])
+      elseif tonumber(val) == nil then alert(L["You must enter a valid number."])
+      else
+       for _, v in pairs(allitems()) do
+        if v.creatureId == tonumber(val) then
+         alert(L["You entered a creature ID that is already being used by another item."])
+         return
+        end
+       end
+       if tonumber(val) <= 0 then alert(L["You must enter a number larger than 0."])
+       else item.creatureId = tonumber(val) end
+				  end
+						self:Update("OPTIONS")
+			  end,
+     get = function(into) if item.creatureId then return tostring(item.creatureId) else return nil end end,
+			  hidden = function()
+      if item.type == PET then return false else return true end
+     end,
+			  disabled = not isUser,
+		  },
+							
 				raceId = {
 					type = "select",
 					name = L["Archaeology race"],
