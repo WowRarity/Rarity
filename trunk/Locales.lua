@@ -215,6 +215,9 @@ L["Creature ID"] = true
 L["The NPC ID of the creature that is spawned when you summon this pet. This is used to track account-wide battle pets."] = true
 L["You must enter a creature ID."] = true
 L["You entered a creature ID that is already being used by another item."] = true
+L["Mantid"] = true
+L["Pandaren"] = true
+L["Mogu"] = true
 
 
 

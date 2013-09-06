@@ -54,6 +54,7 @@ local openNoTextSpell = (GetSpellInfo(22810))
 local pickSpell = (GetSpellInfo(1804))
 local archSpell = (GetSpellInfo(73979))
 local skinSpell = (GetSpellInfo(8613))
+local disenchantSpell = (GetSpellInfo(13262))
 local spells = {
 	[miningSpell] = "Mining",
 	[herbSpell] = "Herb Gathering",
@@ -64,6 +65,7 @@ local spells = {
 	[pickSpell] = "Treasure",
 	[archSpell] = "Archaeology",
  [skinSpell] = "Skinning",
+	[disenchantSpell] = "Disenchant",
 }
 local tooltipLeftText1 = _G["GameTooltipTextLeft1"]
 local fishing = false
@@ -999,7 +1001,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell)
   if zones[zone] == nil and zones[lbz[zone] or "."] == nil and zones[lbsz[subzone] or "."] == nil and zones[zone_t] == nil and zones[subzone_t] == nil and zones[lbz[zone_t] or "."] == nil and zones[lbsz[subzone_t] or "."] == nil then return end
  end
 
- -- If the loot is the result of certain spell casts (mining, herbing, opening, picklock, archaeology, etc), stop here
+ -- If the loot is the result of certain spell casts (mining, herbing, opening, picklock, archaeology, disenchanting, etc), stop here
  if spells[curSpell] then return end
 
 	-- We're interested in this loot, process further
