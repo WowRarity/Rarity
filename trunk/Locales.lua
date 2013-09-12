@@ -470,7 +470,7 @@ L["Tiny Fel Engine Key"] = true
 L["Spawn of Horridon"] = true
 L["Clutch of Ji-Kun"] = true
 L["Darkmoon Eye"] = true
-
+L["Reins of the Thundering Onyx Cloud Serpent"] = true
 
 
 
