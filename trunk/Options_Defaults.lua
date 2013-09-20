@@ -148,7 +148,7 @@ function R:PrepareDefaults()
      ["Scepter of Azj'Aqir"] =                           { cat = CATA, type = MOUNT, method = ARCH, name = GetItemInfo(64883) or L["Scepter of Azj'Aqir"], spellId = 92155, itemId = 64883, raceId = 7, chance = 500, },
      ["Swift Zulian Panther"] =                          { cat = CATA, type = MOUNT, method = BOSS, name = GetItemInfo(68824) or L["Swift Zulian Panther"], spellId = 96499, itemId = 68824, npcs = { 52059 }, chance = 100, },
 					-- 5.x
-     ["Reins of the Thundering Onyx Cloud Serpent"] =    { cat = CATA, type = MOUNT, method = NPC, name = GetItemInfo(104269) or L["Reins of the Drake of the North Wind"], spellId = 148476, itemId = 104269, npcs = { 73167 }, chance = 100, },
+     ["Reins of the Thundering Onyx Cloud Serpent"] =    { cat = MOP, type = MOUNT, method = NPC, name = GetItemInfo(104269) or L["Reins of the Drake of the North Wind"], spellId = 148476, itemId = 104269, npcs = { 73167 }, chance = 100, },
      
 					--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 					-- Requires a group (some of these may be soloable by certain classes, but not in general)
@@ -253,6 +253,23 @@ function R:PrepareDefaults()
      ["Spiky Collar"] =                                  { cat = MOP, type = PET, method = NPC, name = GetItemInfo(97548) or L["Spiky Collar"], spellId = 141433, itemId = 97548, npcs = { 17521 }, chance = 14, creatureId = 71014, },
      ["Tainted Core"] =                                  { cat = MOP, type = PET, method = NPC, name = GetItemInfo(97553) or L["Tainted Core"], spellId = 141437, itemId = 97553, npcs = { 21216 }, chance = 25, creatureId = 71018, },
      ["Tiny Fel Engine Key"] =                           { cat = MOP, type = PET, method = NPC, name = GetItemInfo(97555) or L["Tiny Fel Engine Key"], spellId = 141447, itemId = 97555, npcs = { 19516 }, chance = 25, creatureId = 71020, },
+					-- 5.4
+     ["Ashleaf Spriteling"] =                            { cat = MOP, type = PET, method = NPC, name = GetItemInfo(104156) or L["Ashleaf Spriteling"], spellId = 148046, itemId = 104156, npcs = { 73277 }, chance = 66, creatureId = 73533, },
+     ["Azure Crane Chick"] =                             { cat = MOP, type = PET, method = SPECIAL, name = GetItemInfo(104157) or L["Azure Crane Chick"], spellId = 148047, itemId = 104157, obtain = L["Obtained by opening Crane Nests on the Timeless Isle"], chance = 50, creatureId = 73534, },
+     ["Blackfuse Bombling"] =                            { cat = MOP, type = PET, method = NPC, name = GetItemInfo(104158) or L["Blackfuse Bombling"], spellId = 148049, itemId = 104158, npcs = { 71504 }, chance = 33, creatureId = 73352, },
+     ["Bonkers"] =                                       { cat = MOP, type = PET, method = SPECIAL, name = GetItemInfo(104202) or L["Bonkers"], spellId = 148373, itemId = 104202, obtain = L["Obtained by opening Timeless Chests on the Timeless Isle"], chance = 70, creatureId = 73668, },
+     ["Death Adder Hatchling"] =                         { cat = MOP, type = PET, method = NPC, name = GetItemInfo(104161) or L["Death Adder Hatchling"], spellId = 148052, itemId = 104156, npcs = { 73163 }, chance = 50, creatureId = 73364, },
+     ["Droplet of Y'Shaarj"] =                           { cat = MOP, type = PET, method = BOSS, name = GetItemInfo(104162) or L["Droplet of Y'Shaarj"], spellId = 148058, itemId = 104162, npcs = { 99999 }, chance = 16, groupSize = 10, statisticId = { 8571, 5869, 8573, 8570, 8568, }, creatureId = 73350, }, -- SHA OF PRIDE (flex/normal/heroic)
+     ["Gooey Sha-ling"] =                                { cat = MOP, type = PET, method = BOSS, name = GetItemInfo(104163) or L["Gooey Sha-ling"], spellId = 148059, itemId = 104163, npcs = { 99999 }, chance = 33, groupSize = 25, equalOdds = true, statisticId = { 8568, 8567, }, creatureId = 73351, }, -- SHA OF PRIDE (lfr/flex)
+     ["Gu'chi Swarmling"] =                              { cat = MOP, type = PET, method = NPC, name = GetItemInfo(104291) or L["Gu'chi Swarmling"], spellId = 148527, itemId = 104291, npcs = { 72909 }, chance = 50, creatureId = 73730, },
+     ["Gulp Froglet"] =                                  { cat = MOP, type = PET, method = NPC, name = GetItemInfo(104169) or L["Gulp Froglet"], spellId = 148067, itemId = 104169, npcs = { 72775 }, chance = 33, creatureId = 73359, },
+     ["Jadefire Spirit"] =                               { cat = MOP, type = PET, method = NPC, name = GetItemInfo(104307) or L["Jadefire Spirit"], spellId = 148552, itemId = 104307, npcs = { 72769 }, chance = 50, creatureId = 73738, },
+     ["Jademist Dancer"] =                               { cat = MOP, type = PET, method = NPC, name = GetItemInfo(104164) or L["Jademist Dancer"], spellId = 148060, itemId = 104164, npcs = { 72767 }, chance = 200, creatureId = 72767, },
+     ["Lil' Bling"] =                                    { cat = MOP, type = PET, method = ITEM, name = GetItemInfo(103670) or L["Lil' Bling"], spellId = 147124, itemId = 103670, items = { 86623 }, chance = 100, creatureId = 73011, },
+     ["Ominous Flame"] =                                 { cat = MOP, type = PET, method = NPC, name = GetItemInfo(104166) or L["Ominous Flame"], spellId = 148062, itemId = 104166, npcs = { 73162 }, chance = 166, creatureId = 73357, },
+     ["Ruby Droplet"] =                                  { cat = MOP, type = PET, method = NPC, name = GetItemInfo(104159) or L["Ruby Droplet"], spellId = 148050, itemId = 104159, npcs = { 73282 }, chance = 25, creatureId = 73356, },
+     ["Skunky Alemental"] =                              { cat = MOP, type = PET, method = NPC, name = GetItemInfo(104167) or L["Skunky Alemental"], spellId = 148063, itemId = 104167, npcs = { 71919 }, chance = 33, creatureId = 73367, },
+     ["Spineclaw Crab"] =                                { cat = MOP, type = PET, method = NPC, name = GetItemInfo(104168) or L["Spineclaw Crab"], spellId = 148066, itemId = 104168, npcs = { 73166 }, chance = 60, creatureId = 73366, },
 
     },
     items = {

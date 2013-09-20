@@ -472,11 +472,26 @@ L["Clutch of Ji-Kun"] = true
 L["Darkmoon Eye"] = true
 L["Reins of the Thundering Onyx Cloud Serpent"] = true
 
-
-
-
-
-
+L["Ashleaf Spriteling"] = true
+L["Death Adder Hatchling"] = true
+L["Gu'chi Swarmling"] = true
+L["Gulp Froglet"] = true
+L["Jadefire Spirit"] = true
+L["Jademist Dancer"] = true
+L["Ominous Flame"] = true
+L["Ruby Droplet"] = true
+L["Skunky Alemental"] = true
+L["Spineclaw Crab"] = true
+L["Blackfuse Bombling"] = true
+L["Lil' Bling"] = true
+L["Droplet of Y'Shaarj"] = true
+L["Gooey Sha-ling"] = true
+L["Crane Nest"] = true
+L["Azure Crane Chick"] = true
+L["Obtained by opening Crane Nests on the Timeless Isle"] = true
+L["Bonkers"] = true
+L["Obtained by opening Timeless Chests on the Timeless Isle"] = true
+L["Timeless Chest"] = true
 
 
 

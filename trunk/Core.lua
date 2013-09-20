@@ -69,6 +69,7 @@ local spells = {
 }
 local tooltipLeftText1 = _G["GameTooltipTextLeft1"]
 local fishing = false
+local opening = false
 local fishingTimer
 local FISHING_DELAY = 19
 local trackedItem
@@ -217,6 +218,11 @@ R.miningnodes = {
 	[L["Trillium Vein"]] = true,
 	[L["Rich Trillium Vein"]] = true,
 	-- Kyparite Ore need to find out what this spawns from
+}
+
+R.opennodes = {
+	[L["Crane Nest"]] = true,
+	[L["Timeless Chest"]] = true,
 }
 
 
@@ -846,8 +852,30 @@ function R:OnEvent(event, ...)
   local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
   local subzone_t = LibStub("LibBabble-SubZone-3.0"):GetReverseLookupTable()[subzone]
 
+		if fishing and opening then
+			self:Debug("Opened a node: "..lastNode)
+		end
+
+  -- Handle opening Crane Nest
+  if fishing and opening and (lastNode == L["Crane Nest"]) then
+   local v = self.db.profile.groups.pets["Azure Crane Chick"]
+   if v and type(v) == "table" and v.enabled ~= false then
+    if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+    self:OutputAttempts(v)
+   end
+  end
+
+  -- Handle opening Timeless Chest
+  if fishing and opening and (lastNode == L["Timeless Chest"]) then
+   local v = self.db.profile.groups.pets["Bonkers"]
+   if v and type(v) == "table" and v.enabled ~= false then
+    if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+    self:OutputAttempts(v)
+   end
+  end
+
   -- HANDLE FISHING
-  if fishing then
+  if fishing and opening == false then
    if isPool then self:Debug("Successfully fished from a pool")
    else self:Debug("Successfully fished") end
    if fishzones[zone] or fishzones[subzone] or fishzones[zone_t] or fishzones[subzone_t] then
@@ -885,7 +913,7 @@ function R:OnEvent(event, ...)
   fishing = false
   isPool = false
 
-  -- Handle special cases
+  -- Handle mining Elementium
   if prevSpell == miningSpell and (lastNode == L["Elementium Vein"] or lastNode == L["Rich Elementium Vein"]) then
    local v = self.db.profile.groups.pets["Elementium Geode"]
    if v and type(v) == "table" and v.enabled ~= false then
@@ -1197,7 +1225,7 @@ function R:CursorChange(event)
 	if foundTarget then return end
 	if (MinimapCluster:IsMouseOver()) then return end
 	local t = tooltipLeftText1:GetText()
- if self.miningnodes[t] or self.fishnodes[t] then lastNode = t end
+ if self.miningnodes[t] or self.fishnodes[t] or self.opennodes[t] then lastNode = t end
 	if spells[prevSpell] then
 		self:GetWorldTarget()
 	end
@@ -1221,6 +1249,7 @@ local function cancelFish()
  fishingTimer = nil
  fishing = false
  isPool = false
+	opening = false
 end
 
 function R:SpellStarted(event, unit, spellcast, rank, target)
@@ -1230,8 +1259,9 @@ function R:SpellStarted(event, unit, spellcast, rank, target)
 	if spells[spellcast] then
 		curSpell = spellcast
 		prevSpell = spellcast
-  if spellcast == fishSpell then
-   self:Debug("Fishing something")
+  if spellcast == fishSpell or spellcast == openSpell then
+   self:Debug("Fishing or opening something")
+			if spellcast == openSpell then opening = true else opening = false end
    fishing = true
    if fishingTimer then self:CancelTimer(fishingTimer, true) end
    fishingTimer = self:ScheduleTimer(cancelFish, FISHING_DELAY)
@@ -1247,7 +1277,7 @@ function R:GetWorldTarget()
 	if (MinimapCluster:IsMouseOver()) then return end
 	local t = tooltipLeftText1:GetText()
 	if t and prevSpell and t ~= prevSpell and R.fishnodes[t] then
-  self:Debug("------YOU HAVE STARTED FISHING FROM A NODE------")
+  self:Debug("------YOU HAVE STARTED FISHING A NODE ------")
 		fishing = true
   isPool = true
   if fishingTimer then self:CancelTimer(fishingTimer, true) end
