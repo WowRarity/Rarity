@@ -1043,6 +1043,21 @@ function R:CreateGroup(options, group, isUser)
      get = function(into) if item.chance then return tostring(item.chance) else return nil end end,
 		  },
 							
+				enableCoin = {
+					order = newOrder(),
+					type = "toggle",
+					name = L["Enable Coins"],
+					desc = L["When any good-luck coin is used within about 90 seconds of an attempt on this item, another attempt will be counted for this item. Only enable this for items which can legitimately obtained from coin rolls."],
+     width = "half",
+					get = function()
+      if item.enableCoin == true then return true else return false end
+     end,
+					set = function(info, val)
+						item.enableCoin = val
+						self:Update("OPTIONS")
+					end,
+				},
+
 			 spacer3 = { type = "header", name = L["Other Requirements"], order = newOrder(), },
 
 		  groupSize = {

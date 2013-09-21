@@ -34,6 +34,7 @@ local tempbagitems = {}
 local used = {}
 local fishzones = {}
 local archfragments = {}
+local coinamounts = {}
 local architems = {}
 local rarity_stats = {}
 
@@ -89,6 +90,12 @@ local yellow = { r = 1.0, g = 1.0, b = 0.2 }
 local gray = { r = 0.5, g = 0.5, b = 0.5 }
 local black = { r = 0.0, g = 0.0, b = 0.0 }
 local white = { r = 1.0, g = 1.0, b = 1.0 }
+
+R.coins = {
+	[697] = true, -- Elder Charm of Good Fortune
+	[752] = true, -- Mogu Rune of Fate
+	[776] = true, -- Warforged Seal
+}
 
 R.fishnodes = {
  [L["Floating Wreckage"]] = true,
@@ -392,6 +399,7 @@ do
 
 		self:ScanExistingItems("INITIALIZING") -- Checks for items you already have
   self:ScanBags() -- Initialize our inventory list, as well as checking if you've obtained an item
+		self:OnCurrencyUpdate("INITIALIZING") -- Prepare our currency list
   self:UpdateInterestingThings()
   self:FindTrackedItem()
   self:UpdateText()
@@ -401,7 +409,7 @@ do
 		self:UnregisterAllEvents()
   self:RegisterBucketEvent("BAG_UPDATE", 0.5, "OnBagUpdate")
   self:RegisterEvent("LOOT_OPENED", "OnEvent")
-  self:RegisterEvent("CURRENCY_DISPLAY_UPDATE", "ScanArchFragments") -- The high tech method by which we detect archaeology solves
+  self:RegisterEvent("CURRENCY_DISPLAY_UPDATE", "OnCurrencyUpdate")
   self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED", "OnCombat") -- Used to detect boss kills that we didn't solo
   self:RegisterEvent("BANKFRAME_OPENED", "OnEvent")
   self:RegisterEvent("BANKFRAME_CLOSED", "OnEvent")
@@ -435,7 +443,12 @@ do
 		self.db.RegisterCallback(self, "OnProfileDeleted", "OnProfileChanged")
 
   RequestArtifactCompletionHistory() -- Request archaeology info from the server
-  self:ScheduleTimer(function() R:ScanBags() end, 10) -- Also scan bags 10 seconds after init
+
+		-- Also scan bags and currency 10 seconds after init
+  self:ScheduleTimer(function()
+			R:ScanBags()
+			R:OnCurrencyUpdate("DELAYED INIT")
+		end, 10)
 
   -- Clean up session info
   for k, v in pairs(self.db.profile.groups) do
@@ -522,6 +535,7 @@ function R:OnProfileChanged(event, database, newProfileKey)
  sessionTimer = nil
 	self.db:RegisterDefaults(self.defaults)
  self:UpdateInterestingThings()
+	self:OnCurrencyUpdate(event)
  self:ScanAllArch(event)
 	self:ScanExistingItems(event)
  self:ScanBags()
@@ -852,12 +866,12 @@ function R:OnEvent(event, ...)
   local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
   local subzone_t = LibStub("LibBabble-SubZone-3.0"):GetReverseLookupTable()[subzone]
 
-		if fishing and opening then
+		if fishing and opening and lastNode then
 			self:Debug("Opened a node: "..lastNode)
 		end
 
   -- Handle opening Crane Nest
-  if fishing and opening and (lastNode == L["Crane Nest"]) then
+  if fishing and opening and lastNode and (lastNode == L["Crane Nest"]) then
    local v = self.db.profile.groups.pets["Azure Crane Chick"]
    if v and type(v) == "table" and v.enabled ~= false then
     if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
@@ -866,7 +880,7 @@ function R:OnEvent(event, ...)
   end
 
   -- Handle opening Timeless Chest
-  if fishing and opening and (lastNode == L["Timeless Chest"]) then
+  if fishing and opening and lastNode and (lastNode == L["Timeless Chest"]) then
    local v = self.db.profile.groups.pets["Bonkers"]
    if v and type(v) == "table" and v.enabled ~= false then
     if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
@@ -1285,6 +1299,46 @@ function R:GetWorldTarget()
 		foundTarget = true
 	end
 end
+
+
+
+-------------------------------------------------------------------------------------
+-- Currency updates. Used for coin roll and archaeology solve detection.
+-------------------------------------------------------------------------------------
+
+function R:OnCurrencyUpdate(event)
+self:Debug("Currency updated ("..event..")")
+
+	-- Check if any archaeology projects were solved
+	self:ScanArchFragments(event)
+
+	-- Check if any coins were used
+ for k, v in pairs(self.coins) do
+		local name, currencyAmount, texture, earnedThisWeek, weeklyMax, totalMax, isDiscovered = GetCurrencyInfo(k)
+		local diff = currencyAmount - (coinamounts[k] or 0)
+		coinamounts[k] = currencyAmount
+  if diff < 0 then
+			self:Debug("Used coin: "..name)
+			R:CheckForCoinItem()
+			self:ScheduleTimer(function() R:CheckForCoinItem() end, 2)
+			self:ScheduleTimer(function() R:CheckForCoinItem() end, 5)
+			self:ScheduleTimer(function() R:CheckForCoinItem() end, 10)
+			self:ScheduleTimer(function() R:CheckForCoinItem() end, 15)
+			self:ScheduleTimer(function() R:CheckForCoinItem() end, 20)
+			self:ScheduleTimer(function() R:CheckForCoinItem() end, 25)
+		end
+	end
+end
+
+
+function R:CheckForCoinItem()
+	if self.lastCoinItem and self.lastCoinItem.enableCoin then
+		self:Debug("COIN USE DETECTED FOR AN ITEM")
+		self:OutputAttempts(self.lastCoinItem)
+		self.lastCoinItem = nil
+	end
+end
+
 
 
 -------------------------------------------------------------------------------------
@@ -1968,6 +2022,15 @@ function R:OutputAttempts(item, skipTimeUpdate)
 
    -- Switch to track this item
    self:UpdateTrackedItem(item)
+
+			-- Save this item for coin tracking, but only for 30 seconds
+			if item.enableCoin then
+				self:Debug("Allowing this item to be counted again if a coin is used in the next 90 seconds")
+				self.lastCoinItem = item
+				self:ScheduleTimer(function() self.lastCoinItem = nil end, 90)
+			else
+				self.lastCoinItem = nil
+			end
 
    -- Don't go any further if we don't want to announce this
    if self.db.profile.enableAnnouncements == false then return end

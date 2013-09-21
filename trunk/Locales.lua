@@ -218,7 +218,8 @@ L["You entered a creature ID that is already being used by another item."] = tru
 L["Mantid"] = true
 L["Pandaren"] = true
 L["Mogu"] = true
-
+L["Enable Coins"] = true
+L["When any good-luck coin is used within about 90 seconds of an attempt on this item, another attempt will be counted for this item. Only enable this for items which can legitimately obtained from coin rolls."] = true
 
 
 
@@ -471,7 +472,6 @@ L["Spawn of Horridon"] = true
 L["Clutch of Ji-Kun"] = true
 L["Darkmoon Eye"] = true
 L["Reins of the Thundering Onyx Cloud Serpent"] = true
-
 L["Ashleaf Spriteling"] = true
 L["Death Adder Hatchling"] = true
 L["Gu'chi Swarmling"] = true
