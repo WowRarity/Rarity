@@ -1334,6 +1334,7 @@ end
 function R:CheckForCoinItem()
 	if self.lastCoinItem and self.lastCoinItem.enableCoin then
 		self:Debug("COIN USE DETECTED FOR AN ITEM")
+  if self.lastCoinItem.attempts == nil then self.lastCoinItem.attempts = 1 else self.lastCoinItem.attempts = self.lastCoinItem.attempts + 1 end
 		self:OutputAttempts(self.lastCoinItem)
 		self.lastCoinItem = nil
 	end
