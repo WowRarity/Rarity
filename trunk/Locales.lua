@@ -492,7 +492,7 @@ L["Obtained by opening Crane Nests on the Timeless Isle"] = true
 L["Bonkers"] = true
 L["Obtained by opening Timeless Chests on the Timeless Isle"] = true
 L["Timeless Chest"] = true
-
+L["Dandelion Frolicker"] = true
 
 
 
