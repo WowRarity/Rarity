@@ -495,6 +495,14 @@ L["Timeless Chest"] = true
 L["Dandelion Frolicker"] = true
 L["Moon Moon"] = true
 L["Kovok"] = true
+L["Zandalari Anklerender"] = true
+L["Zandalari Footslasher"] = true
+L["Zandalari Kneebiter"] = true
+L["Zandalari Toenibbler"] = true
+
+
+
+
 
 
 
