@@ -76,6 +76,7 @@ local FISHING_DELAY = 19
 local trackedItem
 local isPool = false
 local lastNode
+local tickTimer
 
 local inSession = false
 local sessionStarted = 0
@@ -1213,14 +1214,15 @@ end
 -- as well as acting as another backup to detect attempts if we missed one.
 -------------------------------------------------------------------------------------
 do
- local timer1, timer2, timer3
+ local timer1
  function R:OnCombatEnded(event)
+		self:CancelTimer(tickTimer, true)
   self:CancelTimer(timer1, true)
-  self:CancelTimer(timer2, true)
-  self:CancelTimer(timer3, true)
+
+		self:ScanStatistics(event)
+
   timer1 = self:ScheduleTimer(function() R:ScanStatistics(event.." 1") end, 2)
-  timer2 = self:ScheduleTimer(function() R:ScanStatistics(event.." 2") end, 6)
-  timer3 = self:ScheduleTimer(function() R:ScanStatistics(event.." 3") end, 10)
+		tickTimer = self:ScheduleRepeatingTimer(function() R:ScanStatistics("RECURRING TICK") end, 5)
  end
 end
 
@@ -2162,7 +2164,7 @@ end
 
 
 function R:BuildStatistics(reason)
- self:Debug("Building statistics table ("..reason..")")
+ --self:Debug("Building statistics table ("..reason..")")
 
  local tbl = {}
 
@@ -2190,7 +2192,7 @@ end
 
 
 function R:ScanStatistics(reason)
- self:Debug("Scanning statistics ("..reason..")")
+ --self:Debug("Scanning statistics ("..reason..")")
 
 	local count = 0;
 	for k, v in pairs(rarity_stats) do
