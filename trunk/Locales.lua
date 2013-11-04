@@ -494,7 +494,7 @@ L["Obtained by opening Timeless Chests on the Timeless Isle"] = true
 L["Timeless Chest"] = true
 L["Dandelion Frolicker"] = true
 L["Moon Moon"] = true
-
+L["Kovok"] = true
 
 
 
