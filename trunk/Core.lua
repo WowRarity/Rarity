@@ -820,8 +820,8 @@ end
 
 
 function R:IsHorde()
- local _, r = UnitRace("player")
- if r == "Tauren" or r == "Orc" or r == "Troll" or r == "Scourge" or r == "Blood Elf" or r == "Undead" or r == "Goblin" then return true end
+	local englishFaction, localizedFaction = UnitFactionGroup("player")
+	if englishFaction == "Horde" then return true end
  return false
 end
 
