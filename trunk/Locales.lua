@@ -499,8 +499,8 @@ L["Zandalari Anklerender"] = true
 L["Zandalari Footslasher"] = true
 L["Zandalari Kneebiter"] = true
 L["Zandalari Toenibbler"] = true
-
-
+L["Rotten Helper Box"] = true
+L["Imperial Moth"] = true
 
 
 
