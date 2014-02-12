@@ -1124,9 +1124,27 @@ function R:OnBagUpdate()
   for k, v in pairs(tempbagitems) do
    if (bagitems[k] or 0) < (tempbagitems[k] or 0) then -- An inventory item went down in count or disappeared
     if used[k] then -- It's an item we care about
-     local i = used[k]
-     if i.attempts == nil then i.attempts = 1 else i.attempts = i.attempts + 1 end
-     self:OutputAttempts(i)
+					-- Scan through the whole item database now to find all items that could want this
+					for _k, _v in pairs(self.db.profile.groups) do
+						if type(_v) == "table" then
+							for kk, vv in pairs(_v) do
+								if type(vv) == "table" then
+									if vv.enabled ~= false then
+										if vv.method == USE and vv.items ~= nil and type(vv.items) == "table" then
+											for kkk, vvv in pairs(vv.items) do
+												if vvv == k then
+													local i = vv
+													if i.attempts == nil then i.attempts = 1 else i.attempts = i.attempts + 1 end
+													self:OutputAttempts(i)
+												end
+											end
+										end
+									end
+								end
+							end
+						end
+					end
+     -- End scan through all items
     end
    end
   end
