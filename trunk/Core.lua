@@ -182,6 +182,14 @@ R.fishnodes = {
 	[L["Large Pool of Tiger Gourami Slush"]] = true,
 	[L["Large Pool of Glimmering Jewel Danio Pool"]] = true,
 	[L["Large Pool of Brew Frenzied Emperor Salmon"]] = true,
+	[L["Brew Frenzied Emperor Salmon"]] = true,
+	[L["Glimmering Jewel Danio Pool"]] = true,
+	[L["Tiger Gourami Slush"]] = true,
+	[L["Swarm of Panicked Paddlefish"]] = true,
+	[L["Tangled Mantis Shrimp Cluster"]] = true,
+	[L["Crowded Redbelly Mandarin"]] = true,
+	[L["Glowing Jade Lungfish"]] = true,
+	[L["Sha-Touched Spinefish"]] = true,
 }
 
 R.miningnodes = {
