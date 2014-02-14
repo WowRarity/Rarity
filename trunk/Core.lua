@@ -173,6 +173,15 @@ R.fishnodes = {
 	[L["Jewel Danio School"]] = true,
 	[L["Spinefish School"]] = true,
 	[L["Tiger Gourami School"]] = true,
+	[L["Large Swarm of Migrated Reef Octopus"]] = true,
+	[L["Large Pool of Sha-Touched Spinefish"]] = true,
+	[L["Large Pool of Glowing Jade Lungfish"]] = true,
+	[L["Large Pool of Crowded Redbelly Mandarin"]] = true,
+	[L["Large Tangled Mantis Shrimp Cluster"]] = true,
+	[L["Large Swarm of Panicked Paddlefish"]] = true,
+	[L["Large Pool of Tiger Gourami Slush"]] = true,
+	[L["Large Pool of Glimmering Jewel Danio Pool"]] = true,
+	[L["Large Pool of Brew Frenzied Emperor Salmon"]] = true,
 }
 
 R.miningnodes = {
