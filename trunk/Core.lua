@@ -879,6 +879,7 @@ function R:OnEvent(event, ...)
  -- You opened a loot window on a corpse or fishing node.
  -------------------------------------------------------------------------------------
 	if event == "LOOT_OPENED" then
+		self:Debug("LOOT_OPENED with target "..(UnitGUID("target") or ""))
   local zone = GetRealZoneText()
   local subzone = GetSubZoneText()
   local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
@@ -984,7 +985,7 @@ function R:OnEvent(event, ...)
      self:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell) -- Decide if we should increment an attempt count for this NPC
      numChecked = numChecked + 1
     else
-     self:Debug("Didn't check guid: "..guid or "nil")
+     --self:Debug("Didn't check guid: "..guid or "nil")
     end -- Loop through all NPC GUIDs being looted (will be 1 for single-target looting pre-5.0)
    end -- Haven't seen this corpse yet
   end -- Loop through all loot slots (for AoE looting)
