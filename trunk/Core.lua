@@ -1065,6 +1065,13 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell)
  -- If the loot is the result of certain spell casts (mining, herbing, opening, picklock, archaeology, disenchanting, etc), stop here
  if spells[curSpell] then return end
 
+	-- If the loot is not from an NPC (could be from yourself or a world object), we don't want to process this
+	local unitType = tonumber(guid:sub(5, 5), 16) or 0
+	if unitType ~= 3 and unitType ~= 5 then
+		self:Debug("This loot isn't from an NPC, so disregarding. Loot source identified as unit type "..unitType)
+		return
+	end
+
 	-- We're interested in this loot, process further
  guids[guid] = true
   
@@ -2409,7 +2416,7 @@ end
 function R:UpdateSession()
 	if inSession then
 		sessionLast = GetTime()
-  self:Debug("Extending current session")
+  --self:Debug("Extending current session")
   if sessionTimer then self:CancelTimer(sessionTimer, true) end
   sessionTimer = self:ScheduleTimer(timeoutSession, SESSION_LENGTH)
 	else
