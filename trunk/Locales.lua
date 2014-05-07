@@ -518,6 +518,7 @@ L["Zandalari Kneebiter"] = true
 L["Zandalari Toenibbler"] = true
 L["Rotten Helper Box"] = true
 L["Imperial Moth"] = true
+L["Life-Binder's Handmaiden"] = true
 
 
 
