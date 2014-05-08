@@ -337,6 +337,7 @@ local GetSelectedArtifactInfo = _G.GetSelectedArtifactInfo
 local GetStatistic = _G.GetStatistic
 local GetLootSourceInfo = _G.GetLootSourceInfo
 local pet_journal = _G.C_PetJournal
+local GetCurrentMapAreaID = _G.GetCurrentMapAreaID
 
 local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
 local COMBATLOG_OBJECT_AFFILIATION_MINE = _G.COMBATLOG_OBJECT_AFFILIATION_MINE
@@ -911,7 +912,7 @@ function R:OnEvent(event, ...)
   if fishing and opening == false then
    if isPool then self:Debug("Successfully fished from a pool")
    else self:Debug("Successfully fished") end
-   if fishzones[zone] or fishzones[subzone] or fishzones[zone_t] or fishzones[subzone_t] then
+   if fishzones[tostring(GetCurrentMapAreaID())] or fishzones[zone] or fishzones[subzone] or fishzones[zone_t] or fishzones[subzone_t] then
     -- We're interested in fishing in this zone; let's find the item(s) involved
     for k, v in pairs(self.db.profile.groups) do
      if type(v) == "table" then
@@ -921,7 +922,7 @@ function R:OnEvent(event, ...)
          local found = false
          if vv.method == FISHING and vv.zones ~= nil and type(vv.zones) == "table" then
           for kkk, vvv in pairs(vv.zones) do
-           if vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv == lbsz[subzone] or vvv == zone_t or vvv == subzone_t or vvv == lbz[zone_t] or vvv == subzone or vvv == lbsz[subzone_t] then
+           if vvv == tostring(GetCurrentMapAreaID()) or vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv == lbsz[subzone] or vvv == zone_t or vvv == subzone_t or vvv == lbz[zone_t] or vvv == subzone or vvv == lbsz[subzone_t] then
             if (vv.requiresPool and isPool) or not vv.requiresPool then
              found = true
             end
@@ -1058,8 +1059,8 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell)
 
  local npcid = self:GetNPCIDFromGUID(guid)
  if npcs[npcid] == nil then -- Not an NPC we need, abort
-  -- Not a zone we need either, abort
-  if zones[zone] == nil and zones[lbz[zone] or "."] == nil and zones[lbsz[subzone] or "."] == nil and zones[zone_t] == nil and zones[subzone_t] == nil and zones[lbz[zone_t] or "."] == nil and zones[lbsz[subzone_t] or "."] == nil then return end
+  -- Not a zone we need, abort
+  if zones[tostring(GetCurrentMapAreaID())] == nil and zones[zone] == nil and zones[lbz[zone] or "."] == nil and zones[lbsz[subzone] or "."] == nil and zones[zone_t] == nil and zones[subzone_t] == nil and zones[lbz[zone_t] or "."] == nil and zones[lbsz[subzone_t] or "."] == nil then return end
  end
 
  -- If the loot is the result of certain spell casts (mining, herbing, opening, picklock, archaeology, disenchanting, etc), stop here
@@ -1102,6 +1103,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell)
       local found = false
       if vv.method == ZONE and vv.zones ~= nil and type(vv.zones) == "table" then
        for kkk, vvv in pairs(vv.zones) do
+								if tonumber(vvv) ~= nil and tonumber(vvv) == GetCurrentMapAreaID() then found = true end
         if vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv == lbsz[subzone] or vvv == zone_t or vvv == subzone_t or vvv == lbz[zone_t] or vvv == subzone or vvv == lbsz[subzone_t] then found = true end
        end
       end

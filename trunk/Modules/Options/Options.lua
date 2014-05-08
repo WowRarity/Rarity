@@ -747,7 +747,7 @@ function R:CreateGroup(options, group, isUser)
      order = newOrder(),
      width = "double",
 			  name = L["Zones"],
-     desc = L["A comma-separated list of the zones or sub-zones this item can be found in. Enter zone names with proper spelling, capitalization, and punctuation. They can be entered either in US English or your client's local language. Use WowHead or a similar service to make sure you're entering the zone names perfectly."],
+     desc = L["A comma-separated list of the zones or sub-zones this item can be found in. For zones, you can enter either the Map ID (i.e. 811 is Vale of Eternal Blossoms), or the full name of the zone. For sub-zones, you must enter the full name of the sub-zone.\n\nEnter zone names with proper spelling, capitalization, and punctuation. They can be entered either in US English or your client's local language. Use WowHead or a similar service to make sure you're entering the zone names perfectly.\n\nPLEASE NOTE: Zone translations may not be correct. For zones, it is highly recommended that you use the Map ID instead of the name. For sub-zones, you must enter the name. If sub-zone detection isn't working for you, please visit the LibBabble-SubZone-3.0 library page on wowace.com and update the translations for your language."],
 			  set = function(info, val)
 				  if strtrim(val) == "" then alert(L["You must enter at least one zone."])
       else
@@ -757,10 +757,18 @@ function R:CreateGroup(options, group, isUser)
          alert(L["Please enter a comma-separated list of zones."])
          return
         else
-         if lbz:GetUnstrictLookupTable()[v] == nil and lbz:GetReverseLookupTable()[v] == nil and lbsz:GetUnstrictLookupTable()[v] == nil and lbsz:GetReverseLookupTable()[v] == nil then
-          alert(format(L["One of the zones or sub-zones you entered (%s) cannot be found. Check that it is spelled correctly, and is either US English or your client's local language."], v))
-          return
-         end
+									if tonumber(v) == nil then
+										if lbz:GetUnstrictLookupTable()[v] == nil and lbz:GetReverseLookupTable()[v] == nil and lbsz:GetUnstrictLookupTable()[v] == nil and lbsz:GetReverseLookupTable()[v] == nil then
+											alert(format(L["One of the zones or sub-zones you entered (%s) cannot be found. Check that it is spelled correctly, and is either US English or your client's local language."], v))
+											return
+										end
+									else
+										local mapID = tonumber(v)
+										if mapID <= 0 then
+											alert(format(L["One of the Map IDs you entered (%s) is incorrect. Please enter numbers larger than zero."], v))
+											return
+										end
+									end
         end
        end
        item.zones = {}

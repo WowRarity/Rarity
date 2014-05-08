@@ -138,7 +138,8 @@ L["Turn this on if the item requires a group to obtain, but every player gets an
 L["Archaeology race"] = true
 L["Determines which race includes this archaeology project."] = true
 L["Zones"] = true
-L["A comma-separated list of the zones or sub-zones this item can be found in. Enter zone names with proper spelling, capitalization, and punctuation. They can be entered either in US English or your client's local language. Use WowHead or a similar service to make sure you're entering the zone names perfectly."] = true
+L["A comma-separated list of the zones or sub-zones this item can be found in. For zones, you can enter either the Map ID (i.e. 811 is Vale of Eternal Blossoms), or the full name of the zone. For sub-zones, you must enter the full name of the sub-zone.\n\nEnter zone names with proper spelling, capitalization, and punctuation. They can be entered either in US English or your client's local language. Use WowHead or a similar service to make sure you're entering the zone names perfectly.\n\nPLEASE NOTE: Zone translations may not be correct. For zones, it is highly recommended that you use the Map ID instead of the name. For sub-zones, you must enter the name. If sub-zone detection isn't working for you, please visit the LibBabble-SubZone-3.0 library page on wowace.com and update the translations for your language."] = true
+L["One of the Map IDs you entered (%s) is incorrect. Please enter numbers larger than zero."] = true
 L["You must enter at least one zone."] = true
 L["Please enter a comma-separated list of zones."] = true
 L["One of the zones or sub-zones you entered (%s) cannot be found. Check that it is spelled correctly, and is either US English or your client's local language."] = true
