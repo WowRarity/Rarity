@@ -880,7 +880,7 @@ function R:OnEvent(event, ...)
  -- You opened a loot window on a corpse or fishing node.
  -------------------------------------------------------------------------------------
 	if event == "LOOT_OPENED" then
-		self:Debug("LOOT_OPENED with target "..(UnitGUID("target") or ""))
+		self:Debug("LOOT_OPENED with target: "..(UnitGUID("target") or "NO TARGET"))
   local zone = GetRealZoneText()
   local subzone = GetSubZoneText()
   local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
@@ -1059,9 +1059,12 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell)
 
  local npcid = self:GetNPCIDFromGUID(guid)
  if npcs[npcid] == nil then -- Not an NPC we need, abort
+		self:Debug("NPC ID not on the list of needed NPCs: "..(npcid or "nil"))
   -- Not a zone we need, abort
   if zones[tostring(GetCurrentMapAreaID())] == nil and zones[zone] == nil and zones[lbz[zone] or "."] == nil and zones[lbsz[subzone] or "."] == nil and zones[zone_t] == nil and zones[subzone_t] == nil and zones[lbz[zone_t] or "."] == nil and zones[lbsz[subzone_t] or "."] == nil then return end
- end
+ else
+		self:Debug("NPC ID is one we need: "..(npcid or "nil"))
+	end
 
  -- If the loot is the result of certain spell casts (mining, herbing, opening, picklock, archaeology, disenchanting, etc), stop here
  if spells[curSpell] then return end
@@ -1069,7 +1072,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell)
 	-- If the loot is not from an NPC (could be from yourself or a world object), we don't want to process this
 	local unitType = tonumber(guid:sub(5, 5), 16) or 0
 	if unitType ~= 3 and unitType ~= 5 then
-		self:Debug("This loot isn't from an NPC, so disregarding. Loot source identified as unit type "..unitType)
+		self:Debug("This loot isn't from an NPC; disregarding. Loot source identified as unit type: "..(unitType or "nil"))
 		return
 	end
 
