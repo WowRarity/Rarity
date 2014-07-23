@@ -292,6 +292,7 @@ local TBC = "TBC"
 local WOTLK = "WOTLK"
 local CATA = "CATA"
 local MOP = "MOP"
+local WOD = "WOD"
 local HOLIDAY = "HOLIDAY"
 local categories = {
 	[BASE] =    L["Classic"],
@@ -299,6 +300,7 @@ local categories = {
 	[WOTLK] =   L["Wrath of the Lich King"],
 	[CATA] =    L["Cataclysm"],
 	[MOP] =     L["Mists of Pandaria"],
+	[WOD] =     L["Warlords of Draenor"],
 	[HOLIDAY] = L["Holiday"],
 }
 
@@ -338,6 +340,7 @@ local GetStatistic = _G.GetStatistic
 local GetLootSourceInfo = _G.GetLootSourceInfo
 local pet_journal = _G.C_PetJournal
 local GetCurrentMapAreaID = _G.GetCurrentMapAreaID
+local mount_journal = _G.C_MountJournal
 
 local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
 local COMBATLOG_OBJECT_AFFILIATION_MINE = _G.COMBATLOG_OBJECT_AFFILIATION_MINE
@@ -2113,24 +2116,27 @@ function R:ScanExistingItems(reason)
  self:Debug("Scanning for existing items ("..reason..")")
 
  -- Mounts
- for id = 1, GetNumCompanions("MOUNT") do
-		local spellId = select(3, GetCompanionInfo("MOUNT", id))
+ for id = 1, mount_journal.GetNumMounts() do
+		local creatureName, spellId, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected = mount_journal.GetMountInfo(id)
   
   -- Special cases
   --if spellId == 132036 then R.db.profile.groups.items["Skyshard"].enabled = false end -- Skyshard (Reins of the Thundering Ruby Cloud Serpent)
 
-  for k, v in pairs(R.db.profile.groups) do
-   if type(v) == "table" then
-    for kk, vv in pairs(v) do
-     if type(vv) == "table" then
-      if vv.spellId and vv.spellId == spellId and not vv.repeatable then
-       vv.enabled = false
-       vv.found = true
-      end
-     end
-    end
-   end
-  end
+		if isCollected then
+			for k, v in pairs(R.db.profile.groups) do
+				if type(v) == "table" then
+					for kk, vv in pairs(v) do
+						if type(vv) == "table" then
+							if vv.spellId and vv.spellId == spellId and not vv.repeatable then
+								vv.enabled = false
+								vv.found = true
+							end
+						end
+					end
+				end
+			end
+		end
+
  end
 
 	-- Companions that this character learned

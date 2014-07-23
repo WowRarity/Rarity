@@ -1,5 +1,5 @@
 ## Author: Allara
-## Interface: 50400
+## Interface: 60000
 ## Notes: Rarity configuration. Use AddonLoader to load this on demand.
 ## Title: Rarity [|caaedc99fOptions|r]
 ## Dependencies: Rarity

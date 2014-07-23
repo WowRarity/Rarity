@@ -17,6 +17,7 @@ local TBC = "TBC"
 local WOTLK = "WOTLK"
 local CATA = "CATA"
 local MOP = "MOP"
+local WOD = "WOD"
 local HOLIDAY = "HOLIDAY"
 
 -- Methods of obtaining
@@ -352,6 +353,17 @@ function R:PrepareOptions()
 						  get = function() return self.db.profile.cats[MOP] end,
 						  set = function(info, val)
 							  self.db.profile.cats[MOP] = val
+							  self:UpdateText()
+						  end,
+					  },
+
+					  wod = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Warlords of Draenor"],
+						  get = function() return self.db.profile.cats[WOD] end,
+						  set = function(info, val)
+							  self.db.profile.cats[WOD] = val
 							  self:UpdateText()
 						  end,
 					  },
