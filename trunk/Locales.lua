@@ -222,6 +222,10 @@ L["Mogu"] = true
 L["Enable Coins"] = true
 L["When any good-luck coin is used within about 90 seconds of an attempt on this item, another attempt will be counted for this item. Only enable this for items which can legitimately obtained from coin rolls."] = true
 L["Warlords of Draenor"] = true
+L["Arakkoa"] = true
+L["Draenor Clans"] = true
+L["Ogre"] = true
+
 
 
 

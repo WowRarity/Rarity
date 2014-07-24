@@ -17,6 +17,36 @@ local lbz = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
 local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 --
 
+
+--[[
+   WARLORDS OF DRAENOR
+   TO-DO LIST
+			
+			http://wowpedia.org/Patch_6.0.1/API_changes
+
+   Fishing nodes
+   Mining nodes
+   New good-luck coin types, if any
+
+   Mounts
+   Pets
+
+   Investigate new difficulty IDs and how they interact with existing detection, if any:
+					difficultyID 14 (Normal flex10-30, previously "Flex")
+					difficultyID 15 (Heroic flex10-30, new)
+					difficultyID 16 (Mythic 20, new)
+					difficultyID 17 (Looking For Raid flex10-30, new)
+					
+			New Globally Unique Identifier format:
+					For players: Player:[server ID]:[player UID] (Example: "Player:976:0002FD64")
+					For creatures, pets, objects, and vehicles: [Unit type]:0:[server ID]:[instance ID]:[zone UID]:[ID]:[Spawn UID] (Example: "Creature:0:976:0:11:31146:000136DF91")
+					Unit Type Names: "Creature", "Pet", "GameObject", and "Vehicle"
+					For vignettes: Vignette:0:[server ID]:[instance ID]:[zone UID]:0:[spawn UID] (Example: "Vignette:0:970:1116:7:0:0017CAE465" for rare mob Sulfurious)
+
+]]--
+
+
+
 --[[
       VARIABLES ----------------------------------------------------------------------------------------------------------------
   ]]

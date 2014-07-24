@@ -49,6 +49,8 @@ R.string_methods = {
 }
 
 -- Archaeology races
+--   This string in-game will list all archaology races:
+--      /run for race_id = 1, GetNumArchaeologyRaces() do Rarity:Print(GetArchaeologyRaceInfo(race_id)) end
 R.string_archraces = {
  [1] = L["Dwarf"],
  [2] = L["Draenei"],
@@ -62,6 +64,9 @@ R.string_archraces = {
  [10] = L["Mantid"],
 	[11] = L["Pandaren"],
 	[12] = L["Mogu"],
+	[13] = L["Arakkoa"],
+	[14] = L["Draenor Clans"],
+	[15] = L["Ogre"],
 }
 
 -- Feed text

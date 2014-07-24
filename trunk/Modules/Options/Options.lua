@@ -268,6 +268,7 @@ function R:PrepareOptions()
 					hideHighChance = {
 						type = "toggle",
 						order = newOrder(),
+						width = "double",
 						name = L["Hide high chance items"],
 						desc = L["When on, this option hides any item with a drop chance of 1 in 49 or better. The item is merely hidden from the tooltip in order to keep it clean. Items hidden in this fashion are still tracked like normal."],
 						get = function() return self.db.profile.hideHighChance end,
@@ -629,7 +630,6 @@ function R:CreateGroup(options, group, isUser)
 					type = "select",
 					name = L["Type of item"],
 					desc = L["Determines what type of item this is."],
-     width = "half",
 					values = {
 						[MOUNT] = L["Mount"],
 						[PET] = L["Companion"],
@@ -729,21 +729,7 @@ function R:CreateGroup(options, group, isUser)
 					type = "select",
 					name = L["Archaeology race"],
 					desc = L["Determines which race includes this archaeology project."],
-     width = "half",
-					values = {
-						[1] = L["Dwarf"],
-						[2] = L["Draenei"],
-						[3] = L["Fossil"],
-						[4] = L["Night Elf"],
-						[5] = L["Nerubian"],
-						[6] = L["Orc"],
-						[7] = L["Tol'vir"],
-						[8] = L["Troll"],
-						[9] = L["Vrykul"],
-						[10] = L["Mantid"],
-						[11] = L["Pandaren"],
-						[12] = L["Mogu"],
-					},
+					values = R.string_archraces,
 					get = function() return item.raceId end,
 					set = function(info, val)
 						item.raceId = val
@@ -957,7 +943,6 @@ function R:CreateGroup(options, group, isUser)
 					type = "toggle",
 					name = L["Track this"],
 					desc = L["Determines whether tracking should be enabled for this item. Items that are disabled will not appear in the tooltip."],
-     width = "half",
 					get = function()
       if item.enabled == false then return false else return true end
      end,
@@ -971,7 +956,6 @@ function R:CreateGroup(options, group, isUser)
 					order = newOrder(),
 					type = "toggle",
 					name = "Found",
-     width = "half",
 					get = function()
       if item.found == true then return true else return false end
      end,
@@ -989,7 +973,6 @@ function R:CreateGroup(options, group, isUser)
 					type = "toggle",
 					name = L["Repeatable"],
 					desc = L["Determines whether you want to repeatedly farm this item. If you turn this on and find the item, Rarity will mark the item as un-found after a few seconds."],
-     width = "half",
 					get = function()
       if item.repeatable == true then return true else return false end
      end,
@@ -998,11 +981,6 @@ function R:CreateGroup(options, group, isUser)
       if val then item.enabled = true end
 						self:Update("OPTIONS")
 					end,
-     --[[hidden = function()
-      if R.db.profile.debugMode then return false end
-      --if item.method == USE then return true end
-      if item.type == MOUNT or item.type == ARCH then return true else return false end
-     end,]]
 				},
 
 				enableAnnouncements = {
@@ -1010,7 +988,6 @@ function R:CreateGroup(options, group, isUser)
 					type = "toggle",
 					name = L["Announce"],
 					desc = L["Enables announcements whenever you complete a new attempt toward this item."],
-     width = "half",
 					get = function()
       if item.announce == false then return false else return true end
      end,
@@ -1068,7 +1045,6 @@ function R:CreateGroup(options, group, isUser)
 					type = "toggle",
 					name = L["Enable Coins"],
 					desc = L["When any good-luck coin is used within about 90 seconds of an attempt on this item, another attempt will be counted for this item. Only enable this for items which can legitimately obtained from coin rolls."],
-     width = "half",
 					get = function()
       if item.enableCoin == true then return true else return false end
      end,
@@ -1083,7 +1059,6 @@ function R:CreateGroup(options, group, isUser)
 		  groupSize = {
 			  type = "input",
      order = newOrder(),
-     width = "half",
 			  name = L["Group size"],
      desc = L["The number of players it takes to obtain the item. This will lower your chances of obtaining the item."].." "..L["Enter 1 to mark the item as soloable."],
 			  set = function(info, val)
@@ -1103,6 +1078,7 @@ function R:CreateGroup(options, group, isUser)
 				raid25 = {
 					order = newOrder(),
 					type = "toggle",
+					width = "double",
 					name = L["Requires a 25-player raid"],
 					desc = L["Determines whether this item can only be obtained in 25-player mode."],
 					get = function()
@@ -1120,7 +1096,6 @@ function R:CreateGroup(options, group, isUser)
 					type = "toggle",
 					name = L["Equal odds"],
 					desc = L["Turn this on if the item requires a group to obtain, but every player gets an equal chance to obtain the item. This currently only applies to some of the holiday mounts. When you turn this on, Rarity will stop lowering your chance to obtain based on the group size."],
-     width = "half",
 					get = function()
       if item.equalOdds == true then return true else return false end
      end,
@@ -1136,7 +1111,6 @@ function R:CreateGroup(options, group, isUser)
 					type = "toggle",
 					name = L["Horde only"],
 					desc = L["This item is only available to Horde players."],
-     width = "half",
 					get = function()
       if item.requiresHorde == true then return true else return false end
      end,
@@ -1152,7 +1126,6 @@ function R:CreateGroup(options, group, isUser)
 					type = "toggle",
 					name = L["Alliance only"],
 					desc = L["This item is only available to Alliance players."],
-     width = "half",
 					get = function()
       if item.requiresAlliance == true then return true else return false end
      end,
