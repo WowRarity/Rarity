@@ -27,6 +27,7 @@ local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
    Fishing nodes
    Mining nodes
    New good-luck coin types, if any
+			All WoD zones with pools for Sea Turtle (http://wowpedia.org/MapID)
 
    Mounts
    Pets
@@ -36,6 +37,18 @@ local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 					difficultyID 15 (Heroic flex10-30, new)
 					difficultyID 16 (Mythic 20, new)
 					difficultyID 17 (Looking For Raid flex10-30, new)
+				 -----------------------
+					Consolidate these three checks into a single multi-select difficulty: R:IsHeroic(), R:IsRaid25(), R:IsHorde()
+					Ace-Config options documentation for multi-select:
+							multiselect
+
+							Basically multiple "toggle" elements condensed into a group of checkboxes, or something else that makes sense in the interface.
+
+							values (table|function) - [key]=value pair table to choose from, key is the value passed to "set", value is the string displayed
+							get (function|methodname) - will be called for every key in values with the key name as last parameter
+							set (function|methodname) - will be called with keyname, state as parameters
+							tristate (boolean) - Make the checkmarks tri-state. Values are cycled through unchecked (false), checked (true), greyed (nil) - in that order.
+				 -----------------------
 					
 			New Globally Unique Identifier format:
 					For players: Player:[server ID]:[player UID] (Example: "Player:976:0002FD64")
@@ -128,6 +141,7 @@ R.coins = {
 	[776] = true, -- Warforged Seal
 }
 
+-- A good place to find updates to this list is in GatherMate2/Constants.lua
 R.fishnodes = {
  [L["Floating Wreckage"]] = true,
  [L["Patch of Elemental Water"]] = true,
