@@ -38,7 +38,7 @@ local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 					difficultyID 16 (Mythic 20, new)
 					difficultyID 17 (Looking For Raid flex10-30, new)
 				 -----------------------
-					Consolidate these three checks into a single multi-select difficulty: R:IsHeroic(), R:IsRaid25(), R:IsHorde()
+					Consolidate these two checks into a single multi-select difficulty: R:IsHeroic(), R:IsRaid25()
 					Ace-Config options documentation for multi-select:
 							multiselect
 
@@ -286,7 +286,6 @@ R.miningnodes = {
 	[L["Rich Kyparite Deposit"]] = true,
 	[L["Trillium Vein"]] = true,
 	[L["Rich Trillium Vein"]] = true,
-	-- Kyparite Ore need to find out what this spawns from
 }
 
 R.opennodes = {
@@ -2159,14 +2158,14 @@ end
 function R:ScanExistingItems(reason)
  self:Debug("Scanning for existing items ("..reason..")")
 
- -- Mounts
- for id = 1, mount_journal.GetNumMounts() do
-		local creatureName, spellId, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected = mount_journal.GetMountInfo(id)
+	 -- Mounts: 5.4.x client
+	if not mount_journal then
+		for id = 1, GetNumCompanions("MOUNT") do
+			local spellId = select(3, GetCompanionInfo("MOUNT", id))
   
-  -- Special cases
-  --if spellId == 132036 then R.db.profile.groups.items["Skyshard"].enabled = false end -- Skyshard (Reins of the Thundering Ruby Cloud Serpent)
+			-- Special cases
+			--if spellId == 132036 then R.db.profile.groups.items["Skyshard"].enabled = false end -- Skyshard (Reins of the Thundering Ruby Cloud Serpent)
 
-		if isCollected then
 			for k, v in pairs(R.db.profile.groups) do
 				if type(v) == "table" then
 					for kk, vv in pairs(v) do
@@ -2180,8 +2179,33 @@ function R:ScanExistingItems(reason)
 				end
 			end
 		end
+	end
 
- end
+ -- Mounts: 6.x client
+	if mount_journal then
+		for id = 1, mount_journal.GetNumMounts() do
+			local creatureName, spellId, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected = mount_journal.GetMountInfo(id)
+  
+			-- Special cases
+			--if spellId == 132036 then R.db.profile.groups.items["Skyshard"].enabled = false end -- Skyshard (Reins of the Thundering Ruby Cloud Serpent)
+
+			if isCollected then
+				for k, v in pairs(R.db.profile.groups) do
+					if type(v) == "table" then
+						for kk, vv in pairs(v) do
+							if type(vv) == "table" then
+								if vv.spellId and vv.spellId == spellId and not vv.repeatable then
+									vv.enabled = false
+									vv.found = true
+								end
+							end
+						end
+					end
+				end
+			end
+
+		end
+	end
 
 	-- Companions that this character learned
  for id = 1, GetNumCompanions("CRITTER") do
