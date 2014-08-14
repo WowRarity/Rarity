@@ -883,7 +883,7 @@ function R:CreateGroup(options, group, isUser)
 			  name = L["Kill Statistic IDs"],
      desc = L["A comma-separated list of Statistic IDs that track the number of kills toward obtaining this item. These statistics will be added together. Use WowHead or a similar service to locate statistic IDs."],
 			  set = function(info, val)
-				  if strtrim(val) == "" then alert(L["You must enter at least one Statistic ID."])
+				  if strtrim(val) == "" then item.statisticId = {}
       else
        local list = { strsplit(",", val) }
        for k, v in pairs(list) do

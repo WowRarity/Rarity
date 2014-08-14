@@ -923,7 +923,7 @@ end
 function R:OnEvent(event, ...)
 
  -------------------------------------------------------------------------------------
- -- You opened a loot window on a corpse or fishing node.
+ -- You opened a loot window on a corpse or fishing node
  -------------------------------------------------------------------------------------
 	if event == "LOOT_OPENED" then
 		self:Debug("LOOT_OPENED with target: "..(UnitGUID("target") or "NO TARGET"))
@@ -1061,7 +1061,7 @@ function R:OnEvent(event, ...)
   if self:InTooltip() then self:ShowTooltip() end
 
 
- -- Detect bank, guild bank, auction house, tradeskill, and trade. This turns off item use detection.
+ -- Detect bank, guild bank, auction house, tradeskill, trade, and mail. This turns off item use detection.
  elseif event == "BANKFRAME_OPENED" then
   bankOpen = true
  elseif event == "GUILDBANKFRAME_OPENED" then
@@ -1403,7 +1403,7 @@ end
 -------------------------------------------------------------------------------------
 
 function R:OnCurrencyUpdate(event)
-self:Debug("Currency updated ("..event..")")
+	self:Debug("Currency updated ("..event..")")
 
 	-- Check if any archaeology projects were solved
 	self:ScanArchFragments(event)
