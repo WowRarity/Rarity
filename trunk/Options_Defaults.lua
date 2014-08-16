@@ -31,6 +31,7 @@ local FISHING = "FISHING"
 local ARCH = "ARCH"
 local SPECIAL = "SPECIAL"
 local MINING = "MINING"
+local COLLECTION = "COLLECTION"
 
 -- Sort modes
 local SORT_NAME = "SORT_NAME"
@@ -46,6 +47,7 @@ R.string_methods = {
  [ARCH] = L["Obtained as an archaeology project"],
  [SPECIAL] = L["Special case"],
  [MINING] = L["Obtained by mining"],
+	[COLLECTION] = L["Obtained by collecting a number of items"],
 }
 
 -- Archaeology races
@@ -162,10 +164,11 @@ function R:PrepareDefaults()
      ["Smoldering Egg of Millagazor"] =                  { cat = CATA, type = MOUNT, method = BOSS, name = GetItemInfo(69224) or L["Smoldering Egg of Millagazor"], spellId = 97493, itemId = 69224, npcs = { 999999 }, chance = 100, statisticId = { 5976, 5977 }, },
      ["Swift Zulian Panther"] =                          { cat = CATA, type = MOUNT, method = BOSS, name = GetItemInfo(68824) or L["Swift Zulian Panther"], spellId = 96499, itemId = 68824, npcs = { 52059 }, chance = 100, },
 					-- 5.x
-					["Reins of the Amber Primordial Direhorn"] =        { cat = MOP, type = MOUNT, method = LOOT, name = GetItemInfo(94230) or L["Reins of the Amber Primordial Direhorn"], spellId = 138424, itemId = 94230, npcs = { 69841 }, chance = 25, },
-     ["Reins of the Jade Primordial Direhorn"] =         { cat = MOP, type = MOUNT, method = LOOT, name = GetItemInfo(94231) or L["Reins of the Jade Primordial Direhorn"], spellId = 138426, itemId = 94231, npcs = { 69842 }, chance = 25, },
+					["Reins of the Amber Primordial Direhorn"] =        { cat = MOP, type = MOUNT, method = NPC, name = GetItemInfo(94230) or L["Reins of the Amber Primordial Direhorn"], spellId = 138424, itemId = 94230, npcs = { 69841 }, chance = 25, },
+     ["Reins of the Bone-White Primal Raptor"] =         { cat = MOP, type = MOUNT, method = COLLECTION, name = GetItemInfo(94290) or L["Reins of the Bone-White Primal Raptor"], spellId = 138640, itemId = 94290, collectedItemId = 94288, chance = 9999, obtain = L["Dropped from dinosaurs on Isle of Giants"], },
+     ["Reins of the Jade Primordial Direhorn"] =         { cat = MOP, type = MOUNT, method = NPC, name = GetItemInfo(94231) or L["Reins of the Jade Primordial Direhorn"], spellId = 138426, itemId = 94231, npcs = { 69842 }, chance = 25, },
      ["Reins of the Thundering Onyx Cloud Serpent"] =    { cat = MOP, type = MOUNT, method = NPC, name = GetItemInfo(104269) or L["Reins of the Thundering Onyx Cloud Serpent"], spellId = 148476, itemId = 104269, npcs = { 73167 }, chance = 100, },
-     ["Reins of the Slate Primordial Direhorn"] =        { cat = MOP, type = MOUNT, method = LOOT, name = GetItemInfo(94229) or L["Reins of the Slate Primordial Direhorn"], spellId = 138425, itemId = 94229, npcs = { 69769 }, chance = 25, },
+     ["Reins of the Slate Primordial Direhorn"] =        { cat = MOP, type = MOUNT, method = NPC, name = GetItemInfo(94229) or L["Reins of the Slate Primordial Direhorn"], spellId = 138425, itemId = 94229, npcs = { 69769 }, chance = 25, },
      
 					--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 					-- Requires a group (some of these may be soloable by certain classes, but not in general)

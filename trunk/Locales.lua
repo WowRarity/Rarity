@@ -225,7 +225,20 @@ L["Warlords of Draenor"] = true
 L["Arakkoa"] = true
 L["Draenor Clans"] = true
 L["Ogre"] = true
-
+L["Obtained by collecting a number of items"] = true
+L["Collect %d %s"] = true
+L["Collected"] = true
+L["Dropped from dinosaurs on Isle of Giants"] = true
+L["Collection complete!"] = true
+L["%d collected - %.2f%%"] = true
+L["Collection Complete"] = true
+L["How many items you've collected so far."] = true
+L["Collection Size"] = true
+L["How many items you need to collect."] = true
+L["Item ID to Collect"] = true
+L["The item ID that you need to collect. Rarity uses the number of this item that you have in your bags as your progress. Use WowHead or a similar service to lookup item IDs. This must be a valid number and must not be used by another item."] = true
+L["You entered an item ID that is already set as the collected item for something else."] = true
+L["%s: %d collected"] = true
 
 
 
@@ -525,6 +538,7 @@ L["Zandalari Toenibbler"] = true
 L["Rotten Helper Box"] = true
 L["Imperial Moth"] = true
 L["Life-Binder's Handmaiden"] = true
+L["Reins of the Bone-White Primal Raptor"] = true
 
 
 

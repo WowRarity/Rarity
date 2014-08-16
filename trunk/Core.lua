@@ -117,6 +117,10 @@ local opening = false
 local fishingTimer
 local FISHING_DELAY = 19
 local trackedItem
+local trackedItem2
+local lastAttemptTime
+local lastAttemptItem
+local DUAL_TRACK_THRESHOLD = 5
 local isPool = false
 local lastNode
 local tickTimer
@@ -313,6 +317,7 @@ local FISHING = "FISHING"
 local ARCH = "ARCH"
 local SPECIAL = "SPECIAL"
 local MINING = "MINING"
+local COLLECTION = "COLLECTION"
 
 -- Feed text
 local FEED_MINIMAL = "FEED_MINIMAL"
@@ -464,6 +469,7 @@ do
 
 		self:ScanExistingItems("INITIALIZING") -- Checks for items you already have
   self:ScanBags() -- Initialize our inventory list, as well as checking if you've obtained an item
+		self:OnBagUpdate() -- This will update counters for collection items
 		self:OnCurrencyUpdate("INITIALIZING") -- Prepare our currency list
   self:UpdateInterestingThings()
   self:FindTrackedItem()
@@ -513,6 +519,7 @@ do
   self:ScheduleTimer(function()
 			R:ScanBags()
 			R:OnCurrencyUpdate("DELAYED INIT")
+			R:OnBagUpdate()
 		end, 10)
 
   -- Clean up session info
@@ -851,8 +858,9 @@ function R:UpdateInterestingThings()
        local itemName = GetItemInfo(vv.itemId)
        if itemName then architems[itemName] = vv end
       end
-      if vv.itemId ~= nil then items[vv.itemId] = vv end
-      if vv.itemId2 ~= nil then items[vv.itemId2] = vv end
+      if vv.itemId ~= nil and vv.method ~= COLLECTION then items[vv.itemId] = vv end
+      if vv.itemId2 ~= nil and vv.method ~= COLLECTION then items[vv.itemId2] = vv end
+						if vv.method == COLLECTION and vv.collectedItemId ~= nil then items[vv.collectedItemId] = vv end
      end
     end
    end
@@ -1050,7 +1058,7 @@ function R:OnEvent(event, ...)
     if itemLink then
 				 local _, itemId = strsplit(":", itemLink)
      itemId = tonumber(itemId)
-     if items[itemId] ~= nil then
+     if items[itemId] ~= nil and items[itemId].method ~= COLLECTION then
       self:FoundItem(itemId, items[itemId])
      end
     end
@@ -1225,13 +1233,36 @@ function R:OnBagUpdate()
    end
   end
 
+
 		-- Check for an increase in quantity of any items we're watching for
   for k, v in pairs(bagitems) do
-   if (bagitems[k] or 0) > (tempbagitems[k] or 0) then -- An inventory item went up in count
-    if items[k] and items[k].enabled ~= false then
-     self:FoundItem(k, items[k])
-    end
-   end
+
+			-- Handle collection items
+			if items[k] and items[k].enabled ~= false then
+				if items[k].method == COLLECTION then
+					local originalCount = (items[k].attempts or 0)
+					local bagCount = (bagitems[k] or 0)
+					local goal = (items[k].chance or 100)
+					items[k].lastAttempts = 0
+					if items[k].attempts ~= bagCount then
+						items[k].attempts = bagCount
+						self:Update("BAG_UPDATE")
+					end
+					if originalCount < bagCount and originalCount < goal and bagCount >= goal then
+						self:FoundItem(k, items[k])
+					elseif originalCount < bagCount then
+						self:OutputAttempts(items[k])
+					end
+				end
+			end
+
+			-- Other items
+			if (bagitems[k] or 0) > (tempbagitems[k] or 0) then -- An inventory item went up in count
+				if items[k] and items[k].enabled ~= false and items[k].method ~= COLLECTION then
+					self:FoundItem(k, items[k])
+				end
+			end
+
   end
 
  end
@@ -1552,7 +1583,7 @@ do
   end
 
   -- Feed text
-  itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(trackedItem.itemId)
+  local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(trackedItem.itemId)
   if not itemTexture then dataobj.icon = [[Interface\Icons\spell_nature_forceofnature]]
   else dataobj.icon = itemTexture end
   attempts = 0
@@ -1560,26 +1591,38 @@ do
   if trackedItem.lastAttempts then attempts = attempts - trackedItem.lastAttempts end
   if trackedItem.realAttempts and trackedItem.found and not trackedItem.repeatable then attempts = trackedItem.realAttempts end
   if trackedItem.found and not trackedItem.repeatable then
-   if attempts == 1 then dataobj.text = format(L["Found on your first attempt!"], attempts)
-   else dataobj.text = format(L["Found after %d attempts!"], attempts) end
+			if trackedItem.method == COLLECTION then
+				dataobj.text = L["Collection complete!"]
+			else
+				if attempts == 1 then dataobj.text = format(L["Found on your first attempt!"], attempts)
+				else dataobj.text = format(L["Found after %d attempts!"], attempts) end
+			end
    chance = 1.0
   else
-   dropChance = (1.00 / (trackedItem.chance or 100))
-   if trackedItem.method == BOSS and trackedItem.groupSize ~= nil and trackedItem.groupSize > 1 and not trackedItem.equalOdds then dropChance = dropChance / trackedItem.groupSize end
-   chance = 100 * (1 - math.pow(1 - dropChance, attempts))
-   if self.db.profile.feedText == FEED_MINIMAL then
-    if attempts == 1 then dataobj.text = format(L["%d attempt"], attempts)
-    else dataobj.text = format(L["%d attempts"], attempts) end
-   elseif self.db.profile.feedText == FEED_VERBOSE then
-    if attempts == 1 then dataobj.text = format(L["%s: %d attempt - %.2f%%"], itemLink or trackedItem.name, attempts, chance)
-    else dataobj.text = format(L["%s: %d attempts - %.2f%%"], itemLink or trackedItem.name, attempts, chance) end
-   else
-    if attempts == 1 then dataobj.text = format(L["%d attempt - %.2f%%"], attempts, chance)
-    else dataobj.text = format(L["%d attempts - %.2f%%"], attempts, chance) end
-   end
+			if trackedItem.method == COLLECTION then
+				chance = (trackedItem.attempts or 0) / (trackedItem.chance or 100)
+				if chance < 0 then chance = 0 end
+				if chance > 1 then chance = 1 end
+				chance = chance * 100
+				dataobj.text = format(L["%d collected - %.2f%%"], attempts, chance)
+			else
+				dropChance = (1.00 / (trackedItem.chance or 100))
+				if trackedItem.method == BOSS and trackedItem.groupSize ~= nil and trackedItem.groupSize > 1 and not trackedItem.equalOdds then dropChance = dropChance / trackedItem.groupSize end
+				chance = 100 * (1 - math.pow(1 - dropChance, attempts))
+				if self.db.profile.feedText == FEED_MINIMAL then
+					if attempts == 1 then dataobj.text = format(L["%d attempt"], attempts)
+					else dataobj.text = format(L["%d attempts"], attempts) end
+				elseif self.db.profile.feedText == FEED_VERBOSE then
+					if attempts == 1 then dataobj.text = format(L["%s: %d attempt - %.2f%%"], itemLink or trackedItem.name, attempts, chance)
+					else dataobj.text = format(L["%s: %d attempts - %.2f%%"], itemLink or trackedItem.name, attempts, chance) end
+				else
+					if attempts == 1 then dataobj.text = format(L["%d attempt - %.2f%%"], attempts, chance)
+					else dataobj.text = format(L["%d attempts - %.2f%%"], attempts, chance) end
+				end
+			end
   end
 
-  -- Bar
+  -- Bar 1
   if self.bar then
    self.barGroup:RemoveBar(self.bar)
   end
@@ -1596,6 +1639,36 @@ do
   if not self.db.profile.bar.visible then self.barGroup:Hide() else self.barGroup:Show() end
   if not self.db.profile.bar.anchor then self.barGroup:HideAnchor() else self.barGroup:ShowAnchor() end
   if not self.db.profile.bar.locked then self.barGroup:Unlock() else self.barGroup:Lock() end
+
+		-- Bar 2
+		if not trackedItem2 then
+			self.barGroup:RemoveBar("Track2")
+		else
+			local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(trackedItem2.itemId)
+			attempts = 0
+			if trackedItem2.attempts then attempts = trackedItem2.attempts end
+			if trackedItem2.lastAttempts then attempts = attempts - trackedItem2.lastAttempts end
+			if trackedItem2.realAttempts and trackedItem2.found and not trackedItem2.repeatable then attempts = trackedItem2.realAttempts end
+			if trackedItem2.found and not trackedItem2.repeatable then
+				chance = 1.0
+			else
+				if trackedItem2.method == COLLECTION then
+					chance = (trackedItem2.attempts or 0) / (trackedItem2.chance or 100)
+					if chance < 0 then chance = 0 end
+					if chance > 1 then chance = 1 end
+					chance = chance * 100
+				else
+					dropChance = (1.00 / (trackedItem2.chance or 100))
+					if trackedItem2.method == BOSS and trackedItem2.groupSize ~= nil and trackedItem2.groupSize > 1 and not trackedItem2.equalOdds then dropChance = dropChance / trackedItem2.groupSize end
+					chance = 100 * (1 - math.pow(1 - dropChance, attempts))
+				end
+			end
+			if not chance then chance = 0 end
+			if chance > 100 then chance = 100 end
+			if chance < 0 then chance = 0 end
+			local text = format("%s: %d (%.2f%%)", trackedItem2.name or "", attempts, chance)
+			self.barGroup:NewCounterBar("Track2", text, chance, 100, itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
+		end
  end
 
 	function dataobj.OnEnter(self)
@@ -1720,11 +1793,16 @@ do
     end
    end
   end
-  tooltip2:AddLine(colorize(format(L["1 in %d chance"], item.chance or 100), white))
+		if item.method == COLLECTION then
+			tooltip2:AddLine(colorize(format(L["Collect %d %s"], item.chance or 100, (GetItemInfo(item.collectedItemId or 0)) or ""), white))
+			if item.obtain then tooltip2:AddLine(colorize(item.obtain, white)) end
+		else
+			tooltip2:AddLine(colorize(format(L["1 in %d chance"], item.chance or 100), white))
+		end
   local dropChance = (1.00 / (item.chance or 100))
   if item.method == BOSS and item.groupSize ~= nil and item.groupSize > 1 and not item.equalOdds then dropChance = dropChance / item.groupSize end
   local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
-  tooltip2:AddLine(colorize(format(L["Lucky if you obtain in %d or less"], medianLoots), gray))
+  if item.method ~= COLLECTION then tooltip2:AddLine(colorize(format(L["Lucky if you obtain in %d or less"], medianLoots), gray)) end
 
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
 
@@ -1732,20 +1810,31 @@ do
   local tracked = R:FindTrackedItem()
   if not inSession or not len or tracked ~= item then len = 0 end
 
-  if item.totalFinds then
+  if item.totalFinds and item.method ~= COLLECTION then
    tooltip2:AddLine(colorize(L["Since last drop"], yellow))
   end
   local attempts = (item.attempts or 0) - (item.lastAttempts or 0)
-  tooltip2:AddLine(L["Attempts"], attempts)
+  if item.method == COLLECTION then
+			tooltip2:AddLine(L["Collected"], attempts)
+		else
+			tooltip2:AddLine(L["Attempts"], attempts)
+		end
   if item.method == NPC or item.method == ZONE or item.method == FISHING or item.method == USE then
    tooltip2:AddLine(L["Time spent farming"], R:FormatTime((item.time or 0) - (item.lastTime or 0) + len))
   end
   if attempts > 0 then
-   local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
-   tooltip2:AddLine(L["Chance so far"], format("%.2f%%", chance))
+			if item.method == COLLECTION then
+				local chance = 100 * (attempts / (item.chance or 100))
+				if chance > 100 then chance = 100 end
+				if chance < 0 then chance = 0 end
+				tooltip2:AddLine(L["Progress"], format("%.2f%%", chance))
+			else
+				local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
+				tooltip2:AddLine(L["Chance so far"], format("%.2f%%", chance))
+			end
   end
   
-  if item.totalFinds then
+  if item.totalFinds and item.method ~= COLLECTION then
 		 tooltip2:AddSeparator(1, 1, 1, 1, 1)
    tooltip2:AddLine(colorize(L["Total"], yellow))
    local attempts = (item.attempts or 0)
@@ -1767,7 +1856,7 @@ do
    end
   end
 
-  if item.dates then
+  if item.dates and item.method ~= COLLECTION then
    tooltip2:AddSeparator(1, 1, 1, 1, 1)
 
    if item.session then
@@ -1872,6 +1961,7 @@ do
    ChatEdit_InsertLink(s)
   else
    if trackedItem ~= item and inSession then R:EndSession() end
+			trackedItem2 = nil
    R:UpdateTrackedItem(item)
   end
  end
@@ -1914,12 +2004,23 @@ do
 								local attempts = v.attempts or 0
 								if type(attempts) ~= "number" then attempts = 0 end
 								if v.lastAttempts then attempts = attempts - v.lastAttempts end
-								local dropChance = (1.00 / (v.chance or 100))
-								if v.method == BOSS and v.groupSize ~= nil and tonumber(v.groupSize) ~= nil and v.groupSize > 1 and not v.equalOdds then dropChance = dropChance / v.groupSize end
-								local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
-								local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
-								local lucky = colorize(L["Lucky"], green)
-								if medianLoots < attempts then lucky = colorize(L["Unlucky"], red) end
+
+								local lucky, chance, dropChance
+
+								if v.method ~= COLLECTION then
+									dropChance = (1.00 / (v.chance or 100))
+									if v.method == BOSS and v.groupSize ~= nil and tonumber(v.groupSize) ~= nil and v.groupSize > 1 and not v.equalOdds then dropChance = dropChance / v.groupSize end
+									chance = 100 * (1 - math.pow(1 - dropChance, attempts))
+									local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
+									lucky = colorize(L["Lucky"], green)
+									if medianLoots < attempts then lucky = colorize(L["Unlucky"], red) end
+								else
+									chance = 100 * (v.attempts / (v.chance or 100))
+									if chance < 0 then chance = 0 end
+									if chance > 100 then chance = 100 end
+									lucky = colorize(L["Lucky"], green)
+								end
+
 								local icon = ""
 								if trackedItem == v then icon = [[|TInterface\Buttons\UI-CheckBox-Check:0|t]] end
 								local time = 0
@@ -2061,8 +2162,12 @@ function R:ShowFoundAlert(itemId, attempts)
 	local unlocked = _G[frameName.."Unlocked"];
 	unlocked:SetPoint("TOP", 7, -23);
  if attempts == nil or attempts <= 0 then attempts = 1 end
- if attempts == 1 then unlocked:SetText(L["Obtained On Your First Attempt"])
- else unlocked:SetText(format(L["Obtained After %d Attempts"], attempts)) end
+	if item and item.method and item.method == COLLECTION then
+		unlocked:SetText(L["Collection Complete"])
+	else
+		if attempts == 1 then unlocked:SetText(L["Obtained On Your First Attempt"])
+		else unlocked:SetText(format(L["Obtained After %d Attempts"], attempts)) end
+	end
 	_G[frameName.."GuildName"]:Hide();
 	_G[frameName.."GuildBorder"]:Hide();
 	_G[frameName.."GuildBanner"]:Hide();
@@ -2109,16 +2214,24 @@ function R:OutputAttempts(item, skipTimeUpdate)
     item.session.attempts = item.session.attempts + 1
 
     -- Handle time tracking
-    if trackedItem == item then
-     self:UpdateSession()
-    else
-     self:EndSession()
-     self:StartSession()
-    end
+				if lastAttemptItem and lastAttemptItem ~= item and GetTime() - (lastAttemptTime or 0) <= DUAL_TRACK_THRESHOLD then -- Beginning to track two things at once
+					self:UpdateSession()
+				else
+					if trackedItem == item or trackedItem2 == item then
+						self:UpdateSession()
+					else
+						self:EndSession()
+						self:StartSession()
+					end
+				end
    end
 
    -- Switch to track this item
    self:UpdateTrackedItem(item)
+
+			-- Save what we last tracked and when it happened
+			lastAttemptTime = GetTime()
+			lastAttemptItem = item
 
 			-- Save this item for coin tracking, but only for 30 seconds
 			if item.enableCoin then
@@ -2147,6 +2260,9 @@ function R:OutputAttempts(item, skipTimeUpdate)
      if attempts == 1 then s = format(L["%s: %d attempt (%d total)"], itemName or item.name, attempts, total)
      else s = format(L["%s: %d attempts (%d total)"], itemName or item.name, attempts, total) end
     end
+				if item.method == COLLECTION then
+					s = format(L["%s: %d collected"], itemName or item.name, attempts)
+				end
     self:Pour(s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
    end
 
@@ -2380,7 +2496,7 @@ function R:FoundItem(itemId, item)
  self:Debug("FOUND ITEM %d!", itemId)
  if item.attempts == nil then item.attempts = 1 end
  if item.lastAttempts == nil then item.lastAttempts = 0 end
- self:ShowFoundAlert(itemId, item.attempts - item.lastAttempts)
+ self:ShowFoundAlert(itemId, item.attempts - item.lastAttempts, item)
  if inSession then self:EndSession() end
  item.realAttempts = item.attempts - item.lastAttempts
  item.lastAttempts = item.attempts
@@ -2447,6 +2563,13 @@ function R:UpdateTrackedItem(item)
   end
  end
  self:FindTrackedItem()
+	if lastAttemptItem and lastAttemptItem ~= item and GetTime() - (lastAttemptTime or 0) <= DUAL_TRACK_THRESHOLD then
+		trackedItem2 = lastAttemptItem
+		self:Debug("Setting second tracked item to "..trackedItem2.name)
+	else
+		if trackedItem2 then self:Debug("Clearing second tracked item") end
+		trackedItem2 = nil
+	end
  self:UpdateText()
  if self:InTooltip() then self:ShowTooltip() end
 end
@@ -2468,6 +2591,21 @@ function R:EndSession()
     i.session.time = (i.session.time or 0) + len
    end
    self:Debug("Ending session for %s (%s)", itemLink, self:FormatTime(trackedItem.time or 0))
+	 end
+  if trackedItem2 and trackedItem2.itemId then
+   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(trackedItem2.itemId)
+		 local len = sessionLast - sessionStarted
+   local i = trackedItem2
+   if i then
+    i.time = (i.time or 0) + len
+    local dt = getDate()
+    if not i.dates then i.dates = {} end
+    if not i.dates[dt] then i.dates[dt] = {} end
+    i.dates[dt].time = (i.dates[dt].time or 0) + len
+    if not i.session then i.session = {} end
+    i.session.time = (i.session.time or 0) + len
+   end
+   self:Debug("Also ending session for %s (%s)", itemLink, self:FormatTime(trackedItem2.time or 0))
 	 end
  end
 	inSession = false

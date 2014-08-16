@@ -29,6 +29,7 @@ local FISHING = "FISHING"
 local ARCH = "ARCH"
 local SPECIAL = "SPECIAL"
 local MINING = "MINING"
+local COLLECTION = "COLLECTION"
 
 -- Feed text
 local FEED_MINIMAL = "FEED_MINIMAL"
@@ -610,12 +611,13 @@ function R:CreateGroup(options, group, isUser)
 					desc = L["Determines how this item is obtained."],
      width = "double",
 					values = {
-      [NPC] = L["Drops from NPC(s)"],
-      [BOSS] = L["Drops from a boss requiring a group"],
-      [ZONE] = L["Drops from any mob in a zone"],
-      [USE] = L["Obtained by using an item or opening a container"],
-      [FISHING] = L["Obtained by fishing"],
-      [ARCH] = L["Obtained as an archaeology project"],
+						[NPC] = R.string_methods[NPC],
+						[BOSS] = R.string_methods[BOSS],
+						[ZONE] = R.string_methods[ZONE],
+						[USE] = R.string_methods[USE],
+						[FISHING] = R.string_methods[FISHING],
+						[ARCH] = R.string_methods[ARCH],
+						[COLLECTION] = R.string_methods[COLLECTION]
 					},
 					get = function() return item.method end,
 					set = function(info, val)
@@ -667,6 +669,35 @@ function R:CreateGroup(options, group, isUser)
 			  end,
      get = function(into) if item.itemId then return tostring(item.itemId) else return nil end end,
 			  disabled = not isUser,
+		  },
+							
+		  collectedItemId = {
+			  type = "input",
+     order = newOrder(),
+			  name = L["Item ID to Collect"],
+     desc = L["The item ID that you need to collect. Rarity uses the number of this item that you have in your bags as your progress. Use WowHead or a similar service to lookup item IDs. This must be a valid number and must not be used by another item."],
+			  set = function(info, val)
+				  if strtrim(val) == "" then alert(L["You must enter an item ID."])
+      elseif tonumber(val) == nil then alert(L["You must enter a valid number."])
+      else
+       for _, v in pairs(allitems()) do
+        if v.itemId == tonumber(val) then
+         alert(L["You entered an item ID that is already being used by another item."])
+         return
+        end
+								if v.collectedItemId and v.collectedItemId == tonumber(val) then
+         alert(L["You entered an item ID that is already set as the collected item for something else."])
+         return
+								end
+       end
+       if tonumber(val) <= 0 then alert(L["You must enter a number larger than 0."])
+       else item.collectedItemId = tonumber(val) end
+				  end
+						self:Update("OPTIONS")
+			  end,
+     get = function(into) if item.collectedItemId then return tostring(item.collectedItemId) else return nil end end,
+			  disabled = not isUser,
+			  hidden = function() return item.method ~= COLLECTION end,
 		  },
 							
 		  spellId = {
@@ -1003,8 +1034,14 @@ function R:CreateGroup(options, group, isUser)
 			  type = "input",
      order = newOrder(),
      width = "half",
-			  name = L["Attempts"],
-     desc = L["How many attempts you've made so far."],
+			  name = function()
+						if item.method == COLLECTION then return L["Collected"] end
+						return L["Attempts"]
+					end,
+			  desc = function()
+						if item.method == COLLECTION then return L["How many items you've collected so far."] end
+						return L["How many attempts you've made so far."]
+					end,
 			  set = function(info, val)
 				  if strtrim(val) == "" then alert(L["You must enter an amount."])
       elseif tonumber(val) == nil then alert(L["You must enter a valid number."])
@@ -1025,8 +1062,14 @@ function R:CreateGroup(options, group, isUser)
 			  type = "input",
      order = newOrder(),
      width = "half",
-			  name = L["Chance"],
-     desc = L["How likely the item is to appear, expressed as 1 in X, where X is the number you enter here."],
+			  name = function()
+						if item.method == COLLECTION then return L["Collection Size"] end
+						return L["Chance"]
+					end,
+			  desc = function()
+						if item.method == COLLECTION then return L["How many items you need to collect."] end
+						return L["How likely the item is to appear, expressed as 1 in X, where X is the number you enter here."]
+					end,
 			  set = function(info, val)
 				  if strtrim(val) == "" then alert(L["You must enter an amount."])
       elseif tonumber(val) == nil then alert(L["You must enter a valid number."])
@@ -1052,6 +1095,7 @@ function R:CreateGroup(options, group, isUser)
 						item.enableCoin = val
 						self:Update("OPTIONS")
 					end,
+     hidden = function() return item.method == COLLECTION end,
 				},
 
 			 spacer3 = { type = "header", name = L["Other Requirements"], order = newOrder(), },
