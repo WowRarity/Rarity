@@ -15,7 +15,7 @@ local dataobj = ldb:NewDataObject("Rarity", {
 })
 local lbz = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
 local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
----
+--
 
 
 --[[
