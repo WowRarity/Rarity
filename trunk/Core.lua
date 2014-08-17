@@ -1584,6 +1584,7 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 	if R.db.profile.enableTooltipAdditions == false then return end
 
 	local name, unit = self:GetUnit()
+	if not unit then return end
 	local guid = UnitGUID(unit)
 	if not unit or not guid then return end
 	local npcid = R:GetNPCIDFromGUID(guid)
