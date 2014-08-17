@@ -239,6 +239,11 @@ L["Item ID to Collect"] = true
 L["The item ID that you need to collect. Rarity uses the number of this item that you have in your bags as your progress. Use WowHead or a similar service to lookup item IDs. This must be a valid number and must not be used by another item."] = true
 L["You entered an item ID that is already set as the collected item for something else."] = true
 L["%s: %d collected"] = true
+L["Rarity: "] = true
+L["Enable tooltip additions"] = true
+L["When enabled, Rarity will add obtainable items to game tooltips whenever possible."] = true
+L["Blank line before tooltip additions"] = true
+L["This causes Rarity to put a blank line above its tooltip additions."] = true
 
 
 

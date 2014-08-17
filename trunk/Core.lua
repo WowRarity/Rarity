@@ -825,7 +825,7 @@ function R:UpdateInterestingThings()
   if type(v) == "table" then
    for kk, vv in pairs(v) do
     if type(vv) == "table" then
-     if vv.enabled ~= false then
+     --if vv.enabled ~= false then
       if vv.method == NPC and vv.npcs ~= nil and type(vv.npcs) == "table" then
        for kkk, vvv in pairs(vv.npcs) do
         npcs[vvv] = vv
@@ -861,7 +861,13 @@ function R:UpdateInterestingThings()
       if vv.itemId ~= nil and vv.method ~= COLLECTION then items[vv.itemId] = vv end
       if vv.itemId2 ~= nil and vv.method ~= COLLECTION then items[vv.itemId2] = vv end
 						if vv.method == COLLECTION and vv.collectedItemId ~= nil then items[vv.collectedItemId] = vv end
-     end
+						if vv.tooltipNpcs and type(vv.tooltipNpcs) == "table" then
+       for kkk, vvv in pairs(vv.tooltipNpcs) do
+        if npcs_to_items[vvv] == nil then npcs_to_items[vvv] = {} end
+        table.insert(npcs_to_items[vvv], vv)
+       end
+						end
+     --end
     end
    end
   end
@@ -1565,6 +1571,129 @@ end
 
 
 
+
+--[[
+      GAME TOOLTIPS ------------------------------------------------------------------------------------------------------------
+  ]]
+
+		
+		
+-- TOOLTIP: NPCS
+
+_G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
+	if R.db.profile.enableTooltipAdditions == false then return end
+
+	local name, unit = self:GetUnit()
+	local guid = UnitGUID(unit)
+	if not unit or not guid then return end
+	local npcid = R:GetNPCIDFromGUID(guid)
+
+	local blankAdded = false
+
+	-- This NPC is known to be used for obtaining something
+ if npcs_to_items[npcid] and type(npcs_to_items[npcid]) == "table" then
+  for k, v in pairs(npcs_to_items[npcid]) do
+   if (v.heroic == true and self:IsHeroic()) or (v.heroic == false and not self:IsHeroic()) or v.heroic == nil then
+    if (v.raid25 and self:IsRaid25()) or not v.raid25 then
+					local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
+					if itemLink or itemName or v.name then
+						if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
+							blankAdded = true
+							GameTooltip:AddLine(" ")
+						end
+						GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or v.name), yellow))
+						GameTooltip:Show()
+					end
+    end
+   end
+  end
+ end
+
+	-- This whole zone is used for obtaining something
+ local zone = GetRealZoneText()
+ local subzone = GetSubZoneText()
+ local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
+ local subzone_t = LibStub("LibBabble-SubZone-3.0"):GetReverseLookupTable()[subzone]
+ if zones[tostring(GetCurrentMapAreaID())] or zones[zone] or zones[lbz[zone] or "."] or zones[lbsz[subzone] or "."] or zones[zone_t] or zones[subzone_t] or zones[lbz[zone_t] or "."] or zones[lbsz[subzone_t] or "."] then
+		for k, v in pairs(R.db.profile.groups) do
+			if type(v) == "table" then
+				for kk, vv in pairs(v) do
+					if type(vv) == "table" then
+						local found = false
+						if vv.method == ZONE and vv.zones ~= nil and type(vv.zones) == "table" then
+							for kkk, vvv in pairs(vv.zones) do
+								if tonumber(vvv) ~= nil and tonumber(vvv) == GetCurrentMapAreaID() then found = true end
+								if vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv == lbsz[subzone] or vvv == zone_t or vvv == subzone_t or vvv == lbz[zone_t] or vvv == subzone or vvv == lbsz[subzone_t] then found = true end
+							end
+						end
+						if found then
+							if (vv.heroic == true and self:IsHeroic()) or (vv.heroic == false and not self:IsHeroic()) or vv.heroic == nil then
+								local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(vv.itemId)
+								if itemLink or itemName or vv.name then
+									if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
+										blankAdded = true
+										GameTooltip:AddLine(" ")
+									end
+									GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or vv.name), yellow))
+									GameTooltip:Show()
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+
+
+	
+end)
+
+
+
+-- TOOLTIP: ITEMS IN INVENTORY
+
+hooksecurefunc(GameTooltip, "SetBagItem", function(self, bag, slot)
+	local blankAdded = false
+ local id = GetContainerItemID(bag, slot)
+ if id then
+		local item
+
+		-- This item is used to obtain another item
+		if used[id] and used[id].itemId then
+			local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(used[id].itemId)
+			if itemLink or itemName or used[id].name then
+				if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
+					blankAdded = true
+					GameTooltip:AddLine(" ")
+				end
+				GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or used[id].name), yellow))
+				GameTooltip:Show()
+			end
+		end
+		
+		-- Extra item tooltips
+		if R.db.profile.extraTooltips.inventoryItems[id] then
+			for k, v in pairs(R.db.profile.extraTooltips.inventoryItems[id]) do
+				local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v)
+				if itemLink or itemName then
+					if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
+						blankAdded = true
+						GameTooltip:AddLine(" ")
+					end
+					GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName), yellow))
+					GameTooltip:Show()
+				end
+			end
+		end
+
+ end
+end)
+		
+		
+		
+		
+		
 --[[
       DATA BROKER OBJECT AND TOOLTIP -------------------------------------------------------------------------------------------
   ]]
@@ -2233,7 +2362,7 @@ function R:OutputAttempts(item, skipTimeUpdate)
 			lastAttemptTime = GetTime()
 			lastAttemptItem = item
 
-			-- Save this item for coin tracking, but only for 30 seconds
+			-- Save this item for coin tracking, but only for 90 seconds
 			if item.enableCoin then
 				self:Debug("Allowing this item to be counted again if a coin is used in the next 90 seconds")
 				self.lastCoinItem = item
@@ -2493,9 +2622,14 @@ end
 
 function R:FoundItem(itemId, item)
  if item.found and not item.repeatable then return end
+	
  self:Debug("FOUND ITEM %d!", itemId)
  if item.attempts == nil then item.attempts = 1 end
  if item.lastAttempts == nil then item.lastAttempts = 0 end
+
+	-- Hacky: If the item is unique and has 0 attempts, don't do this (if you really find a unique item on your first attempt, sorry)
+	if item.unique and item.attempts - item.lastAttempts <= 1 then return end
+
  self:ShowFoundAlert(itemId, item.attempts - item.lastAttempts, item)
  if inSession then self:EndSession() end
  item.realAttempts = item.attempts - item.lastAttempts

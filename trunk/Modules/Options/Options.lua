@@ -213,6 +213,31 @@ function R:PrepareOptions()
 						inline = true,
 						args = {
 						
+							enableTooltipAdditions = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Enable tooltip additions"],
+								desc = L["When enabled, Rarity will add obtainable items to game tooltips whenever possible."],
+								get = function() return self.db.profile.enableTooltipAdditions end,
+								set = function(info, val)
+									self.db.profile.enableTooltipAdditions = val
+									self:UpdateText()
+								end,
+							},
+
+							blankLineBeforeTooltipAdditions = {
+								type = "toggle",
+								order = newOrder(),
+								width = "double",
+								name = L["Blank line before tooltip additions"],
+								desc = L["This causes Rarity to put a blank line above its tooltip additions."],
+								get = function() return self.db.profile.blankLineBeforeTooltipAdditions end,
+								set = function(info, val)
+									self.db.profile.blankLineBeforeTooltipAdditions = val
+									self:UpdateText()
+								end,
+							},
+
 							feedText = {
 								type = "select",
 								name = L["Feed text"],
