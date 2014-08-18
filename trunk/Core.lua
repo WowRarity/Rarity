@@ -4,6 +4,7 @@ local FORCE_PROFILE_RESET_BEFORE_REVISION = 1 -- Set this to one higher than the
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local R = Rarity
 local qtip = LibStub("LibQTip-1.0")
+local media = LibStub("LibSharedMedia-3.0")
 local ldb = LibStub:GetLibrary("LibDataBroker-1.1")
 local dbicon = LibStub("LibDBIcon-1.0")
 local dataobj = ldb:NewDataObject("Rarity", {
@@ -455,16 +456,8 @@ do
 
   -- Initialize bar
   self.barGroup = self:NewBarGroup("Rarity", nil, self.db.profile.bar.width, self.db.profile.bar.height)
-	 self.barGroup:SetFont(nil, 8)
-	 self.barGroup:SetColorAt(1.00, 1, 0, 0, 1)
-	 self.barGroup:SetColorAt(0.66, 1, 1, 0, 1)
-	 self.barGroup:SetColorAt(0.33, 0, 1, 1, 1)
-	 self.barGroup:SetColorAt(0.00, 0, 0, 1, 1)
-  self.barGroup:ClearAllPoints()
-	 self.barGroup:SetPoint(self.db.profile.bar.point, UIParent, self.db.profile.bar.relativePoint, self.db.profile.bar.x, self.db.profile.bar.y)
-	 self.barGroup:SetScale(self.db.profile.bar.scale)
-	 self.barGroup.RegisterCallback(self, "AnchorClicked", "BarAnchorClicked")
-  if not self.db.profile.bar.visible then self.barGroup:Hide() end
+		self.barGroup.RegisterCallback(self, "AnchorClicked", "BarAnchorClicked")
+		self:UpdateBar()
   self.bar = nil
 
 		self:ScanExistingItems("INITIALIZING") -- Checks for items you already have
@@ -1255,7 +1248,7 @@ function R:OnBagUpdate()
 						self:Update("BAG_UPDATE")
 					end
 					if originalCount < bagCount and originalCount < goal and bagCount >= goal then
-						self:FoundItem(k, items[k])
+						self:FoundItem(items[k].itemId, items[k])
 					elseif originalCount < bagCount then
 						self:OutputAttempts(items[k])
 					end
@@ -1611,6 +1604,11 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
  end
 
 	-- This whole zone is used for obtaining something
+	if not UnitCanAttack("player", unit) then return end -- Something you can't attack
+	if UnitIsPlayer(unit) then return end -- A player
+	local unitType = tonumber(guid:sub(5, 5), 16) or 0
+	if unitType ~= 3 and unitType ~= 5 then return end
+
  local zone = GetRealZoneText()
  local subzone = GetSubZoneText()
  local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
@@ -1696,9 +1694,32 @@ end)
 		
 		
 --[[
-      DATA BROKER OBJECT AND TOOLTIP -------------------------------------------------------------------------------------------
+      DATA BROKER OBJECT, AND TOOLTIP, BAR -------------------------------------------------------------------------------------------
   ]]
 
+		
+function Rarity:UpdateBar()
+	if not self.barGroup:GetBars() then return end
+	if not self.db.profile.bar.font then self.barGroup:SetFont(self.db.profile.bar.font, self.db.profile.bar.fontSize or 8)
+	else	self.barGroup:SetFont(media:Fetch("font", self.db.profile.bar.font), self.db.profile.bar.fontSize or 8) end
+	if self.db.profile.bar.texture then self.barGroup:SetTexture(media:Fetch("statusbar", self.db.profile.bar.texture)) end
+	if self.db.profile.bar.rightAligned then self.barGroup:SetOrientation(3) else self.barGroup:SetOrientation(1) end
+	if self.db.profile.bar.showIcon then self.barGroup:ShowIcon() else self.barGroup:HideIcon() end
+	if self.db.profile.bar.showText then self.barGroup:ShowLabel() else self.barGroup:HideLabel() end
+	self.barGroup:SetColorAt(1.00, 1, 0, 0, 1)
+	self.barGroup:SetColorAt(0.66, 1, 1, 0, 1)
+	self.barGroup:SetColorAt(0.33, 0, 1, 1, 1)
+	self.barGroup:SetColorAt(0.00, 0, 0, 1, 1)
+ self.barGroup:ClearAllPoints()
+	self.barGroup:SetPoint(self.db.profile.bar.point, UIParent, self.db.profile.bar.relativePoint, self.db.profile.bar.x, self.db.profile.bar.y)
+	self.barGroup:SetScale(self.db.profile.bar.scale)
+ self.barGroup:SetWidth(self.db.profile.bar.width)
+ self.barGroup:SetHeight(self.db.profile.bar.height)
+ if not self.db.profile.bar.visible then self.barGroup:Hide() else self.barGroup:Show() end
+ if not self.db.profile.bar.anchor then self.barGroup:HideAnchor() else self.barGroup:ShowAnchor() end
+ if not self.db.profile.bar.locked then self.barGroup:Unlock() else self.barGroup:Lock() end
+end
+		
 do
 	local tooltip, tooltip2
 	local frame, frame2
@@ -1727,7 +1748,7 @@ do
 				if attempts == 1 then dataobj.text = format(L["Found on your first attempt!"], attempts)
 				else dataobj.text = format(L["Found after %d attempts!"], attempts) end
 			end
-   chance = 1.0
+   chance = 100.0
   else
 			if trackedItem.method == COLLECTION then
 				chance = (trackedItem.attempts or 0) / (trackedItem.chance or 100)
@@ -1761,14 +1782,7 @@ do
   if chance < 0 then chance = 0 end
   local text = format("%s: %d (%.2f%%)", itemName or trackedItem.name, attempts, chance)
   self.barGroup:NewCounterBar("Track", text, chance, 100, itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
-  self.barGroup:ClearAllPoints()
-	 self.barGroup:SetPoint(self.db.profile.bar.point, UIParent, self.db.profile.bar.relativePoint, self.db.profile.bar.x, self.db.profile.bar.y)
-	 self.barGroup:SetScale(self.db.profile.bar.scale)
-  self.barGroup:SetWidth(self.db.profile.bar.width)
-  self.barGroup:SetHeight(self.db.profile.bar.height)
-  if not self.db.profile.bar.visible then self.barGroup:Hide() else self.barGroup:Show() end
-  if not self.db.profile.bar.anchor then self.barGroup:HideAnchor() else self.barGroup:ShowAnchor() end
-  if not self.db.profile.bar.locked then self.barGroup:Unlock() else self.barGroup:Lock() end
+		self:UpdateBar()
 
 		-- Bar 2
 		if not trackedItem2 then
@@ -1835,6 +1849,7 @@ do
   else
    -- Toggle progress bar visibility
    R.db.profile.bar.visible = not R.db.profile.bar.visible
+			R:UpdateBar()
    R:UpdateText()
   end
 	end

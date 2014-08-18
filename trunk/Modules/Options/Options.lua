@@ -4,6 +4,7 @@ local R = Rarity
 local mod = R:NewModule("Options")
 local lbz = LibStub("LibBabble-Zone-3.0")
 local lbsz = LibStub("LibBabble-SubZone-3.0")
+local media = LibStub("LibSharedMedia-3.0")
 
 
 -- Types of items
@@ -428,6 +429,42 @@ function R:PrepareOptions()
 						  end,
 					  },
 
+					  rightAligned = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Right-Aligned"],
+						  get = function() return self.db.profile.bar.rightAligned end,
+						  set = function(info, val)
+							  self.db.profile.bar.rightAligned = val
+									self:UpdateBar()
+							  self:UpdateText()
+						  end,
+					  },
+
+					  showIcon = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Show Icon"],
+						  get = function() return self.db.profile.bar.showIcon end,
+						  set = function(info, val)
+							  self.db.profile.bar.showIcon = val
+									self:UpdateBar()
+							  self:UpdateText()
+						  end,
+					  },
+
+					  showText = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Show Text"],
+						  get = function() return self.db.profile.bar.showText end,
+						  set = function(info, val)
+							  self.db.profile.bar.showText = val
+									self:UpdateBar()
+							  self:UpdateText()
+						  end,
+					  },
+
 				   width = {
 					   order = newOrder(),
 					   type = "range",
@@ -472,6 +509,56 @@ function R:PrepareOptions()
          self:UpdateText()
         end,
 				   },
+
+							font = {
+					   order = newOrder(),
+								type = "select",
+								dialogControl = "LSM30_Font",
+								width = "double",
+								name = L["Font"],
+								values = media:HashTable("font"),
+								get = function()
+									return self.db.profile.bar.font
+								end,
+								set = function(_, key)
+									self.db.profile.bar.font = key
+									self:UpdateBar()
+									self:UpdateText()
+								end,
+							},
+
+				   fontSize = {
+					   order = newOrder(),
+					   type = "range",
+        width = "double",
+					   name = L["Font Size"],
+					   min = 1,
+					   max = 100,
+					   step = 1,
+					   get = function() return self.db.profile.bar.fontSize or 8 end,
+					   set = function(_, val)
+         self.db.profile.bar.fontSize = val
+									self:UpdateBar()
+         self:UpdateText()
+        end,
+				   },
+
+							texture = {
+					   order = newOrder(),
+								type = "select",
+								dialogControl = "LSM30_Statusbar",
+								width = "double",
+								name = L["Texture"],
+								values = media:HashTable("statusbar"),
+								get = function()
+									return self.db.profile.bar.texture
+								end,
+								set = function(_, key)
+									self.db.profile.bar.texture = key
+									self:UpdateBar()
+									self:UpdateText()
+								end,
+							},
 
 						}, -- args
 					}, -- bar

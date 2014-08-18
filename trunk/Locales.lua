@@ -244,6 +244,18 @@ L["Enable tooltip additions"] = true
 L["When enabled, Rarity will add obtainable items to game tooltips whenever possible."] = true
 L["Blank line before tooltip additions"] = true
 L["This causes Rarity to put a blank line above its tooltip additions."] = true
+L["Font"] = true
+L["Texture"] = true
+L["Font Size"] = true
+L["Right-Aligned"] = true
+L["Show Icon"] = true
+L["Show Text"] = true
+
+
+
+
+
+
 
 
 

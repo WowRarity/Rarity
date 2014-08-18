@@ -111,6 +111,12 @@ function R:PrepareDefaults()
     visible = false,
     anchor = true,
     locked = false,
+				texture = nil,
+				font = nil,
+				fontSize = 8,
+				rightAligned = false,
+				showIcon = true,
+				showText = true,
    },
 
 			cats = {
