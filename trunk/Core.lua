@@ -1939,7 +1939,8 @@ do
    end
   end
 		if item.method == COLLECTION then
-			tooltip2:AddLine(colorize(format(L["Collect %d %s"], item.chance or 100, (GetItemInfo(item.collectedItemId or 0)) or ""), white))
+   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.collectedItemId)
+			tooltip2:AddLine(colorize(format(L["Collect %d %s"], item.chance or 100, itemLink or itemName or ""), white))
 			if item.obtain then tooltip2:AddLine(colorize(item.obtain, white)) end
 		else
 			tooltip2:AddLine(colorize(format(L["1 in %d chance"], item.chance or 100), white))
