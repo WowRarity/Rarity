@@ -73,6 +73,7 @@ local zones = {}
 local guids = {}
 local items = {}
 local npcs_to_items = {}
+local items_to_items = {}
 local bagitems = {}
 local tempbagitems = {}
 local used = {}
@@ -436,6 +437,7 @@ do
    R.guids = guids
    R.items = items
    R.npcs_to_items = npcs_to_items
+   R.items_to_items = items_to_items
    R.used = used
    R.tempbagitems = tempbagitems
    R.bagitems = bagitems
@@ -810,6 +812,7 @@ function R:UpdateInterestingThings()
  table.wipe(items)
  table.wipe(guids)
  table.wipe(npcs_to_items)
+ table.wipe(items_to_items)
  table.wipe(used)
  table.wipe(fishzones)
  table.wipe(architems)
@@ -818,49 +821,49 @@ function R:UpdateInterestingThings()
   if type(v) == "table" then
    for kk, vv in pairs(v) do
     if type(vv) == "table" then
-     --if vv.enabled ~= false then
-      if vv.method == NPC and vv.npcs ~= nil and type(vv.npcs) == "table" then
-       for kkk, vvv in pairs(vv.npcs) do
-        npcs[vvv] = vv
-        if npcs_to_items[vvv] == nil then npcs_to_items[vvv] = {} end
-        table.insert(npcs_to_items[vvv], vv)
-       end
-      elseif vv.method == BOSS and vv.npcs ~= nil and type(vv.npcs) == "table" then
-       for kkk, vvv in pairs(vv.npcs) do
-        bosses[vvv] = vv
-        if npcs_to_items[vvv] == nil then npcs_to_items[vvv] = {} end
-        table.insert(npcs_to_items[vvv], vv)
-       end
-      elseif vv.method == ZONE and vv.zones ~= nil and type(vv.zones) == "table" then
-       for kkk, vvv in pairs(vv.zones) do
-        if lbz[vvv] then zones[lbz[vvv]] = vv end
-        if lbsz[vvv] then zones[lbsz[vvv]] = vv end
-        zones[vvv] = vv
-       end
-      elseif vv.method == USE and vv.items ~= nil and type(vv.items) == "table" then
-       for kkk, vvv in pairs(vv.items) do
-        used[vvv] = vv
-       end
-      elseif vv.method == FISHING and vv.zones ~= nil and type(vv.zones) == "table" then
-       for kkk, vvv in pairs(vv.zones) do
-        if lbz[vvv] then fishzones[lbz[vvv]] = vv end
-        if lbsz[vvv] then fishzones[lbsz[vvv]] = vv end
-        fishzones[vvv] = vv
-       end
-      elseif vv.method == ARCH and vv.itemId ~= nil then
-       local itemName = GetItemInfo(vv.itemId)
-       if itemName then architems[itemName] = vv end
+     if vv.method == NPC and vv.npcs ~= nil and type(vv.npcs) == "table" then
+      for kkk, vvv in pairs(vv.npcs) do
+       npcs[vvv] = vv
+       if npcs_to_items[vvv] == nil then npcs_to_items[vvv] = {} end
+       table.insert(npcs_to_items[vvv], vv)
       end
-      if vv.itemId ~= nil and vv.method ~= COLLECTION then items[vv.itemId] = vv end
-      if vv.itemId2 ~= nil and vv.method ~= COLLECTION then items[vv.itemId2] = vv end
-						if vv.method == COLLECTION and vv.collectedItemId ~= nil then items[vv.collectedItemId] = vv end
-						if vv.tooltipNpcs and type(vv.tooltipNpcs) == "table" then
-       for kkk, vvv in pairs(vv.tooltipNpcs) do
-        if npcs_to_items[vvv] == nil then npcs_to_items[vvv] = {} end
-        table.insert(npcs_to_items[vvv], vv)
-       end
-						end
-     --end
+     elseif vv.method == BOSS and vv.npcs ~= nil and type(vv.npcs) == "table" then
+      for kkk, vvv in pairs(vv.npcs) do
+       bosses[vvv] = vv
+       if npcs_to_items[vvv] == nil then npcs_to_items[vvv] = {} end
+       table.insert(npcs_to_items[vvv], vv)
+      end
+     elseif vv.method == ZONE and vv.zones ~= nil and type(vv.zones) == "table" then
+      for kkk, vvv in pairs(vv.zones) do
+       if lbz[vvv] then zones[lbz[vvv]] = vv end
+       if lbsz[vvv] then zones[lbsz[vvv]] = vv end
+       zones[vvv] = vv
+      end
+     elseif vv.method == USE and vv.items ~= nil and type(vv.items) == "table" then
+      for kkk, vvv in pairs(vv.items) do
+       used[vvv] = vv
+       if items_to_items[vvv] == nil then items_to_items[vvv] = {} end
+       table.insert(items_to_items[vvv], vv)
+      end
+     elseif vv.method == FISHING and vv.zones ~= nil and type(vv.zones) == "table" then
+      for kkk, vvv in pairs(vv.zones) do
+       if lbz[vvv] then fishzones[lbz[vvv]] = vv end
+       if lbsz[vvv] then fishzones[lbsz[vvv]] = vv end
+       fishzones[vvv] = vv
+      end
+     elseif vv.method == ARCH and vv.itemId ~= nil then
+      local itemName = GetItemInfo(vv.itemId)
+      if itemName then architems[itemName] = vv end
+     end
+     if vv.itemId ~= nil and vv.method ~= COLLECTION then items[vv.itemId] = vv end
+     if vv.itemId2 ~= nil and vv.method ~= COLLECTION then items[vv.itemId2] = vv end
+					if vv.method == COLLECTION and vv.collectedItemId ~= nil then items[vv.collectedItemId] = vv end
+					if vv.tooltipNpcs and type(vv.tooltipNpcs) == "table" then
+      for kkk, vvv in pairs(vv.tooltipNpcs) do
+       if npcs_to_items[vvv] == nil then npcs_to_items[vvv] = {} end
+       table.insert(npcs_to_items[vvv], vv)
+      end
+					end
     end
    end
   end
@@ -1659,15 +1662,19 @@ hooksecurefunc(GameTooltip, "SetBagItem", function(self, bag, slot)
 		local item
 
 		-- This item is used to obtain another item
-		if used[id] and used[id].itemId then
-			local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(used[id].itemId)
-			if itemLink or itemName or used[id].name then
-				if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
-					blankAdded = true
-					GameTooltip:AddLine(" ")
+		if items_to_items[id] then
+			for k, v in pairs(items_to_items[id]) do
+				if v.itemId then
+					local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
+					if itemLink or itemName or v.name then
+						if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
+							blankAdded = true
+							GameTooltip:AddLine(" ")
+						end
+						GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or v.name), yellow))
+						GameTooltip:Show()
+					end
 				end
-				GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or used[id].name), yellow))
-				GameTooltip:Show()
 			end
 		end
 		

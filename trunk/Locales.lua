@@ -556,6 +556,11 @@ L["Rotten Helper Box"] = true
 L["Imperial Moth"] = true
 L["Life-Binder's Handmaiden"] = true
 L["Reins of the Bone-White Primal Raptor"] = true
+L["Chuck's Bucket"] = true
+L["Muckbreaths's Bucket"] = true
+L["Snarly's Bucket"] = true
+L["Toothy's Bucket"] = true
+
 
 
 
