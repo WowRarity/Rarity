@@ -1930,7 +1930,7 @@ do
      local zone = lbz[v]
      if not zone then zone = lbsz[v] end
      if not zone then zone = v end
-     tooltip2:AddLine(colorize("    "..v, gray))
+     if not tonumber(v) then tooltip2:AddLine(colorize("    "..v, gray)) end
     end
    end
   elseif item.method == ARCH then
@@ -2517,6 +2517,24 @@ function R:ScanExistingItems(reason)
 			end
 		end
 	end
+
+	-- Achievements
+	for k, v in pairs(R.db.profile.groups) do
+		if type(v) == "table" then
+			for kk, vv in pairs(v) do
+				if type(vv) == "table" then
+					if vv.achievementId and tonumber(vv.achievementId) then
+						local IDNumber, Name, Points, Completed, Month, Day, Year, Description, Flags, Image, RewardText, isGuildAch = GetAchievementInfo(vv.achievementId)
+						if Completed and not vv.repeatable then
+							vv.enabled = false
+							vv.found = true
+						end
+					end
+				end
+			end
+		end
+	end
+
 
  -- Scan all archaeology races and set any item attempts to the number of solves for that race (if we've never seen attempts for the race before)
  local s = 0

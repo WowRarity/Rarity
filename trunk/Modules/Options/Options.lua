@@ -883,6 +883,30 @@ function R:CreateGroup(options, group, isUser)
      hidden = function() return item.method ~= ARCH end,
 				},
 
+		  achievementId = {
+			  type = "input",
+     order = newOrder(),
+			  name = L["Achievement ID"],
+     desc = L["Set this to the achievement ID which indicates this item has been obtained. This is useful for items which do not yield mounts or pets, but which do grant an achievement when obtained, such as Old Crafty or Old Ironjaw. Leave this blank for mounts and pets. Use WowHead to find achievement IDs."],
+			  set = function(info, val)
+				  if strtrim(val) == "" then item.achievementId = nil
+      elseif tonumber(val) == nil then alert(L["You must enter a valid number."])
+      else
+       for _, v in pairs(allitems()) do
+        if v.achievementId == tonumber(val) then
+         alert(L["You entered a achievement ID that is already being used by another item."])
+         return
+        end
+       end
+       if tonumber(val) <= 0 then alert(L["You must enter a number larger than 0."])
+       else item.achievementId = tonumber(val) end
+				  end
+						self:Update("OPTIONS")
+			  end,
+     get = function(into) if item.achievementId then return tostring(item.achievementId) else return nil end end,
+			  disabled = not isUser,
+		  },
+							
 		  zones = {
 			  type = "input",
      order = newOrder(),

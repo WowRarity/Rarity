@@ -250,6 +250,9 @@ L["Font Size"] = true
 L["Right-Aligned"] = true
 L["Show Icon"] = true
 L["Show Text"] = true
+L["Achievement ID"] = true
+L["Set this to the achievement ID which indicates this item has been obtained. This is useful for items which do not yield mounts or pets, but which do grant an achievement when obtained, such as Old Crafty or Old Ironjaw. Leave this blank for mounts and pets. Use WowHead to find achievement IDs."] = true
+L["You entered a achievement ID that is already being used by another item."] = true
 
 
 
@@ -560,6 +563,8 @@ L["Chuck's Bucket"] = true
 L["Muckbreaths's Bucket"] = true
 L["Snarly's Bucket"] = true
 L["Toothy's Bucket"] = true
+L["Old Crafty"] = true
+L["Old Ironjaw"] = true
 
 
 
