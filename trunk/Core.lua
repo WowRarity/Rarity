@@ -27,7 +27,6 @@ local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 
    Fishing nodes
    Mining nodes
-   New good-luck coin types, if any
 			All WoD zones with pools for Sea Turtle (http://wowpedia.org/MapID)
 
    Mounts
@@ -142,9 +141,12 @@ local black = { r = 0.0, g = 0.0, b = 0.0 }
 local white = { r = 1.0, g = 1.0, b = 1.0 }
 
 R.coins = {
+	-- Mists of Pandaria
 	[697] = true, -- Elder Charm of Good Fortune
 	[752] = true, -- Mogu Rune of Fate
 	[776] = true, -- Warforged Seal
+	-- Warlords of Draenor
+	[994] = true, -- Seal of Tempered Fate
 }
 
 -- A good place to find updates to this list is in GatherMate2/Constants.lua
