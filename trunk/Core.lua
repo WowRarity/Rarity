@@ -23,11 +23,8 @@ local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
    WARLORDS OF DRAENOR
    TO-DO LIST
 			
-			http://wowpedia.org/Patch_6.0.1/API_changes
-
    Fishing nodes
    Mining nodes
-			All WoD zones with pools for Sea Turtle (http://wowpedia.org/MapID)
 
    Mounts
    Pets
@@ -58,6 +55,31 @@ local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 
 ]]--
 
+
+--[[
+   NEW EXPANSION PACK
+   TO-DO LIST CHEAT SHEET
+			
+			Items:
+			- Reevaluate group sizes for all items (most things can be moved to soloable)
+			- New mounts
+			- New pets
+			
+			Nodes and zones:
+			- Fishing nodes
+			- Mining nodes
+			- New zones for Sea Turtle (http://wowpedia.org/MapID)
+			
+			APIs:
+			- Check if NPC ID format changed
+			- Check if instance difficulty API or IDs changed
+			- Check if COMBAT_LOG_EVENT_UNFILTERED changed
+			- Check for other API changes (i.e. http://wowpedia.org/Patch_6.0.1/API_changes)
+			
+			Other:
+			- Good-luck coins
+			
+]]--
 
 
 --[[

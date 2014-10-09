@@ -1223,7 +1223,7 @@ function R:CreateGroup(options, group, isUser)
 					order = newOrder(),
 					type = "toggle",
 					name = L["Enable Coins"],
-					desc = L["When any good-luck coin is used within about 90 seconds of an attempt on this item, another attempt will be counted for this item. Only enable this for items which can legitimately obtained from coin rolls."],
+					desc = L["When any good-luck coin is used within about 90 seconds of an attempt on this item, another attempt will be counted for this item. Only enable this for items which can legitimately be obtained from coin rolls."],
 					get = function()
       if item.enableCoin == true then return true else return false end
      end,
