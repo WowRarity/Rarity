@@ -57,6 +57,7 @@ local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 
 
 --[[
+
    NEW EXPANSION PACK
    TO-DO LIST CHEAT SHEET
 			
@@ -78,6 +79,7 @@ local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 			
 			Other:
 			- Good-luck coins
+			- New Archaeology races: /run for race_id = 1, GetNumArchaeologyRaces() do Rarity:Print(GetArchaeologyRaceInfo(race_id)) end
 			
 ]]--
 
@@ -903,17 +905,11 @@ function R:GetNPCIDFromGUID(guid)
 end
 
 
-function R:IsHeroic()
- local name, instanceType, difficultyIndex, difficultyName, maxPlayers, dynamicDifficulty, isDynamic, mapID = GetInstanceInfo()
- if difficultyIndex == 2 or difficultyIndex == 5 or difficultyIndex == 6 then return true end
- return false
-end
-
-
-function R:IsRaid25()
- local name, instanceType, difficultyIndex, difficultyName, maxPlayers, dynamicDifficulty, isDynamic, mapID = GetInstanceInfo()
- if maxPlayers == 25 then return true end
- return false
+function R:IsInstanceAppropriate(item)
+	if item.instanceDifficulties == nil or type(item.instanceDifficulties) ~= "table" or item.instanceDifficulties == {} then return true end
+	local name, type, difficulty, difficultyName, maxPlayers, playerDifficulty, isDynamicInstance, mapID, instanceGroupSize = GetInstanceInfo()
+	if item.instanceDifficulties[difficulty] and item.instanceDifficulties[difficulty] == true then return true end
+	return false
 end
 
 
@@ -1010,7 +1006,7 @@ function R:OnEvent(event, ...)
           end
          end
          if found then
-          if (vv.heroic == true and self:IsHeroic()) or (vv.heroic == false and not self:IsHeroic()) or vv.heroic == nil then
+          if self:IsInstanceAppropriate(vv) then
            if vv.attempts == nil then vv.attempts = 1 else vv.attempts = vv.attempts + 1 end
            self:OutputAttempts(vv)
           end
@@ -1163,7 +1159,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell)
  if npcs_to_items[npcid] and type(npcs_to_items[npcid]) == "table" then
   for k, v in pairs(npcs_to_items[npcid]) do
    if v.enabled ~= false and (v.method == NPC or v.method == ZONE) then
-    if (v.heroic == true and self:IsHeroic()) or (v.heroic == false and not self:IsHeroic()) or v.heroic == nil then
+    if self:IsInstanceAppropriate(v) then
      -- Don't increment attempts if this NPC also has a statistic defined. This would result in two attempts counting instead of one.
      if not v.statisticId or type(v.statisticId) ~= "table" or #v.statisticId <= 0 then
 						-- Don't increment attempts for unique items if you already have the item in your bags
@@ -1191,7 +1187,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell)
        end
       end
       if found then
-       if (vv.heroic == true and self:IsHeroic()) or (vv.heroic == false and not self:IsHeroic()) or vv.heroic == nil then
+       if self:IsInstanceAppropriate(vv) then
         if vv.attempts == nil then vv.attempts = 1 else vv.attempts = vv.attempts + 1 end
         self:OutputAttempts(vv)
        end
@@ -1340,11 +1336,9 @@ function R:OnCombat(event, timestamp, eventType, hideCaster, srcGuid, srcName, s
      if npcs_to_items[npcid] and type(npcs_to_items[npcid]) == "table" then
       for k, v in pairs(npcs_to_items[npcid]) do
        if v.enabled ~= false and v.method == BOSS then
-        if (v.heroic == true and self:IsHeroic()) or (v.heroic == false and not self:IsHeroic()) or v.heroic == nil then
-         if (v.raid25 and self:IsRaid25()) or not v.raid25 then
-          if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
-          self:OutputAttempts(v)
-         end
+        if self:IsInstanceAppropriate(v) then
+         if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+         self:OutputAttempts(v)
         end
        end
       end
@@ -1614,18 +1608,16 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 	-- This NPC is known to be used for obtaining something
  if npcs_to_items[npcid] and type(npcs_to_items[npcid]) == "table" then
   for k, v in pairs(npcs_to_items[npcid]) do
-   if (v.heroic == true and self:IsHeroic()) or (v.heroic == false and not self:IsHeroic()) or v.heroic == nil then
-    if (v.raid25 and self:IsRaid25()) or not v.raid25 then
-					local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
-					if itemLink or itemName or v.name then
-						if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
-							blankAdded = true
-							GameTooltip:AddLine(" ")
-						end
-						GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or v.name), yellow))
-						GameTooltip:Show()
+   if self:IsInstanceAppropriate(v) then
+				local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
+				if itemLink or itemName or v.name then
+					if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
+						blankAdded = true
+						GameTooltip:AddLine(" ")
 					end
-    end
+					GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or v.name), yellow))
+					GameTooltip:Show()
+				end
    end
   end
  end
@@ -1653,7 +1645,7 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 							end
 						end
 						if found then
-							if (vv.heroic == true and self:IsHeroic()) or (vv.heroic == false and not self:IsHeroic()) or vv.heroic == nil then
+							if self:IsInstanceAppropriate(vv) then
 								local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(vv.itemId)
 								if itemLink or itemName or vv.name then
 									if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then

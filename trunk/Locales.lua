@@ -131,8 +131,6 @@ L["Method of obtaining"] = true
 L["Determines how this item is obtained."] = true
 L["Group size"] = true
 L["The number of players it takes to obtain the item. This will lower your chances of obtaining the item."] = true
-L["Requires a 25-player raid"] = true
-L["Determines whether this item can only be obtained in 25-player mode."] = true
 L["Equal odds"] = true
 L["Turn this on if the item requires a group to obtain, but every player gets an equal chance to obtain the item. This currently only applies to some of the holiday mounts. When you turn this on, Rarity will stop lowering your chance to obtain based on the group size."] = true
 L["Archaeology race"] = true
@@ -199,7 +197,7 @@ L["This item is only available to Horde players."] = true
 L["Alliance only"] = true
 L["This item is only available to Alliance players."] = true
 L["Debug mode"] = true
-L["Enter 1 to mark the item as soloable."] = true
+L["Enter 1 or leave this blank to mark the item as soloable."] = true
 L["Classic"] = true
 L["The Burning Crusade"] = true
 L["Wrath of the Lich King"] = true
@@ -253,6 +251,8 @@ L["Show Text"] = true
 L["Achievement ID"] = true
 L["Set this to the achievement ID which indicates this item has been obtained. This is useful for items which do not yield mounts or pets, but which do grant an achievement when obtained, such as Old Crafty or Old Ironjaw. Leave this blank for mounts and pets. Use WowHead to find achievement IDs."] = true
 L["You entered a achievement ID that is already being used by another item."] = true
+L["Instance Difficulty"] = true
+L["Determines which instance difficulties this item may be obtained in. Leave everything unchecked if the instance difficulty doesn't matter.\n\nIf you specified a Statistic ID for this item, the Instance Difficulty is probably meaningless, because all modern statistics already incorporate the difficulty.\n\nYou can check multiple items in this list at once."] = true
 
 
 
@@ -267,6 +267,23 @@ L["You entered a achievement ID that is already being used by another item."] = 
 
 
 
+-- Instance difficulties
+L["None (not in an instance)"] = true
+L["5-player instance"] = true
+L["5-player Heroic instance"] = true
+L["10-player Raid instance (legacy content; not flexible)"] = true
+L["25-player Raid instance (legacy content; not flexible)"] = true
+L["10-player Heroic Raid instance (legacy content; not flexible)"] = true
+L["25-player Heroic Raid instance (legacy content; not flexible)"] = true
+L["Raid Finder instance (legacy content; fixed at 25 players)"] = true
+L["Challenge Mode instance"] = true
+L["40-player Raid instance (legacy content; not flexible)"] = true
+L["Heroic Scenario instance"] = true
+L["Scenario instance"] = true
+L["Normal Raid (10-30 players)"] = true
+L["Heroic Raid (10-30 players)"] = true
+L["Mythic Raid (20 player)"] = true
+L["Looking For Raid (10-30 players)"] = true
 
 -- Fishing pools
 L["Floating Wreckage"] = true

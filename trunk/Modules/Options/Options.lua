@@ -1240,7 +1240,7 @@ function R:CreateGroup(options, group, isUser)
 			  type = "input",
      order = newOrder(),
 			  name = L["Group size"],
-     desc = L["The number of players it takes to obtain the item. This will lower your chances of obtaining the item."].." "..L["Enter 1 to mark the item as soloable."],
+     desc = L["The number of players it takes to obtain the item. This will lower your chances of obtaining the item."].." "..L["Enter 1 or leave this blank to mark the item as soloable."],
 			  set = function(info, val)
 				  if strtrim(val) == "" then alert(L["You must enter an amount."])
       elseif tonumber(val) == nil then alert(L["You must enter a valid number."])
@@ -1255,22 +1255,6 @@ function R:CreateGroup(options, group, isUser)
      hidden = function() return item.method ~= BOSS and item.method ~= USE end,
 		  },
 							
-				raid25 = {
-					order = newOrder(),
-					type = "toggle",
-					width = "double",
-					name = L["Requires a 25-player raid"],
-					desc = L["Determines whether this item can only be obtained in 25-player mode."],
-					get = function()
-      if item.raid25 == true then return true else return false end
-     end,
-					set = function(info, val)
-						item.raid25 = val
-						self:Update("OPTIONS")
-					end,
-     hidden = function() return item.method ~= BOSS end,
-				},
-
 				equalOdds = {
 					order = newOrder(),
 					type = "toggle",
@@ -1284,6 +1268,41 @@ function R:CreateGroup(options, group, isUser)
 						self:Update("OPTIONS")
 					end,
      hidden = function() return item.method ~= BOSS and item.method ~= USE end,
+				},
+
+				instanceDifficulty = {
+					order = newOrder(),
+					type = "multiselect",
+					width = "double",
+					name = L["Instance Difficulty"],
+					desc = L["Determines which instance difficulties this item may be obtained in. Leave everything unchecked if the instance difficulty doesn't matter.\n\nIf you specified a Statistic ID for this item, the Instance Difficulty is probably meaningless, because all modern statistics already incorporate the difficulty.\n\nYou can check multiple items in this list at once."],
+					values = {
+						[0] = L["None (not in an instance)"],
+						[1] = L["5-player instance"],
+						[2] = L["5-player Heroic instance"],
+						[3] = L["10-player Raid instance (legacy content; not flexible)"],
+						[4] = L["25-player Raid instance (legacy content; not flexible)"],
+						[5] = L["10-player Heroic Raid instance (legacy content; not flexible)"],
+						[6] = L["25-player Heroic Raid instance (legacy content; not flexible)"],
+						[7] = L["Raid Finder instance (legacy content; fixed at 25 players)"],
+						[8] = L["Challenge Mode instance"],
+						[9] = L["40-player Raid instance (legacy content; not flexible)"],
+						[11] = L["Heroic Scenario instance"],
+						[12] = L["Scenario instance"],
+						[14] = L["Normal Raid (10-30 players)"],
+						[15] = L["Heroic Raid (10-30 players)"],
+						[16] = L["Mythic Raid (20 player)"],
+						[17] = L["Looking For Raid (10-30 players)"],
+					},
+					get = function(s, key)
+      if item.instanceDifficulties then return item.instanceDifficulties[key] or false end
+						return false
+     end,
+					set = function(s, key, state)
+						if item.instanceDifficulties == nil then item.instanceDifficulties = {} end
+						item.instanceDifficulties[key] = state
+						self:Update("OPTIONS")
+					end,
 				},
 
 				requiresHorde = {
