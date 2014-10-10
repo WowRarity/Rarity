@@ -134,6 +134,8 @@ function R:PrepareDefaults()
 				},
 			},
 
+			-- For instanceDifficulties, see: http://wowprogramming.com/docs/api/GetInstanceInfo
+
    groups = {
 
     mounts = {

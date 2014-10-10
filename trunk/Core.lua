@@ -29,24 +29,6 @@ local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
    Mounts
    Pets
 
-   Investigate new difficulty IDs and how they interact with existing detection, if any:
-					difficultyID 14 (Normal flex10-30, previously "Flex")
-					difficultyID 15 (Heroic flex10-30, new)
-					difficultyID 16 (Mythic 20, new)
-					difficultyID 17 (Looking For Raid flex10-30, new)
-				 -----------------------
-					Consolidate these two checks into a single multi-select difficulty: R:IsHeroic(), R:IsRaid25()
-					Ace-Config options documentation for multi-select:
-							multiselect
-
-							Basically multiple "toggle" elements condensed into a group of checkboxes, or something else that makes sense in the interface.
-
-							values (table|function) - [key]=value pair table to choose from, key is the value passed to "set", value is the string displayed
-							get (function|methodname) - will be called for every key in values with the key name as last parameter
-							set (function|methodname) - will be called with keyname, state as parameters
-							tristate (boolean) - Make the checkmarks tri-state. Values are cycled through unchecked (false), checked (true), greyed (nil) - in that order.
-				 -----------------------
-					
 			New Globally Unique Identifier format:
 					For players: Player:[server ID]:[player UID] (Example: "Player:976:0002FD64")
 					For creatures, pets, objects, and vehicles: [Unit type]:0:[server ID]:[instance ID]:[zone UID]:[ID]:[Spawn UID] (Example: "Creature:0:976:0:11:31146:000136DF91")
@@ -906,7 +888,13 @@ end
 
 
 function R:IsInstanceAppropriate(item)
-	if item.instanceDifficulties == nil or type(item.instanceDifficulties) ~= "table" or item.instanceDifficulties == {} then return true end
+	if item == nil then return true end
+	if item.instanceDifficulties == nil or type(item.instanceDifficulties) ~= "table" or next(item.instanceDifficulties) == nil then return true end
+	local foundTrue = false
+	for k, v in pairs(item.instanceDifficulties) do
+		if v == true then foundTrue = true end
+	end
+	if foundTrue == false then return true end
 	local name, type, difficulty, difficultyName, maxPlayers, playerDifficulty, isDynamicInstance, mapID, instanceGroupSize = GetInstanceInfo()
 	if item.instanceDifficulties[difficulty] and item.instanceDifficulties[difficulty] == true then return true end
 	return false
@@ -1608,7 +1596,7 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 	-- This NPC is known to be used for obtaining something
  if npcs_to_items[npcid] and type(npcs_to_items[npcid]) == "table" then
   for k, v in pairs(npcs_to_items[npcid]) do
-   if self:IsInstanceAppropriate(v) then
+   if R:IsInstanceAppropriate(v) then
 				local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
 				if itemLink or itemName or v.name then
 					if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
