@@ -61,6 +61,9 @@ externals:
     Libs/AceGUI-3.0-SharedMediaWidgets:
         url: svn://svn.wowace.com/wow/ace-gui-3-0-shared-media-widgets/mainline/trunk/AceGUI-3.0-SharedMediaWidgets
         tag: latest
+    Libs/LibBabble-CreatureType-3.0:
+        url: svn://svn.wowace.com/wow/libbabble-creaturetype-3-0/mainline/trunk
+        tag: latest
             
 tools-used:
     - libdatabroker-1-1

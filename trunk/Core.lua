@@ -16,6 +16,7 @@ local dataobj = ldb:NewDataObject("Rarity", {
 })
 local lbz = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
 local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
+local lbct = LibStub("LibBabble-CreatureType-3.0"):GetUnstrictLookupTable()
 --
 
 
@@ -1585,8 +1586,16 @@ end
 _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 	if R.db.profile.enableTooltipAdditions == false then return end
 
+
+
 	local name, unit = self:GetUnit()
 	if not unit then return end
+	local creatureType = UnitCreatureType(unit)
+	--Rarity:Debug("Creature type: "..(creatureType or "nil").." (translation: "..(lbct[creatureType] or "nil")..")")
+	if creatureType == "Critter" or lbct[creatureType] == "Critter" or creatureType == "Non-combat Pet" or lbct[creatureType] == "Non-combat Pet" or creatureType == "Wild Pet" or lbct[creatureType] == "Wild Pet" then
+		--Rarity:Debug("Tooltip unit is Critter, Non-combat Pet or Wild Pet. Disregarding.")
+		return
+	end
 	local guid = UnitGUID(unit)
 	if not unit or not guid then return end
 	local npcid = R:GetNPCIDFromGUID(guid)

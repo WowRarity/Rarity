@@ -34,6 +34,7 @@ Libs\LibSink-2.0\LibSink-2.0\lib.xml
 Libs\LibBars-1.0\lib.xml
 Libs\LibSharedMedia-3.0\lib.xml
 Libs\AceGUI-3.0-SharedMediaWidgets\widget.xml
+Libs\LibBabble-CreatureType-3.0\lib.xml
 #@end-no-lib-strip@
 
 Locales.lua
