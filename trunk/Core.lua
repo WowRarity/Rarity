@@ -1642,7 +1642,7 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 							end
 						end
 						if found then
-							if self:IsInstanceAppropriate(vv) then
+							if R:IsInstanceAppropriate(vv) then
 								local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(vv.itemId)
 								if itemLink or itemName or vv.name then
 									if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
