@@ -71,6 +71,9 @@ local lbct = LibStub("LibBabble-CreatureType-3.0"):GetUnstrictLookupTable()
       VARIABLES ----------------------------------------------------------------------------------------------------------------
   ]]
 
+-- Client version check
+local wod_600 = select(4, GetBuildInfo()) >= 60000
+
 R.modulesEnabled = {}
 
 local npcs = {}
@@ -882,9 +885,15 @@ end
 
 function R:GetNPCIDFromGUID(guid)
 	if guid then
-  if type(guid) == "number" then guid = "0x"..tostring(guid) end
-		return (guid and tonumber(guid:sub(6, 10), 16)) or 0
+	 if not wod_600 then
+			if type(guid) == "number" then guid = "0x"..tostring(guid) end
+			return (guid and tonumber(guid:sub(6, 10), 16)) or 0
+		else
+			local unit_type, _, _, _, _, mob_id = strsplit('-', guid)
+			return (guid and mob_id and tonumber(mob_id)) or 0
+		end
 	end
+	return 0
 end
 
 
@@ -1135,10 +1144,18 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell)
  if spells[curSpell] then return end
 
 	-- If the loot is not from an NPC (could be from yourself or a world object), we don't want to process this
-	local unitType = tonumber(guid:sub(5, 5), 16) or 0
-	if unitType ~= 3 and unitType ~= 5 then
-		self:Debug("This loot isn't from an NPC; disregarding. Loot source identified as unit type: "..(unitType or "nil"))
-		return
+	if wod_600 then
+  local unitType, _, _, _, _, mob_id = strsplit('-', guid)
+  if unitType ~= "Creature" then
+			self:Debug("This loot isn't from an NPC; disregarding. Loot source identified as unit type: "..(unitType or "nil"))
+			return
+		end
+	else
+		local unitType = tonumber(guid:sub(5, 5), 16) or 0
+		if unitType ~= 3 and unitType ~= 5 then
+			self:Debug("This loot isn't from an NPC; disregarding. Loot source identified as unit type: "..(unitType or "nil"))
+			return
+		end
 	end
 
 	-- We're interested in this loot, process further
@@ -1926,7 +1943,7 @@ do
 
 		local category = ""
 		if item.cat and categories[item.cat] then category = " ("..categories[item.cat]..")" end
-  tooltip2:AddLine(colorize(R.string_types[item.type]..category, yellow))
+  if R.string_types[item.type] ~= nil then tooltip2:AddLine(colorize((R.string_types[item.type] or "UNKNOWN")..category, yellow)) end
   if item.groupSize and item.groupSize > 1 then
    tooltip2:AddLine(colorize(format(L["Usually requires a group of around %d players"], item.groupSize), red))
   end
