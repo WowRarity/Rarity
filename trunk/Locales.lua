@@ -376,6 +376,16 @@ L["Tangled Mantis Shrimp Cluster"] = true
 L["Crowded Redbelly Mandarin"] = true
 L["Glowing Jade Lungfish"] = true
 L["Sha-Touched Spinefish"] = true
+L["Abyssal Gulper School"] = true
+L["Oily Abyssal Gulper School"] = true
+L["Blackwater Whiptail School"] = true
+L["Blind Lake Sturgeon School"] = true
+L["Fat Sleeper School"] = true
+L["Fire Ammonite School"] = true
+L["Jawless Skulker School"] = true
+L["Sea Scorpion School"] = true
+L["Oily Sea Scorpion School"] = true
+L["Savage Piranha Pool"] = true
 
 -- Mining nodes
 L["Copper Vein"] = true
@@ -426,6 +436,10 @@ L["Kyparite Deposit"] = true
 L["Rich Kyparite Deposit"] = true
 L["Trillium Vein"] = true
 L["Rich Trillium Vein"] = true
+L["True Iron Deposit"] = true
+L["Rich True Iron Deposit"] = true
+L["Blackrock Deposit"] = true
+L["Rich Blackrock Deposit"] = true
 
 
 

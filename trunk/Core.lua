@@ -50,7 +50,7 @@ local lbct = LibStub("LibBabble-CreatureType-3.0"):GetUnstrictLookupTable()
 			- New pets
 			
 			Nodes and zones:
-			- Fishing nodes
+			- Fishing nodes (GatherMate2/Constants.lua)
 			- Mining nodes
 			- New zones for Sea Turtle (http://wowpedia.org/MapID)
 			
@@ -159,7 +159,6 @@ R.coins = {
 	[994] = true, -- Seal of Tempered Fate
 }
 
--- A good place to find updates to this list is in GatherMate2/Constants.lua
 R.fishnodes = {
  [L["Floating Wreckage"]] = true,
  [L["Patch of Elemental Water"]] = true,
@@ -252,6 +251,17 @@ R.fishnodes = {
 	[L["Crowded Redbelly Mandarin"]] = true,
 	[L["Glowing Jade Lungfish"]] = true,
 	[L["Sha-Touched Spinefish"]] = true,
+	-- New in Warlords of Draenor
+	[L["Abyssal Gulper School"]] = true,
+	[L["Oily Abyssal Gulper School"]] = true,
+	[L["Blackwater Whiptail School"]] = true,
+	[L["Blind Lake Sturgeon School"]] = true,
+	[L["Fat Sleeper School"]] = true,
+	[L["Fire Ammonite School"]] = true,
+	[L["Jawless Skulker School"]] = true,
+	[L["Sea Scorpion School"]] = true,
+	[L["Oily Sea Scorpion School"]] = true,
+	[L["Savage Piranha Pool"]] = true,
 }
 
 R.miningnodes = {
@@ -304,6 +314,11 @@ R.miningnodes = {
 	[L["Rich Kyparite Deposit"]] = true,
 	[L["Trillium Vein"]] = true,
 	[L["Rich Trillium Vein"]] = true,
+	-- New in Warlords of Draenor
+	[L["True Iron Deposit"]] = true,
+	[L["Rich True Iron Deposit"]] = true,
+	[L["Blackrock Deposit"]] = true,
+	[L["Rich Blackrock Deposit"]] = true,
 }
 
 R.opennodes = {
