@@ -308,6 +308,8 @@ function R:PrepareDefaults()
      ["Ruby Droplet"] =                                  { cat = MOP, type = PET, method = NPC, name = GetItemInfo(104159) or L["Ruby Droplet"], spellId = 148050, itemId = 104159, npcs = { 73282 }, chance = 25, creatureId = 73356, },
      ["Skunky Alemental"] =                              { cat = MOP, type = PET, method = NPC, name = GetItemInfo(104167) or L["Skunky Alemental"], spellId = 148063, itemId = 104167, npcs = { 71919 }, chance = 33, creatureId = 73367, },
      ["Spineclaw Crab"] =                                { cat = MOP, type = PET, method = NPC, name = GetItemInfo(104168) or L["Spineclaw Crab"], spellId = 148066, itemId = 104168, npcs = { 73166 }, chance = 60, creatureId = 73366, },
+					-- 6.0
+     ["Time-Locked Box"] =                               { cat = WOD, type = PET, method = NPC, name = GetItemInfo(118675) or L["Time-Locked Box"], spellId = 10699, itemId = 118675, npcs = { 78488, 78670, 76886, 78345, 78667, 82451, 78348, 77767, 77090, 76189, 77723, 82774, }, chance = 500, creatureId = 7546, },
 
     },
     items = {

@@ -596,6 +596,7 @@ L["Snarly's Bucket"] = true
 L["Toothy's Bucket"] = true
 L["Old Crafty"] = true
 L["Old Ironjaw"] = true
+L["Time-Locked Box"] = true
 
 
 
