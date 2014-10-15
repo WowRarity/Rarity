@@ -24,17 +24,11 @@ local lbct = LibStub("LibBabble-CreatureType-3.0"):GetUnstrictLookupTable()
    WARLORDS OF DRAENOR
    TO-DO LIST
 			
-   Fishing nodes
-   Mining nodes
+   Fishing nodes TRANSLATIONS
+   Mining nodes TRANSLATIONS
 
    Mounts
    Pets
-
-			New Globally Unique Identifier format:
-					For players: Player:[server ID]:[player UID] (Example: "Player:976:0002FD64")
-					For creatures, pets, objects, and vehicles: [Unit type]:0:[server ID]:[instance ID]:[zone UID]:[ID]:[Spawn UID] (Example: "Creature:0:976:0:11:31146:000136DF91")
-					Unit Type Names: "Creature", "Pet", "GameObject", and "Vehicle"
-					For vignettes: Vignette:0:[server ID]:[instance ID]:[zone UID]:0:[spawn UID] (Example: "Vignette:0:970:1116:7:0:0017CAE465" for rare mob Sulfurious)
 
 ]]--
 
@@ -2213,7 +2207,7 @@ do
 									lucky = colorize(L["Lucky"], green)
 									if medianLoots < attempts then lucky = colorize(L["Unlucky"], red) end
 								else
-									chance = 100 * (v.attempts / (v.chance or 100))
+									chance = 100 * (attempts / (v.chance or 100))
 									if chance < 0 then chance = 0 end
 									if chance > 100 then chance = 100 end
 									lucky = colorize(L["Lucky"], green)
