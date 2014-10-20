@@ -2379,6 +2379,11 @@ function R:ShowFoundAlert(itemId, attempts)
 	AlertFrame_FixAnchors();
 
  self:ScheduleTimer(function()
+  -- Take a screenshot
+	 if Rarity.db.profile.takeScreenshot then TakeScreenshot() end
+ end, 2)
+
+ self:ScheduleTimer(function()
   -- Put the achievement frame back to normal when we're done
 	 unlocked:SetText(ACHIEVEMENT_UNLOCKED);
  end, 10)

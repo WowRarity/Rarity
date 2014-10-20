@@ -288,22 +288,33 @@ function R:PrepareOptions()
 								order = newOrder(),
 							}, -- statusTip
 
+							hideHighChance = {
+								type = "toggle",
+								order = newOrder(),
+								width = "double",
+								name = L["Hide high chance items"],
+								desc = L["When on, this option hides any item with a drop chance of 1 in 49 or better. The item is merely hidden from the tooltip in order to keep it clean. Items hidden in this fashion are still tracked like normal."],
+								get = function() return self.db.profile.hideHighChance end,
+								set = function(info, val)
+									self.db.profile.hideHighChance = val
+									self:UpdateText()
+								end,
+							},
+
+							takeScreenshot = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Take screenshots"],
+								desc = L["When on, Rarity will take a screenshot when the achievement alert pops up indicating that you obtained an item."],
+								get = function() return self.db.profile.takeScreenshot end,
+								set = function(info, val)
+									self.db.profile.takeScreenshot = val
+									self:UpdateText()
+								end,
+							},
+
 						}, -- args
 					}, -- display
-
-
-					hideHighChance = {
-						type = "toggle",
-						order = newOrder(),
-						width = "double",
-						name = L["Hide high chance items"],
-						desc = L["When on, this option hides any item with a drop chance of 1 in 49 or better. The item is merely hidden from the tooltip in order to keep it clean. Items hidden in this fashion are still tracked like normal."],
-						get = function() return self.db.profile.hideHighChance end,
-						set = function(info, val)
-							self.db.profile.hideHighChance = val
-							self:UpdateText()
-						end,
-					},
 
 
 					contentCategory = {

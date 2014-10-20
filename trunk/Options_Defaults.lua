@@ -94,6 +94,7 @@ function R:PrepareDefaults()
 			hideHighChance = false,
 			enableTooltipAdditions = true,
 			blankLineBeforeTooltipAdditions = true,
+			takeScreenshot = true,
 
    trackedGroup = "pets",
    trackedItem = 8494,
