@@ -1984,6 +1984,34 @@ do
     end
    end
   end
+		
+		-- source text, bonus satchel, black market
+		if item.sourceText ~= nil and type(item.sourceText) == "string" and item.sourceText ~= "" then
+			tooltip2:AddSeparator(1, 1, 1, 1, 1)
+			tooltip2:AddLine(colorize(item.sourceText, blue))
+		end
+		if item.worldBossFactionless then
+			tooltip2:AddLine(colorize(L["All players can participate in killing this world boss once per week, regardless of faction"], blue))
+		end
+		if item.wasGuaranteed then
+			tooltip2:AddLine(colorize(L["This was a guaranteed drop for players who defeated the encounter when it was current"], blue))
+		end
+		if item.bonusSatchel then
+			tooltip2:AddLine(colorize(L["Contained in bonus satchels"], yellow))
+		end
+		if item.blackMarket then
+			tooltip2:AddLine(colorize(L["Appears in the Black Market"], yellow))
+		end
+		if item.requiresAlliance then
+			tooltip2:AddLine(colorize(L["This mount is only obtainable by Alliance players"], red))
+		end
+		if item.requiresHorde then
+			tooltip2:AddLine(colorize(L["This mount is only obtainable by Horde players"], red))
+		end
+		if (item.sourceText and item.sourceText ~= "") or item.bonusSatchel or item.blackMarket then
+			tooltip2:AddSeparator(1, 1, 1, 1, 1)
+		end
+
 		if item.method == COLLECTION then
    local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.collectedItemId)
 			tooltip2:AddLine(colorize(format(L["Collect %d %s"], item.chance or 100, itemLink or itemName or ""), white))

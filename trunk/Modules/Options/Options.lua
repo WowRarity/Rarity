@@ -42,6 +42,15 @@ local TIP_LEFT = "TIP_LEFT"
 local TIP_RIGHT = "TIP_RIGHT"
 local TIP_HIDDEN = "TIP_HIDDEN"
 
+local red = { r = 1.0, g = 0.2, b = 0.2 }
+local blue = { r = 0.4, g = 0.4, b = 1.0 }
+local green = { r = 0.2, g = 1.0, b = 0.2 }
+local yellow = { r = 1.0, g = 1.0, b = 0.2 }
+local gray = { r = 0.5, g = 0.5, b = 0.5 }
+local black = { r = 0.0, g = 0.0, b = 0.0 }
+local white = { r = 1.0, g = 1.0, b = 1.0 }
+
+
 
 
 do
@@ -724,6 +733,62 @@ function R:CreateGroup(options, group, isUser)
 				 order = newOrder(),
 				 name = select(2, GetItemInfo(item.itemId or 0)) or item.name,
 				 fontSize = "large"
+			 },
+				
+			 source = {
+				 type = "description",
+				 order = newOrder(),
+				 name = item.sourceText or "",
+					hidden = item.sourceText == nil or item.sourceText == "",
+			 },
+				
+			 worldBossFactionless = {
+				 type = "description",
+				 order = newOrder(),
+				 name = colorize(L["All players can participate in killing this world boss once per week, regardless of faction"], blue),
+					hidden = item.worldBossFactionless == false or item.worldBossFactionless == nil,
+			 },
+				
+			 wasGuaranteed = {
+				 type = "description",
+				 order = newOrder(),
+				 name = colorize(L["This was a guaranteed drop for players who defeated the encounter when it was current"], blue),
+					hidden = item.wasGuaranteed == false or item.wasGuaranteed == nil,
+			 },
+				
+			 bonusSatchel = {
+				 type = "description",
+				 order = newOrder(),
+				 name = colorize(L["Contained in bonus satchels"], yellow),
+					hidden = item.bonusSatchel == false or item.bonusSatchel == nil,
+			 },
+				
+			 blackMarket = {
+				 type = "description",
+				 order = newOrder(),
+				 name = colorize(L["Appears in the Black Market"], yellow),
+					hidden = item.blackMarket == false or item.blackMarket == nil,
+			 },
+				
+			 requiresAllianceT = {
+				 type = "description",
+				 order = newOrder(),
+				 name = colorize(L["This mount is only obtainable by Alliance players"], red),
+					hidden = item.requiresAlliance == false or item.requiresAlliance == nil,
+			 },
+				
+			 requiresHordeT = {
+				 type = "description",
+				 order = newOrder(),
+				 name = colorize(L["This mount is only obtainable by Horde players"], red),
+					hidden = item.requiresHorde == false or item.requiresHorde == nil,
+			 },
+				
+			 blankLine = {
+				 type = "description",
+				 order = newOrder(),
+				 name = " ",
+					hidden = item.sourceText == nil or item.sourceText == "",
 			 },
 				
 			 spacer1 = { type = "header", name = L["Identify the Item"], order = newOrder(), },
