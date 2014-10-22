@@ -267,60 +267,46 @@ L["When on, Rarity will take a screenshot when the achievement alert pops up ind
 -- Sources
 L[""] = true
 L["This was a guaranteed drop for players who defeated the encounter when it was current"] = true
-L["\nPlayers have a personal loot chance to obtain the item."] = true
+L["Players have a personal loot chance to obtain this item."] = true
 L["All players can participate in killing this world boss once per week, regardless of faction"] = true
 L["Contained in bonus satchels"] = true
 L["Appears in the Black Market"] = true
 L["This mount is only obtainable by Alliance players"] = true
 L["This mount is only obtainable by Horde players"] = true
 
-L["Dropped by Lord Aurius Rivendare in Stratholme"] = true
-L["Drops from various mobs in Temple of Ahn'Qiraj"] = true
-L["Dropped by Kael'thas Sunstrider in The Eye"] = true
-L["Dropped by Attumen the Huntsman in Karazhan"] = true
-L["Dropped by Anzu in Sethekk Halls (heroic)"] = true
-L["Dropped by Kael'thas Sunstrider in Magisters' Terrace (heroic)"] = true
-L["Dropped by The Lich King in Icecrown Citadel (25-player heroic)"] = true
+L["All raid formats except Raid Finder"] = true
+L["Any raid size or difficulty"] = true
+L["25-player heroic"] = true
+L["Mythic difficulty"] = true
+L["Heroic difficulty"] = true
+L["Any difficulty"] = true
+L["Any raid size"] = true
+L["Heroic, any raid size"] = true
+
 L["Dropped by Yogg-Saron in Ulduar (25-player) with no Keepers assisting"] = true
 L["Dropped by Malygos in The Eye of Eternity (any raid size)"] = true
-L["Dropped by Skadi the Ruthless in Utgarde Pinnacle (heroic)"] = true
 L["Dropped by Koralon the Flame Watcher, Emalon the Storm Watcher,\nArchavon the Stone Watcher, and Toravon the Ice Watcher\nin Vault of Archavon (any raid size)."] = true
 L["Contained in Cracked Egg, which is obtained by becoming Revered with The Oracles,\npurchasing a Mysterious Egg from their reputation vendor, and waiting three days.\nThe mount has a 5% chance to appear in the Cracked Egg."] = true
 L["Dropped by Onyxia in Onyxia's Lair (any raid size)"] = true
 L["Contained in Hyldnir Spoils, which is rewarded for completing daily quests\ngiven by Gretta the Arbiter in Brunnhildar Village, Storm Peaks.\nThe mount has a 3% chance to appear in Hyldnir Spoils."] = true
 L["Obtained very rarely by fishing in pools located in any expansion zone (not Classic zones)"] = true
-L["Dropped by Al'Akir in Throne of the Four Winds (any raid size or difficulty)"] = true
-L["Dropped by Bloodlord Mandokir in Zul'Gurub (heroic)"] = true
 L["Dropped by Ultraxion in Dragon Soul (any raid size or difficulty)"] = true
-L["Dropped by Alysrazor in Firelands (any raid size or difficulty)"] = true
 L["Obtained as a rare project for the Fossil branch of archaeology"] = true
 L["Dropped by the Madness of Deathwing encounter in Dragon Soul (any raid size or difficulty)"] = true
-L["Dropped by Altairus in The Vortex Pinnacle (any difficulty)"] = true
 L["Guaranteed drop from Dormus the Camel-Hoarder. Accessing this encounter\nrequires finding a rare Mysterious Camel Figurine in Uldum.\nThese are difficult to spot and, when clicked, have a small chance\nto grant you access to the Dormus encounter. Rarity will count\nhow many Figurines you've found if you mouseover them."] = true
-L["Dropped by Slabhide in The Stonecore (any difficulty)"] = true
 L["Obtained as a very rare project for the Tol'vir branch of archaeology"] = true
-L["Dropped by Ragnaros in Firelands (heroic, any raid size)"] = true
 L["Dropped by the Madness of Deathwing encounter in Dragon Soul (heroic, any raid size)"] = true
-L["Dropped by Garrosh Hellscream in Siege of Orgrimmar (mythic)"] = true
-L["Dropped by High Priestess Kilnara in Zul'Gurub (heroic)"] = true
-L["Dropped by Zandalari Warbringers located throughout Pandaria\nThe Warbringer will be riding the mount color he has a chance to drop."] = true
-L["Dropped by Huolon on Timeless Isle"] = true
-L["Can be contained in Heart-Shaped Box, rewarded for defeating\nthe World Event Dungeon during Love is in the Air"] = true
-L["Can be contained in Keg-Shaped Treasure Chest, rewarded for defeating\nthe World Event Dungeon during Brewfest"] = true
-L["Can be contained in Loot-Filled Pumpkin, rewarded for defeating\nthe World Event Dungeon during Hallow's End"] = true
-L["Dropped by Ji-Kun in Throne of Thunder (all raid formats except Raid Finder)"] = true
-L["Dropped by Galleon in Valley of the Four Winds"] = true
-L["Dropped by Horridon in Throne of Thunder (all raid formats except Raid Finder)"] = true
+L["The Warbringer will be riding the mount color he has a chance to drop."] = true
+L["Can be contained in Heart-Shaped Box, rewarded for defeating\nthe World Event Dungeon during Love is in the Air."] = true
+L["Can be contained in Keg-Shaped Treasure Chest, rewarded for defeating\nthe World Event Dungeon during Brewfest."] = true
+L["Can be contained in Loot-Filled Pumpkin, rewarded for defeating\nthe World Event Dungeon during Hallow's End."] = true
 L["Dropped by Elegon in Mogu'shan Vaults (all raid formats except Raid Finder)"] = true
-L["Dropped by Oondasta on Isle of Giants"] = true
-L["Dropped by Sha of Anger in Kun-Lai Summit"] = true
-L["Dropped by Nalak on Isle of Thunder"] = true
 L["Obtained by fishing in pools located in Terrokar Forest"] = true
 L["Obtained by fishing in any water in Orgrimmar"] = true
 L["Obtained by fishing in any water in Ironforge"] = true
 L["Dropped by dinosaurs on Isle of Giants\nWill hatch into one of three Primal Raptor mounts after three days."] = true
 L["Dropped by any mob in Vale of Eternal Blossoms (except minor mobs)\n10 of these can be combined to pierce Alani's shield, allowing combat and a guaranteed drop of\nReins of the Thundering Ruby Cloud Serpent."] = true
-L["Earned by giving 9999 Giant Dinosaur Bones to Ku'ma on Isle of Giants\nGiant Dinosaur bones drop from all dinosaurs and Zandalari Dinomancers on Isle of Giants."] = true
+L["Earned by giving 9999 Giant Dinosaur Bones to Ku'ma on Isle of Giants.\nGiant Dinosaur bones drop from all dinosaurs and Zandalari Dinomancers on Isle of Giants."] = true
 
 
 -- Instance difficulties

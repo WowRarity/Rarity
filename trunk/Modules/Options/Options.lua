@@ -738,6 +738,28 @@ function R:CreateGroup(options, group, isUser)
 			 source = {
 				 type = "description",
 				 order = newOrder(),
+				 name = function()
+						if item.type == MOUNT and item.spellId ~= nil and Rarity.mount_sources[item.spellId] ~= nil then
+							return Rarity.mount_sources[item.spellId]
+						end
+						if item.type == PET and item.creatureId ~= nil and Rarity.pet_sources[item.creatureId] ~= nil then
+							return Rarity.pet_sources[item.creatureId]
+						end
+					end,
+					hidden = function()
+						if item.type == MOUNT and item.spellId ~= nil and Rarity.mount_sources[item.spellId] ~= nil then
+							return false
+						end
+						if item.type == PET and item.creatureId ~= nil and Rarity.pet_sources[item.creatureId] ~= nil then
+							return false
+						end
+						return true
+					end,
+			 },
+				
+			 sourceExtra = {
+				 type = "description",
+				 order = newOrder(),
 				 name = item.sourceText or "",
 					hidden = item.sourceText == nil or item.sourceText == "",
 			 },

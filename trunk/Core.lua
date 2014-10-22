@@ -85,6 +85,8 @@ local archfragments = {}
 local coinamounts = {}
 local architems = {}
 local rarity_stats = {}
+Rarity.mount_sources = {}
+Rarity.pet_sources = {}
 
 local bankOpen = false
 local guildBankOpen = false
@@ -1986,9 +1988,20 @@ do
   end
 		
 		-- source text, bonus satchel, black market
-		if item.sourceText ~= nil and type(item.sourceText) == "string" and item.sourceText ~= "" then
+		local hadSource = false
+		if item.type == MOUNT and item.spellId ~= nil and Rarity.mount_sources[item.spellId] ~= nil then
 			tooltip2:AddSeparator(1, 1, 1, 1, 1)
-			tooltip2:AddLine(colorize(item.sourceText, blue))
+			tooltip2:AddLine(Rarity.mount_sources[item.spellId])
+			hadSource = true
+		end
+		if item.type == PET and item.creatureId ~= nil and Rarity.pet_sources[item.creatureId] ~= nil then
+			tooltip2:AddSeparator(1, 1, 1, 1, 1)
+			tooltip2:AddLine(Rarity.pet_sources[item.creatureId])
+			hadSource = true
+		end
+		if item.sourceText ~= nil and item.sourceText ~= "" then
+			tooltip2:AddLine(item.sourceText)
+			hadSource = true
 		end
 		if item.worldBossFactionless then
 			tooltip2:AddLine(colorize(L["All players can participate in killing this world boss once per week, regardless of faction"], blue))
@@ -2008,7 +2021,7 @@ do
 		if item.requiresHorde then
 			tooltip2:AddLine(colorize(L["This mount is only obtainable by Horde players"], red))
 		end
-		if (item.sourceText and item.sourceText ~= "") or item.bonusSatchel or item.blackMarket then
+		if hadSource or item.bonusSatchel or item.blackMarket or item.wasGuaranteed or item.worldBossFactionless or item.requiresAlliance or item.requiresHorde then
 			tooltip2:AddSeparator(1, 1, 1, 1, 1)
 		end
 
@@ -2526,6 +2539,9 @@ function R:ScanExistingItems(reason)
 	if mount_journal then
 		for id = 1, mount_journal.GetNumMounts() do
 			local creatureName, spellId, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected = mount_journal.GetMountInfo(id)
+			local creatureDisplayID, descriptionText, sourceText, isSelfMount, mountType = C_MountJournal.GetMountInfoExtra(id)
+
+			Rarity.mount_sources[spellId] = sourceText
   
 			-- Special cases
 			--if spellId == 132036 then R.db.profile.groups.items["Skyshard"].enabled = false end -- Skyshard (Reins of the Thundering Ruby Cloud Serpent)
@@ -2573,7 +2589,8 @@ function R:ScanExistingItems(reason)
 	pet_journal.AddAllPetSourcesFilter()
  local total, owned = pet_journal.GetNumPets()
  for i = 1, total do
-  local petID, speciesID, owned, customName, level, favorite, isRevoked, speciesName, icon, petType, creatureId, tooltip, description, isWild, canBattle, isTradeable, isUnique, obtainable = pet_journal.GetPetInfoByIndex(i)
+  local petID, speciesID, owned, customName, level, favorite, isRevoked, speciesName, icon, petType, companionID, tooltip, description, isWild, canBattle, isTradeable, isUnique, obtainable = pet_journal.GetPetInfoByIndex(i)
+		Rarity.pet_sources[companionID] = tooltip
 		if owned then
 			for k, v in pairs(R.db.profile.groups) do
 				if type(v) == "table" then
