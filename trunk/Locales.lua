@@ -640,6 +640,7 @@ L["Old Crafty"] = true
 L["Old Ironjaw"] = true
 L["Time-Locked Box"] = true
 L["Kor'kron Juggernaut"] = true
+L["Sky-Bo"] = true
 
 
 
