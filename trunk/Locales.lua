@@ -254,8 +254,8 @@ L["Instance Difficulty"] = true
 L["Determines which instance difficulties this item may be obtained in. Leave everything unchecked if the instance difficulty doesn't matter.\n\nIf you specified a Statistic ID for this item, the Instance Difficulty is probably meaningless, because all modern statistics already incorporate the difficulty.\n\nYou can check multiple items in this list at once."] = true
 L["Take screenshots"] = true
 L["When on, Rarity will take a screenshot when the achievement alert pops up indicating that you obtained an item."] = true
-
-
+L["Already known"] = true
+L["(%d/%d attempts)"] = true
 
 
 

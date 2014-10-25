@@ -1640,7 +1640,8 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 						blankAdded = true
 						GameTooltip:AddLine(" ")
 					end
-					GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or v.name), yellow))
+					GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or v.name).." "..colorize(format(L["(%d/%d attempts)"], v.attempts or 0, v.chance or 0), white), yellow))
+					if v.known then GameTooltip:AddLine(colorize(L["Already known"], red)) end
 					GameTooltip:Show()
 				end
    end
@@ -1677,7 +1678,8 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 										blankAdded = true
 										GameTooltip:AddLine(" ")
 									end
-									GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or vv.name), yellow))
+									GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or vv.name).." "..colorize(format(L["(%d/%d attempts)"], v.attempts or 0, v.chance or 0), white), yellow))
+									if vv.known then GameTooltip:AddLine(colorize(L["Already known"], red)) end
 									GameTooltip:Show()
 								end
 							end
@@ -1712,7 +1714,8 @@ hooksecurefunc(GameTooltip, "SetBagItem", function(self, bag, slot)
 							blankAdded = true
 							GameTooltip:AddLine(" ")
 						end
-						GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or v.name), yellow))
+						GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or v.name).." "..colorize(format(L["(%d/%d attempts)"], v.attempts or 0, v.chance or 0), white), yellow))
+						if v.known then GameTooltip:AddLine(colorize(L["Already known"], red)) end
 						GameTooltip:Show()
 					end
 				end
@@ -1728,7 +1731,8 @@ hooksecurefunc(GameTooltip, "SetBagItem", function(self, bag, slot)
 						blankAdded = true
 						GameTooltip:AddLine(" ")
 					end
-					GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName), yellow))
+					GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName).." "..colorize(format(L["(%d/%d attempts)"], v.attempts or 0, v.chance or 0), white), yellow))
+					if v.known then GameTooltip:AddLine(colorize(L["Already known"], red)) end
 					GameTooltip:Show()
 				end
 			end
@@ -2524,6 +2528,7 @@ function R:ScanExistingItems(reason)
 				if type(v) == "table" then
 					for kk, vv in pairs(v) do
 						if type(vv) == "table" then
+							if vv.spellId and vv.spellId == spellId then vv.known = true end
 							if vv.spellId and vv.spellId == spellId and not vv.repeatable then
 								vv.enabled = false
 								vv.found = true
@@ -2551,6 +2556,7 @@ function R:ScanExistingItems(reason)
 					if type(v) == "table" then
 						for kk, vv in pairs(v) do
 							if type(vv) == "table" then
+								if vv.spellId and vv.spellId == spellId then vv.known = true end
 								if vv.spellId and vv.spellId == spellId and not vv.repeatable then
 									vv.enabled = false
 									vv.found = true
@@ -2596,6 +2602,7 @@ function R:ScanExistingItems(reason)
 				if type(v) == "table" then
 					for kk, vv in pairs(v) do
 						if type(vv) == "table" then
+							if vv.creatureId and vv.creatureId == creatureId then vv.known = true end
 							if vv.creatureId and vv.creatureId == creatureId and not vv.repeatable then
 								vv.enabled = false
 								vv.found = true
