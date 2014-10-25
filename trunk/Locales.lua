@@ -256,7 +256,7 @@ L["Take screenshots"] = true
 L["When on, Rarity will take a screenshot when the achievement alert pops up indicating that you obtained an item."] = true
 L["Already known"] = true
 L["(%d/%d attempts)"] = true
-
+L["(%d/%d collected)"] = true
 
 
 

@@ -1640,7 +1640,10 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 						blankAdded = true
 						GameTooltip:AddLine(" ")
 					end
-					GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or v.name).." "..colorize(format(L["(%d/%d attempts)"], v.attempts or 0, v.chance or 0), white), yellow))
+					local attemptText = " "..colorize(format(L["(%d/%d attempts)"], v.attempts or 0, v.chance or 0), white)
+					if v.method == COLLECTION then attemptText = " "..colorize(format(L["(%d/%d collected)"], v.attempts or 0, v.chance or 0), white) end
+					if v.known then attemptText = "" end
+					GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or v.name)..attemptText, yellow))
 					if v.known then GameTooltip:AddLine(colorize(L["Already known"], red)) end
 					GameTooltip:Show()
 				end
@@ -1678,7 +1681,10 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 										blankAdded = true
 										GameTooltip:AddLine(" ")
 									end
-									GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or vv.name).." "..colorize(format(L["(%d/%d attempts)"], v.attempts or 0, v.chance or 0), white), yellow))
+									local attemptText = " "..colorize(format(L["(%d/%d attempts)"], vv.attempts or 0, vv.chance or 0), white)
+									if vv.method == COLLECTION then attemptText = " "..colorize(format(L["(%d/%d collected)"], vv.attempts or 0, vv.chance or 0), white) end
+									if vv.known then attemptText = "" end
+									GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or vv.name)..attemptText, yellow))
 									if vv.known then GameTooltip:AddLine(colorize(L["Already known"], red)) end
 									GameTooltip:Show()
 								end
@@ -1714,7 +1720,10 @@ hooksecurefunc(GameTooltip, "SetBagItem", function(self, bag, slot)
 							blankAdded = true
 							GameTooltip:AddLine(" ")
 						end
-						GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or v.name).." "..colorize(format(L["(%d/%d attempts)"], v.attempts or 0, v.chance or 0), white), yellow))
+						local attemptText = " "..colorize(format(L["(%d/%d attempts)"], v.attempts or 0, v.chance or 0), white)
+						if v.method == COLLECTION then attemptText = " "..colorize(format(L["(%d/%d collected)"], v.attempts or 0, v.chance or 0), white) end
+						if v.known then attemptText = "" end
+						GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or v.name)..attemptText, yellow))
 						if v.known then GameTooltip:AddLine(colorize(L["Already known"], red)) end
 						GameTooltip:Show()
 					end
@@ -1731,7 +1740,10 @@ hooksecurefunc(GameTooltip, "SetBagItem", function(self, bag, slot)
 						blankAdded = true
 						GameTooltip:AddLine(" ")
 					end
-					GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName).." "..colorize(format(L["(%d/%d attempts)"], v.attempts or 0, v.chance or 0), white), yellow))
+					local attemptText = " "..colorize(format(L["(%d/%d attempts)"], v.attempts or 0, v.chance or 0), white)
+					if v.method == COLLECTION then attemptText = " "..colorize(format(L["(%d/%d collected)"], v.attempts or 0, v.chance or 0), white) end
+					if v.known then attemptText = "" end
+					GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or v.name)..attemptText, yellow))
 					if v.known then GameTooltip:AddLine(colorize(L["Already known"], red)) end
 					GameTooltip:Show()
 				end
