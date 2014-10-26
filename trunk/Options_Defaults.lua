@@ -94,6 +94,7 @@ function R:PrepareDefaults()
 			hideHighChance = false,
 			enableTooltipAdditions = true,
 			blankLineBeforeTooltipAdditions = true,
+			tooltipAttempts = true,
 			takeScreenshot = true,
 
    trackedGroup = "pets",
@@ -132,6 +133,7 @@ function R:PrepareDefaults()
 				inventoryItems = {
 					[94295] = { 94292, 94293, 94291, }, -- Primal Egg: Reins of the Black Primal Raptor, Reins of the Green Primal Raptor, Reins of the Red Primal Raptor
 					[94288] = { 94290, }, -- Giant Dinosaur Bone: Reins of the Bone-White Primal Raptor
+					--[6948] = { 6948}, -- Hearthstone: Hearthstone [this is for testing extraTooltips]
 				},
 			},
 

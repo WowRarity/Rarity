@@ -257,6 +257,8 @@ L["When on, Rarity will take a screenshot when the achievement alert pops up ind
 L["Already known"] = true
 L["(%d/%d attempts)"] = true
 L["(%d/%d collected)"] = true
+L["Show attempts in tooltips"] = true
+L["When enabled, Rarity tooltips will include how many attempts you've made."] = true
 
 
 

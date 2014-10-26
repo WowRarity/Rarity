@@ -248,6 +248,18 @@ function R:PrepareOptions()
 								end,
 							},
 
+							tooltipAttempts = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Show attempts in tooltips"],
+								desc = L["When enabled, Rarity tooltips will include how many attempts you've made."],
+								get = function() return self.db.profile.tooltipAttempts end,
+								set = function(info, val)
+									self.db.profile.tooltipAttempts = val
+									self:UpdateText()
+								end,
+							},
+
 							feedText = {
 								type = "select",
 								name = L["Feed text"],
