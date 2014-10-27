@@ -1627,6 +1627,9 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 	local guid = UnitGUID(unit)
 	if not unit or not guid then return end
 	local npcid = R:GetNPCIDFromGUID(guid)
+	if not UnitCanAttack("player", unit) then return end -- Something you can't attack
+	if UnitIsPlayer(unit) then return end -- A player
+	if UnitIsPVP(unit) then return end -- A PVP flagged unit
 
 	local blankAdded = false
 
