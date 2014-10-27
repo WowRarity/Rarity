@@ -1651,6 +1651,22 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
   end
  end
 
+	-- One-time items
+ if Rarity.db.profile.oneTimeItems[npcid] and type(Rarity.db.profile.oneTimeItems[npcid]) == "table" then
+		if Rarity.db.profile.oneTimeItems[npcid].itemId ~= 99999 then
+			local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(Rarity.db.profile.oneTimeItems[npcid].itemId)
+			if itemLink or itemName then
+				if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
+					blankAdded = true
+					GameTooltip:AddLine(" ")
+				end
+				local attemptText = ""
+				GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName)..attemptText, yellow))
+				if IsQuestFlaggedCompleted(Rarity.db.profile.oneTimeItems[npcid].questId) then GameTooltip:AddLine(colorize(L["Already defeated"], red)) end
+			end
+	end
+end
+
 	-- This whole zone is used for obtaining something
 	if not UnitCanAttack("player", unit) then return end -- Something you can't attack
 	if UnitIsPlayer(unit) then return end -- A player
