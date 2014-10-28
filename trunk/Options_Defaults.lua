@@ -142,7 +142,8 @@ function R:PrepareDefaults()
 	   -- [NPCID] = { questId = QUESTID, itemId = ITEMID }, -- NPC Name
 
 				-- Test item(s)
-				--[65432] = { questId = 31676, itemId = 6948   }, -- Kyparite Pulverizer (in The Dread Wastes)
+				--[65432] = { questId = 0--[[31676]], itemId = 102248   }, -- Kyparite Pulverizer (in The Dread Wastes)
+
 				---------------------------------------------------------------------------------------
 				-- WARLORDS OF DRAENOR
 				---------------------------------------------------------------------------------------

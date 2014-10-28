@@ -1608,6 +1608,9 @@ end
       GAME TOOLTIPS ------------------------------------------------------------------------------------------------------------
   ]]
 
+
+local ScanTip = CreateFrame("GameTooltip", "ScanTip", nil, "GameTooltipTemplate")
+ScanTip:SetOwner(WorldFrame, "ANCHOR_NONE")
 		
 		
 -- TOOLTIP: NPCS
@@ -1664,12 +1667,40 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 					blankAdded = true
 					GameTooltip:AddLine(" ")
 				end
-				local attemptText = ""
-				GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName)..attemptText, yellow))
-				if IsQuestFlaggedCompleted(Rarity.db.profile.oneTimeItems[npcid].questId) then GameTooltip:AddLine(colorize(L["Already defeated"], red)) end
+				if IsQuestFlaggedCompleted(Rarity.db.profile.oneTimeItems[npcid].questId) then
+					GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName), yellow))
+					GameTooltip:AddLine(colorize(L["Already defeated"], red))
+				else
+					ScanTip:ClearLines()
+					ScanTip:SetItemByID(Rarity.db.profile.oneTimeItems[npcid].itemId)
+
+					GameTooltip:AddDoubleLine(colorize(L["Rarity: "]..(itemLink or itemName), yellow), "|T"..itemTexture..":22|t")
+
+					for i = 2, ScanTip:NumLines() do
+						local myLeft = _G["ScanTipTextLeft"..i]
+						local txtLeft = myLeft:GetText()
+						local myRight = _G["ScanTipTextRight"..i]
+						local txtRight = myRight:GetText()
+						if txtRight then
+							GameTooltip:AddDoubleLine(txtLeft, txtRight, 1, 1, 1, 1, 1, 1)
+						else
+							if string.find(txtLeft, "Use:", 1) then
+								GameTooltip:AddLine(txtLeft, 0, 1, 0, true)
+							elseif string.find(txtLeft, "Equip:", 1) then
+								GameTooltip:AddLine(txtLeft, 0, 1, 0, true)
+							elseif string.find(txtLeft, "<Right", 1) then
+								GameTooltip:AddLine(txtLeft, 0, 1, 0, true)
+							elseif string.find(txtLeft, '"', 1) then
+								GameTooltip:AddLine(txtLeft, 1, 1, 0, true)
+							else
+								GameTooltip:AddLine(txtLeft, 1, 1, 1, true)
+							end
+						end
+					end
+				end -- showing item tooltip
 			end
+		end
 	end
-end
 
 	-- This whole zone is used for obtaining something
 	if not UnitCanAttack("player", unit) then return end -- Something you can't attack
