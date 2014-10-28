@@ -1689,7 +1689,7 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 							GameTooltip:AddLine(txtLeft, leftR, leftG, leftB, true)
 						end
 					end
-				end -- showing item tooltip
+				end -- showing item tooltip-
 			end
 		end
 	end
