@@ -1679,22 +1679,14 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 					for i = 2, ScanTip:NumLines() do
 						local myLeft = _G["ScanTipTextLeft"..i]
 						local txtLeft = myLeft:GetText()
+						local leftR, leftG, leftB, leftAlpha = myLeft:GetTextColor() 
 						local myRight = _G["ScanTipTextRight"..i]
 						local txtRight = myRight:GetText()
+						local rightR, rightG, rightB, rightAlpha = myRight:GetTextColor() 
 						if txtRight then
-							GameTooltip:AddDoubleLine(txtLeft, txtRight, 1, 1, 1, 1, 1, 1)
+							GameTooltip:AddDoubleLine(txtLeft, txtRight, leftR, leftG, leftB, rightR, rightB, rightG)
 						else
-							if string.find(txtLeft, "Use:", 1) then
-								GameTooltip:AddLine(txtLeft, 0, 1, 0, true)
-							elseif string.find(txtLeft, "Equip:", 1) then
-								GameTooltip:AddLine(txtLeft, 0, 1, 0, true)
-							elseif string.find(txtLeft, "<Right", 1) then
-								GameTooltip:AddLine(txtLeft, 0, 1, 0, true)
-							elseif string.find(txtLeft, '"', 1) then
-								GameTooltip:AddLine(txtLeft, 1, 1, 0, true)
-							else
-								GameTooltip:AddLine(txtLeft, 1, 1, 1, true)
-							end
+							GameTooltip:AddLine(txtLeft, leftR, leftG, leftB, true)
 						end
 					end
 				end -- showing item tooltip
