@@ -901,6 +901,7 @@ function R:GetNPCIDFromGUID(guid)
 			return (guid and tonumber(guid:sub(6, 10), 16)) or 0
 		else
 			local unit_type, _, _, _, _, mob_id = strsplit('-', guid)
+			if unit_type == "Pet" or unit_type == "Player" then return 0 end
 			return (guid and mob_id and tonumber(mob_id)) or 0
 		end
 	end
