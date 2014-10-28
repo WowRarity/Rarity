@@ -277,25 +277,10 @@ function R:PrepareOptions()
 								order = newOrder(),
 							}, -- feedText
 
-							itemTip = {
-								type = "select",
-								name = L["Item tooltip"],
-								values = {
-									[TIP_LEFT] = L["Left"],
-									[TIP_RIGHT] = L["Right"],
-									[TIP_HIDDEN] = L["Hidden"],
-								},
-								get = function() return self.db.profile.itemTip or TIP_LEFT end,
-								set = function(info, val)
-									self.db.profile.itemTip = val
-									self:Update("OPTIONS")
-								end,
-								order = newOrder(),
-							}, -- itemTip
-
 							statusTip = {
 								type = "select",
 								name = L["Status tooltip"],
+								desc = L["Controls on which side the Rarity status tooltip appears when you hover over an item in the main tooltip. If the main tooltip is on the right side of your screen, change this to Left. Otherwise, choose Right. You can also hide the status tooltip completely."],
 								values = {
 									[TIP_LEFT] = L["Left"],
 									[TIP_RIGHT] = L["Right"],

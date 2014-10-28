@@ -65,9 +65,6 @@ local lbct = LibStub("LibBabble-CreatureType-3.0"):GetUnstrictLookupTable()
       VARIABLES ----------------------------------------------------------------------------------------------------------------
   ]]
 
--- Client version check
-local wod_600 = select(4, GetBuildInfo()) >= 60000
-
 R.modulesEnabled = {}
 
 local npcs = {}
@@ -145,6 +142,9 @@ local yellow = { r = 1.0, g = 1.0, b = 0.2 }
 local gray = { r = 0.5, g = 0.5, b = 0.5 }
 local black = { r = 0.0, g = 0.0, b = 0.0 }
 local white = { r = 1.0, g = 1.0, b = 1.0 }
+
+local scanTip = CreateFrame("GameTooltip", "__Rarity_ScanTip", nil, "GameTooltipTemplate")
+scanTip:SetOwner(WorldFrame, "ANCHOR_NONE")
 
 R.coins = {
 	-- Mists of Pandaria
@@ -818,6 +818,15 @@ local function colorize(s, color)
 end
 
 
+local function colorizeV(s, r, g, b)
+	if r and g and b and s then
+		return format("|cff%02x%02x%02x%s|r", (r or 1) * 255, (g or 1) * 255, (b or 1) * 255, s)
+	else
+		return s
+	end
+end
+
+
 function R:Debug(s, ...)
 	if self.db.profile.debugMode then self:Print(format(s, ...)) end
 end
@@ -896,14 +905,9 @@ end
 
 function R:GetNPCIDFromGUID(guid)
 	if guid then
-	 if not wod_600 then
-			if type(guid) == "number" then guid = "0x"..tostring(guid) end
-			return (guid and tonumber(guid:sub(6, 10), 16)) or 0
-		else
-			local unit_type, _, _, _, _, mob_id = strsplit('-', guid)
-			if unit_type == "Pet" or unit_type == "Player" then return 0 end
-			return (guid and mob_id and tonumber(mob_id)) or 0
-		end
+		local unit_type, _, _, _, _, mob_id = strsplit('-', guid)
+		if unit_type == "Pet" or unit_type == "Player" then return 0 end
+		return (guid and mob_id and tonumber(mob_id)) or 0
 	end
 	return 0
 end
@@ -1156,18 +1160,10 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell)
  if spells[curSpell] then return end
 
 	-- If the loot is not from an NPC (could be from yourself or a world object), we don't want to process this
-	if wod_600 then
-  local unitType, _, _, _, _, mob_id = strsplit('-', guid)
-  if unitType ~= "Creature" then
-			self:Debug("This loot isn't from an NPC; disregarding. Loot source identified as unit type: "..(unitType or "nil"))
-			return
-		end
-	else
-		local unitType = tonumber(guid:sub(5, 5), 16) or 0
-		if unitType ~= 3 and unitType ~= 5 then
-			self:Debug("This loot isn't from an NPC; disregarding. Loot source identified as unit type: "..(unitType or "nil"))
-			return
-		end
+ local unitType, _, _, _, _, mob_id = strsplit('-', guid)
+ if unitType ~= "Creature" then
+		self:Debug("This loot isn't from an NPC; disregarding. Loot source identified as unit type: "..(unitType or "nil"))
+		return
 	end
 
 	-- We're interested in this loot, process further
@@ -1608,9 +1604,6 @@ end
       GAME TOOLTIPS ------------------------------------------------------------------------------------------------------------
   ]]
 
-
-local ScanTip = CreateFrame("GameTooltip", "ScanTip", nil, "GameTooltipTemplate")
-ScanTip:SetOwner(WorldFrame, "ANCHOR_NONE")
 		
 		
 -- TOOLTIP: NPCS
@@ -1671,16 +1664,16 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 					GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName), yellow))
 					GameTooltip:AddLine(colorize(L["Already defeated"], red))
 				else
-					ScanTip:ClearLines()
-					ScanTip:SetItemByID(Rarity.db.profile.oneTimeItems[npcid].itemId)
+					scanTip:ClearLines()
+					scanTip:SetItemByID(Rarity.db.profile.oneTimeItems[npcid].itemId)
 
 					GameTooltip:AddDoubleLine(colorize(L["Rarity: "]..(itemLink or itemName), yellow), "|T"..itemTexture..":22|t")
 
-					for i = 2, ScanTip:NumLines() do
-						local myLeft = _G["ScanTipTextLeft"..i]
+					for i = 2, scanTip:NumLines() do
+						local myLeft = _G["__Rarity_ScanTipTextLeft"..i]
 						local txtLeft = myLeft:GetText()
 						local leftR, leftG, leftB, leftAlpha = myLeft:GetTextColor() 
-						local myRight = _G["ScanTipTextRight"..i]
+						local myRight = _G["__Rarity_ScanTipTextRight"..i]
 						local txtRight = myRight:GetText()
 						local rightR, rightG, rightB, rightAlpha = myRight:GetTextColor() 
 						if txtRight then
@@ -2001,33 +1994,25 @@ do
 
   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
 
-  -- Item's game tooltip
-  if itemName then
-   if R.db.profile.itemTip == TIP_LEFT then 
-    GameTooltip:SetOwner(cell, "ANCHOR_LEFT");
-   elseif R.db.profile.itemTip == TIP_RIGHT then
-    GameTooltip:SetOwner(cell, "ANCHOR_RIGHT");
-   end
-   if R.db.profile.itemTip ~= TIP_HIDDEN then
-    GameTooltip:SetHyperlink(itemLink);
-    GameTooltip_ShowCompareItem();
-   end
-  end
-
+  -- Rarity extended information tooltip
   if R.db.profile.statusTip == TIP_HIDDEN then return end
 
-  -- Rarity extended information tooltip
-		tooltip2:AddHeader(itemLink or item.name)
-  if item.spellId then
-   for id = 1, GetNumCompanions("MOUNT") do
-		  local spellId = select(3, GetCompanionInfo("MOUNT", id))
-    if spellId == item.spellId then tooltip2:AddLine(colorize(L["Already known"], green)) end
-   end
-   for id = 1, GetNumCompanions("CRITTER") do
-		  local spellId = select(3, GetCompanionInfo("CRITTER", id))
-    if spellId == item.spellId then tooltip2:AddLine(colorize(L["Already known"], green)) end
-   end
-  end
+		tooltip2:AddHeader(itemLink or item.name, "|T"..itemTexture..":22|t")
+		scanTip:ClearLines()
+		scanTip:SetItemByID(item.itemId)
+		for i = 2, scanTip:NumLines() do
+			local myLeft = _G["__Rarity_ScanTipTextLeft"..i]
+			local txtLeft = myLeft:GetText()
+			local leftR, leftG, leftB, leftAlpha = myLeft:GetTextColor() 
+			local myRight = _G["__Rarity_ScanTipTextRight"..i]
+			local txtRight = myRight:GetText()
+			local rightR, rightG, rightB, rightAlpha = myRight:GetTextColor() 
+			if txtRight then
+				tooltip2:AddLine(colorizeV(txtLeft, leftR, leftG, leftB), colorizeV(txtRight, rightR, rightG, rightB))
+			else
+				tooltip2:AddLine(colorizeV(txtLeft, leftR, leftG, leftB))
+			end
+		end
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
 
 		local category = ""
@@ -2590,14 +2575,17 @@ end
 function R:ScanExistingItems(reason)
  self:Debug("Scanning for existing items ("..reason..")")
 
-	 -- Mounts: 5.4.x client
-	if not mount_journal then
-		for id = 1, GetNumCompanions("MOUNT") do
-			local spellId = select(3, GetCompanionInfo("MOUNT", id))
-  
-			-- Special cases
-			--if spellId == 132036 then R.db.profile.groups.items["Skyshard"].enabled = false end -- Skyshard (Reins of the Thundering Ruby Cloud Serpent)
+ -- Mounts: 6.x client
+	for id = 1, mount_journal.GetNumMounts() do
+		local creatureName, spellId, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected = mount_journal.GetMountInfo(id)
+		local creatureDisplayID, descriptionText, sourceText, isSelfMount, mountType = C_MountJournal.GetMountInfoExtra(id)
 
+		Rarity.mount_sources[spellId] = sourceText
+  
+		-- Special cases
+		--if spellId == 132036 then R.db.profile.groups.items["Skyshard"].enabled = false end -- Skyshard (Reins of the Thundering Ruby Cloud Serpent)
+
+		if isCollected then
 			for k, v in pairs(R.db.profile.groups) do
 				if type(v) == "table" then
 					for kk, vv in pairs(v) do
@@ -2612,36 +2600,7 @@ function R:ScanExistingItems(reason)
 				end
 			end
 		end
-	end
 
- -- Mounts: 6.x client
-	if mount_journal then
-		for id = 1, mount_journal.GetNumMounts() do
-			local creatureName, spellId, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected = mount_journal.GetMountInfo(id)
-			local creatureDisplayID, descriptionText, sourceText, isSelfMount, mountType = C_MountJournal.GetMountInfoExtra(id)
-
-			Rarity.mount_sources[spellId] = sourceText
-  
-			-- Special cases
-			--if spellId == 132036 then R.db.profile.groups.items["Skyshard"].enabled = false end -- Skyshard (Reins of the Thundering Ruby Cloud Serpent)
-
-			if isCollected then
-				for k, v in pairs(R.db.profile.groups) do
-					if type(v) == "table" then
-						for kk, vv in pairs(v) do
-							if type(vv) == "table" then
-								if vv.spellId and vv.spellId == spellId then vv.known = true end
-								if vv.spellId and vv.spellId == spellId and not vv.repeatable then
-									vv.enabled = false
-									vv.found = true
-								end
-							end
-						end
-					end
-				end
-			end
-
-		end
 	end
 
 	-- Companions that this character learned
