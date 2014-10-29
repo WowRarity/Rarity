@@ -312,6 +312,7 @@ L["Obtained by fishing in any water in Ironforge"] = true
 L["Dropped by dinosaurs on Isle of Giants Will hatch into one of three Primal Raptor mounts after three days."] = true
 L["Dropped by any mob in Vale of Eternal Blossoms (except minor mobs). 10 of these can be combined to pierce Alani's shield, allowing combat and a guaranteed drop of Reins of the Thundering Ruby Cloud Serpent."] = true
 L["Earned by giving 9999 Giant Dinosaur Bones to Ku'ma on Isle of Giants. Giant Dinosaur bones drop from all dinosaurs and Zandalari Dinomancers on Isle of Giants."] = true
+L["This bag is rewarded for earning a Gold Victory in a garrison invasion."] = true
 
 
 -- Instance difficulties
@@ -646,9 +647,11 @@ L["Old Ironjaw"] = true
 L["Time-Locked Box"] = true
 L["Kor'kron Juggernaut"] = true
 L["Sky-Bo"] = true
-
-
-
+L["Shadowhide Pearltusk"] = true
+L["Garn Steelmaw"] = true
+L["Giant Coldsnout"] = true
+L["Smoky Direwolf"] = true
+L["Solar Spirehawk"] = true
 
 
 
