@@ -290,28 +290,28 @@ L["Raid Finder or Flexible difficulty"] = true
 
 L["Dropped by Yogg-Saron in Ulduar (25-player) with no Keepers assisting"] = true
 L["Dropped by Malygos in The Eye of Eternity (any raid size)"] = true
-L["Dropped by Koralon the Flame Watcher, Emalon the Storm Watcher,\nArchavon the Stone Watcher, and Toravon the Ice Watcher\nin Vault of Archavon (any raid size)."] = true
-L["Contained in Cracked Egg, which is obtained by becoming Revered with The Oracles,\npurchasing a Mysterious Egg from their reputation vendor, and waiting three days.\nThe mount has a 5% chance to appear in the Cracked Egg."] = true
+L["Dropped by Koralon the Flame Watcher, Emalon the Storm Watcher, Archavon the Stone Watcher, and Toravon the Ice Watcher in Vault of Archavon (any raid size)."] = true
+L["Contained in Cracked Egg, which is obtained by becoming Revered with The Oracles, purchasing a Mysterious Egg from their reputation vendor, and waiting three days. The mount has a 5% chance to appear in the Cracked Egg."] = true
 L["Dropped by Onyxia in Onyxia's Lair (any raid size)"] = true
-L["Contained in Hyldnir Spoils, which is rewarded for completing daily quests\ngiven by Gretta the Arbiter in Brunnhildar Village, Storm Peaks.\nThe mount has a 3% chance to appear in Hyldnir Spoils."] = true
+L["Contained in Hyldnir Spoils, which is rewarded for completing daily quests given by Gretta the Arbiter in Brunnhildar Village, Storm Peaks. The mount has a 3% chance to appear in Hyldnir Spoils."] = true
 L["Obtained very rarely by fishing in pools located in any expansion zone (not Classic zones)"] = true
 L["Dropped by Ultraxion in Dragon Soul (any raid size or difficulty)"] = true
 L["Obtained as a rare project for the Fossil branch of archaeology"] = true
 L["Dropped by the Madness of Deathwing encounter in Dragon Soul (any raid size or difficulty)"] = true
-L["Guaranteed drop from Dormus the Camel-Hoarder. Accessing this encounter\nrequires finding a rare Mysterious Camel Figurine in Uldum.\nThese are difficult to spot and, when clicked, have a small chance\nto grant you access to the Dormus encounter. Rarity will count\nhow many Figurines you've found if you mouseover them."] = true
+L["Guaranteed drop from Dormus the Camel-Hoarder. Accessing this encounter requires finding a rare Mysterious Camel Figurine in Uldum. These are difficult to spot and, when clicked, have a small chance to grant you access to the Dormus encounter. Rarity will count how many Figurines you've found if you mouseover them."] = true
 L["Obtained as a very rare project for the Tol'vir branch of archaeology"] = true
 L["Dropped by the Madness of Deathwing encounter in Dragon Soul (heroic, any raid size)"] = true
 L["The Warbringer will be riding the mount color he has a chance to drop."] = true
-L["Can be contained in Heart-Shaped Box, rewarded for defeating\nthe World Event Dungeon during Love is in the Air."] = true
-L["Can be contained in Keg-Shaped Treasure Chest, rewarded for defeating\nthe World Event Dungeon during Brewfest."] = true
-L["Can be contained in Loot-Filled Pumpkin, rewarded for defeating\nthe World Event Dungeon during Hallow's End."] = true
+L["Can be contained in Heart-Shaped Box, rewarded for defeating the World Event Dungeon during Love is in the Air."] = true
+L["Can be contained in Keg-Shaped Treasure Chest, rewarded for defeating the World Event Dungeon during Brewfest."] = true
+L["Can be contained in Loot-Filled Pumpkin, rewarded for defeating the World Event Dungeon during Hallow's End."] = true
 L["Dropped by Elegon in Mogu'shan Vaults (all raid formats except Raid Finder)"] = true
 L["Obtained by fishing in pools located in Terrokar Forest"] = true
 L["Obtained by fishing in any water in Orgrimmar"] = true
 L["Obtained by fishing in any water in Ironforge"] = true
-L["Dropped by dinosaurs on Isle of Giants\nWill hatch into one of three Primal Raptor mounts after three days."] = true
-L["Dropped by any mob in Vale of Eternal Blossoms (except minor mobs)\n10 of these can be combined to pierce Alani's shield, allowing combat and a guaranteed drop of\nReins of the Thundering Ruby Cloud Serpent."] = true
-L["Earned by giving 9999 Giant Dinosaur Bones to Ku'ma on Isle of Giants.\nGiant Dinosaur bones drop from all dinosaurs and Zandalari Dinomancers on Isle of Giants."] = true
+L["Dropped by dinosaurs on Isle of Giants Will hatch into one of three Primal Raptor mounts after three days."] = true
+L["Dropped by any mob in Vale of Eternal Blossoms (except minor mobs). 10 of these can be combined to pierce Alani's shield, allowing combat and a guaranteed drop of Reins of the Thundering Ruby Cloud Serpent."] = true
+L["Earned by giving 9999 Giant Dinosaur Bones to Ku'ma on Isle of Giants. Giant Dinosaur bones drop from all dinosaurs and Zandalari Dinomancers on Isle of Giants."] = true
 
 
 -- Instance difficulties

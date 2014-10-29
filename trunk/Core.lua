@@ -128,6 +128,7 @@ local DUAL_TRACK_THRESHOLD = 5
 local isPool = false
 local lastNode
 local tickTimer
+local STATUS_TOOLTIP_MAX_WIDTH = 200
 
 local inSession = false
 local sessionStarted = 0
@@ -1972,8 +1973,21 @@ do
    R:UpdateText()
   end
 	end
-	
-	
+
+
+	local function tooltip2AddLine(value)
+		local lineIndex = tooltip2:AddLine()
+		tooltip2:SetCell(lineIndex, 1, value, nil, nil, 2, qtip.LabelProvider, nil, nil, STATUS_TOOLTIP_MAX_WIDTH)
+	end
+
+
+	local function tooltip2AddDoubleLine(value1, value2)
+		local lineIndex = tooltip2:AddLine()
+		tooltip2:SetCell(lineIndex, 1, value1, nil, nil, 1, qtip.LabelProvider, nil, nil, STATUS_TOOLTIP_MAX_WIDTH)
+		tooltip2:SetCell(lineIndex, 2, value2)
+	end
+
+
 	local function showSubTooltip(cell, item)
   if not item or not item.itemId then return end
 		local self = R
@@ -2008,25 +2022,25 @@ do
 			local txtRight = myRight:GetText()
 			local rightR, rightG, rightB, rightAlpha = myRight:GetTextColor() 
 			if txtRight then
-				tooltip2:AddLine(colorizeV(txtLeft, leftR, leftG, leftB), colorizeV(txtRight, rightR, rightG, rightB))
+				tooltip2AddDoubleLine(colorizeV(txtLeft, leftR, leftG, leftB), colorizeV(txtRight, rightR, rightG, rightB))
 			else
-				tooltip2:AddLine(colorizeV(txtLeft, leftR, leftG, leftB))
+				tooltip2AddLine(colorizeV(txtLeft, leftR, leftG, leftB))
 			end
 		end
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
 
 		local category = ""
 		if item.cat and categories[item.cat] then category = " ("..categories[item.cat]..")" end
-  if R.string_types[item.type] ~= nil then tooltip2:AddLine(colorize((R.string_types[item.type] or "UNKNOWN")..category, yellow)) end
+  if R.string_types[item.type] ~= nil then tooltip2AddLine(colorize((R.string_types[item.type] or "UNKNOWN")..category, yellow)) end
   if item.groupSize and item.groupSize > 1 then
-   tooltip2:AddLine(colorize(format(L["Usually requires a group of around %d players"], item.groupSize), red))
+   tooltip2AddLine(colorize(format(L["Usually requires a group of around %d players"], item.groupSize), red))
   end
   if item.method == SPECIAL and item.obtain then
-   tooltip2:AddLine(colorize(item.obtain, blue))
+   tooltip2AddLine(colorize(item.obtain, blue))
   else
 		local actualMethod = item.method
 		if item.method == BOSS and item.groupSize and item.groupSize > 1 then actualMethod = BOSS else if item.method == BOSS then actualMethod = NPC end end
-   tooltip2:AddLine(colorize(R.string_methods[actualMethod], blue))
+   tooltip2AddLine(colorize(R.string_methods[actualMethod], blue))
   end
   if item.method == ZONE or item.method == FISHING then
    if item.zones and type(item.zones) == "table" then
@@ -2034,18 +2048,18 @@ do
      local zone = lbz[v]
      if not zone then zone = lbsz[v] end
      if not zone then zone = v end
-     if not tonumber(v) then tooltip2:AddLine(colorize("    "..v, gray)) end
+     if not tonumber(v) then tooltip2AddLine(colorize("    "..v, gray)) end
     end
    end
   elseif item.method == ARCH then
    if item.raceId then
-    tooltip2:AddLine(colorize("    "..R.string_archraces[item.raceId], gray))
+    tooltip2AddLine(colorize("    "..R.string_archraces[item.raceId], gray))
    end
   elseif item.method == USE then
    if item.items and type(item.items) == "table" then
     for k, v in pairs(item.items) do
      local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v)
-     if itemLink then tooltip2:AddLine("    "..itemLink) end
+     if itemLink then tooltip2AddLine("    "..itemLink) end
     end
    end
   end
@@ -2054,35 +2068,35 @@ do
 		local hadSource = false
 		if item.type == MOUNT and item.spellId ~= nil and Rarity.mount_sources[item.spellId] ~= nil then
 			tooltip2:AddSeparator(1, 1, 1, 1, 1)
-			tooltip2:AddLine(Rarity.mount_sources[item.spellId])
+			tooltip2AddLine(Rarity.mount_sources[item.spellId])
 			hadSource = true
 		end
 		if item.type == PET and item.creatureId ~= nil and Rarity.pet_sources[item.creatureId] ~= nil then
 			tooltip2:AddSeparator(1, 1, 1, 1, 1)
-			tooltip2:AddLine(Rarity.pet_sources[item.creatureId])
+			tooltip2AddLine(Rarity.pet_sources[item.creatureId])
 			hadSource = true
 		end
 		if item.sourceText ~= nil and item.sourceText ~= "" then
-			tooltip2:AddLine(item.sourceText)
+			tooltip2AddLine(item.sourceText)
 			hadSource = true
 		end
 		if item.worldBossFactionless then
-			tooltip2:AddLine(colorize(L["All players can participate in killing this world boss once per week, regardless of faction"], blue))
+			tooltip2AddLine(colorize(L["All players can participate in killing this world boss once per week, regardless of faction"], blue))
 		end
 		if item.wasGuaranteed then
-			tooltip2:AddLine(colorize(L["This was a guaranteed drop for players who defeated the encounter when it was current"], blue))
+			tooltip2AddLine(colorize(L["This was a guaranteed drop for players who defeated the encounter when it was current"], blue))
 		end
 		if item.bonusSatchel then
-			tooltip2:AddLine(colorize(L["Contained in bonus satchels"], yellow))
+			tooltip2AddLine(colorize(L["Contained in bonus satchels"], yellow))
 		end
 		if item.blackMarket then
-			tooltip2:AddLine(colorize(L["Appears in the Black Market"], yellow))
+			tooltip2AddLine(colorize(L["Appears in the Black Market"], yellow))
 		end
 		if item.requiresAlliance then
-			tooltip2:AddLine(colorize(L["This mount is only obtainable by Alliance players"], red))
+			tooltip2AddLine(colorize(L["This mount is only obtainable by Alliance players"], red))
 		end
 		if item.requiresHorde then
-			tooltip2:AddLine(colorize(L["This mount is only obtainable by Horde players"], red))
+			tooltip2AddLine(colorize(L["This mount is only obtainable by Horde players"], red))
 		end
 		if hadSource or item.bonusSatchel or item.blackMarket or item.wasGuaranteed or item.worldBossFactionless or item.requiresAlliance or item.requiresHorde then
 			tooltip2:AddSeparator(1, 1, 1, 1, 1)
@@ -2090,15 +2104,15 @@ do
 
 		if item.method == COLLECTION then
    local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.collectedItemId)
-			tooltip2:AddLine(colorize(format(L["Collect %d %s"], item.chance or 100, itemLink or itemName or ""), white))
-			if item.obtain then tooltip2:AddLine(colorize(item.obtain, white)) end
+			tooltip2AddLine(colorize(format(L["Collect %d %s"], item.chance or 100, itemLink or itemName or ""), white))
+			if item.obtain then tooltip2AddLine(colorize(item.obtain, white)) end
 		else
-			tooltip2:AddLine(colorize(format(L["1 in %d chance"], item.chance or 100), white))
+			tooltip2AddLine(colorize(format(L["1 in %d chance"], item.chance or 100), white))
 		end
   local dropChance = (1.00 / (item.chance or 100))
   if item.method == BOSS and item.groupSize ~= nil and item.groupSize > 1 and not item.equalOdds then dropChance = dropChance / item.groupSize end
   local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
-  if item.method ~= COLLECTION then tooltip2:AddLine(colorize(format(L["Lucky if you obtain in %d or less"], medianLoots), gray)) end
+  if item.method ~= COLLECTION then tooltip2AddLine(colorize(format(L["Lucky if you obtain in %d or less"], medianLoots), gray)) end
 
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
 
@@ -2107,38 +2121,38 @@ do
   if not inSession or not len or tracked ~= item then len = 0 end
 
   if item.totalFinds and item.method ~= COLLECTION then
-   tooltip2:AddLine(colorize(L["Since last drop"], yellow))
+   tooltip2AddLine(colorize(L["Since last drop"], yellow))
   end
   local attempts = (item.attempts or 0) - (item.lastAttempts or 0)
   if item.method == COLLECTION then
-			tooltip2:AddLine(L["Collected"], attempts)
+			tooltip2AddDoubleLine(L["Collected"], attempts)
 		else
-			tooltip2:AddLine(L["Attempts"], attempts)
+			tooltip2AddDoubleLine(L["Attempts"], attempts)
 		end
   if item.method == NPC or item.method == ZONE or item.method == FISHING or item.method == USE then
-   tooltip2:AddLine(L["Time spent farming"], R:FormatTime((item.time or 0) - (item.lastTime or 0) + len))
+   tooltip2AddDoubleLine(L["Time spent farming"], R:FormatTime((item.time or 0) - (item.lastTime or 0) + len))
   end
   if attempts > 0 then
 			if item.method == COLLECTION then
 				local chance = 100 * (attempts / (item.chance or 100))
 				if chance > 100 then chance = 100 end
 				if chance < 0 then chance = 0 end
-				tooltip2:AddLine(L["Progress"], format("%.2f%%", chance))
+				tooltip2AddDoubleLine(L["Progress"], format("%.2f%%", chance))
 			else
 				local chance = 100 * (1 - math.pow(1 - dropChance, attempts))
-				tooltip2:AddLine(L["Chance so far"], format("%.2f%%", chance))
+				tooltip2AddDoubleLine(L["Chance so far"], format("%.2f%%", chance))
 			end
   end
   
   if item.totalFinds and item.method ~= COLLECTION then
 		 tooltip2:AddSeparator(1, 1, 1, 1, 1)
-   tooltip2:AddLine(colorize(L["Total"], yellow))
+   tooltip2AddLine(colorize(L["Total"], yellow))
    local attempts = (item.attempts or 0)
-   tooltip2:AddLine(L["Attempts"], attempts)
+   tooltip2AddDoubleLine(L["Attempts"], attempts)
    if item.method == NPC or item.method == ZONE or item.method == FISHING or item.method == USE then
-    tooltip2:AddLine(L["Time spent farming"], R:FormatTime((item.time or 0) + len))
+    tooltip2AddDoubleLine(L["Time spent farming"], R:FormatTime((item.time or 0) + len))
    end
-   tooltip2:AddLine(L["Total found"], item.totalFinds)
+   tooltip2AddDoubleLine(L["Total found"], item.totalFinds)
    if item.finds then
 		  tooltip2:AddSeparator(1, 1, 1, 1, 1)
     local f = sort2(item.finds)
@@ -2146,8 +2160,8 @@ do
      local dropChance = (1.00 / (item.chance or 100))
      local chance = 100 * (1 - math.pow(1 - dropChance, v.attempts))
      if item.method == BOSS and item.groupSize ~= nil and item.groupSize > 1 and not item.equalOdds then dropChance = dropChance / item.groupSize end
-     if v.attempts == 1 then tooltip2:AddLine(format(L["#%d: %d attempt (%.2f%%)"], v.num, v.attempts, chance), R:FormatTime((v.time or 0) + len))
-     else tooltip2:AddLine(format(L["#%d: %d attempts (%.2f%%)"], v.num, v.attempts, chance), R:FormatTime((v.time or 0) + len)) end
+     if v.attempts == 1 then tooltip2AddDoubleLine(format(L["#%d: %d attempt (%.2f%%)"], v.num, v.attempts, chance), R:FormatTime((v.time or 0) + len))
+     else tooltip2AddDoubleLine(format(L["#%d: %d attempts (%.2f%%)"], v.num, v.attempts, chance), R:FormatTime((v.time or 0) + len)) end
     end
    end
   end
@@ -2158,7 +2172,7 @@ do
    if item.session then
     local sessionAttempts = item.session.attempts or 0
     local sessionTime = item.session.time or 0
-    tooltip2:AddLine(L["Session"], format("%d (%s)", sessionAttempts, R:FormatTime(sessionTime + len)))
+    tooltip2AddDoubleLine(L["Session"], format("%d (%s)", sessionAttempts, R:FormatTime(sessionTime + len)))
    end
 
    local todayDate = getDate() 
@@ -2187,16 +2201,16 @@ do
     monthTime = monthTime + dayTime
    end
 
-   tooltip2:AddLine(L["Today"], format("%d (%s)", todayAttempts or 0, R:FormatTime((todayTime or 0) + len)))
-   tooltip2:AddLine(L["Yesterday"], format("%d (%s)", yesterAttempts or 0, R:FormatTime(yesterTime or 0)))
-   tooltip2:AddLine(L["Last Week"], format("%d (%s)", weekAttempts or 0, R:FormatTime(weekTime or 0)))
-   tooltip2:AddLine(L["Last Month"], format("%d (%s)", monthAttempts or 0, R:FormatTime(monthTime or 0)))
+   tooltip2AddDoubleLine(L["Today"], format("%d (%s)", todayAttempts or 0, R:FormatTime((todayTime or 0) + len)))
+   tooltip2AddDoubleLine(L["Yesterday"], format("%d (%s)", yesterAttempts or 0, R:FormatTime(yesterTime or 0)))
+   tooltip2AddDoubleLine(L["Last Week"], format("%d (%s)", weekAttempts or 0, R:FormatTime(weekTime or 0)))
+   tooltip2AddDoubleLine(L["Last Month"], format("%d (%s)", monthAttempts or 0, R:FormatTime(monthTime or 0)))
 
   end
 		
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
-  tooltip2:AddLine(colorize(L["Click to switch to this item"], gray))
-  tooltip2:AddLine(colorize(L["Shift-Click to link your progress to chat"], gray))
+  tooltip2AddLine(colorize(L["Click to switch to this item"], gray))
+  tooltip2AddLine(colorize(L["Shift-Click to link your progress to chat"], gray))
 
 		--tooltip2:UpdateScrolling()
 		tooltip2:Show()
