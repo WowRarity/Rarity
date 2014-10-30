@@ -64,7 +64,7 @@ externals:
     Libs/LibBabble-CreatureType-3.0:
         url: svn://svn.wowace.com/wow/libbabble-creaturetype-3-0/mainline/trunk
         tag: latest
-    Libs/LLibBabble-Boss-3.0:
+    Libs/LibBabble-Boss-3.0:
         url: svn://svn.wowace.com/wow/libbabble-boss-3-0/mainline/trunk
         tag: latest
             
