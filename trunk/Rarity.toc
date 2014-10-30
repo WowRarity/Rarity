@@ -4,7 +4,7 @@
 ## Title: Rarity
 ## Version: 1.0
 ## SavedVariables: RarityDB
-## OptionalDeps: Ace3,LibDualSpec-1.0,LibQTip-1.0,LibDBIcon-1.0,LibBabble-Zone-3.0,LibSink-2.0,LibBabble-SubZone-3.0,LibBars-1.0,LibSharedMedia-3.0,AceGUI-3.0-SharedMediaWidgets,LibBabble-CreatureType-3.0
+## OptionalDeps: Ace3,LibDualSpec-1.0,LibQTip-1.0,LibDBIcon-1.0,LibBabble-Zone-3.0,LibSink-2.0,LibBabble-SubZone-3.0,LibBars-1.0,LibSharedMedia-3.0,AceGUI-3.0-SharedMediaWidgets,LibBabble-CreatureType-3.0,LibBabble-Boss-3.0
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Always: delayed
 
@@ -35,6 +35,7 @@ Libs\LibBars-1.0\lib.xml
 Libs\LibSharedMedia-3.0\lib.xml
 Libs\AceGUI-3.0-SharedMediaWidgets\widget.xml
 Libs\LibBabble-CreatureType-3.0\lib.xml
+Libs\LibBabble-Boss-3.0\lib.xml
 #@end-no-lib-strip@
 
 Locales.lua

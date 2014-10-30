@@ -17,6 +17,7 @@ local dataobj = ldb:NewDataObject("Rarity", {
 local lbz = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
 local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 local lbct = LibStub("LibBabble-CreatureType-3.0"):GetUnstrictLookupTable()
+local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
 --
 
 
@@ -84,6 +85,7 @@ local architems = {}
 local rarity_stats = {}
 Rarity.mount_sources = {}
 Rarity.pet_sources = {}
+Rarity.lockouts = {}
 
 local bankOpen = false
 local guildBankOpen = false
@@ -523,6 +525,7 @@ do
   self:RegisterEvent("TRADE_SKILL_CLOSE", "OnEvent")
   self:RegisterEvent("UPDATE_MOUSEOVER_UNIT", "OnMouseOver")
   self:RegisterEvent("PLAYER_REGEN_ENABLED", "OnCombatEnded")
+  self:RegisterEvent("UPDATE_INSTANCE_INFO", "OnEvent")
 
 		if R.Options_DoEnable then R:Options_DoEnable() end
 		self.db.profile.lastRevision = R.MINOR_VERSION
@@ -533,6 +536,7 @@ do
 		self.db.RegisterCallback(self, "OnProfileDeleted", "OnProfileChanged")
 
   RequestArtifactCompletionHistory() -- Request archaeology info from the server
+		RequestRaidInfo() -- Request raid lock info from the server
 
 		-- Also scan bags and currency 10 seconds after init
   self:ScheduleTimer(function()
@@ -1133,6 +1137,10 @@ function R:OnEvent(event, ...)
  elseif event == "MAIL_CLOSED" then
   mailOpen = false
 
+
+	-- Raid lock info updated
+	elseif event == "UPDATE_INSTANCE_INFO" then
+		self:Update(event)
 
  -- Logging out; end any open session
  elseif event == "PLAYER_LOGOUT" then
@@ -2353,6 +2361,12 @@ do
 								local status = ""
 								if v.questId then
 									if IsQuestFlaggedCompleted(v.questId) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
+								elseif v.lockBossName then
+									if lbb[v.lockBossName] and (Rarity.lockouts[lbb[v.lockBossName]] == true or Rarity.lockouts[v.lockBossName] == true) then
+										status = colorize(L["Defeated"], red)
+									else
+										status = colorize(L["Undefeated"], green) 
+									end
 								end
 								line = tooltip:AddLine(icon, (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky, status)
 								tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
@@ -2377,6 +2391,7 @@ do
 			tooltip = qtip:Acquire("RarityTooltip", 8, "LEFT", "LEFT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT") -- intentionally one column more than we need to avoid text clipping
 		end
 		
+		self:ScanInstanceLocks("SHOWING TOOLTIP")
 		table.wipe(headers)
   local addedLast
 
@@ -2712,6 +2727,32 @@ function R:ScanExistingItems(reason)
 
  -- Scan for kill statistics
  self:ScanStatistics(reason)
+end
+
+
+function R:ScanInstanceLocks(reason)
+ --self:Debug("Scanning instance locks ("..reason..")")
+
+	table.wipe(Rarity.lockouts)
+	local savedInstances = GetNumSavedInstances()
+	for i = 1, savedInstances do
+		local instanceName, instanceID, instanceReset, instanceDifficulty, locked, extended, instanceIDMostSig = GetSavedInstanceInfo(i)
+		if instanceReset > 0 then
+			scanTip:ClearLines()
+			scanTip:SetInstanceLockEncountersComplete(i)
+			for i = 2, scanTip:NumLines() do
+				local myLeft = _G["__Rarity_ScanTipTextLeft"..i]
+				local txtLeft = myLeft:GetText()
+				local leftR, leftG, leftB, leftAlpha = myLeft:GetTextColor() 
+				local myRight = _G["__Rarity_ScanTipTextRight"..i]
+				local txtRight = myRight:GetText()
+				local rightR, rightG, rightB, rightAlpha = myRight:GetTextColor() 
+				if txtRight then
+					if txtRight == BOSS_DEAD then self.lockouts[txtLeft] = true end
+				end
+			end
+		end		
+	end
 end
 
 
