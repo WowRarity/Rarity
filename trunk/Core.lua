@@ -2563,6 +2563,12 @@ function R:OutputAttempts(item, skipTimeUpdate)
 			lastAttemptTime = GetTime()
 			lastAttemptItem = item
 
+			-- If this item supports lockout detection, request updated instance info from the server now and in 10 seconds
+			if item.lockBossName then
+				RequestRaidInfo()
+				self:ScheduleTimer(function() RequestRaidInfo() end, 10)
+			end
+
 			-- Save this item for coin tracking, but only for 90 seconds
 			if item.enableCoin then
 				self:Debug("Allowing this item to be counted again if a coin is used in the next 90 seconds")
