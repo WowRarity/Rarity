@@ -2396,11 +2396,13 @@ do
 								elseif v.holidayTexture and Rarity.holiday_textures[v.holidayTexture] == nil then
 									status = colorize(L["Unavailable"], gray)
 								end
-								line = tooltip:AddLine(icon, (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky, status)
-								tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
-								tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
-								tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
-								added = true
+								if Rarity.db.profile.hideUnavailable == false or status ~= colorize(L["Unavailable"], gray) then
+									line = tooltip:AddLine(icon, (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky, status)
+									tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
+									tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
+									tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
+									added = true
+								end
 							end
 						end
      end

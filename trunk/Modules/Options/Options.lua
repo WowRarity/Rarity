@@ -307,6 +307,19 @@ function R:PrepareOptions()
 								end,
 							},
 
+							hideUnavailable = {
+								type = "toggle",
+								order = newOrder(),
+								width = "double",
+								name = L["Hide unavailable items"],
+								desc = L["When on, items marked as Unavailable will be hidden from the tooltip. This way, items requiring a certain holiday will automatically be hidden when the holiday is not active."],
+								get = function() return self.db.profile.hideUnavailable end,
+								set = function(info, val)
+									self.db.profile.hideUnavailable = val
+									self:UpdateText()
+								end,
+							},
+
 							takeScreenshot = {
 								type = "toggle",
 								order = newOrder(),

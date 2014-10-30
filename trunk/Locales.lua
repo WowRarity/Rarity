@@ -261,6 +261,9 @@ L["Show attempts in tooltips"] = true
 L["When enabled, Rarity tooltips will include how many attempts you've made."] = true
 L["Already defeated"] = true
 L["Unavailable"] = true
+L["Hide unavailable items"] = true
+L["When on, items marked as Unavailable will be hidden from the tooltip. This way, items requiring a certain holiday will automatically be hidden when the holiday is not active."] = true
+	
 
 
 
