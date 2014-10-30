@@ -22,6 +22,22 @@ local MOP = "MOP"
 local WOD = "WOD"
 local HOLIDAY = "HOLIDAY"
 
+-- Holiday calendar textures
+local CALENDAR_WINTERVEIL = "Calendar_WinterVeil"
+local CALENDAR_DARKMOONFAIRE = "calendar_darkmoonfaireterokkar"
+local CALENDAR_DAYOFTHEDEAD = "Calendar_DayOfTheDead"
+local CALENDAR_BREWFEST = "Calendar_Brewfest"
+local CALENDAR_HALLOWSEND = "Calendar_HallowsEnd"
+local CALENDAR_PILGRIMSBOUNTY = "Calendar_HarvestFestival"
+local CALENDAR_ANNIVERSARY = "calendar_anniversary"
+local CALENDAR_LOVEISINTHEAIR = "Calendar_LoveInTheAir"
+local CALENDAR_LUNARFESTIVAL = "Calendar_LunarFestival"
+local CALENDAR_NOBLEGARDEN = "Calendar_Noblegarden"
+local CALENDAR_CHILDRENSWEEK = "Calendar_ChildrensWeek"
+local CALENDAR_MIDSUMMER = "Calendar_Midsummer"
+local CALENDAR_FIREWORKS = "calendar_fireworks"
+local CALENDAR_PIRATESDAY = "Calendar_PiratesDay"
+
 -- Methods of obtaining
 local NPC = "NPC"
 local BOSS = "BOSS"
@@ -367,7 +383,7 @@ function R:PrepareDefaults()
      ["Reins of the Grey Riding Camel"] =                { cat = CATA, type = MOUNT, method = SPECIAL, name = GetItemInfo(63046) or L["Reins of the Grey Riding Camel"], spellId = 88750, itemId = 63046, chance = 20, sourceText = L["Guaranteed drop from Dormus the Camel-Hoarder. Accessing this encounter requires finding a rare Mysterious Camel Figurine in Uldum. These are difficult to spot and, when clicked, have a small chance to grant you access to the Dormus encounter. Rarity will count how many Figurines you've found if you mouseover them."], },
      ["Reins of the Vitreous Stone Drake"] =             { cat = CATA, type = MOUNT, method = NPC, name = GetItemInfo(63043) or L["Reins of the Vitreous Stone Drake"], spellId = 88746, itemId = 63043, npcs = { 43214 }, chance = 100, sourceText = L["Any difficulty"], blackMarket = true, },
      ["Scepter of Azj'Aqir"] =                           { cat = CATA, type = MOUNT, method = ARCH, name = GetItemInfo(64883) or L["Scepter of Azj'Aqir"], spellId = 92155, itemId = 64883, raceId = 7, chance = 500, sourceText = L["Obtained as a very rare project for the Tol'vir branch of archaeology"], },
-     ["Smoldering Egg of Millagazor"] =                  { cat = CATA, type = MOUNT, method = BOSS, name = GetItemInfo(69224) or L["Smoldering Egg of Millagazor"], spellId = 97493, itemId = 69224, npcs = { 99999 }, tooltipNpcs = { 52409 }, instanceDifficulties = { --[[ Heroic 10-man (legacy), Heroic 25-man (legacy) ]] [5] = true, [6] = true, }, chance = 100, statisticId = { 5976, 5977 }, sourceText = L["Heroic, any raid size"], wasGuaranteed = true, blackMarket = true, lockBossName = "Ragnaros", },
+     ["Smoldering Egg of Millagazor"] =                  { cat = CATA, type = MOUNT, method = BOSS, name = GetItemInfo(69224) or L["Smoldering Egg of Millagazor"], spellId = 97493, itemId = 69224, npcs = { 99999 }, tooltipNpcs = { 52409 }, instanceDifficulties = { --[[ 10/25 Normal/Heroic ]] [3] = true, [4] = true, [5] = true, [6] = true, }, chance = 100, statisticId = { 5976, 5977 }, sourceText = L[""], wasGuaranteed = true, blackMarket = true, lockBossName = "Ragnaros", },
      ["Swift Zulian Panther"] =                          { cat = CATA, type = MOUNT, method = BOSS, name = GetItemInfo(68824) or L["Swift Zulian Panther"], spellId = 96499, itemId = 68824, npcs = { 52059 }, chance = 100, sourceText = L["Heroic difficulty"], lockBossName = "High Priestess Kilnara", },
 					-- 5.x                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 					["Reins of the Amber Primordial Direhorn"] =        { cat = MOP, type = MOUNT, method = NPC, name = GetItemInfo(94230) or L["Reins of the Amber Primordial Direhorn"], spellId = 138424, itemId = 94230, npcs = { 69841 }, chance = 20, sourceText = L["The Warbringer will be riding the mount color he has a chance to drop."], },
@@ -408,10 +424,10 @@ function R:PrepareDefaults()
      name = L["Companions"],
 					-- Holiday                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
      ["Ice Chip"] =                                      { cat = HOLIDAY, type = PET, method = USE, name = GetItemInfo(53641) or L["Ice Chip"], spellId = 74932, itemId = 53641, items = { 54536 }, chance = 25, groupSize = 5, equalOdds = true, creatureId = 40198, sourceText = L[""], lockDungeonId = 286, },
-					["Lump of Coal"] =                                  { cat = HOLIDAY, type = PET, method = USE, name = GetItemInfo(73797) or L["Lump of Coal"], spellId = 103125, itemId = 73797, items = { 93626 }, chance = 50, creatureId = 55215, sourceText = L[""], },
-					["Rotten Helper Box"] =                             { cat = HOLIDAY, type = PET, method = USE, name = GetItemInfo(104317) or L["Rotten Helper Box"], spellId = 148567, itemId = 104317, items = { 93626 }, chance = 100, creatureId = 73741, sourceText = L[""], },
-					["Moon Moon"] =                                     { cat = HOLIDAY, type = PET, method = NPC, name = GetItemInfo(101570) or L["Moon Moon"], spellId = 144761, itemId = 101570, npcs = { 71992 }, chance = 17, repeatable = true, creatureId = 72160, sourceText = L[""], },
-     ["Sea Pony"] =                                      { cat = HOLIDAY, type = PET, method = FISHING, name = GetItemInfo(73953) or L["Sea Pony"], spellId = 103588, itemId = 73953, zones = { "823" }, chance = 1000, requiresPool = false, creatureId = 55386, sourceText = L[""], },
+					["Lump of Coal"] =                                  { cat = HOLIDAY, type = PET, method = USE, name = GetItemInfo(73797) or L["Lump of Coal"], spellId = 103125, itemId = 73797, items = { 93626 }, chance = 50, creatureId = 55215, sourceText = L[""], holidayTexture = CALENDAR_WINTERVEIL, },
+					["Rotten Helper Box"] =                             { cat = HOLIDAY, type = PET, method = USE, name = GetItemInfo(104317) or L["Rotten Helper Box"], spellId = 148567, itemId = 104317, items = { 93626 }, chance = 100, creatureId = 73741, sourceText = L[""], holidayTexture = CALENDAR_WINTERVEIL, },
+					["Moon Moon"] =                                     { cat = HOLIDAY, type = PET, method = NPC, name = GetItemInfo(101570) or L["Moon Moon"], spellId = 144761, itemId = 101570, npcs = { 71992 }, chance = 17, repeatable = true, creatureId = 72160, sourceText = L[""], holidayTexture = CALENDAR_DARKMOONFAIRE, },
+     ["Sea Pony"] =                                      { cat = HOLIDAY, type = PET, method = FISHING, name = GetItemInfo(73953) or L["Sea Pony"], spellId = 103588, itemId = 73953, zones = { "823" }, chance = 1000, requiresPool = false, creatureId = 55386, sourceText = L[""], holidayTexture = CALENDAR_DARKMOONFAIRE, },
      ["Toxic Wasteling"] =                               { cat = HOLIDAY, type = PET, method = USE, name = GetItemInfo(50446) or L["Toxic Wasteling"], spellId = 71840, itemId = 50446, items = { 54537 }, chance = 14, groupSize = 5, equalOdds = true, creatureId = 38374, sourceText = L[""], lockDungeonId = 288, },
 					-- 1.x                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
      ["Cat Carrier (Black Tabby)"] =                     { cat = BASE, type = PET, method = NPC, name = GetItemInfo(8491) or L["Cat Carrier (Black Tabby)"], spellId = 10675, itemId = 8491, npcs = { 2372, 49116, 2385, 48741, 2248, 48184, 49269, 48628, 48017, 47204, 48260, 49245, 47861, 2373, }, chance = 10000, repeatable = true, creatureId = 7383, sourceText = L[""], },

@@ -87,6 +87,7 @@ Rarity.mount_sources = {}
 Rarity.pet_sources = {}
 Rarity.lockouts = {}
 Rarity.lockouts_holiday = {}
+Rarity.holiday_textures = {}
 
 local bankOpen = false
 local guildBankOpen = false
@@ -528,6 +529,7 @@ do
   self:RegisterEvent("PLAYER_REGEN_ENABLED", "OnCombatEnded")
   self:RegisterEvent("UPDATE_INSTANCE_INFO", "OnEvent")
   self:RegisterEvent("LFG_UPDATE_RANDOM_INFO", "OnEvent")
+  self:RegisterEvent("CALENDAR_UPDATE_EVENT_LIST", "OnEvent")
 
 		if R.Options_DoEnable then R:Options_DoEnable() end
 		self.db.profile.lastRevision = R.MINOR_VERSION
@@ -540,6 +542,7 @@ do
   RequestArtifactCompletionHistory() -- Request archaeology info from the server
 		RequestRaidInfo() -- Request raid lock info from the server
 		RequestLFDPlayerLockInfo() -- Request LFD data from the server; this is used for holiday boss detection
+		OpenCalendar() -- Request calendar info from the server
 
 		-- Also scan bags and currency 10 seconds after init
   self:ScheduleTimer(function()
@@ -558,6 +561,14 @@ do
     end
    end
   end
+
+		-- Delayed calendar init
+		self:ScheduleTimer(function()
+			if type(CalendarFrame) ~= "table" or not CalendarFrame:IsShown() then
+				local _, month, _, year = CalendarGetDate()
+				CalendarSetAbsMonth(month, year)
+			end
+		end, 20)
 
   -- Update text again several times later - this helps get the icon right after login
   self:ScheduleTimer(function() R:UpdateText() end, 10)
@@ -1146,6 +1157,10 @@ function R:OnEvent(event, ...)
 		self:Update(event)
 	elseif event == "LFG_UPDATE_RANDOM_INFO" then
 		self:Update(event)
+
+	-- Calendar updated
+	elseif event == "CALENDAR_UPDATE_EVENT_LIST" then
+		self:ScanCalendar(event)
 
  -- Logging out; end any open session
  elseif event == "PLAYER_LOGOUT" then
@@ -2378,6 +2393,8 @@ do
 											status = colorize(L["Unavailable"], gray)
 										end
 									end
+								elseif v.holidayTexture and Rarity.holiday_textures[v.holidayTexture] == nil then
+									status = colorize(L["Unavailable"], gray)
 								end
 								line = tooltip:AddLine(icon, (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky, status)
 								tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
@@ -2751,6 +2768,26 @@ function R:ScanExistingItems(reason)
 end
 
 
+function R:ScanCalendar(reason)
+ --self:Debug("Scanning calendar ("..reason..")")
+
+	table.wipe(Rarity.holiday_textures)
+	local _, month, day, year = CalendarGetDate()
+	local curMonth, curYear = CalendarGetMonth()
+	local monthOffset = -12 * (curYear - year) + month - curMonth
+	local numEvents = CalendarGetNumDayEvents(monthOffset, day)
+	local numLoaded = 0
+
+	for i = 1, numEvents, 1 do
+		local _, _, _, calendarType, _, _, texture = CalendarGetDayEvent(monthOffset, day, i)
+
+		if calendarType == "HOLIDAY" then
+			Rarity.holiday_textures[texture] = true
+		end
+	end
+end
+
+
 function R:ScanInstanceLocks(reason)
  --self:Debug("Scanning instance locks ("..reason..")")
 
@@ -2775,13 +2812,6 @@ function R:ScanInstanceLocks(reason)
 		end		
 	end
 
-	--for instanceID = 0, 1000 do
-	--	local dungeonName, typeId, subtypeId, minLvl, maxLvl, recLvl, minRecLvl, maxRecLvl, expansionId, groupId, textureName, difficulty, maxPlayers, dungeonDesc, isHoliday = GetLFGDungeonInfo(instanceID)
-	--		if dungeonName then 
-	--			self:Print("instanceID = " .. instanceID .. " Name = " .. dungeonName .. " typeID = " .. tostring(typeId) .. " minLvl = " .. minLvl .. " maxLvl = " .. maxLvl .. " recLvl = " .. recLvl .. " groupId = " .. tostring(groupId) .." maxPlayers = " .. tostring(maxPlayers))
-	--		end
-	--end
-
 	table.wipe(Rarity.lockouts_holiday)
 	local num = GetNumRandomDungeons()
 	for i = 1, num do 
@@ -2790,8 +2820,16 @@ function R:ScanInstanceLocks(reason)
 		if isHoliday and dungeonID ~= 828 then		
 			local doneToday = GetLFGDungeonRewards(dungeonID)
 			self.lockouts_holiday[dungeonID] = doneToday
-		end 
+		end
 	end
+
+	-- This code lists every LFG dungeon ID in the game (up through 1000)
+	--for instanceID = 0, 1000 do
+	--	local dungeonName, typeId, subtypeId, minLvl, maxLvl, recLvl, minRecLvl, maxRecLvl, expansionId, groupId, textureName, difficulty, maxPlayers, dungeonDesc, isHoliday = GetLFGDungeonInfo(instanceID)
+	--		if dungeonName then 
+	--			self:Print("instanceID = " .. instanceID .. " Name = " .. dungeonName .. " typeID = " .. tostring(typeId) .. " minLvl = " .. minLvl .. " maxLvl = " .. maxLvl .. " recLvl = " .. recLvl .. " groupId = " .. tostring(groupId) .." maxPlayers = " .. tostring(maxPlayers))
+	--		end
+	--end
 
 end
 
