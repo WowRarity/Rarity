@@ -562,13 +562,24 @@ do
    end
   end
 
-		-- Delayed calendar init
+		-- Delayed calendar init a few times
+		self:ScheduleTimer(function()
+			if type(CalendarFrame) ~= "table" or not CalendarFrame:IsShown() then
+				local _, month, _, year = CalendarGetDate()
+				CalendarSetAbsMonth(month, year)
+			end
+		end, 7)
 		self:ScheduleTimer(function()
 			if type(CalendarFrame) ~= "table" or not CalendarFrame:IsShown() then
 				local _, month, _, year = CalendarGetDate()
 				CalendarSetAbsMonth(month, year)
 			end
 		end, 20)
+
+		-- Trigger holiday reminders
+		self:ScheduleTimer(function()
+			Rarity:ShowTooltip(true)
+		end, 8)
 
   -- Update text again several times later - this helps get the icon right after login
   self:ScheduleTimer(function() R:UpdateText() end, 10)
@@ -2397,6 +2408,18 @@ do
 									status = colorize(L["Unavailable"], gray)
 								end
 								if Rarity.db.profile.hideUnavailable == false or status ~= colorize(L["Unavailable"], gray) then
+									if Rarity.db.profile.holidayReminder and Rarity.allRemindersDone == nil and v.cat == HOLIDAY and status == colorize(L["Undefeated"], green) then
+										Rarity.anyReminderDone = true
+										local text = format(L["A holiday dungeon is available today for %s! Go get it!"], itemLink or itemName or v.name)
+										Rarity:Print(text)
+										Rarity:Print(L["You can turn off holiday notifications by visiting the Rarity Options screen."])
+										if tostring(SHOW_COMBAT_TEXT) ~= "0" then
+											if type(CombatText_AddMessage) == "nil" then UIParentLoadAddOn("Blizzard_CombatText") end
+											CombatText_AddMessage(text, CombatText_StandardScroll, 1, 1, 1, true, false)
+										else
+											UIErrorsFrame:AddMessage(text, 1, 1, 1, 1.0)
+										end
+									end
 									line = tooltip:AddLine(icon, (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky, status)
 									tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
 									tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
@@ -2414,7 +2437,7 @@ do
  end
 	 
 	
-	function R:ShowTooltip()
+	function R:ShowTooltip(hidden)
 		if qtip:IsAcquired("RarityTooltip") and tooltip then
 			tooltip:Clear()
 		else
@@ -2458,6 +2481,9 @@ do
 		tooltip:SetCell(line, 1, colorize(L["Shift-Click to open options"], gray), nil, nil, 3)
 		line = tooltip:AddLine()
 		tooltip:SetCell(line, 1, colorize(L["Ctrl-Click to change sort order"], gray), nil, nil, 3)
+
+		if Rarity.anyReminderDone then Rarity.allRemindersDone = true end
+		if hidden == true then return end
 
 		tooltip:SetAutoHideDelay(0.01, frame)
 		tooltip:SmartAnchorTo(frame)

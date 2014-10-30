@@ -112,6 +112,7 @@ function R:PrepareDefaults()
 			tooltipAttempts = true,
 			takeScreenshot = true,
 			hideUnavailable = true,
+			holidayReminder = true,
 
    trackedGroup = "pets",
    trackedItem = 8494,

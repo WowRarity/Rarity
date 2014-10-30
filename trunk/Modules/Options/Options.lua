@@ -320,6 +320,18 @@ function R:PrepareOptions()
 								end,
 							},
 
+							holidayReminder = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Holiday reminders"],
+								desc = L["When on, Rarity will remind you to go farm holiday items you're missing if the holiday is active and the item is set as Undefeated. (This only works for items that originate from holiday dungeons.) The reminder occurs each time you log in or reload your UI, and stops for the day once you defeat the holiday dungeon."],
+								get = function() return self.db.profile.holidayReminder end,
+								set = function(info, val)
+									self.db.profile.holidayReminder = val
+									self:UpdateText()
+								end,
+							},
+
 							takeScreenshot = {
 								type = "toggle",
 								order = newOrder(),
