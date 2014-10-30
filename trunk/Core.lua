@@ -86,6 +86,7 @@ local rarity_stats = {}
 Rarity.mount_sources = {}
 Rarity.pet_sources = {}
 Rarity.lockouts = {}
+Rarity.lockouts_holiday = {}
 
 local bankOpen = false
 local guildBankOpen = false
@@ -526,6 +527,7 @@ do
   self:RegisterEvent("UPDATE_MOUSEOVER_UNIT", "OnMouseOver")
   self:RegisterEvent("PLAYER_REGEN_ENABLED", "OnCombatEnded")
   self:RegisterEvent("UPDATE_INSTANCE_INFO", "OnEvent")
+  self:RegisterEvent("LFG_UPDATE_RANDOM_INFO", "OnEvent")
 
 		if R.Options_DoEnable then R:Options_DoEnable() end
 		self.db.profile.lastRevision = R.MINOR_VERSION
@@ -537,6 +539,7 @@ do
 
   RequestArtifactCompletionHistory() -- Request archaeology info from the server
 		RequestRaidInfo() -- Request raid lock info from the server
+		RequestLFDPlayerLockInfo() -- Request LFD data from the server; this is used for holiday boss detection
 
 		-- Also scan bags and currency 10 seconds after init
   self:ScheduleTimer(function()
@@ -1138,8 +1141,10 @@ function R:OnEvent(event, ...)
   mailOpen = false
 
 
-	-- Raid lock info updated
+	-- Instance lock info updated
 	elseif event == "UPDATE_INSTANCE_INFO" then
+		self:Update(event)
+	elseif event == "LFG_UPDATE_RANDOM_INFO" then
 		self:Update(event)
 
  -- Logging out; end any open session
@@ -2308,7 +2313,7 @@ do
      if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
 			   line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
      else
-			   line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), colorize(L["Time"], yellow), colorize(L["Luckiness"], yellow))
+			   line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), colorize(L["Time"], yellow), colorize(L["Luckiness"], yellow), colorize(L["Defeated"], yellow))
      end
      tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
 		  end
@@ -2362,10 +2367,16 @@ do
 								if v.questId then
 									if IsQuestFlaggedCompleted(v.questId) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
 								elseif v.lockBossName then
-									if lbb[v.lockBossName] and (Rarity.lockouts[lbb[v.lockBossName]] == true or Rarity.lockouts[v.lockBossName] == true) then
+									if lbb[v.lockBossName] and (Rarity.lockouts[lbb[v.lockBossName]] == true or Rarity.lockouts[v.lockBossName] == true) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
+								elseif v.lockDungeonId then
+									if Rarity.lockouts_holiday[v.lockDungeonId] == true then
 										status = colorize(L["Defeated"], red)
 									else
-										status = colorize(L["Undefeated"], green) 
+										if Rarity.lockouts_holiday[v.lockDungeonId] == false then
+											status = colorize(L["Undefeated"], green)
+										else
+											status = colorize(L["Unavailable"], gray)
+										end
 									end
 								end
 								line = tooltip:AddLine(icon, (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky, status)
@@ -2564,9 +2575,13 @@ function R:OutputAttempts(item, skipTimeUpdate)
 			lastAttemptItem = item
 
 			-- If this item supports lockout detection, request updated instance info from the server now and in 10 seconds
-			if item.lockBossName then
+			if item.lockBossName or item.lockDungeonId then
 				RequestRaidInfo()
-				self:ScheduleTimer(function() RequestRaidInfo() end, 10)
+				RequestLFDPlayerLockInfo()
+				self:ScheduleTimer(function()
+					RequestRaidInfo()
+					RequestLFDPlayerLockInfo()
+				end, 10)
 			end
 
 			-- Save this item for coin tracking, but only for 90 seconds
@@ -2759,6 +2774,25 @@ function R:ScanInstanceLocks(reason)
 			end
 		end		
 	end
+
+	--for instanceID = 0, 1000 do
+	--	local dungeonName, typeId, subtypeId, minLvl, maxLvl, recLvl, minRecLvl, maxRecLvl, expansionId, groupId, textureName, difficulty, maxPlayers, dungeonDesc, isHoliday = GetLFGDungeonInfo(instanceID)
+	--		if dungeonName then 
+	--			self:Print("instanceID = " .. instanceID .. " Name = " .. dungeonName .. " typeID = " .. tostring(typeId) .. " minLvl = " .. minLvl .. " maxLvl = " .. maxLvl .. " recLvl = " .. recLvl .. " groupId = " .. tostring(groupId) .." maxPlayers = " .. tostring(maxPlayers))
+	--		end
+	--end
+
+	table.wipe(Rarity.lockouts_holiday)
+	local num = GetNumRandomDungeons()
+	for i = 1, num do 
+		local dungeonID, name = GetLFGRandomDungeonInfo(i)
+		local _, _, _, _, _, _, _, _, _, _, _, _, _, desc, isHoliday = GetLFGDungeonInfo(dungeonID)
+		if isHoliday and dungeonID ~= 828 then		
+			local doneToday = GetLFGDungeonRewards(dungeonID)
+			self.lockouts_holiday[dungeonID] = doneToday
+		end 
+	end
+
 end
 
 

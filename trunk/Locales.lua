@@ -260,7 +260,7 @@ L["(%d/%d collected)"] = true
 L["Show attempts in tooltips"] = true
 L["When enabled, Rarity tooltips will include how many attempts you've made."] = true
 L["Already defeated"] = true
-
+L["Unavailable"] = true
 
 
 
