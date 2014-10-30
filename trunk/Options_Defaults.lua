@@ -148,6 +148,14 @@ function R:PrepareDefaults()
 				-- WARLORDS OF DRAENOR
 				---------------------------------------------------------------------------------------
 
+				-- Mounts
+				[50990] = { itemId = 116659 }, -- Bloodhoof Bull
+				[87308] = { itemId = 116674 }, -- Great Greytusk
+				[50981] = { itemId = 116661 }, -- Mottled Meadowstomper
+				[51015] = { itemId = 116767 }, -- Sapphire Riverbeast
+				[50985] = { itemId = 116792 }, -- Sunhide Gronnling
+				[50883] = { itemId = 116773 }, -- Swift Breezestrider
+
 				-- Frostfire Ridge
 				[80614] = { questId = 35599, itemId = 116839 }, -- Blade-Dancer Aeryx
 				[78867] = { questId = 34497, itemId = 111476 }, -- Breathless
@@ -372,7 +380,6 @@ function R:PrepareDefaults()
      ["Giant Coldsnout"] =                               { cat = WOD, type = MOUNT, method = USE, name = GetItemInfo(116673) or L["Giant Coldsnout"], spellId = 171635, itemId = 116673, items = { 116980 }, chance = 50, sourceText = L["This bag is rewarded for earning a Gold Victory in a garrison invasion."], },
      ["Shadowhide Pearltusk"] =                          { cat = WOD, type = MOUNT, method = USE, name = GetItemInfo(116663) or L["Shadowhide Pearltusk"], spellId = 171624, itemId = 116663, items = { 116980 }, chance = 50, sourceText = L["This bag is rewarded for earning a Gold Victory in a garrison invasion."], },
      ["Smoky Direwolf"] =                                { cat = WOD, type = MOUNT, method = USE, name = GetItemInfo(116786) or L["Smoky Direwolf"], spellId = 171843, itemId = 116786, items = { 116980 }, chance = 50, sourceText = L["This bag is rewarded for earning a Gold Victory in a garrison invasion."], },
-     ["Solar Spirehawk"] =                               { cat = WOD, type = MOUNT, method = BOSS, name = GetItemInfo(116771) or L["Solar Spirehawk"], spellId = 171828, itemId = 116771, npcs = { 99999 }, tooltipNpcs = { 87493 }, chance = 2000, groupSize = 40, equalOdds = true, statisticId = { 9279 }, enableCoin = true, worldBossFactionless = true, },
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
 					--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 					-- Requires a group (some of these may be soloable by certain classes, but not in general)
@@ -392,6 +399,9 @@ function R:PrepareDefaults()
      ["Reins of the Cobalt Primordial Direhorn"] =       { cat = MOP, type = MOUNT, method = BOSS, name = GetItemInfo(94228) or L["Reins of the Cobalt Primordial Direhorn"], spellId = 138423, itemId = 94228, npcs = { 99999 }, tooltipNpcs = { 69161 }, questId = 32519, chance = 2000, groupSize = 3, equalOdds = true, statisticId = { 8147 }, enableCoin = true, worldBossFactionless = true, },
      ["Reins of the Heavenly Onyx Cloud Serpent"] =      { cat = MOP, type = MOUNT, method = BOSS, name = GetItemInfo(87771) or L["Reins of the Heavenly Onyx Cloud Serpent"], spellId = 127158, itemId = 87771, npcs = { 99999 }, tooltipNpcs = { 60491 }, questId = 32099, chance = 2000, groupSize = 3, equalOdds = true, statisticId = { 6989 }, enableCoin = true, worldBossFactionless = true, blackMarket = true, },
      ["Reins of the Thundering Cobalt Cloud Serpent"] =  { cat = MOP, type = MOUNT, method = BOSS, name = GetItemInfo(95057) or L["Reins of the Thundering Cobalt Cloud Serpent"], spellId = 139442, itemId = 95057, npcs = { 99999 }, tooltipNpcs = { 69099 }, questId = 32518, chance = 2000, groupSize = 3, equalOdds = true, statisticId = { 8146 }, enableCoin = true, worldBossFactionless = true, blackMarket = true, },
+					-- 6.x
+     ["Garn Nighthowl"] =                                { cat = WOD, type = MOUNT, method = BOSS, name = GetItemInfo(116794) or L["Garn Nighthowl"], spellId = 171851, itemId = 116794, npcs = { 81001 }, chance = 1, groupSize = 5, },
+     ["Solar Spirehawk"] =                               { cat = WOD, type = MOUNT, method = BOSS, name = GetItemInfo(116771) or L["Solar Spirehawk"], spellId = 171828, itemId = 116771, npcs = { 99999 }, tooltipNpcs = { 87493 }, chance = 2000, groupSize = 40, equalOdds = true, statisticId = { 9279 }, enableCoin = true, worldBossFactionless = true, },
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
     },
     pets = {

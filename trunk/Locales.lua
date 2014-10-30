@@ -652,7 +652,7 @@ L["Garn Steelmaw"] = true
 L["Giant Coldsnout"] = true
 L["Smoky Direwolf"] = true
 L["Solar Spirehawk"] = true
-
+L["Garn Nighthowl"] = true
 
 
 

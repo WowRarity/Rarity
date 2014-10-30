@@ -1669,7 +1669,7 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 					blankAdded = true
 					GameTooltip:AddLine(" ")
 				end
-				if IsQuestFlaggedCompleted(Rarity.db.profile.oneTimeItems[npcid].questId) then
+				if Rarity.db.profile.oneTimeItems[npcid].questId ~= nil and IsQuestFlaggedCompleted(Rarity.db.profile.oneTimeItems[npcid].questId) then
 					GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName), yellow))
 					GameTooltip:AddLine(colorize(L["Already defeated"], red))
 				else
@@ -2604,7 +2604,7 @@ end
 function R:ScanExistingItems(reason)
  self:Debug("Scanning for existing items ("..reason..")")
 
- -- Mounts: 6.x client
+ -- Mounts
 	for id = 1, mount_journal.GetNumMounts() do
 		local creatureName, spellId, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected = mount_journal.GetMountInfo(id)
 		local creatureDisplayID, descriptionText, sourceText, isSelfMount, mountType = C_MountJournal.GetMountInfoExtra(id)
