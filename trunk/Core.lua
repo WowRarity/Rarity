@@ -2685,8 +2685,8 @@ function R:ScanExistingItems(reason)
 				if type(v) == "table" then
 					for kk, vv in pairs(v) do
 						if type(vv) == "table" then
-							if vv.creatureId and vv.creatureId == creatureId then vv.known = true end
-							if vv.creatureId and vv.creatureId == creatureId and not vv.repeatable then
+							if vv.creatureId and vv.creatureId == companionID then vv.known = true end
+							if vv.creatureId and vv.creatureId == companionID and not vv.repeatable then
 								vv.enabled = false
 								vv.found = true
 							end
