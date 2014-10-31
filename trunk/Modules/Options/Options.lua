@@ -344,6 +344,18 @@ function R:PrepareOptions()
 								end,
 							},
 
+							showCategoryIcons = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Show category icons"],
+								desc = L["When on, Rarity will show an icon next to each item in the tooltip indicating which expansion the item belongs to."],
+								get = function() return self.db.profile.showCategoryIcons end,
+								set = function(info, val)
+									self.db.profile.showCategoryIcons = val
+									self:UpdateText()
+								end,
+							},
+
 						}, -- args
 					}, -- display
 

@@ -65,6 +65,7 @@ R.string_methods = {
 local SORT_NAME = "SORT_NAME"
 local SORT_DIFFICULTY = "SORT_DIFFICULTY"
 local SORT_PROGRESS = "SORT_PROGRESS"
+local SORT_CATEGORY = "SORT_CATEGORY"
 
 -- Archaeology races
 R.string_archraces = {
@@ -95,6 +96,27 @@ local TIP_LEFT = "TIP_LEFT"
 local TIP_RIGHT = "TIP_RIGHT"
 local TIP_HIDDEN = "TIP_HIDDEN"
 
+-- Categories
+R.catIcons = {
+ [HOLIDAY] = "holiday",
+ [BASE] = "classic",
+ [TBC] = "bc",
+ [WOTLK] = "wotlk",
+ [CATA] = "cata",
+ [MOP] = "mop",
+ [WOD] = "wod",
+}
+R.catOrder = {
+ [HOLIDAY] = 0,
+ [BASE] = 1,
+ [TBC] = 2,
+ [WOTLK] = 3,
+ [CATA] = 4,
+ [MOP] = 5,
+ [WOD] = 6,
+}
+
+
 
 function R:PrepareDefaults()
 
@@ -113,6 +135,7 @@ function R:PrepareDefaults()
 			takeScreenshot = true,
 			hideUnavailable = true,
 			holidayReminder = true,
+			showCategoryIcons = false,
 
    trackedGroup = "pets",
    trackedItem = 8494,

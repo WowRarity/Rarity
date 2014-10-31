@@ -267,6 +267,9 @@ L["Holiday reminders"] = true
 L["When on, Rarity will remind you to go farm holiday items you're missing if the holiday is active and the item is set as Undefeated. (This only works for items that originate from holiday dungeons.) The reminder occurs each time you log in or reload your UI, and stops for the day once you defeat the holiday dungeon."] = true
 L["A holiday dungeon is available today for %s! Go get it!"] = true
 L["You can turn off holiday notifications by visiting the Rarity Options screen."] = true
+L["Sorting by category, then name"] = true
+L["Show category icons"] = true
+L["When on, Rarity will show an icon next to each item in the tooltip indicating which expansion the item belongs to."] = true
 
 
 

@@ -58,6 +58,7 @@ local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
 			Other:
 			- Good-luck coins
 			- New Archaeology races: /run for race_id = 1, GetNumArchaeologyRaces() do Rarity:Print(GetArchaeologyRaceInfo(race_id)) end
+			- Add a new category icon for the expansion
 			
 ]]--
 
@@ -363,6 +364,7 @@ local TIP_HIDDEN = "TIP_HIDDEN"
 local SORT_NAME = "SORT_NAME"
 local SORT_DIFFICULTY = "SORT_DIFFICULTY"
 local SORT_PROGRESS = "SORT_PROGRESS"
+local SORT_CATEGORY = "SORT_CATEGORY"
 
 -- Categories of origin
 local BASE = "BASE"
@@ -696,6 +698,14 @@ local function compareName(a, b)
 end
 
 
+local function compareCategory(a, b)
+ if not a or not b then return 0 end
+ if type(a) ~= "table" or type(b) ~= "table" then return 0 end
+	if (a.cat or "") == (b.cat or "") then return (a.name or "") < (b.name or "") end
+	return (R.catOrder[a.cat or 0] or 0) < (R.catOrder[b.cat or 0] or 0)
+end
+
+
 local function compareDifficulty(a, b)
  if not a or not b then return 0 end
  if type(a) ~= "table" or type(b) ~= "table" then return 0 end
@@ -832,6 +842,26 @@ local function sort_progress(t)
  return nt
 end
 
+
+local function sort_category(t)
+ local nt = {}
+ local i, j, n, min = 0, 0, 0, 0
+ local k, v
+ for k, v in pairs(t) do
+  if type(v) == "table" and v.name then
+   n = n + 1
+   nt[n] = v
+  end
+ end
+ for i = 1, n, 1 do
+	 min = i
+	 for j = i + 1, n, 1 do
+		 if compareCategory(nt[j], nt[min]) then min = j end
+	 end
+	 nt[i], nt[min] = nt[min], nt[i]
+ end
+ return nt
+end
 
 
 function round(num)
@@ -2000,7 +2030,8 @@ do
 		 end
   elseif IsControlKeyDown() then
    -- Change sort order
-   if R.db.profile.sortMode == SORT_NAME then R.db.profile.sortMode = SORT_DIFFICULTY
+   if R.db.profile.sortMode == SORT_NAME then R.db.profile.sortMode = SORT_CATEGORY
+   elseif R.db.profile.sortMode == SORT_CATEGORY then R.db.profile.sortMode = SORT_DIFFICULTY
    elseif R.db.profile.sortMode == SORT_DIFFICULTY then R.db.profile.sortMode = SORT_PROGRESS
    else R.db.profile.sortMode = SORT_NAME
    end
@@ -2325,6 +2356,7 @@ do
   local g
   if R.db.profile.sortMode == SORT_NAME then g = sort(group)
   elseif R.db.profile.sortMode == SORT_DIFFICULTY then g = sort_difficulty(group)
+  elseif R.db.profile.sortMode == SORT_CATEGORY then g = sort_category(group)
   else g = sort_progress(group)
   end
   for k, v in pairs(g) do
@@ -2420,7 +2452,9 @@ do
 											UIErrorsFrame:AddMessage(text, 1, 1, 1, 1.0)
 										end
 									end
-									line = tooltip:AddLine(icon, (itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky, status)
+									local catIcon = ""
+									if Rarity.db.profile.showCategoryIcons and v.cat and Rarity.catIcons[v.cat] then catIcon = [[|TInterface\AddOns\Rarity\Icons\]]..Rarity.catIcons[v.cat]..".blp:0:4|t " end
+									line = tooltip:AddLine(icon, catIcon..(itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky, status)
 									tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
 									tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
 									tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
@@ -2452,6 +2486,7 @@ do
   local sortDesc = L["Sorting by name"]
   if self.db.profile.sortMode == SORT_DIFFICULTY then sortDesc = L["Sorting by difficulty"]
   elseif self.db.profile.sortMode == SORT_PROGRESS then sortDesc = L["Sorting by percent complete"]
+  elseif self.db.profile.sortMode == SORT_CATEGORY then sortDesc = L["Sorting by category, then name"]
   end
 		local line = tooltip:AddLine()
 		tooltip:SetCell(line, 1, colorize(sortDesc, green), nil, nil, 3)
