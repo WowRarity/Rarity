@@ -2518,7 +2518,7 @@ do
 		tooltip:SetCell(line, 1, colorize(L["Ctrl-Click to change sort order"], gray), nil, nil, 3)
 
 		if Rarity.anyReminderDone then Rarity.allRemindersDone = true end
-		if hidden == true then return end
+		if hidden == true or frame == nil then return end
 
 		tooltip:SetAutoHideDelay(0.01, frame)
 		tooltip:SmartAnchorTo(frame)
