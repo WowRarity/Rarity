@@ -231,8 +231,10 @@ function R:PrepareDefaults()
 				-- Gorgrond
 				[81406] = { questId = 35281, itemId = 111666 }, -- Bahameye
 				[82085] = { questId = 35335, itemId = 118222 }, -- Bashiok
+				[86257] = { questId = 37369, itemId = 119432 }, -- Basten
 				[85907] = { questId = 36597, itemId = 118232 }, -- Berthora
 				[77739] = { questId = 34197, itemId = 99999  }, -- Bloodbloom the Colossus
+				[85250] = { questId = 36387, itemId = 118221 }, -- Fossilwood the Petrified
 				[80868] = { questId = 36204, itemId = 118229 }, -- Glut
 				[84431] = { questId = 36186, itemId = 118210 }, -- Greldrok the Cunning
 				[83522] = { questId = 35908, itemId = 118209 }, -- Hive Queen Skrikka
@@ -249,6 +251,7 @@ function R:PrepareDefaults()
 				[86520] = { questId = 36837, itemId = 118228 }, -- Stompalupagus
 				[79629] = { questId = 35910, itemId = 118224 }, -- Stomper Kreego
 				[77622] = { questId = 34168, itemId = 99999  }, -- Stormwave
+				[80725] = { questId = 36394, itemId = 114227 }, -- Sulfurious
 				[86137] = { questId = 36656, itemId = 118223 }, -- Sunclaw
 				[86410] = { questId = 36794, itemId = 118213 }, -- Sylldross
 				[77861] = { questId = 34231, itemId = 99999  }, -- Tanoboa
@@ -280,6 +283,7 @@ function R:PrepareDefaults()
 				[83542] = { questId = 35912, itemId = 99999  }, -- Sean Whitesea
 				[80057] = { questId = 36128, itemId = 116806 }, -- Soulfang
 				[83591] = { questId = 35920, itemId = 116814 }, -- Tura'aka
+				[81330] = { questId = 37546, itemId = 120276 }, -- Warleader Tome
 				[79024] = { questId = 34645, itemId = 116805 }, -- Warmaster Blugthol
 				[83428] = { questId = 35877, itemId = 116808 }, -- Windcaller Korast
 				-- Shadowmoon Valley
@@ -305,6 +309,7 @@ function R:PrepareDefaults()
 				[77136] = { questId = 33057, itemId = 99999  }, -- Rotbelcher
 				[82415] = { questId = 35732, itemId = 113543 }, -- Shinri
 				[86689] = { questId = 36880, itemId = 118734 }, -- Sneevel
+				[85026] = { questId = 37358, itemId = 119178 }, -- Soul-Twister Torek
 				[75482] = { questId = 33640, itemId = 108906 }, -- Veloss
 				[75492] = { questId = 33643, itemId = 108957 }, -- Venomshade
 				[83385] = { questId = 35847, itemId = 109074 }, -- Voidseer Kalurg
