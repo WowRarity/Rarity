@@ -546,11 +546,17 @@ do
 		RequestLFDPlayerLockInfo() -- Request LFD data from the server; this is used for holiday boss detection
 		OpenCalendar() -- Request calendar info from the server
 
-		-- Also scan bags and currency 10 seconds after init
+		-- Scan instance locks 5 seconds after init
+  self:ScheduleTimer(function()
+			R:ScanInstanceLocks("DELAYED INIT 1")
+		end, 5)
+
+		-- Also scan bags, currency, and instance locks 10 seconds after init
   self:ScheduleTimer(function()
 			R:ScanBags()
 			R:OnCurrencyUpdate("DELAYED INIT")
 			R:OnBagUpdate()
+			R:ScanInstanceLocks("DELAYED INIT 2")
 		end, 10)
 
   -- Clean up session info
@@ -1195,9 +1201,9 @@ function R:OnEvent(event, ...)
 
 	-- Instance lock info updated
 	elseif event == "UPDATE_INSTANCE_INFO" then
-		self:Update(event)
+		self:ScanInstanceLocks(event)
 	elseif event == "LFG_UPDATE_RANDOM_INFO" then
-		self:Update(event)
+		self:ScanInstanceLocks(event)
 
 	-- Calendar updated
 	elseif event == "CALENDAR_UPDATE_EVENT_LIST" then
@@ -2478,7 +2484,7 @@ do
 			tooltip = qtip:Acquire("RarityTooltip", 8, "LEFT", "LEFT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT") -- intentionally one column more than we need to avoid text clipping
 		end
 		
-		self:ScanInstanceLocks("SHOWING TOOLTIP")
+		--self:ScanInstanceLocks("SHOWING TOOLTIP")
 		table.wipe(headers)
   local addedLast
 
@@ -2662,6 +2668,9 @@ function R:OutputAttempts(item, skipTimeUpdate)
 					RequestRaidInfo()
 					RequestLFDPlayerLockInfo()
 				end, 10)
+				self:ScheduleTimer(function()
+					Rarity:ScanInstanceLocks("ATTEMPT DETECTED")
+				end, 5)
 			end
 
 			-- Save this item for coin tracking, but only for 90 seconds
@@ -2832,7 +2841,7 @@ end
 
 
 function R:ScanCalendar(reason)
- --self:Debug("Scanning calendar ("..reason..")")
+ self:Debug("Scanning calendar ("..reason..")")
 
 	table.wipe(Rarity.holiday_textures)
 	local _, month, day, year = CalendarGetDate()
@@ -2852,7 +2861,7 @@ end
 
 
 function R:ScanInstanceLocks(reason)
- --self:Debug("Scanning instance locks ("..reason..")")
+ self:Debug("Scanning instance locks ("..reason..")")
 
 	table.wipe(Rarity.lockouts)
 	local savedInstances = GetNumSavedInstances()
@@ -2862,14 +2871,9 @@ function R:ScanInstanceLocks(reason)
 			scanTip:ClearLines()
 			scanTip:SetInstanceLockEncountersComplete(i)
 			for i = 2, scanTip:NumLines() do
-				local myLeft = _G["__Rarity_ScanTipTextLeft"..i]
-				local txtLeft = myLeft:GetText()
-				local leftR, leftG, leftB, leftAlpha = myLeft:GetTextColor() 
-				local myRight = _G["__Rarity_ScanTipTextRight"..i]
-				local txtRight = myRight:GetText()
-				local rightR, rightG, rightB, rightAlpha = myRight:GetTextColor() 
+				local txtRight = _G["__Rarity_ScanTipTextRight"..i]:GetText()
 				if txtRight then
-					if txtRight == BOSS_DEAD then self.lockouts[txtLeft] = true end
+					if txtRight == BOSS_DEAD then self.lockouts[_G["__Rarity_ScanTipTextLeft"..i]:GetText()] = true end
 				end
 			end
 		end		
