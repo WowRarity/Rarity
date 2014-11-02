@@ -2446,11 +2446,10 @@ do
 									status = colorize(L["Unavailable"], gray)
 								end
 								if Rarity.db.profile.hideUnavailable == false or status ~= colorize(L["Unavailable"], gray) then
-									if Rarity.db.profile.holidayReminder and Rarity.allRemindersDone == nil and v.cat == HOLIDAY and status == colorize(L["Undefeated"], green) then
+									if Rarity.db.profile.holidayReminder and Rarity.allRemindersDone == nil and v.holidayReminder ~= false and v.cat == HOLIDAY and status == colorize(L["Undefeated"], green) then
 										Rarity.anyReminderDone = true
-										local text = format(L["A holiday dungeon is available today for %s! Go get it!"], itemLink or itemName or v.name)
+										local text = format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or v.name)
 										Rarity:Print(text)
-										Rarity:Print(L["You can turn off holiday notifications by visiting the Rarity Options screen."])
 										if tostring(SHOW_COMBAT_TEXT) ~= "0" then
 											if type(CombatText_AddMessage) == "nil" then UIParentLoadAddOn("Blizzard_CombatText") end
 											CombatText_AddMessage(text, CombatText_StandardScroll, 1, 1, 1, true, false)
@@ -2523,7 +2522,12 @@ do
 		line = tooltip:AddLine()
 		tooltip:SetCell(line, 1, colorize(L["Ctrl-Click to change sort order"], gray), nil, nil, 3)
 
-		if Rarity.anyReminderDone then Rarity.allRemindersDone = true end
+		if Rarity.anyReminderDone and not Rarity.allRemindersDone then
+			Rarity.allRemindersDone = true
+			if Rarity.db.profile.holidayReminder then
+				Rarity:Print(colorize(L["You can turn off holiday reminders as a whole or on an item-by-item basis by visiting the Rarity Options screen."], gray))
+			end
+		end
 		if hidden == true or frame == nil then return end
 
 		tooltip:SetAutoHideDelay(0.01, frame)

@@ -264,14 +264,12 @@ L["Unavailable"] = true
 L["Hide unavailable items"] = true
 L["When on, items marked as Unavailable will be hidden from the tooltip. This way, items requiring a certain holiday will automatically be hidden when the holiday is not active."] = true
 L["Holiday reminders"] = true
-L["When on, Rarity will remind you to go farm holiday items you're missing if the holiday is active and the item is set as Undefeated. (This only works for items that originate from holiday dungeons.) The reminder occurs each time you log in or reload your UI, and stops for the day once you defeat the holiday dungeon."] = true
-L["A holiday dungeon is available today for %s! Go get it!"] = true
-L["You can turn off holiday notifications by visiting the Rarity Options screen."] = true
+L["When on, Rarity will remind you to go farm holiday items you're missing if the holiday is active and the item is set as Undefeated. (This only works for items that originate from holiday dungeons or daily quests.) The reminder occurs each time you log in or reload your UI, and stops for the day once you defeat the holiday dungeon or complete the	quest."] = true
+L["A holiday event is available today for %s! Go get it!"] = true
+L["You can turn off holiday reminders as a whole or on an item-by-item basis by visiting the Rarity Options screen."] = true
 L["Sorting by category, then name"] = true
 L["Show category icons"] = true
 L["When on, Rarity will show an icon next to each item in the tooltip indicating which expansion the item belongs to."] = true
-
-
 
 
 
@@ -322,6 +320,8 @@ L["Dropped by dinosaurs on Isle of Giants Will hatch into one of three Primal Ra
 L["Dropped by any mob in Vale of Eternal Blossoms (except minor mobs). 10 of these can be combined to pierce Alani's shield, allowing combat and a guaranteed drop of Reins of the Thundering Ruby Cloud Serpent."] = true
 L["Earned by giving 9999 Giant Dinosaur Bones to Ku'ma on Isle of Giants. Giant Dinosaur bones drop from all dinosaurs and Zandalari Dinomancers on Isle of Giants."] = true
 L["This bag is rewarded for earning a Gold Victory in a garrison invasion."] = true
+L["This bag is rewarded for completing the pet battle daily offered by Jeremy Feasel at the Darkmoon Faire."] = true
+L["This bag is rewarded for completing the pet battle daily offered by Christoph VonFeasel at the Darkmoon Faire."] = true
 
 
 -- Instance difficulties
@@ -662,7 +662,7 @@ L["Giant Coldsnout"] = true
 L["Smoky Direwolf"] = true
 L["Solar Spirehawk"] = true
 L["Garn Nighthowl"] = true
-
+L["Syd the Squid"] = true
 
 
 

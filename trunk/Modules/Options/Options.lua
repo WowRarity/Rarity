@@ -324,7 +324,7 @@ function R:PrepareOptions()
 								type = "toggle",
 								order = newOrder(),
 								name = L["Holiday reminders"],
-								desc = L["When on, Rarity will remind you to go farm holiday items you're missing if the holiday is active and the item is set as Undefeated. (This only works for items that originate from holiday dungeons.) The reminder occurs each time you log in or reload your UI, and stops for the day once you defeat the holiday dungeon."],
+								desc = L["When on, Rarity will remind you to go farm holiday items you're missing if the holiday is active and the item is set as Undefeated. (This only works for items that originate from holiday dungeons or daily quests.) The reminder occurs each time you log in or reload your UI, and stops for the day once you defeat the holiday dungeon or complete the	quest."],
 								get = function() return self.db.profile.holidayReminder end,
 								set = function(info, val)
 									self.db.profile.holidayReminder = val
@@ -1364,6 +1364,21 @@ function R:CreateGroup(options, group, isUser)
 						self:Update("OPTIONS")
 					end,
      hidden = function() return item.method == COLLECTION end,
+				},
+
+				holidayReminder = {
+					order = newOrder(),
+					type = "toggle",
+					name = L["Holiday reminders"],
+					desc = L["When on, Rarity will remind you to go farm holiday items you're missing if the holiday is active and the item is set as Undefeated. (This only works for items that originate from holiday dungeons or daily quests.) The reminder occurs each time you log in or reload your UI, and stops for the day once you defeat the holiday dungeon or complete the	quest."],
+					get = function()
+      if item.holidayReminder == false then return false else return true end
+     end,
+					set = function(info, val)
+						item.holidayReminder = val
+						self:Update("OPTIONS")
+					end,
+     hidden = function() return item.cat ~= HOLIDAY or (item.questId == nil and item.lockDungeonId == nil and item.holidayTexture == nil) end,
 				},
 
 			 spacer3 = { type = "header", name = L["Other Requirements"], order = newOrder(), },
