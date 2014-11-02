@@ -529,9 +529,9 @@ do
   self:RegisterEvent("TRADE_SKILL_CLOSE", "OnEvent")
   self:RegisterEvent("UPDATE_MOUSEOVER_UNIT", "OnMouseOver")
   self:RegisterEvent("PLAYER_REGEN_ENABLED", "OnCombatEnded")
-  self:RegisterEvent("UPDATE_INSTANCE_INFO", "OnEvent")
-  self:RegisterEvent("LFG_UPDATE_RANDOM_INFO", "OnEvent")
-  self:RegisterEvent("CALENDAR_UPDATE_EVENT_LIST", "OnEvent")
+  self:RegisterBucketEvent("UPDATE_INSTANCE_INFO", 1, "OnEvent")
+  self:RegisterBucketEvent("LFG_UPDATE_RANDOM_INFO", 1, "OnEvent")
+  self:RegisterBucketEvent("CALENDAR_UPDATE_EVENT_LIST", 1, "OnEvent")
 
 		if R.Options_DoEnable then R:Options_DoEnable() end
 		self.db.profile.lastRevision = R.MINOR_VERSION
@@ -548,10 +548,10 @@ do
 
 		-- Scan instance locks 5 seconds after init
   self:ScheduleTimer(function()
-			R:ScanInstanceLocks("DELAYED INIT 1")
+			R:ScanInstanceLocks("DELAYED INIT")
 		end, 5)
 
-		-- Also scan bags, currency, and instance locks 10 seconds after init
+		-- Scan bags, currency, and instance locks 10 seconds after init
   self:ScheduleTimer(function()
 			R:ScanBags()
 			R:OnCurrencyUpdate("DELAYED INIT")
@@ -587,7 +587,7 @@ do
 		-- Trigger holiday reminders
 		self:ScheduleTimer(function()
 			Rarity:ShowTooltip(true)
-		end, 8)
+		end, 10)
 
   -- Update text again several times later - this helps get the icon right after login
   self:ScheduleTimer(function() R:UpdateText() end, 10)
