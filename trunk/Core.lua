@@ -124,7 +124,7 @@ local tooltipLeftText1 = _G["GameTooltipTextLeft1"]
 local fishing = false
 local opening = false
 local fishingTimer
-local FISHING_DELAY = 19
+local FISHING_DELAY = 22
 local trackedItem
 local trackedItem2
 local lastAttemptTime
