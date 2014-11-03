@@ -231,7 +231,7 @@ function R:PrepareDefaults()
 				[86257] = { questId = 37369, itemId = 119432 }, -- Basten
 				[85907] = { questId = 36597, itemId = 118232 }, -- Berthora
 				[77739] = { questId = 34197, itemId = 99999  }, -- Bloodbloom the Colossus
-    [82311] = { questId = 35503, itemId = 118212 }, -- Char the Burning
+				[82311] = { questId = 35503, itemId = 118212 }, -- Char the Burning
 				[85250] = { questId = 36387, itemId = 118221 }, -- Fossilwood the Petrified
 				[81038] = { questId = 36391, itemId = 118230 }, -- Gelgor of the Blue Flame
 				[80868] = { questId = 36204, itemId = 118229 }, -- Glut
@@ -362,7 +362,6 @@ function R:PrepareDefaults()
 				[79334] = { questId = 34859, itemId = 116077 }, -- No'losh
 				[77452] = { questId = 34128, itemId = 99999  }, -- Norana Quelldawn
 				[77741] = { questId = 34196, itemId = 116112 }, -- Ra'kahn
-				[77784] = { questId = 34208, itemId = 116070 }, -- Lo'marg Jawcrusher
 				[79543] = { questId = 34671, itemId = 112370 }, -- Shirzir
 				[78715] = { questId = 35219, itemId = 116122 }, -- Sikthiss, Maiden of Slaughter
 				[81766] = { questId = 35244, itemId = 99999  }, -- Skagg
@@ -560,7 +559,7 @@ function R:PrepareDefaults()
      ["Spineclaw Crab"] =                                { cat = MOP, type = PET, method = NPC, name = GetItemInfo(104168) or L["Spineclaw Crab"], spellId = 148066, itemId = 104168, npcs = { 73166 }, chance = 60, creatureId = 73366, sourceText = L[""], },
 					-- 6.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
      ["Sky-Bo"] =                                        { cat = WOD, type = PET, method = USE, name = GetItemInfo(115483) or L["Sky-Bo"], spellId = 170292, itemId = 115483, items = { 86623, 113258, }, chance = 200, creatureId = 85284, sourceText = L[""], },
-     ["Time-Locked Box"] =                               { cat = WOD, type = PET, method = NPC, name = GetItemInfo(118675) or L["Time-Locked Box"], spellId = 10699, itemId = 118675, npcs = {  82458, 77653, 78193, 76886, 77767, 77790, 78921, 77090, 76556, 78345, 82774, 78348, 78670, 76673, 77771, 76189, 77640, 77101, 78695, 77724, 78488, 77643, 78696, 77723, 77644, 78667, 73458, 76672, 82918, 73446, 77721, 82451, 73459, 78674, 76651, }, chance = 500, creatureId = 7546, sourceText = L[""], },
+     ["Time-Locked Box"] =                               { cat = WOD, type = PET, method = NPC, name = GetItemInfo(118675) or L["Time-Locked Box"], spellId = 10699, itemId = 118675, repeatable = true, npcs = {  82458, 77653, 78193, 76886, 77767, 77790, 78921, 77090, 76556, 78345, 82774, 78348, 78670, 76673, 77771, 76189, 77640, 77101, 78695, 77724, 78488, 77643, 78696, 77723, 77644, 78667, 73458, 76672, 82918, 73446, 77721, 82451, 73459, 78674, 76651, }, chance = 500, creatureId = 7546, sourceText = L[""], },
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
     },
     items = {
