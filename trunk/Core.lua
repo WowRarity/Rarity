@@ -3059,6 +3059,7 @@ end
 
 function R:UpdateTrackedItem(item)
  if not item or not item.itemId then return end
+	if self.db.profile.trackedItem == item.itemId then return end -- Already tracking this item
  self.db.profile.trackedItem = item.itemId
  for k, v in pairs(R.db.profile.groups) do
   if type(v) == "table" then
