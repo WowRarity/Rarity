@@ -198,7 +198,6 @@ function R:PrepareDefaults()
 				[50883] = { itemId = 116773 }, -- Swift Breezestrider
 
 				-- Frostfire Ridge
-				[80614] = { questId = 35599, itemId = 116839 }, -- Blade-Dancer Aeryx
 				[78867] = { questId = 34497, itemId = 111476 }, -- Breathless
 				[74613] = { questId = 33843, itemId = 111533 }, -- Broodmother Reeg'ak
 				[79065] = { questId = 34519, itemId = 99999  }, -- Brotoculus
@@ -220,7 +219,6 @@ function R:PrepareDefaults()
 				[78151] = { questId = 34130, itemId = 99999  }, -- Huntmaster Kuang
 				[79678] = { questId = 34708, itemId = 112078 }, -- Jehil the Climber
 				[78872] = { questId = 34498, itemId = 116125 }, -- Klikixx
-				[79334] = { questId = 34859, itemId = 116077 }, -- No'losh
 				[78606] = { questId = 34470, itemId = 111666 }, -- Pale Fishmonger
 				[76918] = { questId = 33938, itemId = 111576 }, -- Primalist Mur'og
 				[77526] = { questId = 34132, itemId = 112094 }, -- Scout Goreseeker
@@ -229,12 +227,13 @@ function R:PrepareDefaults()
 				[79104] = { questId = 34522, itemId = 99999  }, -- Ug'lok the Frozen
 				[79145] = { questId = 34559, itemId = 111477 }, -- Yaga the Scarred
 				-- Gorgrond
-				[81406] = { questId = 35281, itemId = 111666 }, -- Bahameye
 				[82085] = { questId = 35335, itemId = 118222 }, -- Bashiok
 				[86257] = { questId = 37369, itemId = 119432 }, -- Basten
 				[85907] = { questId = 36597, itemId = 118232 }, -- Berthora
 				[77739] = { questId = 34197, itemId = 99999  }, -- Bloodbloom the Colossus
+    [82311] = { questId = 35503, itemId = 118212 }, -- Char the Burning
 				[85250] = { questId = 36387, itemId = 118221 }, -- Fossilwood the Petrified
+				[81038] = { questId = 36391, itemId = 118230 }, -- Gelgor of the Blue Flame
 				[80868] = { questId = 36204, itemId = 118229 }, -- Glut
 				[84431] = { questId = 36186, itemId = 118210 }, -- Greldrok the Cunning
 				[83522] = { questId = 35908, itemId = 118209 }, -- Hive Queen Skrikka
@@ -247,7 +246,7 @@ function R:PrepareDefaults()
 				[77593] = { questId = 34160, itemId = 99999  }, -- Nixxie
 				[77876] = { questId = 34243, itemId = 99999  }, -- Rak'nar Muzzlebash
 				[85970] = { questId = 36600, itemId = 118231 }, -- Riptar
-				[86549] = { questId = 36858, itemId = 117562 }, -- Steeltusk
+				[85264] = { questId = 36393, itemId = 118211 }, -- Rolkor
 				[86520] = { questId = 36837, itemId = 118228 }, -- Stompalupagus
 				[79629] = { questId = 35910, itemId = 118224 }, -- Stomper Kreego
 				[77622] = { questId = 34168, itemId = 99999  }, -- Stormwave
@@ -289,6 +288,7 @@ function R:PrepareDefaults()
 				-- Shadowmoon Valley
 				[77140] = { questId = 33061, itemId = 109060 }, -- Amaukwa
 				[82326] = { questId = 35731, itemId = 113540 }, -- Ba'ruun
+				[81406] = { questId = 35281, itemId = 111666 }, -- Bahameye
 				[81639] = { questId = 33383, itemId = 117551 }, -- Brambleking Fili
 				[77085] = { questId = 33064, itemId = 109075 }, -- Dark Emanation
 				[82268] = { questId = 35448, itemId = 113548 }, -- Darkmaster Go'vid
@@ -317,6 +317,7 @@ function R:PrepareDefaults()
 				[75435] = { questId = 33389, itemId = 113570 }, -- Yggdrel
 				-- Spires of Arak
 				[84887] = { questId = 36291, itemId = 116907 }, -- Betsi Boombasket
+				[80614] = { questId = 35599, itemId = 116839 }, -- Blade-Dancer Aeryx
 				[84856] = { questId = 36283, itemId = 118205 }, -- Blightglow
 				[84807] = { questId = 36267, itemId = 118198 }, -- Durkath Steelmaw
 				[84935] = { questId = 36303, itemId = 99999  }, -- Eyeless
@@ -358,15 +359,19 @@ function R:PrepareDefaults()
 				[77750] = { questId = 34199, itemId = 99999  }, -- Kaavu the Crimson Claw
 				[78710] = { questId = 35219, itemId = 116122 }, -- Kharazos the Triumphant
 				[77784] = { questId = 34208, itemId = 116070 }, -- Lo'marg Jawcrusher
+				[79334] = { questId = 34859, itemId = 116077 }, -- No'losh
 				[77452] = { questId = 34128, itemId = 99999  }, -- Norana Quelldawn
 				[77741] = { questId = 34196, itemId = 116112 }, -- Ra'kahn
+				[77784] = { questId = 34208, itemId = 116070 }, -- Lo'marg Jawcrusher
 				[79543] = { questId = 34671, itemId = 112370 }, -- Shirzir
 				[78715] = { questId = 35219, itemId = 116122 }, -- Sikthiss, Maiden of Slaughter
 				[81766] = { questId = 35244, itemId = 99999  }, -- Skagg
+				[86549] = { questId = 36858, itemId = 117562 }, -- Steeltusk
 				[77634] = { questId = 34171, itemId = 116126 }, -- Taladorantula
 				[79485] = { questId = 34668, itemId = 116110 }, -- Talonpriest Zorkra
 				[80524] = { questId = 34945, itemId = 112475 }, -- Underseer Bloodmane
 				[77564] = { questId = 34148, itemId = 112371 }, -- Viperlash
+				[77776] = { questId = 34205, itemId = 112261 }, -- Wandering Vindicator
 				[77529] = { questId = 34135, itemId = 112263 }, -- Yazheera the Incinerator
 			},
 
