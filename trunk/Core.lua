@@ -2657,6 +2657,9 @@ function R:OutputAttempts(item, skipTimeUpdate)
 				end
    end
 
+			-- Update LDB text
+			self:UpdateText()
+
    -- Switch to track this item
    self:UpdateTrackedItem(item)
 
