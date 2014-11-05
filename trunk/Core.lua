@@ -2481,6 +2481,7 @@ do
 			tooltip:Clear()
 		else
 			tooltip = qtip:Acquire("RarityTooltip", 8, "LEFT", "LEFT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT") -- intentionally one column more than we need to avoid text clipping
+			tooltip:SetScale(self.db.profile.tooltipScale or 1)
 		end
 		
 		--self:ScanInstanceLocks("SHOWING TOOLTIP")

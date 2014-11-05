@@ -83,7 +83,6 @@ L["Turns on a minimap icon for Rarity. Use this option if you don't have an LDB 
 L["Announcements"] = true
 L["Enable announcements"] = true
 L["Enables announcements whenever you complete a new attempt toward anything Rarity is tracking. You can also enable announcements per-item, but this is the master switch."] = true
-L["Display"] = true
 L["Feed text"]= true
 L["Controls what type of text is shown in Rarity's LDB feed. Minimal shows just the number of attempts. Normal adds the likelihood percent, and verbose adds the item link."] = true
 L["Minimal"] = true
@@ -173,8 +172,7 @@ L["Last Month"] = true
 L["Left"] = true
 L["Right"] = true
 L["Hidden"] = true
-L["Status tooltip"] = true
-L["Controls on which side the Rarity status tooltip appears when you hover over an item in the main tooltip. If the main tooltip is on the right side of your screen, change this to Left. Otherwise, choose Right. You can also hide the status tooltip completely."] = true
+L["Controls on which side the secondary tooltip appears when you hover over an item in the main tooltip. If the main tooltip is on the right side of your screen, change this to Left. Otherwise, choose Right. You can also hide the status tooltip completely."] = true
 L["Kill Statistic IDs"] = true
 L["A comma-separated list of Statistic IDs that track the number of kills toward obtaining this item."] = true
 L["You must enter at least one Statistic ID."] = true
@@ -270,6 +268,12 @@ L["You can turn off holiday reminders as a whole or on an item-by-item basis by 
 L["Sorting by category, then name"] = true
 L["Show category icons"] = true
 L["When on, Rarity will show an icon next to each item in the tooltip indicating which expansion the item belongs to."] = true
+L["Primary tooltip scale"] = true
+L["Adjusts the scale of the primary tooltip. This will take effect the next time the tooltip is shown."] = true
+L["Rarity Tooltip Options"] = true
+L["World Tooltip Options"] = true
+L["General Options"] = true
+L["Secondary tooltip display"] = true
 
 
 

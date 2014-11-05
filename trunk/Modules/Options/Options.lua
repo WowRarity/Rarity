@@ -203,22 +203,167 @@ function R:PrepareOptions()
 				childGroups = "tree",
 				args = {
 				
-					minimap = {
-						type = "toggle",
-						order = newOrder(),
-						name = L["Show minimap icon"],
-						desc = L["Turns on a minimap icon for Rarity. Use this option if you don't have an LDB display add-on."],
-						get = function() return not self.db.profile.minimap.hide end,
-						set = function(info, val)
-							self.db.profile.minimap.hide = not val
-							if val then LibStub("LibDBIcon-1.0"):Show("Rarity") else LibStub("LibDBIcon-1.0"):Hide("Rarity") end
-							self:Update("OPTIONS")
-						end,
-					}, -- minimap
-							
-					display = {
+
+					general = {
 						type = "group",
-						name = L["Display"],
+						name = L["General Options"],
+						order = newOrder(),
+						inline = true,
+						args = {
+						
+							minimap = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Show minimap icon"],
+								desc = L["Turns on a minimap icon for Rarity. Use this option if you don't have an LDB display add-on."],
+								get = function() return not self.db.profile.minimap.hide end,
+								set = function(info, val)
+									self.db.profile.minimap.hide = not val
+									if val then LibStub("LibDBIcon-1.0"):Show("Rarity") else LibStub("LibDBIcon-1.0"):Hide("Rarity") end
+									self:Update("OPTIONS")
+								end,
+							}, -- minimap
+							
+							holidayReminder = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Holiday reminders"],
+								desc = L["When on, Rarity will remind you to go farm holiday items you're missing if the holiday is active and the item is set as Undefeated. (This only works for items that originate from holiday dungeons or daily quests.) The reminder occurs each time you log in or reload your UI, and stops for the day once you defeat the holiday dungeon or complete the	quest."],
+								get = function() return self.db.profile.holidayReminder end,
+								set = function(info, val)
+									self.db.profile.holidayReminder = val
+									self:UpdateText()
+								end,
+							},
+
+							takeScreenshot = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Take screenshots"],
+								desc = L["When on, Rarity will take a screenshot when the achievement alert pops up indicating that you obtained an item."],
+								get = function() return self.db.profile.takeScreenshot end,
+								set = function(info, val)
+									self.db.profile.takeScreenshot = val
+									self:UpdateText()
+								end,
+							},
+
+							feedText = {
+								type = "select",
+								name = L["Feed text"],
+								desc = L["Controls what type of text is shown in Rarity's LDB feed. Minimal shows just the number of attempts. Normal adds the likelihood percent, and verbose adds the item link."],
+								values = {
+									[FEED_MINIMAL] = L["Minimal"],
+									[FEED_NORMAL] = L["Normal"],
+									[FEED_VERBOSE] = L["Verbose"],
+								},
+								get = function() return self.db.profile.feedText end,
+								set = function(info, val)
+									self.db.profile.feedText = val
+									self:Update("OPTIONS")
+								end,
+								order = newOrder(),
+							}, -- feedText
+
+					  debug = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Debug mode"],
+						  get = function() return self.db.profile.debugMode end,
+						  set = function(info, val)
+							  self.db.profile.debugMode = val
+         if self.db.profile.debugMode then	self:Print(L["Debug mode ON"]) else self:Print(L["Debug mode OFF"]) end
+						  end,
+					  }, -- debug
+
+						}, -- args
+					}, -- general
+
+
+					rarityTooltip = {
+						type = "group",
+						name = L["Rarity Tooltip Options"],
+						order = newOrder(),
+						inline = true,
+						args = {
+						
+							showCategoryIcons = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Show category icons"],
+								desc = L["When on, Rarity will show an icon next to each item in the tooltip indicating which expansion the item belongs to."],
+								get = function() return self.db.profile.showCategoryIcons end,
+								set = function(info, val)
+									self.db.profile.showCategoryIcons = val
+									self:UpdateText()
+								end,
+							},
+
+							hideHighChance = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Hide high chance items"],
+								desc = L["When on, this option hides any item with a drop chance of 1 in 49 or better. The item is merely hidden from the tooltip in order to keep it clean. Items hidden in this fashion are still tracked like normal."],
+								get = function() return self.db.profile.hideHighChance end,
+								set = function(info, val)
+									self.db.profile.hideHighChance = val
+									self:UpdateText()
+								end,
+							},
+
+							hideUnavailable = {
+								type = "toggle",
+								order = newOrder(),
+								width = "double",
+								name = L["Hide unavailable items"],
+								desc = L["When on, items marked as Unavailable will be hidden from the tooltip. This way, items requiring a certain holiday will automatically be hidden when the holiday is not active."],
+								get = function() return self.db.profile.hideUnavailable end,
+								set = function(info, val)
+									self.db.profile.hideUnavailable = val
+									self:UpdateText()
+								end,
+							},
+
+				   tooltipScale = {
+					   order = newOrder(),
+					   type = "range",
+        width = "double",
+					   name = L["Primary tooltip scale"],
+								desc = L["Adjusts the scale of the primary tooltip. This will take effect the next time the tooltip is shown."],
+					   min = .1,
+					   max = 5,
+					   step = .05,
+					   get = function() return self.db.profile.tooltipScale or 1 end,
+					   set = function(_, val)
+         self.db.profile.tooltipScale = val
+        end,
+				   },
+
+							statusTip = {
+								type = "select",
+								name = L["Secondary tooltip display"],
+								desc = L["Controls on which side the secondary tooltip appears when you hover over an item in the main tooltip. If the main tooltip is on the right side of your screen, change this to Left. Otherwise, choose Right. You can also hide the status tooltip completely."],
+								values = {
+									[TIP_LEFT] = L["Left"],
+									[TIP_RIGHT] = L["Right"],
+									[TIP_HIDDEN] = L["Hidden"],
+								},
+								get = function() return self.db.profile.statusTip or TIP_RIGHT end,
+								set = function(info, val)
+									self.db.profile.statusTip = val
+									self:Update("OPTIONS")
+								end,
+								order = newOrder(),
+							}, -- statusTip
+
+						}, -- args
+					}, -- rarityTooltip
+
+
+
+					worldTooltips = {
+						type = "group",
+						name = L["World Tooltip Options"],
 						order = newOrder(),
 						inline = true,
 						args = {
@@ -260,104 +405,8 @@ function R:PrepareOptions()
 								end,
 							},
 
-							feedText = {
-								type = "select",
-								name = L["Feed text"],
-								desc = L["Controls what type of text is shown in Rarity's LDB feed. Minimal shows just the number of attempts. Normal adds the likelihood percent, and verbose adds the item link."],
-								values = {
-									[FEED_MINIMAL] = L["Minimal"],
-									[FEED_NORMAL] = L["Normal"],
-									[FEED_VERBOSE] = L["Verbose"],
-								},
-								get = function() return self.db.profile.feedText end,
-								set = function(info, val)
-									self.db.profile.feedText = val
-									self:Update("OPTIONS")
-								end,
-								order = newOrder(),
-							}, -- feedText
-
-							statusTip = {
-								type = "select",
-								name = L["Status tooltip"],
-								desc = L["Controls on which side the Rarity status tooltip appears when you hover over an item in the main tooltip. If the main tooltip is on the right side of your screen, change this to Left. Otherwise, choose Right. You can also hide the status tooltip completely."],
-								values = {
-									[TIP_LEFT] = L["Left"],
-									[TIP_RIGHT] = L["Right"],
-									[TIP_HIDDEN] = L["Hidden"],
-								},
-								get = function() return self.db.profile.statusTip or TIP_RIGHT end,
-								set = function(info, val)
-									self.db.profile.statusTip = val
-									self:Update("OPTIONS")
-								end,
-								order = newOrder(),
-							}, -- statusTip
-
-							hideHighChance = {
-								type = "toggle",
-								order = newOrder(),
-								width = "double",
-								name = L["Hide high chance items"],
-								desc = L["When on, this option hides any item with a drop chance of 1 in 49 or better. The item is merely hidden from the tooltip in order to keep it clean. Items hidden in this fashion are still tracked like normal."],
-								get = function() return self.db.profile.hideHighChance end,
-								set = function(info, val)
-									self.db.profile.hideHighChance = val
-									self:UpdateText()
-								end,
-							},
-
-							hideUnavailable = {
-								type = "toggle",
-								order = newOrder(),
-								width = "double",
-								name = L["Hide unavailable items"],
-								desc = L["When on, items marked as Unavailable will be hidden from the tooltip. This way, items requiring a certain holiday will automatically be hidden when the holiday is not active."],
-								get = function() return self.db.profile.hideUnavailable end,
-								set = function(info, val)
-									self.db.profile.hideUnavailable = val
-									self:UpdateText()
-								end,
-							},
-
-							holidayReminder = {
-								type = "toggle",
-								order = newOrder(),
-								name = L["Holiday reminders"],
-								desc = L["When on, Rarity will remind you to go farm holiday items you're missing if the holiday is active and the item is set as Undefeated. (This only works for items that originate from holiday dungeons or daily quests.) The reminder occurs each time you log in or reload your UI, and stops for the day once you defeat the holiday dungeon or complete the	quest."],
-								get = function() return self.db.profile.holidayReminder end,
-								set = function(info, val)
-									self.db.profile.holidayReminder = val
-									self:UpdateText()
-								end,
-							},
-
-							takeScreenshot = {
-								type = "toggle",
-								order = newOrder(),
-								name = L["Take screenshots"],
-								desc = L["When on, Rarity will take a screenshot when the achievement alert pops up indicating that you obtained an item."],
-								get = function() return self.db.profile.takeScreenshot end,
-								set = function(info, val)
-									self.db.profile.takeScreenshot = val
-									self:UpdateText()
-								end,
-							},
-
-							showCategoryIcons = {
-								type = "toggle",
-								order = newOrder(),
-								name = L["Show category icons"],
-								desc = L["When on, Rarity will show an icon next to each item in the tooltip indicating which expansion the item belongs to."],
-								get = function() return self.db.profile.showCategoryIcons end,
-								set = function(info, val)
-									self.db.profile.showCategoryIcons = val
-									self:UpdateText()
-								end,
-							},
-
 						}, -- args
-					}, -- display
+					}, -- worldTooltips
 
 
 					contentCategory = {
@@ -616,17 +665,6 @@ function R:PrepareOptions()
 
 						}, -- args
 					}, -- bar
-
-					  debug = {
-						  type = "toggle",
-						  order = newOrder(),
-						  name = L["Debug mode"],
-						  get = function() return self.db.profile.debugMode end,
-						  set = function(info, val)
-							  self.db.profile.debugMode = val
-         if self.db.profile.debugMode then	self:Print(L["Debug mode ON"]) else self:Print(L["Debug mode OFF"]) end
-						  end,
-					  }, -- debug
 
 					announcements = {
 						type = "group",

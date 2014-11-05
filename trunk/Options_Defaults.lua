@@ -136,6 +136,7 @@ function R:PrepareDefaults()
 			hideUnavailable = true,
 			holidayReminder = true,
 			showCategoryIcons = false,
+			tooltipScale = GameTooltip:GetScale(),
 
    trackedGroup = "pets",
    trackedItem = 8494,
@@ -189,13 +190,31 @@ function R:PrepareDefaults()
 				-- WARLORDS OF DRAENOR
 				---------------------------------------------------------------------------------------
 
-				-- Mounts
+				-- MOUNTS
+
 				[50990] = { itemId = 116659 }, -- Bloodhoof Bull
 				[87308] = { itemId = 116674 }, -- Great Greytusk
 				[50981] = { itemId = 116661 }, -- Mottled Meadowstomper
 				[51015] = { itemId = 116767 }, -- Sapphire Riverbeast
 				[50985] = { itemId = 116792 }, -- Sunhide Gronnling
 				[50883] = { itemId = 116773 }, -- Swift Breezestrider
+
+
+				-- REP ITEMS
+                               
+				-- Nagrand
+				[86732] = { itemId = 118654 }, -- Aogexon
+				[86732] = { itemId = 118655 }, -- Bergruu
+				[86732] = { itemId = 118656 }, -- Dekorhan
+				[87650] = { itemId = 118657 }, -- Direhoof
+				[86771] = { itemId = 118658 }, -- Gagrog the Brutal
+				[87667] = { itemId = 118659 }, -- Mu'gra
+				[86750] = { itemId = 118660 }, -- Thek'talon
+				[86835] = { itemId = 118661 }, -- Xelganak
+				[88951] = { itemId = 120172 }, -- Vileclaw
+
+
+				-- OTHER ITEMS
 
 				-- Frostfire Ridge
 				[78867] = { questId = 34497, itemId = 111476 }, -- Breathless
