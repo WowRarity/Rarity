@@ -9,8 +9,8 @@ local ITEM = "ITEM"
 
 R.string_types = {
  [MOUNT] = L["Mount"],
- [PET] = L["Companion"],
- [ITEM] = L["Item"],
+ [PET] = L["Battle Pet"],
+ [ITEM] = L["Toy or Item"],
 }
 
 -- Categories of origin
@@ -511,7 +511,7 @@ function R:PrepareDefaults()
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
     },
     pets = {
-     name = L["Companions"],
+     name = L["Battle Pets"],
 					-- Holiday                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
      ["Darkmoon Eye"] =                                  { cat = HOLIDAY, type = PET, method = USE, name = GetItemInfo(91040) or L["Darkmoon Eye"], spellId = 132789, itemId = 91040, items = { 91086 }, chance = 50, creatureId = 67332, sourceText = L["This bag is rewarded for completing the pet battle daily offered by Jeremy Feasel at the Darkmoon Faire."], holidayTexture = CALENDAR_DARKMOONFAIRE, questId = 32175, },
      ["Ice Chip"] =                                      { cat = HOLIDAY, type = PET, method = USE, name = GetItemInfo(53641) or L["Ice Chip"], spellId = 74932, itemId = 53641, items = { 54536 }, chance = 25, groupSize = 5, equalOdds = true, creatureId = 40198, sourceText = L[""], lockDungeonId = 286, },
@@ -619,7 +619,12 @@ function R:PrepareDefaults()
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
     },
     items = {
-     name = L["Items"],
+     name = L["Toys & Items"],
+					-- Pickpocketing
+     --["Pickpocket Test"] =                               { cat = BASE, type = ITEM, method = NPC, name = GetItemInfo(17056) or "Light Feather", itemId = 17056, npcs = { 3115, 3116, }, chance = 100, repeatable = true, pickpocket = true, }, -- Dustwind Harpy and Dustwind Pillager in Razorwind Canyon (Durotar 50 27)
+					["Decahedral Dwarven Dice"] =                       { cat = WOTLK, type = ITEM, method = NPC, name = GetItemInfo(36863) or L["Decahedral Dwarven Dice"], itemId = 36863, npcs = { 27357, 27367, 32149, }, chance = 100, pickpocket = true, },
+					["Loaded Gnomish Dice"] =                           { cat = CATA, type = ITEM, method = NPC, name = GetItemInfo(63269) or L["Loaded Gnomish Dice"], itemId = 63269, npcs = { 58612, 49124, 47595, 46320, }, chance = 300, pickpocket = true, },
+					["Worn Troll Dice"] =                               { cat = WOTLK, type = ITEM, method = NPC, name = GetItemInfo(36862) or L["Worn Troll Dice"], itemId = 36862, npcs = { 34839, 34728, 23660, 34734, 26550, 27260, 28504, 34838, 39438, 29880, 28417, 28123, 23655, 27424, 28388, }, chance = 300, pickpocket = true, },
 					-- 2.x                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
      ["Mr. Pinchy"] =                                    { cat = TBC, type = ITEM, method = FISHING, name = GetItemInfo(27388) or L["Mr. Pinchy"], spellId = 33050, itemId = 27388, zones = { "Lake Jorune", "Lake Ere'Noru", "Skethyl Mountains", "Blackwind Landing", "Blackwind Valley", "Skettis", "Blackwind Lake", "Veil Harr'ik", "Veil Ala'rak", "Terokk's Rest" }, chance = 500, requiresPool = true, creatureId = 18839, sourceText = L["Obtained by fishing in pools located in Terrokar Forest"], },
      ["Old Crafty"] =                                    { cat = TBC, type = ITEM, method = FISHING, name = GetItemInfo(34486) or L["Old Crafty"], itemId = 34486, zones = { "321" }, chance = 10000, requiresPool = false, achievementId = 1836, sourceText = L["Obtained by fishing in any water in Orgrimmar"], },

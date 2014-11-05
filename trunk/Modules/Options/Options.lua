@@ -699,7 +699,7 @@ output = self:GetSinkAce3OptionsDataTable(),
 
 			companions = {
 				type = "group",
-				name = L["Companions"],
+				name = L["Battle Pets"],
 				order = newOrder(),
 				childGroups = "tree",
 				args = {
@@ -713,7 +713,7 @@ output = self:GetSinkAce3OptionsDataTable(),
 
 			items = {
 				type = "group",
-				name = L["Items"],
+				name = L["Toys & Items"],
 				order = newOrder(),
 				childGroups = "tree",
 				args = {
@@ -916,8 +916,8 @@ function R:CreateGroup(options, group, isUser)
 					desc = L["Determines what type of item this is."],
 					values = {
 						[MOUNT] = L["Mount"],
-						[PET] = L["Companion"],
-						[ITEM] = L["Item"],
+						[PET] = L["Battle Pet"],
+						[ITEM] = L["Toy or Item"],
 					},
 					get = function() return item.type end,
 					set = function(info, val)
@@ -1402,6 +1402,21 @@ function R:CreateGroup(options, group, isUser)
 						self:Update("OPTIONS")
 					end,
      hidden = function() return item.method == COLLECTION end,
+				},
+
+				pickpocket = {
+					order = newOrder(),
+					type = "toggle",
+					name = L["Requires Pickpocketing"],
+					desc = L["When enabled, the item can only be obtained by pickpocketing. The item will be marked Unavailable for non-rogues."],
+					get = function()
+      if item.pickpocket == true then return true else return false end
+     end,
+					set = function(info, val)
+						item.pickpocket = val
+						self:Update("OPTIONS")
+					end,
+     hidden = function() return item.method ~= NPC end,
 				},
 
 				holidayReminder = {

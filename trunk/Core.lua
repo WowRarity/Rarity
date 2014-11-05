@@ -148,6 +148,7 @@ local yellow = { r = 1.0, g = 1.0, b = 0.2 }
 local gray = { r = 0.5, g = 0.5, b = 0.5 }
 local black = { r = 0.0, g = 0.0, b = 0.0 }
 local white = { r = 1.0, g = 1.0, b = 1.0 }
+local orange = { r = 1.0, g = 0.3, b = 0.0 }
 
 local scanTip = CreateFrame("GameTooltip", "__Rarity_ScanTip", nil, "GameTooltipTemplate")
 scanTip:SetOwner(WorldFrame, "ANCHOR_NONE")
@@ -1122,9 +1123,13 @@ function R:OnEvent(event, ...)
 		if not name or not guid then return end -- No target when looting
 		if not UnitCanAttack("player", "target") then return end -- You targeted something you can't attack
 		if UnitIsPlayer("target") then return end -- You targetted a player
-		if not UnitIsDead("target") then return end -- You're looting something that's alive. It's a little strange
 
-		-- UnitClassification is what we'd use to detect "minus" NPCs here, but you can't pass a GUID to this function (as far as I know), so it can't be done without a unit cache based on the combat log
+		-- You're looting something that's alive -- this is only done for pickpocketing
+		local requiresPickpocket = false
+		if not UnitIsDead("target") then requiresPickpocket = true end
+
+		-- Disallow "minus" NPCs; nothing good drops from them
+		if UnitClassification(guid) == "minus" then return end
 
   local numChecked = 0
 		for slotID = 1, numItems, 1 do -- Loop through all loot slots (for AoE looting)
@@ -1139,7 +1144,7 @@ function R:OnEvent(event, ...)
     guid = v
     if guid and type(guid) == "string" then
      self:Debug("Checking NPC guid: "..guid)
-     self:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell) -- Decide if we should increment an attempt count for this NPC
+     self:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, requiresPickpocket) -- Decide if we should increment an attempt count for this NPC
      numChecked = numChecked + 1
     else
      --self:Debug("Didn't check guid: "..guid or "nil")
@@ -1218,7 +1223,7 @@ function R:OnEvent(event, ...)
 end
 
 
-function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell)
+function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, requiresPickpocket)
  if guid == nil then return end
  if type(guid) ~= "string" then return end
  if guids[guid] ~= nil then return end -- Already seen this NPC
@@ -1232,8 +1237,11 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell)
 		self:Debug("NPC ID is one we need: "..(npcid or "nil"))
 	end
 
- -- If the loot is the result of certain spell casts (mining, herbing, opening, picklock, archaeology, disenchanting, etc), stop here
- if spells[curSpell] then return end
+ -- If the loot is the result of certain spell casts (mining, herbing, opening, pick lock, archaeology, disenchanting, etc), stop here
+ if spells[curSpell] then
+		self:Debug("Aborting because we were casting a disallowed spell: "..curSpell)
+		return
+	end
 
 	-- If the loot is not from an NPC (could be from yourself or a world object), we don't want to process this
  local unitType, _, _, _, _, mob_id = strsplit('-', guid)
@@ -1254,8 +1262,11 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell)
      if not v.statisticId or type(v.statisticId) ~= "table" or #v.statisticId <= 0 then
 						-- Don't increment attempts for unique items if you already have the item in your bags
 						if not (v.unique == true and (bagitems[v.itemId] or 0) > 0) then
-							if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
-							self:OutputAttempts(v)
+							-- Don't increment attempts for non-pickpocketed items if this item isn't being pickpocketed
+							if (requiresPickpocket and v.pickpocket) or (requiresPickpocket == false and not v.pickpocket) then
+								if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+								self:OutputAttempts(v)
+							end
 						end
      end
     end
@@ -1720,6 +1731,12 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 					if v.method == COLLECTION then attemptText = " "..colorize(format(L["(%d/%d collected)"], v.attempts or 0, v.chance or 0), white) end
 					if v.known or Rarity.db.profile.tooltipAttempts == false then attemptText = "" end
 					GameTooltip:AddLine(colorize(L["Rarity: "]..(itemLink or itemName or v.name)..attemptText, yellow))
+					if v.pickpocket then
+						local class, classFileName = UnitClass("player")
+						local pickcolor
+						if classFileName == "ROGUE" then pickcolor = green else pickcolor = red end
+						GameTooltip:AddLine(colorize(L["Requires Pickpocketing"], pickcolor))
+					end
 					if v.known then GameTooltip:AddLine(colorize(L["Already known"], red)) end
 					GameTooltip:Show()
 				end
@@ -2105,9 +2122,9 @@ do
 		end
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
 
-		local category = ""
-		if item.cat and categories[item.cat] then category = " ("..categories[item.cat]..")" end
-  if R.string_types[item.type] ~= nil then tooltip2AddLine(colorize((R.string_types[item.type] or "UNKNOWN")..category, yellow)) end
+		local catIcon = ""
+		if item.cat and Rarity.catIcons[item.cat] then catIcon = [[ |TInterface\AddOns\Rarity\Icons\]]..Rarity.catIcons[item.cat]..".blp:0:4|t" end
+  if R.string_types[item.type] ~= nil then tooltip2AddLine(colorize((R.string_types[item.type] or "UNKNOWN")..catIcon, yellow)) end
   if item.groupSize and item.groupSize > 1 then
    tooltip2AddLine(colorize(format(L["Usually requires a group of around %d players"], item.groupSize), red))
   end
@@ -2118,6 +2135,12 @@ do
 		if item.method == BOSS and item.groupSize and item.groupSize > 1 then actualMethod = BOSS else if item.method == BOSS then actualMethod = NPC end end
    tooltip2AddLine(colorize(R.string_methods[actualMethod], blue))
   end
+		if item.pickpocket then
+			local class, classFileName = UnitClass("player")
+			local pickcolor
+			if classFileName == "ROGUE" then pickcolor = green else pickcolor = red end
+			tooltip2AddLine(colorize(L["Requires Pickpocketing"], pickcolor))
+		end
   if item.method == ZONE or item.method == FISHING then
    if item.zones and type(item.zones) == "table" then
     for k, v in pairs(item.zones) do
@@ -2444,6 +2467,10 @@ do
 									end
 								elseif v.holidayTexture and Rarity.holiday_textures[v.holidayTexture] == nil then
 									status = colorize(L["Unavailable"], gray)
+								end
+								if v.pickpocket then
+									local class, classFileName = UnitClass("player")
+									if classFileName ~= "ROGUE" then status = colorize(L["Unavailable"], gray) end
 								end
 								if Rarity.db.profile.hideUnavailable == false or status ~= colorize(L["Unavailable"], gray) then
 									if Rarity.db.profile.holidayReminder and Rarity.allRemindersDone == nil and v.holidayReminder ~= false and v.cat == HOLIDAY and status == colorize(L["Undefeated"], green) then

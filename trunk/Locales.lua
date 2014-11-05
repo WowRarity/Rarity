@@ -28,7 +28,7 @@ L["Attempts"] = true
 L["Progress"] = true
 L["Likelihood"] = true
 L["Time"] = true
-L["Companions"] = true
+L["Battle Pets"] = true
 L["%s: %d attempt"] = true
 L["%s: %d attempts"] = true
 L["Luckiness"] = true
@@ -42,7 +42,7 @@ L["%d attempt - %.2f%%"] = true
 L["%d attempts - %.2f%%"] = true
 L["Found on your first attempt!"] = true
 L["Found after %d attempts!"] = true
-L["Items"] = true
+L["Toys & Items"] = true
 L["%s: %d attempt (%d total)"] = true
 L["%s: %d attempts (%d total)"] = true
 L["Dwarf"] = true
@@ -62,8 +62,8 @@ L["Obtained by using an item or opening a container"] = true
 L["Obtained by fishing"] = true
 L["Obtained as an archaeology project"] = true
 L["Mount"] = true
-L["Companion"] = true
-L["Item"] = true
+L["Battle Pet"] = true
+L["Toy or Item"] = true
 L["Usually requires a group of around %d players"] = true
 L["1 in %d chance"] = true
 L["Lucky if you obtain in %d or less"] = true
@@ -274,6 +274,8 @@ L["Rarity Tooltip Options"] = true
 L["World Tooltip Options"] = true
 L["General Options"] = true
 L["Secondary tooltip display"] = true
+L["Requires Pickpocketing"] = true
+L["When enabled, the item can only be obtained by pickpocketing. The item will be marked Unavailable for non-rogues."] = true
 
 
 
@@ -667,6 +669,9 @@ L["Smoky Direwolf"] = true
 L["Solar Spirehawk"] = true
 L["Garn Nighthowl"] = true
 L["Syd the Squid"] = true
+L["Decahedral Dwarven Dice"] = true
+L["Worn Troll Dice"] = true
+L["Loaded Gnomish Dice"] = true
 
 
 
