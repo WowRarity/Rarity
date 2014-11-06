@@ -84,6 +84,7 @@ local archfragments = {}
 local coinamounts = {}
 local architems = {}
 local rarity_stats = {}
+local toys = {}
 Rarity.mount_sources = {}
 Rarity.pet_sources = {}
 Rarity.lockouts = {}
@@ -533,6 +534,8 @@ do
   self:RegisterBucketEvent("UPDATE_INSTANCE_INFO", 1, "OnEvent")
   self:RegisterBucketEvent("LFG_UPDATE_RANDOM_INFO", 1, "OnEvent")
   self:RegisterBucketEvent("CALENDAR_UPDATE_EVENT_LIST", 1, "OnEvent")
+  self:RegisterBucketEvent("TOYS_UPDATED", 1, "OnEvent")
+  self:RegisterBucketEvent("COMPANION_UPDATE", 1, "OnEvent")
 
 		if R.Options_DoEnable then R:Options_DoEnable() end
 		self.db.profile.lastRevision = R.MINOR_VERSION
@@ -591,16 +594,23 @@ do
 		end, 10)
 
   -- Update text again several times later - this helps get the icon right after login
-  self:ScheduleTimer(function() R:UpdateText() end, 10)
-  self:ScheduleTimer(function() R:UpdateText() end, 20)
-  self:ScheduleTimer(function() R:UpdateText() end, 30)
-  self:ScheduleTimer(function() R:UpdateText() end, 60)
-  self:ScheduleTimer(function() R:UpdateText() end, 120)
-  self:ScheduleTimer(function() R:UpdateText() end, 180)
-  self:ScheduleTimer(function() R:UpdateText() end, 240)
+  self:ScheduleTimer(function() R:DelayedInit() end, 10)
+  self:ScheduleTimer(function() R:DelayedInit() end, 20)
+  self:ScheduleTimer(function() R:DelayedInit() end, 30)
+  self:ScheduleTimer(function() R:DelayedInit() end, 60)
+  self:ScheduleTimer(function() R:DelayedInit() end, 120)
+  self:ScheduleTimer(function() R:DelayedInit() end, 180)
+  self:ScheduleTimer(function() R:DelayedInit() end, 240)
 		
 		self:Debug(L["Loaded (running in debug mode)"])
 	end
+end
+
+
+function R:DelayedInit()
+	self:ScanCalendar("DELAYED INIT")
+	self:ScanToys("DELAYED INIT")
+	self:UpdateText()
 end
 
 
@@ -1213,6 +1223,14 @@ function R:OnEvent(event, ...)
 	-- Calendar updated
 	elseif event == "CALENDAR_UPDATE_EVENT_LIST" then
 		self:ScanCalendar(event)
+
+	-- Toy box updated
+	elseif event == "TOYS_UPDATED" then
+		self:ScanExistingItems(event)
+
+	-- Pets updated
+	elseif event == "COMPANION_UPDATE" then
+		self:ScanExistingItems(event)
 
  -- Logging out; end any open session
  elseif event == "PLAYER_LOGOUT" then
@@ -2106,7 +2124,7 @@ do
 
 		tooltip2:AddHeader(itemLink or item.name, "|T"..itemTexture..":22|t")
 		scanTip:ClearLines()
-		scanTip:SetItemByID(item.itemId)
+		if toys[item.itemId] then scanTip:SetToyByItemID(item.itemId) else scanTip:SetItemByID(item.itemId) end
 		for i = 2, scanTip:NumLines() do
 			local myLeft = _G["__Rarity_ScanTipTextLeft"..i]
 			local txtLeft = myLeft:GetText()
@@ -2794,7 +2812,7 @@ function R:ScanExistingItems(reason)
   end
  end
 
-	-- Battle pets across your account
+-- Battle pets across your account
 	pet_journal.SetFlagFilter(_G.LE_PET_JOURNAL_FLAG_COLLECTED, true)
 	pet_journal.SetFlagFilter(_G.LE_PET_JOURNAL_FLAG_FAVORITES, false)
 	pet_journal.SetFlagFilter(_G.LE_PET_JOURNAL_FLAG_NOT_COLLECTED, true)
@@ -2870,8 +2888,43 @@ function R:ScanExistingItems(reason)
   end
  end
 
- -- Scan for kill statistics
+ -- Other scans
  self:ScanStatistics(reason)
+	self:ScanToys(reason)
+	self:ScanCalendar(reason)
+	self:ScanInstanceLocks(reason)
+end
+
+
+function R:ScanToys(reason)
+ self:Debug("Scanning toys ("..reason..")")
+
+	if not Rarity.toysScanned then
+		if not ToyBox_OnLoad then UIParentLoadAddOn("Blizzard_PetJournal") end
+		if ToyBox_OnShow then ToyBox_OnShow() end
+		if PetJournalParent_SetTab then PetJournalParent_SetTab(PetJournalParent, 3) end
+	end
+
+	table.wipe(toys)
+ for id = 1, C_ToyBox.GetNumToys() do
+		local itemId = C_ToyBox.GetToyFromIndex(id)
+		toys[itemId] = true
+		Rarity.toysScanned = true
+		if PlayerHasToy(itemId) then
+			for k, v in pairs(R.db.profile.groups) do
+				if type(v) == "table" then
+					for kk, vv in pairs(v) do
+						if type(vv) == "table" then
+							if vv.itemId and vv.itemId == itemId and not vv.repeatable then
+								vv.enabled = false
+								vv.found = true
+							end
+						end
+					end
+				end
+			end
+		end
+	end
 end
 
 

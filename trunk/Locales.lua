@@ -305,6 +305,7 @@ L["Dropped by Yogg-Saron in Ulduar (25-player) with no Keepers assisting"] = tru
 L["Dropped by Malygos in The Eye of Eternity (any raid size)"] = true
 L["Dropped by Koralon the Flame Watcher, Emalon the Storm Watcher, Archavon the Stone Watcher, and Toravon the Ice Watcher in Vault of Archavon (any raid size)."] = true
 L["Contained in Cracked Egg, which is obtained by becoming Revered with The Oracles, purchasing a Mysterious Egg from their reputation vendor, and waiting three days. The mount has a 5% chance to appear in the Cracked Egg."] = true
+L["Contained in Ripe Disgusting Jar, which is obtained by becoming Revered with Frenzyheart Tribe, purchasing a Disgusting Jar from their reputation vendor, and waiting three days."] = true
 L["Dropped by Onyxia in Onyxia's Lair (any raid size)"] = true
 L["Contained in Hyldnir Spoils, which is rewarded for completing daily quests given by Gretta the Arbiter in Brunnhildar Village, Storm Peaks. The mount has a 3% chance to appear in Hyldnir Spoils."] = true
 L["Obtained very rarely by fishing in pools located in any expansion zone (not Classic zones)"] = true
@@ -328,6 +329,7 @@ L["Earned by giving 9999 Giant Dinosaur Bones to Ku'ma on Isle of Giants. Giant 
 L["This bag is rewarded for earning a Gold Victory in a garrison invasion."] = true
 L["This bag is rewarded for completing the pet battle daily offered by Jeremy Feasel at the Darkmoon Faire."] = true
 L["This bag is rewarded for completing the pet battle daily offered by Christoph VonFeasel at the Darkmoon Faire."] = true
+L["This item has a 1 in 4 chance to drop from Golganarr, a rare spawn on Timeless Isle. It has a 1 in 250 chance to drop from Eroded Cliffdweller on Timeless Isle."] = true
 
 
 -- Instance difficulties
@@ -672,6 +674,27 @@ L["Syd the Squid"] = true
 L["Decahedral Dwarven Dice"] = true
 L["Worn Troll Dice"] = true
 L["Loaded Gnomish Dice"] = true
+L["Ai-Li's Skymirror"] = true
+L["Blackflame Daggers"] = true
+L["Chalice of Secrets"] = true
+L["Eternal Kiln"] = true
+L["Farwater Conch"] = true
+L["Frenzyheart Brew"] = true
+L["Gastropod Shell"] = true
+L["Hozen Beach Ball"] = true
+L["Kang's Bindstone"] = true
+L["Moonfang Shroud"] = true
+L["Moonfang's Paw"] = true
+L["Mr. Smite's Brass Compass"] = true
+L["Odd Polished Stone"] = true
+L["Pandaren Firework Launcher"] = true
+L["Panflute of Pandaria"] = true
+L["Rime of the Time-Lost Mariner"] = true
+L["The Heartbreaker"] = true
+L["Time-Lost Figurine"] = true
+L["Unusual Compass"] = true
+L["Warning Sign"] = true
+
 
 
 
