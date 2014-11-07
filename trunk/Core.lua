@@ -90,6 +90,8 @@ Rarity.pet_sources = {}
 Rarity.lockouts = {}
 Rarity.lockouts_holiday = {}
 Rarity.holiday_textures = {}
+Rarity.ach_npcs_isKilled = {}
+Rarity.ach_npcs_achId = {}
 
 local bankOpen = false
 local guildBankOpen = false
@@ -1797,8 +1799,22 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 							GameTooltip:AddLine(txtLeft, leftR, leftG, leftB, true)
 						end
 					end
-				end -- showing item tooltip-
+				end -- showing item tooltip
 			end
+		end
+	end
+
+	-- NPC is required for an achievement
+	if Rarity.ach_npcs_achId[name] then
+		local link = GetAchievementLink(Rarity.ach_npcs_achId[name])
+		if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
+			blankAdded = true
+			GameTooltip:AddLine(" ")
+		end
+		if not Rarity.ach_npcs_isKilled[name] then
+			GameTooltip:AddLine(colorize(L["Rarity: "], yellow)..colorize(format(L["Required for %s"], link), green))
+		else
+			GameTooltip:AddLine(colorize(L["Rarity: "], yellow)..colorize(format(L["Already defeated for %s"], link), red))
 		end
 	end
 
@@ -3079,6 +3095,20 @@ function R:ScanStatistics(reason)
  rarity_stats = self:BuildStatistics(reason)
 
  if self.db.profile.debugMode then R.stats = rarity_stats end
+
+
+	-- Scan rare NPC achievements
+	table.wipe(Rarity.ach_npcs_isKilled)
+	table.wipe(Rarity.ach_npcs_achId)
+	for k, v in pairs(self.db.profile.achNpcs) do
+		local count = GetAchievementNumCriteria(v)
+		for i = 1, count do
+			local description, type, completed, quantity, requiredQuantity, characterName, flags, assetID, quantityString, criteriaID = GetAchievementCriteriaInfo(v, i)
+			Rarity.ach_npcs_achId[description] = v
+			if completed then Rarity.ach_npcs_isKilled[description] = true end
+		end
+	end
+
 
 end
 

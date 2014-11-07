@@ -170,6 +170,14 @@ function R:PrepareDefaults()
 				[HOLIDAY] = true,
 			},
 
+			-- These are achievements with the names of rare NPCs as criteria to kill
+			achNpcs = {
+				1312, -- Bloody Rare
+				2257, -- Frostbitten
+				7439, -- Glorious!
+				9400, -- Gorgrond Monster Hunter
+			},
+
 			-- These are inventory items that may result in another item that Rarity would like to make you aware of
 			extraTooltips = {
 				inventoryItems = {

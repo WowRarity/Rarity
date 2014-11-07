@@ -276,7 +276,8 @@ L["General Options"] = true
 L["Secondary tooltip display"] = true
 L["Requires Pickpocketing"] = true
 L["When enabled, the item can only be obtained by pickpocketing. The item will be marked Unavailable for non-rogues."] = true
-
+L["Required for %s"] = true
+L["Already defeated for %s"] = true
 
 
 
