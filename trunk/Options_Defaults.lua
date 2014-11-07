@@ -183,6 +183,8 @@ function R:PrepareDefaults()
 				inventoryItems = {
 					[94295] = { 94292, 94293, 94291, }, -- Primal Egg: Reins of the Black Primal Raptor, Reins of the Green Primal Raptor, Reins of the Red Primal Raptor
 					[94288] = { 94290, }, -- Giant Dinosaur Bone: Reins of the Bone-White Primal Raptor
+					[86547] = { 90655, }, -- Skyshard: Reins of the Thundering Ruby Cloud Serpent
+					[86546] = { 90655, }, -- Sky Crystal: Reins of the Thundering Ruby Cloud Serpent
 					--[6948] = { 6948, }, -- Hearthstone: Hearthstone [this is for testing extraTooltips]
 				},
 			},
@@ -201,6 +203,7 @@ function R:PrepareDefaults()
 				-- MISTS OF PANDARIA
 				---------------------------------------------------------------------------------------
 
+				[64403] = { itemId = 90655  }, -- Alani <The Stormborn> (Vale of Eternal Blossoms)
 				[59369] = { itemId = 88566  }, -- Doctor Theolen Krastinov <The Butcher> (Scholomance)
 
 
