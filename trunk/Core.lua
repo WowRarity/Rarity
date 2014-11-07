@@ -600,7 +600,11 @@ do
   self:ScheduleTimer(function() R:DelayedInit() end, 60)
   self:ScheduleTimer(function() R:DelayedInit() end, 120)
   self:ScheduleTimer(function() R:DelayedInit() end, 180)
-  self:ScheduleTimer(function() R:DelayedInit() end, 240)
+  self:ScheduleTimer(function()
+			self:ScanCalendar("FINAL INIT")
+			self:ScanExistingItems("FINAL INIT")
+			self:UpdateText()
+		end, 240)
 		
 		self:Debug(L["Loaded (running in debug mode)"])
 	end
