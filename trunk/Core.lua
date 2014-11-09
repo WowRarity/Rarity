@@ -70,6 +70,8 @@ local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
       VARIABLES ----------------------------------------------------------------------------------------------------------------
   ]]
 
+R.enableProfiling = false
+		
 R.modulesEnabled = {}
 
 local npcs = {}
@@ -915,6 +917,38 @@ end
 
 function R:Debug(s, ...)
 	if self.db.profile.debugMode then self:Print(format(s, ...)) end
+end
+
+
+do
+	local start1, stop1, start2, stop2
+
+	function R:ProfileStart()
+		if R.enableProfiling then
+			start1 = debugprofilestop()
+		end
+	end
+
+	function R:ProfileStart2()
+		if R.enableProfiling then
+			start2 = debugprofilestop()
+		end
+	end
+
+	function R:ProfileStop(s)
+		if R.enableProfiling then
+			stop1 = debugprofilestop()
+			R:Print(format(s, stop1 - start1))
+		end
+	end
+
+	function R:ProfileStop2(s)
+		if R.enableProfiling then
+			stop2 = debugprofilestop()
+			R:Print(format(s, stop2 - start2))
+		end
+	end
+
 end
 
 
@@ -2514,7 +2548,7 @@ do
 								if time == "0:00" then time = "" end
 								if v.method ~= NPC and v.method ~= ZONE and v.method ~= FISHING and v.method ~= USE then time = "" end
 								local status = ""
-								if v.questId then
+								if v.questId and not v.holidayTexture then
 									if IsQuestFlaggedCompleted(v.questId) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
 								elseif v.lockBossName then
 									if lbb[v.lockBossName] and (Rarity.lockouts[lbb[v.lockBossName]] == true or Rarity.lockouts[v.lockBossName] == true) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
@@ -2811,6 +2845,9 @@ end
 
 function R:ScanExistingItems(reason)
  self:Debug("Scanning for existing items ("..reason..")")
+	self:ProfileStart()
+
+	-- Scans need to index by spellId, creatureId, achievementId, raceId, itemId (for toys), statisticId (which is a table; for stats)
 
  -- Mounts
 	for id = 1, mount_journal.GetNumMounts() do
@@ -2818,9 +2855,6 @@ function R:ScanExistingItems(reason)
 		local creatureDisplayID, descriptionText, sourceText, isSelfMount, mountType = C_MountJournal.GetMountInfoExtra(id)
 
 		Rarity.mount_sources[spellId] = sourceText
-  
-		-- Special cases
-		--if spellId == 132036 then R.db.profile.groups.items["Skyshard"].enabled = false end -- Skyshard (Reins of the Thundering Ruby Cloud Serpent)
 
 		if isCollected then
 			for k, v in pairs(R.db.profile.groups) do
@@ -2933,11 +2967,26 @@ function R:ScanExistingItems(reason)
   end
  end
 
+	self:ProfileStop("ScanExistingItems: Mounts/Pets/Achievements/Archaeology took %fms")
+	self:ProfileStart2()
+
  -- Other scans
  self:ScanStatistics(reason)
+	self:ProfileStop2("Statistics took %fms")
+	self:ProfileStart2()
+
 	self:ScanToys(reason)
+	self:ProfileStop2("Toys took %fms")
+	self:ProfileStart2()
+
 	self:ScanCalendar(reason)
+	self:ProfileStop2("Calendar took %fms")
+	self:ProfileStart2()
+
 	self:ScanInstanceLocks(reason)
+	self:ProfileStop2("Instances took %fms")
+
+	self:ProfileStop("ScanExistingItems: Total time %fms")
 end
 
 

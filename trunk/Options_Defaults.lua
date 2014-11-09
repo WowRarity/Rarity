@@ -189,7 +189,7 @@ function R:PrepareDefaults()
 				},
 			},
 
-			-- These are items looted one time from vignette rares starting in Warlords of Draenor
+			-- These are items with a 100% drop rate from various mobs; many of them only drop the first time and include a tracking quest
 			oneTimeItems = {
 	   -- [NPCID] = { questId = QUESTID, itemId = ITEMID }, -- NPC Name
 
