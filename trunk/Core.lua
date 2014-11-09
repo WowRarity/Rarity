@@ -70,8 +70,6 @@ local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
       VARIABLES ----------------------------------------------------------------------------------------------------------------
   ]]
 
-R.enableProfiling = false
-		
 R.modulesEnabled = {}
 
 local npcs = {}
@@ -622,6 +620,7 @@ function R:DelayedInit()
 	self:ScanCalendar("DELAYED INIT")
 	self:ScanToys("DELAYED INIT")
 	self:UpdateText()
+ self:UpdateBar()
 end
 
 
@@ -924,26 +923,26 @@ do
 	local start1, stop1, start2, stop2
 
 	function R:ProfileStart()
-		if R.enableProfiling then
+		if self.db.profile.enableProfiling then
 			start1 = debugprofilestop()
 		end
 	end
 
 	function R:ProfileStart2()
-		if R.enableProfiling then
+		if self.db.profile.enableProfiling then
 			start2 = debugprofilestop()
 		end
 	end
 
 	function R:ProfileStop(s)
-		if R.enableProfiling then
+		if self.db.profile.enableProfiling then
 			stop1 = debugprofilestop()
 			R:Print(format(s, stop1 - start1))
 		end
 	end
 
 	function R:ProfileStop2(s)
-		if R.enableProfiling then
+		if self.db.profile.enableProfiling then
 			stop2 = debugprofilestop()
 			R:Print(format(s, stop2 - start2))
 		end
@@ -2007,7 +2006,7 @@ end)
   ]]
 
 		
-function Rarity:UpdateBar()
+function R:UpdateBar()
 	if not self.barGroup:GetBars() then return end
 	if not self.db.profile.bar.font then self.barGroup:SetFont(self.db.profile.bar.font, self.db.profile.bar.fontSize or 8)
 	else	self.barGroup:SetFont(media:Fetch("font", self.db.profile.bar.font), self.db.profile.bar.fontSize or 8) end
@@ -2035,6 +2034,7 @@ do
 	local headers = {}
 
  function R:UpdateText()
+		self:ProfileStart()
   local attempts, dropChance, chance = 0, 0, 0
 
   if not trackedItem or (trackedItem and not trackedItem.itemId) then
@@ -2083,20 +2083,28 @@ do
   end
 
   -- Bar 1
-  if self.bar then
-   self.barGroup:RemoveBar(self.bar)
-  end
   if not chance then chance = 0 end
   if chance > 100 then chance = 100 end
   if chance < 0 then chance = 0 end
   local text = format("%s: %d (%.2f%%)", itemName or trackedItem.name, attempts, chance)
-  self.barGroup:NewCounterBar("Track", text, chance, 100, itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
-		self:UpdateBar()
+		if not self.bar then
+			self.bar = self.barGroup:NewCounterBar("Track", text, chance, 100, itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
+		else
+			self.bar:SetIcon(itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
+			self.bar:SetLabel(text)
+			self.bar:SetValue(chance, 100)
+		end
+		if self.hadBarTwo then -- If we've transitioning from 2 bars to 1, hiding/showing the bars collapses them upwards
+			self.barGroup:Hide()
+			if self.db.profile.bar.visible then self.barGroup:Show() end
+		end
 
 		-- Bar 2
 		if not trackedItem2 then
 			self.barGroup:RemoveBar("Track2")
+			self.bar2 = nil
 		else
+			self.hadBarTwo = true
 			local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(trackedItem2.itemId)
 			attempts = 0
 			if trackedItem2.attempts then attempts = trackedItem2.attempts end
@@ -2120,9 +2128,17 @@ do
 			if chance > 100 then chance = 100 end
 			if chance < 0 then chance = 0 end
 			local text = format("%s: %d (%.2f%%)", trackedItem2.name or "", attempts, chance)
-			self.barGroup:NewCounterBar("Track2", text, chance, 100, itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
+			if not self.bar2 then
+				self.bar2 = self.barGroup:NewCounterBar("Track2", text, chance, 100, itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
+			else
+				self.bar2:SetIcon(itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
+				self.bar2:SetLabel(text)
+				self.bar2:SetValue(chance, 100)
+			end
 		end
+		self:ProfileStop("UpdateText: %fms")
  end
+
 
 	function dataobj.OnEnter(self)
 		frame = self
@@ -2159,8 +2175,8 @@ do
   else
    -- Toggle progress bar visibility
    R.db.profile.bar.visible = not R.db.profile.bar.visible
-			R:UpdateBar()
-   R:UpdateText()
+			Rarity:UpdateBar()
+   Rarity:UpdateText()
   end
 	end
 
@@ -3250,6 +3266,7 @@ end
 
 
 function R:UpdateTrackedItem(item)
+	self:ProfileStart2()
  if not item or not item.itemId then return end
 	if self.db.profile.trackedItem == item.itemId then return end -- Already tracking this item
  self.db.profile.trackedItem = item.itemId
@@ -3274,6 +3291,7 @@ function R:UpdateTrackedItem(item)
 	end
  self:UpdateText()
  if self:InTooltip() then self:ShowTooltip() end
+	self:ProfileStop2("UpdateTrackedItem: %fms")
 end
 
 

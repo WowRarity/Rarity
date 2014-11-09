@@ -276,6 +276,18 @@ function R:PrepareOptions()
 						  end,
 					  }, -- debug
 
+					  enableProfiling = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Enable profiling"],
+								desc = L["When enabled, Rarity will print debug profiling messages to the chat window when certain things happen. This is used to determine which parts of the code are slow."],
+						  get = function() return self.db.profile.enableProfiling end,
+						  set = function(info, val)
+							  self.db.profile.enableProfiling = val
+         if self.db.profile.enableProfiling then	self:Print(L["Profiling ON"]) else self:Print(L["Profiling OFF"]) end
+						  end,
+					  }, -- enableProfiling
+
 						}, -- args
 					}, -- general
 
@@ -517,6 +529,7 @@ function R:PrepareOptions()
 						  get = function() return self.db.profile.bar.anchor end,
 						  set = function(info, val)
 							  self.db.profile.bar.anchor = val
+							  self:UpdateBar()
 							  self:UpdateText()
 						  end,
 					  },
@@ -528,6 +541,7 @@ function R:PrepareOptions()
 						  get = function() return self.db.profile.bar.locked end,
 						  set = function(info, val)
 							  self.db.profile.bar.locked = val
+							  self:UpdateBar()
 							  self:UpdateText()
 						  end,
 					  },
@@ -579,6 +593,7 @@ function R:PrepareOptions()
 					   get = function() return self.db.profile.bar.width or 150 end,
 					   set = function(_, val)
          self.db.profile.bar.width = val
+							  self:UpdateBar()
          self:UpdateText()
         end,
 				   },
@@ -594,6 +609,7 @@ function R:PrepareOptions()
 					   get = function() return self.db.profile.bar.height or 12 end,
 					   set = function(_, val)
          self.db.profile.bar.height = val
+							  self:UpdateBar()
          self:UpdateText()
         end,
 				   },
@@ -609,6 +625,7 @@ function R:PrepareOptions()
 					   get = function() return self.db.profile.bar.scale or 1 end,
 					   set = function(_, val)
          self.db.profile.bar.scale = val
+							  self:UpdateBar()
          self:UpdateText()
         end,
 				   },

@@ -278,6 +278,10 @@ L["Requires Pickpocketing"] = true
 L["When enabled, the item can only be obtained by pickpocketing. The item will be marked Unavailable for non-rogues."] = true
 L["Required for %s"] = true
 L["Already defeated for %s"] = true
+L["Profiling ON"] = true
+L["Profiling OFF"] = true
+L["Enable profiling"] = true
+L["When enabled, Rarity will print debug profiling messages to the chat window when certain things happen. This is used to determine which parts of the code are slow."] = true
 
 
 

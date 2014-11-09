@@ -137,6 +137,7 @@ function R:PrepareDefaults()
 			holidayReminder = true,
 			showCategoryIcons = false,
 			tooltipScale = GameTooltip:GetScale(),
+			enableProfiling = false,
 
    trackedGroup = "pets",
    trackedItem = 8494,
