@@ -2505,20 +2505,6 @@ do
   for k, v in pairs(g) do
    if type(v) == "table" and v.enabled ~= false and ((requiresGroup and v.groupSize ~= nil and v.groupSize > 1) or (not requiresGroup and (v.groupSize == nil or v.groupSize <= 1))) then
 
-    -- Header
-    local groupName = group.name
-    if requiresGroup then groupName = groupName..L[" (Group)"] end
-		  if not headers[groupName] and v.itemId ~= nil then
-			  headers[groupName] = true
-     local collapsed = group.collapsed or false
-     if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
-			   line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
-     else
-			   line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), colorize(L["Time"], yellow), colorize(L["Luckiness"], yellow), colorize(L["Defeated"], yellow))
-     end
-     tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
-		  end
-
     -- Item
     if ((not requiresGroup and group.collapsed ~= true) or (requiresGroup and group.collapsedGroup ~= true)) and v.itemId ~= nil then
      if (v.requiresHorde and R:IsHorde()) or (v.requiresAlliance and not R:IsHorde()) or (not v.requiresHorde and not v.requiresAlliance) then
@@ -2598,6 +2584,24 @@ do
 											UIErrorsFrame:AddMessage(text, 1, 1, 1, 1.0)
 										end
 									end
+
+									-- Header
+									if not added then
+										local groupName = group.name
+										if requiresGroup then groupName = groupName..L[" (Group)"] end
+										if not headers[groupName] and v.itemId ~= nil then
+											headers[groupName] = true
+											local collapsed = group.collapsed or false
+											if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
+												line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
+											else
+												line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), colorize(L["Time"], yellow), colorize(L["Luckiness"], yellow), colorize(L["Defeated"], yellow))
+											end
+											tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
+										end
+									end
+
+									-- Add the item to the tooltip
 									local catIcon = ""
 									if Rarity.db.profile.showCategoryIcons and v.cat and Rarity.catIcons[v.cat] then catIcon = [[|TInterface\AddOns\Rarity\Icons\]]..Rarity.catIcons[v.cat]..".blp:0:4|t " end
 									line = tooltip:AddLine(icon, catIcon..(itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky, status)
