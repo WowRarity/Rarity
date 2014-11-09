@@ -506,6 +506,7 @@ do
   self:UpdateInterestingThings()
   self:FindTrackedItem()
   self:UpdateText()
+		self:UpdateBar()
 
   self:ImportFromBunnyHunter()
 		
@@ -2014,8 +2015,8 @@ function R:UpdateBar()
 	if self.db.profile.bar.rightAligned then self.barGroup:SetOrientation(3) else self.barGroup:SetOrientation(1) end
 	if self.db.profile.bar.showIcon then self.barGroup:ShowIcon() else self.barGroup:HideIcon() end
 	if self.db.profile.bar.showText then self.barGroup:ShowLabel() else self.barGroup:HideLabel() end
-	self.barGroup:SetColorAt(1.00, 1, 0, 0, 1)
-	self.barGroup:SetColorAt(0.66, 1, 1, 0, 1)
+	self.barGroup:SetColorAt(1.00, 1, 0, 0, 1) -- These SetColorAt calls appear to take longer and longer to execute every time they are called.
+	self.barGroup:SetColorAt(0.66, 1, 1, 0, 1) -- Only do this when absolutely necessary.
 	self.barGroup:SetColorAt(0.33, 0, 1, 1, 1)
 	self.barGroup:SetColorAt(0.00, 0, 0, 1, 1)
  self.barGroup:ClearAllPoints()
