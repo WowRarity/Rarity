@@ -681,7 +681,7 @@ function R:PrepareDefaults()
      -- Achievements
      ["Old Crafty"] =                                    { cat = TBC, type = ITEM, method = FISHING, name = GetItemInfo(34486) or L["Old Crafty"], itemId = 34486, zones = { "321" }, chance = 10000, requiresPool = false, achievementId = 1836, sourceText = L["Obtained by fishing in any water in Orgrimmar"], },
      ["Old Ironjaw"] =                                   { cat = TBC, type = ITEM, method = FISHING, name = GetItemInfo(34484) or L["Old Ironjaw"], itemId = 34484, zones = { "341" }, chance = 10000, requiresPool = false, achievementId = 1837, sourceText = L["Obtained by fishing in any water in Ironforge"], },
-    },
+     --["Stat Test"] = { type = MOUNT, method = BOSS, name = "Stat Test", spellId = -1, itemId = -1, npcs = { 99999 }, chance = 100, groupSize = 40, equalOdds = true, statisticId = { 107 } },    }, -- Killing any creature
     user = {
      name = L["Custom"],
      --["Test 1"] =      { type = PET, method = NPC, name = GetItemInfo(25467) or "Test 1", spellId = 10682, itemId = 25467, npcs = { 16520, 16516 }, chance = 100, repeatable = true, },
@@ -695,5 +695,45 @@ function R:PrepareDefaults()
 	self.PrepareDefaults = nil
 end
 
+
+
+
+
+
+
+
+
+
+
+--[[
+
+   NEW EXPANSION PACK
+   TO-DO LIST CHEAT SHEET
+			
+			Items:
+			- Reevaluate group sizes for all items (most things can be moved to soloable)
+			- New mounts
+			- New pets
+			- New toys
+			- New rare killing achievements
+			- New 100% drop items
+			
+			Nodes and zones:
+			- Fishing nodes (GatherMate2/Constants.lua)
+			- Mining nodes
+			- New zones for Sea Turtle (http://wowpedia.org/MapID)
+			
+			APIs:
+			- Check if NPC ID format changed
+			- Check if instance difficulty API or IDs changed
+			- Check if COMBAT_LOG_EVENT_UNFILTERED changed
+			- Check for other API changes (i.e. http://wowpedia.org/Patch_6.0.1/API_changes)
+			
+			Other:
+			- Good-luck coins
+			- New Archaeology races: /run for race_id = 1, GetNumArchaeologyRaces() do Rarity:Print(GetArchaeologyRaceInfo(race_id)) end
+			- Add a new category icon for the expansion
+			
+]]--
 
 

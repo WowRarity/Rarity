@@ -22,51 +22,6 @@ local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
 
 
 --[[
-   WARLORDS OF DRAENOR
-   TO-DO LIST
-			
-   Fishing nodes TRANSLATIONS
-   Mining nodes TRANSLATIONS
-
-   Mounts
-   Pets
-
-]]--
-
-
---[[
-
-   NEW EXPANSION PACK
-   TO-DO LIST CHEAT SHEET
-			
-			Items:
-			- Reevaluate group sizes for all items (most things can be moved to soloable)
-			- New mounts
-			- New pets
-			- New toys
-			- New rare killing achievements
-			- New 100% drop items
-			
-			Nodes and zones:
-			- Fishing nodes (GatherMate2/Constants.lua)
-			- Mining nodes
-			- New zones for Sea Turtle (http://wowpedia.org/MapID)
-			
-			APIs:
-			- Check if NPC ID format changed
-			- Check if instance difficulty API or IDs changed
-			- Check if COMBAT_LOG_EVENT_UNFILTERED changed
-			- Check for other API changes (i.e. http://wowpedia.org/Patch_6.0.1/API_changes)
-			
-			Other:
-			- Good-luck coins
-			- New Archaeology races: /run for race_id = 1, GetNumArchaeologyRaces() do Rarity:Print(GetArchaeologyRaceInfo(race_id)) end
-			- Add a new category icon for the expansion
-			
-]]--
-
-
---[[
       VARIABLES ----------------------------------------------------------------------------------------------------------------
   ]]
 
@@ -95,6 +50,8 @@ Rarity.lockouts_holiday = {}
 Rarity.holiday_textures = {}
 Rarity.ach_npcs_isKilled = {}
 Rarity.ach_npcs_achId = {}
+Rarity.stats_to_scan = {}
+Rarity.items_with_stats = {}
 
 local bankOpen = false
 local guildBankOpen = false
@@ -138,7 +95,6 @@ local lastAttemptItem
 local DUAL_TRACK_THRESHOLD = 5
 local isPool = false
 local lastNode
-local tickTimer
 local STATUS_TOOLTIP_MAX_WIDTH = 200
 
 local inSession = false
@@ -453,7 +409,6 @@ do
 	
 	function R:DoEnable()
 		if isInitialized then return end
-  -- If not ready to initialize, bail here
 		isInitialized = true
 	
 		self:PrepareDefaults() -- Loads in any new items
@@ -968,11 +923,21 @@ function R:UpdateInterestingThings()
  table.wipe(used)
  table.wipe(fishzones)
  table.wipe(architems)
+	table.wipe(Rarity.stats_to_scan)
+	table.wipe(Rarity.items_with_stats)
 
  for k, v in pairs(self.db.profile.groups) do
   if type(v) == "table" then
    for kk, vv in pairs(v) do
     if type(vv) == "table" then
+					if vv.enabled ~= false and vv.statisticId and type(vv.statisticId) == "table" then
+						local numStats = 0
+						for kkk, vvv in pairs(vv.statisticId) do
+							Rarity.stats_to_scan[vvv] = vv
+							numStats = numStats + 1
+						end
+						if numStats > 0 then Rarity.items_with_stats[kk] = vv end
+					end
      if vv.method == NPC and vv.npcs ~= nil and type(vv.npcs) == "table" then
       for kkk, vvv in pairs(vv.npcs) do
        npcs[vvv] = vv
@@ -1048,9 +1013,11 @@ end
 
 
 function R:IsHorde()
-	local englishFaction, localizedFaction = UnitFactionGroup("player")
-	if englishFaction == "Horde" then return true end
- return false
+	if Rarity.isHorde == nil then
+		local englishFaction, localizedFaction = UnitFactionGroup("player")
+		if englishFaction == "Horde" then Rarity.isHorde = true else Rarity.isHorde = false end
+	end
+	return Rarity.isHorde
 end
 
 
@@ -1182,7 +1149,7 @@ function R:OnEvent(event, ...)
 		if not UnitIsDead("target") then requiresPickpocket = true end
 
 		-- Disallow "minus" NPCs; nothing good drops from them
-		if UnitClassification(guid) == "minus" then return end
+		if UnitClassification(guid) == "minus" then return end -- (This doesn't actually work currently; UnitClassification needs a unit, not a GUID)
 
   local numChecked = 0
 		for slotID = 1, numItems, 1 do -- Loop through all loot slots (for AoE looting)
@@ -1469,10 +1436,8 @@ function R:ScanBags()
 				if id then
 					local qty = select(2, GetContainerItemInfo(i, ii))
      if qty and qty > 0 then
-						--if used[id] or items[id] then
-							if not bagitems[id] then bagitems[id] = 0 end
-							bagitems[id] = bagitems[id] + qty
-						--end
+						if not bagitems[id] then bagitems[id] = 0 end
+						bagitems[id] = bagitems[id] + qty
      end
 				end
 			end
@@ -1486,7 +1451,6 @@ end
 -- This event also handles some special cases.
 -------------------------------------------------------------------------------------
 function R:OnCombat(event, timestamp, eventType, hideCaster, srcGuid, srcName, srcFlags, srcRaidFlags, dstGuid, dstName, dstFlags, dstRaidFlags, spellId, spellName, spellSchool, auraType, ...)
- -- This event fires tens of thousands of times per minute at peak, so we must be extremely efficient
  if eventType == "UNIT_DIED" then -- A unit died near you
   local npcid = self:GetNPCIDFromGUID(dstGuid)
   if bosses[npcid] then -- It's a boss we're interested in
@@ -1518,18 +1482,20 @@ end
 
 -------------------------------------------------------------------------------------
 -- When combat ends, we scan your statistics a few times. This helps catch some items that can't be tracked by normal means (i.e. Ragnaros),
--- as well as acting as another backup to detect attempts if we missed one.
+-- as well as acting as another backup to detect attempts if we missed one. WoW can take a few seconds to update statistics, thus the repeated scans.
 -------------------------------------------------------------------------------------
 do
- local timer1
+ local timer1, timer2, timer3
  function R:OnCombatEnded(event)
-		self:CancelTimer(tickTimer, true)
-  self:CancelTimer(timer1, true)
+		self:CancelTimer(timer1, true)
+  self:CancelTimer(timer2, true)
+  self:CancelTimer(timer3, true)
 
 		self:ScanStatistics(event)
 
-  timer1 = self:ScheduleTimer(function() R:ScanStatistics(event.." 1") end, 2)
-		tickTimer = self:ScheduleRepeatingTimer(function() R:ScanStatistics("RECURRING TICK") end, 5)
+  timer1 = self:ScheduleTimer(function() Rarity:ScanStatistics(event.." 1") end, 2)
+  timer2 = self:ScheduleTimer(function() Rarity:ScanStatistics(event.." 2") end, 5)
+  timer3 = self:ScheduleTimer(function() Rarity:ScanStatistics(event.." 3") end, 10)
  end
 end
 
@@ -1694,17 +1660,12 @@ function R:ScanArchFragments(event)
 
  -- We solved an artifact; scan projects
  if scan then
-  -- Scan now, and later. The server takes a second to decide on the next project.
+  -- Scan now, and later. The server takes a while to decide on the next project. The time it takes varies considerably.
   self:ScanArchProjects(event)
   self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 1") end, 2)
   self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 2") end, 5)
   self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 3") end, 10)
   self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 4") end, 20)
-  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 5") end, 30)
-  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 6") end, 60)
-  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 7") end, 120)
-  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 8") end, 180)
-  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 9") end, 300)
  end
 end
 
@@ -1766,9 +1727,9 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 	local creatureType = UnitCreatureType(unit)
 	--Rarity:Debug("Creature type: "..(creatureType or "nil").." (translation: "..(lbct[creatureType] or "nil")..")")
 	if creatureType == "Critter" or lbct[creatureType] == "Critter" or creatureType == "Non-combat Pet" or lbct[creatureType] == "Non-combat Pet" or creatureType == "Wild Pet" or lbct[creatureType] == "Wild Pet" then
-		--Rarity:Debug("Tooltip unit is Critter, Non-combat Pet or Wild Pet. Disregarding.")
 		return
 	end
+
 	local guid = UnitGUID(unit)
 	if not unit or not guid then return end
 	local npcid = R:GetNPCIDFromGUID(guid)
@@ -2989,12 +2950,10 @@ function R:ScanExistingItems(reason)
  end
 
 	self:ProfileStop("ScanExistingItems: Mounts/Pets/Achievements/Archaeology took %fms")
-	self:ProfileStart2()
 
  -- Other scans
  self:ScanStatistics(reason)
-	self:ProfileStop2("Statistics took %fms")
-	self:ProfileStart2()
+	self:ProfileStart2() -- Statistics does its own profiling
 
 	self:ScanToys(reason)
 	self:ProfileStop2("Toys took %fms")
@@ -3105,89 +3064,71 @@ end
 
 
 function R:BuildStatistics(reason)
+	self:ProfileStart2()
  --self:Debug("Building statistics table ("..reason..")")
 
  local tbl = {}
+	Rarity.lastStatCount = 0
 
- for k, v in pairs(R.db.profile.groups) do
-  if type(v) == "table" then
-   for kk, vv in pairs(v) do
-    if type(vv) == "table" then
-     if (vv.requiresHorde and R:IsHorde()) or (vv.requiresAlliance and not R:IsHorde()) or (not vv.requiresHorde and not vv.requiresAlliance) then
-      if vv.statisticId and type(vv.statisticId) == "table" then
-       for kkk, vvv in pairs(vv.statisticId) do
-        local s = GetStatistic(vvv)
-        tbl[vvv] = (tonumber(s or "0") or 0)
-        --self:Debug("Setting stats "..vvv.." to "..tbl[vvv])
-       end
-      end
-     end
-    end
-   end
-  end
- end
+	for k, v in pairs(R.stats_to_scan) do
+		local s = GetStatistic(k)
+		tbl[k] = (tonumber(s or "0") or 0)
+		Rarity.lastStatCount = Rarity.lastStatCount + 1
+	end
 
+	self:ProfileStop2("BuildStatistics: %fms")
  return tbl
-
 end
 
 
 function R:ScanStatistics(reason)
+	self:ProfileStart2()
  --self:Debug("Scanning statistics ("..reason..")")
 
-	local count = 0;
-	for k, v in pairs(rarity_stats) do
-		count = count + 1
-	end
-
- if rarity_stats == nil or count <= 0 then
+ if rarity_stats == nil or (Rarity.lastStatCount or 0) <= 0 then
   self:Debug("Building initial statistics table")
   rarity_stats = self:BuildStatistics(reason)
  end
 
  local newStats = self:BuildStatistics(reason)
 
- for k, v in pairs(R.db.profile.groups) do
-  if type(v) == "table" then
-   for kk, vv in pairs(v) do
-    if type(vv) == "table" then
-     if (vv.requiresHorde and R:IsHorde()) or (vv.requiresAlliance and not R:IsHorde()) or (not vv.requiresHorde and not vv.requiresAlliance) then
-      if vv.statisticId and type(vv.statisticId) == "table" then
-       local count = 0
+ for kk, vv in pairs(Rarity.items_with_stats) do
+  if type(vv) == "table" then
+   if (vv.requiresHorde and R:IsHorde()) or (vv.requiresAlliance and not R:IsHorde()) or (not vv.requiresHorde and not vv.requiresAlliance) then
+    if vv.statisticId and type(vv.statisticId) == "table" then
+     local count = 0
 
-       for kkk, vvv in pairs(vv.statisticId) do
-        local newAmount = newStats[vvv] or 0
-        local oldAmount = rarity_stats[vvv] or 0
-        count = count + newAmount
+     for kkk, vvv in pairs(vv.statisticId) do
+      local newAmount = newStats[vvv] or 0
+      local oldAmount = rarity_stats[vvv] or 0
+      count = count + newAmount
 
-        -- One of the statistics has gone up; add one attempt for this item
-        if newAmount > oldAmount then
-         vv.attempts = (vv.attempts or 0) + 1
-         self:OutputAttempts(vv, true)
-        end
-
-       end
-
-       -- We've never seen any attempts for this yet; update to this player's statistic total
-       if count > 0 and (vv.attempts or 0) <= 0 then
-        vv.attempts = count
-        self:OutputAttempts(vv, true)
-
-       -- We seem to have gathered more attempts on this character than accounted for yet; update to new total
-       elseif count > 0 and count > (vv.attempts or o) and vv.doNotUpdateToHighestStat ~= true then -- Some items don't want us doing this (generally when Blizzard has a statistic overcounting bug)
-        vv.attempts = count
-        self:OutputAttempts(vv, true)
-       end
-
+      -- One of the statistics has gone up; add one attempt for this item
+      if newAmount > oldAmount then
+       vv.attempts = (vv.attempts or 0) + 1
+       self:OutputAttempts(vv, true)
       end
+
      end
+
+     -- We've never seen any attempts for this yet; update to this player's statistic total
+     if count > 0 and (vv.attempts or 0) <= 0 then
+      vv.attempts = count
+      self:OutputAttempts(vv, true)
+
+     -- We seem to have gathered more attempts on this character than accounted for yet; update to new total
+     elseif count > 0 and count > (vv.attempts or o) and vv.doNotUpdateToHighestStat ~= true then -- Some items don't want us doing this (generally when Blizzard has a statistic overcounting bug)
+      vv.attempts = count
+      self:OutputAttempts(vv, true)
+     end
+
     end
    end
   end
  end
 
  -- Done with scan; update our saved table to the current scan
- rarity_stats = self:BuildStatistics(reason)
+ rarity_stats = newStats
 
  if self.db.profile.debugMode then R.stats = rarity_stats end
 
@@ -3198,13 +3139,13 @@ function R:ScanStatistics(reason)
 	for k, v in pairs(self.db.profile.achNpcs) do
 		local count = GetAchievementNumCriteria(v)
 		for i = 1, count do
-			local description, type, completed, quantity, requiredQuantity, characterName, flags, assetID, quantityString, criteriaID = GetAchievementCriteriaInfo(v, i)
+			local description, type, completed = GetAchievementCriteriaInfo(v, i)
 			Rarity.ach_npcs_achId[description] = v
 			if completed then Rarity.ach_npcs_isKilled[description] = true end
 		end
 	end
 
-
+	self:ProfileStop2("ScanStatistics: %fms")
 end
 
 
