@@ -1487,6 +1487,8 @@ end
 do
  local timer1, timer2, timer3
  function R:OnCombatEnded(event)
+  if R:InTooltip() then Rarity:ShowTooltip() end
+
 		self:CancelTimer(timer1, true)
   self:CancelTimer(timer2, true)
   self:CancelTimer(timer3, true)
@@ -2104,7 +2106,7 @@ do
 
 	function dataobj.OnEnter(self)
 		frame = self
-		R:ShowTooltip()
+		Rarity:ShowTooltip()
 	end
 
 
@@ -2133,7 +2135,7 @@ do
    elseif R.db.profile.sortMode == SORT_DIFFICULTY then R.db.profile.sortMode = SORT_PROGRESS
    else R.db.profile.sortMode = SORT_NAME
    end
-   R:ShowTooltip()
+   Rarity:ShowTooltip()
   else
    -- Toggle progress bar visibility
    R.db.profile.bar.visible = not R.db.profile.bar.visible
@@ -2413,7 +2415,7 @@ do
  local function onClickGroup(cell, group)
   if type(group) == "table" then
    if group.collapsed == true then group.collapsed = false else group.collapsed = true end
-   R:ShowTooltip()
+   Rarity:ShowTooltip()
   end
  end
 
@@ -2421,7 +2423,7 @@ do
  local function onClickGroup2(cell, group)
   if type(group) == "table" then
    if group.collapsedGroup == true then group.collapsedGroup = false else group.collapsedGroup = true end
-   R:ShowTooltip()
+   Rarity:ShowTooltip()
   end
  end
 
@@ -2446,7 +2448,7 @@ do
   else
    if trackedItem ~= item and inSession then R:EndSession() end
 			trackedItem2 = nil
-   R:UpdateTrackedItem(item)
+   Rarity:UpdateTrackedItem(item)
   end
  end
 
@@ -2457,6 +2459,7 @@ do
 
   local line
   local added = false
+		local headerAdded = false
   local g
   if R.db.profile.sortMode == SORT_NAME then g = sort(group)
   elseif R.db.profile.sortMode == SORT_DIFFICULTY then g = sort_difficulty(group)
@@ -2547,7 +2550,8 @@ do
 									end
 
 									-- Header
-									if not added then
+									if not added or (group.collapsed and not headerAdded) then
+										headerAdded = true
 										local groupName = group.name
 										if requiresGroup then groupName = groupName..L[" (Group)"] end
 										if not headers[groupName] and v.itemId ~= nil then
@@ -2578,11 +2582,32 @@ do
 
    end
   end
+
+		-- Collapsed Header
+		if not headerAdded and group.collapsed then
+			headerAdded = true
+			local groupName = group.name
+			if requiresGroup then groupName = groupName..L[" (Group)"] end
+			if not headers[groupName] then
+				headers[groupName] = true
+				local collapsed = group.collapsed or false
+				if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
+					line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
+				else
+					line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), colorize(L["Time"], yellow), colorize(L["Luckiness"], yellow), colorize(L["Defeated"], yellow))
+				end
+				tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
+			end
+		end
+
   return added
  end
 	 
 	
 	function R:ShowTooltip(hidden)
+		-- The tooltip can't be built in combat; it takes too long and the script will receive a "script ran too long" error
+		if InCombatLockdown() then return end
+
 		if qtip:IsAcquired("RarityTooltip") and tooltip then
 			tooltip:Clear()
 		else
@@ -3186,7 +3211,7 @@ function R:FoundItem(itemId, item)
   item.found = nil
   self:UpdateInterestingThings()
   self:UpdateText()
-  if R:InTooltip() then R:ShowTooltip() end
+  if R:InTooltip() then Rarity:ShowTooltip() end
  end, 5) end
 end
 
