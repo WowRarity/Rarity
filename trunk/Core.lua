@@ -1746,32 +1746,34 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
  if npcs_to_items[npcid] and type(npcs_to_items[npcid]) == "table" then
   for k, v in pairs(npcs_to_items[npcid]) do
    if R:IsInstanceAppropriate(v) then
-				local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
-				if itemLink or itemName or v.name then
-					if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
-						blankAdded = true
-						GameTooltip:AddLine(" ")
+    if (v.requiresHorde and R:IsHorde()) or (v.requiresAlliance and not R:IsHorde()) or (not v.requiresHorde and not v.requiresAlliance) then
+					local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
+					if itemLink or itemName or v.name then
+						if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
+							blankAdded = true
+							GameTooltip:AddLine(" ")
+						end
+						local attemptText = " "..colorize(format(L["(%d/%d attempts)"], v.attempts or 0, v.chance or 0), white)
+						if v.method == COLLECTION then attemptText = " "..colorize(format(L["(%d/%d collected)"], v.attempts or 0, v.chance or 0), white) end
+						if v.known or Rarity.db.profile.tooltipAttempts == false then attemptText = "" end
+						GameTooltip:AddLine(colorize((not rarityAdded and L["Rarity: "] or "")..(itemLink or itemName or v.name)..attemptText, yellow))
+						rarityAdded = true
+						if v.pickpocket then
+							local class, classFileName = UnitClass("player")
+							local pickcolor
+							if classFileName == "ROGUE" then pickcolor = green else pickcolor = red end
+							GameTooltip:AddLine(colorize(L["Requires Pickpocketing"], pickcolor))
+						end
+						if v.known then
+							GameTooltip:AddLine(colorize(L["Already known"], red))
+							blankAdded = false
+						end
+						GameTooltip:Show()
 					end
-					local attemptText = " "..colorize(format(L["(%d/%d attempts)"], v.attempts or 0, v.chance or 0), white)
-					if v.method == COLLECTION then attemptText = " "..colorize(format(L["(%d/%d collected)"], v.attempts or 0, v.chance or 0), white) end
-					if v.known or Rarity.db.profile.tooltipAttempts == false then attemptText = "" end
-					GameTooltip:AddLine(colorize((not rarityAdded and L["Rarity: "] or "")..(itemLink or itemName or v.name)..attemptText, yellow))
-					rarityAdded = true
-					if v.pickpocket then
-						local class, classFileName = UnitClass("player")
-						local pickcolor
-						if classFileName == "ROGUE" then pickcolor = green else pickcolor = red end
-						GameTooltip:AddLine(colorize(L["Requires Pickpocketing"], pickcolor))
-					end
-					if v.known then
-						GameTooltip:AddLine(colorize(L["Already known"], red))
-						blankAdded = false
-					end
-					GameTooltip:Show()
 				end
-   end
-  end
- end
+			end
+		end
+	end
 
 	-- One-time items
  if Rarity.db.profile.oneTimeItems[npcid] and type(Rarity.db.profile.oneTimeItems[npcid]) == "table" then
