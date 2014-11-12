@@ -881,6 +881,13 @@ function R:CreateGroup(options, group, isUser)
 					hidden = item.blackMarket == false or item.blackMarket == nil,
 			 },
 				
+			 enableCoinD = {
+				 type = "description",
+				 order = newOrder(),
+				 name = colorize(L["Can be obtained with a bonus roll"], yellow),
+					hidden = item.enableCoin == false or item.enableCoin == nil,
+			 },
+				
 			 requiresAllianceT = {
 				 type = "description",
 				 order = newOrder(),

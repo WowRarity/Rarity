@@ -2270,6 +2270,9 @@ do
 		if item.blackMarket then
 			tooltip2AddLine(colorize(L["Appears in the Black Market"], yellow))
 		end
+		if item.enableCoin then
+			tooltip2AddLine(colorize(L["Can be obtained with a bonus roll"], yellow))
+		end
 		if item.requiresAlliance then
 			tooltip2AddLine(colorize(L["This mount is only obtainable by Alliance players"], red))
 		end

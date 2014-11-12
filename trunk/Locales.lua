@@ -292,6 +292,7 @@ L["Players have a personal loot chance to obtain this item."] = true
 L["All players can participate in killing this world boss once per week, regardless of faction"] = true
 L["Contained in bonus satchels"] = true
 L["Appears in the Black Market"] = true
+L["Can be obtained with a bonus roll"] = true
 L["This mount is only obtainable by Alliance players"] = true
 L["This mount is only obtainable by Horde players"] = true
 
