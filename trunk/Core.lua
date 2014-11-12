@@ -2552,7 +2552,7 @@ do
 									end
 
 									-- Header
-									if not added or (group.collapsed and not headerAdded) then
+									if not added then
 										headerAdded = true
 										local groupName = group.name
 										if requiresGroup then groupName = groupName..L[" (Group)"] end
@@ -2586,7 +2586,7 @@ do
   end
 
 		-- Collapsed Header
-		if not headerAdded and group.collapsed then
+		if not headerAdded and ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
 			headerAdded = true
 			local groupName = group.name
 			if requiresGroup then groupName = groupName..L[" (Group)"] end
