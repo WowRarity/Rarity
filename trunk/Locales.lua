@@ -336,6 +336,8 @@ L["This bag is rewarded for earning a Gold Victory in a garrison invasion."] = t
 L["This bag is rewarded for completing the pet battle daily offered by Jeremy Feasel at the Darkmoon Faire."] = true
 L["This bag is rewarded for completing the pet battle daily offered by Christoph VonFeasel at the Darkmoon Faire."] = true
 L["This item has a 1 in 4 chance to drop from Golganarr, a rare spawn on Timeless Isle. It has a 1 in 250 chance to drop from Eroded Cliffdweller on Timeless Isle."] = true
+L["Dropped by Disturbed Podling, which has a chance to spawn when picking herbs at your garrison."] = true
+L["Dropped by Goren Protector, which has a chance to spawn when mining ore at your garrison."] = true
 
 
 -- Instance difficulties
@@ -700,6 +702,9 @@ L["The Heartbreaker"] = true
 L["Time-Lost Figurine"] = true
 L["Unusual Compass"] = true
 L["Warning Sign"] = true
+L["Nightshade Sproutling"] = true
+L["Red Goren Egg"] = true
+
 
 
 
