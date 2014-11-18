@@ -240,7 +240,7 @@ function R:PrepareDefaults()
 				-- OTHER ITEMS
 
 				-- Frostfire Ridge
-				[84378] = { questId = 37525, itemId = 99999  }, -- Ak'ox the Slaughterer
+				[84378] = { questId = 37525, itemId = 119365 }, -- Ak'ox the Slaughterer
 				[78867] = { questId = 34497, itemId = 111476 }, -- Breathless
 				[74613] = { questId = 33843, itemId = 111533 }, -- Broodmother Reeg'ak
 				[79065] = { questId = 34519, itemId = 99999  }, -- Brotoculus
@@ -312,8 +312,8 @@ function R:PrepareDefaults()
 				[77861] = { questId = 34231, itemId = 99999  }, -- Tanoboa
 				[77661] = { questId = 34191, itemId = 99999  }, -- Un'glok Blackfinger
 				-- Nagrand
-				[82899] = { questId = 35778, itemId = 99999  }, -- Ancient Blademaster
-				[82826] = { questId = 35735, itemId = 99999  }, -- Berserk T-300 Series Mark II
+				[82899] = { questId = 35778, itemId = 116832 }, -- Ancient Blademaster
+				[82826] = { questId = 35735, itemId = 116823 }, -- Berserk T-300 Series Mark II
 				[87234] = { questId = 37400, itemId = 119380 }, -- Brutag Grimblade
 				[79725] = { questId = 34727, itemId = 118244 }, -- Captain Ironbeard
 				[87788] = { questId = 37395, itemId = 119405 }, -- Durg Spinecrusher
@@ -335,11 +335,11 @@ function R:PrepareDefaults()
 				[83401] = { questId = 35865, itemId = 116815 }, -- Netherspawn
 				[83409] = { questId = 35875, itemId = 116765 }, -- Ophiis
 				[83680] = { questId = 35943, itemId = 116800 }, -- Outrider Duretha
-				[88208] = { questId = 37637, itemId = 99999  }, -- Pit Beast
+				[88208] = { questId = 37637, itemId = 120317 }, -- Pit Beast
 				[82755] = { questId = 35712, itemId = 118243 }, -- Redclaw the Feral
 				[83526] = { questId = 35900, itemId = 118688 }, -- Ru'klaa
 				[83634] = { questId = 35931, itemId = 116797 }, -- Scout Pokhar
-				[83542] = { questId = 35912, itemId = 99999  }, -- Sean Whitesea
+				[83542] = { questId = 35912, itemId = 116834 }, -- Sean Whitesea
 				[80057] = { questId = 36128, itemId = 116806 }, -- Soulfang
 				[83591] = { questId = 35920, itemId = 116814 }, -- Tura'aka
 				[81330] = { questId = 37546, itemId = 120276 }, -- Warleader Tome
@@ -348,7 +348,7 @@ function R:PrepareDefaults()
 				-- Shadowmoon Valley
 				[77140] = { questId = 33061, itemId = 109060 }, -- Amaukwa
 				[86213] = { questId = 37356, itemId = 119387 }, -- Aqualir
-				[85568] = { questId = 37410, itemId = 99999  }, -- Avalanche
+				[85568] = { questId = 37410, itemId = 119400 }, -- Avalanche
 				[82326] = { questId = 35731, itemId = 113540 }, -- Ba'ruun
 				[81406] = { questId = 35281, itemId = 111666 }, -- Bahameye
 				[81639] = { questId = 33383, itemId = 117551 }, -- Brambleking Fili
@@ -370,11 +370,11 @@ function R:PrepareDefaults()
 				[85001] = { questId = 37353, itemId = 119368 }, -- Master Sergeant Milgra
 				[82362] = { questId = 35523, itemId = 113559 }, -- Morva Soultwister
 				[75071] = { questId = 33642, itemId = 113527 }, -- Mother Om'ra
-				[84925] = { questId = 37352, itemId = 99999  }, -- Quartermaster Hershak
+				[84925] = { questId = 37352, itemId = 119382 }, -- Quartermaster Hershak
 				[82374] = { questId = 35553, itemId = 113542 }, -- Rai'vosh
 				[72606] = { questId = 34068, itemId = 109077 }, -- Rockhoof
 				[77136] = { questId = 33057, itemId = 99999  }, -- Rotbelcher
-				[85029] = { questId = 37354, itemId = 99999  }, -- Shadowspeaker Niir
+				[85029] = { questId = 37354, itemId = 119396 }, -- Shadowspeaker Niir
 				[82415] = { questId = 35732, itemId = 113543 }, -- Shinri
 				[86689] = { questId = 36880, itemId = 118734 }, -- Sneevel
 				[85026] = { questId = 37358, itemId = 119178 }, -- Soul-Twister Torek
@@ -413,7 +413,7 @@ function R:PrepareDefaults()
 				[84775] = { questId = 36254, itemId = 116852 }, -- Tesska the Broken
 				[82050] = { questId = 35334, itemId = 118207 }, -- Varasha
 				-- Talador
-				[82922] = { questId = 37343, itemId = 99999  }, -- Archmagus Tekar <Sargerei War Council>
+				[82922] = { questId = 37343, itemId = 119371 }, -- Archmagus Tekar <Sargerei War Council>
 				[88043] = { questId = 37338, itemId = 119378 }, -- Avatar of Socrethar
 				[77620] = { questId = 34165, itemId = 116123 }, -- Cro Fleshrender
 				[77561] = { questId = 34142, itemId = 112499 }, -- Dr. Gloom
@@ -432,7 +432,7 @@ function R:PrepareDefaults()
 				[77453] = { questId = 34134, itemId = 117563 }, -- Isaari
 				[77750] = { questId = 34199, itemId = 99999  }, -- Kaavu the Crimson Claw
 				[78710] = { questId = 35219, itemId = 116122 }, -- Kharazos the Triumphant
-				[88494] = { questId = 37342, itemId = 99999  }, -- Legion Vanguard
+				[88494] = { questId = 37342, itemId = 119385 }, -- Legion Vanguard
 				[77784] = { questId = 34208, itemId = 116070 }, -- Lo'marg Jawcrusher
 				[82998] = { questId = 37349, itemId = 119353 }, -- Matron of Sin
 				[79334] = { questId = 34859, itemId = 116077 }, -- No'losh
@@ -443,7 +443,7 @@ function R:PrepareDefaults()
 				[81766] = { questId = 35244, itemId = 99999  }, -- Skagg
 				[88083] = { questId = 37343, itemId = 119350 }, -- Soulbinder Naylana <Sargerei War Council>
 				[86549] = { questId = 36858, itemId = 117562 }, -- Steeltusk
-				[88071] = { questId = 37337, itemId = 99999  }, -- Strategist Ankor <Sargerei War Council>
+				[88071] = { questId = 37337, itemId = 119350 }, -- Strategist Ankor <Sargerei War Council>
 				[77634] = { questId = 34171, itemId = 116126 }, -- Taladorantula
 				[79485] = { questId = 34668, itemId = 116110 }, -- Talonpriest Zorkra
 				[80524] = { questId = 34945, itemId = 112475 }, -- Underseer Bloodmane
