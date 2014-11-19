@@ -2856,6 +2856,11 @@ end
 
 
 function R:ScanExistingItems(reason)
+	-- Don't allow this scan in combat; it takes too long and the script will receive a "script ran too long" error
+	-- Under normal conditions this shouldn't be called during combat, except during the 5-minute final init, or
+	-- if the user is messing around with Options in combat.
+	if InCombatLockdown() then return end
+
  self:Debug("Scanning for existing items ("..reason..")")
 	self:ProfileStart()
 
