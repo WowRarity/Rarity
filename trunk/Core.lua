@@ -646,7 +646,7 @@ function R:OnProfileChanged(event, database, newProfileKey)
  self:ScanBags()
  self:FindTrackedItem()
  self:UpdateText()
- if self:InTooltip() then self:ShowTooltip() end
+ --if self:InTooltip() then self:ShowTooltip() end
 	self.db.profile.lastRevision = R.MINOR_VERSION
 end
 
@@ -1193,7 +1193,7 @@ function R:OnEvent(event, ...)
 		end
 
   -- Update the tooltip if we're in it
-  if self:InTooltip() then self:ShowTooltip() end
+  --if self:InTooltip() then self:ShowTooltip() end
 
 
  -- Detect bank, guild bank, auction house, tradeskill, trade, and mail. This turns off item use detection.
@@ -1487,7 +1487,7 @@ end
 do
  local timer1, timer2, timer3
  function R:OnCombatEnded(event)
-  if R:InTooltip() then Rarity:ShowTooltip() end
+  --if R:InTooltip() then Rarity:ShowTooltip() end
 
 		self:CancelTimer(timer1, true)
   self:CancelTimer(timer2, true)
@@ -3221,7 +3221,7 @@ function R:FoundItem(itemId, item)
   item.found = nil
   self:UpdateInterestingThings()
   self:UpdateText()
-  if R:InTooltip() then Rarity:ShowTooltip() end
+  --if R:InTooltip() then Rarity:ShowTooltip() end
  end, 5) end
 end
 
@@ -3271,7 +3271,7 @@ function R:UpdateTrackedItem(item)
 		trackedItem2 = nil
 	end
  self:UpdateText()
- if self:InTooltip() then self:ShowTooltip() end
+ --if self:InTooltip() then self:ShowTooltip() end
 	self:ProfileStop2("UpdateTrackedItem: %fms")
 end
 
@@ -3439,7 +3439,7 @@ function R:ImportFromBunnyHunter()
     end
     self:UpdateInterestingThings()
     self:UpdateText()
-    if self:InTooltip() then self:ShowTooltip() end
+    --if self:InTooltip() then self:ShowTooltip() end
     self.db.profile.importedFromBunnyHunter = true
     self:Print(L["Data has been imported from Bunny Hunter"])
 	  end
@@ -3454,6 +3454,6 @@ function R:Update(reason)
  self:UpdateInterestingThings(reason)
  self:FindTrackedItem()
  self:UpdateText()
- if self:InTooltip() then self:ShowTooltip() end
+ --if self:InTooltip() then self:ShowTooltip() end
 end
 

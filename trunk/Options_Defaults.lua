@@ -215,12 +215,12 @@ function R:PrepareDefaults()
 
 				-- MOUNTS
 
-				[50990] = { itemId = 116659 }, -- Bloodhoof Bull
-				[87308] = { itemId = 116674 }, -- Great Greytusk
-				[50981] = { itemId = 116661 }, -- Mottled Meadowstomper
-				[51015] = { itemId = 116767 }, -- Sapphire Riverbeast
-				[50985] = { itemId = 116792 }, -- Sunhide Gronnling
-				[50883] = { itemId = 116773 }, -- Swift Breezestrider
+				[50990] = { itemId = 116659 }, -- Bloodhoof Bull (Nakk the Thunderer, Nagrand)
+				[50992] = { itemId = 116674 }, -- Great Greytusk (Gorok, Frostfire Ridge)
+				[50981] = { itemId = 116661 }, -- Mottled Meadowstomper (Luk'hok, Nagrand)
+				[51015] = { itemId = 116767 }, -- Sapphire Riverbeast (Silthide, Talador)
+				[50985] = { itemId = 116792 }, -- Sunhide Gronnling (Poundfist, Gorgrond)
+				[50883] = { itemId = 116773 }, -- Swift Breezestrider (Pathrunner, Shadowmoon Valley)
 
 
 				-- REP ITEMS
