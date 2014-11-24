@@ -1753,7 +1753,9 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 							blankAdded = true
 							GameTooltip:AddLine(" ")
 						end
-						local attemptText = " "..colorize(format(L["(%d/%d attempts)"], v.attempts or 0, v.chance or 0), white)
+						local chance = v.chance or 0
+						if v.method == BOSS and v.groupSize ~= nil and v.groupSize > 1 and not v.equalOdds then chance = chance * v.groupSize end
+						local attemptText = " "..colorize(format(L["(%d/%d attempts)"], v.attempts or 0, chance or 0), white)
 						if v.method == COLLECTION then attemptText = " "..colorize(format(L["(%d/%d collected)"], v.attempts or 0, v.chance or 0), white) end
 						if v.known or Rarity.db.profile.tooltipAttempts == false then attemptText = "" end
 						GameTooltip:AddLine(colorize((not rarityAdded and L["Rarity: "] or "")..(itemLink or itemName or v.name)..attemptText, yellow))
@@ -1859,7 +1861,9 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 										blankAdded = true
 										GameTooltip:AddLine(" ")
 									end
-									local attemptText = " "..colorize(format(L["(%d/%d attempts)"], vv.attempts or 0, vv.chance or 0), white)
+									local chance = vv.chance or 0
+									if vv.method == BOSS and vv.groupSize ~= nil and vv.groupSize > 1 and not vv.equalOdds then chance = chance * vv.groupSize end
+									local attemptText = " "..colorize(format(L["(%d/%d attempts)"], vv.attempts or 0, chance or 0), white)
 									if vv.method == COLLECTION then attemptText = " "..colorize(format(L["(%d/%d collected)"], vv.attempts or 0, vv.chance or 0), white) end
 									if vv.known or Rarity.db.profile.tooltipAttempts == false then attemptText = "" end
 									GameTooltip:AddLine(colorize((not rarityAdded and L["Rarity: "] or "")..(itemLink or itemName or vv.name)..attemptText, yellow))
@@ -1903,7 +1907,9 @@ hooksecurefunc(GameTooltip, "SetBagItem", function(self, bag, slot)
 							blankAdded = true
 							GameTooltip:AddLine(" ")
 						end
-						local attemptText = " "..colorize(format(L["(%d/%d attempts)"], v.attempts or 0, v.chance or 0), white)
+						local chance = v.chance or 0
+						if v.method == BOSS and v.groupSize ~= nil and v.groupSize > 1 and not v.equalOdds then chance = chance * v.groupSize end
+						local attemptText = " "..colorize(format(L["(%d/%d attempts)"], v.attempts or 0, chance or 0), white)
 						if v.method == COLLECTION then attemptText = " "..colorize(format(L["(%d/%d collected)"], v.attempts or 0, v.chance or 0), white) end
 						if v.known or Rarity.db.profile.tooltipAttempts == false then attemptText = "" end
 						GameTooltip:AddLine(colorize((not rarityAdded and L["Rarity: "] or "")..(itemLink or itemName or v.name)..attemptText, yellow))
@@ -1939,7 +1945,9 @@ hooksecurefunc(GameTooltip, "SetBagItem", function(self, bag, slot)
 													blankAdded = true
 													GameTooltip:AddLine(" ")
 												end
-												local attemptText = " "..colorize(format(L["(%d/%d attempts)"], vv.attempts or 0, vv.chance or 0), white)
+												local chance = vv.chance or 0
+												if vv.method == BOSS and vv.groupSize ~= nil and vv.groupSize > 1 and not vv.equalOdds then chance = chance * vv.groupSize end
+												local attemptText = " "..colorize(format(L["(%d/%d attempts)"], vv.attempts or 0, chance or 0), white)
 												if vv.method == COLLECTION then attemptText = " "..colorize(format(L["(%d/%d collected)"], vv.attempts or 0, vv.chance or 0), white) end
 												if vv.known or Rarity.db.profile.tooltipAttempts == false then attemptText = "" end
 												GameTooltip:AddLine(colorize((not rarityAdded and L["Rarity: "] or "")..(itemLink or itemName or vv.name)..attemptText, yellow))
