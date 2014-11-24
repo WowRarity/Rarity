@@ -704,6 +704,8 @@ L["Unusual Compass"] = true
 L["Warning Sign"] = true
 L["Nightshade Sproutling"] = true
 L["Red Goren Egg"] = true
+L["Silver-Plated Turkey Shooter"] = true
+L["Frightened Bush Chicken"] = true
 
 
 
