@@ -2529,7 +2529,14 @@ do
 								if v.method ~= NPC and v.method ~= ZONE and v.method ~= FISHING and v.method ~= USE then time = "" end
 								local status = ""
 								if v.questId and not v.holidayTexture then
-									if IsQuestFlaggedCompleted(v.questId) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
+									if type(v.questId) == "table" then
+										status = colorize(L["Undefeated"], green)
+										for key, questId in pairs(v.questId) do
+											if IsQuestFlaggedCompleted(questId) then status = colorize(L["Defeated"], red) end
+										end
+									else
+										if IsQuestFlaggedCompleted(v.questId) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
+									end
 								elseif v.lockBossName then
 									if lbb[v.lockBossName] and (Rarity.lockouts[lbb[v.lockBossName]] == true or Rarity.lockouts[v.lockBossName] == true) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
 								elseif v.lockDungeonId then
