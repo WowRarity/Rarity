@@ -2181,9 +2181,9 @@ do
 		tooltip2:SetClampedToScreen(true)
 
   if R.db.profile.statusTip == TIP_RIGHT then
-		 tooltip2:SetPoint("LEFT", cell, "RIGHT", 10, 0)
+		 tooltip2:SetPoint("LEFT", cell, "RIGHT", 30, 0)
   elseif R.db.profile.statusTip == TIP_LEFT then
-		 tooltip2:SetPoint("RIGHT", cell, "LEFT", -10, 0)
+		 tooltip2:SetPoint("RIGHT", cell, "LEFT", -30, 0)
   end
 
   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
