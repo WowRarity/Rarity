@@ -2782,6 +2782,9 @@ hooksecurefunc("BonusRollFrame_StartBonusRoll", function(spellID, text, duration
 	local self = Rarity
 	if self.lastCoinItem and self.lastCoinItem.enableCoin and self.lastCoinItem.enabled ~= false then
 		if self.lastCoinItem.itemId then
+			if not currencyID then currencyID = BONUS_ROLL_REQUIRED_CURRENCY end
+			local _, count, icon = GetCurrencyInfo(currencyID)
+			if count == 0 then return end
 			local name, link, quality, iLevel, reqLevel, class, subclass, maxStack, equipSlot, texture, vendorPrice = GetItemInfo(self.lastCoinItem.itemId)
 			local _, _, _, fontString = StorePurchaseAlertFrame:GetRegions()
 			fontString:SetText(L["Use your bonus roll for a chance at this item"])
