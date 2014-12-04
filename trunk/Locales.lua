@@ -282,6 +282,7 @@ L["Profiling ON"] = true
 L["Profiling OFF"] = true
 L["Enable profiling"] = true
 L["When enabled, Rarity will print debug profiling messages to the chat window when certain things happen. This is used to determine which parts of the code are slow."] = true
+L["Use your bonus roll for a chance at this item"] = true
 
 
 

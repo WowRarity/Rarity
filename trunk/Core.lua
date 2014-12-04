@@ -2778,6 +2778,20 @@ function R:ShowFoundAlert(itemId, attempts)
 end
 
 
+hooksecurefunc("BonusRollFrame_StartBonusRoll", function(spellID, text, duration, currencyID)
+	local self = Rarity
+	if self.lastCoinItem and self.lastCoinItem.enableCoin and self.lastCoinItem.enabled ~= false then
+		if self.lastCoinItem.itemId then
+			local name, link, quality, iLevel, reqLevel, class, subclass, maxStack, equipSlot, texture, vendorPrice = GetItemInfo(self.lastCoinItem.itemId)
+			local _, _, _, fontString = StorePurchaseAlertFrame:GetRegions()
+			fontString:SetText(L["Use your bonus roll for a chance at this item"])
+			self:ScheduleTimer(function() fontString:SetText(BLIZZARD_STORE_PURCHASE_COMPLETE_DESC) end, duration + 2)
+			StorePurchaseAlertFrame_ShowAlert(texture, link, self.lastCoinItem.itemId)
+		end
+	end
+end)
+
+
 function R:OutputAttempts(item, skipTimeUpdate)
  if not item then return end
  if (item.requiresHorde and R:IsHorde()) or (item.requiresAlliance and not R:IsHorde()) or (not item.requiresHorde and not item.requiresAlliance) then
