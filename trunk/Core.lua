@@ -18,7 +18,7 @@ local lbz = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
 local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 local lbct = LibStub("LibBabble-CreatureType-3.0"):GetUnstrictLookupTable()
 local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
----
+--
 
 
 --[[
@@ -2537,6 +2537,19 @@ do
 									else
 										if IsQuestFlaggedCompleted(v.questId) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
 									end
+								elseif v.questId and v.holidayTexture then
+									if Rarity.holiday_textures[v.holidayTexture] == nil then
+										status = colorize(L["Unavailable"], gray)
+									else
+										if type(v.questId) == "table" then
+											status = colorize(L["Undefeated"], green)
+											for key, questId in pairs(v.questId) do
+												if IsQuestFlaggedCompleted(questId) then status = colorize(L["Defeated"], red) end
+											end
+										else
+											if IsQuestFlaggedCompleted(v.questId) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
+									end
+								end
 								elseif v.lockBossName then
 									if lbb[v.lockBossName] and (Rarity.lockouts[lbb[v.lockBossName]] == true or Rarity.lockouts[v.lockBossName] == true) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
 								elseif v.lockDungeonId then
