@@ -283,6 +283,7 @@ L["Profiling OFF"] = true
 L["Enable profiling"] = true
 L["When enabled, Rarity will print debug profiling messages to the chat window when certain things happen. This is used to determine which parts of the code are slow."] = true
 L["Use your bonus roll for a chance at this item"] = true
+L["There are more holiday items available, but Rarity only reminds you about the first two."] = true
 
 
 
@@ -339,6 +340,7 @@ L["This bag is rewarded for completing the pet battle daily offered by Christoph
 L["This item has a 1 in 4 chance to drop from Golganarr, a rare spawn on Timeless Isle. It has a 1 in 250 chance to drop from Eroded Cliffdweller on Timeless Isle."] = true
 L["Dropped by Disturbed Podling, which has a chance to spawn when picking herbs at your garrison."] = true
 L["Dropped by Goren Protector, which has a chance to spawn when mining ore at your garrison."] = true
+L["Available starting December 25th"] = true
 
 
 -- Instance difficulties
@@ -707,8 +709,20 @@ L["Nightshade Sproutling"] = true
 L["Red Goren Egg"] = true
 L["Silver-Plated Turkey Shooter"] = true
 L["Frightened Bush Chicken"] = true
-
-
+L["Clockwork Rocket Bot"] = true
+L["Snowman Kit"] = true
+L["Red Helper Box"] = true
+L["Jingling Bell"] = true
+L["Green Helper Box"] = true
+L["Crashin' Thrashin' Flyer Controller"] = true
+L["The Pigskin"] = true
+L["MiniZep Controller"] = true
+L["Foot Ball"] = true
+L["Crashin' Thrashin' Racer Controller"] = true
+L["Safari Lounge Cushion"] = true
+L["Fuzzy Green Lounge Cushion"] = true
+L["Zhevra Lounge Cushion"] = true
+L["Pineapple Lounge Cushion"] = true
 
 
 

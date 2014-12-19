@@ -96,6 +96,8 @@ local DUAL_TRACK_THRESHOLD = 5
 local isPool = false
 local lastNode
 local STATUS_TOOLTIP_MAX_WIDTH = 200
+local numHolidayReminders = 0
+local showedHolidayReminderOverflow = false
 
 local inSession = false
 local sessionStarted = 0
@@ -2572,13 +2574,21 @@ do
 								if Rarity.db.profile.hideUnavailable == false or status ~= colorize(L["Unavailable"], gray) then
 									if Rarity.db.profile.holidayReminder and Rarity.allRemindersDone == nil and v.holidayReminder ~= false and v.cat == HOLIDAY and status == colorize(L["Undefeated"], green) then
 										Rarity.anyReminderDone = true
-										local text = format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or v.name)
-										Rarity:Print(text)
-										if tostring(SHOW_COMBAT_TEXT) ~= "0" then
-											if type(CombatText_AddMessage) == "nil" then UIParentLoadAddOn("Blizzard_CombatText") end
-											CombatText_AddMessage(text, CombatText_StandardScroll, 1, 1, 1, true, false)
+										numHolidayReminders = numHolidayReminders + 1
+										if numHolidayReminders <= 2 then
+											local text = format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or v.name)
+											Rarity:Print(text)
+											if tostring(SHOW_COMBAT_TEXT) ~= "0" then
+												if type(CombatText_AddMessage) == "nil" then UIParentLoadAddOn("Blizzard_CombatText") end
+												CombatText_AddMessage(text, CombatText_StandardScroll, 1, 1, 1, true, false)
+											else
+												UIErrorsFrame:AddMessage(text, 1, 1, 1, 1.0)
+											end
 										else
-											UIErrorsFrame:AddMessage(text, 1, 1, 1, 1.0)
+											if showedHolidayReminderOverflow == false then
+												Rarity:Print(colorize(L["There are more holiday items available, but Rarity only reminds you about the first two."], gray))
+											end
+											showedHolidayReminderOverflow = true
 										end
 									end
 
@@ -2651,6 +2661,8 @@ do
 		--self:ScanInstanceLocks("SHOWING TOOLTIP")
 		table.wipe(headers)
   local addedLast
+		numHolidayReminders = 0
+		showedHolidayReminderOverflow = false
 
   -- Sort header
   local sortDesc = L["Sorting by name"]
