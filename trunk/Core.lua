@@ -2472,6 +2472,7 @@ do
   if type(group) ~= "table" then return end
   if group.name == nil then return end
 
+		local dt = date("*t", time())
   local line
   local added = false
 		local headerAdded = false
@@ -2541,6 +2542,8 @@ do
 									end
 								elseif v.questId and v.holidayTexture then
 									if Rarity.holiday_textures[v.holidayTexture] == nil then
+										status = colorize(L["Unavailable"], gray)
+									elseif v.christmasOnly and dt.month == 12 and dt.month < 25 then
 										status = colorize(L["Unavailable"], gray)
 									else
 										if type(v.questId) == "table" then
