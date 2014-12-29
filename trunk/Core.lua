@@ -18,7 +18,7 @@ local lbz = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
 local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 local lbct = LibStub("LibBabble-CreatureType-3.0"):GetUnstrictLookupTable()
 local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
---
+---
 
 
 --[[
@@ -2543,7 +2543,7 @@ do
 								elseif v.questId and v.holidayTexture then
 									if Rarity.holiday_textures[v.holidayTexture] == nil then
 										status = colorize(L["Unavailable"], gray)
-									elseif v.christmasOnly and dt.month == 12 and dt.month < 25 then
+									elseif v.christmasOnly and dt.month == 12 and dt.day < 25 then
 										status = colorize(L["Unavailable"], gray)
 									else
 										if type(v.questId) == "table" then

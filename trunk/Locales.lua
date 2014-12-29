@@ -723,6 +723,26 @@ L["Safari Lounge Cushion"] = true
 L["Fuzzy Green Lounge Cushion"] = true
 L["Zhevra Lounge Cushion"] = true
 L["Pineapple Lounge Cushion"] = true
+L["Albino Chimaeraling"] = true
+L["Weebomination"] = true
+L["Sunfire Kaliri"] = true
+L["Sun Sproutling"] = true
+L["Spectral Bell"] = true
+L["Firewing"] = true
+L["Puddle Terror"] = true
+L["Zomstrok"] = true
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
