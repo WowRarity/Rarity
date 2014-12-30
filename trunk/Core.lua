@@ -3085,6 +3085,7 @@ function R:ScanToys(reason)
 					for kk, vv in pairs(v) do
 						if type(vv) == "table" then
 							if vv.itemId and vv.itemId == itemId and not vv.repeatable then
+								vv.known = true
 								vv.enabled = false
 								vv.found = true
 							end
