@@ -3069,9 +3069,9 @@ function R:ScanToys(reason)
  self:Debug("Scanning toys ("..reason..")")
 
 	if not Rarity.toysScanned then
-		if not ToyBox_OnLoad then UIParentLoadAddOn("Blizzard_PetJournal") end
-		if ToyBox_OnShow then ToyBox_OnShow() end
-		if PetJournalParent_SetTab then PetJournalParent_SetTab(PetJournalParent, 3) end
+		if not ToyBox_OnLoad then UIParentLoadAddOn("Blizzard_Collections") end
+		--if ToyBox_OnShow then ToyBox_OnShow() end
+		if CollectionsJournal_SetTab then CollectionsJournal_SetTab(CollectionsJournal, 3) end
 	end
 
 	table.wipe(toys)
