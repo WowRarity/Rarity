@@ -731,6 +731,9 @@ L["Spectral Bell"] = true
 L["Firewing"] = true
 L["Puddle Terror"] = true
 L["Zomstrok"] = true
+L["Bone Serpent"] = true
+L["Slithershock Elver"] = true
+L["Young Talbuk"] = true
 
 
 
