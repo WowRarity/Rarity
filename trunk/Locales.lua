@@ -734,6 +734,18 @@ L["Zomstrok"] = true
 L["Bone Serpent"] = true
 L["Slithershock Elver"] = true
 L["Young Talbuk"] = true
+L["Fragment of Anger"] = true
+L["Fragment of Desire"] = true
+L["Fragment of Suffering"] = true
+L["Grotesque Statue"] = true
+L["Hyjal Wisp"] = true
+L["Leviathan Egg"] = true
+L["Servant's Bell"] = true
+L["Shard of Supremus"] = true
+L["Smelly Gravestone"] = true
+L["Sultry Grimoire"] = true
+L["Sunblade Rune of Activation"] = true
+L["Void Collar"] = true
 
 
 
