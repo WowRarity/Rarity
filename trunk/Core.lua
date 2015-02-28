@@ -2195,7 +2195,7 @@ do
 
 		tooltip2:AddHeader(itemLink or item.name, "|T"..itemTexture..":22|t")
 		scanTip:ClearLines()
-		if toys[item.itemId] then scanTip:SetToyByItemID(item.itemId) else scanTip:SetItemByID(item.itemId) end
+		if item.isToy then scanTip:SetToyByItemID(item.itemId) else scanTip:SetItemByID(item.itemId) end
 		for i = 2, scanTip:NumLines() do
 			local myLeft = _G["__Rarity_ScanTipTextLeft"..i]
 			local txtLeft = myLeft:GetText()
