@@ -3066,6 +3066,7 @@ end
 
 
 function R:ScanToys(reason)
+	if InCombatLockdown() then return end
  self:Debug("Scanning toys ("..reason..")")
 
 	if not Rarity.toysScanned then
