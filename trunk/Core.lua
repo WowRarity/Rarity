@@ -18,7 +18,7 @@ local lbz = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
 local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 local lbct = LibStub("LibBabble-CreatureType-3.0"):GetUnstrictLookupTable()
 local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
---
+---
 
 
 --[[
@@ -2193,7 +2193,11 @@ do
   -- Rarity extended information tooltip
   if R.db.profile.statusTip == TIP_HIDDEN then return end
 
-		tooltip2:AddHeader(itemLink or item.name, "|T"..itemTexture..":22|t")
+		if itemTexture ~= nil then
+			tooltip2:AddHeader(itemLink or item.name, "|T"..itemTexture..":22|t")
+		else
+			tooltip2:AddHeader(itemLink or item.name)
+		end
 		scanTip:ClearLines()
 		if item.isToy then scanTip:SetToyByItemID(item.itemId) else scanTip:SetItemByID(item.itemId) end
 		for i = 2, scanTip:NumLines() do

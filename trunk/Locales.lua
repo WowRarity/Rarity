@@ -341,6 +341,9 @@ L["This item has a 1 in 4 chance to drop from Golganarr, a rare spawn on Timeles
 L["Dropped by Disturbed Podling, which has a chance to spawn when picking herbs in Draenor."] = true
 L["Dropped by Goren Protector, which has a chance to spawn when mining ore in Draenor."] = true
 L["Available starting December 25th"] = true
+L["Can drop from Fel-Touched Pet Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."] = true
+L["After upgrading your garrison's Fishing Shack to level 3, fish up 5 minnows to summon a Cavedweller which can drop this mount."] = true
+L["Will only drop for druids."] = true
 
 
 -- Instance difficulties
@@ -746,6 +749,24 @@ L["Smelly Gravestone"] = true
 L["Sultry Grimoire"] = true
 L["Sunblade Rune of Activation"] = true
 L["Void Collar"] = true
+L["Armored Razorback"] = true
+L["Armored Razorback"] = true
+L["Warsong Direfang"] = true
+L["Tundra Icehoof"] = true
+L["Periwinkle Calf"] = true
+L["Zangar Spore"] = true
+L["Seaborne Spore"] = true
+L["Nightmare Bell"] = true
+L["Gahz'rooki's Summoning Stone"] = true
+L["Riding Turtle"] = true
+L["Fandral's Seed Pouch"] = true
+
+
+
+
+
+
+
 
 
 

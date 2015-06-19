@@ -221,6 +221,10 @@ function R:PrepareDefaults()
 				[51015] = { itemId = 116767 }, -- Sapphire Riverbeast (Silthide, Talador)
 				[50985] = { itemId = 116792 }, -- Sunhide Gronnling (Poundfist, Gorgrond)
 				[50883] = { itemId = 116773 }, -- Swift Breezestrider (Pathrunner, Shadowmoon Valley)
+				[95053] = { itemId = 128025 }, -- Deathtalon <Avatar of Iskar> (Rattling Iron Cage)
+				[95056] = { itemId = 128025 }, -- Doomroller <Mar'tak's Creation> (Rattling Iron Cage)
+				[95044] = { itemId = 128025 }, -- Terrorfist <Son of Kormrok> (Rattling Iron Cage)
+				[95054] = { itemId = 128025 }, -- Vengeance <Avatar of Velhari> (Rattling Iron Cage)
 
 
 				-- REP ITEMS
@@ -243,30 +247,24 @@ function R:PrepareDefaults()
 				[84378] = { questId = 37525, itemId = 119365 }, -- Ak'ox the Slaughterer
 				[78867] = { questId = 34497, itemId = 111476 }, -- Breathless
 				[74613] = { questId = 33843, itemId = 111533 }, -- Broodmother Reeg'ak
-				[79065] = { questId = 34519, itemId = 99999  }, -- Brotoculus
 				[71721] = { questId = 32941, itemId = 101436 }, -- Canyon Icemother
 				[80242] = { questId = 34843, itemId = 111953 }, -- Chillfang
 				[72294] = { questId = 33014, itemId = 111490 }, -- Cindermaw
 				[77513] = { questId = 34129, itemId = 112066 }, -- Coldstomp the Griever
 				[76914] = { questId = 34131, itemId = 111484 }, -- Coldtusk
 				[78621] = { questId = 34477, itemId = 112086 }, -- Cyclonic Fury
-				[71670] = { questId = 32920, itemId = 99999  }, -- Deathtoll
 				[74971] = { questId = 33504, itemId = 107661 }, -- Firefury Giant
-				[79033] = { questId = 34517, itemId = 99999  }, -- Gargantuan Frostbeak
 				[71665] = { questId = 32918, itemId = 111530 }, -- Giant-Slayer Kul
-				[78337] = { questId = 34382, itemId = 99999  }, -- Grand Warlock Duress
 				[74585] = { questId = 33011, itemId = 106899 }, -- Grizzled Frostwolf Veteran
 				[80312] = { questId = 34865, itemId = 112077 }, -- Grutush the Pillager
 				[80190] = { questId = 34825, itemId = 111948 }, -- Gruuk
 				[80235] = { questId = 34839, itemId = 111955 }, -- Gurun
-				[87348] = { questId = 37382, itemId = 99999  }, -- Hoarfrost
-				[78151] = { questId = 34130, itemId = 99999  }, -- Huntmaster Kuang
+				[87348] = { questId = 37382, itemId = 119415 }, -- Hoarfrost
 				[82616] = { questId = 37386, itemId = 119390 }, -- Jabberjaw
-				[87600] = { questId = 37556, itemId = 99999  }, -- Jaluk the Pacifist
 				[79678] = { questId = 34708, itemId = 112078 }, -- Jehil the Climber
-				[84374] = { questId = 37404, itemId = 99999  }, -- Kaga the Ironbender
+				[84374] = { questId = 37404, itemId = 119372 }, -- Kaga the Ironbender
 				[78872] = { questId = 34498, itemId = 116125 }, -- Klikixx
-				[87622] = { questId = 37402, itemId = 99999  }, -- Ogom the Mangler
+				[87622] = { questId = 37402, itemId = 119366 }, -- Ogom the Mangler
 				[78606] = { questId = 34470, itemId = 111666 }, -- Pale Fishmonger
 				[76918] = { questId = 33938, itemId = 111576 }, -- Primalist Mur'og
 				[84392] = { questId = 37401, itemId = 119359 }, -- Ragore Driftstalker
@@ -275,15 +273,13 @@ function R:PrepareDefaults()
 				[77527] = { questId = 34133, itemId = 111475 }, -- The Beater
 				[78265] = { questId = 34361, itemId = 111534 }, -- The Bone Crawler
 				[82618] = { questId = 37384, itemId = 119379 }, -- Tor'goroth
-				[79104] = { questId = 34522, itemId = 99999  }, -- Ug'lok the Frozen
-				[87357] = { questId = 37378, itemId = 99999  }, -- Valkor
-				[87356] = { questId = 37379, itemId = 99999  }, -- Vrok the Ancient
+				[87357] = { questId = 37378, itemId = 119416 }, -- Valkor
+				[87356] = { questId = 37379, itemId = 119416 }, -- Vrok the Ancient
 				[79145] = { questId = 34559, itemId = 111477 }, -- Yaga the Scarred
 				-- Gorgrond
 				[82085] = { questId = 35335, itemId = 118222 }, -- Bashiok
 				[86257] = { questId = 37369, itemId = 119432 }, -- Basten
 				[85907] = { questId = 36597, itemId = 118232 }, -- Berthora
-				[77739] = { questId = 34197, itemId = 99999  }, -- Bloodbloom the Colossus
 				[82311] = { questId = 35503, itemId = 118212 }, -- Char the Burning
 				[85250] = { questId = 36387, itemId = 118221 }, -- Fossilwood the Petrified
 				[81038] = { questId = 36391, itemId = 118230 }, -- Gelgor of the Blue Flame
@@ -292,25 +288,16 @@ function R:PrepareDefaults()
 				[88583] = { questId = 37375, itemId = 119414 }, -- Grove Warden Yal
 				[83522] = { questId = 35908, itemId = 118209 }, -- Hive Queen Skrikka
 				[88672] = { questId = 37377, itemId = 119412 }, -- Hunter Bal'ra
-				[77609] = { questId = 34162, itemId = 99999  }, -- Icklarv
-				[77562] = { questId = 34143, itemId = 99999  }, -- Kal'rak the Drunk
 				[84406] = { questId = 36178, itemId = 118709 }, -- Mandrakor
-				[77633] = { questId = 34170, itemId = 99999  }, -- Moltnar
 				[76473] = { questId = 34726, itemId = 118208 }, -- Mother Araneae
-				[77492] = { questId = 34127, itemId = 99999  }, -- Mother Bloodtusk
-				[77593] = { questId = 34160, itemId = 99999  }, -- Nixxie
-				[77876] = { questId = 34243, itemId = 99999  }, -- Rak'nar Muzzlebash
 				[85970] = { questId = 36600, itemId = 118231 }, -- Riptar
 				[85264] = { questId = 36393, itemId = 118211 }, -- Rolkor
 				[86520] = { questId = 36837, itemId = 118228 }, -- Stompalupagus
 				[79629] = { questId = 35910, itemId = 118224 }, -- Stomper Kreego
-				[77622] = { questId = 34168, itemId = 99999  }, -- Stormwave
 				[80725] = { questId = 36394, itemId = 114227 }, -- Sulfurious
 				[86137] = { questId = 36656, itemId = 118223 }, -- Sunclaw
 				[88582] = { questId = 37374, itemId = 119367 }, -- Swift Onyx Flayer
 				[86410] = { questId = 36794, itemId = 118213 }, -- Sylldross
-				[77861] = { questId = 34231, itemId = 99999  }, -- Tanoboa
-				[77661] = { questId = 34191, itemId = 99999  }, -- Un'glok Blackfinger
 				-- Nagrand
 				[82899] = { questId = 35778, itemId = 116832 }, -- Ancient Blademaster
 				[82826] = { questId = 35735, itemId = 116823 }, -- Berserk T-300 Series Mark II
@@ -355,7 +342,7 @@ function R:PrepareDefaults()
 				[77085] = { questId = 33064, itemId = 109075 }, -- Dark Emanation
 				[82268] = { questId = 35448, itemId = 113548 }, -- Darkmaster Go'vid
 				[82411] = { questId = 35555, itemId = 113541 }, -- Darktalon
-				[84911] = { questId = 37351, itemId = 99999  }, -- Demidos
+				[84911] = { questId = 37351, itemId = 119377 }, -- Demidos
 				[82676] = { questId = 35688, itemId = 113556 }, -- Enavra Varandi
 				[82207] = { questId = 35725, itemId = 113557 }, -- Faebright
 				[76380] = { questId = 33664, itemId = 113082 }, -- Gorum
@@ -373,7 +360,6 @@ function R:PrepareDefaults()
 				[84925] = { questId = 37352, itemId = 119382 }, -- Quartermaster Hershak
 				[82374] = { questId = 35553, itemId = 113542 }, -- Rai'vosh
 				[72606] = { questId = 34068, itemId = 109077 }, -- Rockhoof
-				[77136] = { questId = 33057, itemId = 99999  }, -- Rotbelcher
 				[85029] = { questId = 37354, itemId = 119396 }, -- Shadowspeaker Niir
 				[82415] = { questId = 35732, itemId = 113543 }, -- Shinri
 				[86689] = { questId = 36880, itemId = 118734 }, -- Sneevel
@@ -389,18 +375,14 @@ function R:PrepareDefaults()
 				[80614] = { questId = 35599, itemId = 116839 }, -- Blade-Dancer Aeryx
 				[84856] = { questId = 36283, itemId = 118205 }, -- Blightglow
 				[84807] = { questId = 36267, itemId = 118198 }, -- Durkath Steelmaw
-				[84935] = { questId = 36303, itemId = 99999  }, -- Eyeless
 				[84890] = { questId = 36297, itemId = 118200 }, -- Festerbloom
 				[86978] = { questId = 36943, itemId = 118696 }, -- Gaze
 				[84951] = { questId = 36305, itemId = 116836 }, -- Gobblefin
-				[84943] = { questId = 36304, itemId = 99999  }, -- Gochar
 				[86724] = { questId = 36887, itemId = 118279 }, -- Hermit Palefur
 				[84955] = { questId = 36306, itemId = 118202 }, -- Jiasska the Sporegorger
 				[84810] = { questId = 36268, itemId = 118735 }, -- Kalos the Bloodbathed
 				[84417] = { questId = 36396, itemId = 118206 }, -- Mutafen
 				[82247] = { questId = 36129, itemId = 116837 }, -- Nas Dunberlin
-				[79959] = { questId = 36479, itemId = 99999  }, -- Nightmaw
-				[82303] = { questId = 35481, itemId = 99999  }, -- Nizzix Missfire
 				[84872] = { questId = 36288, itemId = 118204 }, -- Oskiira the Vengeful
 				[84838] = { questId = 36279, itemId = 118199 }, -- Poisonmaster Bortusk
 				[85504] = { questId = 36470, itemId = 118107 }, -- Rotcap
@@ -424,23 +406,20 @@ function R:PrepareDefaults()
 				[78713] = { questId = 34483, itemId = 116122 }, -- Galzomar
 				[80471] = { questId = 34929, itemId = 116075 }, -- Gennadian
 				[77719] = { questId = 34189, itemId = 116113 }, -- Glimmerwing
-				[85572] = { questId = 36919, itemId = 99999  }, -- Grrbrrgle
+				[85572] = { questId = 36919, itemId = 120436 }, -- Grrbrrgle
 				[83019] = { questId = 37340, itemId = 119402 }, -- Gug'tol
 				[83008] = { questId = 37312, itemId = 119403 }, -- Haakun the All-Consuming
 				[77715] = { questId = 34185, itemId = 116124 }, -- Hammertooth
 				[77626] = { questId = 34167, itemId = 112369 }, -- Hen-Mother Hami
 				[77453] = { questId = 34134, itemId = 117563 }, -- Isaari
-				[77750] = { questId = 34199, itemId = 99999  }, -- Kaavu the Crimson Claw
 				[78710] = { questId = 35219, itemId = 116122 }, -- Kharazos the Triumphant
 				[88494] = { questId = 37342, itemId = 119385 }, -- Legion Vanguard
 				[77784] = { questId = 34208, itemId = 116070 }, -- Lo'marg Jawcrusher
 				[82998] = { questId = 37349, itemId = 119353 }, -- Matron of Sin
 				[79334] = { questId = 34859, itemId = 116077 }, -- No'losh
-				[77452] = { questId = 34128, itemId = 99999  }, -- Norana Quelldawn
 				[77741] = { questId = 34196, itemId = 116112 }, -- Ra'kahn
 				[79543] = { questId = 34671, itemId = 112370 }, -- Shirzir
 				[78715] = { questId = 35219, itemId = 116122 }, -- Sikthiss, Maiden of Slaughter
-				[81766] = { questId = 35244, itemId = 99999  }, -- Skagg
 				[88083] = { questId = 37343, itemId = 119350 }, -- Soulbinder Naylana <Sargerei War Council>
 				[86549] = { questId = 36858, itemId = 117562 }, -- Steeltusk
 				[88071] = { questId = 37337, itemId = 119350 }, -- Strategist Ankor <Sargerei War Council>
@@ -451,6 +430,69 @@ function R:PrepareDefaults()
 				[77776] = { questId = 34205, itemId = 112261 }, -- Wandering Vindicator
 				[82922] = { questId = 37343, itemId = 119435 }, -- Xothear, the Destroyer
 				[77529] = { questId = 34135, itemId = 112263 }, -- Yazheera the Incinerator
+				-- Tanaan Jungle
+				[92766] = { questId = 39399, itemId = 99999  }, -- Akrrilo <Shadowhunter of the Blackfang>
+				[91871] = { questId = 38430, itemId = 127326 }, -- Argosh the Destroyer
+				[92552] = { questId = 38609, itemId = 127650 }, -- Belgork <Grom'kar Strikeleader>
+				[90884] = { questId = 38262, itemId = 127307 }, -- Bilkor the Thrower <Bleeding Hollow Spearmaster>
+				[92657] = { questId = 38696, itemId = 127654 }, -- Bleeding Hollow Horror
+				[90936] = { questId = 38266, itemId = 127303 }, -- Bloodhunter Zulk <Bleeding Hollow Assassin>
+				[91093] = { questId = 38209, itemId = 127652 }, -- Bramblefell
+				[92429] = { questId = 38589, itemId = 127349 }, -- Broodlord Ixkor
+				[93264] = { questId = 38820, itemId = 127664 }, -- Captain Grok'mar
+				[93076] = { questId = 38756, itemId = 127659 }, -- Captain Ironbeard <The True Scourge of the Iron Seas>
+				[90434] = { questId = 38031, itemId = 127748 }, -- Ceraxas
+				[90519] = { questId = 37990, itemId = 127660 }, -- Cindral the Wildfire
+				[91232] = { questId = 38746, itemId = 127319 }, -- Commander Krag'goth
+				[89675] = { questId = 38749, itemId = 127313 }, -- Commander Org'mok
+				[90887] = { questId = 38265, itemId = 127301 }, -- Dorg the Bloody <Bleeding Hollow Aberration>
+				[93028] = { questId = 38736, itemId = 127331 }, -- Driss Vile <Iron Horde Master Sniper>
+				[90888] = { questId = 38264, itemId = 127298 }, -- Drivnul <Master of Rituals>
+				[91727] = { questId = 38411, itemId = 127323 }, -- Executor Riloth
+				[92819] = { questId = 39378, itemId = 99999  }, -- Eyepiercer <Crazed Bloodfang Warmonger>
+				[93168] = { questId = 38775, itemId = 127350 }, -- Felbore
+				[92647] = { questId = 38634, itemId = 127302 }, -- Felsmith Damorka
+				[91098] = { questId = 38211, itemId = 127656 }, -- Felspark
+				[92508] = { questId = 38604, itemId = 127306 }, -- Gloomtalon <Clawshaper of the Blackfang>
+				[93125] = { questId = 38764, itemId = 127317 }, -- Glub'glok
+				[92941] = { questId = 38709, itemId = 127304 }, -- Gorabosh <Keeper of the Cave>
+				[91695] = { questId = 38400, itemId = 127299 }, -- Grand Warlock Nethekurse
+				[93057] = { questId = 38750, itemId = 127649 }, -- Grannok
+				[90094] = { questId = 39046, itemId = 127309 }, -- Harbormaster Korak
+				[90777] = { questId = 38028, itemId = 122117 }, -- High Priest Ikzan <Shadow Council>
+				[90429] = { questId = 38026, itemId = 127655 }, -- Imp-Master Valessa
+				[90437] = { questId = 38030, itemId = 127322 }, -- Jax'zor
+				[92517] = { questId = 38605, itemId = 127418 }, -- Krell the Serene <Blademaster of the Blackfang>
+				[93279] = { questId = 38825, itemId = 127653 }, -- Kris'kar the Unredeemed <Crusader of Rukhmar>
+				[90438] = { questId = 38029, itemId = 127316 }, -- Lady Oran
+				[93002] = { questId = 38726, itemId = 127332 }, -- Magwia
+				[90442] = { questId = 38032, itemId = 127300 }, -- Mistress Thavra
+				[92411] = { questId = 38580, itemId = 127320 }, -- Overlord Ma'gruth <Shadow Council>
+				[92274] = { questId = 38557, itemId = 127297 }, -- Painmistress Selora
+				[91374] = { questId = 38609, itemId = 127336 }, -- Podlord Wakkawam
+				[91009] = { questId = 38457, itemId = 127657 }, -- Putre'thar
+				[90782] = { questId = 38034, itemId = 127661 }, -- Rasthe <Son of Sethe>
+				[92197] = { questId = 38496, itemId = 127335 }, -- Relgor <Bleeding Hollow Master Scout>
+				[91227] = { questId = 39159, itemId = 127666 }, -- Remnant of the Blood Moon
+				[92817] = { questId = 39400, itemId = 99999  }, -- Rendarr <Warshaman of the Blackfang>
+				[92627] = { questId = 38631, itemId = 127356 }, -- Rendrak <Direwing Alpha>
+				[90885] = { questId = 38263, itemId = 127314 }, -- Rogond the Tracker <Bleeding Hollow Huntmaster>
+				[90024] = { questId = 37953, itemId = 127318 }, -- Sergeant Mor'grak
+				[93236] = { questId = 38812, itemId = 127665 }, -- Shadowthrash
+				[92495] = { questId = 38600, itemId = 127315 }, -- Soulslicer <Corrupted Shaman>
+				[92887] = { questId = 38700, itemId = 127357 }, -- Steelsnout
+				[92606] = { questId = 38628, itemId = 127311 }, -- Sylissa <Marshwater Queen>
+				[93001] = { questId = 38752, itemId = 127296 }, -- Szirek the Twisted
+				[92465] = { questId = 38597, itemId = 127330 }, -- The Blackfang <Warboss of the Blackfang>
+				[92694] = { questId = 38654, itemId = 127305 }, -- The Goreclaw
+				[92977] = { questId = 38751, itemId = 127321 }, -- The Iron Houndmaster
+				[92636] = { questId = 38632, itemId = 127355 }, -- The Night Haunter
+				[91243] = { questId = 38747, itemId = 127310 }, -- Tho'gar Gorefist
+				[92574] = { questId = 38620, itemId = 127327 }, -- Thromma the Gutslicer
+				[92451] = { questId = 37937, itemId = 127351 }, -- Varyx the Damned
+				[92408] = { questId = 38579, itemId = 127658 }, -- Xanzith the Everlasting
+				[91087] = { questId = 38207, itemId = 127340 }, -- Zeter'el
+				[90122] = { questId = 39045, itemId = 127308 }, -- Zoug the Heavy
 			},
 
 			-- For instanceDifficulties, see: http://wowprogramming.com/docs/api/GetInstanceInfo
@@ -506,11 +548,17 @@ function R:PrepareDefaults()
      ["Reins of the Jade Primordial Direhorn"] =         { cat = MOP, type = MOUNT, method = NPC, name = GetItemInfo(94231) or L["Reins of the Jade Primordial Direhorn"], spellId = 138426, itemId = 94231, npcs = { 69842 }, chance = 20, sourceText = L["The Warbringer will be riding the mount color he has a chance to drop."], },
      ["Reins of the Slate Primordial Direhorn"] =        { cat = MOP, type = MOUNT, method = NPC, name = GetItemInfo(94229) or L["Reins of the Slate Primordial Direhorn"], spellId = 138425, itemId = 94229, npcs = { 69769 }, chance = 20, sourceText = L["The Warbringer will be riding the mount color he has a chance to drop."], },
      ["Reins of the Thundering Cobalt Cloud Serpent"] =  { cat = MOP, type = MOUNT, method = BOSS, name = GetItemInfo(95057) or L["Reins of the Thundering Cobalt Cloud Serpent"], spellId = 139442, itemId = 95057, npcs = { 99999 }, tooltipNpcs = { 69099 }, questId = 32518, chance = 2000, equalOdds = true, statisticId = { 8146 }, enableCoin = true, worldBossFactionless = true, blackMarket = true, },
-					-- 6.x                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+					-- 6.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
      ["Garn Steelmaw"] =                                 { cat = WOD, type = MOUNT, method = USE, name = GetItemInfo(116779) or L["Garn Steelmaw"], spellId = 171836, itemId = 116779, items = { 116980, 122163 }, chance = 50, sourceText = L["This bag is rewarded for earning a Gold or Platinum victory in a garrison invasion."], questId = { 37640, 38482 }, },
      ["Giant Coldsnout"] =                               { cat = WOD, type = MOUNT, method = USE, name = GetItemInfo(116673) or L["Giant Coldsnout"], spellId = 171635, itemId = 116673, items = { 116980, 122163 }, chance = 50, sourceText = L["This bag is rewarded for earning a Gold or Platinum victory in a garrison invasion."], questId = { 37640, 38482 }, },
+     ["Riding Turtle"] =                                 { cat = MOP, type = MOUNT, method = NPC, name = GetItemInfo(23720) or L["Riding Turtle"], spellId = 30174, itemId = 23720, npcs = { 81171, 85715, }, chance = 200, sourceText = L["After upgrading your garrison's Fishing Shack to level 3, fish up 5 minnows to summon a Cavedweller which can drop this mount."], },
      ["Shadowhide Pearltusk"] =                          { cat = WOD, type = MOUNT, method = USE, name = GetItemInfo(116663) or L["Shadowhide Pearltusk"], spellId = 171624, itemId = 116663, items = { 116980, 122163 }, chance = 50, sourceText = L["This bag is rewarded for earning a Gold or Platinum victory in a garrison invasion."], questId = { 37640, 38482 }, },
      ["Smoky Direwolf"] =                                { cat = WOD, type = MOUNT, method = USE, name = GetItemInfo(116786) or L["Smoky Direwolf"], spellId = 171843, itemId = 116786, items = { 116980, 122163 }, chance = 50, sourceText = L["This bag is rewarded for earning a Gold or Platinum victory in a garrison invasion."], questId = { 37640, 38482 }, },
+					-- 6.1
+     ["Armored Razorback"] =                             { cat = WOD, type = MOUNT, method = USE, name = GetItemInfo(116669) or L["Armored Razorback"], spellId = 171630, itemId = 116669, items = { 128025 }, chance = 3, sourceText = L[""], },
+     ["Tundra Icehoof"] =                                { cat = WOD, type = MOUNT, method = USE, name = GetItemInfo(116658) or L["Tundra Icehoof"], spellId = 171619, itemId = 116658, items = { 128025 }, chance = 3, sourceText = L[""], },
+     ["Warsong Direfang"] =                              { cat = WOD, type = MOUNT, method = USE, name = GetItemInfo(116780) or L["Warsong Direfang"], spellId = 171837, itemId = 116780, items = { 128025 }, chance = 3, sourceText = L[""], },
+
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
 					--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 					-- Requires a group (some of these may be soloable by certain classes, but not in general)
@@ -613,6 +661,7 @@ function R:PrepareDefaults()
      ["Crystal of the Void"] =                           { cat = MOP, type = PET, method = BOSS, name = GetItemInfo(97556) or L["Crystal of the Void"], spellId = 141448, itemId = 97556, npcs = { 18805 }, chance = 20, creatureId = 71021, sourceText = L[""], },
      ["Dark Quivering Blob"] =                           { cat = MOP, type = PET, method = BOSS, name = GetItemInfo(97960) or L["Dark Quivering Blob"], spellId = 142029, itemId = 97960, npcs = { 99999 }, tooltipNpcs = { 69017 }, instanceDifficulties = { --[[ 10/25 Normal/Heroic ]] [3] = true, [4] = true, [5] = true, [6] = true, }, chance = 50, statisticId = { 8181, 8179, 8180, 8182 }, creatureId = 71200, enableCoin = true, sourceText = L["All raid formats except Raid Finder"], lockBossName = "Primordius", groupSize = 3, },
      ["Dripping Strider Egg"] =                          { cat = MOP, type = PET, method = NPC, name = GetItemInfo(97554) or L["Dripping Strider Egg"], spellId = 141446, itemId = 97554, npcs = { 21212 }, chance = 250, creatureId = 71019, sourceText = L[""], },
+     ["Gahz'rooki's Summoning Stone"] =                  { cat = MOP, type = PET, method = NPC, name = GetItemInfo(97821) or L["Gahz'rooki's Summoning Stone"], spellId = 141789, itemId = 97821, npcs = { 70997, 70999, 71000, }, chance = 1000, creatureId = 141789, sourceText = L[""], },
      ["Half-Empty Food Container"] =                     { cat = MOP, type = PET, method = NPC, name = GetItemInfo(97961) or L["Half-Empty Food Container"], spellId = 142030, itemId = 97961, npcs = { 69251 }, chance = 750, creatureId = 71201, sourceText = L[""], },
      ["Instant Arcane Sanctum Security Kit"] =           { cat = MOP, type = PET, method = NPC, name = GetItemInfo(97549) or L["Instant Arcane Sanctum Security Kit"], spellId = 141434, itemId = 97549, npcs = { 15691 }, chance = 33, creatureId = 71015, sourceText = L[""], },
      ["Netherspace Portal-Stone"] =                      { cat = MOP, type = PET, method = NPC, name = GetItemInfo(97550) or L["Netherspace Portal-Stone"], spellId = 141435, itemId = 97550, npcs = { 15690 }, chance = 33, creatureId = 71016, sourceText = L[""], },
@@ -671,6 +720,11 @@ function R:PrepareDefaults()
 					["Sunblade Rune of Activation"] =                   { cat = WOD, type = PET, method = NPC, name = GetItemInfo(122113) or L["Sunblade Rune of Activation"], spellId = 179838, itemId = 122113, npcs = { 24882 }, chance = 10, creatureId = 90212, sourceText = L[""], },
 					["Void Collar"] =                                   { cat = WOD, type = PET, method = NPC, name = GetItemInfo(122114) or L["Void Collar"], spellId = 179839, itemId = 122114, npcs = { 25840 }, chance = 10, creatureId = 90213, sourceText = L[""], },
 					["Young Talbuk"] =                                  { cat = WOD, type = PET, method = USE, name = GetItemInfo(122533) or L["Young Talbuk"], spellId = 177218, itemId = 122533, items = { 122535 }, chance = 33, creatureId = 91408, sourceText = L[""], questId = { 382994, 38300 }, },
+					-- 6.2
+					["Nightmare Bell"] =                                { cat = WOD, type = PET, method = USE, name = GetItemInfo(127753) or L["Nightmare Bell"], spellId = 185055, itemId = 127753, items = { 127751 }, chance = 33, creatureId = 93483, sourceText = L["Can drop from Fel-Touched Pet Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."], },
+					["Periwinkle Calf"] =                               { cat = WOD, type = PET, method = USE, name = GetItemInfo(127754) or L["Periwinkle Calf"], spellId = 187555, itemId = 127754, items = { 127751 }, chance = 33, creatureId = 93352, sourceText = L["Can drop from Fel-Touched Pet Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."], },
+					["Seaborne Spore"] =                                { cat = WOD, type = PET, method = USE, name = GetItemInfo(118105) or L["Seaborne Spore"], spellId = 173544, itemId = 118105, items = { 127751 }, chance = 33, creatureId = 86718, sourceText = L["Can drop from Fel-Touched Pet Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."], },
+					["Zangar Spore"] =                                  { cat = WOD, type = PET, method = USE, name = GetItemInfo(118101) or L["Zangar Spore"], spellId = 173532, itemId = 118101, items = { 127751 }, chance = 33, creatureId = 86715, sourceText = L["Can drop from Fel-Touched Pet Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."], },
     },
     items = {
      name = L["Toys & Items"],
@@ -715,6 +769,9 @@ function R:PrepareDefaults()
      ["Panflute of Pandaria"] =                          { cat = MOP, type = ITEM, isToy = true, method = NPC, name = GetItemInfo(86586) or L["Panflute of Pandaria"], itemId = 86586, npcs = { 50806, }, chance = 7, sourceText = L[""], },
      ["Rime of the Time-Lost Mariner"] =                 { cat = MOP, type = ITEM, isToy = true, method = NPC, name = GetItemInfo(104294) or L["Rime of the Time-Lost Mariner"], itemId = 104294, npcs = { 73281, }, chance = 7, sourceText = L[""], },
      ["Warning Sign"] =                                  { cat = MOP, type = ITEM, isToy = true, method = NPC, name = GetItemInfo(104331) or L["Warning Sign"], itemId = 104331, npcs = { 73169, }, chance = 100, sourceText = L[""], },
+					-- Toys (6.x)
+     ["Fandral's Seed Pouch"] =                          { cat = WOD, type = ITEM, isToy = true, method = NPC, name = GetItemInfo(122304) or L["Fandral's Seed Pouch"], itemId = 122304, npcs = { 52571, }, chance = 100, sourceText = L["Will only drop for druids."], },
+					
 					-- Mount-related items (5.x)
      ["Primal Egg"] =                                    { cat = MOP, type = ITEM, method = NPC, name = GetItemInfo(94295) or L["Primal Egg"], itemId = 94295, npcs = { 69983, 69991, 69992, 69993, 70004, 70005, 70006, 70007, 70008, 70009, 70010, 70011, 70012, 70013, 70014, 70015, 70016, 70017, 70018, 70019, 70020, 70021, }, chance = 100, repeatable = true, unique = true, sourceText = L["Dropped by dinosaurs on Isle of Giants Will hatch into one of three Primal Raptor mounts after three days."], },
      ["Skyshard"] =                                      { cat = MOP, type = ITEM, method = ZONE, name = GetItemInfo(86547) or L["Skyshard"], spellId = 90655, itemId = 86547, zones = { "811" }, chance = 1000, repeatable = true, sourceText = L["Dropped by any mob in Vale of Eternal Blossoms (except minor mobs). 10 of these can be combined to pierce Alani's shield, allowing combat and a guaranteed drop of Reins of the Thundering Ruby Cloud Serpent."], },
