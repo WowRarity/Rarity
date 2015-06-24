@@ -173,10 +173,11 @@ function R:PrepareDefaults()
 
 			-- These are achievements with the names of rare NPCs as criteria to kill
 			achNpcs = {
-				1312, -- Bloody Rare
-				2257, -- Frostbitten
-				7439, -- Glorious!
-				9400, -- Gorgrond Monster Hunter
+				1312,  -- Bloody Rare
+				2257,  -- Frostbitten
+				7439,  -- Glorious!
+				9400,  -- Gorgrond Monster Hunter
+				10070, -- Jungle Stalker
 			},
 
 			-- These are inventory items that may result in another item that Rarity would like to make you aware of
@@ -579,7 +580,6 @@ function R:PrepareDefaults()
 					-- 6.x
      ["Garn Nighthowl"] =                                { cat = WOD, type = MOUNT, method = BOSS, name = GetItemInfo(116794) or L["Garn Nighthowl"], spellId = 171851, itemId = 116794, npcs = { 81001 }, chance = 1, groupSize = 25, },
      ["Solar Spirehawk"] =                               { cat = WOD, type = MOUNT, method = BOSS, name = GetItemInfo(116771) or L["Solar Spirehawk"], spellId = 171828, itemId = 116771, npcs = { 99999 }, tooltipNpcs = { 87493 }, chance = 2000, groupSize = 40, equalOdds = true, statisticId = { 9279 }, worldBossFactionless = true, questId = 37464, },
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
     },
     pets = {
      name = L["Battle Pets"],
@@ -725,6 +725,7 @@ function R:PrepareDefaults()
 					["Periwinkle Calf"] =                               { cat = WOD, type = PET, method = USE, name = GetItemInfo(127754) or L["Periwinkle Calf"], spellId = 187555, itemId = 127754, items = { 127751 }, chance = 33, creatureId = 93352, sourceText = L["Can drop from Fel-Touched Pet Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."], },
 					["Seaborne Spore"] =                                { cat = WOD, type = PET, method = USE, name = GetItemInfo(118105) or L["Seaborne Spore"], spellId = 173544, itemId = 118105, items = { 127751 }, chance = 33, creatureId = 86718, sourceText = L["Can drop from Fel-Touched Pet Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."], },
 					["Zangar Spore"] =                                  { cat = WOD, type = PET, method = USE, name = GetItemInfo(118101) or L["Zangar Spore"], spellId = 173532, itemId = 118101, items = { 127751 }, chance = 33, creatureId = 86715, sourceText = L["Can drop from Fel-Touched Pet Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."], },
+     ["Corrupted Nest Guardian"] =                       { cat = WOD, type = PET, method = BOSS, name = GetItemInfo(127749) or L["Corrupted Nest Guardian"], spellId = 187532, itemId = 127749, npcs = { 99999 }, tooltipNpcs = { 95067 }, chance = 100, statisticId = { 10228, 10227, 10226, 10225 }, creatureId = 94623, enableCoin = true, sourceText = L[""], lockBossName = "Shadow-Lord Iskar", groupSize = 10,  equalOdds = true, },                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
     },
     items = {
      name = L["Toys & Items"],

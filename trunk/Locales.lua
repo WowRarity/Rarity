@@ -760,6 +760,7 @@ L["Nightmare Bell"] = true
 L["Gahz'rooki's Summoning Stone"] = true
 L["Riding Turtle"] = true
 L["Fandral's Seed Pouch"] = true
+L["Corrupted Nest Guardian"] = true
 
 
 
