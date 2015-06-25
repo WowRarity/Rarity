@@ -2798,7 +2798,10 @@ function R:ShowFoundAlert(itemId, attempts)
 
  self:ScheduleTimer(function()
   -- Take a screenshot
-	 if Rarity.db.profile.takeScreenshot then TakeScreenshot() end
+	 if Rarity.db.profile.takeScreenshot then
+			if ( ActionStatus:IsShown() ) then ActionStatus:Hide() end
+			Screenshot()
+		end
  end, 2)
 
  self:ScheduleTimer(function()
