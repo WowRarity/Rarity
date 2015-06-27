@@ -1779,6 +1779,8 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 		end
 	end
 
+	blankAdded = false
+
 	-- One-time items
  if Rarity.db.profile.oneTimeItems[npcid] and type(Rarity.db.profile.oneTimeItems[npcid]) == "table" then
 		if Rarity.db.profile.oneTimeItems[npcid].itemId ~= 99999 then
@@ -1817,6 +1819,8 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 			end
 		end
 	end
+
+	blankAdded = false
 
 	-- NPC is required for an achievement
 	if Rarity.ach_npcs_achId[name] then
@@ -1925,6 +1929,8 @@ hooksecurefunc(GameTooltip, "SetBagItem", function(self, bag, slot)
 				end
 			end
 		end
+
+		blankAdded = false
 		
 		-- Extra item tooltips
 		if R.db.profile.extraTooltips.inventoryItems[id] then
@@ -2407,6 +2413,36 @@ do
   tooltip2AddLine(colorize(L["Click to switch to this item"], gray))
   tooltip2AddLine(colorize(L["Shift-Click to link your progress to chat"], gray))
 
+		if item.coords ~= nil and type(item.coords) == "table" then
+			local numCoords = 0
+			local totalCoords = 0
+			for _, coord in pairs(item.coords) do
+				if type(coord) == "table" and coord.x ~= nil and coord.y ~= nil and coord.m ~= nil then
+					totalCoords = totalCoords + 1
+					if coord.q ~= nil then
+						if IsQuestFlaggedCompleted(coord.q) == false then numCoords = numCoords + 1 end
+					else
+						numCoords = numCoords + 1
+					end
+				end
+			end
+			if totalCoords > 0 then
+				local s = format(L["Rarity has %d |4coordinate:coordinates; for this item."], totalCoords).." "
+				if totalCoords > numCoords then s = s..format(L["You already defeated %d of them."], totalCoords - numCoords).." " end
+				if TomTom ~= nil and TomTom.AddMFWaypoint ~= nil then
+					if numCoords > 0 then
+						if totalCoords > numCoords then s = s..L["Ctrl-Click to create the remaining TomTom waypoint(s)."]
+						else s = s..L["Ctrl-Click to create TomTom waypoint(s)."]
+						end
+					end
+				else
+					s = s..L["Install TomTom to enable waypoint creation."]
+				end
+				tooltip2:AddSeparator(1, 1, 1, 1, 1)
+				tooltip2AddLine(colorize(s, green))
+			end
+		end
+
 		--tooltip2:UpdateScrolling()
 		tooltip2:Show()
 	end
@@ -2464,6 +2500,28 @@ do
    if attempts == 1 then s = format(L["%s: 0/%d attempt so far (%.2f%% - %s)"], itemLink or item.name, attempts, chance, lucky) end
    if attempts <= 0 then s = format("%s", itemLink or item.name) end
    ChatEdit_InsertLink(s)
+		elseif IsControlKeyDown() then
+   if not item or type(item) ~= "table" or not item.itemId then return end
+			if item.coords ~= nil and type(item.coords) == "table" then
+				local added = 0
+				local instance = 0
+				for _, coord in pairs(item.coords) do
+					local good = false
+					if coord.q ~= nil then
+						if IsQuestFlaggedCompleted(coord.q) == false then good = true end
+					else
+						good = true
+					end
+					if good and TomTom ~= nil and TomTom.AddMFWaypoint ~= nil and coord.m ~= nil and coord.x ~= nil and coord.y ~= nil then
+						TomTom:AddMFWaypoint(coord.m, coord.f or nil, coord.x / 100.0, coord.y / 100.0, { title = "Rarity"..": "..item.name })
+						added = added + 1
+						if coord.i == true then instance = instance + 1 end
+						if TomTom.SetClosestWaypoint ~= nil then TomTom:SetClosestWaypoint() end
+					end
+				end
+				if added > 0 then Rarity:Print(format(L["Added %d |4waypoint:waypoints; to TomTom"], added)) end
+				if instance > 0 then Rarity:Print(format(L["%d |4waypoint:waypoints; |4is:are; located inside |4an instance:instances;"], added)) end
+			end
   else
    if trackedItem ~= item and inSession then R:EndSession() end
 			trackedItem2 = nil
@@ -2578,52 +2636,71 @@ do
 									local class, classFileName = UnitClass("player")
 									if classFileName ~= "ROGUE" then status = colorize(L["Unavailable"], gray) end
 								end
+
+								-- Support for Defeated items with multiple steps of defeat (supports quests only)
+								if status == colorize(L["Defeated"], red) and v.defeatAllQuests and v.questId ~= nil and type(v.questId) == "table" then
+									local totalQuests = 0
+									local numQuests = 0
+									for _, quest in pairs(v.questId) do
+										totalQuests = totalQuests + 1
+										if IsQuestFlaggedCompleted(quest) then numQuests = numQuests + 1 end
+									end
+									if totalQuests > numQuests then
+										status = colorize(format(L["Defeated"].." (%d of %d)", numQuests, totalQuests), yellow)
+									end
+								end
+
 								if Rarity.db.profile.hideUnavailable == false or status ~= colorize(L["Unavailable"], gray) then
-									if Rarity.db.profile.holidayReminder and Rarity.allRemindersDone == nil and v.holidayReminder ~= false and v.cat == HOLIDAY and status == colorize(L["Undefeated"], green) then
-										Rarity.anyReminderDone = true
-										numHolidayReminders = numHolidayReminders + 1
-										if numHolidayReminders <= 2 then
-											local text = format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or v.name)
-											Rarity:Print(text)
-											if tostring(SHOW_COMBAT_TEXT) ~= "0" then
-												if type(CombatText_AddMessage) == "nil" then UIParentLoadAddOn("Blizzard_CombatText") end
-												CombatText_AddMessage(text, CombatText_StandardScroll, 1, 1, 1, true, false)
-											else
-												UIErrorsFrame:AddMessage(text, 1, 1, 1, 1.0)
-											end
-										else
-											if showedHolidayReminderOverflow == false then
-												Rarity:Print(colorize(L["There are more holiday items available, but Rarity only reminds you about the first two."], gray))
-											end
-											showedHolidayReminderOverflow = true
-										end
-									end
+									if Rarity.db.profile.hideDefeated == false or status ~= colorize(L["Defeated"], red) then
 
-									-- Header
-									if not added then
-										headerAdded = true
-										local groupName = group.name
-										if requiresGroup then groupName = groupName..L[" (Group)"] end
-										if not headers[groupName] and v.itemId ~= nil then
-											headers[groupName] = true
-											local collapsed = group.collapsed or false
-											if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
-												line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
+										-- Holiday reminder
+										if Rarity.db.profile.holidayReminder and Rarity.allRemindersDone == nil and v.holidayReminder ~= false and v.cat == HOLIDAY and status == colorize(L["Undefeated"], green) then
+											Rarity.anyReminderDone = true
+											numHolidayReminders = numHolidayReminders + 1
+											if numHolidayReminders <= 2 then
+												local text = format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or v.name)
+												Rarity:Print(text)
+												if tostring(SHOW_COMBAT_TEXT) ~= "0" then
+													if type(CombatText_AddMessage) == "nil" then UIParentLoadAddOn("Blizzard_CombatText") end
+													CombatText_AddMessage(text, CombatText_StandardScroll, 1, 1, 1, true, false)
+												else
+													UIErrorsFrame:AddMessage(text, 1, 1, 1, 1.0)
+												end
 											else
-												line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), colorize(L["Time"], yellow), colorize(L["Luckiness"], yellow), colorize(L["Defeated"], yellow))
+												if showedHolidayReminderOverflow == false then
+													Rarity:Print(colorize(L["There are more holiday items available, but Rarity only reminds you about the first two."], gray))
+												end
+												showedHolidayReminderOverflow = true
 											end
-											tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
 										end
-									end
 
-									-- Add the item to the tooltip
-									local catIcon = ""
-									if Rarity.db.profile.showCategoryIcons and v.cat and Rarity.catIcons[v.cat] then catIcon = [[|TInterface\AddOns\Rarity\Icons\]]..Rarity.catIcons[v.cat]..".blp:0:4|t " end
-									line = tooltip:AddLine(icon, catIcon..(itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky, status)
-									tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
-									tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
-									tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
-									added = true
+										-- Header
+										if not added then
+											headerAdded = true
+											local groupName = group.name
+											if requiresGroup then groupName = groupName..L[" (Group)"] end
+											if not headers[groupName] and v.itemId ~= nil then
+												headers[groupName] = true
+												local collapsed = group.collapsed or false
+												if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
+													line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
+												else
+													line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), colorize(L["Time"], yellow), colorize(L["Luckiness"], yellow), colorize(L["Defeated"], yellow))
+												end
+												tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
+											end
+										end
+
+										-- Add the item to the tooltip
+										local catIcon = ""
+										if Rarity.db.profile.showCategoryIcons and v.cat and Rarity.catIcons[v.cat] then catIcon = [[|TInterface\AddOns\Rarity\Icons\]]..Rarity.catIcons[v.cat]..".blp:0:4|t " end
+										line = tooltip:AddLine(icon, catIcon..(itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky, status)
+										tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
+										tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
+										tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
+										added = true
+
+									end
 								end
 							end
 						end

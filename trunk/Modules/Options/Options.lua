@@ -336,6 +336,19 @@ function R:PrepareOptions()
 								end,
 							},
 
+							hideDefeated = {
+								type = "toggle",
+								order = newOrder(),
+								width = "double",
+								name = L["Hide defeated items"],
+								desc = L["When on, items marked as Defeated will be hidden from the tooltip."],
+								get = function() return self.db.profile.hideDefeated end,
+								set = function(info, val)
+									self.db.profile.hideDefeated = val
+									self:UpdateText()
+								end,
+							},
+
 				   tooltipScale = {
 					   order = newOrder(),
 					   type = "range",
@@ -1517,6 +1530,11 @@ function R:CreateGroup(options, group, isUser)
 						[15] = L["Heroic Raid (10-30 players)"],
 						[16] = L["Mythic Raid (20 player)"],
 						[17] = L["Looking For Raid (10-30 players)"],
+						[18] = L["40-player Event raid"],
+						[19] = L["5-player Event instance"],
+						[20] = L["25-player Event scenario"],
+						[23] = L["Mythic 5-player instance"],
+						[24] = L["Timewalker 5-player instance"],
 					},
 					get = function(s, key)
       if item.instanceDifficulties then return item.instanceDifficulties[key] or false end

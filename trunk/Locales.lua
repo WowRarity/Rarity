@@ -284,6 +284,16 @@ L["Enable profiling"] = true
 L["When enabled, Rarity will print debug profiling messages to the chat window when certain things happen. This is used to determine which parts of the code are slow."] = true
 L["Use your bonus roll for a chance at this item"] = true
 L["There are more holiday items available, but Rarity only reminds you about the first two."] = true
+L["Rarity has %d |4coordinate:coordinates; for this item."] = true
+L["You already defeated %d of them."] = true
+L["Ctrl-Click to create the remaining TomTom waypoint(s)."] = true
+L["Ctrl-Click to create TomTom waypoint(s)."] = true
+L["Install TomTom to enable waypoint creation."] = true
+L["Added %d |4waypoint:waypoints; to TomTom"] = true
+L["Hide defeated items"] = true
+L["When on, items marked as Defeated will be hidden from the tooltip."] = true
+L["%d |4waypoint:waypoints; |4is:are; located inside |4an instance:instances;"] = true
+
 
 
 
@@ -308,6 +318,12 @@ L["Any raid size"] = true
 L["Heroic, any raid size"] = true
 L["Only Raid Finder difficulty"] = true
 L["Raid Finder or Flexible difficulty"] = true
+L["40-player Event raid"] = true
+L["5-player Event instance"] = true
+L["25-player Event scenario"] = true
+L["Mythic 5-player instance"] = true
+L["Timewalker 5-player instance"] = true
+
 
 L["Dropped by Yogg-Saron in Ulduar (25-player) with no Keepers assisting"] = true
 L["Dropped by Malygos in The Eye of Eternity (any raid size)"] = true
@@ -344,7 +360,7 @@ L["Available starting December 25th"] = true
 L["Can drop from Fel-Touched Pet Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."] = true
 L["After upgrading your garrison's Fishing Shack to level 3, fish up 5 minnows to summon a Cavedweller which can drop this mount."] = true
 L["Will only drop for druids."] = true
-
+L["Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount \"defeated\" for the day when you kill any of the four."] = true
 
 -- Instance difficulties
 L["None (not in an instance)"] = true
