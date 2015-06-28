@@ -2428,7 +2428,10 @@ do
 			end
 			if totalCoords > 0 then
 				local s = format(L["Rarity has %d |4coordinate:coordinates; for this item."], totalCoords).." "
-				if totalCoords > numCoords then s = s..format(L["You already defeated %d of them."], totalCoords - numCoords).." " end
+				if totalCoords > numCoords then
+					if numCoords <= 0 then s = s..L["You already defeated all of them."]
+					else s = s..format(L["You already defeated %d of them."], totalCoords - numCoords).." " end
+				end
 				if TomTom ~= nil and TomTom.AddMFWaypoint ~= nil then
 					if numCoords > 0 then
 						if totalCoords > numCoords then s = s..L["Ctrl-Click to create the remaining TomTom waypoint(s)."]
@@ -2685,16 +2688,34 @@ do
 												if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
 													line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
 												else
-													line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), colorize(L["Time"], yellow), colorize(L["Luckiness"], yellow), colorize(L["Defeated"], yellow))
+													line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), colorize(L["Time"], yellow), colorize(L["Luckiness"], yellow), colorize(L["Zone"], yellow), colorize(L["Defeated"], yellow))
 												end
 												tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
 											end
 										end
 
+										-- Zone
+										local zoneText = ""
+										if v.coords ~= nil and type(v.coords) == "table" then
+											local zoneList = {}
+											local numZones = 0
+											for _, zoneValue in pairs(v.coords) do
+												if type(zoneValue) == "table" and zoneValue.m ~= nil then
+													if zoneList[zoneValue.m] == nil then
+														numZones = numZones + 1
+														zoneList[zoneValue.m] = true
+													end
+													zoneText = GetMapNameByID(zoneValue.m)
+												end
+											end
+											if numZones > 1 then zoneText = format(L["%d |4zone:zones;"], numZones) end
+											if v.coords.zoneOverride ~= nil then zoneText = v.coords.zoneOverride end
+										end
+
 										-- Add the item to the tooltip
 										local catIcon = ""
 										if Rarity.db.profile.showCategoryIcons and v.cat and Rarity.catIcons[v.cat] then catIcon = [[|TInterface\AddOns\Rarity\Icons\]]..Rarity.catIcons[v.cat]..".blp:0:4|t " end
-										line = tooltip:AddLine(icon, catIcon..(itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky, status)
+										line = tooltip:AddLine(icon, catIcon..(itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky, colorize(zoneText, gray), status)
 										tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
 										tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
 										tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
@@ -2721,7 +2742,7 @@ do
 				if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
 					line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
 				else
-					line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), colorize(L["Time"], yellow), colorize(L["Luckiness"], yellow), colorize(L["Defeated"], yellow))
+					line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), colorize(L["Time"], yellow), colorize(L["Luckiness"], yellow), colorize(L["Zone"], yellow), colorize(L["Defeated"], yellow))
 				end
 				tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
 			end
@@ -2738,7 +2759,7 @@ do
 		if qtip:IsAcquired("RarityTooltip") and tooltip then
 			tooltip:Clear()
 		else
-			tooltip = qtip:Acquire("RarityTooltip", 8, "LEFT", "LEFT", "RIGHT", "RIGHT", "RIGHT", "RIGHT", "RIGHT") -- intentionally one column more than we need to avoid text clipping
+			tooltip = qtip:Acquire("RarityTooltip", 9, "LEFT", "LEFT", "RIGHT", "RIGHT", "RIGHT", "CENTER", "CENTER", "CENTER") -- intentionally one column more than we need to avoid text clipping
 			tooltip:SetScale(self.db.profile.tooltipScale or 1)
 		end
 		

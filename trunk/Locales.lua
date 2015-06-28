@@ -293,6 +293,10 @@ L["Added %d |4waypoint:waypoints; to TomTom"] = true
 L["Hide defeated items"] = true
 L["When on, items marked as Defeated will be hidden from the tooltip."] = true
 L["%d |4waypoint:waypoints; |4is:are; located inside |4an instance:instances;"] = true
+L["You already defeated all of them."] = true
+L["Zone"] = true
+L["%d |4zone:zones;"] = true
+L["Draenor Garrison"] = true
 
 
 
