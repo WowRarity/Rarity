@@ -2408,6 +2408,15 @@ do
    tooltip2AddDoubleLine(L["Last Month"], format("%d (%s)", monthAttempts or 0, R:FormatTime(monthTime or 0)))
 
   end
+
+		if item.defeatSteps ~= nil and type(item.defeatSteps) == "table" then
+			tooltip2:AddSeparator(1, 1, 1, 1, 1)
+			for defeatStepQuest, defeatStepText in pairs(item.defeatSteps) do
+				local defeated = colorize(L["Undefeated"], green)
+				if IsQuestFlaggedCompleted(defeatStepQuest) then defeated = colorize(L["Defeated"], red) end
+				tooltip2AddDoubleLine(defeatStepText, defeated)
+			end
+		end
 		
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
   tooltip2AddLine(colorize(L["Click to switch to this item"], gray))
@@ -2696,6 +2705,9 @@ do
 
 										-- Zone
 										local zoneText = ""
+										local inMyZone = false
+										local zoneColor = gray
+										local currentZone = GetCurrentMapAreaID()
 										if v.coords ~= nil and type(v.coords) == "table" then
 											local zoneList = {}
 											local numZones = 0
@@ -2706,16 +2718,23 @@ do
 														zoneList[zoneValue.m] = true
 													end
 													zoneText = GetMapNameByID(zoneValue.m)
+													if currentZone == zoneValue.m then inMyZone = true end
 												end
 											end
 											if numZones > 1 then zoneText = format(L["%d |4zone:zones;"], numZones) end
 											if v.coords.zoneOverride ~= nil then zoneText = v.coords.zoneOverride end
+											if inMyZone then
+												zoneColor = green
+												if numZones > 1 then
+													zoneText = GetMapNameByID(currentZone).." "..colorize(format(L["and %d |4other zone:other zones;"], numZones - 1), gray)
+												end
+											end
 										end
 
 										-- Add the item to the tooltip
 										local catIcon = ""
 										if Rarity.db.profile.showCategoryIcons and v.cat and Rarity.catIcons[v.cat] then catIcon = [[|TInterface\AddOns\Rarity\Icons\]]..Rarity.catIcons[v.cat]..".blp:0:4|t " end
-										line = tooltip:AddLine(icon, catIcon..(itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky, colorize(zoneText, gray), status)
+										line = tooltip:AddLine(icon, catIcon..(itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky, colorize(zoneText, zoneColor), status)
 										tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
 										tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
 										tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)

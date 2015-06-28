@@ -297,6 +297,13 @@ L["You already defeated all of them."] = true
 L["Zone"] = true
 L["%d |4zone:zones;"] = true
 L["Draenor Garrison"] = true
+L["and %d |4other zone;other zones;"] = true
+L["Garrison Invasion Gold Victory"] = true
+L["Garrison Invasion Platinum Victory"] = true
+L["Vengeance"] = true
+L["Deathtalon"] = true
+L["Terrorfist"] = true
+L["Doomroller"] = true
 
 
 
