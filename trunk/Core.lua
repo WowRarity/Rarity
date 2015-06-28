@@ -1275,7 +1275,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
 
 	-- If the loot is not from an NPC (could be from yourself or a world object), we don't want to process this
  local unitType, _, _, _, _, mob_id = strsplit('-', guid)
- if unitType ~= "Creature" then
+ if unitType ~= "Creature" and unitType ~= "Vehicle" then
 		self:Debug("This loot isn't from an NPC; disregarding. Loot source identified as unit type: "..(unitType or "nil"))
 		return
 	end
