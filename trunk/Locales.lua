@@ -372,6 +372,9 @@ L["Can drop from Fel-Touched Pet Supplies, which is obtained by defeating the Fe
 L["After upgrading your garrison's Fishing Shack to level 3, fish up 5 minnows to summon a Cavedweller which can drop this mount."] = true
 L["Will only drop for druids."] = true
 L["Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount \"defeated\" for the day when you kill any of the four."] = true
+L["Dropped from monsters in Fang'rila"] = true
+L["Purchased from Z'tenga the Walker <Saberstalker Quartermaster> in Fang'rila in Tanaan Jungle. Blackfang Claws drop from all monsters in Fang'rila."] = true
+
 
 -- Instance difficulties
 L["None (not in an instance)"] = true
@@ -788,7 +791,8 @@ L["Gahz'rooki's Summoning Stone"] = true
 L["Riding Turtle"] = true
 L["Fandral's Seed Pouch"] = true
 L["Corrupted Nest Guardian"] = true
-
+L["Bristling Hellboar"] = true
+L["Wild Goretusk"] = true
 
 
 

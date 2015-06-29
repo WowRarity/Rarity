@@ -52,6 +52,7 @@ Rarity.ach_npcs_isKilled = {}
 Rarity.ach_npcs_achId = {}
 Rarity.stats_to_scan = {}
 Rarity.items_with_stats = {}
+Rarity.collection_items = {}
 
 local bankOpen = false
 local guildBankOpen = false
@@ -927,6 +928,7 @@ function R:UpdateInterestingThings()
  table.wipe(architems)
 	table.wipe(Rarity.stats_to_scan)
 	table.wipe(Rarity.items_with_stats)
+	table.wipe(Rarity.collection_items)
 
  for k, v in pairs(self.db.profile.groups) do
   if type(v) == "table" then
@@ -976,7 +978,10 @@ function R:UpdateInterestingThings()
      end
      if vv.itemId ~= nil and vv.method ~= COLLECTION then items[vv.itemId] = vv end
      if vv.itemId2 ~= nil and vv.method ~= COLLECTION then items[vv.itemId2] = vv end
-					if vv.method == COLLECTION and vv.collectedItemId ~= nil then items[vv.collectedItemId] = vv end
+					if vv.method == COLLECTION and vv.collectedItemId ~= nil then
+						items[vv.collectedItemId] = vv
+						table.insert(Rarity.collection_items, vv)
+					end
 					if vv.tooltipNpcs and type(vv.tooltipNpcs) == "table" then
       for kkk, vvv in pairs(vv.tooltipNpcs) do
        if npcs_to_items[vvv] == nil then npcs_to_items[vvv] = {} end
@@ -1391,21 +1396,29 @@ function R:OnBagUpdate()
   for k, v in pairs(bagitems) do
 
 			-- Handle collection items
-			if items[k] and items[k].enabled ~= false then
+			if items[k] then
 				if items[k].method == COLLECTION then
-					local originalCount = (items[k].attempts or 0)
 					local bagCount = (bagitems[k] or 0)
-					local goal = (items[k].chance or 100)
-					items[k].lastAttempts = 0
-					if items[k].attempts ~= bagCount then
-						items[k].attempts = bagCount
-						self:Update("BAG_UPDATE")
+
+					-- Our items hashtable only saves one item for this collected item, so we have to scan to find them all now.
+					-- Earlier, we pre-built a list of just the items that are COLLECTION items to save some time here.
+					for kk, vv in pairs(Rarity.collection_items) do
+						if vv.collectedItemId == items[k].collectedItemId and vv.enabled ~= false then
+							local originalCount = (vv.attempts or 0)
+							local goal = (vv.chance or 100)
+							vv.lastAttempts = 0
+							if vv.attempts ~= bagCount then
+								vv.attempts = bagCount
+								self:Update("BAG_UPDATE")
+							end
+							if originalCount < bagCount and originalCount < goal and bagCount >= goal then
+								self:FoundItem(vv.itemId, vv)
+							elseif originalCount < bagCount then
+								self:OutputAttempts(vv)
+							end
+						end
 					end
-					if originalCount < bagCount and originalCount < goal and bagCount >= goal then
-						self:FoundItem(items[k].itemId, items[k])
-					elseif originalCount < bagCount then
-						self:OutputAttempts(items[k])
-					end
+
 				end
 			end
 
