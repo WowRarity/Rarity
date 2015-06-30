@@ -1409,7 +1409,6 @@ function R:OnBagUpdate()
 							vv.lastAttempts = 0
 							if vv.attempts ~= bagCount then
 								vv.attempts = bagCount
-								--self:Update("BAG_UPDATE")
 							end
 							if originalCount < bagCount and originalCount < goal and bagCount >= goal then
 								self:FoundItem(vv.itemId, vv)
