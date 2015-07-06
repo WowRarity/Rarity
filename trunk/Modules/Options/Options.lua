@@ -997,24 +997,35 @@ function R:CreateGroup(options, group, isUser)
      desc = L["The item ID that you need to collect. Rarity uses the number of this item that you have in your bags as your progress. Use WowHead or a similar service to lookup item IDs. This must be a valid number and must not be used by another item."],
 			  set = function(info, val)
 				  if strtrim(val) == "" then alert(L["You must enter an item ID."])
-      elseif tonumber(val) == nil then alert(L["You must enter a valid number."])
       else
-       for _, v in pairs(allitems()) do
-        if v.itemId == tonumber(val) then
-         alert(L["You entered an item ID that is already being used by another item."])
+       local list = { strsplit(",", val) }
+       for k, v in pairs(list) do
+        if strtrim(v) == "" then
+         alert(L["Please enter a comma-separated list of item IDs."])
          return
         end
-								if v.collectedItemId and v.collectedItemId == tonumber(val) then
-         alert(L["You entered an item ID that is already set as the collected item for something else."])
-         return
-								end
        end
-       if tonumber(val) <= 0 then alert(L["You must enter a number larger than 0."])
-       else item.collectedItemId = tonumber(val) end
+       item.collectedItemId = {}
+       for k, v in pairs(list) do
+        table.insert(item.collectedItemId, strtrim(v))
+       end
 				  end
 						self:Update("OPTIONS")
 			  end,
-     get = function(into) if item.collectedItemId then return tostring(item.collectedItemId) else return nil end end,
+     get = function(into)
+      if item.collectedItemId and type(item.collectedItemId) == "table" then
+       local s = ""
+       for k, v in pairs(item.collectedItemId) do
+        if strlen(s) > 0 then s = s.."," end
+        s = s..v
+       end
+       return s
+      elseif item.collectedItemId then
+							return tostring(item.collectedItemId)
+						else
+							return nil
+						end
+     end,
 			  disabled = not isUser,
 			  hidden = function() return item.method ~= COLLECTION end,
 		  },

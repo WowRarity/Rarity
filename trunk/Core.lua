@@ -671,6 +671,19 @@ function R:tcopy(to, from)
 end
 
 
+local function containsOrIs(a, b)
+	-- "a" can be a table or a value
+	if type(a) == "table" then
+		for k, v in pairs(a) do
+			if v == b then return true end
+		end
+	else
+		if a == b then return true end
+	end
+	return false
+end
+
+
 local function getDate(delta)
  local dt = date("*t", time() - (delta or 0))
  return dt.year * 10000 + dt.month * 100 + dt.day
@@ -979,7 +992,13 @@ function R:UpdateInterestingThings()
      if vv.itemId ~= nil and vv.method ~= COLLECTION then items[vv.itemId] = vv end
      if vv.itemId2 ~= nil and vv.method ~= COLLECTION then items[vv.itemId2] = vv end
 					if vv.method == COLLECTION and vv.collectedItemId ~= nil then
-						items[vv.collectedItemId] = vv
+						if type(vv.collectedItemId) == "table" then
+							for kkk, vvv in pairs(vv.collectedItemId) do
+								items[vvv] = vv
+							end
+						else
+							items[vv.collectedItemId] = vv
+						end
 						table.insert(Rarity.collection_items, vv)
 					end
 					if vv.tooltipNpcs and type(vv.tooltipNpcs) == "table" then
@@ -1403,19 +1422,43 @@ function R:OnBagUpdate()
 					-- Our items hashtable only saves one item for this collected item, so we have to scan to find them all now.
 					-- Earlier, we pre-built a list of just the items that are COLLECTION items to save some time here.
 					for kk, vv in pairs(Rarity.collection_items) do
-						if vv.collectedItemId == items[k].collectedItemId and vv.enabled ~= false then
-							local originalCount = (vv.attempts or 0)
-							local goal = (vv.chance or 100)
-							vv.lastAttempts = 0
-							if vv.attempts ~= bagCount then
-								vv.attempts = bagCount
+
+						-- This item is a collection of several items; add them all up and check for attempts
+						if type(vv.collectedItemId) == "table" then
+							if vv.enabled ~= false then
+								local total = 0
+								local originalCount = (vv.attempts or 0)
+								local goal = (vv.chance or 100)
+								for kkk, vvv in pairs(vv.collectedItemId) do
+									if (bagitems[vvv] or 0) > 0 then total = total + bagitems[vvv] end
+								end
+								if total > originalCount then
+									vv.attempts = total
+									if originalCount < goal and total >= goal then
+										self:FoundItem(vv.itemId, vv)
+									elseif total > originalCount then
+										self:OutputAttempts(vv)
+									end
+								end
 							end
-							if originalCount < bagCount and originalCount < goal and bagCount >= goal then
-								self:FoundItem(vv.itemId, vv)
-							elseif originalCount < bagCount then
-								self:OutputAttempts(vv)
+
+						-- This item is a collection of a single type of item
+						else
+							if containsOrIs(items[k].collectedItemId, vv.collectedItemId) and vv.enabled ~= false then
+								local originalCount = (vv.attempts or 0)
+								local goal = (vv.chance or 100)
+								vv.lastAttempts = 0
+								if vv.attempts ~= bagCount then
+									vv.attempts = bagCount
+								end
+								if originalCount < bagCount and originalCount < goal and bagCount >= goal then
+									self:FoundItem(vv.itemId, vv)
+								elseif originalCount < bagCount then
+									self:OutputAttempts(vv)
+								end
 							end
 						end
+
 					end
 
 				end
@@ -2316,8 +2359,18 @@ do
 		end
 
 		if item.method == COLLECTION then
-   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.collectedItemId)
-			tooltip2AddLine(colorize(format(L["Collect %d %s"], item.chance or 100, itemLink or itemName or ""), white))
+			local collectText = ""
+			if type(item.collectedItemId) ~= "table" then
+				local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.collectedItemId)
+				collectText = itemLink or itemName or ""
+			else
+				for k, v in pairs(item.collectedItemId) do
+					local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v)
+					if collectText ~= "" then collectText = collectText..", " end
+					collectText = collectText..(itemLink or itemName or "")
+				end
+			end
+			tooltip2AddLine(colorize(format(L["Collect %d %s"], item.chance or 100, collectText), white))
 			if item.obtain then tooltip2AddLine(colorize(item.obtain, white)) end
 		else
 			tooltip2AddLine(colorize(format(L["1 in %d chance"], item.chance or 100), white))
@@ -2537,7 +2590,9 @@ do
 						good = true
 					end
 					if good and TomTom ~= nil and TomTom.AddMFWaypoint ~= nil and coord.m ~= nil and coord.x ~= nil and coord.y ~= nil then
-						TomTom:AddMFWaypoint(coord.m, coord.f or nil, coord.x / 100.0, coord.y / 100.0, { title = "Rarity"..": "..item.name })
+						local extraName = ""
+						if coord.n ~= nil then extraName = " ("..coord.n..")" end
+						TomTom:AddMFWaypoint(coord.m, coord.f or nil, coord.x / 100.0, coord.y / 100.0, { title = "Rarity"..": "..item.name..extraName })
 						added = added + 1
 						if coord.i == true then instance = instance + 1 end
 						if TomTom.SetClosestWaypoint ~= nil then TomTom:SetClosestWaypoint() end

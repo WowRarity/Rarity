@@ -374,6 +374,8 @@ L["Will only drop for druids."] = true
 L["Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount \"defeated\" for the day when you kill any of the four."] = true
 L["Dropped from monsters in Fang'rila"] = true
 L["Purchased from Z'tenga the Walker <Saberstalker Quartermaster> in Fang'rila in Tanaan Jungle. Blackfang Claws drop from all monsters in Fang'rila."] = true
+L["Fished anywhere in Draenor (except your garrison) with the help of Nat Pagle"] = true
+L["Lunkers can be fished anywhere in Draenor (except in your garrison) after you've obtained a level 3 Fishing Shack and acquired Nat Pagle as a follower. You must also obtain Best Friend reputation with Nat Pagle in order to purchase this mount."] = true
 
 
 -- Instance difficulties
@@ -793,7 +795,7 @@ L["Fandral's Seed Pouch"] = true
 L["Corrupted Nest Guardian"] = true
 L["Bristling Hellboar"] = true
 L["Wild Goretusk"] = true
-
+L["Reins of the Crimson Water Strider"] = true
 
 
 
