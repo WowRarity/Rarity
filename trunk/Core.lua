@@ -2317,7 +2317,7 @@ do
    end
   end
 		
-		-- source text, bonus satchel, black market
+		-- Source text, bonus satchel, black market, etc.
 		local hadSource = false
 		if item.type == MOUNT and item.spellId ~= nil and Rarity.mount_sources[item.spellId] ~= nil then
 			tooltip2:AddSeparator(1, 1, 1, 1, 1)
@@ -2358,6 +2358,35 @@ do
 			tooltip2:AddSeparator(1, 1, 1, 1, 1)
 		end
 
+		-- Zone(s)
+		local zoneText = ""
+		local currentZone = GetCurrentMapAreaID()
+		if item.coords ~= nil and type(item.coords) == "table" then
+			local zoneList = {}
+			for _, zoneValue in pairs(item.coords) do
+				if type(zoneValue) == "table" and zoneValue.m ~= nil then
+					local doThisZone = false
+					if zoneList[zoneValue.m] == nil then
+						zoneList[zoneValue.m] = true
+						doThisZone = true
+					end
+					if doThisZone then
+						if zoneText ~= "" then zoneText = zoneText..", " end
+						if currentZone == zoneValue.m then
+							zoneText = zoneText..colorize(GetMapNameByID(zoneValue.m), green)
+						else
+							zoneText = zoneText..colorize(GetMapNameByID(zoneValue.m), gray)
+						end
+					end
+				end
+			end
+			if zoneText ~= "" then
+				tooltip2AddLine(L["Found in: "]..zoneText)
+				tooltip2:AddSeparator(1, 1, 1, 1, 1)
+			end
+		end
+
+		-- Collection info
 		if item.method == COLLECTION then
 			local collectText = ""
 			if type(item.collectedItemId) ~= "table" then
@@ -2380,8 +2409,8 @@ do
   local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
   if item.method ~= COLLECTION then tooltip2AddLine(colorize(format(L["Lucky if you obtain in %d or less"], medianLoots), gray)) end
 
+		-- Time and progress
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
-
   local len = (sessionLast or 0) - (sessionStarted or 0)
   local tracked = R:FindTrackedItem()
   if not inSession or not len or tracked ~= item then len = 0 end
@@ -2432,6 +2461,7 @@ do
    end
   end
 
+		-- Session/time period breakdown
   if item.dates and item.method ~= COLLECTION then
    tooltip2:AddSeparator(1, 1, 1, 1, 1)
 
@@ -2474,6 +2504,7 @@ do
 
   end
 
+		-- Multi-step defeat detection
 		if item.defeatSteps ~= nil and type(item.defeatSteps) == "table" then
 			tooltip2:AddSeparator(1, 1, 1, 1, 1)
 			for defeatStepQuest, defeatStepText in pairs(item.defeatSteps) do
@@ -2483,10 +2514,12 @@ do
 			end
 		end
 		
+		-- Click instructions
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
   tooltip2AddLine(colorize(L["Click to switch to this item"], gray))
   tooltip2AddLine(colorize(L["Shift-Click to link your progress to chat"], gray))
 
+		-- Waypoint instructions
 		if item.coords ~= nil and type(item.coords) == "table" then
 			local numCoords = 0
 			local totalCoords = 0
@@ -2764,7 +2797,7 @@ do
 												if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
 													line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
 												else
-													line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), colorize(L["Time"], yellow), colorize(L["Luckiness"], yellow), colorize(L["Zone"], yellow), colorize(L["Defeated"], yellow))
+													line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil, Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil, Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil, colorize(L["Defeated"], yellow))
 												end
 												tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
 											end
@@ -2793,7 +2826,7 @@ do
 											if inMyZone then
 												zoneColor = green
 												if numZones > 1 then
-													zoneText = GetMapNameByID(currentZone).." "..colorize(format(L["and %d |4other zone:other zones;"], numZones - 1), gray)
+													zoneText = GetMapNameByID(currentZone).." "..colorize(format("+%d", numZones - 1), gray)
 												end
 											end
 										end
@@ -2801,7 +2834,7 @@ do
 										-- Add the item to the tooltip
 										local catIcon = ""
 										if Rarity.db.profile.showCategoryIcons and v.cat and Rarity.catIcons[v.cat] then catIcon = [[|TInterface\AddOns\Rarity\Icons\]]..Rarity.catIcons[v.cat]..".blp:0:4|t " end
-										line = tooltip:AddLine(icon, catIcon..(itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, time, lucky, colorize(zoneText, zoneColor), status)
+										line = tooltip:AddLine(icon, catIcon..(itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, Rarity.db.profile.showTimeColumn and time or nil, Rarity.db.profile.showLuckinessColumn and lucky or nil, Rarity.db.profile.showZoneColumn and colorize(zoneText, zoneColor) or nil, status)
 										tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
 										tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
 										tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
@@ -2828,7 +2861,7 @@ do
 				if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
 					line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
 				else
-					line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), colorize(L["Time"], yellow), colorize(L["Luckiness"], yellow), colorize(L["Zone"], yellow), colorize(L["Defeated"], yellow))
+					line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil, Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil, Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil, colorize(L["Defeated"], yellow))
 				end
 				tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
 			end

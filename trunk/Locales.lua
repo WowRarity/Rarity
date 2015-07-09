@@ -298,12 +298,13 @@ L["Zone"] = true
 L["%d |4zone:zones;"] = true
 L["Draenor Garrison"] = true
 L["and %d |4other zone:other zones;"] = true
-L["Garrison Invasion Gold Victory"] = true
-L["Garrison Invasion Platinum Victory"] = true
-L["Vengeance"] = true
-L["Deathtalon"] = true
-L["Terrorfist"] = true
-L["Doomroller"] = true
+L["Found in: "] = true
+L["Show Time column"] = true
+L["When on, the Time column will be shown in the main tooltip."] = true
+L["Show Luckiness column"] = true
+L["When on, the Luckiness column will be shown in the main tooltip."] = true
+L["Show Zone column"] = true
+L["When on, the Zone column will be shown in the main tooltip."] = true
 
 
 
@@ -376,6 +377,15 @@ L["Dropped from monsters in Fang'rila"] = true
 L["Purchased from Z'tenga the Walker <Saberstalker Quartermaster> in Fang'rila in Tanaan Jungle. Blackfang Claws drop from all monsters in Fang'rila."] = true
 L["Fished anywhere in Draenor (except your garrison) with the help of Nat Pagle"] = true
 L["Lunkers can be fished anywhere in Draenor (except in your garrison) after you've obtained a level 3 Fishing Shack and acquired Nat Pagle as a follower. You must also obtain Best Friend reputation with Nat Pagle in order to purchase this mount."] = true
+
+
+-- Multi-step defeat detection
+L["Garrison Invasion Gold Victory"] = true
+L["Garrison Invasion Platinum Victory"] = true
+L["Vengeance"] = true
+L["Deathtalon"] = true
+L["Terrorfist"] = true
+L["Doomroller"] = true
 
 
 -- Instance difficulties

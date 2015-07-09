@@ -326,7 +326,6 @@ function R:PrepareOptions()
 							hideUnavailable = {
 								type = "toggle",
 								order = newOrder(),
-								width = "double",
 								name = L["Hide unavailable items"],
 								desc = L["When on, items marked as Unavailable will be hidden from the tooltip. This way, items requiring a certain holiday will automatically be hidden when the holiday is not active."],
 								get = function() return self.db.profile.hideUnavailable end,
@@ -339,12 +338,47 @@ function R:PrepareOptions()
 							hideDefeated = {
 								type = "toggle",
 								order = newOrder(),
-								width = "double",
 								name = L["Hide defeated items"],
 								desc = L["When on, items marked as Defeated will be hidden from the tooltip."],
 								get = function() return self.db.profile.hideDefeated end,
 								set = function(info, val)
 									self.db.profile.hideDefeated = val
+									self:UpdateText()
+								end,
+							},
+
+							showTimeColumn = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Show Time column"],
+								desc = L["When on, the Time column will be shown in the main tooltip."],
+								get = function() return self.db.profile.showTimeColumn end,
+								set = function(info, val)
+									self.db.profile.showTimeColumn = val
+									self:UpdateText()
+								end,
+							},
+
+							showLuckinessColumn = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Show Luckiness column"],
+								desc = L["When on, the Luckiness column will be shown in the main tooltip."],
+								get = function() return self.db.profile.showLuckinessColumn end,
+								set = function(info, val)
+									self.db.profile.showLuckinessColumn = val
+									self:UpdateText()
+								end,
+							},
+
+							showZoneColumn = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Show Zone column"],
+								desc = L["When on, the Zone column will be shown in the main tooltip."],
+								get = function() return self.db.profile.showZoneColumn end,
+								set = function(info, val)
+									self.db.profile.showZoneColumn = val
 									self:UpdateText()
 								end,
 							},
