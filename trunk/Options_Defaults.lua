@@ -460,7 +460,6 @@ function R:PrepareDefaults()
 				[92429] = { questId = 38589, itemId = 127349 }, -- Broodlord Ixkor
 				[93264] = { questId = 38820, itemId = 127664 }, -- Captain Grok'mar
 				[93076] = { questId = 38756, itemId = 127659 }, -- Captain Ironbeard <The True Scourge of the Iron Seas>
-				[90434] = { questId = 38031, itemId = 127748 }, -- Ceraxas
 				[90519] = { questId = 37990, itemId = 127660 }, -- Cindral the Wildfire
 				[91232] = { questId = 38746, itemId = 127319 }, -- Commander Krag'goth
 				[89675] = { questId = 38749, itemId = 127313 }, -- Commander Org'mok
