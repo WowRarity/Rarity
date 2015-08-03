@@ -380,12 +380,29 @@ L["Lunkers can be fished anywhere in Draenor (except in your garrison) after you
 
 
 -- Multi-step defeat detection
-L["Garrison Invasion Gold Victory"] = true
-L["Garrison Invasion Platinum Victory"] = true
-L["Vengeance"] = true
-L["Deathtalon"] = true
-L["Terrorfist"] = true
-L["Doomroller"] = true
+L["Garrison Invasion Gold Victory"] = true -- quest: 37640
+L["Garrison Invasion Platinum Victory"] = true -- quest: 38482
+
+L["Vengeance"] = true -- quest: 39290
+L["Deathtalon"] = true -- quest: 39287
+L["Terrorfist"] = true -- quest: 39288
+L["Doomroller"] = true -- quest: 39289
+
+L["Bleakclaw"] = true -- quest: 39168
+L["Chaos Pup"] = true -- quest: 39161
+L["Corrupted Thundertail"] = true -- quest: 39160
+L["Cursed Spirit"] = true -- quest: 39162
+L["Dark Gazer"] = true -- quest: 39167
+L["Defiled Earth"] = true -- quest: 39173
+L["Dreadwalker"] = true -- quest: 39170
+L["Direflame"] = true -- quest: 39165
+L["Felfly"] = true -- quest: 39163
+L["Felsworn Sentry"] = true -- quest: 39157
+L["Mirecroak"] = true -- quest: 39166
+L["Netherfist"] = true -- quest: 39171
+L["Skrillix"] = true -- quest: 39172
+L["Tainted Maulclaw"] = true -- quest: 39164
+L["Vile Blood of Draenor"] = true -- quest: 39169
 
 
 -- Instance difficulties
