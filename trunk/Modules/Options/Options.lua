@@ -468,6 +468,45 @@ function R:PrepareOptions()
 					}, -- worldTooltips
 
 
+					groupFinder = {
+						type = "group",
+						name = L["Group Finder Options"],
+						order = newOrder(),
+						inline = true,
+						args = {
+						
+							showGroupFinderAutoRefresh = {
+								type = "toggle",
+								order = newOrder(),
+								width = "double",
+								name = L["Show auto refresh checkbox"],
+								desc = L["When enabled, Rarity will add an Auto checkbox to the Group Finder's search window. You can check this checkbox to enable auto-refresh of your searches every 5 seconds."],
+								get = function() return self.db.profile.showGroupFinderAutoRefresh end,
+								set = function(info, val)
+									self.db.profile.showGroupFinderAutoRefresh = val
+									if RarityGroupFinderAutoRefresh ~= nil then
+										if self.db.profile.showGroupFinderAutoRefresh then RarityGroupFinderAutoRefresh:Show() else RarityGroupFinderAutoRefresh:Hide() end
+									end
+								end,
+							},
+
+							enableGroupFinderAlert = {
+								type = "toggle",
+								order = newOrder(),
+								width = "double",
+								name = L["Play a sound when groups are found"],
+								desc = L["When enabled, Rarity will play a sound when an auto-refresh search results in one or more groups found in the Group Finder. This sound cannot play more than once per minute."],
+								get = function() return self.db.profile.enableGroupFinderAlert end,
+								set = function(info, val)
+									self.db.profile.enableGroupFinderAlert = val
+									self:UpdateText()
+								end,
+							},
+
+						}, -- args
+					}, -- groupFinder
+
+
 					contentCategory = {
 						type = "group",
 						name = L["Content Category"],

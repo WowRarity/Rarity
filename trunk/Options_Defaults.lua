@@ -142,6 +142,8 @@ function R:PrepareDefaults()
 			showCategoryIcons = true,
 			tooltipScale = GameTooltip:GetScale(),
 			enableProfiling = false,
+			showGroupFinderAutoRefresh = true,
+			enableGroupFinderAlert = true,
 
    trackedGroup = "pets",
    trackedItem = 8494,

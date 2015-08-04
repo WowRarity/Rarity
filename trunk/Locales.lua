@@ -305,7 +305,14 @@ L["Show Luckiness column"] = true
 L["When on, the Luckiness column will be shown in the main tooltip."] = true
 L["Show Zone column"] = true
 L["When on, the Zone column will be shown in the main tooltip."] = true
-
+L["Group(s) found!"] = true
+L["Auto"] = true
+L["Check this to automatically refresh your search every 5 seconds while this window is visible. Auto refresh only works if you've typed something in the search box, and if you haven't selected something in the list below.\n\nThis checkbox is provided by Rarity. You can hide the checkbox in Rarity options."] = true
+L["Group Finder Options"] = true
+L["Show auto refresh checkbox"] = true
+L["When enabled, Rarity will add an Auto checkbox to the Group Finder's search window. You can check this checkbox to enable auto-refresh of your searches every 5 seconds."] = true
+L["Play a sound when groups are found"] = true
+L["When enabled, Rarity will play a sound when an auto-refresh search results in one or more groups found in the Group Finder. This sound cannot play more than once per minute."] = true
 
 
 

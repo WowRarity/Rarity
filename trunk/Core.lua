@@ -99,6 +99,8 @@ local lastNode
 local STATUS_TOOLTIP_MAX_WIDTH = 200
 local numHolidayReminders = 0
 local showedHolidayReminderOverflow = false
+local canPlayGroupFinderAlert = true
+local wasGroupFinderAutoRefresh = false
 
 local inSession = false
 local sessionStarted = 0
@@ -495,6 +497,8 @@ do
   self:RegisterEvent("TRADE_SKILL_CLOSE", "OnEvent")
   self:RegisterEvent("UPDATE_MOUSEOVER_UNIT", "OnMouseOver")
   self:RegisterEvent("PLAYER_REGEN_ENABLED", "OnCombatEnded")
+  self:RegisterBucketEvent("LFG_LIST_SEARCH_RESULT_UPDATED", 1, "GroupFinderResultsUpdated")
+  self:RegisterBucketEvent("LFG_LIST_SEARCH_RESULTS_RECEIVED", 1, "GroupFinderResultsUpdated")
   self:RegisterBucketEvent("UPDATE_INSTANCE_INFO", 1, "OnEvent")
   self:RegisterBucketEvent("LFG_UPDATE_RANDOM_INFO", 1, "OnEvent")
   self:RegisterBucketEvent("CALENDAR_UPDATE_EVENT_LIST", 1, "OnEvent")
@@ -513,6 +517,42 @@ do
 		RequestRaidInfo() -- Request raid lock info from the server
 		RequestLFDPlayerLockInfo() -- Request LFD data from the server; this is used for holiday boss detection
 		OpenCalendar() -- Request calendar info from the server
+
+		local refresh = nil
+
+		-- Setup the Group Finder refresh timer
+		self:ScheduleRepeatingTimer(function()
+			if refresh == nil and LFGListFrame ~= nil and LFGListFrame.SearchPanel ~= nil and LFGListFrame.SearchPanel.RefreshButton ~= nil then
+				refresh = CreateFrame("CheckButton", "RarityGroupFinderAutoRefresh", LFGListFrame.SearchPanel, "OptionsSmallCheckButtonTemplate")
+				refresh:ClearAllPoints()
+				refresh:SetPoint("TOPRIGHT", -65, -28)
+				_G[refresh:GetName() .. "Text"]:SetText(L["Auto"])
+				refresh:SetScript("OnEnter", function()
+					GameTooltip:SetOwner(refresh, "ANCHOR_RIGHT")
+					GameTooltip:SetText(L["Check this to automatically refresh your search every 5 seconds while this window is visible. Auto refresh only works if you've typed something in the search box, and if you haven't selected something in the list below.\n\nThis checkbox is provided by Rarity. You can hide the checkbox in Rarity options."], nil, nil, nil, nil, true)
+					GameTooltip:Show()
+				end)
+				refresh:SetScript("OnLeave", function()
+					GameTooltip_Hide()
+				end)
+			end
+
+			if RarityGroupFinderAutoRefresh ~= nil then
+				if self.db.profile.showGroupFinderAutoRefresh then RarityGroupFinderAutoRefresh:Show() else RarityGroupFinderAutoRefresh:Hide() end
+			end
+
+		 if RarityGroupFinderAutoRefresh ~= nil and RarityGroupFinderAutoRefresh:GetChecked() and self.db.profile.showGroupFinderAutoRefresh and InCombatLockdown() ~= 1 and LFGListFrame ~= nil and LFGListFrame:IsShown() then
+				if LFGListFrame.SearchPanel ~= nil and LFGListFrame.SearchPanel.RefreshButton ~= nil then
+					if LFGListFrame.SearchPanel.SignUpButton ~= nil and LFGListFrame.SearchPanel.SignUpButton:IsEnabled() == false then
+						if LFGListFrame.SearchPanel.SearchBox ~= nil and LFGListFrame.SearchPanel.SearchBox:GetText() ~= "" then
+							LFGListFrame.SearchPanel.RefreshButton:Click()
+							wasGroupFinderAutoRefresh = true
+							self:Debug("Refreshing Group Finder search")
+						end
+					end
+				end
+			end
+		end, 5)
 
 		-- Scan instance locks 5 seconds after init
   self:ScheduleTimer(function()
@@ -580,6 +620,23 @@ function R:DelayedInit()
 	self:ScanToys("DELAYED INIT")
 	self:UpdateText()
  self:UpdateBar()
+end
+
+
+function R:GroupFinderResultsUpdated()
+	if LFGListFrame.SearchPanel.ScrollFrame.buttons[1]:IsShown() then
+		if canPlayGroupFinderAlert == true and wasGroupFinderAutoRefresh == true then
+			if LFGListFrame.SearchPanel.SearchBox ~= nil and LFGListFrame.SearchPanel.SearchBox:GetText() ~= "" then
+				canPlayGroupFinderAlert = false
+				self:Print(L["Group(s) found!"])
+				self:ScheduleTimer(function() canPlayGroupFinderAlert = true end, 60)
+				if self.db.profile.enableGroupFinderAlert then
+					PlaySound("ReadyCheck", "master")
+				end
+			end
+		end
+	end
+	wasGroupFinderAutoRefresh = false
 end
 
 
