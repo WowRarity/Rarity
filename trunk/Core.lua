@@ -624,9 +624,9 @@ end
 
 
 function R:GroupFinderResultsUpdated()
-	if LFGListFrame.SearchPanel.ScrollFrame.buttons[1]:IsShown() then
+	if LFGListFrame.SearchPanel.ScrollFrame.buttons[1]:IsShown() and self.db.profile.showGroupFinderAutoRefresh then
 		if canPlayGroupFinderAlert == true and wasGroupFinderAutoRefresh == true then
-			if LFGListFrame.SearchPanel.SearchBox ~= nil and LFGListFrame.SearchPanel.SearchBox:GetText() ~= "" then
+			if LFGListFrame.SearchPanel.SearchBox ~= nil and LFGListFrame.SearchPanel.SearchBox:GetText() ~= "" and LFGListFrame:IsShown() and InCombatLockdown() ~= 1 and RarityGroupFinderAutoRefresh ~= nil and RarityGroupFinderAutoRefresh:GetChecked() then
 				canPlayGroupFinderAlert = false
 				self:Print(L["Group(s) found!"])
 				self:ScheduleTimer(function() canPlayGroupFinderAlert = true end, 60)
