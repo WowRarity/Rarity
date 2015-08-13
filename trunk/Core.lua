@@ -542,7 +542,7 @@ do
 			end
 
 		 if RarityGroupFinderAutoRefresh ~= nil and RarityGroupFinderAutoRefresh:GetChecked() and self.db.profile.showGroupFinderAutoRefresh and InCombatLockdown() ~= 1 and LFGListFrame ~= nil and LFGListFrame:IsShown() then
-				if LFGListFrame.SearchPanel ~= nil and LFGListFrame.SearchPanel.RefreshButton ~= nil then
+				if LFGListFrame.SearchPanel ~= nil and LFGListFrame.SearchPanel.RefreshButton ~= nil and PVEFrame ~= nil and PVEFrame:IsShown() == true then
 					if LFGListFrame.SearchPanel.SignUpButton ~= nil and LFGListFrame.SearchPanel.SignUpButton:IsEnabled() == false then
 						if LFGListFrame.SearchPanel.SearchBox ~= nil and LFGListFrame.SearchPanel.SearchBox:GetText() ~= "" then
 							LFGListFrame.SearchPanel.RefreshButton:Click()
@@ -624,7 +624,7 @@ end
 
 
 function R:GroupFinderResultsUpdated()
-	if LFGListFrame.SearchPanel.ScrollFrame.buttons[1]:IsShown() and self.db.profile.showGroupFinderAutoRefresh and IsInGroup() ~= true then
+	if LFGListFrame.SearchPanel.ScrollFrame.buttons[1]:IsShown() and self.db.profile.showGroupFinderAutoRefresh and IsInGroup() ~= true and PVEFrame ~= nil and PVEFrame:IsShown() == true then
 		if canPlayGroupFinderAlert == true and wasGroupFinderAutoRefresh == true then
 			if LFGListFrame.SearchPanel.SearchBox ~= nil and LFGListFrame.SearchPanel.SearchBox:GetText() ~= "" and LFGListFrame:IsShown() and InCombatLockdown() ~= 1 and RarityGroupFinderAutoRefresh ~= nil and RarityGroupFinderAutoRefresh:GetChecked() then
 				canPlayGroupFinderAlert = false
