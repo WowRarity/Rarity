@@ -830,8 +830,12 @@ L["Corrupted Nest Guardian"] = true
 L["Bristling Hellboar"] = true
 L["Wild Goretusk"] = true
 L["Reins of the Crimson Water Strider"] = true
-
-
+L["Sack of Spectral Spiders"] = true
+L["Coin of Many Faces"] = true
+L["Servant of Demidos"] = true
+L["Glittering Arcane Crystal"] = true
+L["Vibrating Arcane Crystal"] = true
+L["Warm Arcane Crystal"] = true
 
 
 
