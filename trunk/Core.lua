@@ -632,6 +632,7 @@ function R:GroupFinderResultsUpdated()
 				self:ScheduleTimer(function() canPlayGroupFinderAlert = true end, 60)
 				if self.db.profile.enableGroupFinderAlert then
 					PlaySound("ReadyCheck", "master")
+					if FlashClientIcon then FlashClientIcon() end
 				end
 			end
 		end
