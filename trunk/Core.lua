@@ -1787,19 +1787,19 @@ function R:ScanArchFragments(event)
 end
 
 function R:ScanArchProjects(reason)
- self:Debug("Scanning archaeology projects (%s)", reason)
- if GetNumArchaeologyRaces() == 0 then return end
+	self:Debug("Scanning archaeology projects (%s)", reason)
+	if GetNumArchaeologyRaces() == 0 then return end
 	for race_id = 1, GetNumArchaeologyRaces() do
-	 SetSelectedArtifact(race_id)
-	 local name, _, rarity, icon, spellDescription, numSockets = GetSelectedArtifactInfo()
-  if architems[name] then
-   -- We started a project we were looking for!
-   local id = architems[name].itemId
-   if id then self:FoundItem(id, items[id]) end
-  end
- end
+		local name = GetActiveArtifactByRace(race_id)
+  		if architems[name] then
+   			-- We started a project we were looking for!
+   			local id = architems[name].itemId
+   			if id then 
+   				self:FoundItem(id, items[id]) 
+   			end
+  		end
+ 	end
 end
-
 
 -------------------------------------------------------------------------------------
 -- Mouseover detection, currently used for Mysterious Camel Figurine as a special case
