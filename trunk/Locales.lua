@@ -837,6 +837,7 @@ L["Glittering Arcane Crystal"] = true
 L["Vibrating Arcane Crystal"] = true
 L["Warm Arcane Crystal"] = true
 L["Savage Cub"] = true
+L["Reins of the Infinite Timereaver"] = true
 
 
 
