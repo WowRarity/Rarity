@@ -1571,13 +1571,13 @@ function R:OnCombat(event, timestamp, eventType, hideCaster, srcGuid, srcName, s
   if bosses[npcid] then -- It's a boss we're interested in
    if bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_MINE) or bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_PARTY) or bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_RAID) then -- You, a party member, or a raid member killed it
     if not guids[dstGuid] then
-     guids[dstGuid] = true
 
      -- Increment attempts counter(s). One NPC might drop multiple things we want, so scan for them all.
      if npcs_to_items[npcid] and type(npcs_to_items[npcid]) == "table" then
       for k, v in pairs(npcs_to_items[npcid]) do
        if v.enabled ~= false and v.method == BOSS then
         if self:IsInstanceAppropriate(v) then
+									guids[dstGuid] = true
          if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
          self:OutputAttempts(v)
         end
