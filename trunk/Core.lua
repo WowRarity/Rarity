@@ -496,6 +496,7 @@ do
   self:RegisterEvent("TRADE_SKILL_SHOW", "OnEvent")
   self:RegisterEvent("TRADE_SKILL_CLOSE", "OnEvent")
   self:RegisterEvent("UPDATE_MOUSEOVER_UNIT", "OnMouseOver")
+  self:RegisterEvent("CRITERIA_COMPLETE", "OnCriteriaComplete")
   self:RegisterEvent("PLAYER_REGEN_ENABLED", "OnCombatEnded")
   self:RegisterBucketEvent("LFG_LIST_SEARCH_RESULT_UPDATED", 1, "GroupFinderResultsUpdated")
   self:RegisterBucketEvent("LFG_LIST_SEARCH_RESULTS_RECEIVED", 1, "GroupFinderResultsUpdated")
@@ -1822,6 +1823,19 @@ function R:OnMouseOver(event)
 
 end
 
+-------------------------------------------------------------------------------------
+-- Criteria in a dungeon completed, currently used for Reins of the Infinite Timereaver detection as a special case
+-------------------------------------------------------------------------------------
+
+function R:OnCriteriaComplete(event, id)
+	if id == 24801 --[[ Ozumat ]] or id == 24803 --[[ Murozond ]] then
+		local v = self.db.profile.groups.mounts["Reins of the Infinite Timereaver"]
+		if v and type(v) == "table" and v.enabled ~= false and R:IsInstanceAppropriate(v) then
+			if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+			R:OutputAttempts(v)
+		end
+	end
+end
 
 
 
