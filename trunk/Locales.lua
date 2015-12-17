@@ -384,6 +384,7 @@ L["Dropped from monsters in Fang'rila"] = true
 L["Purchased from Z'tenga the Walker <Saberstalker Quartermaster> in Fang'rila in Tanaan Jungle. Blackfang Claws drop from all monsters in Fang'rila."] = true
 L["Fished anywhere in Draenor (except your garrison) with the help of Nat Pagle"] = true
 L["Lunkers can be fished anywhere in Draenor (except in your garrison) after you've obtained a level 3 Fishing Shack and acquired Nat Pagle as a follower. You must also obtain Best Friend reputation with Nat Pagle in order to purchase this mount."] = true
+L["Obtained by opening Snow Mound in Frostfire Ridge"] = true
 
 
 -- Multi-step defeat detection
@@ -719,6 +720,7 @@ L["Lil' Bling"] = true
 L["Droplet of Y'Shaarj"] = true
 L["Gooey Sha-ling"] = true
 L["Crane Nest"] = true
+L["Snow Mound"] = true
 L["Azure Crane Chick"] = true
 L["Obtained by opening Crane Nests on the Timeless Isle"] = true
 L["Bonkers"] = true
@@ -839,6 +841,7 @@ L["Warm Arcane Crystal"] = true
 L["Savage Cub"] = true
 L["Reins of the Infinite Timereaver"] = true
 L["Minion of Grumpus"] = true
+L["Grumpling"] = true
 
 
 

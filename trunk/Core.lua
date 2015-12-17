@@ -294,6 +294,7 @@ R.miningnodes = {
 R.opennodes = {
 	[L["Crane Nest"]] = true,
 	[L["Timeless Chest"]] = true,
+	[L["Snow Mound"]] = true,
 }
 
 
@@ -1148,6 +1149,10 @@ function R:OnEvent(event, ...)
   local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
   local subzone_t = LibStub("LibBabble-SubZone-3.0"):GetReverseLookupTable()[subzone]
 
+		if fishing and opening then
+			self:Debug("Opened something")
+		end
+
 		if fishing and opening and lastNode then
 			self:Debug("Opened a node: "..lastNode)
 		end
@@ -1164,6 +1169,15 @@ function R:OnEvent(event, ...)
   -- Handle opening Timeless Chest
   if fishing and opening and lastNode and (lastNode == L["Timeless Chest"]) then
    local v = self.db.profile.groups.pets["Bonkers"]
+   if v and type(v) == "table" and v.enabled ~= false then
+    if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+    self:OutputAttempts(v)
+   end
+  end
+
+  -- Handle opening Snow Mound
+  if fishing and opening and lastNode and (lastNode == L["Snow Mound"]) then
+   local v = self.db.profile.groups.pets["Grumpling"]
    if v and type(v) == "table" and v.enabled ~= false then
     if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
     self:OutputAttempts(v)
@@ -1625,7 +1639,10 @@ end
 function R:GatherCompleted(event)
 	prevSpell, curSpell = nil, nil
 	foundTarget = false
- lastNode = nil
+ self:ScheduleTimer(function()
+		R:Debug("Setting lastNode to nil")
+		lastNode = nil
+	end, 1)
 end
 
 function R:CursorChange(event)
@@ -1668,7 +1685,12 @@ function R:SpellStarted(event, unit, spellcast, rank, target)
 		prevSpell = spellcast
   if spellcast == fishSpell or spellcast == openSpell then
    self:Debug("Fishing or opening something")
-			if spellcast == openSpell then opening = true else opening = false end
+			if spellcast == openSpell then
+				self:Debug("Opening detected")
+				opening = true
+			else
+				opening = false
+			end
    fishing = true
    if fishingTimer then self:CancelTimer(fishingTimer, true) end
    fishingTimer = self:ScheduleTimer(cancelFish, FISHING_DELAY)
