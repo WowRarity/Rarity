@@ -845,6 +845,9 @@ L["Grumpling"] = true
 L["Crashin' Thrashin' Cannon Controller"] = true
 L["Crashin' Thrashin' Mortar Controller"] = true
 L["Crashin' Thrashin' Roller Controller"] = true
+L["Gondar"] = true
+L["Smashum Grabb"] = true
+L["Drakum"] = true
 
 
 
