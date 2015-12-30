@@ -842,7 +842,9 @@ L["Savage Cub"] = true
 L["Reins of the Infinite Timereaver"] = true
 L["Minion of Grumpus"] = true
 L["Grumpling"] = true
-
+L["Crashin' Thrashin' Cannon Controller"] = true
+L["Crashin' Thrashin' Mortar Controller"] = true
+L["Crashin' Thrashin' Roller Controller"] = true
 
 
 
