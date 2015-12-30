@@ -19,6 +19,7 @@ L["Profile modified, rebooting"] = true
 L["(running in debug mode)"] = true
 L["Debug mode OFF"] = true
 L["Debug mode ON"] = true
+L["None"] = true
 L["Welcome to Rarity r%d. Your settings have been reset."] = true
 L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."] = true
 L["Obtained On Your First Attempt"] = true
