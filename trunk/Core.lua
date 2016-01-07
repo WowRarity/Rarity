@@ -2231,7 +2231,7 @@ do
 		end
 
 		-- Bar 2
-		if not trackedItem2 then
+		if trackedItem2 == nil or trackedItem2.itemId == nil then
 			self.barGroup:RemoveBar("Track2")
 			self.bar2 = nil
 		else
