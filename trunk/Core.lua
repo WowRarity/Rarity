@@ -618,6 +618,7 @@ end
 
 
 function R:DelayedInit()
+	self:ScanStatistics("DELAYED INIT")
 	self:ScanCalendar("DELAYED INIT")
 	self:ScanToys("DELAYED INIT")
 	self:UpdateText()
