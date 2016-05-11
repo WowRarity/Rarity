@@ -499,6 +499,8 @@ do
   self:RegisterEvent("UPDATE_MOUSEOVER_UNIT", "OnMouseOver")
   self:RegisterEvent("CRITERIA_COMPLETE", "OnCriteriaComplete")
   self:RegisterEvent("PLAYER_REGEN_ENABLED", "OnCombatEnded")
+  self:RegisterEvent("PET_BATTLE_OPENING_START", "OnPetBattleStart")
+  self:RegisterEvent("PET_BATTLE_CLOSE", "OnPetBattleEnd")
   self:RegisterBucketEvent("LFG_LIST_SEARCH_RESULT_UPDATED", 1, "GroupFinderResultsUpdated")
   self:RegisterBucketEvent("LFG_LIST_SEARCH_RESULTS_RECEIVED", 1, "GroupFinderResultsUpdated")
   self:RegisterBucketEvent("UPDATE_INSTANCE_INFO", 1, "OnEvent")
@@ -1860,6 +1862,27 @@ function R:OnCriteriaComplete(event, id)
 	end
 end
 
+
+-------------------------------------------------------------------------------------
+-- Pet battles: we want to hide the progress bar(s) during them
+-------------------------------------------------------------------------------------
+
+local wasBarVisibleBeforePetBattle = false
+
+function R:OnPetBattleStart(event)
+	R:Debug("Pet battle started")
+	wasBarVisibleBeforePetBattle = R.db.profile.bar.visible
+ R.db.profile.bar.visible = false
+	Rarity:UpdateBar()
+ Rarity:UpdateText()
+end
+
+function R:OnPetBattleEnd(event)
+	R:Debug("Pet battle ended")
+ R.db.profile.bar.visible = wasBarVisibleBeforePetBattle
+	Rarity:UpdateBar()
+ Rarity:UpdateText()
+end
 
 
 
