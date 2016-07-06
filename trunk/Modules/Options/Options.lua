@@ -19,6 +19,7 @@ local WOTLK = "WOTLK"
 local CATA = "CATA"
 local MOP = "MOP"
 local WOD = "WOD"
+local LEGION = "LEGION"
 local HOLIDAY = "HOLIDAY"
 
 -- Methods of obtaining
@@ -593,6 +594,17 @@ function R:PrepareOptions()
 						  get = function() return self.db.profile.cats[WOD] end,
 						  set = function(info, val)
 							  self.db.profile.cats[WOD] = val
+							  self:UpdateText()
+						  end,
+					  },
+
+					  legion = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Legion"],
+						  get = function() return self.db.profile.cats[LEGION] end,
+						  set = function(info, val)
+							  self.db.profile.cats[LEGION] = val
 							  self:UpdateText()
 						  end,
 					  },

@@ -127,9 +127,13 @@ R.coins = {
 	[776] = true, -- Warforged Seal
 	-- Warlords of Draenor
 	[994] = true, -- Seal of Tempered Fate
+	[1129] = true, -- Seal of Inevitable Fate
+	-- Legion
+	[1273] = true, -- Seal of Broken Fate
 }
 
 R.fishnodes = {
+	-- Classic through Cataclysm
  [L["Floating Wreckage"]] = true,
  [L["Patch of Elemental Water"]] = true,
  [L["Floating Debris"]] = true,
@@ -192,7 +196,7 @@ R.fishnodes = {
  [L["Pool of Fire"]] = true,
  [L["Shipwreck Debris"]] = true,
  [L["Deepsea Sagefish School"]] = true,
- -- New in Mists of Pandaria
+ -- Mists of Pandaria
 	[L["Emperor Salmon School"]] = true,
 	[L["Giant Mantis Shrimp Swarm"]] = true,
 	[L["Golden Carp School"]] = true,
@@ -221,7 +225,7 @@ R.fishnodes = {
 	[L["Crowded Redbelly Mandarin"]] = true,
 	[L["Glowing Jade Lungfish"]] = true,
 	[L["Sha-Touched Spinefish"]] = true,
-	-- New in Warlords of Draenor
+	-- Warlords of Draenor
 	[L["Abyssal Gulper School"]] = true,
 	[L["Oily Abyssal Gulper School"]] = true,
 	[L["Blackwater Whiptail School"]] = true,
@@ -232,9 +236,17 @@ R.fishnodes = {
 	[L["Sea Scorpion School"]] = true,
 	[L["Oily Sea Scorpion School"]] = true,
 	[L["Savage Piranha Pool"]] = true,
+	-- Legion
+	[L["Black Barracuda School"]]	= true,
+	[L["Cursed Queenfish School"]]	= true,
+	[L["Runescale Koi School"]]	= true,
+	[L["Fever of Stormrays"]]		= true,
+	[L["Highmountain Salmon School"]]	= true,
+	[L["Mossgill Perch School"]]	= true,
 }
 
 R.miningnodes = {
+	-- Classic through Cataclysm
  [L["Copper Vein"]] = true,
  [L["Tin Vein"]] = true,
  [L["Iron Deposit"]] = true,
@@ -274,7 +286,7 @@ R.miningnodes = {
  [L["Pyrite Deposit"]] = true,
  [L["Rich Obsidium Deposit"]] = true,
  [L["Rich Pyrite Deposit"]] = true,
- -- New in Mists of Pandaria
+ -- Mists of Pandaria
 	[L["Rich Pyrite Deposit"]] = true,
 	[L["Ghost Iron Deposit"]] = true,
 	[L["Rich Ghost Iron Deposit"]] = true,
@@ -284,11 +296,18 @@ R.miningnodes = {
 	[L["Rich Kyparite Deposit"]] = true,
 	[L["Trillium Vein"]] = true,
 	[L["Rich Trillium Vein"]] = true,
-	-- New in Warlords of Draenor
+	-- Warlords of Draenor
 	[L["True Iron Deposit"]] = true,
 	[L["Rich True Iron Deposit"]] = true,
 	[L["Blackrock Deposit"]] = true,
 	[L["Rich Blackrock Deposit"]] = true,
+	-- Legion
+	[L["Leystone Deposit"]]	= true,
+	[L["Rich Leystone Deposit"]]	= true,
+	[L["Leystone Seam"]]	= true,
+	[L["Felslate Deposit"]]	= true,
+	[L["Rich Felslate Deposit"]]	= true,
+	[L["Felslate Seam"]]	= true,
 }
 
 R.opennodes = {
@@ -342,6 +361,7 @@ local WOTLK = "WOTLK"
 local CATA = "CATA"
 local MOP = "MOP"
 local WOD = "WOD"
+local LEGION = "LEGION"
 local HOLIDAY = "HOLIDAY"
 local categories = {
 	[BASE] =    L["Classic"],
@@ -350,6 +370,7 @@ local categories = {
 	[CATA] =    L["Cataclysm"],
 	[MOP] =     L["Mists of Pandaria"],
 	[WOD] =     L["Warlords of Draenor"],
+	[LEGION] =  L["Legion"],
 	[HOLIDAY] = L["Holiday"],
 }
 
@@ -473,7 +494,7 @@ do
 		
 		self:UnregisterAllEvents()
   self:RegisterBucketEvent("BAG_UPDATE", 0.5, "OnBagUpdate")
-  self:RegisterEvent("LOOT_OPENED", "OnEvent")
+  self:RegisterEvent("LOOT_READY", "OnEvent")
   self:RegisterEvent("CURRENCY_DISPLAY_UPDATE", "OnCurrencyUpdate")
   self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED", "OnCombat") -- Used to detect boss kills that we didn't solo
   self:RegisterEvent("BANKFRAME_OPENED", "OnEvent")
@@ -1145,8 +1166,8 @@ function R:OnEvent(event, ...)
  -------------------------------------------------------------------------------------
  -- You opened a loot window on a corpse or fishing node
  -------------------------------------------------------------------------------------
-	if event == "LOOT_OPENED" then
-		self:Debug("LOOT_OPENED with target: "..(UnitGUID("target") or "NO TARGET"))
+	if event == "LOOT_READY" then
+		self:Debug("LOOT_READY with target: "..(UnitGUID("target") or "NO TARGET"))
   local zone = GetRealZoneText()
   local subzone = GetSubZoneText()
   local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
@@ -3268,29 +3289,57 @@ function R:ScanExistingItems(reason)
 
 	-- Scans need to index by spellId, creatureId, achievementId, raceId, itemId (for toys), statisticId (which is a table; for stats)
 
- -- Mounts
-	for id = 1, mount_journal.GetNumMounts() do
-		local creatureName, spellId, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected = mount_journal.GetMountInfo(id)
-		local creatureDisplayID, descriptionText, sourceText, isSelfMount, mountType = C_MountJournal.GetMountInfoExtra(id)
+ -- Mounts (pre-7.0)
+	if (mount_journal.GetMountInfo ~= nil) then
+		for id = 1, mount_journal.GetNumMounts() do
+			local creatureName, spellId, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected = mount_journal.GetMountInfo(id)
+			local creatureDisplayID, descriptionText, sourceText, isSelfMount, mountType = C_MountJournal.GetMountInfoExtra(id)
 
-		Rarity.mount_sources[spellId] = sourceText
+			Rarity.mount_sources[spellId] = sourceText
 
-		if isCollected then
-			for k, v in pairs(R.db.profile.groups) do
-				if type(v) == "table" then
-					for kk, vv in pairs(v) do
-						if type(vv) == "table" then
-							if vv.spellId and vv.spellId == spellId then vv.known = true end
-							if vv.spellId and vv.spellId == spellId and not vv.repeatable then
-								vv.enabled = false
-								vv.found = true
+			if isCollected then
+				for k, v in pairs(R.db.profile.groups) do
+					if type(v) == "table" then
+						for kk, vv in pairs(v) do
+							if type(vv) == "table" then
+								if vv.spellId and vv.spellId == spellId then vv.known = true end
+								if vv.spellId and vv.spellId == spellId and not vv.repeatable then
+									vv.enabled = false
+									vv.found = true
+								end
 							end
 						end
 					end
 				end
 			end
-		end
 
+		end
+	
+	-- Mounts (7.0+)
+	else
+ 	for i,id in pairs(mount_journal.GetMountIDs()) do
+			local _, spellId, _, _, _, _, _, _, _, _, isCollected = mount_journal.GetMountInfoByID(id)
+			local _, _, sourceText = mount_journal.GetMountInfoExtraByID(id)
+
+			Rarity.mount_sources[spellId] = sourceText
+
+			if isCollected then
+				for k, v in pairs(R.db.profile.groups) do
+					if type(v) == "table" then
+						for kk, vv in pairs(v) do
+							if type(vv) == "table" then
+								if vv.spellId and vv.spellId == spellId then vv.known = true end
+								if vv.spellId and vv.spellId == spellId and not vv.repeatable then
+									vv.enabled = false
+									vv.found = true
+								end
+							end
+						end
+					end
+				end
+			end
+
+		end
 	end
 
 	-- Companions that this character learned
@@ -3311,11 +3360,19 @@ function R:ScanExistingItems(reason)
  end
 
 -- Battle pets across your account
-	pet_journal.SetFlagFilter(_G.LE_PET_JOURNAL_FLAG_COLLECTED, true)
-	pet_journal.SetFlagFilter(_G.LE_PET_JOURNAL_FLAG_FAVORITES, false)
-	pet_journal.SetFlagFilter(_G.LE_PET_JOURNAL_FLAG_NOT_COLLECTED, true)
-	pet_journal.AddAllPetTypesFilter()
-	pet_journal.AddAllPetSourcesFilter()
+	if (pet_journal.SetFlagFilter ~= nil) then -- Pre-7.0
+		pet_journal.SetFlagFilter(_G.LE_PET_JOURNAL_FLAG_COLLECTED, true)
+		pet_journal.SetFlagFilter(_G.LE_PET_JOURNAL_FLAG_FAVORITES, false)
+		pet_journal.SetFlagFilter(_G.LE_PET_JOURNAL_FLAG_NOT_COLLECTED, true)
+		pet_journal.AddAllPetTypesFilter()
+		pet_journal.AddAllPetSourcesFilter()
+	else -- 7.0+
+		pet_journal.SetFilterChecked(_G.LE_PET_JOURNAL_FLAG_COLLECTED, true)
+		pet_journal.SetFilterChecked(_G.LE_PET_JOURNAL_FLAG_FAVORITES, false)
+		pet_journal.SetFilterChecked(_G.LE_PET_JOURNAL_FLAG_NOT_COLLECTED, true)
+		pet_journal.SetAllPetTypesChecked(true)
+		pet_journal.SetAllPetSourcesChecked(true)
+	end
  local total, owned = pet_journal.GetNumPets()
  for i = 1, total do
   local petID, speciesID, owned, customName, level, favorite, isRevoked, speciesName, icon, petType, companionID, tooltip, description, isWild, canBattle, isTradeable, isUnique, obtainable = pet_journal.GetPetInfoByIndex(i)

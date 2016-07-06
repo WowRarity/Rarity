@@ -314,6 +314,13 @@ L["Show auto refresh checkbox"] = true
 L["When enabled, Rarity will add an Auto checkbox to the Group Finder's search window. You can check this checkbox to enable auto-refresh of your searches every 5 seconds."] = true
 L["Play a sound when groups are found"] = true
 L["When enabled, Rarity will play a sound when an auto-refresh search results in one or more groups found in the Group Finder. This sound cannot play more than once per minute."] = true
+L["Legion"] = true
+L["Demonic"] = true
+L["Highmountain Tauren"] = true
+L["Highborne"] = true
+
+
+
 
 
 
@@ -384,7 +391,7 @@ L["Can be obtained from Rattling Iron Cage, which has a chance to drop from any 
 L["Dropped from monsters in Fang'rila"] = true
 L["Purchased from Z'tenga the Walker <Saberstalker Quartermaster> in Fang'rila in Tanaan Jungle. Blackfang Claws drop from all monsters in Fang'rila."] = true
 L["Fished anywhere in Draenor (except your garrison) with the help of Nat Pagle"] = true
-L["Lunkers can be fished anywhere in Draenor (except in your garrison) after you've obtained a level 3 Fishing Shack and acquired Nat Pagle as a follower. You must also obtain Best Friend reputation with Nat Pagle in order to purchase this mount."] = true
+L["Lunkers can be fished anywhere in Draenor (except in your garrison) after you've obtained a level 3 Fishing Shack and acquired Nat Pagle as a follower."] = true
 L["Obtained by opening Snow Mound in Frostfire Ridge"] = true
 
 
@@ -533,6 +540,15 @@ L["Jawless Skulker School"] = true
 L["Sea Scorpion School"] = true
 L["Oily Sea Scorpion School"] = true
 L["Savage Piranha Pool"] = true
+L["Black Barracuda School"] = true
+L["Cursed Queenfish School"] = true
+L["Runescale Koi School"] = true
+L["Fever of Stormrays"] = true
+L["Highmountain Salmon School"] = true
+L["Mossgill Perch School"] = true
+
+
+
 
 -- Mining nodes
 L["Copper Vein"] = true
@@ -587,9 +603,12 @@ L["True Iron Deposit"] = true
 L["Rich True Iron Deposit"] = true
 L["Blackrock Deposit"] = true
 L["Rich Blackrock Deposit"] = true
-
-
-
+L["Leystone Deposit"] = true
+L["Rich Leystone Deposit"] = true
+L["Leystone Seam"] = true
+L["Felslate Deposit"] = true
+L["Rich Felslate Deposit"] = true
+L["Felslate Seam"] = true
 
 
 
@@ -849,6 +868,39 @@ L["Crashin' Thrashin' Roller Controller"] = true
 L["Gondar"] = true
 L["Smashum Grabb"] = true
 L["Drakum"] = true
+L["Goren \"Log\" Roller"] = true
+L["Sassy Imp"] = true
+L["Battle Horn"] = true
+L["Eternal Warrior's Sigil"] = true
+L["Aqua Jewel"] = true
+L["Salyin Battle Banner"] = true
+L["Hardened Shell"] = true
+L["Essence of the Breeze"] = true
+L["Helpful Wikky's Whistle"] = true
+L["Bottled Tornado"] = true
+L["Ash-Covered Horn"] = true
+L["Chain Pet Leash"] = true
+L["Sahn Tidehunter"] = true
+L["Blackhoof"] = true
+L["Gibblette the Cowardly"] = true
+L["Imp-Master Valessa"] = true
+L["Gar'lok"] = true
+L["Salyin Warscout"] = true
+L["Nessos the Oracle"] = true
+L["Ai-Ran the Shifting Cloud"] = true
+L["Major Nanners"] = true
+L["Kal'tik the Blight"] = true
+L["High Priest of Ordos"] = true
+L["Guk"] = true
+L["Rukdug"] = true
+L["Pugg"] = true
+L["Sea Calf"] = true
+L["Land Shark"] = true
+
+
+
+
+
 
 
 
