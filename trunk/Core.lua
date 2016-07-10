@@ -1013,6 +1013,12 @@ end
 function R:UpdateInterestingThings()
  self:Debug("Updating interesting things tables")
 
+	-- Store an internal table listing every MapID
+	if self.db.profile.mapIds == nil then self.db.profile.mapIds = {} else table.wipe(self.db.profile.mapIds) end
+	for map_id = 1, 5000 do
+		if GetMapNameByID(map_id) ~= nil then self.db.profile.mapIds[map_id] = GetMapNameByID(map_id) end
+	end
+
  table.wipe(npcs)
  table.wipe(bosses)
  table.wipe(zones)
@@ -2512,9 +2518,9 @@ do
 					if doThisZone then
 						if zoneText ~= "" then zoneText = zoneText..", " end
 						if currentZone == zoneValue.m then
-							zoneText = zoneText..colorize(GetMapNameByID(zoneValue.m), green)
+							zoneText = zoneText..colorize(GetMapNameByID(zoneValue.m) or "", green)
 						else
-							zoneText = zoneText..colorize(GetMapNameByID(zoneValue.m), gray)
+							zoneText = zoneText..colorize(GetMapNameByID(zoneValue.m) or "", gray)
 						end
 					end
 				end

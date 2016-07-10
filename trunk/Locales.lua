@@ -896,8 +896,10 @@ L["Rukdug"] = true
 L["Pugg"] = true
 L["Sea Calf"] = true
 L["Land Shark"] = true
-
-
+L["Fathom Dweller"] = true
+L["Living Infernal Core"] = true
+L["Brinedeep Bottom-Feeder"] = true
+L["Sting Ray Pup"] = true
 
 
 
