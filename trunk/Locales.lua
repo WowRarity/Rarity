@@ -900,6 +900,9 @@ L["Fathom Dweller"] = true
 L["Living Infernal Core"] = true
 L["Brinedeep Bottom-Feeder"] = true
 L["Sting Ray Pup"] = true
+L["Ironhoof Destroyer"] = true
+L["Felsteel Annihilator"] = true
+
 
 
 
