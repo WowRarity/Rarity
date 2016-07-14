@@ -902,14 +902,14 @@ L["Brinedeep Bottom-Feeder"] = true
 L["Sting Ray Pup"] = true
 L["Ironhoof Destroyer"] = true
 L["Felsteel Annihilator"] = true
-
-
-
-
-
-
-
-
+L["Jeremy Feasel"] = true
+L["Snow Mound"] = true
+L["Ahune"] = true
+L["Moonfang"] = true
+L["Christoph VonFeasel"] = true
+L["Kael'thas Sunstrider"] = true
+L["Old Man Barlo"] = true
+L["Cupri"] = true
 
 
 
