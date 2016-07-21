@@ -52,9 +52,6 @@ externals:
     Libs/LibSink-2.0:
         url: svn://svn.wowace.com/wow/libsink-2-0/mainline/trunk
         tag: latest
-    Libs/LibBars-1.0:
-        url: svn://svn.wowace.com/wow/libbars-1-0/mainline/trunk/LibBars-1.0
-        tag: latest
     Libs/LibSharedMedia-3.0:
         url: svn://svn.wowace.com/wow/libsharedmedia-3-0/mainline/trunk/LibSharedMedia-3.0
         tag: latest
