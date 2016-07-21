@@ -10,9 +10,6 @@ L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 
 
-
-
-
 L["Loading"] = true
 L["Loaded (running in debug mode)"] = true
 L["Profile modified, rebooting"] = true
