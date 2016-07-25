@@ -1004,6 +1004,12 @@ do
 		end
 	end
 
+	function R:ProfileDebug(s)
+		if self.db.profile.enableProfiling then
+			R:Print(s)
+		end
+	end
+
 end
 
 
@@ -2725,6 +2731,8 @@ do
  local function onClickGroup(cell, group)
   if type(group) == "table" then
    if group.collapsed == true then group.collapsed = false else group.collapsed = true end
+			if tooltip then tooltip:Hide() end
+			if qtip:IsAcquired("RarityTooltip") then qtip:Release("RarityTooltip") end
    Rarity:ShowTooltip()
   end
  end
@@ -2733,6 +2741,8 @@ do
  local function onClickGroup2(cell, group)
   if type(group) == "table" then
    if group.collapsedGroup == true then group.collapsedGroup = false else group.collapsedGroup = true end
+			if tooltip then tooltip:Hide() end
+			if qtip:IsAcquired("RarityTooltip") then qtip:Release("RarityTooltip") end
    Rarity:ShowTooltip()
   end
  end
@@ -2809,6 +2819,7 @@ do
      if (v.requiresHorde and R:IsHorde()) or (v.requiresAlliance and not R:IsHorde()) or (not v.requiresHorde and not v.requiresAlliance) then
 						if (R.db.profile.cats[v.cat]) or v.cat == nil then
 							if not (R.db.profile.hideHighChance and (v.chance or 0) < 50) then
+
 								local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
 								local attempts = v.attempts or 0
 								if type(attempts) ~= "number" then attempts = 0 end
@@ -2987,6 +2998,8 @@ do
 
 									end
 								end
+
+
 							end
 						end
      end
@@ -3027,7 +3040,6 @@ do
 			tooltip:SetScale(self.db.profile.tooltipScale or 1)
 		end
 		
-		--self:ScanInstanceLocks("SHOWING TOOLTIP")
 		table.wipe(headers)
   local addedLast
 		numHolidayReminders = 0
@@ -3043,6 +3055,7 @@ do
 		tooltip:SetCell(line, 1, colorize(sortDesc, green), nil, nil, 3)
 		
   -- Item groups
+		R:ProfileStart()
   addedLast = addGroup(self.db.profile.groups.mounts)
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
   addedLast = addGroup(self.db.profile.groups.pets)
@@ -3059,6 +3072,7 @@ do
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
   addedLast = addGroup(self.db.profile.groups.user, true)
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
+		R:ProfileStop("Tooltip rendering took %fms")
 		
 		-- Footer
 		line = tooltip:AddLine()
@@ -3076,7 +3090,10 @@ do
 		end
 		if hidden == true or frame == nil then return end
 
-		tooltip:SetAutoHideDelay(0.01, frame)
+		tooltip:SetAutoHideDelay(0.6, frame, function()
+			tooltip = nil
+			qtip:Release("RarityTooltip")
+		end)
 		tooltip:SmartAnchorTo(frame)
 		tooltip:UpdateScrolling()
 		tooltip:Show()
