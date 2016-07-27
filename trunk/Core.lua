@@ -2272,6 +2272,7 @@ function R:UpdateBar()
 	else	self.barGroup:SetFont(media:Fetch("font", self.db.profile.bar.font), self.db.profile.bar.fontSize or 8) end
 	if self.db.profile.bar.texture then self.barGroup:SetTexture(media:Fetch("statusbar", self.db.profile.bar.texture)) end
 	if self.db.profile.bar.rightAligned then self.barGroup:SetOrientation(3) else self.barGroup:SetOrientation(1) end
+	if self.db.profile.bar.growUp then self.barGroup:ReverseGrowth(true) else self.barGroup:ReverseGrowth(false) end
 	if self.db.profile.bar.showIcon then self.barGroup:ShowIcon() else self.barGroup:HideIcon() end
 	if self.db.profile.bar.showText then self.barGroup:ShowLabel() else self.barGroup:HideLabel() end
 	self.barGroup:SetColorAt(1.00, 1, 0, 0, 1) -- These SetColorAt calls appear to take longer and longer to execute every time they are called.

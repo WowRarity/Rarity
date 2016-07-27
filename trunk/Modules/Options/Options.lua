@@ -647,6 +647,18 @@ function R:PrepareOptions()
 						  end,
 					  },
 
+					  growUp = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Grow Up"],
+						  get = function() return self.db.profile.bar.growUp end,
+						  set = function(info, val)
+							  self.db.profile.bar.growUp = val
+									self:UpdateBar()
+							  self:UpdateText()
+						  end,
+					  },
+
 					  rightAligned = {
 						  type = "toggle",
 						  order = newOrder(),

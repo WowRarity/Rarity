@@ -14,6 +14,7 @@ L["Loading"] = true
 L["Loaded (running in debug mode)"] = true
 L["Profile modified, rebooting"] = true
 L["(running in debug mode)"] = true
+L["Grow Up"] = true
 L["Debug mode OFF"] = true
 L["Debug mode ON"] = true
 L["None"] = true

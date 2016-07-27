@@ -170,6 +170,7 @@ function R:PrepareDefaults()
 				texture = nil,
 				font = nil,
 				fontSize = 8,
+				growUp = false,
 				rightAligned = false,
 				showIcon = true,
 				showText = true,
