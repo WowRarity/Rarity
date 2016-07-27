@@ -64,6 +64,9 @@ externals:
     Libs/LibBabble-Boss-3.0:
         url: svn://svn.wowace.com/wow/libbabble-boss-3-0/mainline/trunk
         tag: latest
+    Libs/HereBeDragons-1.0:
+        url: git://git.wowace.com/wow/herebedragons/mainline.git
+        tag: latest
             
 tools-used:
     - libdatabroker-1-1

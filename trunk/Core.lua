@@ -18,6 +18,7 @@ local lbz = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
 local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 local lbct = LibStub("LibBabble-CreatureType-3.0"):GetUnstrictLookupTable()
 local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
+local hbd = LibStub("HereBeDragons-1.0")
 ---
 
 
@@ -809,7 +810,9 @@ function R:GetItemInfo(id)
 		return unpack(R.itemInfoCache[id])
 	end
 	if itemCacheDebug and initializing == false then R:Debug("ItemInfo not cached for "..id) end
-	R.itemInfoCache[id] = { GetItemInfo_Blizzard(id) }
+	local info = { GetItemInfo_Blizzard(id) }
+	if #info > 0 then R.itemInfoCache[id] = info end
+	if R.itemInfoCache[id] == nil then return nil end
 	return unpack(R.itemInfoCache[id])
 end
 	
