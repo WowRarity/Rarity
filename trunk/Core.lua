@@ -53,6 +53,7 @@ Rarity.ach_npcs_achId = {}
 Rarity.stats_to_scan = {}
 Rarity.items_with_stats = {}
 Rarity.collection_items = {}
+Rarity.itemInfoCache = {}
 
 local bankOpen = false
 local guildBankOpen = false
@@ -101,6 +102,13 @@ local numHolidayReminders = 0
 local showedHolidayReminderOverflow = false
 local canPlayGroupFinderAlert = true
 local wasGroupFinderAutoRefresh = false
+
+local itemCacheDebug = true
+local initializing = true
+local itemsPrimed = 0
+local itemsToPrime = 100
+Rarity.itemsToPrime = {}
+local initTimer
 
 local inSession = false
 local sessionStarted = 0
@@ -397,7 +405,8 @@ local UnitIsDead = _G.UnitIsDead
 local GetNumLootItems = _G.GetNumLootItems
 local GetLootSlotInfo = _G.GetLootSlotInfo
 local GetLootSlotLink = _G.GetLootSlotLink
-local GetItemInfo = _G.GetItemInfo
+local GetItemInfo_Blizzard = _G.GetItemInfo
+local GetItemInfo = function(id) return R:GetItemInfo(id) end
 local GetRealZoneText = _G.GetRealZoneText
 local GetContainerNumSlots = _G.GetContainerNumSlots
 local GetContainerItemID = _G.GetContainerItemID
@@ -448,23 +457,21 @@ do
 		
 		dbicon:Register("Rarity", dataobj, self.db.profile.minimap)
 
-		if self.db.profile.debugMode then
-   -- Expose normally private objects publically
-   R.npcs = npcs
-   R.bosses = bosses
-   R.zones = zones
-   R.guids = guids
-   R.items = items
-   R.npcs_to_items = npcs_to_items
-   R.items_to_items = items_to_items
-   R.used = used
-   R.tempbagitems = tempbagitems
-   R.bagitems = bagitems
-   R.fishzones = fishzones
-   R.archfragments = archfragments
-   R.architems = architems
-   R.stats = rarity_stats
-		end
+		-- Expose private objects
+  R.npcs = npcs
+  R.bosses = bosses
+  R.zones = zones
+  R.guids = guids
+  R.items = items
+  R.npcs_to_items = npcs_to_items
+  R.items_to_items = items_to_items
+  R.used = used
+  R.tempbagitems = tempbagitems
+  R.bagitems = bagitems
+  R.fishzones = fishzones
+  R.archfragments = archfragments
+  R.architems = architems
+  R.stats = rarity_stats
 
   -- LibSink still tries to call a non-existent Blizzard function sometimes
   if not CombatText_StandardScroll then CombatText_StandardScroll = 0 end
@@ -487,6 +494,9 @@ do
 		self:OnCurrencyUpdate("INITIALIZING") -- Prepare our currency list
   self:UpdateInterestingThings()
   self:FindTrackedItem()
+		initializing = false
+  self:UpdateText()
+		initializing = true
   self:UpdateText()
 		self:UpdateBar()
 
@@ -494,7 +504,7 @@ do
 		
 		self:UnregisterAllEvents()
   self:RegisterBucketEvent("BAG_UPDATE", 0.5, "OnBagUpdate")
-  self:RegisterEvent("LOOT_READY", "OnEvent")
+  self:RegisterEvent("LOOT_OPENED", "OnEvent")
   self:RegisterEvent("CURRENCY_DISPLAY_UPDATE", "OnCurrencyUpdate")
   self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED", "OnCombat") -- Used to detect boss kills that we didn't solo
   self:RegisterEvent("BANKFRAME_OPENED", "OnEvent")
@@ -542,6 +552,55 @@ do
 		RequestRaidInfo() -- Request raid lock info from the server
 		RequestLFDPlayerLockInfo() -- Request LFD data from the server; this is used for holiday boss detection
 		OpenCalendar() -- Request calendar info from the server
+
+		-- Progressively prime our item cache over time instead of hitting Blizzard's API all at once
+		table.wipe(R.itemsToPrime)
+		itemsPrimed = 0
+		itemsToPrime = 0
+		for k, v in pairs(self.db.profile.groups) do
+			if type(v) == "table" then
+				for kk, vv in pairs(v) do
+					if type(vv) == "table" then
+						if vv.itemId then R.itemsToPrime[vv.itemId] = true end
+						if vv.collectedItemId then
+							if type(vv.collectedItemId) == "table" then
+								for kkk, vvv in pairs(vv.collectedItemId) do R.itemsToPrime[vvv] = true end
+							else
+								R.itemsToPrime[vv.collectedItemId] = true
+							end
+						end
+						if vv.items and type(vv.items) == "table" then
+							for kkk, vvv in pairs(vv.items) do R.itemsToPrime[vvv] = true end
+						end
+					end
+				end
+			end
+		end
+		for k, v in pairs(self.db.profile.oneTimeItems) do
+			if type(v) == "table" and v.itemId then R.itemsToPrime[v.itemId] = true end
+		end
+		for k, v in pairs(self.db.profile.extraTooltips.inventoryItems) do
+			for kk, vv in pairs(v) do R.itemsToPrime[vv] = true end
+		end
+		local temp = {}
+		for k, v in pairs(R.itemsToPrime) do
+			itemsToPrime = itemsToPrime + 1
+			temp[itemsToPrime] = k
+		end
+		R.itemsToPrime = temp
+		initTimer = self:ScheduleRepeatingTimer(function()
+			if itemsPrimed <= 0 then itemsPrimed = 1 end
+			for i = 1, 10 do
+				GetItemInfo(R.itemsToPrime[itemsPrimed])
+				itemsPrimed = itemsPrimed + 1
+				if itemsPrimed > itemsToPrime then break end
+			end
+			if itemsPrimed >= itemsToPrime then
+				self:CancelTimer(initTimer)
+				initializing = false
+			end
+			self:UpdateText()
+		end, 0.1)
 
 		local refresh = nil
 
@@ -742,6 +801,18 @@ end
 --[[
       UTILITIES ----------------------------------------------------------------------------------------------------------------
   ]]
+		
+
+function R:GetItemInfo(id)
+	if id == nil then return end
+	if R.itemInfoCache[id] ~= nil then
+		return unpack(R.itemInfoCache[id])
+	end
+	if itemCacheDebug and initializing == false then R:Debug("ItemInfo not cached for "..id) end
+	R.itemInfoCache[id] = { GetItemInfo_Blizzard(id) }
+	return unpack(R.itemInfoCache[id])
+end
+	
 
 function R:tcopy(to, from)
  for k, v in pairs(from) do
@@ -1178,8 +1249,8 @@ function R:OnEvent(event, ...)
  -------------------------------------------------------------------------------------
  -- You opened a loot window on a corpse or fishing node
  -------------------------------------------------------------------------------------
-	if event == "LOOT_READY" then
-		self:Debug("LOOT_READY with target: "..(UnitGUID("target") or "NO TARGET"))
+	if event == "LOOT_OPENED" then
+		self:Debug("LOOT_OPENED with target: "..(UnitGUID("target") or "NO TARGET"))
   local zone = GetRealZoneText()
   local subzone = GetSubZoneText()
   local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
@@ -1287,6 +1358,7 @@ function R:OnEvent(event, ...)
 		if UnitClassification(guid) == "minus" then return end -- (This doesn't actually work currently; UnitClassification needs a unit, not a GUID)
 
   local numChecked = 0
+		self:Debug(numItems.." slot(s) to loot")
 		for slotID = 1, numItems, 1 do -- Loop through all loot slots (for AoE looting)
    local guidlist
    if GetLootSourceInfo then
@@ -1298,7 +1370,7 @@ function R:OnEvent(event, ...)
    for k, v in pairs(guidlist) do -- Loop through all NPC GUIDs being looted (will be 1 for single-target looting pre-5.0)
     guid = v
     if guid and type(guid) == "string" then
-     self:Debug("Checking NPC guid: "..guid)
+     self:Debug("Checking NPC guid ("..(numChecked + 1).."): "..guid)
      self:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, requiresPickpocket) -- Decide if we should increment an attempt count for this NPC
      numChecked = numChecked + 1
     else
@@ -2222,6 +2294,11 @@ do
 	local headers = {}
 
  function R:UpdateText()
+		if initializing then
+			dataobj.text = L["Loading"].." ("..format("%d%%", itemsPrimed / itemsToPrime * 100)..")"
+			return
+		end
+
 		self:ProfileStart()
   local attempts, dropChance, chance = 0, 0, 0
 
@@ -3032,6 +3109,9 @@ do
 	function R:ShowTooltip(hidden)
 		-- The tooltip can't be built in combat; it takes too long and the script will receive a "script ran too long" error
 		if InCombatLockdown() then return end
+
+		-- No tooltip until we're done initializing
+		if initializing then return end
 
 		if qtip:IsAcquired("RarityTooltip") and tooltip then
 			tooltip:Clear()

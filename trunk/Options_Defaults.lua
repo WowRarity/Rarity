@@ -2,6 +2,8 @@ if not Rarity then return end
 local R = Rarity
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 
+local GetItemInfo = function(id) return nil end
+
 -- Types of items
 local MOUNT = "MOUNT"
 local PET = "PET"

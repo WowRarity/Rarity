@@ -7,6 +7,9 @@ local lbsz = LibStub("LibBabble-SubZone-3.0")
 local media = LibStub("LibSharedMedia-3.0")
 
 
+local GetItemInfo = function(id) return R:GetItemInfo(id) end
+
+
 -- Types of items
 local MOUNT = "MOUNT"
 local PET = "PET"
