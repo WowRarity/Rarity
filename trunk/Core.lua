@@ -109,7 +109,9 @@ local initializing = true
 local itemsPrimed = 0
 local itemsToPrime = 100
 Rarity.itemsToPrime = {}
+Rarity.itemsMasterList = {}
 local initTimer
+local numPrimeAttempts = 0
 
 local inSession = false
 local sessionStarted = 0
@@ -554,54 +556,47 @@ do
 		RequestLFDPlayerLockInfo() -- Request LFD data from the server; this is used for holiday boss detection
 		OpenCalendar() -- Request calendar info from the server
 
-		-- Progressively prime our item cache over time instead of hitting Blizzard's API all at once
-		table.wipe(R.itemsToPrime)
+		-- Prepare a master list of all the items Rarity may need info for
+		table.wipe(R.itemsMasterList)
 		itemsPrimed = 0
 		itemsToPrime = 0
 		for k, v in pairs(self.db.profile.groups) do
 			if type(v) == "table" then
 				for kk, vv in pairs(v) do
 					if type(vv) == "table" then
-						if vv.itemId then R.itemsToPrime[vv.itemId] = true end
+						if vv.itemId then R.itemsMasterList[vv.itemId] = true end
 						if vv.collectedItemId then
 							if type(vv.collectedItemId) == "table" then
-								for kkk, vvv in pairs(vv.collectedItemId) do R.itemsToPrime[vvv] = true end
+								for kkk, vvv in pairs(vv.collectedItemId) do R.itemsMasterList[vvv] = true end
 							else
-								R.itemsToPrime[vv.collectedItemId] = true
+								R.itemsMasterList[vv.collectedItemId] = true
 							end
 						end
 						if vv.items and type(vv.items) == "table" then
-							for kkk, vvv in pairs(vv.items) do R.itemsToPrime[vvv] = true end
+							for kkk, vvv in pairs(vv.items) do R.itemsMasterList[vvv] = true end
 						end
 					end
 				end
 			end
 		end
 		for k, v in pairs(self.db.profile.oneTimeItems) do
-			if type(v) == "table" and v.itemId then R.itemsToPrime[v.itemId] = true end
+			if type(v) == "table" and v.itemId then R.itemsMasterList[v.itemId] = true end
 		end
 		for k, v in pairs(self.db.profile.extraTooltips.inventoryItems) do
-			for kk, vv in pairs(v) do R.itemsToPrime[vv] = true end
+			for kk, vv in pairs(v) do R.itemsMasterList[vv] = true end
 		end
 		local temp = {}
-		for k, v in pairs(R.itemsToPrime) do
+		for k, v in pairs(R.itemsMasterList) do
 			itemsToPrime = itemsToPrime + 1
 			temp[itemsToPrime] = k
 		end
-		R.itemsToPrime = temp
-		initTimer = self:ScheduleRepeatingTimer(function()
-			if itemsPrimed <= 0 then itemsPrimed = 1 end
-			for i = 1, 10 do
-				GetItemInfo(R.itemsToPrime[itemsPrimed])
-				itemsPrimed = itemsPrimed + 1
-				if itemsPrimed > itemsToPrime then break end
-			end
-			if itemsPrimed >= itemsToPrime then
-				self:CancelTimer(initTimer)
-				initializing = false
-			end
-			self:UpdateText()
-		end, 0.1)
+		R.itemsMasterList = temp
+
+		-- Progressively prime our item cache over time instead of hitting Blizzard's API all at once
+		itemsToPrime = 100 -- Just setting this temporarily to avoid a divide by zero
+		self:ScheduleTimer(function()
+			self:PrimeItemCache()
+		end, 2)
 
 		local refresh = nil
 
@@ -677,11 +672,6 @@ do
 			end
 		end, 20)
 
-		-- Trigger holiday reminders
-		self:ScheduleTimer(function()
-			Rarity:ShowTooltip(true)
-		end, 10)
-
   -- Update text again several times later - this helps get the icon right after login
   self:ScheduleTimer(function() R:DelayedInit() end, 10)
   self:ScheduleTimer(function() R:DelayedInit() end, 20)
@@ -706,6 +696,69 @@ function R:DelayedInit()
 	self:ScanToys("DELAYED INIT")
 	self:UpdateText()
  self:UpdateBar()
+end
+
+
+function R:IsInitializing()
+	return initializing
+end
+
+
+function R:PrimeItemCache()
+	numPrimeAttempts = numPrimeAttempts + 1
+	if numPrimeAttempts >= 20 then
+		self:Debug("Maximum number of cache prime attempts reached")
+		return
+	end
+
+	-- This doesn't always fully work, so first build a list of which items we still need to obtain
+	itemsToPrime = 1
+	itemsPrimed = 0
+	table.wipe(R.itemsToPrime)
+	for k, v in pairs(R.itemsMasterList) do
+		if R.itemInfoCache[v] == nil then
+			R.itemsToPrime[itemsToPrime] = v
+			itemsToPrime = itemsToPrime + 1
+		end
+	end
+	itemsToPrime = itemsToPrime - 1
+	if itemsToPrime <= 0 then return end
+
+	-- Prime the items
+	self:Debug("Loading "..itemsToPrime.." item(s) from server...")
+	initTimer = self:ScheduleRepeatingTimer(function()
+		if itemsPrimed <= 0 then itemsPrimed = 1 end
+		for i = 1, 10 do
+			GetItemInfo(R.itemsToPrime[itemsPrimed])
+			itemsPrimed = itemsPrimed + 1
+			if itemsPrimed > itemsToPrime then break end
+		end
+		if itemsPrimed >= itemsToPrime then
+			self:CancelTimer(initTimer)
+			-- First-time initialization finished
+			if initializing then
+				initializing = false
+				-- Trigger holiday reminders
+				self:ScheduleTimer(function()
+					Rarity:ShowTooltip(true)
+				end, 5)
+			end
+			-- Check how many items were not processed, rescanning if necessary
+			local got = 0
+			local totalNeeded = 0
+			for k, v in pairs(R.itemInfoCache) do got = got + 1 end
+			for k, v in pairs(R.itemsMasterList) do totalNeeded = totalNeeded + 1 end
+			if got < totalNeeded then
+				self:Debug("Initialization failed to retrieve "..(totalNeeded - got).." item(s)")
+				self:ScheduleTimer(function()
+					self:PrimeItemCache()
+				end, 5)
+			else
+				self:Debug("Finished loading "..itemsToPrime.." item(s) from server")
+			end
+		end
+		self:UpdateText()
+	end, 0.1)
 end
 
 
@@ -3111,11 +3164,6 @@ do
 	 
 	
 	function R:ShowTooltip(hidden)
-		-- The tooltip can't be built in combat; it takes too long and the script will receive a "script ran too long" error
-		if InCombatLockdown() then return end
-
-		-- No tooltip until we're done initializing
-		if initializing then return end
 
 		if qtip:IsAcquired("RarityTooltip") and tooltip then
 			tooltip:Clear()
@@ -3128,6 +3176,32 @@ do
   local addedLast
 		numHolidayReminders = 0
 		showedHolidayReminderOverflow = false
+		tooltip:SetAutoHideDelay(0.6, frame, function()
+			tooltip = nil
+			qtip:Release("RarityTooltip")
+		end)
+
+		-- The tooltip can't be built in combat; it takes too long and the script will receive a "script ran too long" error
+		if InCombatLockdown() then
+			line = tooltip:AddLine()
+			tooltip:SetCell(line, 1, colorize(L["Tooltip can't be shown in combat"], gray), nil, nil, 3)
+			if hidden == true or frame == nil then return end
+			tooltip:SmartAnchorTo(frame)
+			tooltip:UpdateScrolling()
+			tooltip:Show()
+			return
+		end
+
+		-- No tooltip until we're done initializing
+		if initializing then
+			line = tooltip:AddLine()
+			tooltip:SetCell(line, 1, colorize(L["Rarity is loading..."], gray), nil, nil, 3)
+			if hidden == true or frame == nil then return end
+			tooltip:SmartAnchorTo(frame)
+			tooltip:UpdateScrolling()
+			tooltip:Show()
+			return
+		end
 
   -- Sort header
   local sortDesc = L["Sorting by name"]
@@ -3174,10 +3248,6 @@ do
 		end
 		if hidden == true or frame == nil then return end
 
-		tooltip:SetAutoHideDelay(0.6, frame, function()
-			tooltip = nil
-			qtip:Release("RarityTooltip")
-		end)
 		tooltip:SmartAnchorTo(frame)
 		tooltip:UpdateScrolling()
 		tooltip:Show()
@@ -3707,6 +3777,8 @@ end
 
 
 function R:ScanStatistics(reason)
+	if InCombatLockdown() then return end -- Don't do this during combat as it has a tendency to run too long
+
 	self:ProfileStart2()
  --self:Debug("Scanning statistics ("..reason..")")
 

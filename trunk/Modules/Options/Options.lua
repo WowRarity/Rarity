@@ -7,7 +7,10 @@ local lbsz = LibStub("LibBabble-SubZone-3.0")
 local media = LibStub("LibSharedMedia-3.0")
 
 
-local GetItemInfo = function(id) return R:GetItemInfo(id) end
+local GetItemInfo = function(id)
+	if Rarity:IsInitializing() then return nil end
+	return R:GetItemInfo(id)
+end
 
 
 -- Types of items
@@ -879,8 +882,6 @@ output = self:GetSinkAce3OptionsDataTable(),
 	self:CreateGroup(self.options.args.items, self.db.profile.groups.items, false)
 	self:CreateGroup(self.options.args.custom, self.db.profile.groups.user, true)
 
-	self.PrepareOptions = nil
-
 end -- function R:PrepareOptions()
 
 
@@ -927,13 +928,13 @@ function R:CreateGroup(options, group, isUser)
   options.args[optionkey] = {
 		 type = "group",
    order = newOrder(),
-		 name = select(2, GetItemInfo(item.itemId or 0)) or item.name,
+		 name = function() return select(2, GetItemInfo(item.itemId or 0)) or item.name end,
 		 args = {
 			
 			 head = {
 				 type = "description",
 				 order = newOrder(),
-				 name = select(2, GetItemInfo(item.itemId or 0)) or item.name,
+				 name = function() return select(2, GetItemInfo(item.itemId or 0)) or item.name end,
 				 fontSize = "large"
 			 },
 				
