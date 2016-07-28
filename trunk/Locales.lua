@@ -318,7 +318,8 @@ L["Legion"] = true
 L["Demonic"] = true
 L["Highmountain Tauren"] = true
 L["Highborne"] = true
-
+L["Primary tooltip hide delay"] = true
+L["When you move your mouse out of the Rarity tooltip, it will take this long before it automatically hides itself."] = true
 
 
 

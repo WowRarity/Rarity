@@ -3176,7 +3176,9 @@ do
   local addedLast
 		numHolidayReminders = 0
 		showedHolidayReminderOverflow = false
-		tooltip:SetAutoHideDelay(0.6, frame, function()
+		local delay = 0.6
+		if self.db.profile.tooltipHideDelay <= 0 then delay = 0.01 else delay = self.db.profile.tooltipHideDelay or 0.6 end
+		tooltip:SetAutoHideDelay(delay, frame, function()
 			tooltip = nil
 			qtip:Release("RarityTooltip")
 		end)

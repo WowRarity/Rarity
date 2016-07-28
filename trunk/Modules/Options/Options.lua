@@ -405,6 +405,21 @@ function R:PrepareOptions()
         end,
 				   },
 
+				   tooltipHideDelay = {
+					   order = newOrder(),
+					   type = "range",
+        width = "double",
+					   name = L["Primary tooltip hide delay"],
+								desc = L["When you move your mouse out of the Rarity tooltip, it will take this long before it automatically hides itself."],
+					   min = 0,
+					   max = 5,
+					   step = .1,
+					   get = function() return self.db.profile.tooltipHideDelay or 0.6 end,
+					   set = function(_, val)
+         self.db.profile.tooltipHideDelay = val
+        end,
+				   },
+
 							statusTip = {
 								type = "select",
 								name = L["Secondary tooltip display"],

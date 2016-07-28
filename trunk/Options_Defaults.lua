@@ -151,6 +151,7 @@ function R:PrepareDefaults()
 			enableProfiling = false,
 			showGroupFinderAutoRefresh = true,
 			enableGroupFinderAlert = true,
+			tooltipHideDelay = 0.6,
 
    trackedGroup = "pets",
    trackedItem = 8494,
