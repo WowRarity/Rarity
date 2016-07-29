@@ -3173,6 +3173,11 @@ do
 		renderingTip = true
 
 		if qtip:IsAcquired("RarityTooltip") and tooltip then
+			-- Don't show the tooltip if it's already showing
+			if tooltip:IsVisible() then
+				renderingTip = false
+				return
+			end
 			tooltip:Clear()
 		else
 			tooltip = qtip:Acquire("RarityTooltip", 9, "LEFT", "LEFT", "RIGHT", "RIGHT", "RIGHT", "CENTER", "CENTER", "CENTER") -- intentionally one column more than we need to avoid text clipping
