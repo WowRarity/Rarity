@@ -762,6 +762,7 @@ function R:PrimeItemCache()
 end
 
 
+
 function R:GroupFinderResultsUpdated()
 	if LFGListFrame.SearchPanel.ScrollFrame.buttons[1]:IsShown() and self.db.profile.showGroupFinderAutoRefresh and IsInGroup() ~= true and PVEFrame ~= nil and PVEFrame:IsShown() == true then
 		if canPlayGroupFinderAlert == true and wasGroupFinderAutoRefresh == true then
@@ -3665,16 +3666,36 @@ function R:ScanExistingItems(reason)
 end
 
 
+local hookedCollectionsJournal_SetTab = false
+local currentCollectionsTab = 1
+local currentCollectionsSelf
+
+
 function R:ScanToys(reason)
 	if InCombatLockdown() then return end
- self:Debug("Scanning toys ("..reason..")")
+ self:Debug("Scanning toys ("..(reason or "")..")")
 
+	-- Load the Collections add-on if needed
 	if not Rarity.toysScanned then
 		if not ToyBox_OnLoad then UIParentLoadAddOn("Blizzard_Collections") end
-		--if ToyBox_OnShow then ToyBox_OnShow() end
-		if CollectionsJournal_SetTab then CollectionsJournal_SetTab(CollectionsJournal, 3) end
 	end
 
+	-- Hook CollectionsJournal_SetTab just so we can observe calls to it; it's the only way to keep track of the current tab
+	if not hookedCollectionsJournal_SetTab and CollectionsJournal_SetTab then
+		local CollectionsJournal_SetTab_Blizzard = _G.CollectionsJournal_SetTab
+		CollectionsJournal_SetTab = function(self, tab)
+			currentCollectionsSelf = self
+			currentCollectionsTab = tab
+			CollectionsJournal_SetTab_Blizzard(self, tab)
+		end
+		hookedCollectionsJournal_SetTab = true
+	end
+
+	-- Save which Collections tab we were on just before we switch it to Toys
+	local tabBefore = currentCollectionsTab
+	if CollectionsJournal_SetTab then CollectionsJournal_SetTab(CollectionsJournal, 3) end
+
+	-- Scan the toys
 	table.wipe(toys)
  for id = 1, C_ToyBox.GetNumToys() do
 		local itemId = C_ToyBox.GetToyFromIndex(id)
@@ -3696,6 +3717,10 @@ function R:ScanToys(reason)
 			end
 		end
 	end
+
+	-- Put the Collections tab back where it was
+	self:Debug("ScanToys: changing tab back to "..tabBefore)
+	CollectionsJournal_SetTab(currentCollectionsSelf, tabBefore)
 end
 
 

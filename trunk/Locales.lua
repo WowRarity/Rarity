@@ -320,6 +320,17 @@ L["Highmountain Tauren"] = true
 L["Highborne"] = true
 L["Primary tooltip hide delay"] = true
 L["When you move your mouse out of the Rarity tooltip, it will take this long before it automatically hides itself."] = true
+L["Defeat Detection"] = true
+L["Quest ID"] = true
+L["A comma-separated list of quest IDs. When these quest IDs are completed, the item is considered defeated."] = true
+L["Please enter a comma-separated list of Quest IDs."] = true
+L["Every Quest ID must be a number greater than 0."] = true
+L["Options"] = true
+L["Dungeon ID"] = true
+L["A dungeon ID which, when marked as completed by the game client, will cause this item to be considered Defeated. This is primarily used for holiday items which have unique dungeon IDs."] = true
+L["Boss Name"] = true
+L["The boss name, in English (enUS), which appears in the instance lock inside the Raid Info panel. The name will be translated to your local language automatically using the LibBoss library (if detection fails, check that the translation exists in this library). IMPORTANT: This method of defeat detection only works when the boss exists in one place at a time. Certain bosses, such as Ragnaros and Kael'thas Sunstrider, exist in two instances at once. Those bosses cannot be used here. NOTE: This only works for RAIDS, not dungeons."] = true
+
 
 
 

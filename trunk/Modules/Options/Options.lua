@@ -1437,7 +1437,7 @@ function R:CreateGroup(options, group, isUser)
      disabled = not isUser,
 				},
 
-			 spacer2 = { type = "header", name = L["Toggles"], order = newOrder(), },
+			 spacer2 = { type = "header", name = L["Options"], order = newOrder(), },
 
 				enabled = {
 					order = newOrder(),
@@ -1498,7 +1498,7 @@ function R:CreateGroup(options, group, isUser)
 					end,
 				},
 
-			 spacer3 = { type = "header", name = L["Attempts"], order = newOrder(), },
+			 spacer4 = { type = "header", name = L["Attempts"], order = newOrder(), },
 
 		  attempts = {
 			  type = "input",
@@ -1568,21 +1568,6 @@ function R:CreateGroup(options, group, isUser)
      hidden = function() return item.method == COLLECTION end,
 				},
 
-				pickpocket = {
-					order = newOrder(),
-					type = "toggle",
-					name = L["Requires Pickpocketing"],
-					desc = L["When enabled, the item can only be obtained by pickpocketing. The item will be marked Unavailable for non-rogues."],
-					get = function()
-      if item.pickpocket == true then return true else return false end
-     end,
-					set = function(info, val)
-						item.pickpocket = val
-						self:Update("OPTIONS")
-					end,
-     hidden = function() return item.method ~= NPC end,
-				},
-
 				holidayReminder = {
 					order = newOrder(),
 					type = "toggle",
@@ -1598,7 +1583,98 @@ function R:CreateGroup(options, group, isUser)
      hidden = function() return item.cat ~= HOLIDAY or (item.questId == nil and item.lockDungeonId == nil and item.holidayTexture == nil) end,
 				},
 
-			 spacer3 = { type = "header", name = L["Other Requirements"], order = newOrder(), },
+			 spacer3 = { type = "header", name = L["Defeat Detection"], order = newOrder(), },
+
+		  questId = {
+			  type = "input",
+     order = newOrder(),
+     width = "double",
+			  name = L["Quest ID"],
+			  desc = L["A comma-separated list of quest IDs. When these quest IDs are completed, the item is considered defeated."],
+			  set = function(info, val)
+				  if strtrim(val) == "" then item.questId = nil
+      else
+       local list = { strsplit(",", val) }
+       for k, v in pairs(list) do
+        if strtrim(v) == "" or tonumber(strtrim(v)) == nil then
+         alert(L["Please enter a comma-separated list of Quest IDs."])
+         return
+        elseif tonumber(strtrim(v)) <= 0 then
+         alert(L["Every Quest ID must be a number greater than 0."])
+         return
+        end
+       end
+       item.questId = {}
+       for k, v in pairs(list) do
+        table.insert(item.questId, tonumber(strtrim(v)))
+       end
+				  end
+						self:Update("OPTIONS")
+			  end,
+     get = function(into)
+      if item.questId and type(item.questId) == "table" then
+       local s = ""
+       for k, v in pairs(item.questId) do
+        if strlen(s) > 0 then s = s.."," end
+        s = s..tostring(v)
+       end
+       return s
+      elseif item.questId ~= nil and tonumber(item.questId) ~= nil then return tostring(item.questId) end
+						return ""
+     end,
+			  disabled = not isUser,
+		  },
+							
+		  lockDungeonId = {
+			  type = "input",
+     order = newOrder(),
+     width = "half",
+			  name = L["Dungeon ID"],
+			  desc = L["A dungeon ID which, when marked as completed by the game client, will cause this item to be considered Defeated. This is primarily used for holiday items which have unique dungeon IDs."],
+			  set = function(info, val)
+				  if strtrim(val) == "" then item.lockDungeonId = nil
+      elseif tonumber(val) == nil then alert(L["You must enter a valid number."])
+      else
+       local n = tonumber(val)
+       if n < 0 then alert(L["You must enter a number larger than or equal to 0."])
+       else item.lockDungeonId = n end
+				  end
+						self:Update("OPTIONS")
+			  end,
+     get = function(into) return tostring(item.lockDungeonId or "") end,
+			  disabled = not isUser,
+		  },
+							
+		  lockBossName = {
+			  type = "input",
+     order = newOrder(),
+     width = "full",
+			  name = L["Boss Name"],
+			  desc = L["The boss name, in English (enUS), which appears in the instance lock inside the Raid Info panel. The name will be translated to your local language automatically using the LibBoss library (if detection fails, check that the translation exists in this library). IMPORTANT: This method of defeat detection only works when the boss exists in one place at a time. Certain bosses, such as Ragnaros and Kael'thas Sunstrider, exist in two instances at once. Those bosses cannot be used here. NOTE: This only works for RAIDS, not dungeons."],
+			  set = function(info, val)
+				  item.lockBossName = val
+						self:Update("OPTIONS")
+			  end,
+     get = function(into) return item.lockBossName or "" end,
+			  disabled = not isUser,
+		  },
+							
+			 spacer5 = { type = "header", name = L["Other Requirements"], order = newOrder(), },
+
+				pickpocket = {
+					order = newOrder(),
+					type = "toggle",
+					name = L["Requires Pickpocketing"],
+					desc = L["When enabled, the item can only be obtained by pickpocketing. The item will be marked Unavailable for non-rogues."],
+					get = function()
+      if item.pickpocket == true then return true else return false end
+     end,
+					set = function(info, val)
+						item.pickpocket = val
+						self:Update("OPTIONS")
+					end,
+     hidden = function() return item.method ~= NPC end,
+				},
 
 		  groupSize = {
 			  type = "input",
@@ -1704,7 +1780,7 @@ function R:CreateGroup(options, group, isUser)
 					end,
 				},
 
-			 spacer4 = { type = "header", name = "", order = newOrder(), hidden = not isUser },
+			 spacer6 = { type = "header", name = "", order = newOrder(), hidden = not isUser },
 
 			 delete = {
 				 type = "execute",
