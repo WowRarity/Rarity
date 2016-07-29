@@ -104,7 +104,7 @@ local showedHolidayReminderOverflow = false
 local canPlayGroupFinderAlert = true
 local wasGroupFinderAutoRefresh = false
 
-local itemCacheDebug = true
+local itemCacheDebug = false
 local initializing = true
 local itemsPrimed = 0
 local itemsToPrime = 100
@@ -3163,8 +3163,14 @@ do
   return added
  end
 	 
+
+	local renderingTip = false
 	
 	function R:ShowTooltip(hidden)
+
+		-- This function needs to be non-reentrant
+		if renderingTip then return end
+		renderingTip = true
 
 		if qtip:IsAcquired("RarityTooltip") and tooltip then
 			tooltip:Clear()
@@ -3188,10 +3194,14 @@ do
 		if InCombatLockdown() then
 			line = tooltip:AddLine()
 			tooltip:SetCell(line, 1, colorize(L["Tooltip can't be shown in combat"], gray), nil, nil, 3)
-			if hidden == true or frame == nil then return end
+			if hidden == true or frame == nil then
+				renderingTip = false
+				return
+			end
 			tooltip:SmartAnchorTo(frame)
 			tooltip:UpdateScrolling()
 			tooltip:Show()
+			renderingTip = false
 			return
 		end
 
@@ -3199,10 +3209,14 @@ do
 		if initializing then
 			line = tooltip:AddLine()
 			tooltip:SetCell(line, 1, colorize(L["Rarity is loading..."], gray), nil, nil, 3)
-			if hidden == true or frame == nil then return end
+			if hidden == true or frame == nil then
+				renderingTip = false
+				return
+			end
 			tooltip:SmartAnchorTo(frame)
 			tooltip:UpdateScrolling()
 			tooltip:Show()
+			renderingTip = false
 			return
 		end
 
@@ -3214,26 +3228,51 @@ do
   end
 		local line = tooltip:AddLine()
 		tooltip:SetCell(line, 1, colorize(sortDesc, green), nil, nil, 3)
-		
+
   -- Item groups
 		R:ProfileStart()
+
+		local group1start = debugprofilestop()
   addedLast = addGroup(self.db.profile.groups.mounts)
+		local group1end = debugprofilestop()
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
+
+		local group2start = debugprofilestop()
   addedLast = addGroup(self.db.profile.groups.pets)
+		local group2end = debugprofilestop()
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
+
+		local group3start = debugprofilestop()
   addedLast = addGroup(self.db.profile.groups.items)
+		local group3end = debugprofilestop()
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
+
+		local group4start = debugprofilestop()
   addedLast = addGroup(self.db.profile.groups.user)
+		local group4end = debugprofilestop()
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
+
+		local group5start = debugprofilestop()
   addedLast = addGroup(self.db.profile.groups.mounts, true)
+		local group5end = debugprofilestop()
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
+
+		local group6start = debugprofilestop()
   addedLast = addGroup(self.db.profile.groups.pets, true)
+		local group6end = debugprofilestop()
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
+
+		local group7start = debugprofilestop()
   addedLast = addGroup(self.db.profile.groups.items, true)
+		local group7end = debugprofilestop()
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
+
+		local group8start = debugprofilestop()
   addedLast = addGroup(self.db.profile.groups.user, true)
+		local group8end = debugprofilestop()
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
-		R:ProfileStop("Tooltip rendering took %fms")
+
+		R:ProfileStop("Tooltip rendering took %fms"..format(" (%f, %f, %f, %f, %f, %f, %f, %f)", (group1end - group1start), (group2end - group2start), (group3end - group3start), (group4end - group4start), (group5end - group5start), (group6end - group6start), (group7end - group7start), (group8end - group8start)))
 		
 		-- Footer
 		line = tooltip:AddLine()
@@ -3249,11 +3288,16 @@ do
 				Rarity:Print(colorize(L["You can turn off holiday reminders as a whole or on an item-by-item basis by visiting the Rarity Options screen."], gray))
 			end
 		end
-		if hidden == true or frame == nil then return end
+		if hidden == true or frame == nil then
+			renderingTip = false
+			return
+		end
 
 		tooltip:SmartAnchorTo(frame)
 		tooltip:UpdateScrolling()
 		tooltip:Show()
+		
+		renderingTip = false
 	end
 end
 
