@@ -507,7 +507,7 @@ do
 		
 		self:UnregisterAllEvents()
   self:RegisterBucketEvent("BAG_UPDATE", 0.5, "OnBagUpdate")
-  self:RegisterEvent("LOOT_OPENED", "OnEvent")
+  self:RegisterEvent("LOOT_READY", "OnEvent")
   self:RegisterEvent("CURRENCY_DISPLAY_UPDATE", "OnCurrencyUpdate")
   self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED", "OnCombat") -- Used to detect boss kills that we didn't solo
   self:RegisterEvent("BANKFRAME_OPENED", "OnEvent")
@@ -847,7 +847,6 @@ function R:OnProfileChanged(event, database, newProfileKey)
  self:ScanBags()
  self:FindTrackedItem()
  self:UpdateText()
- --if self:InTooltip() then self:ShowTooltip() end
 	self.db.profile.lastRevision = R.MINOR_VERSION
 end
 
@@ -1306,8 +1305,8 @@ function R:OnEvent(event, ...)
  -------------------------------------------------------------------------------------
  -- You opened a loot window on a corpse or fishing node
  -------------------------------------------------------------------------------------
-	if event == "LOOT_OPENED" then
-		self:Debug("LOOT_OPENED with target: "..(UnitGUID("target") or "NO TARGET"))
+	if event == "LOOT_READY" then
+		self:Debug("LOOT_READY with target: "..(UnitGUID("target") or "NO TARGET"))
   local zone = GetRealZoneText()
   local subzone = GetSubZoneText()
   local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
@@ -1455,9 +1454,6 @@ function R:OnEvent(event, ...)
     end
 			end
 		end
-
-  -- Update the tooltip if we're in it
-  --if self:InTooltip() then self:ShowTooltip() end
 
 
  -- Detect bank, guild bank, auction house, tradeskill, trade, and mail. This turns off item use detection.
@@ -3390,10 +3386,27 @@ RarityAchievementAlertSystem:SetCanShowMoreConditionFunc(function() return not C
 
 
 -- test with: /run Rarity:ShowFoundAlert(32458, 5)
-function R:ShowFoundAlert(itemId, attempts)
+function R:ShowFoundAlert(itemId, attempts, item)
+	if item == nil then item = trackedItem end
+
  local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(itemId)
  if itemName == nil then return end -- Server doesn't know this item, we can't award it
  if itemTexture == nil then itemTexture = [[Interface\Icons\INV_Misc_PheonixPet_01]] end
+
+	-- Output to the sink
+ if self.db.profile.enableAnnouncements ~= false and item.announce ~= false then
+  local s
+		if item.method == COLLECTION then
+			s = format(L["%s: collection completed!"], itemName)
+		else
+			if attempts <= 1 then
+				s = format(L["%s: Found on the first attempt!"], itemName)
+			else
+				s = format(L["%s: Found after %d attempts!"], itemName, attempts)
+			end
+		end
+  self:Pour(s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
+ end
 	
  -- The following code is adapted from Blizzard's AlertFrameMixin:OnEvent function found in FrameXML\AlertFrames.lua [heavily updated in 7.0]
 
@@ -3503,6 +3516,7 @@ function R:OutputAttempts(item, skipTimeUpdate)
    -- Don't go any further if we don't want to announce this
    if self.db.profile.enableAnnouncements == false then return end
    if item.announce == false then return end
+			if self.db.profile.onlyAnnounceFound == true then return end
 
    -- Output the attempt count
    local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
@@ -3661,7 +3675,6 @@ function R:ScanExistingItems(reason)
 			end
 		end
 	end
-
 
  -- Scan all archaeology races and set any item attempts to the number of solves for that race (if we've never seen attempts for the race before)
  local s = 0
@@ -3932,7 +3945,7 @@ function R:FoundItem(itemId, item)
 	-- Hacky: If the item is unique and has 0 attempts, don't do this (if you really find a unique item on your first attempt, sorry)
 	if item.unique and item.attempts - item.lastAttempts <= 1 then return end
 
- self:ShowFoundAlert(itemId, item.attempts - item.lastAttempts, item)
+ self:ShowFoundAlert(itemId, item.attempts - item.lastAttempts, item, item)
  if inSession then self:EndSession() end
  item.realAttempts = item.attempts - item.lastAttempts
  item.lastAttempts = item.attempts
@@ -3959,7 +3972,6 @@ function R:FoundItem(itemId, item)
   item.found = nil
   self:UpdateInterestingThings()
   self:UpdateText()
-  --if R:InTooltip() then Rarity:ShowTooltip() end
  end, 5) end
 end
 

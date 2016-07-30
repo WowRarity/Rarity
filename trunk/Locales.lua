@@ -43,9 +43,12 @@ L["%d attempt - %.2f%%"] = true
 L["%d attempts - %.2f%%"] = true
 L["Found on your first attempt!"] = true
 L["Found after %d attempts!"] = true
+L["%s: collection completed!"] = true
 L["Toys & Items"] = true
 L["%s: %d attempt (%d total)"] = true
 L["%s: %d attempts (%d total)"] = true
+L["%s: Found on the first attempt!"] = true
+L["%s: Found after %d attempts!"] = true
 L["Dwarf"] = true
 L["Draenei"] = true
 L["Fossil"] = true
@@ -330,6 +333,10 @@ L["Dungeon ID"] = true
 L["A dungeon ID which, when marked as completed by the game client, will cause this item to be considered Defeated. This is primarily used for holiday items which have unique dungeon IDs."] = true
 L["Boss Name"] = true
 L["The boss name, in English (enUS), which appears in the instance lock inside the Raid Info panel. The name will be translated to your local language automatically using the LibBoss library (if detection fails, check that the translation exists in this library). IMPORTANT: This method of defeat detection only works when the boss exists in one place at a time. Certain bosses, such as Ragnaros and Kael'thas Sunstrider, exist in two instances at once. Those bosses can be used here, but killing them in either of their instances will result in this Defeat Detection triggering."] = true
+L["Only announce when found"] = true
+L["Announcements will only be triggered when the item is found. When this is off, Rarity will announce every attempt and when the item is found."] = true
+
+
 
 
 

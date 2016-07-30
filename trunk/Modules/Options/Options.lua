@@ -821,7 +821,18 @@ function R:PrepareOptions()
 						inline = true,
 						args = {
 						
-output = self:GetSinkAce3OptionsDataTable(),
+					  onlyAnnounceFound = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Only announce when found"],
+								desc = L["Announcements will only be triggered when the item is found. When this is off, Rarity will announce every attempt and when the item is found."],
+						  get = function() return self.db.profile.onlyAnnounceFound end,
+						  set = function(info, val)
+							  self.db.profile.onlyAnnounceFound = val
+						  end,
+					  },
+
+							output = self:GetSinkAce3OptionsDataTable(),
 
 						}, -- args
 					}, -- announcements
