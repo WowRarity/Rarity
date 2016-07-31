@@ -1541,7 +1541,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
 	-- We're interested in this loot, process further
  guids[guid] = true
   
- -- Increment attempts counter(s). One NPC might drop multiple things we want, so scan for them all.
+ -- Increment attempt counter(s). One NPC might drop multiple things we want, so scan for them all.
  if npcs_to_items[npcid] and type(npcs_to_items[npcid]) == "table" then
   for k, v in pairs(npcs_to_items[npcid]) do
    if v.enabled ~= false and (v.method == NPC or v.method == ZONE) then
@@ -1738,7 +1738,7 @@ end
 
 
 -------------------------------------------------------------------------------------
--- Handle boss kills. You may not ever open a loot window on a boss, so we need to watch the combat log for it's death.
+-- Handle boss kills. You may not ever open a loot window on a boss, so we need to watch the combat log for its death.
 -- This event also handles some special cases.
 -------------------------------------------------------------------------------------
 function R:OnCombat(event, timestamp, eventType, hideCaster, srcGuid, srcName, srcFlags, srcRaidFlags, dstGuid, dstName, dstFlags, dstRaidFlags, spellId, spellName, spellSchool, auraType, ...)
@@ -2315,7 +2315,7 @@ end)
 		
 		
 --[[
-      DATA BROKER OBJECT, AND TOOLTIP, BAR -------------------------------------------------------------------------------------------
+      DATA BROKER OBJECT, TOOLTIP, BAR -----------------------------------------------------------------------------------------------
   ]]
 
 		
@@ -2413,7 +2413,7 @@ do
 			self.bar:SetLabel(text)
 			self.bar:SetValue(chance, 100)
 		end
-		if self.hadBarTwo then -- If we've transitioning from 2 bars to 1, hiding/showing the bars collapses them upwards
+		if self.hadBarTwo then -- If we've transitioning from 2 bars to 1, hiding/showing the bars collapses them
 			self.barGroup:Hide()
 			if self.db.profile.bar.visible then self.barGroup:Show() end
 		end
@@ -3746,6 +3746,7 @@ function R:ScanToys(reason)
 	if not hookedCollectionsJournal_SetTab and CollectionsJournal_SetTab then
 		local CollectionsJournal_SetTab_Blizzard = _G.CollectionsJournal_SetTab
 		CollectionsJournal_SetTab = function(self, tab)
+			if InCombatLockdown() then return end -- Blizzard appears to call this in combat sometimes; disregard those calls (Rarity taints the UI with this hook)
 			currentCollectionsSelf = self
 			currentCollectionsTab = tab
 			CollectionsJournal_SetTab_Blizzard(self, tab)
