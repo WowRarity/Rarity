@@ -49,6 +49,22 @@ local TIP_LEFT = "TIP_LEFT"
 local TIP_RIGHT = "TIP_RIGHT"
 local TIP_HIDDEN = "TIP_HIDDEN"
 
+-- Classes
+local classes = {
+	["DEATHKNIGHT"] = "|c"..RAID_CLASS_COLORS["DEATHKNIGHT"]["colorStr"]..L["Death Knight"].."|r",
+	["DEMONHUNTER"] = "|c"..RAID_CLASS_COLORS["DEMONHUNTER"]["colorStr"]..L["Demon Hunter"].."|r",
+	["DRUID"] = "|c"..RAID_CLASS_COLORS["DRUID"]["colorStr"]..L["Druid"].."|r",
+	["HUNTER"] = "|c"..RAID_CLASS_COLORS["HUNTER"]["colorStr"]..L["Hunter"].."|r",
+	["MAGE"] = "|c"..RAID_CLASS_COLORS["MAGE"]["colorStr"]..L["Mage"].."|r",
+	["MONK"] = "|c"..RAID_CLASS_COLORS["MONK"]["colorStr"]..L["Monk"].."|r",
+	["PALADIN"] = "|c"..RAID_CLASS_COLORS["PALADIN"]["colorStr"]..L["Paladin"].."|r",
+	["PRIEST"] = "|c"..RAID_CLASS_COLORS["PRIEST"]["colorStr"]..L["Priest"].."|r",
+	["ROGUE"] = "|c"..RAID_CLASS_COLORS["ROGUE"]["colorStr"]..L["Rogue"].."|r",
+	["SHAMAN"] = "|c"..RAID_CLASS_COLORS["SHAMAN"]["colorStr"]..L["Shaman"].."|r",
+	["WARLOCK"] = "|c"..RAID_CLASS_COLORS["WARLOCK"]["colorStr"]..L["Warlock"].."|r",
+	["WARRIOR"] = "|c"..RAID_CLASS_COLORS["WARRIOR"]["colorStr"]..L["Warrior"].."|r",
+}
+
 local red = { r = 1.0, g = 0.2, b = 0.2 }
 local blue = { r = 0.4, g = 0.4, b = 1.0 }
 local green = { r = 0.2, g = 1.0, b = 0.2 }
@@ -1758,6 +1774,22 @@ function R:CreateGroup(options, group, isUser)
 						if item.instanceDifficulties == nil then item.instanceDifficulties = {} end
 						item.instanceDifficulties[key] = state
 						self:Update("OPTIONS")
+					end,
+				},
+
+				disableForClass = {
+					order = newOrder(),
+					type = "multiselect",
+					name = L["Disable for classes"],
+					desc = L["Choose which classes this item should be disabled for. Checking a class below hides the item from the Rarity tooltip and prevents it from being tracked. You can still toggle Track This, but the item will not track for any classes specified here."],
+					values = classes,
+					get = function(s, key)
+      if item.disableForClass then return item.disableForClass[key] or false end
+						return false
+     end,
+					set = function(s, key, state)
+						if item.disableForClass == nil then item.disableForClass = {} end
+						item.disableForClass[key] = state
 					end,
 				},
 

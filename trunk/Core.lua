@@ -119,6 +119,8 @@ local sessionLast = 0
 local SESSION_LENGTH = 60 * 10 -- 10 minutes
 local sessionTimer
 
+local playerClass = nil
+
 local red = { r = 1.0, g = 0.2, b = 0.2 }
 local blue = { r = 0.4, g = 0.4, b = 1.0 }
 local green = { r = 0.2, g = 1.0, b = 0.2 }
@@ -1247,9 +1249,18 @@ function R:GetNPCIDFromGUID(guid)
 end
 
 
-function R:IsInstanceAppropriate(item)
+function R:IsAttemptAllowed(item)
+	-- No item supplied; assume it's okay
 	if item == nil then return true end
+
+	-- Check disabled classes
+	if not playerClass then playerClass = UnitClass("player") end
+	if item.disableForClass and type(item.disableForClass == "table") and item.disableForClass[playerClass] == true then return false end
+
+	-- No valid instance difficulty configuration; allow (this needs to be the second-to-last check)
 	if item.instanceDifficulties == nil or type(item.instanceDifficulties) ~= "table" or next(item.instanceDifficulties) == nil then return true end
+
+	-- Check instance difficulty (this needs to be the last check)
 	local foundTrue = false
 	for k, v in pairs(item.instanceDifficulties) do
 		if v == true then foundTrue = true end
@@ -1369,7 +1380,7 @@ function R:OnEvent(event, ...)
           end
          end
          if found then
-          if self:IsInstanceAppropriate(vv) then
+          if self:IsAttemptAllowed(vv) then
            if vv.attempts == nil then vv.attempts = 1 else vv.attempts = vv.attempts + 1 end
            self:OutputAttempts(vv)
           end
@@ -1545,7 +1556,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
  if npcs_to_items[npcid] and type(npcs_to_items[npcid]) == "table" then
   for k, v in pairs(npcs_to_items[npcid]) do
    if v.enabled ~= false and (v.method == NPC or v.method == ZONE) then
-    if self:IsInstanceAppropriate(v) then
+    if self:IsAttemptAllowed(v) then
      -- Don't increment attempts if this NPC also has a statistic defined. This would result in two attempts counting instead of one.
      if not v.statisticId or type(v.statisticId) ~= "table" or #v.statisticId <= 0 then
 						-- Don't increment attempts for unique items if you already have the item in your bags
@@ -1576,7 +1587,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
        end
       end
       if found then
-       if self:IsInstanceAppropriate(vv) then
+       if self:IsAttemptAllowed(vv) then
         if vv.attempts == nil then vv.attempts = 1 else vv.attempts = vv.attempts + 1 end
         self:OutputAttempts(vv)
        end
@@ -1752,7 +1763,7 @@ function R:OnCombat(event, timestamp, eventType, hideCaster, srcGuid, srcName, s
      if npcs_to_items[npcid] and type(npcs_to_items[npcid]) == "table" then
       for k, v in pairs(npcs_to_items[npcid]) do
        if v.enabled ~= false and v.method == BOSS then
-        if self:IsInstanceAppropriate(v) then
+        if self:IsAttemptAllowed(v) then
 									guids[dstGuid] = true
          if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
          self:OutputAttempts(v)
@@ -2013,7 +2024,7 @@ end
 function R:OnCriteriaComplete(event, id)
 	if id == 24801 --[[ Ozumat ]] or id == 24803 --[[ Murozond ]] then
 		local v = self.db.profile.groups.mounts["Reins of the Infinite Timereaver"]
-		if v and type(v) == "table" and v.enabled ~= false and R:IsInstanceAppropriate(v) then
+		if v and type(v) == "table" and v.enabled ~= false and R:IsAttemptAllowed(v) then
 			if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
 			R:OutputAttempts(v)
 		end
@@ -2078,7 +2089,7 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 	-- This NPC is known to be used for obtaining something
  if npcs_to_items[npcid] and type(npcs_to_items[npcid]) == "table" then
   for k, v in pairs(npcs_to_items[npcid]) do
-   if R:IsInstanceAppropriate(v) then
+   if R:IsAttemptAllowed(v) then
     if (v.requiresHorde and R:IsHorde()) or (v.requiresAlliance and not R:IsHorde()) or (not v.requiresHorde and not v.requiresAlliance) then
 					local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
 					if itemLink or itemName or v.name then
@@ -2191,7 +2202,7 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 							end
 						end
 						if found then
-							if R:IsInstanceAppropriate(vv) then
+							if R:IsAttemptAllowed(vv) then
 								local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(vv.itemId)
 								if itemLink or itemName or vv.name then
 									if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
@@ -2277,7 +2288,7 @@ hooksecurefunc(GameTooltip, "SetBagItem", function(self, bag, slot)
 							for kk, vv in pairs(v) do
 								if type(vv) == "table" then
 									if vv.itemId == y then
-										if R:IsInstanceAppropriate(vv) then
+										if R:IsAttemptAllowed(vv) then
 											local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(vv.itemId)
 											if itemLink or itemName or vv.name then
 												if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
@@ -2945,11 +2956,15 @@ do
   for k, v in pairs(g) do
    if type(v) == "table" and v.enabled ~= false and ((requiresGroup and v.groupSize ~= nil and v.groupSize > 1) or (not requiresGroup and (v.groupSize == nil or v.groupSize <= 1))) then
 
+				local classGood = true
+				if not playerClass then playerClass = UnitClass("player") end
+				if v.disableForClass and type(v.disableForClass == "table") and v.disableForClass[playerClass] == true then classGood = false end
+
     -- Item
     if ((not requiresGroup and group.collapsed ~= true) or (requiresGroup and group.collapsedGroup ~= true)) and v.itemId ~= nil then
      if (v.requiresHorde and R:IsHorde()) or (v.requiresAlliance and not R:IsHorde()) or (not v.requiresHorde and not v.requiresAlliance) then
 						if (R.db.profile.cats[v.cat]) or v.cat == nil then
-							if not (R.db.profile.hideHighChance and (v.chance or 0) < 50) then
+							if (not (R.db.profile.hideHighChance and (v.chance or 0) < 50)) and classGood then
 
 								local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
 								local attempts = v.attempts or 0

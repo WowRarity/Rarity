@@ -335,6 +335,29 @@ L["Boss Name"] = true
 L["The boss name, in English (enUS), which appears in the instance lock inside the Raid Info panel. The name will be translated to your local language automatically using the LibBoss library (if detection fails, check that the translation exists in this library). IMPORTANT: This method of defeat detection only works when the boss exists in one place at a time. Certain bosses, such as Ragnaros and Kael'thas Sunstrider, exist in two instances at once. Those bosses can be used here, but killing them in either of their instances will result in this Defeat Detection triggering."] = true
 L["Only announce when found"] = true
 L["Announcements will only be triggered when the item is found. When this is off, Rarity will announce every attempt and when the item is found."] = true
+L["Death Knight"] = true
+L["Demon Hunter"] = true
+L["Druid"] = true
+L["Hunter"] = true
+L["Mage"] = true
+L["Monk"] = true
+L["Paladin"] = true
+L["Priest"] = true
+L["Rogue"] = true
+L["Shaman"] = true
+L["Warlock"] = true
+L["Warrior"] = true
+L["Disable for classes"] = true
+L["Choose which classes this item should be disabled for. Checking a class below hides the item from the Rarity tooltip and prevents it from being tracked. You can still toggle Track This, but the item will not track for any classes specified here."] = true
+
+
+
+
+
+
+
+
+
 
 
 

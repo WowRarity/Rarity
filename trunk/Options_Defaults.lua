@@ -869,7 +869,7 @@ function R:PrepareDefaults()
 					["Crashin' Thrashin' Cannon Controller"] =          { cat = WOD, type = ITEM, isToy = true, method = NPC, name = L["Crashin' Thrashin' Cannon Controller"], itemId = 108633, npcs = { 98284, }, chance = 10, sourceText = L[""], questId = 40106, coords = { {m=945,x=80.6,y=56.4,n=L["Gondar"]} }},
 					["Crashin' Thrashin' Mortar Controller"] =          { cat = WOD, type = ITEM, isToy = true, method = NPC, name = L["Crashin' Thrashin' Mortar Controller"], itemId = 108634, npcs = { 98285, }, chance = 10, sourceText = L[""], questId = 40104, coords = { {m=945,x=88.1,y=55.8,n=L["Smashum Grabb"]} }},
 					["Crashin' Thrashin' Roller Controller"] =          { cat = WOD, type = ITEM, isToy = true, method = NPC, name = L["Crashin' Thrashin' Roller Controller"], itemId = 108631, npcs = { 98283, }, chance = 10, sourceText = L[""], questId = 40105, coords = { {m=945,x=83.6,y=43.6,n=L["Drakum"]} }},
-     ["Fandral's Seed Pouch"] =                          { cat = WOD, type = ITEM, isToy = true, method = NPC, name = L["Fandral's Seed Pouch"], itemId = 122304, npcs = { 52571, }, chance = 100, sourceText = L["Will only drop for druids."], coords = { {m=800,f=2,x=50.9,y=72.4,i=true} }, },
+     ["Fandral's Seed Pouch"] =                          { cat = WOD, type = ITEM, isToy = true, method = NPC, name = L["Fandral's Seed Pouch"], itemId = 122304, npcs = { 52571, }, chance = 100, disableForClass = { ["DEATHKNIGHT"] = true, ["DEMONHUNTER"] = true, ["HUNTER"] = true, ["MAGE"] = true, ["MONK"] = true, ["PALADIN"] = true, ["PRIEST"] = true, ["ROGUE"] = true, ["SHAMAN"] = true, ["WARLOCK"] = true, ["WARRIOR"] = true }, sourceText = L["Will only drop for druids."], coords = { {m=800,f=2,x=50.9,y=72.4,i=true} }, },
 
 					-- Toys (7.x)
 					["Aqua Jewel"] =                                    { cat = LEGION, type = ITEM, isToy = true, method = NPC, name = L["Aqua Jewel"], itemId = 86582, npcs = { 50780, }, chance = 10, sourceText = L[""], coords = { {m=811,x=69.6,y=30.8,n=L["Sahn Tidehunter"]} }},
@@ -953,6 +953,7 @@ end
 			**- Good-luck coins
 			**- New Archaeology races: /run for race_id = 1, GetNumArchaeologyRaces() do Rarity:Print("race_id: "..race_id.." | "..GetArchaeologyRaceInfo(race_id)) end
 			**- Add a new category icon for the expansion
+			**- If a new class was added, add it to the list at the top of Options.lua in the Options module
 			
 			
 			LIST OF MAP IDS AS OF LEGION
