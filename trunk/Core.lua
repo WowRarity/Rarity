@@ -2967,14 +2967,14 @@ do
 							if (not (R.db.profile.hideHighChance and (v.chance or 0) < 50)) and classGood then
 
 								local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
-								local attempts = v.attempts or 0
+								local attempts = tonumber(v.attempts or 0) or 0
 								if type(attempts) ~= "number" then attempts = 0 end
 								if v.lastAttempts then attempts = attempts - v.lastAttempts end
 
 								local lucky, chance, dropChance
 
 								if v.method ~= COLLECTION then
-									dropChance = (1.00 / (v.chance or 100))
+									dropChance = (1.00 / (tonumber(v.chance) or 100))
 									if v.method == BOSS and v.groupSize ~= nil and tonumber(v.groupSize) ~= nil and v.groupSize > 1 and not v.equalOdds then dropChance = dropChance / v.groupSize end
 									chance = 100 * (1 - math.pow(1 - dropChance, attempts))
 									local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
