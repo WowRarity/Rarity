@@ -3743,10 +3743,6 @@ function R:ScanExistingItems(reason)
 end
 
 
-local hookedCollectionsJournal_SetTab = false
-local currentCollectionsTab = 1
-local currentCollectionsSelf
-
 
 function R:ScanToys(reason)
 	if InCombatLockdown() then return end
@@ -3757,20 +3753,8 @@ function R:ScanToys(reason)
 		if not ToyBox_OnLoad then UIParentLoadAddOn("Blizzard_Collections") end
 	end
 
-	-- Hook CollectionsJournal_SetTab just so we can observe calls to it; it's the only way to keep track of the current tab
-	if not hookedCollectionsJournal_SetTab and CollectionsJournal_SetTab then
-		local CollectionsJournal_SetTab_Blizzard = _G.CollectionsJournal_SetTab
-		CollectionsJournal_SetTab = function(self, tab)
-			if InCombatLockdown() then return end -- Blizzard appears to call this in combat sometimes; disregard those calls (Rarity taints the UI with this hook)
-			currentCollectionsSelf = self
-			currentCollectionsTab = tab
-			CollectionsJournal_SetTab_Blizzard(self, tab)
-		end
-		hookedCollectionsJournal_SetTab = true
-	end
-
 	-- Save which Collections tab we were on just before we switch it to Toys
-	local tabBefore = currentCollectionsTab
+	local tabBefore = tonumber(GetCVar("petJournalTab")) or 1
 	if CollectionsJournal_SetTab then CollectionsJournal_SetTab(CollectionsJournal, 3) end
 
 	-- Scan the toys
@@ -3797,8 +3781,9 @@ function R:ScanToys(reason)
 	end
 
 	-- Put the Collections tab back where it was
+	if tabBefore <= 0 then return end
 	self:Debug("ScanToys: changing tab back to "..tabBefore)
-	CollectionsJournal_SetTab(currentCollectionsSelf, tabBefore)
+	CollectionsJournal_SetTab(CollectionsJournal, tabBefore)
 end
 
 
