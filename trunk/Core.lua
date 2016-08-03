@@ -2979,7 +2979,7 @@ do
 									chance = 100 * (1 - math.pow(1 - dropChance, attempts))
 									local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
 									lucky = colorize(L["Lucky"], green)
-									if medianLoots < attempts then lucky = colorize(L["Unlucky"], red) end
+									if (tonumber(medianLoots) or 0) < (tonumber(attempts) or 0) then lucky = colorize(L["Unlucky"], red) end
 								else
 									chance = 100 * (attempts / (v.chance or 100))
 									if chance < 0 then chance = 0 end
