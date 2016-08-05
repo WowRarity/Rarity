@@ -953,6 +953,7 @@ L["Kael'thas Sunstrider"] = true
 L["Old Man Barlo"] = true
 L["Cupri"] = true
 L["Orb of the Sin'dorei"] = true
+L["Imperial Silkworm"] = true
 
 
 
