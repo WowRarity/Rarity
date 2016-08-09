@@ -243,6 +243,7 @@ function enc64(data)
 end
 
 function dec64(data)
+	if not data then return nil end
     data = string.gsub(data, '[^'..b..'=]', '')
     return (data:gsub('.', function(x)
         if (x == '=') then return '' end
