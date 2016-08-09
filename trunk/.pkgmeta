@@ -67,6 +67,12 @@ externals:
     Libs/HereBeDragons-1.0:
         url: git://git.wowace.com/wow/herebedragons/mainline.git
         tag: latest
+    Libs/LibCompress:
+        url: svn://svn.wowace.com/wow/libcompress/mainline/trunk
+        tag: latest
+    Libs/AceSerializer-3.0:
+        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceSerializer-3.0
+        tag: latest
             
 tools-used:
     - libdatabroker-1-1

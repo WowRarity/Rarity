@@ -1,4 +1,4 @@
-Rarity = LibStub("AceAddon-3.0"):NewAddon("Rarity", "AceConsole-3.0", "AceEvent-3.0", "AceTimer-3.0", "LibSink-2.0", "AceBucket-3.0", "LibBars-1.0")
+Rarity = LibStub("AceAddon-3.0"):NewAddon("Rarity", "AceConsole-3.0", "AceEvent-3.0", "AceTimer-3.0", "LibSink-2.0", "AceBucket-3.0", "LibBars-1.0", "AceSerializer-3.0")
 Rarity.MINOR_VERSION = tonumber(("$Revision$"):match("%d+"))
 local FORCE_PROFILE_RESET_BEFORE_REVISION = 1 -- Set this to one higher than the Revision on the line above this
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
@@ -19,6 +19,7 @@ local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 local lbct = LibStub("LibBabble-CreatureType-3.0"):GetUnstrictLookupTable()
 local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
 local hbd = LibStub("HereBeDragons-1.0")
+local compress = LibStub("LibCompress")
 --
 
 
@@ -858,6 +859,7 @@ end
   ]]
 		
 
+-- Item cache
 function R:GetItemInfo(id)
 	if id == nil then return end
 	if R.itemInfoCache[id] ~= nil then
@@ -871,6 +873,95 @@ function R:GetItemInfo(id)
 end
 	
 
+-- Compression encoding
+local encode_translate = {
+ [255] = "\255\001",
+ [0] = "\255\002"
+}
+
+local function encode_helper(char)
+ return encode_translate[char:byte()]
+end
+
+local decode_translate = {
+ ["\001"] = "\255",
+ ["\002"] = "\000"
+}
+
+local function decode_helper(text)
+ return decode_translate[text]
+end
+
+function R:Encode(data)
+ return data:gsub("([\255%z])", encode_helper)
+end
+
+function R:Decode(data)
+ return data:gsub("\255([\001\002])", decode_helper)
+end
+
+function R:Compress(data)
+ return self:Encode(compress:Compress(data))
+end
+
+function R:Decompress(data)
+ return compress:Decompress(self:Decode(data))
+end
+
+
+-- Import/Export
+function R:CanItemBeExportedImported(item)
+	if not item then return false end
+	if not item.method then return false end
+	if not item.type then return false end
+
+	if not item.itemId or tonumber(item.itemId) == nil or item.itemId <= 0 then return false end
+	if not item.chance or tonumber(item.chance) == nil or item.chance <= 0 then return false end
+		
+	if item.method == COLLECTION then
+		if not item.collectedItemId or tonumber(item.collectedItemId) == nil or item.collectedItemId <= 0 then return false end
+	end
+
+	if item.type ~= ITEM then
+		if not item.spellId or tonumber(item.spellId) == nil or item.spellId <= 0 then return false end
+	end
+
+	if item.type == PET then
+		if not item.creatureId or tonumber(item.creatureId) == nil or item.creatureId <= 0 then return false end
+	end
+
+	if item.method == ARCH then
+		if not item.raceId or tonumber(item.raceId) == nil or item.raceId <= 0 then return false end
+	end
+
+	if item.method == ZONE or item.method == FISHING then
+		if not item.zones or #item.zones <= 0 then return false end
+	end
+
+	if item.method == USE then
+		if not item.items or #item.items <= 0 then return false end
+	end
+
+	if item.method == NPC or item.method == BOSS then
+		if (not item.npcs or #item.npcs <= 0) and (not item.statisticId or #item.statisticId <= 0) then return false end
+	end
+
+	return true
+end
+
+function R:CleanItemForImport(item)
+	item.attempts = 0
+	item.lastAttempts = 0
+	item.enabled = true
+	item.found = false
+	item.enableAnnouncements = true
+	item.holidayReminder = true
+end
+
+
+
+
+-- Miscellaneous
 function R:tcopy(to, from)
  for k, v in pairs(from) do
   if type(v) == "table" then
@@ -882,9 +973,7 @@ function R:tcopy(to, from)
  end
 end
 
-
 local function containsOrIs(a, b)
-	-- "a" can be a table or a value
 	if type(a) == "table" then
 		for k, v in pairs(a) do
 			if v == b then return true end
@@ -895,19 +984,38 @@ local function containsOrIs(a, b)
 	return false
 end
 
-
 local function getDate(delta)
  local dt = date("*t", time() - (delta or 0))
  return dt.year * 10000 + dt.month * 100 + dt.day
 end
 
+function round(num)
+ return math.floor(num + 0.5)
+end
 
+local function colorize(s, color)
+	if color and s then
+		return format("|cff%02x%02x%02x%s|r", (color.r or 1) * 255, (color.g or 1) * 255, (color.b or 1) * 255, s)
+	else
+		return s
+	end
+end
+
+local function colorizeV(s, r, g, b)
+	if r and g and b and s then
+		return format("|cff%02x%02x%02x%s|r", (r or 1) * 255, (g or 1) * 255, (b or 1) * 255, s)
+	else
+		return s
+	end
+end
+
+
+-- Sorting
 local function compareName(a, b)
  if not a or not b then return 0 end
  if type(a) ~= "table" or type(b) ~= "table" then return 0 end
  return (a.name or "") < (b.name or "")
 end
-
 
 local function compareCategory(a, b)
  if not a or not b then return 0 end
@@ -915,7 +1023,6 @@ local function compareCategory(a, b)
 	if (a.cat or "") == (b.cat or "") then return (a.name or "") < (b.name or "") end
 	return (R.catOrder[a.cat or 0] or 0) < (R.catOrder[b.cat or 0] or 0)
 end
-
 
 local function compareDifficulty(a, b)
  if not a or not b then return 0 end
@@ -936,7 +1043,6 @@ local function compareDifficulty(a, b)
 
  return (median1 or 0) < (median2 or 0)
 end
-
 
 local function compareProgress(a, b)
  if not a or not b then return 0 end
@@ -962,13 +1068,11 @@ local function compareProgress(a, b)
  return progress1 > progress2
 end
 
-
 local function compareNum(a, b)
  if not a or not b then return 0 end
  if type(a) ~= "table" or type(b) ~= "table" then return 0 end
  return (a.num or 0) < (b.num or 0)
 end
-
 
 local function sort(t)
  local nt = {}
@@ -990,7 +1094,6 @@ local function sort(t)
  return nt
 end
 
-
 local function sort2(t)
  local nt = {}
  local i, j, n, min = 0, 0, 0, 0
@@ -1010,7 +1113,6 @@ local function sort2(t)
  end
  return nt
 end
-
 
 local function sort_difficulty(t)
  local nt = {}
@@ -1032,7 +1134,6 @@ local function sort_difficulty(t)
  return nt
 end
 
-
 local function sort_progress(t)
  local nt = {}
  local i, j, n, min = 0, 0, 0, 0
@@ -1052,7 +1153,6 @@ local function sort_progress(t)
  end
  return nt
 end
-
 
 local function sort_category(t)
  local nt = {}
@@ -1075,33 +1175,10 @@ local function sort_category(t)
 end
 
 
-function round(num)
- return math.floor(num + 0.5)
-end
-
-
-local function colorize(s, color)
-	if color and s then
-		return format("|cff%02x%02x%02x%s|r", (color.r or 1) * 255, (color.g or 1) * 255, (color.b or 1) * 255, s)
-	else
-		return s
-	end
-end
-
-
-local function colorizeV(s, r, g, b)
-	if r and g and b and s then
-		return format("|cff%02x%02x%02x%s|r", (r or 1) * 255, (g or 1) * 255, (b or 1) * 255, s)
-	else
-		return s
-	end
-end
-
-
+-- Debug mode and profiling
 function R:Debug(s, ...)
 	if self.db.profile.debugMode then self:Print(format(s, ...)) end
 end
-
 
 do
 	local start1, stop1, start2, stop2
@@ -3720,6 +3797,22 @@ function R:ScanExistingItems(reason)
    end
   end
  end
+
+	-- Scan all items for Obtained Quest IDs and mark completed if the quest is completed
+	for k, v in pairs(R.db.profile.groups) do
+		if type(v) == "table" then
+			for kk, vv in pairs(v) do
+				if type(vv) == "table" then
+					if vv.obtainedQuestId and tonumber(vv.obtainedQuestId) then
+						if IsQuestComplete(tonumber(vv.obtainedQuestId)) then
+							vv.enabled = false
+							vv.found = true
+						end
+					end
+				end
+			end
+		end
+	end
 
 	self:ProfileStop("ScanExistingItems: Mounts/Pets/Achievements/Archaeology took %fms")
 

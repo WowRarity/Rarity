@@ -21,6 +21,7 @@ Libs\AceDBOptions-3.0\AceDBOptions-3.0.xml
 Libs\AceEvent-3.0\AceEvent-3.0.xml
 Libs\AceLocale-3.0\AceLocale-3.0.xml
 Libs\AceTimer-3.0\AceTimer-3.0.xml
+Libs\AceSerializer-3.0\AceSerializer-3.0.xml
 Libs\LibQTip-1.0\lib.xml
 Libs\LibDBIcon-1.0\LibDBIcon-1.0.lua
 Libs\LibBabble-Zone-3.0\lib.xml
@@ -31,6 +32,7 @@ Libs\AceGUI-3.0-SharedMediaWidgets\widget.xml
 Libs\LibBabble-CreatureType-3.0\lib.xml
 Libs\LibBabble-Boss-3.0\lib.xml
 Libs\HereBeDragons-1.0\HereBeDragons-1.0.lua
+Libs\LibCompress\lib.xml
 #@end-no-lib-strip@
 Libs\LibBars-1.0\lib.xml
 Locales.lua

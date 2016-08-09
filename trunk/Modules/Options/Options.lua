@@ -5,6 +5,7 @@ local mod = R:NewModule("Options")
 local lbz = LibStub("LibBabble-Zone-3.0")
 local lbsz = LibStub("LibBabble-SubZone-3.0")
 local media = LibStub("LibSharedMedia-3.0")
+local compress = LibStub("LibCompress")
 
 
 local GetItemInfo = function(id)
@@ -72,6 +73,8 @@ local yellow = { r = 1.0, g = 1.0, b = 0.2 }
 local gray = { r = 0.5, g = 0.5, b = 0.5 }
 local black = { r = 0.0, g = 0.0, b = 0.0 }
 local white = { r = 1.0, g = 1.0, b = 1.0 }
+
+local IMPORTEXPORT_SIGNATURE = "RFI2PD4jOjJ0NntgInc/ZA=="
 
 
 
@@ -180,6 +183,40 @@ local function alert(msg)
 end
 
 
+local function alertWithCopy(msg, textToCopy)
+	StaticPopupDialogs["RARITY_OPTIONS_ALERT_WITH_COPY"] = {
+		text = msg,
+		button1 = L["Close"],
+		hasEditBox = 1,	
+		button2 = "",
+	
+		OnShow = function(self)
+			self.editBox:SetText(textToCopy);
+			self.editBox:SetFocus();
+			self.editBox:HighlightText();
+			_G[self:GetName().."Button2"]:Hide();
+			_G[self:GetName().."Button1"]:ClearAllPoints();
+			_G[self:GetName().."Button1"]:SetPoint("TOP", self.editBox, "BOTTOM", 0, -8);		
+		end,
+		OnHide = function(self)
+			self.editBox:SetText("");
+			_G[self:GetName().."Button2"]:Show();
+		end,
+		EditBoxOnEnterPressed = function(self)
+			self:GetParent():Hide()
+		end,
+		EditBoxOnEscapePressed = function(self)
+			self:GetParent():Hide()
+		end,
+		timeout = 0,
+		exclusive = 1,
+		whileDead = 1,
+		hideOnEscape = 1
+	};
+	StaticPopup_Show("RARITY_OPTIONS_ALERT_WITH_COPY")
+end
+
+
 local function allitems()
  local t = {}
  for k, v in pairs(R.db.profile.groups.mounts) do if type(v) == "table" then t[k] = v end end
@@ -187,6 +224,37 @@ local function allitems()
  for k, v in pairs(R.db.profile.groups.items) do if type(v) == "table" then t[k] = v end end
  for k, v in pairs(R.db.profile.groups.user) do if type(v) == "table" then t[k] = v end end
  return t
+end
+
+
+local b = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+
+function enc64(data)
+    return ((data:gsub('.', function(x) 
+        local r,b='',x:byte()
+        for i=8,1,-1 do r=r..(b%2^i-b%2^(i-1)>0 and '1' or '0') end
+        return r;
+    end)..'0000'):gsub('%d%d%d?%d?%d?%d?', function(x)
+        if (#x < 6) then return '' end
+        local c=0
+        for i=1,6 do c=c+(x:sub(i,i)=='1' and 2^(6-i) or 0) end
+        return b:sub(c+1,c+1)
+    end)..({ '', '==', '=' })[#data%3+1])
+end
+
+function dec64(data)
+    data = string.gsub(data, '[^'..b..'=]', '')
+    return (data:gsub('.', function(x)
+        if (x == '=') then return '' end
+        local r,f='',(b:find(x)-1)
+        for i=6,1,-1 do r=r..(f%2^i-f%2^(i-1)>0 and '1' or '0') end
+        return r;
+    end):gsub('%d%d%d?%d?%d?%d?%d?%d?', function(x)
+        if (#x ~= 8) then return '' end
+        local c=0
+        for i=1,8 do c=c+(x:sub(i,i)=='1' and 2^(8-i) or 0) end
+        return string.char(c)
+    end))
 end
 
 
@@ -913,6 +981,260 @@ function R:PrepareOptions()
 			}, -- custom
 
 
+	-- Import/Export --------------------------------------------------------------------------------------------------------------------------------
+
+			importExport = {
+				type = "group",
+				name = L["Import/Export"],
+				order = newOrder(),
+				childGroups = "tree",
+				args = {
+
+					head1 = {
+						type = "description",
+						order = newOrder(),
+						name = L["This tab lets you import and export items into and out of your Custom tab."],
+					},
+
+					blankLine1 = {
+						type = "description",
+						order = newOrder(),
+						name = " ",
+					},
+				
+					spacer1 = { type = "header", name = L["Import Rarity Item Pack"], order = newOrder(), },
+				
+					head2 = {
+						type = "description",
+						order = newOrder(),
+						name = L["To import a group of items, paste a Rarity Item Pack string into the Import text box below and click the Import button. Rarity will tell you which items were imported (or which ones failed to import) in your chat window. You can find many Rarity Item Packs on the Curse web site, or elsewhere on the web."],
+					},
+
+					importPreview = {
+						type = "description",
+						order = newOrder(),
+						name = function()
+							self.db.profile.importIsError = false
+							local s
+
+							-- Validate the import (this also can disable the Import button, so we only do validation here)
+							local enc = dec64(self.db.profile.lastImportString)
+							if not enc then
+								self.db.profile.importIsError = true
+								s = colorize(L["The selected Rarity Item Pack string is invalid."], red)
+								if R.db.profile.debugMode then s = s..colorize(" (Reason: Decoding failed)", red) end
+								return "\n"..s.."\n"
+							end
+							local c = R:Decompress(enc)
+							if not c then
+								self.db.profile.importIsError = true
+								s = colorize(L["The selected Rarity Item Pack string is invalid."], red)
+								if R.db.profile.debugMode then s = s..colorize(" (Reason: Decompression failed)", red) end
+								return "\n"..s.."\n"
+							end
+							local success, e = R:Deserialize(c)
+							if not success or not e then
+								self.db.profile.importIsError = true
+								s = colorize(L["The selected Rarity Item Pack string is invalid."], red)
+								if R.db.profile.debugMode then s = s..colorize(" (Reason: Deserialization failed)", red) end
+								return "\n"..s.."\n"
+							end
+							Rarity.itemPack = e -- The decoded object is placed here for use during Import, this way we only have to do all of this one time
+							
+							-- We have an object, now do logical validation
+							if type(e) == "table" and e.items and type(e.items) == "table" and #e.items > 0 and e.build and tonumber(e.build) > 0 and e.signature and e.signature == IMPORTEXPORT_SIGNATURE then
+
+								-- Import is good; create a preview
+								s = "\n"..L["Here is a preview of what will (or won't) be imported:"].."\n\n"
+
+								for itemkey, item in pairs(e.items) do
+									local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
+									local status = colorize(" - "..L["will be imported"], green)
+									R:CleanItemForImport(item)
+									item.import = true
+									if not itemLink then status = status.." "..colorize(L["(Warning: item could not be retrieved from server)"], red) end
+
+									for k, v in pairs(allitems()) do
+										if strupper(strtrim(k)) == strupper(item.name) or strupper(strtrim(v.name or "")) == strupper(item.name) then
+											item.import = false
+											status = colorize(" - "..L["an item already exists by this name, so it will not be imported"], red)
+										end
+									end
+
+									for k, v in pairs(allitems()) do
+										if item.itemId == v.itemId then
+											item.import = false
+											status = colorize(" - "..L["an item with the same Item ID already exists, so it will not be imported"], red)
+										end
+									end
+
+									s = s..(itemLink or item.name or "Unknown")..status.."\n"
+								end
+
+								return s
+							else
+								self.db.profile.importIsError = true
+								s = "\n"..colorize(L["The selected Rarity Item Pack string is invalid."], red).."\n"
+								if R.db.profile.debugMode then s = s..colorize(" (Reason: Validation failed)", red) end
+								return "\n"..s.."\n"
+							end
+
+						end,
+						hidden = function() return not self.db.profile.lastImportString or strtrim(self.db.profile.lastImportString) == "" end,
+					},
+				
+					importText = {
+						order = newOrder(),
+						type = "input",
+						width = "double",
+						name = L["Rarity Item Pack String"],
+						desc = L["Paste a Rarity Item Pack String here using Ctrl-V, then click the Import button."],
+						set = function(info, val)
+							self.db.profile.lastImportString = val
+						end,
+						get = function()
+							return self.db.profile.lastImportString or ""
+						end,
+					}, -- importText
+
+					import = {
+						type = "execute",
+						name = L["Import"],
+						confirm = true,
+						confirmText = L["Are you sure you want to import the Rarity Item Pack you entered?"],
+						func = function(info)
+							if not Rarity.itemPack then return end
+
+							-- Do the import
+							for itemkey, item in pairs(Rarity.itemPack.items) do
+								local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
+								if not item.import then
+									R:Print((itemLink or item.name or "Unknown").." - "..colorize(L["not imported"], red))
+								else
+									item.import = false
+									item.export = false
+									self.db.profile.groups.user[item.name] = item
+									R:Print((itemLink or item.name or "Unknown").." - "..colorize(L["imported successfully"], green))
+								end
+							end
+							
+							self:CreateGroup(self.options.args.custom, self.db.profile.groups.user, true)
+							self:Update("IMPORT")
+							self.db.profile.lastImportString = ""
+						end,
+						order = newOrder(),
+						disabled = function()
+							if not self.db.profile.lastImportString or strtrim(self.db.profile.lastImportString) == "" then return true end
+							if self.db.profile.importIsError then return true end
+							return false
+						end
+					}, -- import
+
+					blankLine2 = {
+						type = "description",
+						order = newOrder(),
+						name = " ",
+					},
+				
+					spacer2 = { type = "header", name = L["Export Rarity Item Pack"], order = newOrder(), },
+				
+					head3 = {
+						type = "description",
+						order = newOrder(),
+						name = L["To export a group of items, go through each item in your Custom tab and check or uncheck the Export checkbox. The checkbox will be disabled if you haven't yet filled out enough information for Rarity to detect the item. Once you've done that, return here and click the Export button. A Rarity Item Pack string will be generated that you can copy to the clipboard using Ctrl-C."],
+					},
+
+					exportPreview = {
+						type = "description",
+						order = newOrder(),
+						name = function()
+							local s = ""
+							local numItems = 0
+							local g = sort(self.db.profile.groups.user)
+							local foundRed = false
+							for itemkey, item in pairs(g) do
+								if item and type(item) == "table" and item.export and Rarity:CanItemBeExportedImported(item) then
+									local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
+									s = s..(itemLink or colorize(item.name, red)).."\n"
+									if not itemLink then foundRed = true end
+									numItems = numItems + 1
+								end
+							end
+							if foundRed then s = s.."\n"..colorize(L["(Items listed in red could not be found on the server and may not exist. Consider removing them.)"], red) end
+							s = "\n"..format(L["The following %d item(s) have been selected to export:"], numItems).."\n\n"..s
+							return s
+						end,
+						hidden = function()
+							for itemkey, item in pairs(self.db.profile.groups.user) do
+								if item and type(item) == "table" and item.export then return false end
+							end
+							return true
+	     end,
+					},
+				
+					export = {
+						type = "execute",
+						name = L["Export"],
+						func = function(info)
+							-- Do the export
+							local e = { items = {} }
+							local g = sort(self.db.profile.groups.user)
+							for itemkey, item in pairs(g) do
+								if item and type(item) == "table" and item.export and Rarity:CanItemBeExportedImported(item) then
+									e.items[itemkey] = item
+								end
+							end
+							e.build = Rarity.MINOR_VERSION
+							e.signature = IMPORTEXPORT_SIGNATURE
+							local s = R:Serialize(e)
+							if not s then
+								alert(L["Error serializing item pack"])
+								return
+							end
+							local c = R:Compress(s)
+							if not c then
+								alert(L["Error compressing item pack"])
+								return
+							end
+							local enc = enc64(c)
+							if not enc then
+								alert(L["Error encoding item pack"])
+								return
+							end
+
+							alertWithCopy(L["Copy the generated Rarity Item Pack string below using Ctrl-C. You can then paste it elsewhere using Ctrl-V.\n\nFeel free to comment on the Curse web site to share your Item Pack. Allara will promote the best ones to the main add-on page."], enc)
+						end,
+						order = newOrder(),
+						disabled = function()
+							for itemkey, item in pairs(self.db.profile.groups.user) do
+								if item and type(item) == "table" and item.export then return false end
+							end
+							return true
+	     end,
+					}, -- export
+
+					clearAllExport = {
+						type = "execute",
+						name = L["Clear All Exports"],
+						confirm = true,
+						confirmText = L["Are you sure you want to turn off the Export toggle for all your Custom items?"],
+						func = function(info)
+							for itemkey, item in pairs(self.db.profile.groups.user) do
+								if item and type(item) == "table" then item.export = false end
+							end
+						end,
+						order = newOrder(),
+						disabled = function()
+							for itemkey, item in pairs(self.db.profile.groups.user) do
+								if item and type(item) == "table" and item.export then return false end
+							end
+							return true
+	     end,
+					}, -- export
+
+				},
+			},
+
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
 		}, -- args
@@ -938,6 +1260,7 @@ function R:CreateGroup(options, group, isUser)
 
  options.args = {
 		name = {
+			type = "execute",
 			type = "input",
 			width = "double",
 			name = L["Create a new item to track"],
@@ -978,6 +1301,50 @@ function R:CreateGroup(options, group, isUser)
 				 order = newOrder(),
 				 name = function() return select(2, GetItemInfo(item.itemId or 0)) or item.name end,
 				 fontSize = "large"
+			 },
+				
+			 head = {
+				 type = "description",
+				 order = newOrder(),
+				 name = colorize(L["Unable to retrieve item information from the server"], red),
+				 fontSize = "large",
+					hidden = function() return GetItemInfo(item.itemId) end
+			 },
+				
+				export = {
+					order = newOrder(),
+					type = "toggle",
+					name = L["Export this item"],
+					desc = L["Check this for every Custom item you wish to export. Then click on the Import/Export tab and click the Export button. This checkbox will be disabled until enough information has been filled in below to make it a detectable item."],
+					get = function()
+      if item.export == true and R:CanItemBeExportedImported(item) then
+							return true
+						else
+							item.export = false
+							return false
+						end
+     end,
+					set = function(info, val)
+						item.export = val
+					end,
+     hidden = not isUser,
+     disabled = function()
+						return not R:CanItemBeExportedImported(item)
+					end,
+				},
+
+			 delete = {
+				 type = "execute",
+				 name = L["Delete this item"],
+				 confirm = true,
+				 confirmText = L["Are you sure you want to delete this item?"],
+				 func = function(info)
+      self.db.profile.groups.user[item.name] = nil
+	     self:CreateGroup(self.options.args.custom, self.db.profile.groups.user, true)
+					 self:Update("OPTIONS")
+				 end,
+				 order = newOrder(),
+				 hidden = not isUser,
 			 },
 				
 			 source = {
@@ -1244,30 +1611,6 @@ function R:CreateGroup(options, group, isUser)
      hidden = function() return item.method ~= ARCH end,
 				},
 
-		  achievementId = {
-			  type = "input",
-     order = newOrder(),
-			  name = L["Achievement ID"],
-     desc = L["Set this to the achievement ID which indicates this item has been obtained. This is useful for items which do not yield mounts or pets, but which do grant an achievement when obtained, such as Old Crafty or Old Ironjaw. Leave this blank for mounts and pets. Use WowHead to find achievement IDs."],
-			  set = function(info, val)
-				  if strtrim(val) == "" then item.achievementId = nil
-      elseif tonumber(val) == nil then alert(L["You must enter a valid number."])
-      else
-       for _, v in pairs(allitems()) do
-        if v.achievementId == tonumber(val) then
-         alert(L["You entered a achievement ID that is already being used by another item."])
-         return
-        end
-       end
-       if tonumber(val) <= 0 then alert(L["You must enter a number larger than 0."])
-       else item.achievementId = tonumber(val) end
-				  end
-						self:Update("OPTIONS")
-			  end,
-     get = function(into) if item.achievementId then return tostring(item.achievementId) else return nil end end,
-			  disabled = not isUser,
-		  },
-							
 		  zones = {
 			  type = "input",
      order = newOrder(),
@@ -1825,20 +2168,49 @@ function R:CreateGroup(options, group, isUser)
 
 			 spacer6 = { type = "header", name = "", order = newOrder(), hidden = not isUser },
 
-			 delete = {
-				 type = "execute",
-				 name = L["Delete this item"],
-				 confirm = true,
-				 confirmText = L["Are you sure you want to delete this item?"],
-				 func = function(info)
-      self.db.profile.groups.user[item.name] = nil
-	     self:CreateGroup(self.options.args.custom, self.db.profile.groups.user, true)
-					 self:Update("OPTIONS")
-				 end,
-				 order = newOrder(),
-				 hidden = not isUser,
-			 }, -- delete
-				
+		  obtainedQuestId = {
+			  type = "input",
+     order = newOrder(),
+			  name = L["Obtained Quest ID"],
+     desc = L["Certain items, such as Illusions in your wardrobe, flag a completed Quest ID when you learn them. Rarity can automatically stop tracking this item if you enter that Quest ID here. (Only one ID, not a list.)"],
+			  set = function(info, val)
+				  if strtrim(val) == "" then item.obtainedQuestId = nil
+      elseif tonumber(val) == nil then item.obtainedQuestId = nil
+      else
+       local n = tonumber(val)
+       if n <= 0 then alert(L["You must enter a number larger than 0."])
+       else item.obtainedQuestId = n end
+				  end
+						self:Update("OPTIONS")
+			  end,
+     get = function(into) if item.obtainedQuestId then return tostring(item.obtainedQuestId) else return nil end end,
+     hidden = function() return item.method ~= BOSS and item.method ~= USE end,
+		  },
+							
+		  achievementId = {
+			  type = "input",
+     order = newOrder(),
+			  name = L["Obtained Achievement ID"],
+     desc = L["Set this to the achievement ID which indicates this item has been obtained. This is useful for items which do not yield mounts or pets, but which do grant an achievement when obtained, such as Old Crafty or Old Ironjaw. Leave this blank for mounts and pets. Use WowHead to find achievement IDs."],
+			  set = function(info, val)
+				  if strtrim(val) == "" then item.achievementId = nil
+      elseif tonumber(val) == nil then alert(L["You must enter a valid number."])
+      else
+       for _, v in pairs(allitems()) do
+        if v.achievementId == tonumber(val) then
+         alert(L["You entered a achievement ID that is already being used by another item."])
+         return
+        end
+       end
+       if tonumber(val) <= 0 then alert(L["You must enter a number larger than 0."])
+       else item.achievementId = tonumber(val) end
+				  end
+						self:Update("OPTIONS")
+			  end,
+     get = function(into) if item.achievementId then return tostring(item.achievementId) else return nil end end,
+			  disabled = not isUser,
+		  },
+							
    }
   }
  end
