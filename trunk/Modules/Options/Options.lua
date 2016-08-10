@@ -2185,7 +2185,6 @@ function R:CreateGroup(options, group, isUser)
 						self:Update("OPTIONS")
 			  end,
      get = function(into) if item.obtainedQuestId then return tostring(item.obtainedQuestId) else return nil end end,
-     hidden = function() return item.method ~= BOSS and item.method ~= USE end,
 		  },
 							
 		  achievementId = {
