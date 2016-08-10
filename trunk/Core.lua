@@ -1330,7 +1330,7 @@ function R:IsAttemptAllowed(item)
 	if item == nil then return true end
 
 	-- Check disabled classes
-	if not playerClass then playerClass = UnitClass("player") end
+	if not playerClass then playerClass = select(2, UnitClass("player")) end
 	if item.disableForClass and type(item.disableForClass == "table") and item.disableForClass[playerClass] == true then return false end
 
 	-- No valid instance difficulty configuration; allow (this needs to be the second-to-last check)
@@ -3033,7 +3033,7 @@ do
    if type(v) == "table" and v.enabled ~= false and ((requiresGroup and v.groupSize ~= nil and v.groupSize > 1) or (not requiresGroup and (v.groupSize == nil or v.groupSize <= 1))) then
 
 				local classGood = true
-				if not playerClass then playerClass = UnitClass("player") end
+				if not playerClass then playerClass = select(2, UnitClass("player")) end
 				if v.disableForClass and type(v.disableForClass == "table") and v.disableForClass[playerClass] == true then classGood = false end
 
     -- Item
