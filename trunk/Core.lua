@@ -2577,6 +2577,8 @@ do
    elseif R.db.profile.sortMode == SORT_DIFFICULTY then R.db.profile.sortMode = SORT_PROGRESS
    else R.db.profile.sortMode = SORT_NAME
    end
+			if tooltip then tooltip:Hide() end
+			if qtip:IsAcquired("RarityTooltip") then qtip:Release("RarityTooltip") end
    Rarity:ShowTooltip()
   else
    -- Toggle progress bar visibility
