@@ -153,6 +153,7 @@ function R:PrepareDefaults()
 			enableGroupFinderAlert = true,
 			tooltipHideDelay = 0.6,
 			onlyAnnounceFound = false,
+			onlyShowItemsWithAttempts = false,
 
    trackedGroup = "pets",
    trackedItem = 8494,

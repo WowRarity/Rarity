@@ -439,6 +439,18 @@ function R:PrepareOptions()
 								end,
 							},
 
+							onlyShowItemsWithAttempts = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Hide items with no attempts"],
+								desc = L["When on, items that have no attempts yet will be hidden from the tooltip."],
+								get = function() return self.db.profile.onlyShowItemsWithAttempts end,
+								set = function(info, val)
+									self.db.profile.onlyShowItemsWithAttempts = val
+									self:UpdateText()
+								end,
+							},
+
 							showTimeColumn = {
 								type = "toggle",
 								order = newOrder(),

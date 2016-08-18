@@ -383,7 +383,8 @@ L["not imported"] = true
 L["imported successfully"] = true
 L["Obtained Quest ID"] = true
 L["Certain items, such as Illusions in your wardrobe, flag a completed Quest ID when you learn them. Rarity can automatically stop tracking this item if you enter that Quest ID here. (Only one ID, not a list.)"] = true
-
+L["Hide items with no attempts"] = true
+L["When on, items that have no attempts yet will be hidden from the tooltip."] = true
 
 
 

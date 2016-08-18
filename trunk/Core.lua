@@ -3144,82 +3144,84 @@ do
 
 								if Rarity.db.profile.hideUnavailable == false or status ~= colorize(L["Unavailable"], gray) then
 									if Rarity.db.profile.hideDefeated == false or status ~= colorize(L["Defeated"], red) then
+										if not Rarity.db.profile.onlyShowItemsWithAttempts or (Rarity.db.profile.onlyShowItemsWithAttempts and (tonumber(v.attempts or 0) or 0) > 0) then
 
-										-- Holiday reminder
-										if Rarity.db.profile.holidayReminder and Rarity.allRemindersDone == nil and v.holidayReminder ~= false and v.cat == HOLIDAY and status == colorize(L["Undefeated"], green) then
-											Rarity.anyReminderDone = true
-											numHolidayReminders = numHolidayReminders + 1
-											if numHolidayReminders <= 2 then
-												local text = format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or v.name)
-												Rarity:Print(text)
-												if tostring(SHOW_COMBAT_TEXT) ~= "0" then
-													if type(CombatText_AddMessage) == "nil" then UIParentLoadAddOn("Blizzard_CombatText") end
-													CombatText_AddMessage(text, CombatText_StandardScroll, 1, 1, 1, true, false)
-												else
-													UIErrorsFrame:AddMessage(text, 1, 1, 1, 1.0)
-												end
-											else
-												if showedHolidayReminderOverflow == false then
-													Rarity:Print(colorize(L["There are more holiday items available, but Rarity only reminds you about the first two."], gray))
-												end
-												showedHolidayReminderOverflow = true
-											end
-										end
-
-										-- Header
-										if not added then
-											headerAdded = true
-											local groupName = group.name
-											if requiresGroup then groupName = groupName..L[" (Group)"] end
-											if not headers[groupName] and v.itemId ~= nil then
-												headers[groupName] = true
-												local collapsed = group.collapsed or false
-												if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
-													line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
-												else
-													line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil, Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil, Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil, colorize(L["Defeated"], yellow))
-												end
-												tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
-											end
-										end
-
-										-- Zone
-										local zoneText = ""
-										local inMyZone = false
-										local zoneColor = gray
-										local currentZone = GetCurrentMapAreaID()
-										if v.coords ~= nil and type(v.coords) == "table" then
-											local zoneList = {}
-											local numZones = 0
-											for _, zoneValue in pairs(v.coords) do
-												if type(zoneValue) == "table" and zoneValue.m ~= nil then
-													if zoneList[zoneValue.m] == nil then
-														numZones = numZones + 1
-														zoneList[zoneValue.m] = true
+											-- Holiday reminder
+											if Rarity.db.profile.holidayReminder and Rarity.allRemindersDone == nil and v.holidayReminder ~= false and v.cat == HOLIDAY and status == colorize(L["Undefeated"], green) then
+												Rarity.anyReminderDone = true
+												numHolidayReminders = numHolidayReminders + 1
+												if numHolidayReminders <= 2 then
+													local text = format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or v.name)
+													Rarity:Print(text)
+													if tostring(SHOW_COMBAT_TEXT) ~= "0" then
+														if type(CombatText_AddMessage) == "nil" then UIParentLoadAddOn("Blizzard_CombatText") end
+														CombatText_AddMessage(text, CombatText_StandardScroll, 1, 1, 1, true, false)
+													else
+														UIErrorsFrame:AddMessage(text, 1, 1, 1, 1.0)
 													end
-													zoneText = GetMapNameByID(zoneValue.m)
-													if currentZone == zoneValue.m then inMyZone = true end
+												else
+													if showedHolidayReminderOverflow == false then
+														Rarity:Print(colorize(L["There are more holiday items available, but Rarity only reminds you about the first two."], gray))
+													end
+													showedHolidayReminderOverflow = true
 												end
 											end
-											if numZones > 1 then zoneText = format(L["%d |4zone:zones;"], numZones) end
-											if v.coords.zoneOverride ~= nil then zoneText = v.coords.zoneOverride end
-											if inMyZone then
-												zoneColor = green
-												if numZones > 1 then
-													zoneText = GetMapNameByID(currentZone).." "..colorize(format("+%d", numZones - 1), gray)
+
+											-- Header
+											if not added then
+												headerAdded = true
+												local groupName = group.name
+												if requiresGroup then groupName = groupName..L[" (Group)"] end
+												if not headers[groupName] and v.itemId ~= nil then
+													headers[groupName] = true
+													local collapsed = group.collapsed or false
+													if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
+														line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
+													else
+														line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil, Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil, Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil, colorize(L["Defeated"], yellow))
+													end
+													tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
 												end
 											end
+
+											-- Zone
+											local zoneText = ""
+											local inMyZone = false
+											local zoneColor = gray
+											local currentZone = GetCurrentMapAreaID()
+											if v.coords ~= nil and type(v.coords) == "table" then
+												local zoneList = {}
+												local numZones = 0
+												for _, zoneValue in pairs(v.coords) do
+													if type(zoneValue) == "table" and zoneValue.m ~= nil then
+														if zoneList[zoneValue.m] == nil then
+															numZones = numZones + 1
+															zoneList[zoneValue.m] = true
+														end
+														zoneText = GetMapNameByID(zoneValue.m)
+														if currentZone == zoneValue.m then inMyZone = true end
+													end
+												end
+												if numZones > 1 then zoneText = format(L["%d |4zone:zones;"], numZones) end
+												if v.coords.zoneOverride ~= nil then zoneText = v.coords.zoneOverride end
+												if inMyZone then
+													zoneColor = green
+													if numZones > 1 then
+														zoneText = GetMapNameByID(currentZone).." "..colorize(format("+%d", numZones - 1), gray)
+													end
+												end
+											end
+
+											-- Add the item to the tooltip
+											local catIcon = ""
+											if Rarity.db.profile.showCategoryIcons and v.cat and Rarity.catIcons[v.cat] then catIcon = [[|TInterface\AddOns\Rarity\Icons\]]..Rarity.catIcons[v.cat]..".blp:0:4|t " end
+											line = tooltip:AddLine(icon, catIcon..(itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, Rarity.db.profile.showTimeColumn and time or nil, Rarity.db.profile.showLuckinessColumn and lucky or nil, Rarity.db.profile.showZoneColumn and colorize(zoneText, zoneColor) or nil, status)
+											tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
+											tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
+											tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
+											added = true
+
 										end
-
-										-- Add the item to the tooltip
-										local catIcon = ""
-										if Rarity.db.profile.showCategoryIcons and v.cat and Rarity.catIcons[v.cat] then catIcon = [[|TInterface\AddOns\Rarity\Icons\]]..Rarity.catIcons[v.cat]..".blp:0:4|t " end
-										line = tooltip:AddLine(icon, catIcon..(itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, Rarity.db.profile.showTimeColumn and time or nil, Rarity.db.profile.showLuckinessColumn and lucky or nil, Rarity.db.profile.showZoneColumn and colorize(zoneText, zoneColor) or nil, status)
-										tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
-										tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
-										tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
-										added = true
-
 									end
 								end
 
