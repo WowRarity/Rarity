@@ -549,11 +549,25 @@ function R:PrepareOptions()
 							enableTooltipAdditions = {
 								type = "toggle",
 								order = newOrder(),
+								width = "double",
 								name = L["Enable tooltip additions"],
 								desc = L["When enabled, Rarity will add obtainable items to game tooltips whenever possible."],
 								get = function() return self.db.profile.enableTooltipAdditions end,
 								set = function(info, val)
 									self.db.profile.enableTooltipAdditions = val
+									self:UpdateText()
+								end,
+							},
+
+							blankLineAfterRarity = {
+								type = "toggle",
+								order = newOrder(),
+								width = "double",
+								name = L["Put \"Rarity:\" on a separate line"],
+								desc = L["When on, the text \"Rarity:\" will be put on its own line in world and item tooltips."],
+								get = function() return self.db.profile.blankLineAfterRarity end,
+								set = function(info, val)
+									self.db.profile.blankLineAfterRarity = val
 									self:UpdateText()
 								end,
 							},
@@ -574,6 +588,7 @@ function R:PrepareOptions()
 							tooltipAttempts = {
 								type = "toggle",
 								order = newOrder(),
+								width = "double",
 								name = L["Show attempts in tooltips"],
 								desc = L["When enabled, Rarity tooltips will include how many attempts you've made."],
 								get = function() return self.db.profile.tooltipAttempts end,

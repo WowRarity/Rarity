@@ -154,6 +154,7 @@ function R:PrepareDefaults()
 			tooltipHideDelay = 0.6,
 			onlyAnnounceFound = false,
 			onlyShowItemsWithAttempts = false,
+			blankLineAfterRarity = false,
 
    trackedGroup = "pets",
    trackedItem = 8494,

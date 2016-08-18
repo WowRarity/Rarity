@@ -2178,7 +2178,7 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 						local attemptText = " "..colorize(format(L["(%d/%d attempts)"], v.attempts or 0, chance or 0), white)
 						if v.method == COLLECTION then attemptText = " "..colorize(format(L["(%d/%d collected)"], v.attempts or 0, v.chance or 0), white) end
 						if v.known or Rarity.db.profile.tooltipAttempts == false then attemptText = "" end
-						GameTooltip:AddLine(colorize((not rarityAdded and L["Rarity: "] or "")..(itemLink or itemName or v.name)..attemptText, yellow))
+						GameTooltip:AddLine(colorize((not rarityAdded and L["Rarity: "]..(R.db.profile.blankLineAfterRarity and "\n" or "") or "")..(itemLink or itemName or v.name)..attemptText, yellow))
 						rarityAdded = true
 						if v.pickpocket then
 							local class, classFileName = UnitClass("player")
@@ -2209,7 +2209,7 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 					GameTooltip:AddLine(" ")
 				end
 				if Rarity.db.profile.oneTimeItems[npcid].questId ~= nil and IsQuestFlaggedCompleted(Rarity.db.profile.oneTimeItems[npcid].questId) then
-					GameTooltip:AddLine(colorize((not rarityAdded and L["Rarity: "] or "")..(itemLink or itemName), yellow))
+					GameTooltip:AddLine(colorize((not rarityAdded and L["Rarity: "]..(R.db.profile.blankLineAfterRarity and "\n" or "") or "")..(itemLink or itemName), yellow))
 					GameTooltip:AddLine(colorize(L["Already defeated"], red))
 					blankAdded = false
 					rarityAdded = true
@@ -2217,7 +2217,7 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 					scanTip:ClearLines()
 					scanTip:SetItemByID(Rarity.db.profile.oneTimeItems[npcid].itemId)
 
-					GameTooltip:AddDoubleLine(colorize((not rarityAdded and L["Rarity: "] or "")..(itemLink or itemName), yellow), "|T"..itemTexture..":22|t")
+					GameTooltip:AddDoubleLine(colorize((not rarityAdded and L["Rarity: "]..(R.db.profile.blankLineAfterRarity and "\n" or "") or "")..(itemLink or itemName), yellow), "|T"..itemTexture..":22|t")
 					rarityAdded = true
 
 					for i = 2, scanTip:NumLines() do
@@ -2290,7 +2290,7 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 									local attemptText = " "..colorize(format(L["(%d/%d attempts)"], vv.attempts or 0, chance or 0), white)
 									if vv.method == COLLECTION then attemptText = " "..colorize(format(L["(%d/%d collected)"], vv.attempts or 0, vv.chance or 0), white) end
 									if vv.known or Rarity.db.profile.tooltipAttempts == false then attemptText = "" end
-									GameTooltip:AddLine(colorize((not rarityAdded and L["Rarity: "] or "")..(itemLink or itemName or vv.name)..attemptText, yellow))
+									GameTooltip:AddLine(colorize((not rarityAdded and L["Rarity: "]..(R.db.profile.blankLineAfterRarity and "\n" or "") or "")..(itemLink or itemName or vv.name)..attemptText, yellow))
 									rarityAdded = true
 									if vv.known then
 										GameTooltip:AddLine(colorize(L["Already known"], red))
@@ -2336,7 +2336,7 @@ hooksecurefunc(GameTooltip, "SetBagItem", function(self, bag, slot)
 						local attemptText = " "..colorize(format(L["(%d/%d attempts)"], v.attempts or 0, chance or 0), white)
 						if v.method == COLLECTION then attemptText = " "..colorize(format(L["(%d/%d collected)"], v.attempts or 0, v.chance or 0), white) end
 						if v.known or Rarity.db.profile.tooltipAttempts == false then attemptText = "" end
-						GameTooltip:AddLine(colorize((not rarityAdded and L["Rarity: "] or "")..(itemLink or itemName or v.name)..attemptText, yellow))
+						GameTooltip:AddLine(colorize((not rarityAdded and L["Rarity: "]..(R.db.profile.blankLineAfterRarity and "\n" or "") or "")..(itemLink or itemName or v.name)..attemptText, yellow))
 						rarityAdded = true
 						if v.known then
 							GameTooltip:AddLine(colorize(L["Already known"], red))
@@ -2376,7 +2376,7 @@ hooksecurefunc(GameTooltip, "SetBagItem", function(self, bag, slot)
 												local attemptText = " "..colorize(format(L["(%d/%d attempts)"], vv.attempts or 0, chance or 0), white)
 												if vv.method == COLLECTION then attemptText = " "..colorize(format(L["(%d/%d collected)"], vv.attempts or 0, vv.chance or 0), white) end
 												if vv.known or Rarity.db.profile.tooltipAttempts == false then attemptText = "" end
-												GameTooltip:AddLine(colorize((not rarityAdded and L["Rarity: "] or "")..(itemLink or itemName or vv.name)..attemptText, yellow))
+												GameTooltip:AddLine(colorize((not rarityAdded and L["Rarity: "]..(R.db.profile.blankLineAfterRarity and "\n" or "") or "")..(itemLink or itemName or vv.name)..attemptText, yellow))
 												rarityAdded = true
 												if vv.known then
 													GameTooltip:AddLine(colorize(L["Already known"], red))
