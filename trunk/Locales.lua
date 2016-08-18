@@ -988,6 +988,24 @@ L["Old Man Barlo"] = true
 L["Cupri"] = true
 L["Orb of the Sin'dorei"] = true
 L["Imperial Silkworm"] = true
+L["Faintly Glowing Flagon of Mead"] = true
+L["Don Carlos' Famous Hat"] = true
+L["Burgy Blackheart's Handsome Hat"] = true
+L["Knockoff Blingtron"] = true
+L["Eye of Inquisition"] = true
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
