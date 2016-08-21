@@ -296,7 +296,7 @@ L["Install TomTom to enable waypoint creation."] = true
 L["Added %d |4waypoint:waypoints; to TomTom"] = true
 L["Hide defeated items"] = true
 L["When on, items marked as Defeated will be hidden from the tooltip."] = true
-L["%d |4waypoint:waypoints; |4is:are; located inside |4an instance:instances;"] = true
+L["%d |4waypoint:waypoints; |4is:are; located inside |4an instance:instances; and |4was:were; not added"] = true
 L["You already defeated all of them."] = true
 L["Zone"] = true
 L["%d |4zone:zones;"] = true
@@ -472,6 +472,7 @@ L["Purchased from Z'tenga the Walker <Saberstalker Quartermaster> in Fang'rila i
 L["Fished anywhere in Draenor (except your garrison) with the help of Nat Pagle"] = true
 L["Lunkers can be fished anywhere in Draenor (except in your garrison) after you've obtained a level 3 Fishing Shack and acquired Nat Pagle as a follower."] = true
 L["Obtained by opening Snow Mound in Frostfire Ridge"] = true
+L["Greatfather Winter's Tree"] = true
 
 
 -- Multi-step defeat detection

@@ -3000,14 +3000,16 @@ do
 					if good and TomTom ~= nil and TomTom.AddMFWaypoint ~= nil and coord.m ~= nil and coord.x ~= nil and coord.y ~= nil then
 						local extraName = ""
 						if coord.n ~= nil then extraName = " ("..coord.n..")" end
-						TomTom:AddMFWaypoint(coord.m, coord.f or nil, coord.x / 100.0, coord.y / 100.0, { title = "Rarity"..": "..item.name..extraName })
-						added = added + 1
+						if coord.i ~= true then
+							TomTom:AddMFWaypoint(coord.m, coord.f or nil, coord.x / 100.0, coord.y / 100.0, { title = "Rarity"..": "..item.name..extraName })
+							added = added + 1
+						end
 						if coord.i == true then instance = instance + 1 end
 						if TomTom.SetClosestWaypoint ~= nil then TomTom:SetClosestWaypoint() end
 					end
 				end
 				if added > 0 then Rarity:Print(format(L["Added %d |4waypoint:waypoints; to TomTom"], added)) end
-				if instance > 0 then Rarity:Print(format(L["%d |4waypoint:waypoints; |4is:are; located inside |4an instance:instances;"], added)) end
+				if instance > 0 then Rarity:Print(format(L["%d |4waypoint:waypoints; |4is:are; located inside |4an instance:instances; and |4was:were; not added"], instance)) end
 			end
   else
    if trackedItem ~= item and inSession then R:EndSession() end
@@ -3322,6 +3324,7 @@ do
   elseif self.db.profile.sortMode == SORT_PROGRESS then sortDesc = L["Sorting by percent complete"]
   elseif self.db.profile.sortMode == SORT_CATEGORY then sortDesc = L["Sorting by category, then name"]
   end
+		sortDesc = sortDesc..colorize(" ("..L["Ctrl-Click to change sort order"]..")", gray)
 		local line = tooltip:AddLine()
 		tooltip:SetCell(line, 1, colorize(sortDesc, green), nil, nil, 3)
 
