@@ -387,7 +387,8 @@ L["Hide items with no attempts"] = true
 L["When on, items that have no attempts yet will be hidden from the tooltip."] = true
 L["Put \"Rarity:\" on a separate line"] = true
 L["When on, the text \"Rarity:\" will be put on its own line in world and item tooltips."] = true
-
+L["Distance"] = true
+L["Sorting by zone"] = true
 
 
 
