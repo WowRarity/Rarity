@@ -156,6 +156,7 @@ function R:PrepareDefaults()
 			onlyAnnounceFound = false,
 			onlyShowItemsWithAttempts = false,
 			blankLineAfterRarity = false,
+			hideOutsideZone = false,
 
    trackedGroup = "pets",
    trackedItem = 8494,

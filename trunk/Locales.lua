@@ -389,6 +389,9 @@ L["Put \"Rarity:\" on a separate line"] = true
 L["When on, the text \"Rarity:\" will be put on its own line in world and item tooltips."] = true
 L["Distance"] = true
 L["Sorting by zone"] = true
+L["Hide items not in your zone"] = true
+L["When on, only items that can be obtained in your current zone will be shown in the tooltip. When this is on and you're in an instance, the instance difficulty is also checked to make sure it matches what the item supports."] = true
+L["No items to display! Either you've obtained every item, or you have\none or more options turned on which hide things from the tooltip."] = true
 
 
 

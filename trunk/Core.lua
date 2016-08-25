@@ -1072,6 +1072,7 @@ end
 
 local function compareZone(a, b)
 	-- Sort by zone text, unless there are multiple zones. Those go at the bottom, sorted by number of zones.
+	-- If the item is in your current zone as well as one or more other zones, we sort it alphabetically instead of putting it at the bottom.
  if not a or not b then return 0 end
  if type(a) ~= "table" or type(b) ~= "table" then return 0 end
 	local zoneTextA, inMyZoneA, zoneColorA, numZonesA = R:GetZone(a)
@@ -3116,6 +3117,7 @@ do
   local line
   local added = false
 		local headerAdded = false
+		local itemsExistInThisGroup = false
   local g
   if R.db.profile.sortMode == SORT_NAME then g = sort(group)
   elseif R.db.profile.sortMode == SORT_DIFFICULTY then g = sort_difficulty(group)
@@ -3131,53 +3133,66 @@ do
 				if v.disableForClass and type(v.disableForClass == "table") and v.disableForClass[playerClass] == true then classGood = false end
 
     -- Item
-    if ((not requiresGroup and group.collapsed ~= true) or (requiresGroup and group.collapsedGroup ~= true)) and v.itemId ~= nil then
-     if (v.requiresHorde and R:IsHorde()) or (v.requiresAlliance and not R:IsHorde()) or (not v.requiresHorde and not v.requiresAlliance) then
-						if (R.db.profile.cats[v.cat]) or v.cat == nil then
-							if (not (R.db.profile.hideHighChance and (v.chance or 0) < 50)) and classGood then
+    if (v.requiresHorde and R:IsHorde()) or (v.requiresAlliance and not R:IsHorde()) or (not v.requiresHorde and not v.requiresAlliance) then
+					if (R.db.profile.cats[v.cat]) or v.cat == nil then
+						if (not (R.db.profile.hideHighChance and (v.chance or 0) < 50)) and classGood then
 
-								local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
-								local attempts = tonumber(v.attempts or 0) or 0
-								if type(attempts) ~= "number" then attempts = 0 end
-								if v.lastAttempts then attempts = attempts - v.lastAttempts end
+							local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
+							local attempts = tonumber(v.attempts or 0) or 0
+							if type(attempts) ~= "number" then attempts = 0 end
+							if v.lastAttempts then attempts = attempts - v.lastAttempts end
 
-								local lucky, chance, dropChance
+							local lucky, chance, dropChance
 
-								if v.method ~= COLLECTION then
-									dropChance = (1.00 / (tonumber(v.chance) or 100))
-									if v.method == BOSS and v.groupSize ~= nil and tonumber(v.groupSize) ~= nil and v.groupSize > 1 and not v.equalOdds then dropChance = dropChance / v.groupSize end
-									chance = 100 * (1 - math.pow(1 - dropChance, attempts))
-									local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
-									lucky = colorize(L["Lucky"], green)
-									if (tonumber(medianLoots) or 0) < (tonumber(attempts) or 0) then lucky = colorize(L["Unlucky"], red) end
+							if v.method ~= COLLECTION then
+								dropChance = (1.00 / (tonumber(v.chance) or 100))
+								if v.method == BOSS and v.groupSize ~= nil and tonumber(v.groupSize) ~= nil and v.groupSize > 1 and not v.equalOdds then dropChance = dropChance / v.groupSize end
+								chance = 100 * (1 - math.pow(1 - dropChance, attempts))
+								local medianLoots = round(math.log(1 - 0.5) / math.log(1 - dropChance))
+								lucky = colorize(L["Lucky"], green)
+								if (tonumber(medianLoots) or 0) < (tonumber(attempts) or 0) then lucky = colorize(L["Unlucky"], red) end
+							else
+								chance = 100 * (attempts / (v.chance or 100))
+								if chance < 0 then chance = 0 end
+								if chance > 100 then chance = 100 end
+								lucky = colorize(L["Lucky"], green)
+							end
+
+							local icon = ""
+							if trackedItem == v then icon = [[|TInterface\Buttons\UI-CheckBox-Check:0|t]] end
+							local time = 0
+							if v.time then time = v.time end
+							if v.lastTime then time = v.time - v.lastTime end
+							if inSession and trackedItem == v then
+								local len = sessionLast - sessionStarted
+								time = time + len
+							end
+							time = R:FormatTime(time)
+							local likelihood = format("%.2f%%", chance)
+							if attempts == 0 then
+								attempts = ""
+								lucky = ""
+								time = ""
+								likelihood = ""
+							end
+							if time == "0:00" then time = "" end
+							if v.method ~= NPC and v.method ~= ZONE and v.method ~= FISHING and v.method ~= USE then time = "" end
+							local status = ""
+							if v.questId and not v.holidayTexture then
+								if type(v.questId) == "table" then
+									status = colorize(L["Undefeated"], green)
+									for key, questId in pairs(v.questId) do
+										if IsQuestFlaggedCompleted(questId) then status = colorize(L["Defeated"], red) end
+									end
 								else
-									chance = 100 * (attempts / (v.chance or 100))
-									if chance < 0 then chance = 0 end
-									if chance > 100 then chance = 100 end
-									lucky = colorize(L["Lucky"], green)
+									if IsQuestFlaggedCompleted(v.questId) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
 								end
-
-								local icon = ""
-								if trackedItem == v then icon = [[|TInterface\Buttons\UI-CheckBox-Check:0|t]] end
-								local time = 0
-								if v.time then time = v.time end
-								if v.lastTime then time = v.time - v.lastTime end
-								if inSession and trackedItem == v then
-									local len = sessionLast - sessionStarted
-									time = time + len
-								end
-								time = R:FormatTime(time)
-								local likelihood = format("%.2f%%", chance)
-								if attempts == 0 then
-									attempts = ""
-									lucky = ""
-									time = ""
-									likelihood = ""
-								end
-								if time == "0:00" then time = "" end
-								if v.method ~= NPC and v.method ~= ZONE and v.method ~= FISHING and v.method ~= USE then time = "" end
-								local status = ""
-								if v.questId and not v.holidayTexture then
+							elseif v.questId and v.holidayTexture then
+								if Rarity.holiday_textures[v.holidayTexture] == nil then
+									status = colorize(L["Unavailable"], gray)
+								elseif v.christmasOnly and dt.month == 12 and dt.day < 25 then
+									status = colorize(L["Unavailable"], gray)
+								else
 									if type(v.questId) == "table" then
 										status = colorize(L["Undefeated"], green)
 										for key, questId in pairs(v.questId) do
@@ -3185,124 +3200,118 @@ do
 										end
 									else
 										if IsQuestFlaggedCompleted(v.questId) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
-									end
-								elseif v.questId and v.holidayTexture then
-									if Rarity.holiday_textures[v.holidayTexture] == nil then
-										status = colorize(L["Unavailable"], gray)
-									elseif v.christmasOnly and dt.month == 12 and dt.day < 25 then
-										status = colorize(L["Unavailable"], gray)
-									else
-										if type(v.questId) == "table" then
-											status = colorize(L["Undefeated"], green)
-											for key, questId in pairs(v.questId) do
-												if IsQuestFlaggedCompleted(questId) then status = colorize(L["Defeated"], red) end
-											end
-										else
-											if IsQuestFlaggedCompleted(v.questId) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
-									end
 								end
-								elseif v.lockBossName then
-									if lbb[v.lockBossName] and (Rarity.lockouts[lbb[v.lockBossName]] == true or Rarity.lockouts[v.lockBossName] == true) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
-								elseif v.lockDungeonId then
-									if Rarity.lockouts_holiday[v.lockDungeonId] == true then
-										status = colorize(L["Defeated"], red)
-									else
-										if Rarity.lockouts_holiday[v.lockDungeonId] == false then
-											status = colorize(L["Undefeated"], green)
-										else
-											status = colorize(L["Unavailable"], gray)
-										end
-									end
-								elseif v.holidayTexture and Rarity.holiday_textures[v.holidayTexture] == nil then
-									status = colorize(L["Unavailable"], gray)
-								end
-								if v.pickpocket then
-									local class, classFileName = UnitClass("player")
-									if classFileName ~= "ROGUE" then status = colorize(L["Unavailable"], gray) end
-								end
-
-								-- Support for Defeated items with multiple steps of defeat (supports quests only)
-								if status == colorize(L["Defeated"], red) and v.defeatAllQuests and v.questId ~= nil and type(v.questId) == "table" then
-									local totalQuests = 0
-									local numQuests = 0
-									for _, quest in pairs(v.questId) do
-										totalQuests = totalQuests + 1
-										if IsQuestFlaggedCompleted(quest) then numQuests = numQuests + 1 end
-									end
-									if totalQuests > numQuests then
-										status = colorize(format(L["Defeated"].." (%d of %d)", numQuests, totalQuests), yellow)
-									end
-								end
-
-								if Rarity.db.profile.hideUnavailable == false or status ~= colorize(L["Unavailable"], gray) then
-									if Rarity.db.profile.hideDefeated == false or status ~= colorize(L["Defeated"], red) then
-										if not Rarity.db.profile.onlyShowItemsWithAttempts or (Rarity.db.profile.onlyShowItemsWithAttempts and (tonumber(v.attempts or 0) or 0) > 0) then
-
-											-- Holiday reminder
-											if Rarity.db.profile.holidayReminder and Rarity.allRemindersDone == nil and v.holidayReminder ~= false and v.cat == HOLIDAY and status == colorize(L["Undefeated"], green) then
-												Rarity.anyReminderDone = true
-												numHolidayReminders = numHolidayReminders + 1
-												if numHolidayReminders <= 2 then
-													local text = format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or v.name)
-													Rarity:Print(text)
-													if tostring(SHOW_COMBAT_TEXT) ~= "0" then
-														if type(CombatText_AddMessage) == "nil" then UIParentLoadAddOn("Blizzard_CombatText") end
-														CombatText_AddMessage(text, CombatText_StandardScroll, 1, 1, 1, true, false)
-													else
-														UIErrorsFrame:AddMessage(text, 1, 1, 1, 1.0)
-													end
-												else
-													if showedHolidayReminderOverflow == false then
-														Rarity:Print(colorize(L["There are more holiday items available, but Rarity only reminds you about the first two."], gray))
-													end
-													showedHolidayReminderOverflow = true
-												end
-											end
-
-											-- Header
-											if not added then
-												headerAdded = true
-												local groupName = group.name
-												if requiresGroup then groupName = groupName..L[" (Group)"] end
-												if not headers[groupName] and v.itemId ~= nil then
-													headers[groupName] = true
-													local collapsed = group.collapsed or false
-													if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
-														line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
-													else
-														line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil, Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil, Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil, colorize(L["Defeated"], yellow))
-													end
-													tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
-												end
-											end
-
-											-- Zone
-											local zoneText, inMyZone, zoneColor, numZones = R:GetZone(v)
-
-											-- Add the item to the tooltip
-											local catIcon = ""
-											if Rarity.db.profile.showCategoryIcons and v.cat and Rarity.catIcons[v.cat] then catIcon = [[|TInterface\AddOns\Rarity\Icons\]]..Rarity.catIcons[v.cat]..".blp:0:4|t " end
-											line = tooltip:AddLine(icon, catIcon..(itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, Rarity.db.profile.showTimeColumn and time or nil, Rarity.db.profile.showLuckinessColumn and lucky or nil, Rarity.db.profile.showZoneColumn and colorize(zoneText, zoneColor) or nil, status)
-											tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
-											tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
-											tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
-											added = true
-
-										end
-									end
-								end
-
-
 							end
+							elseif v.lockBossName then
+								if lbb[v.lockBossName] and (Rarity.lockouts[lbb[v.lockBossName]] == true or Rarity.lockouts[v.lockBossName] == true) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
+							elseif v.lockDungeonId then
+								if Rarity.lockouts_holiday[v.lockDungeonId] == true then
+									status = colorize(L["Defeated"], red)
+								else
+									if Rarity.lockouts_holiday[v.lockDungeonId] == false then
+										status = colorize(L["Undefeated"], green)
+									else
+										status = colorize(L["Unavailable"], gray)
+									end
+								end
+							elseif v.holidayTexture and Rarity.holiday_textures[v.holidayTexture] == nil then
+								status = colorize(L["Unavailable"], gray)
+							end
+							if v.pickpocket then
+								local class, classFileName = UnitClass("player")
+								if classFileName ~= "ROGUE" then status = colorize(L["Unavailable"], gray) end
+							end
+
+							-- Support for Defeated items with multiple steps of defeat (supports quests only)
+							if status == colorize(L["Defeated"], red) and v.defeatAllQuests and v.questId ~= nil and type(v.questId) == "table" then
+								local totalQuests = 0
+								local numQuests = 0
+								for _, quest in pairs(v.questId) do
+									totalQuests = totalQuests + 1
+									if IsQuestFlaggedCompleted(quest) then numQuests = numQuests + 1 end
+								end
+								if totalQuests > numQuests then
+									status = colorize(format(L["Defeated"].." (%d of %d)", numQuests, totalQuests), yellow)
+								end
+							end
+
+							if Rarity.db.profile.hideUnavailable == false or status ~= colorize(L["Unavailable"], gray) then
+								if Rarity.db.profile.hideDefeated == false or status ~= colorize(L["Defeated"], red) then
+
+									-- Holiday reminder
+									if Rarity.db.profile.holidayReminder and Rarity.allRemindersDone == nil and v.holidayReminder ~= false and v.cat == HOLIDAY and status == colorize(L["Undefeated"], green) then
+										Rarity.anyReminderDone = true
+										numHolidayReminders = numHolidayReminders + 1
+										if numHolidayReminders <= 2 then
+											local text = format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or v.name)
+											Rarity:Print(text)
+											if tostring(SHOW_COMBAT_TEXT) ~= "0" then
+												if type(CombatText_AddMessage) == "nil" then UIParentLoadAddOn("Blizzard_CombatText") end
+												CombatText_AddMessage(text, CombatText_StandardScroll, 1, 1, 1, true, false)
+											else
+												UIErrorsFrame:AddMessage(text, 1, 1, 1, 1.0)
+											end
+										else
+											if showedHolidayReminderOverflow == false then
+												Rarity:Print(colorize(L["There are more holiday items available, but Rarity only reminds you about the first two."], gray))
+											end
+											showedHolidayReminderOverflow = true
+										end
+									end
+
+									if not Rarity.db.profile.onlyShowItemsWithAttempts or (Rarity.db.profile.onlyShowItemsWithAttempts and (tonumber(v.attempts or 0) or 0) > 0) then
+										if not Rarity.db.profile.hideOutsideZone or (Rarity.db.profile.hideOutsideZone and select(2, R:GetZone(v)) and R:IsAttemptAllowed(v)) then
+
+											itemsExistInThisGroup = true
+											if ((not requiresGroup and group.collapsed ~= true) or (requiresGroup and group.collapsedGroup ~= true)) and v.itemId ~= nil then
+
+												-- Header
+												if not added then
+													headerAdded = true
+													local groupName = group.name
+													if requiresGroup then groupName = groupName..L[" (Group)"] end
+													if not headers[groupName] and v.itemId ~= nil then
+														headers[groupName] = true
+														local collapsed = group.collapsed or false
+														if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
+															line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
+														else
+															line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil, Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil, Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil, colorize(L["Defeated"], yellow))
+														end
+														tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
+													end
+												end
+
+												-- Zone
+												local zoneText, inMyZone, zoneColor, numZones = R:GetZone(v)
+
+												-- Add the item to the tooltip
+												local catIcon = ""
+												if Rarity.db.profile.showCategoryIcons and v.cat and Rarity.catIcons[v.cat] then catIcon = [[|TInterface\AddOns\Rarity\Icons\]]..Rarity.catIcons[v.cat]..".blp:0:4|t " end
+												line = tooltip:AddLine(icon, catIcon..(itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, Rarity.db.profile.showTimeColumn and time or nil, Rarity.db.profile.showLuckinessColumn and lucky or nil, Rarity.db.profile.showZoneColumn and colorize(zoneText, zoneColor) or nil, status)
+												tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
+												tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
+												tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
+												added = true
+
+											-- "Should display the item" endif section:
+											end
+										end
+									end
+								end
+							end
+							-- End "should display the item" endif section
+
+
 						end
-     end
+					end
     end
 
    end
   end
 
 		-- Collapsed Header
-		if not headerAdded and ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
+		if (not headerAdded) and itemsExistInThisGroup and ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
 			headerAdded = true
 			local groupName = group.name
 			if requiresGroup then groupName = groupName..L[" (Group)"] end
@@ -3318,7 +3327,7 @@ do
 			end
 		end
 
-  return added
+  return added, itemsExistInThisGroup
  end
 	 
 
@@ -3344,6 +3353,7 @@ do
 		
 		table.wipe(headers)
   local addedLast
+		local itemsExistInThisGroup
 		numHolidayReminders = 0
 		showedHolidayReminderOverflow = false
 		local delay = 0.6
@@ -3397,45 +3407,60 @@ do
   -- Item groups
 		R:ProfileStart()
 
+		local somethingAdded = false
+
 		local group1start = debugprofilestop()
-  addedLast = addGroup(self.db.profile.groups.mounts)
+  addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.mounts)
 		local group1end = debugprofilestop()
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
+		if itemsExistInThisGroup then somethingAdded = true end
 
 		local group2start = debugprofilestop()
-  addedLast = addGroup(self.db.profile.groups.pets)
+  addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.pets)
 		local group2end = debugprofilestop()
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
+		if itemsExistInThisGroup then somethingAdded = true end
 
 		local group3start = debugprofilestop()
-  addedLast = addGroup(self.db.profile.groups.items)
+  addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.items)
 		local group3end = debugprofilestop()
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
+		if itemsExistInThisGroup then somethingAdded = true end
 
 		local group4start = debugprofilestop()
-  addedLast = addGroup(self.db.profile.groups.user)
+  addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.user)
 		local group4end = debugprofilestop()
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
+		if itemsExistInThisGroup then somethingAdded = true end
 
 		local group5start = debugprofilestop()
-  addedLast = addGroup(self.db.profile.groups.mounts, true)
+  addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.mounts, true)
 		local group5end = debugprofilestop()
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
+		if itemsExistInThisGroup then somethingAdded = true end
 
 		local group6start = debugprofilestop()
-  addedLast = addGroup(self.db.profile.groups.pets, true)
+  addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.pets, true)
 		local group6end = debugprofilestop()
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
+		if itemsExistInThisGroup then somethingAdded = true end
 
 		local group7start = debugprofilestop()
-  addedLast = addGroup(self.db.profile.groups.items, true)
+  addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.items, true)
 		local group7end = debugprofilestop()
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
+		if itemsExistInThisGroup then somethingAdded = true end
 
 		local group8start = debugprofilestop()
-  addedLast = addGroup(self.db.profile.groups.user, true)
+  addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.user, true)
 		local group8end = debugprofilestop()
   if addedLast then tooltip:AddSeparator(1, 1, 1, 1, 1.0) end
+		if itemsExistInThisGroup then somethingAdded = true end
+
+		if not somethingAdded then
+			line = tooltip:AddLine()
+			tooltip:SetCell(line, 1, colorize(L["No items to display! Either you've obtained every item, or you have\none or more options turned on which hide things from the tooltip."], red), nil, nil, 3)
+		end
 
 		R:ProfileStop("Tooltip rendering took %fms"..format(" (%f, %f, %f, %f, %f, %f, %f, %f)", (group1end - group1start), (group2end - group2start), (group3end - group3start), (group4end - group4start), (group5end - group5start), (group6end - group6start), (group7end - group7start), (group8end - group8start)))
 		

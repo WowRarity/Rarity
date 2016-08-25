@@ -451,6 +451,18 @@ function R:PrepareOptions()
 								end,
 							},
 
+							hideOutsideZone = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Hide items not in your zone"],
+								desc = L["When on, only items that can be obtained in your current zone will be shown in the tooltip. When this is on and you're in an instance, the instance difficulty is also checked to make sure it matches what the item supports."],
+								get = function() return self.db.profile.hideOutsideZone end,
+								set = function(info, val)
+									self.db.profile.hideOutsideZone = val
+									self:UpdateText()
+								end,
+							},
+
 							showTimeColumn = {
 								type = "toggle",
 								order = newOrder(),
