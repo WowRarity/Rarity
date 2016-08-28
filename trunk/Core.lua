@@ -4039,7 +4039,7 @@ function R:BuildStatistics(reason)
 		if charName and charGuid then
 			if not Rarity.db.profile.accountWideStatistics[charGuid] then Rarity.db.profile.accountWideStatistics[charGuid] = {} end
 			Rarity.db.profile.accountWideStatistics[charGuid].playerName = charName
-			Rarity.db.profile.accountWideStatistics[charGuid].server = GetRealmName()
+			Rarity.db.profile.accountWideStatistics[charGuid].server = GetRealmName() or ""
 			if not Rarity.db.profile.accountWideStatistics[charGuid].statistics then Rarity.db.profile.accountWideStatistics[charGuid].statistics = {} end
 			Rarity.db.profile.accountWideStatistics[charGuid].statistics[k] = (tonumber(s or "0") or 0)
 		end
@@ -4069,14 +4069,25 @@ function R:ScanStatistics(reason)
    if (vv.requiresHorde and R:IsHorde()) or (vv.requiresAlliance and not R:IsHorde()) or (not vv.requiresHorde and not vv.requiresAlliance) then
     if vv.statisticId and type(vv.statisticId) == "table" then
      local count = 0
+					local totalCrossAccount = 0
 
      for kkk, vvv in pairs(vv.statisticId) do
       local newAmount = newStats[vvv] or 0
       local oldAmount = rarity_stats[vvv] or 0
       count = count + newAmount
 
+						-- Count up the total for this statistic across the entire account
+						if Rarity.db.profile.accountWideStatistics then
+							for playerGuid, playerData in pairs(Rarity.db.profile.accountWideStatistics) do
+								if playerData.statistics then
+									totalCrossAccount = totalCrossAccount + (Rarity.db.profile.accountWideStatistics[playerGuid].statistics[vvv] or 0)
+								end
+							end
+						end
+
       -- One of the statistics has gone up; add one attempt for this item
       if newAmount > oldAmount then
+							R:Debug("Statistics indicate a new attempt for "..vv.name)
        vv.attempts = (vv.attempts or 0) + 1
        self:OutputAttempts(vv, true)
       end
@@ -4089,10 +4100,18 @@ function R:ScanStatistics(reason)
       self:OutputAttempts(vv, true)
 
      -- We seem to have gathered more attempts on this character than accounted for yet; update to new total
-     elseif count > 0 and count > (vv.attempts or o) and vv.doNotUpdateToHighestStat ~= true then -- Some items don't want us doing this (generally when Blizzard has a statistic overcounting bug)
+     elseif count > 0 and count > (vv.attempts or 0) and vv.doNotUpdateToHighestStat ~= true then -- Some items don't want us doing this (generally when Blizzard has a statistic overcounting bug)
+						R:Debug("Statistics for "..vv.name.." are higher than current amount. Updating to "..count)
       vv.attempts = count
       self:OutputAttempts(vv, true)
      end
+
+					-- Cross-account statistic total is higher than the one we have; update to new total
+					if totalCrossAccount > (vv.attempts or 0) and vv.doNotUpdateToHighestStat ~= true then
+						R:Debug("Account-wide statistics for "..vv.name.." are higher than current amount. Updating to "..totalCrossAccount)
+      vv.attempts = totalCrossAccount
+      self:OutputAttempts(vv, true)
+					end
 
     end
    end
