@@ -4033,6 +4033,16 @@ function R:BuildStatistics(reason)
 	for k, v in pairs(R.stats_to_scan) do
 		local s = GetStatistic(k)
 		tbl[k] = (tonumber(s or "0") or 0)
+		if not Rarity.db.profile.accountWideStatistics then Rarity.db.profile.accountWideStatistics = {} end
+		local charName = UnitName("player")
+		local charGuid = UnitGUID("player")
+		if charName and charGuid then
+			if not Rarity.db.profile.accountWideStatistics[charGuid] then Rarity.db.profile.accountWideStatistics[charGuid] = {} end
+			Rarity.db.profile.accountWideStatistics[charGuid].playerName = charName
+			Rarity.db.profile.accountWideStatistics[charGuid].server = GetRealmName()
+			if not Rarity.db.profile.accountWideStatistics[charGuid].statistics then Rarity.db.profile.accountWideStatistics[charGuid].statistics = {} end
+			Rarity.db.profile.accountWideStatistics[charGuid].statistics[k] = (tonumber(s or "0") or 0)
+		end
 		Rarity.lastStatCount = Rarity.lastStatCount + 1
 	end
 
