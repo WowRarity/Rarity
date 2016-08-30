@@ -1950,21 +1950,28 @@ end
 -------------------------------------------------------------------------------------
 -- When combat ends, we scan your statistics a few times. This helps catch some items that can't be tracked by normal means (i.e. Ragnaros),
 -- as well as acting as another backup to detect attempts if we missed one. WoW can take a few seconds to update statistics, thus the repeated scans.
+-- This is also where we detect if an achievement criteria has been met.
 -------------------------------------------------------------------------------------
 do
- local timer1, timer2, timer3
+ local timer1, timer2, timer3, timer4, timer5, timer6
  function R:OnCombatEnded(event)
   --if R:InTooltip() then Rarity:ShowTooltip() end
 
 		self:CancelTimer(timer1, true)
   self:CancelTimer(timer2, true)
   self:CancelTimer(timer3, true)
+  self:CancelTimer(timer4, true)
+  self:CancelTimer(timer5, true)
+  self:CancelTimer(timer6, true)
 
 		self:ScanStatistics(event)
 
   timer1 = self:ScheduleTimer(function() Rarity:ScanStatistics(event.." 1") end, 2)
   timer2 = self:ScheduleTimer(function() Rarity:ScanStatistics(event.." 2") end, 5)
-  timer3 = self:ScheduleTimer(function() Rarity:ScanStatistics(event.." 3") end, 10)
+  timer3 = self:ScheduleTimer(function() Rarity:ScanStatistics(event.." 3") end, 8)
+  timer4 = self:ScheduleTimer(function() Rarity:ScanStatistics(event.." 4") end, 10)
+  timer5 = self:ScheduleTimer(function() Rarity:ScanStatistics(event.." 5") end, 15)
+  timer6 = self:ScheduleTimer(function() Rarity:ScanStatistics(event.." 6") end, 20)
  end
 end
 
