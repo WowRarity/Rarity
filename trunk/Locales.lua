@@ -1001,23 +1001,23 @@ L["Don Carlos' Famous Hat"] = true
 L["Burgy Blackheart's Handsome Hat"] = true
 L["Knockoff Blingtron"] = true
 L["Eye of Inquisition"] = true
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+L["Red-Hot Coal"] = true
+L["Ironbound Collar"] = true
+L["Stormforged Rune"] = true
+L["Glittering Ball of Yarn"] = true
+L["Blessed Seed"] = true
+L["Ominous Pile of Snow"] = true
+L["Overcomplicated Controller"] = true
+L["Wriggling Darkness"] = true
+L["Fragment of Frozen Bone"] = true
+L["Remains of a Blood Beast"] = true
+L["Putricide's Alchemy Supplies"] = true
+L["Skull of a Frozen Whelp"] = true
+L["Drudge Remains"] = true
+L["Call of the Frozen Blade"] = true
+L["Giant Worm Egg"] = true
+L["Magnataur Hunting Horn"] = true
+L["Nerubian Relic"] = true
 
 
 
