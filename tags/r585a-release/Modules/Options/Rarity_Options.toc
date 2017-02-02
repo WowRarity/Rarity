@@ -1,0 +1,11 @@
+## Author: Allara
+## Interface: 70100
+## Notes: Rarity configuration. Use AddonLoader to load this on demand.
+## Title: Rarity [|caaedc99fOptions|r]
+## Dependencies: Rarity
+## X-Part-Of: Rarity
+## LoadManagers: AddonLoader
+## X-LoadOn-Slash: /rarity, /rare
+## X-LoadOn-InterfaceOptions: Rarity
+
+Options.lua
