@@ -1082,7 +1082,14 @@ function R:PrepareOptions()
 							Rarity.itemPack = e -- The decoded object is placed here for use during Import, this way we only have to do all of this one time
 							
 							-- We have an object, now do logical validation
-							if type(e) == "table" and e.items and type(e.items) == "table" and #e.items > 0 and e.build and tonumber(e.build) > 0 and e.signature and e.signature == IMPORTEXPORT_SIGNATURE then
+							local numItems = 0
+							if type(e) == "table" and e.items and type(e.items) == "table" then
+								for k, v in pairs(e.items) do
+									numItems = numItems + 1
+									break
+								end
+							end
+							if type(e) == "table" and e.items and type(e.items) == "table" and numItems > 0 and e.build and tonumber(e.build) > 0 and e.signature and e.signature == IMPORTEXPORT_SIGNATURE then
 
 								-- Import is good; create a preview
 								s = "\n"..L["Here is a preview of what will (or won't) be imported:"].."\n\n"
