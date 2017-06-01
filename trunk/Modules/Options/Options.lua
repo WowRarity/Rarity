@@ -614,7 +614,7 @@ function R:PrepareOptions()
 					}, -- worldTooltips
 
 
-					groupFinder = {
+					--[[groupFinder = {
 						type = "group",
 						name = L["Group Finder Options"],
 						order = newOrder(),
@@ -651,7 +651,7 @@ function R:PrepareOptions()
 
 						}, -- args
 					}, -- groupFinder
-
+]]
 
 					contentCategory = {
 						type = "group",

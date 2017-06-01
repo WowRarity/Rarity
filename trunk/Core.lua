@@ -554,6 +554,10 @@ do
 		self.db.RegisterCallback(self, "OnProfileReset", "OnProfileChanged")
 		self.db.RegisterCallback(self, "OnProfileDeleted", "OnProfileChanged")
 
+		-- Soft-disable the Group Finder auto-refresh checkbox
+		self.db.profile.showGroupFinderAutoRefresh = false
+		self.db.profile.enableGroupFinderAlert = false
+
   RequestArtifactCompletionHistory() -- Request archaeology info from the server
 		RequestRaidInfo() -- Request raid lock info from the server
 		RequestLFDPlayerLockInfo() -- Request LFD data from the server; this is used for holiday boss detection
