@@ -1018,6 +1018,16 @@ L["Call of the Frozen Blade"] = true
 L["Giant Worm Egg"] = true
 L["Magnataur Hunting Horn"] = true
 L["Nerubian Relic"] = true
+L["Midnight's Eternal Reins"] = true
+L["Orphaned Felbat"] = true
+L["Sira's Extra Cloak"] = true
+L["Highmountain Elderhorn"] = true
+L["Valarjar Stormwing"] = true
+L["Wild Dreamrunner"] = true
+L["Leywoven Flying Carpet"] = true
+L["Cloudwing Hippogryph"] = true
+
+
 
 
 
