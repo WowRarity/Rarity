@@ -4011,7 +4011,7 @@ function R:ScanCalendar(reason)
 	for i = 1, numEvents, 1 do
 		local _, _, _, calendarType, _, _, texture = CalendarGetDayEvent(monthOffset, day, i)
 
-		if calendarType == "HOLIDAY" then
+		if calendarType == "HOLIDAY" and texture ~= nil then
 			Rarity.holiday_textures[texture] = true
 		end
 	end
