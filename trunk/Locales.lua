@@ -1026,6 +1026,31 @@ L["Valarjar Stormwing"] = true
 L["Wild Dreamrunner"] = true
 L["Leywoven Flying Carpet"] = true
 L["Cloudwing Hippogryph"] = true
+L["Scraps"] = true
+L["Curious Wyrmtongue Cache"] = true
+L["Ageless Bronze Drake"] = true
+L["Bronze Proto-Whelp"] = true
+L["Crysa"] = true
+L["Muyani"] = true
+L["Albino Buzzard"] = true
+L["Everliving Spore"] = true
+L["Cavern Moccasin"] = true
+L["Young Venomfang"] = true
+L["Torn Invitation"] = true
+L["The quest starter item for Reins of the Llothien Prowler"] = true
+L["Arcano-Shower"] = true
+L["Displacer Meditation Stone"] = true
+L["Kaldorei Light Globe"] = true
+L["Unstable Powder Box"] = true
+L["Wisp in a Bottle"] = true
+L["Ley Spider Eggs"] = true
+L["Glimmering Treasure Chest"] = true
+L["Ancient Mana"] = true
+L["Chromie"] = true
+
+
+
+
 
 
 

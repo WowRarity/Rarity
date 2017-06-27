@@ -20,7 +20,7 @@ local lbct = LibStub("LibBabble-CreatureType-3.0"):GetUnstrictLookupTable()
 local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
 local hbd = LibStub("HereBeDragons-1.0")
 local compress = LibStub("LibCompress")
----
+--
 
 
 --[[
@@ -1527,6 +1527,42 @@ function R:OnEvent(event, ...)
     self:OutputAttempts(v)
    end
   end
+
+		-- Handle opening Curious Wyrmtongue Cache
+		if fishing and opening and lastNode and (lastNode == L["Curious Wyrmtongue Cache"]) then
+  	local v = self.db.profile.groups.pets["Scraps"]
+   if v and type(v) == "table" and v.enabled ~= false then
+    if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+    self:OutputAttempts(v)
+   end
+		end
+
+		-- Handle opening Glimmering Treasure Chest
+		if fishing and opening and lastNode and (lastNode == L["Glimmering Treasure Chest"]) and select(8, GetInstanceInfo()) == 1626 then
+			local bigChest = false
+			for _, slot in pairs(GetLootInfo()) do
+				if slot.item == L["Ancient Mana"] and slot.quantity == 100 then
+					bigChest = true
+				end
+			end
+
+			if bigChest == true then
+				local names = {"Arcano-Shower", "Displacer Meditation Stone", "Kaldorei Light Globe", "Unstable Powder Box", "Wisp in a Bottle", "Ley Spider Eggs"}
+				for _, name in pairs(names) do
+					local v = self.db.profile.groups.items[name]
+					if v and type(v) == "table" and v.enabled ~= false then
+						if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+						self:OutputAttempts(v)
+					end
+				end
+
+				v = self.db.profile.groups.mounts["Torn Invitation"]
+				if v and type(v) == "table" and v.enabled ~= false then
+					if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+					self:OutputAttempts(v)
+				end
+			end
+		end
 
   -- HANDLE FISHING
   if fishing and opening == false then
