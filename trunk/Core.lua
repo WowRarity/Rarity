@@ -327,6 +327,8 @@ R.opennodes = {
 	[L["Crane Nest"]] = true,
 	[L["Timeless Chest"]] = true,
 	[L["Snow Mound"]] = true,
+	[L["Glimmering Treasure Chest"]] = true,
+	[L["Curious Wyrmtongue Cache"]] = true,
 }
 
 
