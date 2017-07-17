@@ -1047,13 +1047,9 @@ L["Ley Spider Eggs"] = true
 L["Glimmering Treasure Chest"] = true
 L["Ancient Mana"] = true
 L["Chromie"] = true
-
-
-
-
-
-
-
+L["Abyss Worm"] = true
+L["Blight Boar Microphone"] = true
+L["Nightmare Whelpling"] = true
 
 
 
