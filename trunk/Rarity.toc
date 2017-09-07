@@ -1,5 +1,5 @@
 ## Author: Allara
-## Interface: 70200
+## Interface: 70300
 ## Notes: Tracks rare drops, including companions and mounts
 ## Title: Rarity
 ## Version: 1.0
