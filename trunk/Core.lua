@@ -20,7 +20,7 @@ local lbct = LibStub("LibBabble-CreatureType-3.0"):GetUnstrictLookupTable()
 local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
 local hbd = LibStub("HereBeDragons-1.0")
 local compress = LibStub("LibCompress")
---
+---
 
 
 --[[
@@ -1532,11 +1532,14 @@ function R:OnEvent(event, ...)
 
 		-- Handle opening Curious Wyrmtongue Cache
 		if fishing and opening and lastNode and (lastNode == L["Curious Wyrmtongue Cache"]) then
-  	local v = self.db.profile.groups.pets["Scraps"]
-   if v and type(v) == "table" and v.enabled ~= false then
-    if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
-    self:OutputAttempts(v)
-   end
+  	local names = {"Scraps", "Pilfered Sweeper"}
+			for _, name in pairs(names) do
+				local v = self.db.profile.groups.items[name]
+				if v and type(v) == "table" and v.enabled ~= false then
+					if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+					self:OutputAttempts(v)
+				end
+			end
 		end
 
 		-- Handle opening Glimmering Treasure Chest

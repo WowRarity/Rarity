@@ -1052,6 +1052,33 @@ L["Blight Boar Microphone"] = true
 L["Nightmare Whelpling"] = true
 
 
+L["Strange Humming Crystal"] = true
+L["The quest starter item for Wondrous Wisdomball"] = true
+L["Model D1-BB-L3R"] = true
+L["Environeer Bert"] = true
+L["Thistleleaf Adventurer"] = true
+L["Warmage Silva"] = true
+L["Sylvia Hartshorn"] = true
+L["Experiment-In-A-Jar"] = true
+L["Shadowy Pile of Bones"] = true
+L["Rough-Hewn Remote"] = true
+L["Severed Tentacle"] = true
+L["Puddle of Black Liquid"] = true
+L["Elementium Back Plate"] = true
+L["Vibrating Stone"] = true
+L["Fandral's Pet Carrier"] = true
+L["Cinderweb Egg"] = true
+L["Smoldering Treat"] = true
+L["Odd Twilight Egg"] = true
+L["Twilight Summoning Portal"] = true
+L["Lesser Circle of Binding"] = true
+L["Zephyr's Call"] = true
+L["Breezy Essence"] = true
+L["Pilfered Sweeper"] = true
+
+
+
+
 
 
 
