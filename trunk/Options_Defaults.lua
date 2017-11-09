@@ -223,7 +223,8 @@ function R:PrepareDefaults()
 					[86547] = { 90655, }, -- Skyshard: Reins of the Thundering Ruby Cloud Serpent
 					[86546] = { 90655, }, -- Sky Crystal: Reins of the Thundering Ruby Cloud Serpent
 					[128025] = { 116658, 116669, 116780, }, -- Rattling Iron Cage: Tundra Icehoof, Armored Razorback, Warsong Direfang
-
+					[53190] = { 152840, 152841, 152842, 152843, 153054, 153055}, -- Fel-Spotted Egg: Scintillating Mana Ray, Felglow Mana Ray, Vibrant Mana Ray, Darkspore Mana Ray,  Docile Skyfin, Fel-Afflicted Skyfin
+					
 					--[6948] = { 6948, }, -- Hearthstone: Hearthstone [this is for testing extraTooltips]
 				},
 			},
@@ -632,8 +633,180 @@ function R:PrepareDefaults()
      ["Valarjar Stormwing"] =                            { cat = LEGION, type = MOUNT, method = USE, name = L["Valarjar Stormwing"], spellId = 242882, itemId = 147805, items = { 152106, }, chance = 20, },
      ["Wild Dreamrunner"] =                              { cat = LEGION, type = MOUNT, method = USE, name = L["Wild Dreamrunner"], spellId = 242875, itemId = 147804, items = { 152103, }, chance = 20, },
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-					--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	 -- 7.3
+     ["Lambent Mana Ray"] =	{
+		cat = LEGION,
+		type = MOUNT,
+		method = NPC,
+		name = L["Lambent Mana Ray"],
+		itemId = 152844,
+		spellId = 253107,
+		npcs = { 126867 },
+		chance = 30,
+		questId = 48705,
+		coords = {
+			m = 1170,
+			x = .3401,
+			y = .4783,
+			n = L["Venomtail Skyfin"],
+		},	
+	 },
+     ["Maddened Chaosrunner"] =	{
+		cat = LEGION,
+		type = MOUNT,
+		method = NPC,
+		name = L["Maddened Chaosrunner"],
+		itemId = 152814,
+		spellId = 253058,
+		npcs = { 126852 },
+		chance = 30,
+		questId = 48695,
+		coords = {
+			m = 1170,
+			x = .5565,
+			y = .5995,
+			n = L["Wrangler Kravos"],
+		},
+	 },
+	 ["Vile Fiend"] = {
+		cat = LEGION,
+		type = MOUNT,
+		method = NPC,
+		name = L["Vile Fiend"],
+		itemId = 152790,
+		spellId = 243652,
+		npcs = { 127288 },
+		chance = 30,
+		questId = 48821,
+		coords = {
+			m = 1171,
+			x = .6296,
+			y = .2486,
+			n = L["Houndmaster Kerrax"],
+		},			
+	 },
+	 ["Crimson Slavermaw"] = {
+		cat = LEGION,
+		type = MOUNT,
+		method = NPC,
+		name = L["Crimson Slavermaw"],
+		itemId = 152905,
+		spellId = 253661,
+		npcs = { 122958 },
+		chance = 30,
+		questId = 49183,	
+		coords = {
+			m = 1171,
+			x = .6178,
+			y = .3697,
+			n = L["Blistermaw"],
+		},			
+	 },
+	 ["Biletooth Gnasher"] = {
+		cat = LEGION,
+		type = MOUNT,
+		method = NPC,
+		name = L["Biletooth Gnasher"],
+		itemId = 152903,
+		spellId = 253660,
+		npcs = { 126040, 126199, },
+		chance = 30,
+		questId = { 48809, 48810, }, 
+		defeatAllQuests = true,
+		defeatSteps = {
+			[48809] = L["Puscilla"],
+			[48810] = L["Vrax'thul"],
+		},
+		sourceText = format(L["Has a chance to drop from either %s or %s in Antoran Wastes. Each of them can be looted once per day."], L["Puscilla"], L["Vrax'thul"]),
+		coords = {
+			{ m=1171, x = .6442, y = .2035, q=48809, n=L["Puscilla"]},
+			{ m=1171, x = .5306, y = .3612, q=48810, n=L["Vrax'thul"]},
+		},
+	 },
+	 ["Acid Belcher "] = {
+		cat = LEGION,
+		type = MOUNT,
+		method = NPC,
+		name = L["Acid Belcher"],
+		itemId = 152904,
+		spellId = 253662,
+		npcs = { 126912 },
+		chance = 30,
+		questId = 48721,
+		coords = {
+			m = 1170,
+			x = .4979,
+			y = .0940,
+			n = L["Skreeg the Devourer"],
+		},		
+	 },
+	 ["Scintillating Mana Ray"] = {
+		cat = LEGION,
+		type = MOUNT,
+		method = USE,
+		name = L["Scintillating Mana Ray"],
+		spellId = 253109,
+		itemId = 152840,
+		items = { 153191 },
+		chance = 16,
+		sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
+		coords = {
+			{ m = 1171, x = .6432, y = .4862, n = L["Varga"] },
+			{ m = 1135, x = .7021, y = .3438, n = L["Naroua"] },
+			{ m = 1170, x = .4355, y = .4919, n = L["Sabuul"] },
+		},
+	 },
+	 ["Felglow Mana Ray"] = {
+		cat = LEGION,
+		type = MOUNT,
+		method = USE,
+		name = L["Felglow Mana Ray"],
+		spellId = 253108,
+		itemId = 152841,
+		items = { 153191 },
+		chance = 16,
+		sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
+		coords = {
+			{ m = 1171, x = .6432, y = .4862, n = L["Varga"] },
+			{ m = 1135, x = .7021, y = .3438, n = L["Naroua"] },
+			{ m = 1170, x = .4355, y = .4919, n = L["Sabuul"] },
+		},
+	 },
+	 ["Darkspore Mana Ray"] = {
+		cat = LEGION,
+		type = MOUNT,
+		method = USE,
+		name = L["Darkspore Mana Ray"],
+		spellId = 235764,
+		itemId = 152843,
+		items = { 153191 },
+		chance = 16,
+		sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
+		coords = {
+			{ m = 1171, x = .6432, y = .4862, n = L["Varga"] },
+			{ m = 1135, x = .7021, y = .3438, n = L["Naroua"] },
+			{ m = 1170, x = .4355, y = .4919, n = L["Sabuul"] },
+		},
+	 },
+	 ["Vibrant Mana Ray"] = {
+		cat = LEGION,
+		type = MOUNT,
+		method = USE,
+		name = L["Vibrant Mana Ray"],
+		spellId = 253106,
+		itemId = 152842,
+		items = { 153191 },
+		chance = 16,
+		sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
+		coords = {
+			{ m = 1171, x = .6432, y = .4862, n = L["Varga"] },
+			{ m = 1135, x = .7021, y = .3438, n = L["Naroua"] },
+			{ m = 1170, x = .4355, y = .4919, n = L["Sabuul"] },
+		},
+	 },	 
+	
+
+	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 					-- MOUNTS: Requires a group (some of these may be soloable by certain classes, but not in general)
 					--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -868,11 +1041,91 @@ function R:PrepareDefaults()
 					["Twilight Summoning Portal"] =                     { cat = LEGION, type = PET, method = BOSS, name = L["Twilight Summoning Portal"], itemId = 152972, spellId = 253813, creatureId = 127859, npcs = { 99999 }, tooltipNpcs = { 43324 }, chance = 10, statisticId = { 5572, 5571 }, doNotUpdateToHighestStat = true, coords = {{m=758,x=73.4,75.4,f=2,i=true}},},
 					["Vibrating Stone"] =                               { cat = LEGION, type = PET, method = BOSS, name = L["Vibrating Stone"], itemId = 152977, spellId = 253924, creatureId = 127950, npcs = { 99999 }, tooltipNpcs = { 53494 }, chance = 10, statisticId = { 5972, 5973 }, doNotUpdateToHighestStat = true, coords = {{m=800,x=49.5,y=30.9,f=0,i=true}},},
 					["Zephyr's Call"] =                                 { cat = LEGION, type = PET, method = BOSS, name = L["Zephyr's Call"], itemId = 152973, spellId = 253816, creatureId = 127862, npcs = { 99999 }, tooltipNpcs = { 46753 }, chance = 10,  statisticId = { 5576, 5577 }, doNotUpdateToHighestStat = true, coords = {{m=773,i=true}},},
-				},
 
 
+	-- 7.3
+	 ["Docile Skyfin"] = {
+		cat = LEGION,
+		type = PET,
+		method = USE,
+		name = L["Docile Skyfin"],
+		spellId = 254295,
+		itemId = 153054,
+		items = { 153191 },
+		chance = 5,
+		creatureId = 128157,
+		sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
+		coords = {
+			{ m = 1171, x = .6432, y = .4862, n = L["Varga"] },
+			{ m = 1135, x = .7021, y = .3438, n = L["Naroua"] },
+			{ m = 1170, x = .4355, y = .4919, n = L["Sabuul"] },
+		},
+	 },
+	 ["Fel-Afflicted Skyfin"] = {
+		cat = LEGION,
+		type = PET,
+		method = USE,
+		name = L["Fel-Afflicted Skyfin"],
+		spellId = 254296,
+		itemId = 153055,
+		items = { 153191 },
+		chance = 5,
+		creatureId = 128158,
+		sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
+		coords = {
+			{ m = 1171, x = .6432, y = .4862, n = L["Varga"] },
+			{ m = 1135, x = .7021, y = .3438, n = L["Naroua"] },
+			{ m = 1170, x = .4355, y = .4919, n = L["Sabuul"] },
+		},
+	 },
 
-				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	 ["Rebellious Imp"] = {
+		cat = LEGION,
+		type = PET,
+		method = NPC,
+		name = L["Rebellious Imp"],
+		spellId = 254749,
+		itemId = 153252,
+		npcs = { 127705 },
+		chance = 16,
+		creatureId = 128388,
+		questId = 48970,
+		coords = {
+			{ m = 1171,  x = .6672, y = .1812, n = L["Mother Rosula"] },
+		},
+	 },	
+	 ["Grasping Manifestation"] = {
+		cat = LEGION,
+		type = PET,
+		method = NPC,
+		name = L["Grasping Manifestation"],
+		spellId = 254297,
+		itemId = 153056,
+		npcs = { 126887 },
+		chance = 6,
+		creatureId = 128159,
+		questId = 48709,
+		coords = {
+			{ m = 1170, x = .3012, y = .4018, n = L["Ataxon"] },
+		},
+	 },	
+	 ["Uuna's Doll"] = {
+		cat = LEGION,
+		type = PET,
+		method = NPC,
+		name = L["Uuna's Doll"],
+		spellId = 254763,
+		itemId = 153195,
+		npcs = { 127581 },
+		chance = 20,
+		creatureId = 128396,
+		questId = 48966,
+		coords = {
+			{ m = 1171, x = .5483, y = .3915, n = L["The Many-Faced Devourer"] },
+		},
+	 },		 
+	 
+	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
@@ -956,11 +1209,147 @@ function R:PrepareDefaults()
 					["Unstable Powder Box"] =                           { cat = LEGION, type = ITEM, isToy = true, method = SPECIAL, name = L["Unstable Powder Box"], itemId = 141301, chance = 33, questId = 43943, coords = {{m=1033}} },
 					["Wisp in a Bottle"] =                              { cat = LEGION, type = ITEM, isToy = true, method = SPECIAL, name = L["Wisp in a Bottle"], itemId = 141306, chance = 33, questId = 43943, coords = {{m=1033}} },
 					["Pilfered Sweeper"] =                              { cat = LEGION, type = ITEM, isToy = true, method = SPECIAL, name = L["Pilfered Sweeper"], itemId = 147867, chance = 100, coords = {{m=1021,x=47.8,y=67.3}} },
+	-- 7.3 Toys
+
+	 ["Baarut the Brisk"] = {
+		cat = LEGION,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Baarut the Brisk"],
+		itemId = 153193,
+		npcs = { 126862 },
+		chance = 3,
+		questId = 48700,
+		coords = {
+			{ m = 1170, x = .4365, y = .6072, n = L["Baarut the Bloodthirsty"] },
+		},
+	 },
+	 ["Legion Communication Orb"] = {
+		cat = LEGION,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Legion Communication Orb"],
+		itemId = 153194,
+		npcs = { 127703 },
+		chance = 10,
+		questId = 48968,
+		coords = {
+			{ m = 1171, x = .5849, y = .1180, n = L["Doomcaster Suprax"] },
+		},
+	 },
+	 ["Blue Conservatory Scroll"] = {
+		cat = LEGION,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Blue Conservatory Scroll"],
+		itemId = 153179,
+		npcs = { 126900 },
+		chance = 9,
+		questId = 48718,
+		coords = {
+			{ m = 1170, x = .6172, y = .5031, n = L["Instructor Tarahna"] },
+		},
+	 },
+	 ["Yellow Conservatory Scroll"] = {
+		cat = LEGION,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Yellow Conservatory Scroll"],
+		itemId = 153180,
+		npcs = { 126900 },
+		chance = 9,
+		questId = 48718,
+		coords = {
+			{ m = 1170, x = .6172, y = .5031, n = L["Instructor Tarahna"] },
+		},
+	 },
+	 ["Red Conservatory Scroll"] = {
+		cat = LEGION,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Red Conservatory Scroll"],
+		itemId = 153181,
+		npcs = { 126900 },
+		chance = 9,
+		questId = 48718,
+		coords = {
+			{ m = 1170, x = .6172, y = .5031, n = L["Instructor Tarahna"] },
+		},
+	 },
+	 ["Spire of Spite"] = {
+		cat = LEGION,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Spire of Spite"],
+		itemId = 153124,
+		npcs = { 123464 },
+		chance = 12,
+		questId = 48565,
+		coords = {
+			{ m = 1135, x = .5394, y = .3139, n = L["Sister Subversiva"] },
+		},
+	 },
+	 ["S.F.E. Interceptor"] = {
+		cat = LEGION,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["S.F.E. Interceptor"],
+		itemId = 153253,
+		npcs = { 127700 },
+		chance = 7,
+		questId = 48967,
+		coords = {
+			{ m = 1171, x = .8372, y = .8114, n = L["Squadron Commander Vishax"] },
+		},
+	 },
+	 ["Micro-Artillery Controller"] = {
+		cat = LEGION,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Micro-Artillery Controller"],
+		itemId = 153126,
+		npcs = { 126338 },
+		chance = 5,
+		questId = 48814,
+		coords = {
+			{ m = 1171, x = .6177, y = .6453, n = L["Wrath-Lord Yarez"] },
+		},
+	 },
 
 					-- Mount-related items (5.x)
      ["Primal Egg"] =                                    { cat = MOP, type = ITEM, method = NPC, name = L["Primal Egg"], itemId = 94295, npcs = { 69983, 69991, 69992, 69993, 70004, 70005, 70006, 70007, 70008, 70009, 70010, 70011, 70012, 70013, 70014, 70015, 70016, 70017, 70018, 70019, 70020, 70021, }, chance = 100,  unique = true, sourceText = L["Dropped by dinosaurs on Isle of Giants Will hatch into one of three Primal Raptor mounts after three days."], coords = { {m=929} }, },
      ["Skyshard"] =                                      { cat = MOP, type = ITEM, method = ZONE, name = L["Skyshard"], spellId = 90655, itemId = 86547, zones = { "811" }, chance = 1000,  sourceText = L["Dropped by any mob in Vale of Eternal Blossoms (except minor mobs). 10 of these can be combined to pierce Alani's shield, allowing combat and a guaranteed drop of Reins of the Thundering Ruby Cloud Serpent."], coords = { {m=811} }, },
      
+	 	 -- Mount-related items (7.3)
+	 ["Fel-Spotted Egg"] = {
+		cat = LEGION,
+		type = ITEM,
+		method = NPC,
+		name = L["Fel-Spotted Egg"],
+		itemId = 153190,
+		npcs = {
+			126898,
+			126208,
+			126419,
+		},
+		chance = 2.5,
+		unique = false,
+		sourceText = L["Dropped by the panthara rares on Argus. Has a chance to hatch into one of four Mana Ray mounts as well as one of two Skyfin pets after five days."],
+		coords = {
+			{ m = 1171, x = .6432, y = .4862, n = L["Varga"] },
+			{ m = 1135, x = .7021, y = .3438, n = L["Naroua"] },
+			{ m = 1170, x = .4355, y = .4919, n = L["Sabuul"] },
+		},
+	 },
+	 
 					-- Battle pet-related items
      ["Mr. Pinchy"] =                                    { cat = TBC, type = ITEM, method = FISHING, name = L["Mr. Pinchy"], spellId = 33050, itemId = 27388, zones = { "Lake Jorune", "Lake Ere'Noru", "Skethyl Mountains", "Blackwind Landing", "Blackwind Valley", "Skettis", "Blackwind Lake", "Veil Harr'ik", "Veil Ala'rak", "Terokk's Rest" }, chance = 500, requiresPool = true, creatureId = 18839, sourceText = L["Obtained by fishing in pools located in Terrokar Forest"], coords = { {m=478} }, },
      
