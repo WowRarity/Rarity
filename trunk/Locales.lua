@@ -1125,6 +1125,10 @@ L["Uuna's Doll"] = true
 L["The Many-Faced Devourer"] = true
 
 
+L["Antoran Charhound"] = true
+L["Sightless Eye"] = true
+L["Rezira the Seer"] = true
+
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
 					Please go to http://www.wowace.com/projects/rarity/localization/ to update translations.

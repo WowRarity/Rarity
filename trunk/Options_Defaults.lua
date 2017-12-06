@@ -805,7 +805,25 @@ function R:PrepareDefaults()
 		},
 	 },	 
 	
-
+	-- 7.3.5 (Antorus)
+	
+	["Antoran Charhound"] = {
+		cat = LEGION,
+		type = MOUNT,
+		method = BOSS,
+		name = L["Antoran Charhound"],
+		spellId = 253088,
+		itemId = 152816,
+		npcs = { 99999 },
+		tooltipNpcs = { 126915, 126916 },
+		-- Instance difficulties?
+		chance = 100,
+		groupSize = 10, -- Eh?
+		equalOdds = true,
+		statisticId = { 12118, 11957, 11958, 11959, },
+		coords = { {m=1188,f=1,i=true} },
+	},
+	
 	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 					-- MOUNTS: Requires a group (some of these may be soloable by certain classes, but not in general)
 					--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1036,8 +1054,8 @@ function R:PrepareDefaults()
 					["Severed Tentacle"] =                              { cat = LEGION, type = PET, method = BOSS, name = L["Severed Tentacle"], itemId = 152981, spellId = 253928, creatureId = 127954, npcs = { 99999 }, tooltipNpcs = { 56173 }, chance = 10,  statisticId = { 6167, 6168 }, doNotUpdateToHighestStat = true, coords = {{m=824,f=6,i=true}},},
 					["Smoldering Treat"] =                              { cat = LEGION, type = PET, method = BOSS, name = L["Smoldering Treat"], itemId = 152975, spellId = 253916, creatureId = 127947, npcs = { 99999 }, tooltipNpcs = { 53691 }, chance = 10, statisticId = { 5968, 5969 }, doNotUpdateToHighestStat = true, coords = {{m=800,x=49.3,y=44.3,f=0,i=true}},},
 					["Shadowy Pile of Bones"] =                         { cat = LEGION, type = PET, method = BOSS, name = L["Shadowy Pile of Bones"], itemId = 152968, spellId = 253799, creatureId = 127853, npcs = { 99999 }, tooltipNpcs = { 41376, 41270 }, chance = 10, statisticId = { 5565, 5566 }, doNotUpdateToHighestStat = true, coords = {{m=754,x=48,y=70.2,f=2,i=true}},},
-					["Strange Humming Crystal"] =                       { cat = LEGION, type = PET, method = USE, name = L["Strange Humming Crystal"], spellId = 226682, itemId = 141349, items = { 151470 }, chance = 100, creatureId = 113827, sourceText = L["The quest starter item for Wondrous Wisdomball"], coords = {{m=1014,x=33.6,y=48,n=L["Warmage Silva"],f=2}}, },
-	    ["Thistleleaf Adventurer"] =                        { cat = LEGION, type = PET, method = USE, name = L["Thistleleaf Adventurer"], spellId = 195369, itemId = 130167, items = { 151464 }, chance = 100, creatureId = 99389, coords = {{m=1018,x=54.6,y=73.2,n=L["Sylvia Hartshorn"]}}, },
+					["Strange Humming Crystal"] =                       { cat = LEGION, type = PET, method = USE, name = L["Strange Humming Crystal"], spellId = 226682, itemId = 141349, items = { 154909 }, chance = 100, creatureId = 113827, sourceText = L["The quest starter item for Wondrous Wisdomball"], coords = {{m=1014,x=33.6,y=48,n=L["Warmage Silva"],f=2}}, },
+	    ["Thistleleaf Adventurer"] =                        { cat = LEGION, type = PET, method = USE, name = L["Thistleleaf Adventurer"], spellId = 195369, itemId = 130167, items = { 154903 }, chance = 100, creatureId = 99389, coords = {{m=1018,x=54.6,y=73.2,n=L["Sylvia Hartshorn"]}}, },
 					["Twilight Summoning Portal"] =                     { cat = LEGION, type = PET, method = BOSS, name = L["Twilight Summoning Portal"], itemId = 152972, spellId = 253813, creatureId = 127859, npcs = { 99999 }, tooltipNpcs = { 43324 }, chance = 10, statisticId = { 5572, 5571 }, doNotUpdateToHighestStat = true, coords = {{m=758,x=73.4,75.4,f=2,i=true}},},
 					["Vibrating Stone"] =                               { cat = LEGION, type = PET, method = BOSS, name = L["Vibrating Stone"], itemId = 152977, spellId = 253924, creatureId = 127950, npcs = { 99999 }, tooltipNpcs = { 53494 }, chance = 10, statisticId = { 5972, 5973 }, doNotUpdateToHighestStat = true, coords = {{m=800,x=49.5,y=30.9,f=0,i=true}},},
 					["Zephyr's Call"] =                                 { cat = LEGION, type = PET, method = BOSS, name = L["Zephyr's Call"], itemId = 152973, spellId = 253816, creatureId = 127862, npcs = { 99999 }, tooltipNpcs = { 46753 }, chance = 10,  statisticId = { 5576, 5577 }, doNotUpdateToHighestStat = true, coords = {{m=773,i=true}},},
@@ -1321,6 +1339,21 @@ function R:PrepareDefaults()
 		questId = 48814,
 		coords = {
 			{ m = 1171, x = .6177, y = .6453, n = L["Wrath-Lord Yarez"] },
+		},
+	 },
+	 
+	  ["Sightless Eye"] = {
+		cat = LEGION,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Sightless Eye"],
+		itemId = 153293,
+		npcs = { 127706 },
+		chance = 10,
+		questId = 48971,
+		coords = {
+			{ m = 1171, x = .657, y = .8059, n = L["Rezira the Seer"] },
 		},
 	 },
 
