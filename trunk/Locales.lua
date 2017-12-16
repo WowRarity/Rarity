@@ -1083,7 +1083,7 @@ L["Vile Fiend"] = true
 L["Crimson Slavermaw"] = true
 L["Biletooth Gnasher"] = true
 L["Acid Belcher"] = true
-L["Has a chance to drop from either %s or %s in Antoran Wastes. Each of them can be looted once per day."] = true
+L["Has a chance to drop from either %s or %s on Argus. Each can be looted once per day."] = true
 L["Wrangler Kravos"] = true
 L["Skreeg the Devourer"] = true
 L["Vrax'thul"] = true
@@ -1128,6 +1128,17 @@ L["The Many-Faced Devourer"] = true
 L["Antoran Charhound"] = true
 L["Sightless Eye"] = true
 L["Rezira the Seer"] = true
+
+
+L["Pond Nettle"] = true
+L["Avenging Felcrusher"] = true
+L["Blessed Felcrusher"] = true
+L["Glorious Felcrusher"] = true
+L["Holy Lightsphere"] = true
+L["Barrier Generator"] = true
+L["Vigilant Thanos"] = true
+L["Vigilant Kuro"] = true
+
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

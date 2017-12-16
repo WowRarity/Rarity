@@ -717,7 +717,7 @@ function R:PrepareDefaults()
 			[48809] = L["Puscilla"],
 			[48810] = L["Vrax'thul"],
 		},
-		sourceText = format(L["Has a chance to drop from either %s or %s in Antoran Wastes. Each of them can be looted once per day."], L["Puscilla"], L["Vrax'thul"]),
+		sourceText = format(L["Has a chance to drop from either %s or %s on Argus. Each can be looted once per day."], L["Puscilla"], L["Vrax'thul"]),
 		coords = {
 			{ m=1171, x = .6442, y = .2035, q=48809, n=L["Puscilla"]},
 			{ m=1171, x = .5306, y = .3612, q=48810, n=L["Vrax'thul"]},
@@ -804,6 +804,47 @@ function R:PrepareDefaults()
 			{ m = 1170, x = .4355, y = .4919, n = L["Sabuul"] },
 		},
 	 },	 
+	["Pond Nettle"] = {
+		cat = LEGION,
+		type = MOUNT,
+		method = FISHING,
+		name = L["Pond Nettle"],
+		zones = { "1171" },
+		spellId = 253711,
+		itemId = 152912,
+		chance = 2000,
+		requiresPool = false,
+	},
+	["Avenging Felcrusher"] = {
+		cat = LEGION,
+		type = MOUNT,
+		method = USE,
+		name = L["Avenging Felcrusher"],
+		spellId = 254259,
+		itemId = 153044,
+		items = { 152923 },
+		chance = 20,
+	},
+	["Blessed Felcrusher"] = {
+		cat = LEGION,
+		type = MOUNT,
+		method = USE,
+		name = L["Blessed Felcrusher"],
+		spellId = 254258,
+		itemId = 153043,
+		items = { 152923 },
+		chance = 20,
+	},
+	["Glorious Felcrusher"] = {
+		cat = LEGION,
+		type = MOUNT,
+		method = USE,
+		name = L["Glorious Felcrusher"],
+		spellId = 254069,
+		itemId = 153042,
+		items = { 152923 },
+		chance = 20,
+	},
 	
 	-- 7.3.5 (Antorus)
 	
@@ -1014,8 +1055,8 @@ function R:PrepareDefaults()
      --["Sting Ray Pup"] =                                 { cat = LEGION, type = PET, method = COLLECTION, name = L["Sting Ray Pup"], spellId = 217218, itemId = 138810, creatureId = 109216, collectedItemId = { 138777 }, chance = 50, },
 					-- 7.1
 					["Blessed Seed"] =																															   { cat = LEGION, type = PET, method = NPC, name = L["Blessed Seed"], itemId = 142091, spellId = 229098, creatureId = 115143, npcs = { 32906 }, chance = 10, statisticId = {2864, 3258}, doNotUpdateToHighestStat = true,  coords = {{m=529,x=53.2,y=22.3,i=true}},},
-					["Call of the Frozen Blade"] =										            { cat = LEGION, type = PET, method = NPC, name = L["Call of the Frozen Blade"], itemId = 142099, spellId = 229106, creatureId = 115152, npcs = { 36597 }, chance = 10,  statisticId = {4653, 4686, 4687, 4688}, doNotUpdateToHighestStat = true,  coords = {{m=604,x=49.6,y=52.5,i=true}},},
-					["Drudge Remains"] =																														  { cat = LEGION, type = PET, method = NPC, name = L["Drudge Remains"], itemId = 142098, spellId = 229105, creatureId = 115150, npcs = { 36597 }, chance = 10,  statisticId = {4653, 4686, 4687, 4688}, doNotUpdateToHighestStat = true,  coords = {{m=604,x=49.6,y=52.5,i=true}},},
+					["Call of the Frozen Blade"] =										            { cat = LEGION, type = PET, method = NPC, name = L["Call of the Frozen Blade"], itemId = 142099, spellId = 229106, creatureId = 115152, npcs = { 36597 }, chance = 10,  statisticId = {4686, 4688}, doNotUpdateToHighestStat = true,  coords = {{m=604,x=49.6,y=52.5,i=true}},},
+					["Drudge Remains"] =																														  { cat = LEGION, type = PET, method = NPC, name = L["Drudge Remains"], itemId = 142098, spellId = 229105, creatureId = 115150, npcs = { 36597 }, chance = 10,  statisticId = {4653, 4687}, doNotUpdateToHighestStat = true,  coords = {{m=604,x=49.6,y=52.5,i=true}},},
 					["Fragment of Frozen Bone"] =															        { cat = LEGION, type = PET, method = NPC, name = L["Fragment of Frozen Bone"], itemId = 142094, spellId = 229101, creatureId = 115146, npcs = { 36612 }, chance = 10,  coords = {{m=604,x=38.9,y=59.4,i=true}},},
 					["Giant Worm Egg"] =																													   { cat = LEGION, type = PET, method = NPC, name = L["Giant Worm Egg"], itemId = 142083, spellId = 229090, creatureId = 115135, npcs = { 34797 }, chance = 10,  coords = {{m=543,x=51.3,y=52.5,i=true}},},
 					["Glittering Ball of Yarn"] =										             { cat = LEGION, type = PET, method = NPC, name = L["Glittering Ball of Yarn"], itemId = 142089, spellId = 229096, creatureId = 115141, npcs = { 33515 }, chance = 10,  coords = {{m=529,x=51.3,y=57.2,i=true}},},
@@ -1353,11 +1394,44 @@ function R:PrepareDefaults()
 		chance = 10,
 		questId = 48971,
 		coords = {
-			{ m = 1171, x = .657, y = .8059, n = L["Rezira the Seer"] },
+			{ m = 1171, x = .6503, y = .8231, n = L["Rezira the Seer"] },
 		},
 	 },
-
-					-- Mount-related items (5.x)
+	 
+	["Holy Lightsphere"] = {
+		cat = LEGION,
+		type = ITEM,
+		isToy = true,
+		method = USE,
+		name = L["Holy Lightsphere"],
+		itemId = 153182,
+		items = { 152923 },
+		chance = 8,
+	},
+		
+	["Barrier Generator"] = {
+		cat = LEGION,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Barrier Generator"],
+		itemId = 153183,
+		npcs = { 126865, 126866 },
+		chance = 50,
+		questId = { 48703, 48704 },
+		defeatAllQuests = true,
+		defeatSteps = {
+			[48703] = L["Vigilant Thanos"],
+			[48704] = L["Vigilant Kuro"],
+		},
+		sourceText = format(L["Has a chance to drop from either %s or %s on Argus. Each can be looted once per day."], L["Vigilant Thanos"], L["Vigilant Kuro"]),
+		coords = {
+			{ m = 1170, x = .6388, y = .6425, n = L["Vigilant Kuro"] },
+			{ m = 1170, x = .3632, y = .2371, n = L["Vigilant Thanos"] },
+		},
+	 },
+	
+		-- Mount-related items (5.x)
      ["Primal Egg"] =                                    { cat = MOP, type = ITEM, method = NPC, name = L["Primal Egg"], itemId = 94295, npcs = { 69983, 69991, 69992, 69993, 70004, 70005, 70006, 70007, 70008, 70009, 70010, 70011, 70012, 70013, 70014, 70015, 70016, 70017, 70018, 70019, 70020, 70021, }, chance = 100,  unique = true, sourceText = L["Dropped by dinosaurs on Isle of Giants Will hatch into one of three Primal Raptor mounts after three days."], coords = { {m=929} }, },
      ["Skyshard"] =                                      { cat = MOP, type = ITEM, method = ZONE, name = L["Skyshard"], spellId = 90655, itemId = 86547, zones = { "811" }, chance = 1000,  sourceText = L["Dropped by any mob in Vale of Eternal Blossoms (except minor mobs). 10 of these can be combined to pierce Alani's shield, allowing combat and a guaranteed drop of Reins of the Thundering Ruby Cloud Serpent."], coords = { {m=811} }, },
      
