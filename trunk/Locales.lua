@@ -1140,6 +1140,14 @@ L["Vigilant Thanos"] = true
 L["Vigilant Kuro"] = true
 
 
+L["Stormforged Vrykul Horn"] = true
+L["Golden Hearthstone Card: Lord Jaraxxus"] = true
+L["Crashin' Thrashin' Flamer Controller"] = true
+L["Crashin' Thrashin' Shredder Controller"] = true
+L["Disposable Winter Veil Suits"] = true
+L["Red Wooden Sled"] = true
+
+
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
 					Please go to http://www.wowace.com/projects/rarity/localization/ to update translations.

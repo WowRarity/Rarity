@@ -1199,14 +1199,18 @@ function R:PrepareDefaults()
 					-- Toys (Holiday)
 					["Blight Boar Microphone"] =                        { cat = HOLIDAY, type = ITEM, isToy = true, method = NPC, name = L["Blight Boar Microphone"], itemId = 151265, npcs = { 122899}, chance = 10, holidayTexture = CALENDAR_DARKMOONFAIRE, coords = {{m=974,x=65.6,y=67}}, questId = {47767} },
 					["Coin of Many Faces"] =                            { cat = HOLIDAY, type = ITEM, isToy = true, method = NPC, name = L["Coin of Many Faces"], itemId = 128807, npcs = { 96535, 96538, 96637, 96536}, chance = 100, holidayTexture = CALENDAR_HALLOWSEND, coords = {{m=473,x=40.6,y=79.4}}, },					
+					["Crashin' Thrashin' Flamer Controller"] =           { cat = HOLIDAY, type = ITEM, isToy = true, method = USE, name = L["Crashin' Thrashin' Flamer Controller"], itemId = 108632, items = { 108632 }, chance = 50, holidayTexture = CALENDAR_WINTERVEIL, questId = { 6983, 7043 }, coords = { {m=24,x=43.6,y=39.6} }, },
 					["Crashin' Thrashin' Flyer Controller"] =           { cat = HOLIDAY, type = ITEM, isToy = true, method = USE, name = L["Crashin' Thrashin' Flyer Controller"], itemId = 104318, items = { 116762 }, chance = 50, holidayTexture = CALENDAR_WINTERVEIL, questId = { 6983, 7043 }, coords = { {m=24,x=43.6,y=39.6} }, },
 					["Crashin' Thrashin' Racer Controller"] =           { cat = HOLIDAY, type = ITEM, isToy = true, method = USE, name = L["Crashin' Thrashin' Racer Controller"], itemId = 37710, items = { 116762 }, chance = 50, holidayTexture = CALENDAR_WINTERVEIL, questId = { 6983, 7043 }, coords = { {m=24,x=43.6,y=39.6} }, },
+					["Crashin' Thrashin' Shredder Controller"] =           { cat = HOLIDAY, type = ITEM, isToy = true, method = USE, name = L["Crashin' Thrashin' Shredder Controller"], itemId = 116763, items = { 116762 }, chance = 50, holidayTexture = CALENDAR_WINTERVEIL, questId = { 6983, 7043 }, coords = { {m=24,x=43.6,y=39.6} }, },
+					["Disposable Winter Veil Suits"] =                                     { cat = HOLIDAY, type = ITEM, isToy = true, method = USE, name = L["Disposable Winter Veil Suits"], itemId = 139337, items = { 116762 }, chance = 50, holidayTexture = CALENDAR_WINTERVEIL, questId = { 6983, 7043 }, coords = { {m=24,x=43.6,y=39.6} }, },
 					["Foot Ball"] =                                     { cat = HOLIDAY, type = ITEM, isToy = true, method = USE, name = L["Foot Ball"], itemId = 90888, items = { 116762 }, chance = 50, holidayTexture = CALENDAR_WINTERVEIL, questId = { 6983, 7043 }, coords = { {m=24,x=43.6,y=39.6} }, },
 					["Fuzzy Green Lounge Cushion"] =                    { cat = HOLIDAY, type = ITEM, isToy = true, method = USE, name = L["Fuzzy Green Lounge Cushion"], itemId = 116692, items = { 21271, 21270, 116762 }, chance = 4, sourceText = L["Available starting December 25th"], holidayTexture = CALENDAR_WINTERVEIL, questId = { 8788, 8767 }, christmasOnly = true, coords = { {m=321,x=49.1,y=78.2,h=true},{m=341,x=33.4,y=65.9,a=true}, }, },
 					["MiniZep Controller"] =                            { cat = HOLIDAY, type = ITEM, isToy = true, method = USE, name = L["MiniZep Controller"], itemId = 46709, items = { 116762 }, chance = 50, holidayTexture = CALENDAR_WINTERVEIL, questId = { 6983, 7043 }, coords = { {m=24,x=43.6,y=39.6} }, },
      ["Moonfang Shroud"] =                               { cat = HOLIDAY, type = ITEM, isToy = true, method = NPC, name = L["Moonfang Shroud"], itemId = 101571, npcs = { 71992, }, chance = 5, holidayTexture = CALENDAR_DARKMOONFAIRE, coords = { {m=974,x=39.8,y=44.4} }, },
      ["Moonfang's Paw"] =                                { cat = HOLIDAY, type = ITEM, isToy = true, method = NPC, name = L["Moonfang's Paw"], itemId = 105898, npcs = { 71992, }, chance = 5, holidayTexture = CALENDAR_DARKMOONFAIRE, coords = { {m=974,x=39.8,y=44.4} }, },
 					["Pineapple Lounge Cushion"] =                      { cat = HOLIDAY, type = ITEM, isToy = true, method = USE, name = L["Pineapple Lounge Cushion"], itemId = 116689, items = { 21271, 21270, 116762 }, chance = 4, sourceText = L["Available starting December 25th"], holidayTexture = CALENDAR_WINTERVEIL, questId = { 8788, 8767 }, christmasOnly = true, coords = { {m=321,x=49.1,y=78.2,h=true},{m=341,x=33.4,y=65.9,a=true}, }, },
+					["Red Wooden Sled"] =                                     { cat = HOLIDAY, type = ITEM, isToy = true, method = USE, name = L["Red Wooden Sled"], itemId = 128776, items = { 116762 }, chance = 50, holidayTexture = CALENDAR_WINTERVEIL, questId = { 6983, 7043 }, coords = { {m=24,x=43.6,y=39.6} }, },					
 					["Sack of Spectral Spiders"] =                      { cat = HOLIDAY, type = ITEM, isToy = true, method = NPC, name = L["Sack of Spectral Spiders"], itemId = 128794, npcs = { 96323, }, chance = 8, questId = 39617, holidayTexture = CALENDAR_HALLOWSEND, coords = { zoneOverride = L["Draenor Garrison"], {m=971},{m=976}, }, },
 					["Safari Lounge Cushion"] =                         { cat = HOLIDAY, type = ITEM, isToy = true, method = USE, name = L["Safari Lounge Cushion"], itemId = 116690, items = { 21271, 21270, 116762 }, chance = 4, sourceText = L["Available starting December 25th"], holidayTexture = CALENDAR_WINTERVEIL, questId = { 8788, 8767 }, christmasOnly = true, coords = { {m=321,x=49.1,y=78.2,h=true},{m=341,x=33.4,y=65.9,a=true}, }, },
 					["Silver-Plated Turkey Shooter"] =                  { cat = HOLIDAY, type = ITEM, isToy = true, method = USE, name = L["Silver-Plated Turkey Shooter"], itemId = 116400, items = { 116404 }, chance = 33, holidayTexture = CALENDAR_PILGRIMSBOUNTY, coords = { {m=341,x=60,y=34.2,q=14048,a=true},{m=341,x=60,y=34.2,q=14051,a=true},{m=381,x=61.8,y=46.4,q=14054,a=true},{m=30,x=33.8,y=50.8,q=14055,a=true},{m=30,x=33.6,y=50.6,q=14053,a=true},{m=4,x=46.4,y=13.8,q=14061,h=true},{m=4,x=46.4,y=13.8,q=14062,h=true},{m=362,x=31,y=69.6,q=14060,h=true},{m=382,x=65.2,y=13.8,q=14058,h=true},{m=382,x=63.4,y=9,q=14059,h=true}, }, },
@@ -1268,6 +1272,36 @@ function R:PrepareDefaults()
 					["Unstable Powder Box"] =                           { cat = LEGION, type = ITEM, isToy = true, method = SPECIAL, name = L["Unstable Powder Box"], itemId = 141301, chance = 33, questId = 43943, coords = {{m=1033}} },
 					["Wisp in a Bottle"] =                              { cat = LEGION, type = ITEM, isToy = true, method = SPECIAL, name = L["Wisp in a Bottle"], itemId = 141306, chance = 33, questId = 43943, coords = {{m=1033}} },
 					["Pilfered Sweeper"] =                              { cat = LEGION, type = ITEM, isToy = true, method = SPECIAL, name = L["Pilfered Sweeper"], itemId = 147867, chance = 100, coords = {{m=1021,x=47.8,y=67.3}} },
+	
+	["Stormforged Vrykul Horn"] = {
+		cat = LEGION,
+		type = ITEM,
+		isToy = true,
+		method = USE,
+		name = L["Stormforged Vrykul Horn"],
+		itemId = 140160,
+		items = { 141069 },
+		chance = 33,
+	},
+	
+	-- 7.2 Toys
+
+	["Golden Hearthstone Card: Lord Jaraxxus"] = {
+		cat = LEGION,
+		type = ITEM,
+		isToy = true,
+		method = BOSS,
+		name = L["Golden Hearthstone Card: Lord Jaraxxus"],
+		itemId = 119211,
+		npcs = { 99999 },
+		tooltipNpcs = { 105503, 111022 }, -- Gul'dan / The Demon Within (Mythic only)
+		groupSize = 10,
+--		equalOdds = true, -- Not sure if this item is "push personal" loot? Leaving it for now...
+		chance = 275,
+		statisticId = { 10979, 10980, 10978 },
+		coords = { {m=1088,f=9,i=true} },
+	},
+	
 	-- 7.3 Toys
 
 	 ["Baarut the Brisk"] = {
