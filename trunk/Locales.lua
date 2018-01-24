@@ -408,7 +408,7 @@ L["No items to display! Either you've obtained every item, or you have\none or m
 
 
 -- Sources
-L[""] = true
+-- L[""] = true -> This seems pointless and breaks the import feature on WowAce, therefore I disabled it. I left it here because I really don't understand why it has been added and kept around for almost 4 years, so...eh ¯\_(ツ)_/¯
 L["This was a guaranteed drop for players who defeated the encounter when it was current"] = true
 L["Players have a personal loot chance to obtain this item."] = true
 L["All players can participate in killing this world boss once per week, regardless of faction"] = true
@@ -435,7 +435,7 @@ L["Mythic 5-player instance"] = true
 L["Timewalker 5-player instance"] = true
 
 
-L["Dropped by Yogg-Saron in Ulduar (25-player) with no Keepers assisting"] = true
+L["Dropped by Yogg-Saron in Ulduar with no Keepers assisting"] = true
 L["Dropped by Malygos in The Eye of Eternity (any raid size)"] = true
 L["Dropped by Koralon the Flame Watcher, Emalon the Storm Watcher, Archavon the Stone Watcher, and Toravon the Ice Watcher in Vault of Archavon (any raid size)."] = true
 L["Contained in Cracked Egg, which is obtained by becoming Revered with The Oracles, purchasing a Mysterious Egg from their reputation vendor, and waiting three days. The mount has a 5% chance to appear in the Cracked Egg."] = true
