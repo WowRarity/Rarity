@@ -1464,6 +1464,20 @@ function R:PrepareDefaults()
 			{ m = 1170, x = .3632, y = .2371, n = L["Vigilant Thanos"] },
 		},
 	 },
+	 
+	 ["Big Red Raygun"] = {
+		cat = LEGION,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Big Red Raygun"],
+		itemId = 142265,
+		npcs = { 15552 },
+		chance = 33,
+		coords = {
+			{ m = 141, x = .76, y = .186, n = L["Doctor Weavil"] },
+		},
+	 },
 	
 		-- Mount-related items (5.x)
      ["Primal Egg"] =                                    { cat = MOP, type = ITEM, method = NPC, name = L["Primal Egg"], itemId = 94295, npcs = { 69983, 69991, 69992, 69993, 70004, 70005, 70006, 70007, 70008, 70009, 70010, 70011, 70012, 70013, 70014, 70015, 70016, 70017, 70018, 70019, 70020, 70021, }, chance = 100,  unique = true, sourceText = L["Dropped by dinosaurs on Isle of Giants Will hatch into one of three Primal Raptor mounts after three days."], coords = { {m=929} }, },

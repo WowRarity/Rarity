@@ -1147,6 +1147,9 @@ L["Crashin' Thrashin' Shredder Controller"] = true
 L["Disposable Winter Veil Suits"] = true
 L["Red Wooden Sled"] = true
 
+L["Big Red Raygun"] = true
+L["Doctor Weavil"] = true
+
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
