@@ -3286,6 +3286,11 @@ do
 								end
 							end
 							elseif v.lockBossName then
+								
+								if not lbb["Theralion and Valiona"] and lbb["Valiona and Theralion"] then -- LibBabble-Boss is still outdated -> Add correct encounter name
+									lbb["Theralion and Valiona"] = lbb["Valiona and Theralion"] -- Workaround for issue: https://github.com/SacredDuckwhale/Rarity/issues/22 - can be removed once the library was updated
+								end
+								
 								if lbb[v.lockBossName] and (Rarity.lockouts[lbb[v.lockBossName]] == true or Rarity.lockouts[v.lockBossName] == true) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
 							elseif v.lockDungeonId then
 								if Rarity.lockouts_holiday[v.lockDungeonId] == true then
