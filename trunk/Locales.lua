@@ -1150,6 +1150,9 @@ L["Red Wooden Sled"] = true
 L["Big Red Raygun"] = true
 L["Doctor Weavil"] = true
 
+L["Shard of Archstone"] = true
+L["Havak"] = true
+
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
