@@ -646,8 +646,8 @@ function R:PrepareDefaults()
 		questId = 48705,
 		coords = {
 			m = 1170,
-			x = .3401,
-			y = .4783,
+			x = 34.01,
+			y = 47.83,
 			n = L["Venomtail Skyfin"],
 		},	
 	 },
@@ -663,8 +663,8 @@ function R:PrepareDefaults()
 		questId = 48695,
 		coords = {
 			m = 1170,
-			x = .5565,
-			y = .5995,
+			x = 55.65,
+			y = 59.95,
 			n = L["Wrangler Kravos"],
 		},
 	 },
@@ -680,8 +680,8 @@ function R:PrepareDefaults()
 		questId = 48821,
 		coords = {
 			m = 1171,
-			x = .6296,
-			y = .2486,
+			x = 62.96,
+			y = 24.86,
 			n = L["Houndmaster Kerrax"],
 		},			
 	 },
@@ -697,8 +697,8 @@ function R:PrepareDefaults()
 		questId = 49183,	
 		coords = {
 			m = 1171,
-			x = .6178,
-			y = .3697,
+			x = 61.78,
+			y = 36.97,
 			n = L["Blistermaw"],
 		},			
 	 },
@@ -719,8 +719,8 @@ function R:PrepareDefaults()
 		},
 		sourceText = format(L["Has a chance to drop from either %s or %s on Argus. Each can be looted once per day."], L["Puscilla"], L["Vrax'thul"]),
 		coords = {
-			{ m=1171, x = .6442, y = .2035, q=48809, n=L["Puscilla"]},
-			{ m=1171, x = .5306, y = .3612, q=48810, n=L["Vrax'thul"]},
+			{ m=1171, x = 64.42, y = 20.35, q=48809, n=L["Puscilla"]},
+			{ m=1171, x = 53.06, y = 36.12, q=48810, n=L["Vrax'thul"]},
 		},
 	 },
 	 ["Acid Belcher "] = {
@@ -735,8 +735,8 @@ function R:PrepareDefaults()
 		questId = 48721,
 		coords = {
 			m = 1170,
-			x = .4979,
-			y = .0940,
+			x = 49.79,
+			y = 9.40,
 			n = L["Skreeg the Devourer"],
 		},		
 	 },
@@ -751,9 +751,9 @@ function R:PrepareDefaults()
 		chance = 16,
 		sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
 		coords = {
-			{ m = 1171, x = .6432, y = .4862, n = L["Varga"] },
-			{ m = 1135, x = .7021, y = .3438, n = L["Naroua"] },
-			{ m = 1170, x = .4355, y = .4919, n = L["Sabuul"] },
+			{ m = 1171, x = 64.32, y = 48.62, n = L["Varga"] },
+			{ m = 1135, x = 70.21, y = 34.38, n = L["Naroua"] },
+			{ m = 1170, x = 43.55, y = 49.19, n = L["Sabuul"] },
 		},
 	 },
 	 ["Felglow Mana Ray"] = {
@@ -767,9 +767,9 @@ function R:PrepareDefaults()
 		chance = 16,
 		sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
 		coords = {
-			{ m = 1171, x = .6432, y = .4862, n = L["Varga"] },
-			{ m = 1135, x = .7021, y = .3438, n = L["Naroua"] },
-			{ m = 1170, x = .4355, y = .4919, n = L["Sabuul"] },
+			{ m = 1171, x = 64.32, y = 48.62, n = L["Varga"] },
+			{ m = 1135, x = 70.21, y = 34.38, n = L["Naroua"] },
+			{ m = 1170, x = 43.55, y = 49.19, n = L["Sabuul"] },
 		},
 	 },
 	 ["Darkspore Mana Ray"] = {
@@ -783,9 +783,9 @@ function R:PrepareDefaults()
 		chance = 16,
 		sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
 		coords = {
-			{ m = 1171, x = .6432, y = .4862, n = L["Varga"] },
-			{ m = 1135, x = .7021, y = .3438, n = L["Naroua"] },
-			{ m = 1170, x = .4355, y = .4919, n = L["Sabuul"] },
+			{ m = 1171, x = 64.32, y = 48.62, n = L["Varga"] },
+			{ m = 1135, x = 70.21, y = 34.38, n = L["Naroua"] },
+			{ m = 1170, x = 43.55, y = 49.19, n = L["Sabuul"] },
 		},
 	 },
 	 ["Vibrant Mana Ray"] = {
@@ -799,9 +799,9 @@ function R:PrepareDefaults()
 		chance = 16,
 		sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
 		coords = {
-			{ m = 1171, x = .6432, y = .4862, n = L["Varga"] },
-			{ m = 1135, x = .7021, y = .3438, n = L["Naroua"] },
-			{ m = 1170, x = .4355, y = .4919, n = L["Sabuul"] },
+			{ m = 1171, x = 64.32, y = 48.62, n = L["Varga"] },
+			{ m = 1135, x = 70.21, y = 34.38, n = L["Naroua"] },
+			{ m = 1170, x = 43.55, y = 49.19, n = L["Sabuul"] },
 		},
 	 },	 
 	["Pond Nettle"] = {
@@ -1103,87 +1103,90 @@ function R:PrepareDefaults()
 
 
 	-- 7.3
-	 ["Docile Skyfin"] = {
-		cat = LEGION,
-		type = PET,
-		method = USE,
-		name = L["Docile Skyfin"],
-		spellId = 254295,
-		itemId = 153054,
-		items = { 153191 },
-		chance = 5,
-		creatureId = 128157,
-		sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
-		coords = {
-			{ m = 1171, x = .6432, y = .4862, n = L["Varga"] },
-			{ m = 1135, x = .7021, y = .3438, n = L["Naroua"] },
-			{ m = 1170, x = .4355, y = .4919, n = L["Sabuul"] },
+		["Docile Skyfin"] = {
+			cat = LEGION,
+			type = PET,
+			method = USE,
+			name = L["Docile Skyfin"],
+			spellId = 254295,
+			itemId = 153054,
+			items = { 153191 },
+			chance = 5,
+			creatureId = 128157,
+			sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
+			coords = {
+				{ m = 1171, x = 64.32, y = 48.62, n = L["Varga"] },
+				{ m = 1135, x = 70.21, y = 34.38, n = L["Naroua"] },
+				{ m = 1170, x = 43.55, y = 49.19, n = L["Sabuul"] },
+			},
 		},
-	 },
-	 ["Fel-Afflicted Skyfin"] = {
-		cat = LEGION,
-		type = PET,
-		method = USE,
-		name = L["Fel-Afflicted Skyfin"],
-		spellId = 254296,
-		itemId = 153055,
-		items = { 153191 },
-		chance = 5,
-		creatureId = 128158,
-		sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
-		coords = {
-			{ m = 1171, x = .6432, y = .4862, n = L["Varga"] },
-			{ m = 1135, x = .7021, y = .3438, n = L["Naroua"] },
-			{ m = 1170, x = .4355, y = .4919, n = L["Sabuul"] },
+		
+		["Fel-Afflicted Skyfin"] = {
+			cat = LEGION,
+			type = PET,
+			method = USE,
+			name = L["Fel-Afflicted Skyfin"],
+			spellId = 254296,
+			itemId = 153055,
+			items = { 153191 },
+			chance = 5,
+			creatureId = 128158,
+			sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
+			coords = {
+				{ m = 1171, x = 64.32, y = 48.62, n = L["Varga"] },
+				{ m = 1135, x = 70.21, y = 34.38, n = L["Naroua"] },
+				{ m = 1170, x = 43.55, y = 49.19, n = L["Sabuul"] },
+			},
 		},
-	 },
 
-	 ["Rebellious Imp"] = {
-		cat = LEGION,
-		type = PET,
-		method = NPC,
-		name = L["Rebellious Imp"],
-		spellId = 254749,
-		itemId = 153252,
-		npcs = { 127705 },
-		chance = 16,
-		creatureId = 128388,
-		questId = 48970,
-		coords = {
-			{ m = 1171,  x = .6672, y = .1812, n = L["Mother Rosula"] },
+		["Rebellious Imp"] = {
+			cat = LEGION,
+			type = PET,
+			method = NPC,
+			name = L["Rebellious Imp"],
+			spellId = 254749,
+			itemId = 153252,
+			npcs = { 127705 },
+			chance = 16,
+			creatureId = 128388,
+			questId = 48970,
+			coords = {
+				{ m = 1171,  x = 66.72, y = 18.12, n = L["Mother Rosula"] },
+			},
 		},
-	 },	
-	 ["Grasping Manifestation"] = {
-		cat = LEGION,
-		type = PET,
-		method = NPC,
-		name = L["Grasping Manifestation"],
-		spellId = 254297,
-		itemId = 153056,
-		npcs = { 126887 },
-		chance = 6,
-		creatureId = 128159,
-		questId = 48709,
-		coords = {
-			{ m = 1170, x = .3012, y = .4018, n = L["Ataxon"] },
-		},
-	 },	
-	 ["Uuna's Doll"] = {
-		cat = LEGION,
-		type = PET,
-		method = NPC,
-		name = L["Uuna's Doll"],
-		spellId = 254763,
-		itemId = 153195,
-		npcs = { 127581 },
-		chance = 20,
-		creatureId = 128396,
-		questId = 48966,
-		coords = {
-			{ m = 1171, x = .5483, y = .3915, n = L["The Many-Faced Devourer"] },
-		},
-	 },		 
-	 
+
+		["Grasping Manifestation"] = {
+			cat = LEGION,
+			type = PET,
+			method = NPC,
+			name = L["Grasping Manifestation"],
+			spellId = 254297,
+			itemId = 153056,
+			npcs = { 126887 },
+			chance = 6,
+			creatureId = 128159,
+			questId = 48709,
+			coords = {
+				{ m = 1170, x = 30.12, y = 40.18, n = L["Ataxon"] },
+			},
+		},	
+		
+		["Uuna's Doll"] = {
+			cat = LEGION,
+			type = PET,
+			method = NPC,
+			name = L["Uuna's Doll"],
+			spellId = 254763,
+			itemId = 153195,
+			npcs = { 127581 },
+			chance = 20,
+			creatureId = 128396,
+			questId = 48966,
+			coords = {
+				{ m = 1171, x = 54.83, y = 39.15, n = L["The Many-Faced Devourer"] },
+			},
+		},		 
+
 	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1305,7 +1308,7 @@ function R:PrepareDefaults()
 	
 	-- 7.3 Toys
 
-	 ["Baarut the Brisk"] = {
+	["Baarut the Brisk"] = {
 		cat = LEGION,
 		type = ITEM,
 		isToy = true,
@@ -1316,10 +1319,11 @@ function R:PrepareDefaults()
 		chance = 3,
 		questId = 48700,
 		coords = {
-			{ m = 1170, x = .4365, y = .6072, n = L["Baarut the Bloodthirsty"] },
+			{ m = 1170, x = 43.65, y = 60.72, n = L["Baarut the Bloodthirsty"] },
 		},
-	 },
-	 ["Legion Communication Orb"] = {
+	},
+
+	["Legion Communication Orb"] = {
 		cat = LEGION,
 		type = ITEM,
 		isToy = true,
@@ -1330,10 +1334,11 @@ function R:PrepareDefaults()
 		chance = 10,
 		questId = 48968,
 		coords = {
-			{ m = 1171, x = .5849, y = .1180, n = L["Doomcaster Suprax"] },
+			{ m = 1171, x = 58.49, y = 11.80, n = L["Doomcaster Suprax"] },
 		},
-	 },
-	 ["Blue Conservatory Scroll"] = {
+	},
+
+	["Blue Conservatory Scroll"] = {
 		cat = LEGION,
 		type = ITEM,
 		isToy = true,
@@ -1344,10 +1349,11 @@ function R:PrepareDefaults()
 		chance = 9,
 		questId = 48718,
 		coords = {
-			{ m = 1170, x = .6172, y = .5031, n = L["Instructor Tarahna"] },
+			{ m = 1170, x = 61.72, y = 50.31, n = L["Instructor Tarahna"] },
 		},
-	 },
-	 ["Yellow Conservatory Scroll"] = {
+	},
+	
+	["Yellow Conservatory Scroll"] = {
 		cat = LEGION,
 		type = ITEM,
 		isToy = true,
@@ -1358,10 +1364,11 @@ function R:PrepareDefaults()
 		chance = 9,
 		questId = 48718,
 		coords = {
-			{ m = 1170, x = .6172, y = .5031, n = L["Instructor Tarahna"] },
+			{ m = 1170, x = 61.72, y = 50.31, n = L["Instructor Tarahna"] },
 		},
-	 },
-	 ["Red Conservatory Scroll"] = {
+	},
+
+	["Red Conservatory Scroll"] = {
 		cat = LEGION,
 		type = ITEM,
 		isToy = true,
@@ -1372,10 +1379,11 @@ function R:PrepareDefaults()
 		chance = 9,
 		questId = 48718,
 		coords = {
-			{ m = 1170, x = .6172, y = .5031, n = L["Instructor Tarahna"] },
+			{ m = 1170, x = 61.72, y = 50.31, n = L["Instructor Tarahna"] },
 		},
-	 },
-	 ["Spire of Spite"] = {
+	},
+	
+	["Spire of Spite"] = {
 		cat = LEGION,
 		type = ITEM,
 		isToy = true,
@@ -1386,10 +1394,11 @@ function R:PrepareDefaults()
 		chance = 12,
 		questId = 48565,
 		coords = {
-			{ m = 1135, x = .5394, y = .3139, n = L["Sister Subversiva"] },
+			{ m = 1135, x = 53.94, y = 31.39, n = L["Sister Subversiva"] },
 		},
-	 },
-	 ["S.F.E. Interceptor"] = {
+	},
+	 
+	["S.F.E. Interceptor"] = {
 		cat = LEGION,
 		type = ITEM,
 		isToy = true,
@@ -1400,10 +1409,11 @@ function R:PrepareDefaults()
 		chance = 7,
 		questId = 48967,
 		coords = {
-			{ m = 1171, x = .8372, y = .8114, n = L["Squadron Commander Vishax"] },
+			{ m = 1171, x = 83.72, y = 81.14, n = L["Squadron Commander Vishax"] },
 		},
-	 },
-	 ["Micro-Artillery Controller"] = {
+	},
+
+	["Micro-Artillery Controller"] = {
 		cat = LEGION,
 		type = ITEM,
 		isToy = true,
@@ -1414,11 +1424,11 @@ function R:PrepareDefaults()
 		chance = 5,
 		questId = 48814,
 		coords = {
-			{ m = 1171, x = .6177, y = .6453, n = L["Wrath-Lord Yarez"] },
+			{ m = 1171, x = 61.77, y = 64.53, n = L["Wrath-Lord Yarez"] },
 		},
-	 },
+	},
 	 
-	  ["Sightless Eye"] = {
+	["Sightless Eye"] = {
 		cat = LEGION,
 		type = ITEM,
 		isToy = true,
@@ -1429,9 +1439,9 @@ function R:PrepareDefaults()
 		chance = 10,
 		questId = 48971,
 		coords = {
-			{ m = 1171, x = .6503, y = .8231, n = L["Rezira the Seer"] },
+			{ m = 1171, x = 65.03, y = 82.31, n = L["Rezira the Seer"] },
 		},
-	 },
+	},
 	 
 	["Holy Lightsphere"] = {
 		cat = LEGION,
@@ -1461,8 +1471,8 @@ function R:PrepareDefaults()
 		},
 		sourceText = format(L["Has a chance to drop from either %s or %s on Argus. Each can be looted once per day."], L["Vigilant Thanos"], L["Vigilant Kuro"]),
 		coords = {
-			{ m = 1170, x = .6388, y = .6425, n = L["Vigilant Kuro"] },
-			{ m = 1170, x = .3632, y = .2371, n = L["Vigilant Thanos"] },
+			{ m = 1170, x = 63.88, y = 64.25, n = L["Vigilant Kuro"] },
+			{ m = 1170, x = 36.32, y = 23.71, n = L["Vigilant Thanos"] },
 		},
 	 },
 	 
@@ -1476,7 +1486,7 @@ function R:PrepareDefaults()
 		npcs = { 15552 },
 		chance = 33,
 		coords = {
-			{ m = 141, x = .76, y = .186, n = L["Doctor Weavil"] },
+			{ m = 141, x = 76, y = 18.6, n = L["Doctor Weavil"] },
 		},
 	 },
 	
@@ -1500,9 +1510,9 @@ function R:PrepareDefaults()
 		unique = false,
 		sourceText = L["Dropped by the panthara rares on Argus. Has a chance to hatch into one of four Mana Ray mounts as well as one of two Skyfin pets after five days."],
 		coords = {
-			{ m = 1171, x = .6432, y = .4862, n = L["Varga"] },
-			{ m = 1135, x = .7021, y = .3438, n = L["Naroua"] },
-			{ m = 1170, x = .4355, y = .4919, n = L["Sabuul"] },
+			{ m = 1171, x = 64.32, y = 48.62, n = L["Varga"] },
+			{ m = 1135, x = 70.21, y = 34.38, n = L["Naroua"] },
+			{ m = 1170, x = 43.55, y = 49.19, n = L["Sabuul"] },
 		},
 	 },
 	 
