@@ -2239,9 +2239,21 @@ end
 -------------------------------------------------------------------------------------
 -- Criteria in a dungeon completed, currently used for Reins of the Infinite Timereaver detection as a special case
 -------------------------------------------------------------------------------------
+local timewalkingCriteriaLUT = {
+	[24801] = "Ozumot",
+	[24803] = "Murozond",
+	[24784] = "Trial of the King", -- [126952] = "Trial of the King", -- Object: Legacy of the Clan Leaders
+	[19256] = "Gekkan", -- Object: Ancient Mogu Treasure
+	[19244] = "Master Snowdrift", -- [123096] = "Master Snowdrift", -- Object: Snowdrift's Possessions
+	[34410] = "Taran Zhu", --[123095] = "Taran Zhu", -- Object: Taran Zhu's Personal Stash
+}
 
 function R:OnCriteriaComplete(event, id)
-	if id == 24801 --[[ Ozumat ]] or id == 24803 --[[ Murozond ]] then
+
+	local encounterName = timewalkingCriteriaLUT[id]
+	R:Debug("Detected achievement criteria completion: " .. tostring(id))
+	if encounterName then -- Is an encounter that can't otherwise be detected (due to the mount dropping from an object, and not a lootable NPC)
+		R:Debug("Completed criteria for relevant encounter: " .. tostring(encounterName))
 		local v = self.db.profile.groups.mounts["Reins of the Infinite Timereaver"]
 		if v and type(v) == "table" and v.enabled ~= false and R:IsAttemptAllowed(v) then
 			if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
