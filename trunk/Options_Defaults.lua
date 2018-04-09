@@ -880,7 +880,7 @@ function R:PrepareDefaults()
      ["Ironhoof Destroyer"] =                            { cat = WOD, type = MOUNT, method = BOSS, name = L["Ironhoof Destroyer"], spellId = 171621, itemId = 116660, npcs = { 99999 }, tooltipNpcs = { 77325 }, chance = 100, wasGuaranteed = true, groupSize = 3, statisticId = { 9365 }, lockBossName = "Blackhand", coords = { {m=988,f=5,x=48.4,y=34.5,i=true} }, },
      ["Solar Spirehawk"] =                               { cat = WOD, type = MOUNT, method = BOSS, name = L["Solar Spirehawk"], spellId = 171828, itemId = 116771, npcs = { 99999 }, tooltipNpcs = { 87493, 83746 }, chance = 2000, groupSize = 40, equalOdds = true, statisticId = { 9279 }, worldBossFactionless = true, questId = 37464, coords = { {m=948,x=47.1,y=78.4} }, },
 	["Reins of the Infinite Timereaver"] =              { cat = WOD, type = MOUNT, method = BOSS, name = L["Reins of the Infinite Timereaver"], spellId = 201098, itemId = 133543, 
-	nps = { -- NPCs marked with * can't be looted; they use a workaround and are detected via checking their achievement criteria. The entry here is mostly for the tooltip display....
+	npcs = { -- NPCs marked with * can't be looted; they use a workaround and are detected via checking their achievement criteria. The entry here is mostly for the tooltip display....
 		-- TBC Dungeons
 		---- Magister's Terrace
 		24723, -- Selin Fireheart
