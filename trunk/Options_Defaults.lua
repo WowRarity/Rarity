@@ -879,9 +879,134 @@ function R:PrepareDefaults()
      ["Garn Nighthowl"] =                                { cat = WOD, type = MOUNT, method = BOSS, name = L["Garn Nighthowl"], spellId = 171851, itemId = 116794, npcs = { 81001 }, chance = 1, groupSize = 25, coords = { {m=941,x=16,y=53.2} }, },
      ["Ironhoof Destroyer"] =                            { cat = WOD, type = MOUNT, method = BOSS, name = L["Ironhoof Destroyer"], spellId = 171621, itemId = 116660, npcs = { 99999 }, tooltipNpcs = { 77325 }, chance = 100, wasGuaranteed = true, groupSize = 3, statisticId = { 9365 }, lockBossName = "Blackhand", coords = { {m=988,f=5,x=48.4,y=34.5,i=true} }, },
      ["Solar Spirehawk"] =                               { cat = WOD, type = MOUNT, method = BOSS, name = L["Solar Spirehawk"], spellId = 171828, itemId = 116771, npcs = { 99999 }, tooltipNpcs = { 87493, 83746 }, chance = 2000, groupSize = 40, equalOdds = true, statisticId = { 9279 }, worldBossFactionless = true, questId = 37464, coords = { {m=948,x=47.1,y=78.4} }, },
-					["Reins of the Infinite Timereaver"] =              { cat = WOD, type = MOUNT, method = BOSS, name = L["Reins of the Infinite Timereaver"], spellId = 201098, itemId = 133543, npcs = { 24723, 24744, 24560, 24664, 17941, 17991, 17942, 16807, 20923, 16809, 16808, 18341, 18343, 18344, 22930, 17879, 17880, 17881, 20870, 20885, 20886, 20912, 36494, 36476, 36658, 26668, 26687, 26693, 26861, 26731, 26763, 26794, 26723, 26796, 26798, 28586, 28587, 28546, 28923, 29304, 29573, 29305, 29306, 29932, 29309, 29308, 29310, 29311, 30258, 40586, 40765, 40788, 44566, 43878, 43873, 43875, 43438, 43214, 42188, 42333, 44577, 43612, 44819, 49045, 39625, 40177, 40319, 40484, 54431, 54445, 54123, 54544, 54432, 56906, 56589, 56636, 56877, 56448, 56732, 56439, 56637, 56717, 59479, 61567, 61634, 61485, 62205, 56747, 56541, 56719, 56884, 61444, 61243, 61398, }, chance = 4000, groupSize = 5, equalOdds = true, instanceDifficulties = { --[[ Timewalking 5-player dungeon ]] [24] = true, }, coords = {{m=798,i=true},{m=728,i=true},{m=710,i=true},{m=732,i=true},{m=733,i=true},{m=731,i=true},{m=602,i=true},{m=524,i=true},{m=520,i=true},{m=525,i=true},{m=530,i=true},{m=522,i=true},{m=767,i=true},{m=769,i=true},{m=768,i=true},{m=747,i=true},{m=757,i=true},{m=820,i=true},{m=875,i=true},{m=867,i=true},{m=876,i=true},{m=887,i=true},{m=877,i=true},{m=885,i=true}}, },
-					-- 7.x
-					["Abyss Worm"] =                                    { cat = LEGION, type = MOUNT, method = BOSS, name = L["Abyss Worm"], spellId = 232519, itemId = 143643, npcs = { 99999 }, tooltipNpcs = { 115767 }, chance = 100, groupSize = 10, equalOdds = true, statisticId = { 11893, 11894, 11895, 11896, }, coords = { {m=1147,f=2,i=true} }, },
+	["Reins of the Infinite Timereaver"] =              { cat = WOD, type = MOUNT, method = BOSS, name = L["Reins of the Infinite Timereaver"], spellId = 201098, itemId = 133543, 
+	nps = { -- NPCs marked with * can't be looted; they use a workaround and are detected via checking their achievement criteria. The entry here is mostly for the tooltip display....
+		-- TBC Dungeons
+		---- Magister's Terrace
+		24723, -- Selin Fireheart
+		24744, -- Vexallus
+		24560, -- Priestess Velrissa
+		24664, -- Kael'thas Sunstrider
+		---- The Slave Pens
+		17941, -- Mennu the Betrayer
+		17991, -- Rokmar the Crackler
+		17942, -- Quagmirran
+		---- The Shattered Halls
+		16807, -- Grand Warlock Nethekurse
+		20923, -- Blood Guard Porung
+		16809, -- Warbringer O'mrogg
+		16808, -- Warchief Kargath Bladefist
+		---- The Mana Tombs
+		18341, -- Pandemonius
+		18343, -- Tavarok
+		18344, -- Nexus-Prince Shaffar
+		22930, -- Yor
+		---- The Black Morass
+		17879, -- Chrono Lord Deja
+		17880, -- Temporus
+		17881, -- Aeonus
+		---- The Arcatraz
+		20870, -- Zereketh the Unbound
+		20885, -- Dalliah the Doomsayer
+		20886, -- Wrath-Scryer Soccothrates
+		20912, -- Harbinger Skyriss
+		-- WOTLK Dungeons
+		---- Pit of Saron
+		36494, -- Forgemaster Garfrost
+		36476, -- Ick
+		36658, -- Scourgelord Tyrannus
+		---- Utgarde Pinnacle
+		26668, -- Svala Sorrowgrave
+		26687, -- Gortok Palehoof
+		26693, -- Skadi the Ruthless
+		26861, -- King Ymiron
+		---- The Nexus
+		26731, -- Grand Magus Telestra
+		26763, -- Anomalus
+		26794, -- Ormorok the Tree-Shaper
+		26723, -- Keristrasza
+		26796, -- Commander Stoutbeard
+		26798, -- Commander Kolurg
+		---- Halls of Lightning
+		28586, -- General Bjarngrim
+		28587, -- Volkhan
+		28546, -- Ionar
+		28923, -- Loken
+		---- Gundrak
+		29304, -- Slad'ran
+		29573, -- Drakkari Elemental
+		29305, -- Moorabi
+		29306, -- Gal'darah
+		29932, -- Eck the Ferocious
+		---- Ahn'kahet: The Old Kingdom
+		29309, -- Elder Nadox
+		29308, -- Prince Taldaram
+		29310, -- Jedoga Shadowseeker
+		29311, -- Herald Volazj
+		30258, -- Amanitar
+		-- CATA Dungeons
+		---- Throne of the Tides
+		40586, -- Lady Naz'jar
+		40765, -- Commander Ulthok
+		40788, -- Mindbender Ghur'sha
+		44566, -- Ozumat *
+		---- The Vortex Pinnacle
+		43878, -- Grand Vizier Ertan
+		43873, -- Altairus
+		43875, -- Asaad 
+		---- The Stonecore
+		43438, -- Corborus
+		43214, -- Slabhide
+		42188, -- Ozruk
+		42333, -- High Priestess Azil
+		---- Lost City of the Tol'vir
+		44577, -- General Husam
+		43612, -- High Prophet Barim
+		44819, -- Siamat
+		49045, -- Augh
+		---- Grim Batol
+		39625, -- General Umbriss
+		40177, -- Forgemaster Throngus
+		40319, -- Drahga Shadowburner
+		40484, -- Erudax
+		---- End Time
+		54431, -- Echo of Baine
+		54445, -- Echo of Jaina
+		54123, -- Echo of Sylvanas
+		54544, -- Echo of Tyrande
+		54432, -- Murozond *
+		-- MOP Timewalking
+		---- Gate of the Setting Sun
+		56906, -- Saboteur Kip'tilak
+		56589, -- Striker Ga'dok
+		56636, -- Commander Ri'mok
+		56877, -- Raigonn
+		---- Temple of the Jade Serpent
+		56448, -- Wise Mari
+		56732, -- Liu Flameheart
+		56439, -- Sha of Doubt
+		---- Stormstout Brewery
+		56637, -- Ook-ook
+		56717, -- Hoptallus
+		59479, -- Yan-Zhu the Uncasked
+		---- Siege of Niuzao Temple
+		61567, -- Vizier Jin'bak
+		61634, -- Commander Vo'jak
+		61485, -- General Pa'valak
+		62205, -- Wing Leader Ner'onok
+		---- Shado-Pan Monastery
+		56747, -- Gu Cloudstrike
+		56541, -- Master Snowdrift *
+		56719, -- Sha of Violence
+		56884, -- Taran Zhu *
+		---- Mogu'shan Palace
+		61444, -- Ming the Cunning *
+		61243, -- Gekkan *
+		61398, -- Xin the Weaponmaster
+	},
+	chance = 4000, groupSize = 5, equalOdds = true, instanceDifficulties = { --[[ Timewalking 5-player dungeon ]] [24] = true, }, coords = {{m=798,i=true},{m=728,i=true},{m=710,i=true},{m=732,i=true},{m=733,i=true},{m=731,i=true},{m=602,i=true},{m=524,i=true},{m=520,i=true},{m=525,i=true},{m=530,i=true},{m=522,i=true},{m=767,i=true},{m=769,i=true},{m=768,i=true},{m=747,i=true},{m=757,i=true},{m=820,i=true},{m=875,i=true},{m=867,i=true},{m=876,i=true},{m=887,i=true},{m=877,i=true},{m=885,i=true}}, },
+	-- 7.x
+	["Abyss Worm"] =                                    { cat = LEGION, type = MOUNT, method = BOSS, name = L["Abyss Worm"], spellId = 232519, itemId = 143643, npcs = { 99999 }, tooltipNpcs = { 115767 }, chance = 100, groupSize = 10, equalOdds = true, statisticId = { 11893, 11894, 11895, 11896, }, coords = { {m=1147,f=2,i=true} }, },
      ["Living Infernal Core"] =                          { cat = LEGION, type = MOUNT, method = BOSS, name = L["Living Infernal Core"], spellId = 213134, itemId = 137574, npcs = { 99999 }, tooltipNpcs = { 105503 }, chance = 100, groupSize = 10, statisticId = { 10979, 10980, 10978 }, coords = { {m=1088,f=9,i=true} }, },
 					["Midnight's Eternal Reins"] =                      { cat = LEGION, type = MOUNT, method = BOSS, name = L["Midnight's Eternal Reins"], spellId = 229499, itemId = 142236, npcs = { 114262, }, chance = 100, groupSize = 5, instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true, }, coords = {{m=1100,i=true}}, },
 
