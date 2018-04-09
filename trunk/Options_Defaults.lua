@@ -983,6 +983,8 @@ function R:PrepareDefaults()
 		56877, -- Raigonn
 		---- Temple of the Jade Serpent
 		56448, -- Wise Mari
+		59051, -- Strife (Trial of the Yaungol)
+		58826, -- Zao Sunseeker (Champion of the Five Suns)
 		56732, -- Liu Flameheart
 		56439, -- Sha of Doubt
 		---- Stormstout Brewery
