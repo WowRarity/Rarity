@@ -1429,7 +1429,7 @@ function R:PrepareDefaults()
 		groupSize = 10,
 --		equalOdds = true, -- Not sure if this item is "push personal" loot? Leaving it for now...
 		chance = 275,
-		statisticId = { 10979, 10980, 10978 },
+		statisticId = { 10977, 10979, 10980, 10978 },
 		coords = { {m=1088,f=9,i=true} },
 	},
 	
