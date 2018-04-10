@@ -1154,6 +1154,7 @@ L["Shard of Archstone"] = true
 L["Havak"] = true
 
 L["Skull of Corruption"] = true
+L["Fal'dorei Egg"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
