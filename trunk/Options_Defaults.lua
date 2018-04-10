@@ -1415,6 +1415,24 @@ function R:PrepareDefaults()
 		chance = 33,
 	},
 	
+	["Skull of Corruption"] = {
+		cat = LEGION,
+		type = ITEM,
+		isToy = true,
+		method = BOSS,
+		name = L["Skull of Corruption"],
+		itemId = 143544,
+		npcs = { 99999 },
+		tooltipNpcs = { 105503, 111022 }, -- Gul'dan / The Demon Within (Mythic only)
+		groupSize = 10,
+		equalOdds = true,
+		chance = 30,
+		enableCoin = true,
+		disableForClass = { ["DEATHKNIGHT"] = true, ["DRUID"] = true, ["HUNTER"] = true, ["MAGE"] = true, ["MONK"] = true, ["PALADIN"] = true, ["PRIEST"] = true, ["ROGUE"] = true, ["SHAMAN"] = true, ["WARLOCK"] = true, ["WARRIOR"] = true },
+		statisticId = { 10977, 10979, 10980, 10978 },
+		coords = { {m=1088,f=9,i=true} },
+	},	
+	
 	-- 7.2 Toys
 
 	["Golden Hearthstone Card: Lord Jaraxxus"] = {

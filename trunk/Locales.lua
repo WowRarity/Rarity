@@ -1153,6 +1153,7 @@ L["Doctor Weavil"] = true
 L["Shard of Archstone"] = true
 L["Havak"] = true
 
+L["Skull of Corruption"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
