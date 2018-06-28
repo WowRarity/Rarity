@@ -1312,7 +1312,31 @@ function R:PrepareDefaults()
 			coords = {
 				{ m = 1171, x = 54.83, y = 39.15, n = L["The Many-Faced Devourer"] },
 			},
-		},		 
+		},
+
+		["Silithid Mini-Tank"] = {
+			cat = LEGION,
+			type = PET,
+			method = NPC,
+			name = L["Silithid Mini-Tank"],
+			spellId = 261755,
+			itemId = 156851,
+			npcs = { 132578, 132584, 132580},
+			chance = 10,
+			creatureId = 133064,
+			questId = { 50223, 50224, 50255, }, 
+			defeatAllQuests = true,
+			defeatSteps = {
+				[50223] = L["Ssinkrix"],
+				[50224] = L["Xaarshej"],
+				[50255] = L["Qroshekx"],
+			},
+			coords = {
+				{ m = 261, x = 59, y = 15, n = L["Qroshekx"] },
+				{ m = 261, x = 30, y = 35, n = L["Xaarshej"] },
+				{ m = 261, x = 54, y = 80, n = L["Ssinkrix"] }
+			},
+		},
 
 	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS

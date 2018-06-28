@@ -1156,6 +1156,11 @@ L["Havak"] = true
 L["Skull of Corruption"] = true
 L["Fal'dorei Egg"] = true
 
+L["Silithid Mini-Tank"] = true
+L["Qroshekx"] = true
+L["Xaarshej"] = true
+L["Ssinkrix"] = true
+
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
 					Please go to http://www.wowace.com/projects/rarity/localization/ to update translations.
