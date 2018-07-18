@@ -1579,7 +1579,7 @@ function R:PrepareDefaults()
 		chance = 12,
 		questId = 48565,
 		coords = {
-			{ m = 1135, x = 53.94, y = 31.39, n = L["Sister Subversiva"] },
+			{ m = 1135, x = 53.94, y = 31.39, n = L["Sister Subversia"] },
 		},
 	},
 	 
