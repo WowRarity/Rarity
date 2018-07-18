@@ -4090,10 +4090,12 @@ function R:ScanCalendar(reason)
  self:Debug("Scanning calendar ("..reason..")")
 
 	table.wipe(Rarity.holiday_textures)
-	local _, month, day, year = CalendarGetDate()
-	local curMonth, curYear = CalendarGetMonth()
+	local dateInfo = C_Calendar.GetDate() -- This is the CURRENT date (always "today")
+	local month, day, year = dateInfo.month, dateInfo.monthDay, dateInfo.year
+	local monthInfo = C_Calendar.GetMonthInfo() -- This is the CALENDAR date (as selected)
+	local curMonth, curYear = monthInfo.month, monthInfo.year -- It should be noted that this is the calendar's "current" month... the name may be misleading, but I'll keep it as it was
 	local monthOffset = -12 * (curYear - year) + month - curMonth
-	local numEvents = CalendarGetNumDayEvents(monthOffset, day)
+	local numEvents = C_Calendar.GetNumDayEvents(monthOffset, day)
 	local numLoaded = 0
 
 	for i = 1, numEvents, 1 do
