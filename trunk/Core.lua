@@ -18,7 +18,7 @@ local lbz = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
 local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 local lbct = LibStub("LibBabble-CreatureType-3.0"):GetUnstrictLookupTable()
 local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
-local hbd = LibStub("HereBeDragons-1.0")
+local hbd = LibStub("HereBeDragons-2.0")
 local compress = LibStub("LibCompress")
 ---
 
@@ -426,14 +426,23 @@ local GetSelectedArtifactInfo = _G.GetSelectedArtifactInfo
 local GetStatistic = _G.GetStatistic
 local GetLootSourceInfo = _G.GetLootSourceInfo
 local pet_journal = _G.C_PetJournal
-local GetCurrentMapAreaID = _G.GetCurrentMapAreaID
+local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
+local GetMapInfo = _G.C_Map.GetMapInfo
 local mount_journal = _G.C_MountJournal
+
 
 local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
 local COMBATLOG_OBJECT_AFFILIATION_MINE = _G.COMBATLOG_OBJECT_AFFILIATION_MINE
 local COMBATLOG_OBJECT_AFFILIATION_PARTY = _G.COMBATLOG_OBJECT_AFFILIATION_PARTY
 local COMBATLOG_OBJECT_AFFILIATION_RAID = _G.COMBATLOG_OBJECT_AFFILIATION_RAID
 
+
+-- Helper function (to look up map names more easily)
+-- Returns the localized map name, or nil if the uiMapID is invalid
+local function GetMapNameByID(uiMapID)
+	local UiMapDetails = GetMapInfo(uiMapID)
+	return UiMapDetails and UiMapDetails.name or nil
+end
 
 
 --[[
@@ -1047,7 +1056,7 @@ function R:GetZone(v)
 	local inMyZone = false
 	local zoneColor = gray
 	local numZones = 0
-	local currentZone = GetCurrentMapAreaID()
+	local currentZone = GetBestMapForUnit("player")
 	if v.coords ~= nil and type(v.coords) == "table" then
 		local zoneList = {}
 		for _, zoneValue in pairs(v.coords) do
@@ -1325,7 +1334,7 @@ function R:UpdateInterestingThings()
 
 	-- Store an internal table listing every MapID
 	if self.db.profile.mapIds == nil then self.db.profile.mapIds = {} else table.wipe(self.db.profile.mapIds) end
-	for map_id = 1, 5000 do
+	for map_id = 1, 5000 do -- 5000 seems arbitrarily high; right now (8.0.1) there are barely 100 uiMapIDs... but it shouldn't matter if the misses are skipped
 		if GetMapNameByID(map_id) ~= nil then self.db.profile.mapIds[map_id] = GetMapNameByID(map_id) end
 	end
 
@@ -1525,7 +1534,7 @@ function R:OnEvent(event, ...)
   end
 
   -- Handle opening Snow Mound
-  if fishing and opening and lastNode and (lastNode == L["Snow Mound"]) and GetCurrentMapAreaID() == 941 then -- Make sure we're in Frostfire Ridge (there are Snow Mounds in other zones, particularly Ulduar in the Hodir room)
+  if fishing and opening and lastNode and (lastNode == L["Snow Mound"]) and GetBestMapForUnit("player") == 941 then -- Make sure we're in Frostfire Ridge (there are Snow Mounds in other zones, particularly Ulduar in the Hodir room)
    local v = self.db.profile.groups.pets["Grumpling"]
    if v and type(v) == "table" and v.enabled ~= false then
     if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
@@ -1576,7 +1585,7 @@ function R:OnEvent(event, ...)
   if fishing and opening == false then
    if isPool then self:Debug("Successfully fished from a pool")
    else self:Debug("Successfully fished") end
-   if fishzones[tostring(GetCurrentMapAreaID())] or fishzones[zone] or fishzones[subzone] or fishzones[zone_t] or fishzones[subzone_t] then
+   if fishzones[tostring(GetBestMapForUnit("player"))] or fishzones[zone] or fishzones[subzone] or fishzones[zone_t] or fishzones[subzone_t] then
     -- We're interested in fishing in this zone; let's find the item(s) involved
     for k, v in pairs(self.db.profile.groups) do
      if type(v) == "table" then
@@ -1586,7 +1595,7 @@ function R:OnEvent(event, ...)
          local found = false
          if vv.method == FISHING and vv.zones ~= nil and type(vv.zones) == "table" then
           for kkk, vvv in pairs(vv.zones) do
-           if vvv == tostring(GetCurrentMapAreaID()) or vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv == lbsz[subzone] or vvv == zone_t or vvv == subzone_t or vvv == lbz[zone_t] or vvv == subzone or vvv == lbsz[subzone_t] then
+           if vvv == tostring(GetBestMapForUnit("player")) or vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv == lbsz[subzone] or vvv == zone_t or vvv == subzone_t or vvv == lbz[zone_t] or vvv == subzone or vvv == lbsz[subzone_t] then
             if (vv.requiresPool and isPool) or not vv.requiresPool then
              found = true
             end
@@ -1745,7 +1754,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
  if npcs[npcid] == nil then -- Not an NPC we need, abort
 		self:Debug("NPC ID not on the list of needed NPCs: "..(npcid or "nil"))
   -- Not a zone we need, abort
-  if zones[tostring(GetCurrentMapAreaID())] == nil and zones[zone] == nil and zones[lbz[zone] or "."] == nil and zones[lbsz[subzone] or "."] == nil and zones[zone_t] == nil and zones[subzone_t] == nil and zones[lbz[zone_t] or "."] == nil and zones[lbsz[subzone_t] or "."] == nil then return end
+  if zones[tostring(GetBestMapForUnit("player"))] == nil and zones[zone] == nil and zones[lbz[zone] or "."] == nil and zones[lbsz[subzone] or "."] == nil and zones[zone_t] == nil and zones[subzone_t] == nil and zones[lbz[zone_t] or "."] == nil and zones[lbsz[subzone_t] or "."] == nil then return end
  else
 		self:Debug("NPC ID is one we need: "..(npcid or "nil"))
 	end
@@ -1796,7 +1805,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
       local found = false
       if vv.method == ZONE and vv.zones ~= nil and type(vv.zones) == "table" then
        for kkk, vvv in pairs(vv.zones) do
-								if tonumber(vvv) ~= nil and tonumber(vvv) == GetCurrentMapAreaID() then found = true end
+								if tonumber(vvv) ~= nil and tonumber(vvv) == GetBestMapForUnit("player") then found = true end
         if vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv == lbsz[subzone] or vvv == zone_t or vvv == subzone_t or vvv == lbz[zone_t] or vvv == subzone or vvv == lbsz[subzone_t] then found = true end
        end
       end
@@ -2451,7 +2460,7 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
  local subzone = GetSubZoneText()
  local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
  local subzone_t = LibStub("LibBabble-SubZone-3.0"):GetReverseLookupTable()[subzone]
- if zones[tostring(GetCurrentMapAreaID())] or zones[zone] or zones[lbz[zone] or "."] or zones[lbsz[subzone] or "."] or zones[zone_t] or zones[subzone_t] or zones[lbz[zone_t] or "."] or zones[lbsz[subzone_t] or "."] then
+ if zones[tostring(GetBestMapForUnit("player"))] or zones[zone] or zones[lbz[zone] or "."] or zones[lbsz[subzone] or "."] or zones[zone_t] or zones[subzone_t] or zones[lbz[zone_t] or "."] or zones[lbsz[subzone_t] or "."] then
 		for k, v in pairs(R.db.profile.groups) do
 			if type(v) == "table" then
 				for kk, vv in pairs(v) do
@@ -2459,7 +2468,7 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 						local found = false
 						if vv.method == ZONE and vv.zones ~= nil and type(vv.zones) == "table" then
 							for kkk, vvv in pairs(vv.zones) do
-								if tonumber(vvv) ~= nil and tonumber(vvv) == GetCurrentMapAreaID() then found = true end
+								if tonumber(vvv) ~= nil and tonumber(vvv) == GetBestMapForUnit("player") then found = true end
 								if vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv == lbsz[subzone] or vvv == zone_t or vvv == subzone_t or vvv == lbz[zone_t] or vvv == subzone or vvv == lbsz[subzone_t] then found = true end
 							end
 						end
@@ -2918,7 +2927,7 @@ do
 
 		-- Zone(s)
 		local zoneText = ""
-		local currentZone = GetCurrentMapAreaID()
+		local currentZone = GetBestMapForUnit("player")
 		if item.coords ~= nil and type(item.coords) == "table" then
 			local zoneList = {}
 			for _, zoneValue in pairs(item.coords) do
