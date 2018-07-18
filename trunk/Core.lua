@@ -564,7 +564,7 @@ do
   RequestArtifactCompletionHistory() -- Request archaeology info from the server
 		RequestRaidInfo() -- Request raid lock info from the server
 		RequestLFDPlayerLockInfo() -- Request LFD data from the server; this is used for holiday boss detection
-		OpenCalendar() -- Request calendar info from the server
+		C_Calendar.OpenCalendar() -- Request calendar info from the server
 
 		-- Prepare a master list of all the items Rarity may need info for
 		table.wipe(R.itemsMasterList)
