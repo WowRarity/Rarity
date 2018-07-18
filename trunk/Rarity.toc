@@ -31,7 +31,7 @@ Libs\LibSharedMedia-3.0\lib.xml
 Libs\AceGUI-3.0-SharedMediaWidgets\widget.xml
 Libs\LibBabble-CreatureType-3.0\lib.xml
 Libs\LibBabble-Boss-3.0\lib.xml
-Libs\HereBeDragons\HereBeDragons-2.0.lua
+Libs\HereBeDragons-2.0\HereBeDragons-2.0.lua
 Libs\LibCompress\lib.xml
 #@end-no-lib-strip@
 Libs\LibBars-1.0\lib.xml
