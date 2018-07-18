@@ -527,7 +527,7 @@ do
 	 self:RegisterEvent("UNIT_SPELLCAST_FAILED", "SpellFailed") -- Fishing detection
 	 self:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED", "SpellFailed") -- Fishing detection
   self:RegisterEvent("LOOT_CLOSED", "GatherCompleted") -- Fishing detection
-  self:RegisterEvent("ARTIFACT_HISTORY_READY", "ScanAllArch")
+  self:RegisterEvent("RESEARCH_ARTIFACT_HISTORY_READY", "ScanAllArch")
   self:RegisterEvent("PLAYER_LOGOUT", "OnEvent")
   self:RegisterEvent("AUCTION_HOUSE_CLOSED", "OnEvent")
   self:RegisterEvent("AUCTION_HOUSE_SHOW", "OnEvent")
@@ -2155,7 +2155,7 @@ end
 -------------------------------------------------------------------------------------
 
 function R:ScanAllArch(event)
- self:UnregisterEvent("ARTIFACT_HISTORY_READY")
+ self:UnregisterEvent("RESEARCH_ARTIFACT_HISTORY_READY")
  self:ScanArchFragments(event)
  self:ScanArchProjects(event)
 end
