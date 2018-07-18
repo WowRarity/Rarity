@@ -671,14 +671,16 @@ do
 		-- Delayed calendar init a few times
 		self:ScheduleTimer(function()
 			if type(CalendarFrame) ~= "table" or not CalendarFrame:IsShown() then
-				local _, month, _, year = CalendarGetDate()
-				CalendarSetAbsMonth(month, year)
+				local CalendarTime = C_Calendar.GetDate()
+				local month, year = CalendarTime.month, CalendarTime.year
+				C_Calendar.SetAbsMonth(month, year)
 			end
 		end, 7)
 		self:ScheduleTimer(function()
 			if type(CalendarFrame) ~= "table" or not CalendarFrame:IsShown() then
-				local _, month, _, year = CalendarGetDate()
-				CalendarSetAbsMonth(month, year)
+				local CalendarTime = C_Calendar.GetDate()
+				local month, year = CalendarTime.month, CalendarTime.year
+				C_Calendar.SetAbsMonth(month, year)
 			end
 		end, 20)
 
@@ -4099,7 +4101,8 @@ function R:ScanCalendar(reason)
 	local numLoaded = 0
 
 	for i = 1, numEvents, 1 do
-		local _, _, _, calendarType, _, _, texture = CalendarGetDayEvent(monthOffset, day, i)
+		local CalendarDayEvent = C_Calendar.GetDayEvent(monthOffset, day, i)
+		local calendarType, texture = CalendarDayEvent.calendarType, CalendarDayEvent.iconTexture
 
 		if calendarType == "HOLIDAY" and texture ~= nil then
 			Rarity.holiday_textures[texture] = true
