@@ -1161,6 +1161,9 @@ L["Qroshekx"] = true
 L["Xaarshej"] = true
 L["Ssinkrix"] = true
 
+L["Botani Camouflage"] = true
+L["Basten"] = true
+
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
 					Please go to http://www.wowace.com/projects/rarity/localization/ to update translations.

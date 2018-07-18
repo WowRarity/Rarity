@@ -1402,6 +1402,21 @@ function R:PrepareDefaults()
 					["Crashin' Thrashin' Roller Controller"] =          { cat = WOD, type = ITEM, isToy = true, method = NPC, name = L["Crashin' Thrashin' Roller Controller"], itemId = 108631, npcs = { 98283, }, chance = 10, questId = 40105, coords = { {m=945,x=83.6,y=43.6,n=L["Drakum"]} }},
      ["Fandral's Seed Pouch"] =                          { cat = WOD, type = ITEM, isToy = true, method = NPC, name = L["Fandral's Seed Pouch"], itemId = 122304, npcs = { 52571, }, chance = 100, disableForClass = { ["DEATHKNIGHT"] = true, ["DEMONHUNTER"] = true, ["HUNTER"] = true, ["MAGE"] = true, ["MONK"] = true, ["PALADIN"] = true, ["PRIEST"] = true, ["ROGUE"] = true, ["SHAMAN"] = true, ["WARLOCK"] = true, ["WARRIOR"] = true }, sourceText = L["Will only drop for druids."], coords = { {m=800,f=2,x=50.9,y=72.4,i=true} }, },
 
+	 ["Botani Camouflage"] = {
+		cat = WOD,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Botani Camouflage"],
+		itemId = 119432,
+		questId = 37369, -- Vignette: Protectors of the Grove
+		npcs = { 86257 },
+		chance = 5,
+		coords = {
+			{ m = 949, x = 69.2, y = 44.8, n = L["Basten"] },
+		},
+	 },	 
+	 
 					-- Toys (7.x) -- some of these are toy conversions in 7.x but I marked them as the expansion they came out in
 					["Aqua Jewel"] =                                    { cat = MOP, type = ITEM, isToy = true, method = NPC, name = L["Aqua Jewel"], itemId = 86582, npcs = { 50780, }, chance = 10, coords = { {m=811,x=69.6,y=30.8,n=L["Sahn Tidehunter"]} }},
      ["Arcano-Shower"] =                                 { cat = LEGION, type = ITEM, isToy = true, method = SPECIAL, name = L["Arcano-Shower"], itemId = 141297, chance = 33, questId = 43943, coords = {{m=1033}} },
