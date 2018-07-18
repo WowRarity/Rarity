@@ -64,7 +64,7 @@ externals:
     Libs/LibBabble-Boss-3.0:
         url: https://repos.wowace.com/wow/libbabble-boss-3-0/trunk
         tag: latest
-    Libs/HereBeDragons-1.0:
+    Libs/HereBeDragons-2.0:
         url: git://git.wowace.com/wow/herebedragons/mainline.git
         tag: latest
     Libs/LibCompress:
