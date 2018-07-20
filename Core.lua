@@ -1977,7 +1977,11 @@ end
 -- Handle boss kills. You may not ever open a loot window on a boss, so we need to watch the combat log for its death.
 -- This event also handles some special cases.
 -------------------------------------------------------------------------------------
-function R:OnCombat(event, timestamp, eventType, hideCaster, srcGuid, srcName, srcFlags, srcRaidFlags, dstGuid, dstName, dstFlags, dstRaidFlags, spellId, spellName, spellSchool, auraType, ...)
+function R:OnCombat()
+
+	-- Extract event payload (it's no longer being passed by the event iself as of 8.0.1)
+	local timestamp, eventType, hideCaster, srcGuid, srcName, srcFlags, srcRaidFlags, dstGuid, dstName, dstFlags, dstRaidFlags, spellId, spellName, spellSchool, auraType = CombatLogGetCurrentEventInfo()
+
  if eventType == "UNIT_DIED" then -- A unit died near you
   local npcid = self:GetNPCIDFromGUID(dstGuid)
   if bosses[npcid] then -- It's a boss we're interested in
