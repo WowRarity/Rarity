@@ -1114,6 +1114,8 @@ L["Xaarshej"] = true
 L["Ssinkrix"] = true
 L["Botani Camouflage"] = true
 L["Basten"] = true
+L["Drust"] = true
+L["Zandalari"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
