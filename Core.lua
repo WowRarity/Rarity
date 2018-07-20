@@ -3988,7 +3988,7 @@ function R:ScanExistingItems(reason)
   local c = GetNumArtifactsByRace(x)
   local a = 0
   for y = 1, c do
-   local t = select(9, GetArtifactInfoByRace(x, y))
+   local t = select(10, GetArtifactInfoByRace(x, y))
    a = a + t
    s = s + t
   end
