@@ -1,15 +1,6 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
-
-
-
-
-
-
-
-
-
 L["Loading"] = true
 L["Loaded (running in debug mode)"] = true
 L["Profile modified, rebooting"] = true
@@ -393,20 +384,6 @@ L["Hide items not in your zone"] = true
 L["When on, only items that can be obtained in your current zone will be shown in the tooltip. When this is on and you're in an instance, the instance difficulty is also checked to make sure it matches what the item supports."] = true
 L["No items to display! Either you've obtained every item, or you have\none or more options turned on which hide things from the tooltip."] = true
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 -- Sources
 -- L[""] = true -> This seems pointless and breaks the import feature on WowAce, therefore I disabled it. I left it here because I really don't understand why it has been added and kept around for almost 4 years, so...eh ¯\_(ツ)_/¯
 L["This was a guaranteed drop for players who defeated the encounter when it was current"] = true
@@ -417,7 +394,6 @@ L["Appears in the Black Market"] = true
 L["Can be obtained with a bonus roll"] = true
 L["This mount is only obtainable by Alliance players"] = true
 L["This mount is only obtainable by Horde players"] = true
-
 L["All raid formats except Raid Finder"] = true
 L["Any raid size or difficulty"] = true
 L["25-player heroic"] = true
@@ -433,7 +409,6 @@ L["5-player Event instance"] = true
 L["25-player Event scenario"] = true
 L["Mythic 5-player instance"] = true
 L["Timewalker 5-player instance"] = true
-
 
 L["Dropped by Yogg-Saron in Ulduar with no Keepers assisting"] = true
 L["Dropped by Malygos in The Eye of Eternity (any raid size)"] = true
@@ -478,16 +453,13 @@ L["Lunkers can be fished anywhere in Draenor (except in your garrison) after you
 L["Obtained by opening Snow Mound in Frostfire Ridge"] = true
 L["Greatfather Winter's Tree"] = true
 
-
 -- Multi-step defeat detection
 L["Garrison Invasion Gold Victory"] = true -- quest: 37640
 L["Garrison Invasion Platinum Victory"] = true -- quest: 38482
-
 L["Vengeance"] = true -- quest: 39290
 L["Deathtalon"] = true -- quest: 39287
 L["Terrorfist"] = true -- quest: 39288
 L["Doomroller"] = true -- quest: 39289
-
 L["Bleakclaw"] = true -- quest: 39168
 L["Chaos Pup"] = true -- quest: 39161
 L["Corrupted Thundertail"] = true -- quest: 39160
@@ -503,7 +475,6 @@ L["Netherfist"] = true -- quest: 39171
 L["Skrillix"] = true -- quest: 39172
 L["Tainted Maulclaw"] = true -- quest: 39164
 L["Vile Blood of Draenor"] = true -- quest: 39169
-
 
 -- Instance difficulties
 L["None (not in an instance)"] = true
@@ -631,9 +602,6 @@ L["Fever of Stormrays"] = true
 L["Highmountain Salmon School"] = true
 L["Mossgill Perch School"] = true
 
-
-
-
 -- Mining nodes
 L["Copper Vein"] = true
 L["Tin Vein"] = true
@@ -693,10 +661,6 @@ L["Leystone Seam"] = true
 L["Felslate Deposit"] = true
 L["Rich Felslate Deposit"] = true
 L["Felslate Seam"] = true
-
-
-
-
 
 -- Tracked items
 L["Reins of the Vitreous Stone Drake"] = true
@@ -1051,7 +1015,6 @@ L["Abyss Worm"] = true
 L["Blight Boar Microphone"] = true
 L["Nightmare Whelpling"] = true
 
-
 L["Strange Humming Crystal"] = true
 L["The quest starter item for Wondrous Wisdomball"] = true
 L["Model D1-BB-L3R"] = true
@@ -1075,7 +1038,6 @@ L["Lesser Circle of Binding"] = true
 L["Zephyr's Call"] = true
 L["Breezy Essence"] = true
 L["Pilfered Sweeper"] = true
-
 
 L["Lambent Mana Ray"] = true
 L["Maddened Chaosrunner"] = true
@@ -1123,13 +1085,9 @@ L["Grasping Manifestation"] = true
 L["Ataxon"] = true
 L["Uuna's Doll"] = true
 L["The Many-Faced Devourer"] = true
-
-
 L["Antoran Charhound"] = true
 L["Sightless Eye"] = true
 L["Rezira the Seer"] = true
-
-
 L["Pond Nettle"] = true
 L["Avenging Felcrusher"] = true
 L["Blessed Felcrusher"] = true
@@ -1138,29 +1096,22 @@ L["Holy Lightsphere"] = true
 L["Barrier Generator"] = true
 L["Vigilant Thanos"] = true
 L["Vigilant Kuro"] = true
-
-
 L["Stormforged Vrykul Horn"] = true
 L["Golden Hearthstone Card: Lord Jaraxxus"] = true
 L["Crashin' Thrashin' Flamer Controller"] = true
 L["Crashin' Thrashin' Shredder Controller"] = true
 L["Disposable Winter Veil Suits"] = true
 L["Red Wooden Sled"] = true
-
 L["Big Red Raygun"] = true
 L["Doctor Weavil"] = true
-
 L["Shard of Archstone"] = true
 L["Havak"] = true
-
 L["Skull of Corruption"] = true
 L["Fal'dorei Egg"] = true
-
 L["Silithid Mini-Tank"] = true
 L["Qroshekx"] = true
 L["Xaarshej"] = true
 L["Ssinkrix"] = true
-
 L["Botani Camouflage"] = true
 L["Basten"] = true
 
@@ -1169,7 +1120,6 @@ L["Basten"] = true
 					Please go to http://www.wowace.com/projects/rarity/localization/ to update translations.
 					Anyone with a WowAce/CurseForge account can edit them. 
 ]] 
-
 
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "deDE")
 if L then
