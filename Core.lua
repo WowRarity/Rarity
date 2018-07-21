@@ -1583,6 +1583,7 @@ function R:OnEvent(event, ...)
    else self:Debug("Successfully fished") end
    if fishzones[tostring(GetBestMapForUnit("player"))] or fishzones[zone] or fishzones[subzone] or fishzones[zone_t] or fishzones[subzone_t] then
     -- We're interested in fishing in this zone; let's find the item(s) involved
+	Rarity:Debug("We're interested in fishing in this zone; let's find the item(s) involved")
     for k, v in pairs(self.db.profile.groups) do
      if type(v) == "table" then
       for kk, vv in pairs(v) do
@@ -2084,6 +2085,7 @@ function R:SpellStarted(event, unit, target, castGUID, spellID)
 	ga ="No"
 	
 	if spells[spellID] then -- An entry exists for this spell in the LUT -> It's one that needs to be tracked
+		Rarity:Debug("Detected relevant spell: " .. tostring(spellID) .. " ~ " .. tostring(spells[spellID]))
 		curSpell = spellID
 		prevSpell = spellID
   if spells[spellID] == "Fishing" or spells[spellID] == "Opening" then
