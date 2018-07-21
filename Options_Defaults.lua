@@ -1706,7 +1706,7 @@ function R:PrepareDefaults()
      
 					-- Achievements
      ["Old Crafty"] =                                    { cat = TBC, type = ITEM, method = FISHING, name = L["Old Crafty"], itemId = 34486, zones = { "Orgrimmar" }, chance = 10000, requiresPool = false, achievementId = 1836, sourceText = L["Obtained by fishing in any water in Orgrimmar"], coords = { {m=85} }, },
-     ["Old Ironjaw"] =                                   { cat = TBC, type = ITEM, method = FISHING, name = L["Old Ironjaw"], itemId = 34484, zones = { "Ironforge" }, chance = 10000, requiresPool = false, achievementId = 1837, sourceText = L["Obtained by fishing in any water in Ironforge"], coords = { {m=87} }, },
+     ["Old Ironjaw"] =                                   { cat = TBC, type = ITEM, method = FISHING, name = L["Old Ironjaw"], itemId = 34484, zones = { "Ironforge", "The Forlorn Cavern" }, chance = 10000, requiresPool = false, achievementId = 1837, sourceText = L["Obtained by fishing in any water in Ironforge"], coords = { {m=87} }, },
      --["Stat Test"] = { type = MOUNT, method = BOSS, name = "Stat Test", spellId = -1, itemId = -1, npcs = { 99999 }, chance = 100, groupSize = 40, equalOdds = true, statisticId = { 107 } },    }, -- Killing any creature
 				},
 
