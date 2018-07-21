@@ -74,13 +74,13 @@ local spells = {
 	[2366] = "Herbalism",
 	[131474] = "Fishing",
 	[30427] = "Extract Gas",
-	[3365] = "Opening";
 	[22810] = "Opening - No Text",
 	[1804] = "Pick Lock",
 	[73979] = "Searching for Artifacts",
 	[8613] = "Skinning",
+	[3365] = "Opening",
 	[13262] = "Disenchant",
-	[231932] = "Opening" -- Wyrmtongue Cache (Broken Shore: Secret Treasure Lair)
+	[231932] = "Opening", -- Wyrmtongue Cache (Broken Shore: Secret Treasure Lair)
 }
 
 local tooltipLeftText1 = _G["GameTooltipTextLeft1"]
