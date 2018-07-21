@@ -1756,7 +1756,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
 		self:Debug("NPC ID is one we need: "..(npcid or "nil"))
 	end
 
- -- If the loot is the result of certain spell casts (mining, herbing, opening, pick lock, archaeology, disenchanting, etc), stop here
+ -- If the loot is the result of certain spell casts (mining, herbing, opening, pick lock, archaeology, disenchanting, etc), stop here -> This is to avoid multiple attempts, since those methods are handled separately!
  if spells[curSpell] then
 		self:Debug("Aborting because we were casting a disallowed spell: "..curSpell)
 		return
