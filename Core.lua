@@ -80,6 +80,7 @@ local spells = {
 	[73979] = "Searching for Artifacts",
 	[8613] = "Skinning",
 	[13262] = "Disenchant",
+	[231932] = "Opening" -- Wyrmtongue Cache (Broken Shore: Secret Treasure Lair)
 }
 
 local tooltipLeftText1 = _G["GameTooltipTextLeft1"]
@@ -1541,8 +1542,9 @@ function R:OnEvent(event, ...)
 		-- Handle opening Curious Wyrmtongue Cache
 		if fishing and opening and lastNode and (lastNode == L["Curious Wyrmtongue Cache"]) then
   	local names = {"Scraps", "Pilfered Sweeper"}
+			Rarity:Debug("Detected Opening on " .. L["Curious Wyrmtongue Cache"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name]
+				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
 				if v and type(v) == "table" and v.enabled ~= false then
 					if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
 					self:OutputAttempts(v)
