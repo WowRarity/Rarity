@@ -66,28 +66,22 @@ local tradeSkillOpen = false
 local mailOpen = false
 
 local prevSpell, curSpell, foundTarget, gatherEvents, ga
-local miningSpell = (GetSpellInfo(2575))
-local herbSpell = (GetSpellInfo(2366))
-local fishSpell = (GetSpellInfo(131474))
-local gasSpell = (GetSpellInfo(30427))
-local openSpell = (GetSpellInfo(3365))
-local openNoTextSpell = (GetSpellInfo(22810))
-local pickSpell = (GetSpellInfo(1804))
-local archSpell = (GetSpellInfo(73979))
-local skinSpell = (GetSpellInfo(8613))
-local disenchantSpell = (GetSpellInfo(13262))
+
+-- Maps spells of interest to their respective spell IDs (useful since both info is used by Blizzard APIs and the addon itself) - Only some of these are actually used right now, but who knows what the future will bring?
+-- Note: Spell names are no longer needed, and dealing with them is actually more complicated after the 8.0.1 API changes. They're only used for readability's sake
 local spells = {
-	[miningSpell] = "Mining",
-	[herbSpell] = "Herb Gathering",
-	[fishSpell] = "Fishing",
-	[gasSpell] = "Extract Gas",
-	[openSpell] = "Treasure",
-	[openNoTextSpell] = "Treasure",
-	[pickSpell] = "Treasure",
-	[archSpell] = "Archaeology",
- [skinSpell] = "Skinning",
-	[disenchantSpell] = "Disenchant",
+	[2575] = "Mining";
+	[2366] = "Herbalism",
+	[131474] = "Fishing",
+	[30427] = "Extract Gas",
+	[3365] = "Opening";
+	[22810] = "Opening - No Text",
+	[1804] = "Pick Lock",
+	[73979] = "Searching for Artifacts",
+	[8613] = "Skinning",
+	[13262] = "Disenchant",
 }
+
 local tooltipLeftText1 = _G["GameTooltipTextLeft1"]
 local fishing = false
 local opening = false
@@ -1623,7 +1617,7 @@ function R:OnEvent(event, ...)
   isPool = false
 
   -- Handle mining Elementium
-  if prevSpell == miningSpell and (lastNode == L["Elementium Vein"] or lastNode == L["Rich Elementium Vein"]) then
+  if spells[prevSpell] == "Mining" and (lastNode == L["Elementium Vein"] or lastNode == L["Rich Elementium Vein"]) then
    local v = self.db.profile.groups.pets["Elementium Geode"]
    if v and type(v) == "table" and v.enabled ~= false then
     if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
@@ -2084,16 +2078,17 @@ local function cancelFish()
 	opening = false
 end
 
-function R:SpellStarted(event, unit, spellcast, rank, target)
+function R:SpellStarted(event, unit, target, castGUID, spellID)
 	if unit ~= "player" then return end
 	foundTarget = false
 	ga ="No"
-	if spells[spellcast] then
-		curSpell = spellcast
-		prevSpell = spellcast
-  if spellcast == fishSpell or spellcast == openSpell then
+	
+	if spells[spellID] then -- An entry exists for this spell in the LUT -> It's one that needs to be tracked
+		curSpell = spellID
+		prevSpell = spellID
+  if spells[spellID] == "Fishing" or spells[spellID] == "Opening" then
    self:Debug("Fishing or opening something")
-			if spellcast == openSpell then
+			if spells[spellID] == "Opening" then
 				self:Debug("Opening detected")
 				opening = true
 			else
