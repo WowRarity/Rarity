@@ -66,28 +66,73 @@ local tradeSkillOpen = false
 local mailOpen = false
 
 local prevSpell, curSpell, foundTarget, gatherEvents, ga
-local miningSpell = (GetSpellInfo(2575))
-local herbSpell = (GetSpellInfo(2366))
-local fishSpell = (GetSpellInfo(131474))
-local gasSpell = (GetSpellInfo(30427))
-local openSpell = (GetSpellInfo(3365))
-local openNoTextSpell = (GetSpellInfo(22810))
-local pickSpell = (GetSpellInfo(1804))
-local archSpell = (GetSpellInfo(73979))
-local skinSpell = (GetSpellInfo(8613))
-local disenchantSpell = (GetSpellInfo(13262))
+
+-- Maps spells of interest to their respective spell IDs (useful since both info is used by Blizzard APIs and the addon itself) - Only some of these are actually used right now, but who knows what the future will bring?
+-- Note: Spell names are no longer needed, and dealing with them is actually more complicated after the 8.0.1 API changes. They're only used for readability's sake
 local spells = {
-	[miningSpell] = "Mining",
-	[herbSpell] = "Herb Gathering",
-	[fishSpell] = "Fishing",
-	[gasSpell] = "Extract Gas",
-	[openSpell] = "Treasure",
-	[openNoTextSpell] = "Treasure",
-	[pickSpell] = "Treasure",
-	[archSpell] = "Archaeology",
- [skinSpell] = "Skinning",
-	[disenchantSpell] = "Disenchant",
+
+	-- Tested (confirmed working in 8.0.1)
+	[3365] = "Opening",
+	[13262] = "Disenchant",
+	[73979] = "Searching for Artifacts",
+	[131474] = "Fishing",
+	[144528] = "Opening", -- Timeless Chest (Timeless Isle: Kukuru's Grotto)
+	[195125] = "Skinning"
+	[231932] = "Opening", -- Wyrmtongue Cache (Broken Shore: Secret Treasure Lair)
+	[265843] = "Mining",
+	[265825] = "Herb Gathering",
+	
+	-- Not tested (and disabled until they are needed)
+	-- [1804] = "Pick Lock",
+	-- [2366] = "Herb Gathering",
+	-- [265835] = "Herb Gathering",
+	-- [158745] = "Herb Gathering",
+	-- [195114] = "Herb Gathering",
+	-- [2368] = "Herb Gathering",
+	-- [3570] = "Herb Gathering",
+	-- [28695] = "Herb Gathering",
+	-- [11993] = "Herb Gathering",
+	-- [50300] = "Herb Gathering",
+	-- [110413] = "Herb Gathering",
+	-- [74519] = "Herb Gathering",
+	-- [265819] = "Herb Gathering",
+	-- [265821] = "Herb Gathering",
+	-- [265823] = "Herb Gathering",
+	-- [265827] = "Herb Gathering",
+	-- [265829] = "Herb Gathering",
+	-- [265831] = "Herb Gathering",
+	-- [265834] = "Herb Gathering",
+	-- [2575] = "Mining",
+	-- [265853] = "Mining",
+	-- [2575] = "Mining",
+	-- [158754] = "Mining",
+	-- [2576] = "Mining",
+	-- [195122] = "Mining",
+	-- [3564] = "Mining",
+	-- [10248] = "Mining",
+	-- [29354] = "Mining",
+	-- [50310] = "Mining",
+	-- [74517] = "Mining",
+	-- [265837] = "Mining",
+	-- [102161] = "Mining",
+	-- [265845] = "Mining",
+	-- [265841] = "Mining",
+	-- [265839] = "Mining",
+	-- [265847] = "Mining",
+	-- [265849] = "Mining",
+	-- [265851] = "Mining",
+	-- [8613] = "Skinning",
+	-- [8617] = "Skinning",
+	-- [8618] = "Skinning",
+	-- [32678] = "Skinning",
+	-- [50305] = "Skinning",
+	-- [74522] = "Skinning",
+	-- [102216] = "Skinning",
+	-- [158756] = "Skinning",
+	-- [22810] = "Opening - No Text",
+	-- [30427] = "Extract Gas",
 }
+
 local tooltipLeftText1 = _G["GameTooltipTextLeft1"]
 local fishing = false
 local opening = false
@@ -333,7 +378,8 @@ R.opennodes = {
 	[L["Curious Wyrmtongue Cache"]] = true,
 }
 
-
+-- Embedded mapIDs: It's best to avoid hardcoding these in case of yet another re-mapping on Blizzard's end...
+local UIMAPID_FROSTFIRE_RIDGE = 525
 
 --[[
       CONSTANTS ----------------------------------------------------------------------------------------------------------------
@@ -1519,6 +1565,7 @@ function R:OnEvent(event, ...)
 
   -- Handle opening Crane Nest
   if fishing and opening and lastNode and (lastNode == L["Crane Nest"]) then
+	Rarity:Debug("Detected Opening on " .. L["Crane Nest"] .. " (method = SPECIAL)")  
    local v = self.db.profile.groups.pets["Azure Crane Chick"]
    if v and type(v) == "table" and v.enabled ~= false then
     if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
@@ -1528,6 +1575,7 @@ function R:OnEvent(event, ...)
 
   -- Handle opening Timeless Chest
   if fishing and opening and lastNode and (lastNode == L["Timeless Chest"]) then
+ 	Rarity:Debug("Detected Opening on " .. L["Timeless Chest"] .. " (method = SPECIAL)")
    local v = self.db.profile.groups.pets["Bonkers"]
    if v and type(v) == "table" and v.enabled ~= false then
     if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
@@ -1536,7 +1584,8 @@ function R:OnEvent(event, ...)
   end
 
   -- Handle opening Snow Mound
-  if fishing and opening and lastNode and (lastNode == L["Snow Mound"]) and GetBestMapForUnit("player") == 941 then -- Make sure we're in Frostfire Ridge (there are Snow Mounds in other zones, particularly Ulduar in the Hodir room)
+  if fishing and opening and lastNode and (lastNode == L["Snow Mound"]) and GetBestMapForUnit("player") == UIMAPID_FROSTFIRE_RIDGE then -- Make sure we're in Frostfire Ridge (there are Snow Mounds in other zones, particularly Ulduar in the Hodir room)
+  	Rarity:Debug("Detected Opening on " .. L["Snow Mound"] .. " (method = SPECIAL)")
    local v = self.db.profile.groups.pets["Grumpling"]
    if v and type(v) == "table" and v.enabled ~= false then
     if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
@@ -1547,8 +1596,9 @@ function R:OnEvent(event, ...)
 		-- Handle opening Curious Wyrmtongue Cache
 		if fishing and opening and lastNode and (lastNode == L["Curious Wyrmtongue Cache"]) then
   	local names = {"Scraps", "Pilfered Sweeper"}
+			Rarity:Debug("Detected Opening on " .. L["Curious Wyrmtongue Cache"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name]
+				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
 				if v and type(v) == "table" and v.enabled ~= false then
 					if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
 					self:OutputAttempts(v)
@@ -1557,7 +1607,7 @@ function R:OnEvent(event, ...)
 		end
 
 		-- Handle opening Glimmering Treasure Chest
-		if fishing and opening and lastNode and (lastNode == L["Glimmering Treasure Chest"]) and select(8, GetInstanceInfo()) == 1626 then
+		if fishing and opening and lastNode and (lastNode == L["Glimmering Treasure Chest"]) and select(8, GetInstanceInfo()) == 1626 then -- Player is in Withered Army scenario and looted the reward chest
 			local bigChest = false
 			for _, slot in pairs(GetLootInfo()) do
 				if slot.item == L["Ancient Mana"] and slot.quantity == 100 then
@@ -1566,6 +1616,7 @@ function R:OnEvent(event, ...)
 			end
 
 			if bigChest == true then
+				self:Debug("Detected " .. lastNode .. ": Adding toy drop attempts")
 				local names = {"Arcano-Shower", "Displacer Meditation Stone", "Kaldorei Light Globe", "Unstable Powder Box", "Wisp in a Bottle", "Ley Spider Eggs"}
 				for _, name in pairs(names) do
 					local v = self.db.profile.groups.items[name]
@@ -1589,6 +1640,7 @@ function R:OnEvent(event, ...)
    else self:Debug("Successfully fished") end
    if fishzones[tostring(GetBestMapForUnit("player"))] or fishzones[zone] or fishzones[subzone] or fishzones[zone_t] or fishzones[subzone_t] then
     -- We're interested in fishing in this zone; let's find the item(s) involved
+	Rarity:Debug("We're interested in fishing in this zone; let's find the item(s) involved")
     for k, v in pairs(self.db.profile.groups) do
      if type(v) == "table" then
       for kk, vv in pairs(v) do
@@ -1623,7 +1675,8 @@ function R:OnEvent(event, ...)
   isPool = false
 
   -- Handle mining Elementium
-  if prevSpell == miningSpell and (lastNode == L["Elementium Vein"] or lastNode == L["Rich Elementium Vein"]) then
+  if spells[prevSpell] == "Mining" and (lastNode == L["Elementium Vein"] or lastNode == L["Rich Elementium Vein"]) then
+		Rarity:Debug("Detected Mining on " .. lastNode .. " (method = SPECIAL)")
    local v = self.db.profile.groups.pets["Elementium Geode"]
    if v and type(v) == "table" and v.enabled ~= false then
     if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
@@ -1761,7 +1814,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
 		self:Debug("NPC ID is one we need: "..(npcid or "nil"))
 	end
 
- -- If the loot is the result of certain spell casts (mining, herbing, opening, pick lock, archaeology, disenchanting, etc), stop here
+ -- If the loot is the result of certain spell casts (mining, herbing, opening, pick lock, archaeology, disenchanting, etc), stop here -> This is to avoid multiple attempts, since those methods are handled separately!
  if spells[curSpell] then
 		self:Debug("Aborting because we were casting a disallowed spell: "..curSpell)
 		return
@@ -2084,16 +2137,20 @@ local function cancelFish()
 	opening = false
 end
 
-function R:SpellStarted(event, unit, spellcast, rank, target)
+function R:SpellStarted(event, unit, target, castGUID, spellID)
 	if unit ~= "player" then return end
 	foundTarget = false
 	ga ="No"
-	if spells[spellcast] then
-		curSpell = spellcast
-		prevSpell = spellcast
-  if spellcast == fishSpell or spellcast == openSpell then
+	
+	Rarity:Debug("Detected UNIT_SPELLCAST_SENT for unit = player, spellID = " .. tostring(spellID) .. ", castGUID = " .. tostring(castGUID) .. ", target = " .. tostring(target)) -- TODO: Remove?
+	
+	if spells[spellID] then -- An entry exists for this spell in the LUT -> It's one that needs to be tracked
+		Rarity:Debug("Detected relevant spell: " .. tostring(spellID) .. " ~ " .. tostring(spells[spellID]))
+		curSpell = spellID
+		prevSpell = spellID
+  if spells[spellID] == "Fishing" or spells[spellID] == "Opening" then
    self:Debug("Fishing or opening something")
-			if spellcast == openSpell then
+			if spells[spellID] == "Opening" then
 				self:Debug("Opening detected")
 				opening = true
 			else
