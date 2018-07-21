@@ -1607,7 +1607,7 @@ function R:OnEvent(event, ...)
 		end
 
 		-- Handle opening Glimmering Treasure Chest
-		if fishing and opening and lastNode and (lastNode == L["Glimmering Treasure Chest"]) and select(8, GetInstanceInfo()) == 1626 then
+		if fishing and opening and lastNode and (lastNode == L["Glimmering Treasure Chest"]) and select(8, GetInstanceInfo()) == 1626 then -- Player is in Withered Army scenario and looted the reward chest
 			local bigChest = false
 			for _, slot in pairs(GetLootInfo()) do
 				if slot.item == L["Ancient Mana"] and slot.quantity == 100 then
