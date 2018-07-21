@@ -1565,6 +1565,7 @@ function R:OnEvent(event, ...)
 
   -- Handle opening Crane Nest
   if fishing and opening and lastNode and (lastNode == L["Crane Nest"]) then
+	Rarity:Debug("Detected Opening on " .. L["Crane Nest"] .. " (method = SPECIAL)")  
    local v = self.db.profile.groups.pets["Azure Crane Chick"]
    if v and type(v) == "table" and v.enabled ~= false then
     if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
@@ -1574,6 +1575,7 @@ function R:OnEvent(event, ...)
 
   -- Handle opening Timeless Chest
   if fishing and opening and lastNode and (lastNode == L["Timeless Chest"]) then
+ 	Rarity:Debug("Detected Opening on " .. L["Timeless Chest"] .. " (method = SPECIAL)")
    local v = self.db.profile.groups.pets["Bonkers"]
    if v and type(v) == "table" and v.enabled ~= false then
     if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
@@ -1583,6 +1585,7 @@ function R:OnEvent(event, ...)
 
   -- Handle opening Snow Mound
   if fishing and opening and lastNode and (lastNode == L["Snow Mound"]) and GetBestMapForUnit("player") == UIMAPID_FROSTFIRE_RIDGE then -- Make sure we're in Frostfire Ridge (there are Snow Mounds in other zones, particularly Ulduar in the Hodir room)
+  	Rarity:Debug("Detected Opening on " .. L["Snow Mound"] .. " (method = SPECIAL)")
    local v = self.db.profile.groups.pets["Grumpling"]
    if v and type(v) == "table" and v.enabled ~= false then
     if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
@@ -1613,6 +1616,7 @@ function R:OnEvent(event, ...)
 			end
 
 			if bigChest == true then
+				self:Debug("Detected " .. lastNode .. ": Adding toy drop attempts")
 				local names = {"Arcano-Shower", "Displacer Meditation Stone", "Kaldorei Light Globe", "Unstable Powder Box", "Wisp in a Bottle", "Ley Spider Eggs"}
 				for _, name in pairs(names) do
 					local v = self.db.profile.groups.items[name]
@@ -1672,6 +1676,7 @@ function R:OnEvent(event, ...)
 
   -- Handle mining Elementium
   if spells[prevSpell] == "Mining" and (lastNode == L["Elementium Vein"] or lastNode == L["Rich Elementium Vein"]) then
+		Rarity:Debug("Detected Mining on " .. lastNode .. " (method = SPECIAL)")
    local v = self.db.profile.groups.pets["Elementium Geode"]
    if v and type(v) == "table" and v.enabled ~= false then
     if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
@@ -2136,6 +2141,8 @@ function R:SpellStarted(event, unit, target, castGUID, spellID)
 	if unit ~= "player" then return end
 	foundTarget = false
 	ga ="No"
+	
+	Rarity:Debug("Detected UNIT_SPELLCAST_SENT for unit = player, spellID = " .. tostring(spellID) .. ", castGUID = " .. tostring(castGUID) .. ", target = " .. tostring(target)) -- TODO: Remove?
 	
 	if spells[spellID] then -- An entry exists for this spell in the LUT -> It's one that needs to be tracked
 		Rarity:Debug("Detected relevant spell: " .. tostring(spellID) .. " ~ " .. tostring(spells[spellID]))
