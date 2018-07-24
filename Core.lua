@@ -1,8 +1,15 @@
 Rarity = LibStub("AceAddon-3.0"):NewAddon("Rarity", "AceConsole-3.0", "AceEvent-3.0", "AceTimer-3.0", "LibSink-2.0", "AceBucket-3.0", "LibBars-1.0", "AceSerializer-3.0")
 -- Rarity.MINOR_VERSION = tonumber(("$Revision: 650 $"):match("%d+"))  -- Disabled after switching entirely to Git (from SVN)
-local projectVersion, noReplacements = GetAddOnMetadata("Rarity", "Version"):match("r%d+"):gsub("r", "") -- e.g., r654	1 (the second value can be discarded)
+local projectVersion, noReplacements = (GetAddOnMetadata("Rarity", "Version"):match("r%d+") or "r0"):gsub("r", "") -- e.g., r654	1 (the second value can be discarded)
 Rarity.MINOR_VERSION = tonumber(projectVersion)
 local FORCE_PROFILE_RESET_BEFORE_REVISION = 1 -- Set this to one higher than the Revision on the line above this
+
+-- Set DEBUG flag to never cause a profile reset while testing, even in the case of errors with the above version calculation. Can also be used for other things later, though I haven't thought of anything in particular just yet...
+local isDebugVersion = false
+--@debug@
+isDebugVersion = true
+--@end-debug@
+
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local R = Rarity
 local qtip = LibStub("LibQTip-1.0")
@@ -883,7 +890,7 @@ end
 
 function R:CheckForceReset(report)
 	-- Require a profile reset after a hardcoded revision
-	if (self.db.profile.lastRevision or 0) < FORCE_PROFILE_RESET_BEFORE_REVISION then
+	if (self.db.profile.lastRevision or 0) < FORCE_PROFILE_RESET_BEFORE_REVISION and not isDebugVersion then
 		self.db:RegisterDefaults(self.defaults)
 		
 		-- Save as many settings as we can
