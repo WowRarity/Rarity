@@ -1116,6 +1116,9 @@ L["Botani Camouflage"] = true
 L["Basten"] = true
 L["Drust"] = true
 L["Zandalari"] = true
+L["Eye of Observation"] = true
+L["Five players are needed to activate the runes on the floor. The boss can be attacked only after all runes have been activated."] = true
+
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
