@@ -1826,8 +1826,11 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
  local npcid = self:GetNPCIDFromGUID(guid)
  if npcs[npcid] == nil then -- Not an NPC we need, abort
 		self:Debug("NPC ID not on the list of needed NPCs: "..(npcid or "nil"))
-  -- Not a zone we need, abort
-  if zones[tostring(GetBestMapForUnit("player"))] == nil and zones[zone] == nil and zones[lbz[zone] or "."] == nil and zones[lbsz[subzone] or "."] == nil and zones[zone_t] == nil and zones[subzone_t] == nil and zones[lbz[zone_t] or "."] == nil and zones[lbsz[subzone_t] or "."] == nil then return end
+  
+  if zones[tostring(GetBestMapForUnit("player"))] == nil and zones[zone] == nil and zones[lbz[zone] or "."] == nil and zones[lbsz[subzone] or "."] == nil and zones[zone_t] == nil and zones[subzone_t] == nil and zones[lbz[zone_t] or "."] == nil and zones[lbsz[subzone_t] or "."] == nil then -- Not a zone we need, abort
+		Rarity:Debug("Map ID is not in the list of needed zones: " .. tostring(GetBestMapForUnit("player")))
+		return
+	end
  else
 		self:Debug("NPC ID is one we need: "..(npcid or "nil"))
 	end
