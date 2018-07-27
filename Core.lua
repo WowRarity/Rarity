@@ -83,11 +83,22 @@ local spells = {
 	[13262] = "Disenchant",
 	[73979] = "Searching for Artifacts",
 	[131474] = "Fishing",
+	[158743] = "Fishing",
 	[144528] = "Opening", -- Timeless Chest (Timeless Isle: Kukuru's Grotto)
 	[195125] = "Skinning",
 	[231932] = "Opening", -- Wyrmtongue Cache (Broken Shore: Secret Treasure Lair)
 	[265843] = "Mining",
 	[265825] = "Herb Gathering",
+	
+	-- Not tested (but added just in case)
+	[7731] = "Fishing",
+	[7732] = "Fishing",
+	[7620] = "Fishing",
+	[18248] = "Fishing",
+	[33095] = "Fishing",
+	[51294] = "Fishing",
+	[88868] = "Fishing",
+	[110410] = "Fishing",
 	
 	-- Not tested (and disabled until they are needed)
 	-- [1804] = "Pick Lock",
