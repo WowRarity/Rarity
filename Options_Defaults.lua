@@ -148,6 +148,7 @@ function R:PrepareDefaults()
 			showTimeColumn = true,
 			showLuckinessColumn = true,
 			showZoneColumn = true,
+			showTSMColumn = true,
 			holidayReminder = true,
 			showCategoryIcons = true,
 			tooltipScale = GameTooltip:GetScale(),

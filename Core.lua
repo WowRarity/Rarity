@@ -6,9 +6,9 @@ local FORCE_PROFILE_RESET_BEFORE_REVISION = 1 -- Set this to one higher than the
 
 -- Set DEBUG flag to never cause a profile reset while testing, even in the case of errors with the above version calculation. Can also be used for other things later, though I haven't thought of anything in particular just yet...
 local isDebugVersion = false
---@debug@
+--[===[@debug@
 isDebugVersion = true
---@end-debug@
+--@end-debug@]===]
 
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local R = Rarity
@@ -3164,6 +3164,16 @@ do
 				tooltip2AddDoubleLine(defeatStepText, defeated)
 			end
 		end
+
+		-- TSM Pricing
+		if TSMAPI_FOUR then
+			local minBuyout = TSMAPI_FOUR.CustomPrice.GetItemPrice(item.itemId, 'DBMinBuyout')
+			if (minBuyout) then
+				local money = TSMAPI_FOUR.Money.ToString(minBuyout)
+				tooltip2:AddSeparator(1, 1, 1, 1, 1)
+				tooltip2AddLine(colorize(L["Min Buyout"], blue)..money)
+			end
+		end
 		
 		-- Click instructions
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
@@ -3471,7 +3481,7 @@ do
 														if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
 															line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
 														else
-															line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil, Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil, Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil, colorize(L["Defeated"], yellow))
+															line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil, Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil, Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil, colorize(L["Defeated"], yellow), TSMAPI_FOUR ~= nil and Rarity.db.profile.showTSMColumn and colorize(L["Min Buyout"], yellow) or nil)
 														end
 														tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
 													end
@@ -3480,10 +3490,17 @@ do
 												-- Zone
 												local zoneText, inMyZone, zoneColor, numZones = R:GetZone(v)
 
+												-- Get Price
+												local minBuyout
+												if TSMAPI_FOUR then
+													minBuyout = TSMAPI_FOUR.CustomPrice.GetItemPrice(v.itemId, 'DBMinBuyout')
+													minBuyout = TSMAPI_FOUR.Money.ToString(minBuyout)
+												end
+
 												-- Add the item to the tooltip
 												local catIcon = ""
 												if Rarity.db.profile.showCategoryIcons and v.cat and Rarity.catIcons[v.cat] then catIcon = [[|TInterface\AddOns\Rarity\Icons\]]..Rarity.catIcons[v.cat]..".blp:0:4|t " end
-												line = tooltip:AddLine(icon, catIcon..(itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, Rarity.db.profile.showTimeColumn and time or nil, Rarity.db.profile.showLuckinessColumn and lucky or nil, Rarity.db.profile.showZoneColumn and colorize(zoneText, zoneColor) or nil, status)
+												line = tooltip:AddLine(icon, catIcon..(itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, Rarity.db.profile.showTimeColumn and time or nil, Rarity.db.profile.showLuckinessColumn and lucky or nil, Rarity.db.profile.showZoneColumn and colorize(zoneText, zoneColor) or nil, status, Rarity.db.profile.showTSMColumn and minBuyout or nil)
 												tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
 												tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
 												tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
