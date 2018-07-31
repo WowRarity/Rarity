@@ -1253,6 +1253,12 @@ L["Sand Shifter School"] = true
 L["Slimy Mackerel School"] = true
 L["Tiragarde Perch School"] = true
 L["U'taka School"] = true
+L["Min Buyout"] = true
+L["Market Price"] = true
+L["Region Market Avg"] = true
+L["Region Sale Avg"] = true
+L["Region Sale Rate"] = true
+L["Region Avg Daily Sold"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
