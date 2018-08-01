@@ -1119,7 +1119,11 @@ L["Zandalari"] = true
 L["Eye of Observation"] = true
 L["Five players are needed to activate the runes on the floor. The boss can be attacked only after all runes have been activated."] = true
 L["Min Buyout"] = true
-
+L["Market Price"] = true
+L["Region Market Avg"] = true
+L["Region Sale Avg"] = true
+L["Region Sale Rate"] = true
+L["Region Avg Daily Sold"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
