@@ -1561,6 +1561,22 @@ end
       OBTAIN DETECTION ---------------------------------------------------------------------------------------------------------
       -- Some easy, some fairly arcane methods to detect when we've obtained something we're looking for
   ]]
+  
+local isSessionLocked = false
+
+local function UnlockTrackingSession()
+	Rarity:Debug("Unlocking session to continue scanning for new LOOT_READY events" )
+	isSessionLocked = false
+end
+
+local function LockTrackingSession(delay)
+	delay = delay or 1 -- 1 second seems to be a suitable default value (as both events fire within 0.5-0.8s of each other)
+	
+	-- Lock the current session (and set the timer to unlock it again)
+	Rarity:Debug("Locking session for " .. tostring(delay) .. " second(s) to prevent duplicate attempts from being counted")
+	isSessionLocked = true
+	C_Timer.After(delay, UnlockTrackingSession) -- Unlock via timer
+end
 
 function R:OnEvent(event, ...)
 
@@ -1568,7 +1584,15 @@ function R:OnEvent(event, ...)
  -- You opened a loot window on a corpse or fishing node
  -------------------------------------------------------------------------------------
 	if event == "LOOT_READY" then
+	
 		self:Debug("LOOT_READY with target: "..(UnitGUID("target") or "NO TARGET"))
+		
+		-- In 8.0.1, two LOOT_READY events fire when the loot window opens. We'll just ignore subsequent events for a short time to prevent double counting
+		if isSessionLocked then -- One attempt is already being counted and we don't want another one for this loot event -> Ignore this call
+			Rarity:Debug("Session is locked; ignoring this LOOT_READY event")
+			return
+		else LockTrackingSession(1) end
+
 		local zone = GetRealZoneText()
 		local subzone = GetSubZoneText()
 		local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
