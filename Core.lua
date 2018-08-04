@@ -6,9 +6,9 @@ local FORCE_PROFILE_RESET_BEFORE_REVISION = 1 -- Set this to one higher than the
 
 -- Set DEBUG flag to never cause a profile reset while testing, even in the case of errors with the above version calculation. Can also be used for other things later, though I haven't thought of anything in particular just yet...
 local isDebugVersion = false
---[===[@debug@
+--@debug@
 isDebugVersion = true
---@end-debug@]===]
+--@end-debug@
 
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local R = Rarity
