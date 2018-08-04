@@ -3219,7 +3219,7 @@ do
 					if numCoords <= 0 then s = s..L["You already defeated all of them."]
 					else s = s..format(L["You already defeated %d of them."], totalCoords - numCoords).." " end
 				end
-				if TomTom ~= nil and TomTom.AddMFWaypoint ~= nil then
+				if TomTom ~= nil and TomTom.AddWaypoint ~= nil then
 					if numCoords > 0 then
 						if totalCoords > numCoords then s = s..L["Ctrl-Click to create the remaining TomTom waypoint(s)."]
 						else s = s..L["Ctrl-Click to create TomTom waypoint(s)."]
@@ -3306,11 +3306,11 @@ do
 					else
 						good = true
 					end
-					if good and TomTom ~= nil and TomTom.AddMFWaypoint ~= nil and coord.m ~= nil and coord.x ~= nil and coord.y ~= nil then
+					if good and TomTom ~= nil and TomTom.AddWaypoint ~= nil and coord.m ~= nil and coord.x ~= nil and coord.y ~= nil then
 						local extraName = ""
 						if coord.n ~= nil then extraName = " ("..coord.n..")" end
 						if coord.i ~= true then
-							TomTom:AddMFWaypoint(coord.m, coord.f or nil, coord.x / 100.0, coord.y / 100.0, { title = "Rarity"..": "..item.name..extraName })
+							TomTom:AddWaypoint(coord.m, coord.x / 100.0, coord.y / 100.0, { title = "Rarity"..": "..item.name..extraName })
 							added = added + 1
 						end
 						if coord.i == true then instance = instance + 1 end
