@@ -1486,7 +1486,7 @@ function R:PrepareDefaults()
 		npcs = { 99999 },
 		tooltipNpcs = { 105503, 111022 }, -- Gul'dan / The Demon Within (Mythic only)
 		groupSize = 10,
---		equalOdds = true, -- Not sure if this item is "push personal" loot? Leaving it for now...
+		equalOdds = true,
 		chance = 275,
 		statisticId = { 10977, 10979, 10980, 10978 },
 		coords = { {m=772,f=9,i=true} },
