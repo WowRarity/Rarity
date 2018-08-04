@@ -1569,10 +1569,10 @@ function R:OnEvent(event, ...)
  -------------------------------------------------------------------------------------
 	if event == "LOOT_READY" then
 		self:Debug("LOOT_READY with target: "..(UnitGUID("target") or "NO TARGET"))
-  local zone = GetRealZoneText()
-  local subzone = GetSubZoneText()
-  local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
-  local subzone_t = LibStub("LibBabble-SubZone-3.0"):GetReverseLookupTable()[subzone]
+		local zone = GetRealZoneText()
+		local subzone = GetSubZoneText()
+		local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
+		local subzone_t = LibStub("LibBabble-SubZone-3.0"):GetReverseLookupTable()[subzone]
 
 		if fishing and opening then
 			self:Debug("Opened something")
