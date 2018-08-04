@@ -471,6 +471,7 @@ local strsub = _G.strsub
 local strlen = _G.strlen
 local bit_band = _G.bit.band
 local min = min
+local tostring = tostring
 
 local UnitGUID = _G.UnitGUID
 local UnitName = _G.UnitName
@@ -496,7 +497,7 @@ local pet_journal = _G.C_PetJournal
 local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
 local GetMapInfo = _G.C_Map.GetMapInfo
 local mount_journal = _G.C_MountJournal
-
+local C_Timer = C_Timer
 
 local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
 local COMBATLOG_OBJECT_AFFILIATION_MINE = _G.COMBATLOG_OBJECT_AFFILIATION_MINE
