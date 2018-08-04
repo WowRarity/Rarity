@@ -82,6 +82,8 @@ local spells = {
 	[921] = "Pick Pocket",
 	[3365] = "Opening",
 	[13262] = "Disenchant",
+	[22810] = "Opening - No Text",
+	[30427] = "Extract Gas",
 	[73979] = "Searching for Artifacts",
 	[131474] = "Fishing",
 	[158743] = "Fishing",
@@ -148,8 +150,6 @@ local spells = {
 	-- [74522] = "Skinning",
 	-- [102216] = "Skinning",
 	-- [158756] = "Skinning",
-	-- [22810] = "Opening - No Text",
-	-- [30427] = "Extract Gas",
 }
 
 local tooltipLeftText1 = _G["GameTooltipTextLeft1"]
