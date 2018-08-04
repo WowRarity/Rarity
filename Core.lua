@@ -470,6 +470,7 @@ local format = _G.format
 local strsub = _G.strsub
 local strlen = _G.strlen
 local bit_band = _G.bit.band
+local min = min
 
 local UnitGUID = _G.UnitGUID
 local UnitName = _G.UnitName
@@ -2735,6 +2736,9 @@ do
   if trackedItem.attempts then attempts = trackedItem.attempts end
   if trackedItem.lastAttempts then attempts = attempts - trackedItem.lastAttempts end
   if trackedItem.realAttempts and trackedItem.found and not trackedItem.repeatable then attempts = trackedItem.realAttempts end
+  
+  attempts = min(attempts, 2^16-1) -- Workaround to stop invalid attempt counts from breaking the addon; the correct count can be obtained by updating manually. It should also be restored automatically (at some point...) if the addon loads without errors. See issue: https://github.com/SacredDuckwhale/Rarity/issues/43) - This is mostly relevant for the two Archaeology mounts that may have invalid entries after the API was changed and not updated in the addon for quite some time
+  
   if trackedItem.found and not trackedItem.repeatable then
 			if trackedItem.method == COLLECTION then
 				dataobj.text = L["Collection complete!"]
