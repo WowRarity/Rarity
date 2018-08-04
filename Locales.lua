@@ -1259,6 +1259,8 @@ L["Region Market Avg"] = true
 L["Region Sale Avg"] = true
 L["Region Sale Rate"] = true
 L["Region Avg Daily Sold"] = true
+L["Show TSM column"] = true
+L["When on, the TSM Minimum Buyout column will be shown in the main tooltip."] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
