@@ -79,6 +79,7 @@ local prevSpell, curSpell, foundTarget, gatherEvents, ga
 local spells = {
 
 	-- Tested (confirmed working in 8.0.1)
+	[921] = "Pick Pocket",
 	[3365] = "Opening",
 	[13262] = "Disenchant",
 	[73979] = "Searching for Artifacts",
