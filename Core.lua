@@ -89,6 +89,7 @@ local spells = {
 	[158743] = "Fishing",
 	[144528] = "Opening", -- Timeless Chest (Timeless Isle: Kukuru's Grotto)
 	[195125] = "Skinning",
+	[195258] = "Mother's Skinning Knife", -- Legion Toy with the same effect as regular skinning, but with a 40y range
 	[231932] = "Opening", -- Wyrmtongue Cache (Broken Shore: Secret Treasure Lair)
 	[265843] = "Mining",
 	[265825] = "Herb Gathering",
@@ -1735,7 +1736,8 @@ function R:OnEvent(event, ...)
   end
 
   -- Handle skinning on Argus (Fossorial Bile Larva)
-  if spells[prevSpell] == "Skinning" and GetBestMapForUnit("player") == UIMAPIDS.KROKUUN or GetBestMapForUnit("player") == UIMAPIDS.MACAREE or GetBestMapForUnit("player") == UIMAPIDS.ANTORAN_WASTES then -- Player is on Argus -> Can obtain the pet from skinning creatures
+	if (spells[prevSpell] == "Skinning" or spells[prevSpell] == "Mother's Skinning Knife") -- Skinned something
+	and GetBestMapForUnit("player") == UIMAPIDS.KROKUUN or GetBestMapForUnit("player") == UIMAPIDS.MACAREE or GetBestMapForUnit("player") == UIMAPIDS.ANTORAN_WASTES then -- Player is on Argus -> Can obtain the pet from skinning creatures
 		Rarity:Debug("Detected skinning on Argus - Can obtain " .. L["Fossorial Bile Larva"] .. " (method = SPECIAL)")
 		local v = self.db.profile.groups.pets["Fossorial Bile Larva"]
 		if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt
