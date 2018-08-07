@@ -1338,6 +1338,18 @@ function R:PrepareDefaults()
 				{ m = 81, x = 54, y = 80, n = L["Ssinkrix"] }
 			},
 		},
+		
+		["Fossorial Bile Larva"] = {
+			cat = LEGION,
+			type = PET,
+			method = SPECIAL,
+			name = L["Fossorial Bile Larva"],
+			spellId = 254298,
+			itemId = 153057,
+			chance = 2000,
+			creatureId = 128160,
+			obtain = L["Obtained by skinning creatures on Argus"],
+		},
 
 	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS

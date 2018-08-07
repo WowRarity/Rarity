@@ -1732,6 +1732,16 @@ function R:OnEvent(event, ...)
    end
   end
 
+  -- Handle skinning on Argus (Fossorial Bile Larva)
+  if spells[prevSpell] == "Skinning" and GetBestMapForUnit("player") == UIMAPID_KROKUUN or GetBestMapForUnit("player") == UIMAPID_MACAREE or GetBestMapForUnit("player") == UIMAPID_ANTORANWASTES then -- Player is on Argus -> Can obtain the pet from skinning creatures
+		Rarity:Debug("Detected skinning on Argus - Can obtain " .. L["Fossorial Bile Larva"] .. " (method = SPECIAL)")
+		local v = self.db.profile.groups.pets["Fossorial Bile Larva"]
+		if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt
+			v.attempts = v.attempts ~= nil and v.attempts + 1 or 1 -- Defaults to 1 if this is the first attempt
+			self:OutputAttempts(v)
+		end
+  end
+
   -- HANDLE NORMAL NPC LOOTING
 		local numItems = GetNumLootItems()
   local slotID
