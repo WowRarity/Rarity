@@ -398,10 +398,12 @@ R.opennodes = {
 }
 
 -- Embedded mapIDs: It's best to avoid hardcoding these in case of yet another re-mapping on Blizzard's end...
-local UIMAPID_FROSTFIRE_RIDGE = 525
-local UIMAPID_KROKUUN = 830
-local UIMAPID_MACAREE = 882
-local UIMAPID_ANTORAN_WASTES = 885
+local UIMAPIDS = {
+	FROSTFIRE_RIDGE = 525,
+	KROKUUN = 830,
+	MACAREE = 882,
+	ANTORAN_WASTES = 885,
+}
 
 --[[
       CONSTANTS ----------------------------------------------------------------------------------------------------------------
@@ -1632,7 +1634,7 @@ function R:OnEvent(event, ...)
   end
 
   -- Handle opening Snow Mound
-  if fishing and opening and lastNode and (lastNode == L["Snow Mound"]) and GetBestMapForUnit("player") == UIMAPID_FROSTFIRE_RIDGE then -- Make sure we're in Frostfire Ridge (there are Snow Mounds in other zones, particularly Ulduar in the Hodir room)
+  if fishing and opening and lastNode and (lastNode == L["Snow Mound"]) and GetBestMapForUnit("player") == UIMAPIDS.FROSTFIRE_RIDGE then -- Make sure we're in Frostfire Ridge (there are Snow Mounds in other zones, particularly Ulduar in the Hodir room)
   	Rarity:Debug("Detected Opening on " .. L["Snow Mound"] .. " (method = SPECIAL)")
    local v = self.db.profile.groups.pets["Grumpling"]
    if v and type(v) == "table" and v.enabled ~= false then
@@ -1733,7 +1735,7 @@ function R:OnEvent(event, ...)
   end
 
   -- Handle skinning on Argus (Fossorial Bile Larva)
-  if spells[prevSpell] == "Skinning" and GetBestMapForUnit("player") == UIMAPID_KROKUUN or GetBestMapForUnit("player") == UIMAPID_MACAREE or GetBestMapForUnit("player") == UIMAPID_ANTORANWASTES then -- Player is on Argus -> Can obtain the pet from skinning creatures
+  if spells[prevSpell] == "Skinning" and GetBestMapForUnit("player") == UIMAPIDS.KROKUUN or GetBestMapForUnit("player") == UIMAPIDS.MACAREE or GetBestMapForUnit("player") == UIMAPIDS.ANTORAN_WASTES then -- Player is on Argus -> Can obtain the pet from skinning creatures
 		Rarity:Debug("Detected skinning on Argus - Can obtain " .. L["Fossorial Bile Larva"] .. " (method = SPECIAL)")
 		local v = self.db.profile.groups.pets["Fossorial Bile Larva"]
 		if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt
