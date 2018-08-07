@@ -399,6 +399,9 @@ R.opennodes = {
 
 -- Embedded mapIDs: It's best to avoid hardcoding these in case of yet another re-mapping on Blizzard's end...
 local UIMAPID_FROSTFIRE_RIDGE = 525
+local UIMAPID_KROKUUN = 830
+local UIMAPID_MACAREE = 882
+local UIMAPID_ANTORAN_WASTES = 885
 
 --[[
       CONSTANTS ----------------------------------------------------------------------------------------------------------------
