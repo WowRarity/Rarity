@@ -1737,7 +1737,7 @@ function R:OnEvent(event, ...)
 
   -- Handle skinning on Argus (Fossorial Bile Larva)
 	if (spells[prevSpell] == "Skinning" or spells[prevSpell] == "Mother's Skinning Knife") -- Skinned something
-	and GetBestMapForUnit("player") == UIMAPIDS.KROKUUN or GetBestMapForUnit("player") == UIMAPIDS.MACAREE or GetBestMapForUnit("player") == UIMAPIDS.ANTORAN_WASTES then -- Player is on Argus -> Can obtain the pet from skinning creatures
+	and (GetBestMapForUnit("player") == UIMAPIDS.KROKUUN or GetBestMapForUnit("player") == UIMAPIDS.MACAREE or GetBestMapForUnit("player") == UIMAPIDS.ANTORAN_WASTES) then -- Player is on Argus -> Can obtain the pet from skinning creatures
 		Rarity:Debug("Detected skinning on Argus - Can obtain " .. L["Fossorial Bile Larva"] .. " (method = SPECIAL)")
 		local v = self.db.profile.groups.pets["Fossorial Bile Larva"]
 		if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt
