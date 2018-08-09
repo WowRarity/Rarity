@@ -127,6 +127,11 @@ R.catOrder = {
  [LEGION] = 7,
 }
 
+-- Tooltip Filters (Note: Currently, this system is merely a stub. but more (and custom) filters may be added in the future)
+-- These are used to decide whether the tooltip should be extended to display information about an item for the NPCs listed in its tooltipNpcs table. Useful if we want to draw attention to an item, but not every player can obtain it
+local TOOLTIP_FILTERS = {
+	IS_SPELL_KNOWN = IsSpellKnown,
+}
 
 
 function R:PrepareDefaults()
