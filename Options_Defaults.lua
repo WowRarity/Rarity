@@ -127,6 +127,11 @@ R.catOrder = {
  [LEGION] = 7,
 }
 
+-- Tooltip Filters (Note: Currently, this system is merely a stub. but more (and custom) filters may be added in the future)
+-- These are used to decide whether the tooltip should be extended to display information about an item for the NPCs listed in its tooltipNpcs table. Useful if we want to draw attention to an item, but not every player can obtain it
+local TOOLTIP_FILTERS = {
+	IS_SPELL_KNOWN = IsSpellKnown,
+}
 
 
 function R:PrepareDefaults()
@@ -1337,6 +1342,81 @@ function R:PrepareDefaults()
 				{ m = 81, x = 30, y = 35, n = L["Xaarshej"] },
 				{ m = 81, x = 54, y = 80, n = L["Ssinkrix"] }
 			},
+		},
+		
+		["Fossorial Bile Larva"] = {
+			cat = LEGION,
+			type = PET,
+			method = SPECIAL,
+			name = L["Fossorial Bile Larva"],
+			spellId = 254298,
+			itemId = 153057,
+			chance = 2000,
+			creatureId = 128160,
+			obtain = L["Obtained by skinning creatures on Argus"],
+			sourceText = L["Obtained by skinning creatures on Argus"],
+			tooltipNpcs = { -- Any beast on Argus, pretty much...
+				119884,
+				126996,
+				123511,
+				124279,
+				124279,
+				123527,
+				122363,
+				124225,
+				124265,
+				127270,
+				124444,
+				123076,
+				124303,
+				121629,
+				124278,
+				126072,
+				119968,
+				125146,
+				123512,
+				123508,
+				124269,
+				122010,
+				124271,
+				125223,
+				126939,
+				119604,
+				119398,
+				122408,
+				121565,
+				121562,
+				119874,
+				119748,
+				122365,
+				125167,
+				126198,
+				122022,
+				126114,
+				119602,
+				119576,
+				124430,
+				121673,
+				119747,
+				126174,
+				124439,
+				124486,
+			}, 
+			showTooltipCondition = { filter = TOOLTIP_FILTERS.IS_SPELL_KNOWN, value = "Skinning" }, -- Display only if player can actually skin them
+		},
+		
+		["Fel Lasher"] = {
+			cat = LEGION,
+			type = PET,
+			method = SPECIAL,
+			name = L["Fel Lasher"],
+			spellId = 254271,
+			itemId = 153045,
+			chance = 4000,
+			creatureId = 128137,
+			obtain = L["Obtained by gathering herbs on Argus"],
+			sourceText = L["Obtained by gathering herbs on Argus"],
+			showTooltipCondition = { filter = TOOLTIP_FILTERS.IS_SPELL_KNOWN, value = "Skinning" }, -- Display only if player can actually skin them
 		},
 
 	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -89,6 +89,7 @@ local spells = {
 	[158743] = "Fishing",
 	[144528] = "Opening", -- Timeless Chest (Timeless Isle: Kukuru's Grotto)
 	[195125] = "Skinning",
+	[195258] = "Mother's Skinning Knife", -- Legion Toy with the same effect as regular skinning, but with a 40y range
 	[231932] = "Opening", -- Wyrmtongue Cache (Broken Shore: Secret Treasure Lair)
 	[265843] = "Mining",
 	[265825] = "Herb Gathering",
@@ -102,54 +103,54 @@ local spells = {
 	[51294] = "Fishing",
 	[88868] = "Fishing",
 	[110410] = "Fishing",
+	[2575] = "Mining",
+	[265853] = "Mining",
+	[2575] = "Mining",
+	[158754] = "Mining",
+	[2576] = "Mining",
+	[195122] = "Mining",
+	[3564] = "Mining",
+	[10248] = "Mining",
+	[29354] = "Mining",
+	[50310] = "Mining",
+	[74517] = "Mining",
+	[265837] = "Mining",
+	[102161] = "Mining",
+	[265845] = "Mining",
+	[265841] = "Mining",
+	[265839] = "Mining",
+	[265847] = "Mining",
+	[265849] = "Mining",
+	[265851] = "Mining",
+	[2366] = "Herb Gathering",
+	[265835] = "Herb Gathering",
+	[158745] = "Herb Gathering",
+	[195114] = "Herb Gathering",
+	[2368] = "Herb Gathering",
+	[3570] = "Herb Gathering",
+	[28695] = "Herb Gathering",
+	[11993] = "Herb Gathering",
+	[50300] = "Herb Gathering",
+	[110413] = "Herb Gathering",
+	[74519] = "Herb Gathering",
+	[265819] = "Herb Gathering",
+	[265821] = "Herb Gathering",
+	[265823] = "Herb Gathering",
+	[265827] = "Herb Gathering",
+	[265829] = "Herb Gathering",
+	[265831] = "Herb Gathering",
+	[265834] = "Herb Gathering",
+	[8613] = "Skinning",
+	[8617] = "Skinning",
+	[8618] = "Skinning",
+	[32678] = "Skinning",
+	[50305] = "Skinning",
+	[74522] = "Skinning",
+	[102216] = "Skinning",
+	[158756] = "Skinning",
 	
 	-- Not tested (and disabled until they are needed)
 	-- [1804] = "Pick Lock",
-	-- [2366] = "Herb Gathering",
-	-- [265835] = "Herb Gathering",
-	-- [158745] = "Herb Gathering",
-	-- [195114] = "Herb Gathering",
-	-- [2368] = "Herb Gathering",
-	-- [3570] = "Herb Gathering",
-	-- [28695] = "Herb Gathering",
-	-- [11993] = "Herb Gathering",
-	-- [50300] = "Herb Gathering",
-	-- [110413] = "Herb Gathering",
-	-- [74519] = "Herb Gathering",
-	-- [265819] = "Herb Gathering",
-	-- [265821] = "Herb Gathering",
-	-- [265823] = "Herb Gathering",
-	-- [265827] = "Herb Gathering",
-	-- [265829] = "Herb Gathering",
-	-- [265831] = "Herb Gathering",
-	-- [265834] = "Herb Gathering",
-	-- [2575] = "Mining",
-	-- [265853] = "Mining",
-	-- [2575] = "Mining",
-	-- [158754] = "Mining",
-	-- [2576] = "Mining",
-	-- [195122] = "Mining",
-	-- [3564] = "Mining",
-	-- [10248] = "Mining",
-	-- [29354] = "Mining",
-	-- [50310] = "Mining",
-	-- [74517] = "Mining",
-	-- [265837] = "Mining",
-	-- [102161] = "Mining",
-	-- [265845] = "Mining",
-	-- [265841] = "Mining",
-	-- [265839] = "Mining",
-	-- [265847] = "Mining",
-	-- [265849] = "Mining",
-	-- [265851] = "Mining",
-	-- [8613] = "Skinning",
-	-- [8617] = "Skinning",
-	-- [8618] = "Skinning",
-	-- [32678] = "Skinning",
-	-- [50305] = "Skinning",
-	-- [74522] = "Skinning",
-	-- [102216] = "Skinning",
-	-- [158756] = "Skinning",
 }
 
 local tooltipLeftText1 = _G["GameTooltipTextLeft1"]
@@ -398,7 +399,12 @@ R.opennodes = {
 }
 
 -- Embedded mapIDs: It's best to avoid hardcoding these in case of yet another re-mapping on Blizzard's end...
-local UIMAPID_FROSTFIRE_RIDGE = 525
+local UIMAPIDS = {
+	FROSTFIRE_RIDGE = 525,
+	KROKUUN = 830,
+	MACAREE = 882,
+	ANTORAN_WASTES = 885,
+}
 
 --[[
       CONSTANTS ----------------------------------------------------------------------------------------------------------------
@@ -499,6 +505,7 @@ local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
 local GetMapInfo = _G.C_Map.GetMapInfo
 local mount_journal = _G.C_MountJournal
 local C_Timer = C_Timer
+local IsSpellKnown = IsSpellKnown
 
 local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
 local COMBATLOG_OBJECT_AFFILIATION_MINE = _G.COMBATLOG_OBJECT_AFFILIATION_MINE
@@ -1479,18 +1486,47 @@ function R:UpdateInterestingThings()
 						end
 						table.insert(Rarity.collection_items, vv)
 					end
-					if vv.tooltipNpcs and type(vv.tooltipNpcs) == "table" then
-      for kkk, vvv in pairs(vv.tooltipNpcs) do
-       if npcs_to_items[vvv] == nil then npcs_to_items[vvv] = {} end
-       table.insert(npcs_to_items[vvv], vv)
-      end
-					end
-    end
-   end
-  end
- end
-end
+				
+				if vv.tooltipNpcs and type(vv.tooltipNpcs) == "table" then -- Item has tooltipNpcs -> Check if they should be displayed
+				
+						local showTooltipNpcs = true -- If no filters exist, always show the tooltip for relevant NPCs
+						
+						if vv.showTooltipCondition and type(vv.showTooltipCondition) == "table" -- This item has filter conditions to help decide when the tooltipNpcs should be added
+						and vv.showTooltipCondition.filter and type(vv.showTooltipCondition.filter) == "function" and vv.showTooltipCondition.value -- Filter has the correct format and can be applied
+						then -- Check filter conditions to see if tooltipNpcs should be added
+							
+							showTooltipNpcs = false -- Hide the additional tooltip info by default (filters will overwrite this if they can find a match, below)
+							
+							-- Each filter requires separate handling here
+							if vv.showTooltipCondition.filter == IsSpellKnown then -- Filter if a (relevant) spell with the given name is not known	
 
+								for spellID, spellName in pairs(spells) do -- Try to find any match for the given spell (a single one will do)
+
+									if spellName == vv.showTooltipCondition.value then -- The value is a relevant spell -> Check if filter condition is true
+									
+										--	Player hasn't learned the required spell -> Stop trying to find other matches and turn off the filter
+										showTooltipNpcs = IsSpellKnown(spellID)
+										break -- No point in checking the other spells; A single match is enough to decide to not filter them										
+									end
+								end
+							end
+						
+						-- There aren't any other Filter types at the moment... but there could be!
+						end 
+						
+						-- Add entries to the list of relevant NPCs for this item
+						if showTooltipNpcs then
+							for kkk, vvv in pairs(vv.tooltipNpcs) do
+								if npcs_to_items[vvv] == nil then npcs_to_items[vvv] = {} end
+								table.insert(npcs_to_items[vvv], vv)
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+end
 
 function R:GetNPCIDFromGUID(guid)
 	if guid then
@@ -1629,7 +1665,7 @@ function R:OnEvent(event, ...)
   end
 
   -- Handle opening Snow Mound
-  if fishing and opening and lastNode and (lastNode == L["Snow Mound"]) and GetBestMapForUnit("player") == UIMAPID_FROSTFIRE_RIDGE then -- Make sure we're in Frostfire Ridge (there are Snow Mounds in other zones, particularly Ulduar in the Hodir room)
+  if fishing and opening and lastNode and (lastNode == L["Snow Mound"]) and GetBestMapForUnit("player") == UIMAPIDS.FROSTFIRE_RIDGE then -- Make sure we're in Frostfire Ridge (there are Snow Mounds in other zones, particularly Ulduar in the Hodir room)
   	Rarity:Debug("Detected Opening on " .. L["Snow Mound"] .. " (method = SPECIAL)")
    local v = self.db.profile.groups.pets["Grumpling"]
    if v and type(v) == "table" and v.enabled ~= false then
@@ -1728,6 +1764,28 @@ function R:OnEvent(event, ...)
     self:OutputAttempts(v)
    end
   end
+
+  -- Handle skinning on Argus (Fossorial Bile Larva)
+	if (spells[prevSpell] == "Skinning" or spells[prevSpell] == "Mother's Skinning Knife") -- Skinned something
+	and (GetBestMapForUnit("player") == UIMAPIDS.KROKUUN or GetBestMapForUnit("player") == UIMAPIDS.MACAREE or GetBestMapForUnit("player") == UIMAPIDS.ANTORAN_WASTES) then -- Player is on Argus -> Can obtain the pet from skinning creatures
+		Rarity:Debug("Detected skinning on Argus - Can obtain " .. L["Fossorial Bile Larva"] .. " (method = SPECIAL)")
+		local v = self.db.profile.groups.pets["Fossorial Bile Larva"]
+		if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt
+			v.attempts = v.attempts ~= nil and v.attempts + 1 or 1 -- Defaults to 1 if this is the first attempt
+			self:OutputAttempts(v)
+		end
+	end
+  
+    -- Handle herb gathering on Argus (Fel Lasher)
+	if spells[prevSpell] == "Herb Gathering" -- Gathered a herbalism node
+	and (GetBestMapForUnit("player") == UIMAPIDS.KROKUUN or GetBestMapForUnit("player") == UIMAPIDS.MACAREE or GetBestMapForUnit("player") == UIMAPIDS.ANTORAN_WASTES) then -- Player is on Argus -> Can obtain the pet from gathering herbalism nodes
+		Rarity:Debug("Detected herb gathering on Argus - Can obtain " .. L["Fel Lasher"] .. " (method = SPECIAL)")
+		local v = self.db.profile.groups.pets["Fel Lasher"]
+		if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt
+			v.attempts = v.attempts ~= nil and v.attempts + 1 or 1 -- Defaults to 1 if this is the first attempt
+			self:OutputAttempts(v)
+		end
+	end
 
   -- HANDLE NORMAL NPC LOOTING
 		local numItems = GetNumLootItems()
