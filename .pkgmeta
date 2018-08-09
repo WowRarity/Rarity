@@ -1,5 +1,7 @@
 package-as: Rarity
 
+enable-nolib-creation: no
+
 externals:
     Libs/AceAddon-3.0:
         url: https://repos.wowace.com/wow/ace3/trunk/AceAddon-3.0
