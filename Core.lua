@@ -505,6 +505,7 @@ local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
 local GetMapInfo = _G.C_Map.GetMapInfo
 local mount_journal = _G.C_MountJournal
 local C_Timer = C_Timer
+local IsSpellKnown = IsSpellKnown
 
 local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
 local COMBATLOG_OBJECT_AFFILIATION_MINE = _G.COMBATLOG_OBJECT_AFFILIATION_MINE
@@ -1485,18 +1486,47 @@ function R:UpdateInterestingThings()
 						end
 						table.insert(Rarity.collection_items, vv)
 					end
+				
+				if vv.tooltipNpcs and type(vv.tooltipNpcs) == "table" then -- Item has tooltipNpcs -> Check if they should be displayed
+				
+						local showTooltipNpcs = true -- If no filters exist, always show the tooltip for relevant NPCs
+						
+						if vv.showTooltipCondition and type(vv.showTooltipCondition) == "table" -- This item has filter conditions to help decide when the tooltipNpcs should be added
+						and vv.showTooltipCondition.filter and type(vv.showTooltipCondition.filter) == "function" and vv.showTooltipCondition.value -- Filter has the correct format and can be applied
+						then -- Check filter conditions to see if tooltipNpcs should be added
+							
+							showTooltipNpcs = false -- Hide the additional tooltip info by default (filters will overwrite this if they can find a match, below)
+							
+							-- Each filter requires separate handling here
+							if vv.showTooltipCondition.filter == IsSpellKnown then -- Filter if a (relevant) spell with the given name is not known	
+
+								for spellID, spellName in pairs(spells) do -- Try to find any match for the given spell (a single one will do)
+
+									if spellName == vv.showTooltipCondition.value then -- The value is a relevant spell -> Check if filter condition is true
+									
+										--	Player hasn't learned the required spell -> Stop trying to find other matches and turn off the filter
+										showTooltipNpcs = IsSpellKnown(spellID)
+										break -- No point in checking the other spells; A single match is enough to decide to not filter them										
+									end
+								end
+							end
+						
+						-- There aren't any other Filter types at the moment... but there could be!
+						end 
+						
+						-- Add entries to the list of relevant NPCs for this item
+						if showTooltipNpcs then
 							for kkk, vvv in pairs(vv.tooltipNpcs) do
 								if npcs_to_items[vvv] == nil then npcs_to_items[vvv] = {} end
 								table.insert(npcs_to_items[vvv], vv)
 							end
 						end
 					end
-    end
-   end
-  end
- end
+				end
+			end
+		end
+	end
 end
-
 
 function R:GetNPCIDFromGUID(guid)
 	if guid then
