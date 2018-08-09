@@ -1775,6 +1775,17 @@ function R:OnEvent(event, ...)
 			self:OutputAttempts(v)
 		end
 	end
+  
+    -- Handle herb gathering on Argus (Fel Lasher)
+	if spells[prevSpell] == "Herb Gathering" -- Gathered a herbalism node
+	and (GetBestMapForUnit("player") == UIMAPIDS.KROKUUN or GetBestMapForUnit("player") == UIMAPIDS.MACAREE or GetBestMapForUnit("player") == UIMAPIDS.ANTORAN_WASTES) then -- Player is on Argus -> Can obtain the pet from gathering herbalism nodes
+		Rarity:Debug("Detected herb gathering on Argus - Can obtain " .. L["Fel Lasher"] .. " (method = SPECIAL)")
+		local v = self.db.profile.groups.pets["Fel Lasher"]
+		if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt
+			v.attempts = v.attempts ~= nil and v.attempts + 1 or 1 -- Defaults to 1 if this is the first attempt
+			self:OutputAttempts(v)
+		end
+	end
 
   -- HANDLE NORMAL NPC LOOTING
 		local numItems = GetNumLootItems()

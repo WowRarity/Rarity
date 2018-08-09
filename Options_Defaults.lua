@@ -1404,6 +1404,20 @@ function R:PrepareDefaults()
 			}, 
 			showTooltipCondition = { filter = TOOLTIP_FILTERS.IS_SPELL_KNOWN, value = "Skinning" }, -- Display only if player can actually skin them
 		},
+		
+		["Fel Lasher"] = {
+			cat = LEGION,
+			type = PET,
+			method = SPECIAL,
+			name = L["Fel Lasher"],
+			spellId = 254271,
+			itemId = 153045,
+			chance = 4000,
+			creatureId = 128137,
+			obtain = L["Obtained by gathering herbs on Argus"],
+			sourceText = L["Obtained by gathering herbs on Argus"],
+			showTooltipCondition = { filter = TOOLTIP_FILTERS.IS_SPELL_KNOWN, value = "Skinning" }, -- Display only if player can actually skin them
+		},
 
 	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS

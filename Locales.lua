@@ -1120,7 +1120,8 @@ L["Eye of Observation"] = true
 L["Five players are needed to activate the runes on the floor. The boss can be attacked only after all runes have been activated."] = true
 L["Fossorial Bile Larva"] = true
 L["Obtained by skinning creatures on Argus"] = true
-
+L["Fel Lasher"] = true
+L["Obtained by gathering herbs on Argus"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
