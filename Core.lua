@@ -1485,11 +1485,11 @@ function R:UpdateInterestingThings()
 						end
 						table.insert(Rarity.collection_items, vv)
 					end
-					if vv.tooltipNpcs and type(vv.tooltipNpcs) == "table" then
-      for kkk, vvv in pairs(vv.tooltipNpcs) do
-       if npcs_to_items[vvv] == nil then npcs_to_items[vvv] = {} end
-       table.insert(npcs_to_items[vvv], vv)
-      end
+							for kkk, vvv in pairs(vv.tooltipNpcs) do
+								if npcs_to_items[vvv] == nil then npcs_to_items[vvv] = {} end
+								table.insert(npcs_to_items[vvv], vv)
+							end
+						end
 					end
     end
    end
