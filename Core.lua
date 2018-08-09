@@ -1774,7 +1774,7 @@ function R:OnEvent(event, ...)
 			v.attempts = v.attempts ~= nil and v.attempts + 1 or 1 -- Defaults to 1 if this is the first attempt
 			self:OutputAttempts(v)
 		end
-  end
+	end
 
   -- HANDLE NORMAL NPC LOOTING
 		local numItems = GetNumLootItems()
