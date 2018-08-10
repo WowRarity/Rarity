@@ -220,6 +220,7 @@ function R:PrepareDefaults()
 				11263, -- Adventurer of Stormheim
 				11265, -- Adventurer of Suramar
 				11262, -- Adventurer of Val'sharah
+				12078, -- Adventurer of Argus > Commander of Argus
 			},
 
 			-- These are inventory items that may result in another item that Rarity would like to make you aware of
