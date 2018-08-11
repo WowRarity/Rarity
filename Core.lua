@@ -1506,7 +1506,7 @@ function R:UpdateInterestingThings()
 									
 										--	Player hasn't learned the required spell -> Stop trying to find other matches and turn off the filter
 										showTooltipNpcs = IsSpellKnown(spellID)
-										break -- No point in checking the other spells; A single match is enough to decide to not filter them										
+										if showTooltipNpcs then break end -- No point in checking the other spells; A single match is enough to decide to not filter them										
 									end
 								end
 							end
