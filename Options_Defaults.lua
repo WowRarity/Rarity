@@ -221,6 +221,15 @@ function R:PrepareDefaults()
 				11265, -- Adventurer of Suramar
 				11262, -- Adventurer of Val'sharah
 				12078, -- Adventurer of Argus > Commander of Argus
+				
+				-- Battle for Azeroth
+				12939, -- Adventurer of Tiragarde Sound
+				12940, -- Adventurer of Stormsong Valley
+				12941, -- Adventurer of Drustvar
+				12942, -- Adventurer of Nazmir
+				12943, -- Adventurer of Vol'dun
+				12944, -- Adventurer of Zuldazar
+				
 			},
 
 			-- These are inventory items that may result in another item that Rarity would like to make you aware of
