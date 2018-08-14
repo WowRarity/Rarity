@@ -2447,6 +2447,7 @@ end
 -- While it might work to change their method from NPC to BOSS, at this time I'm not sure if that wouldn't cause problems elsewhere... so I won't touch it
 -------------------------------------------------------------------------------------
 local encounterLUT = {
+	[1140] = "Stormforged Rune", -- The Assembly of Iron
 	[1133] = "Blessed Seed", -- Freya
 	[1135] = "Ominous Pile of Snow", -- Hodir
 	[1138] = "Overcomplicated Controller", -- Mimiron
@@ -2454,11 +2455,13 @@ local encounterLUT = {
 }
 
 function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidSize, endStatus)
-
+	
+	R:Debug("ENCOUNTER_END with encounterID = " .. tonumber(encounterID or "0") .. ", name = " .. tostring(encounterName) .. ", endStatus = " .. tostring(endStatus))
+	
 	local item = encounterLUT[encounterID]
 	if item and type(item) == "string" then -- This encounter has an entry in the LUT and needs special handling
 	
-		R:Debug("Detected raid encounter with id = " .. tonumber(encounterID or "0") .. ", name = " .. encounterName .. ", endStatus = " .. endStatus)
+		R:Debug("Found item of interest for this encounter: " .. tostring(item))
 		local v = self.db.profile.groups.pets[item] -- v = value = number of attempts for this item
 		
 		if endStatus == 1 then -- Encounter succeeded -> Check if number of attempts should be increased
