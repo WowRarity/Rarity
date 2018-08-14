@@ -2447,6 +2447,7 @@ end
 -- While it might work to change their method from NPC to BOSS, at this time I'm not sure if that wouldn't cause problems elsewhere... so I won't touch it
 -------------------------------------------------------------------------------------
 local encounterLUT = {
+	[1140] = "Stormforged Rune", -- The Assembly of Iron
 	[1133] = "Blessed Seed", -- Freya
 	[1135] = "Ominous Pile of Snow", -- Hodir
 	[1138] = "Overcomplicated Controller", -- Mimiron
