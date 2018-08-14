@@ -1732,6 +1732,7 @@ function R:OnEvent(event, ...)
           for kkk, vvv in pairs(vv.zones) do
            if vvv == tostring(GetBestMapForUnit("player")) or vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv == lbsz[subzone] or vvv == zone_t or vvv == subzone_t or vvv == lbz[zone_t] or vvv == subzone or vvv == lbsz[subzone_t] then
             if (vv.requiresPool and isPool) or not vv.requiresPool then
+			Rarity:Debug("Found interesting item for this zone: " .. tostring(vv.name))
              found = true
             end
            end
