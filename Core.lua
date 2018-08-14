@@ -2460,7 +2460,7 @@ function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidS
 	local item = encounterLUT[encounterID]
 	if item and type(item) == "string" then -- This encounter has an entry in the LUT and needs special handling
 	
-		R:Debug("Detected raid encounter with id = " .. tonumber(encounterID or "0") .. ", name = " .. encounterName .. ", endStatus = " .. endStatus)
+		R:Debug("Found item of interest for this encounter: " .. tostring(item))
 		local v = self.db.profile.groups.pets[item] -- v = value = number of attempts for this item
 		
 		if endStatus == 1 then -- Encounter succeeded -> Check if number of attempts should be increased
