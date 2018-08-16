@@ -2,7 +2,9 @@ package-as: Rarity
 
 enable-nolib-creation: no
 
-manual-changelog: CHANGES.MD
+manual-changelog:
+    filename: CHANGES.MD
+    markup-type: markdown
 
 externals:
     Libs/AceAddon-3.0:
