@@ -210,6 +210,8 @@ R.coins = {
 	[1129] = true, -- Seal of Inevitable Fate
 	-- Legion
 	[1273] = true, -- Seal of Broken Fate
+	-- Battle for Azeroth
+	[1580] = true, -- Seal of Wartorn Fate
 }
 
 R.fishnodes = {
