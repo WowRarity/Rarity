@@ -576,459 +576,459 @@ function R:PrepareDefaults()
    groups = {
 
     mounts = {
-     name = L["Mounts"],
+		name = L["Mounts"],
 
 					--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
      -- MOUNTS: Soloable (some of these may be challenging to solo for certain classes, but in general they should be soloable)
 					--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-					-- Holiday                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-     ["Minion of Grumpus"] =                             { cat = HOLIDAY, type = MOUNT, method = USE, name = L["Minion of Grumpus"], spellId = 191314, itemId = 128671, items = { 128670 }, chance = 100, holidayTexture = CALENDAR_WINTERVEIL, },
+						-- Holiday                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+		["Minion of Grumpus"] =                             { cat = HOLIDAY, type = MOUNT, method = USE, name = L["Minion of Grumpus"], spellId = 191314, itemId = 128671, items = { 128670 }, chance = 100, holidayTexture = CALENDAR_WINTERVEIL, },
 
-					-- 1.x                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-     ["Deathcharger's Reins"] =                          { cat = BASE, type = MOUNT, method = NPC, name = L["Deathcharger's Reins"], spellId = 17481, itemId = 13335, npcs = { 99999 }, tooltipNpcs = { 45412 }, chance = 100, statisticId = { 1097 }, bonusSatchel = true, blackMarket = true, coords = { {m=317, x=38.6,y=20,i=true} }, },
-     ["Red Qiraji Resonating Crystal"] =                 { cat = BASE, type = MOUNT, method = NPC, name = L["Red Qiraji Resonating Crystal"], spellId = 26054, itemId = 21321, npcs = { 15311, 15250, 15247, 15246, 15264, 15262, 15277, 15312, 15252, 15249 }, chance = 100, coords = {{m=319,i=true}}, },
-					-- 2.x                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-     ["Ashes of Al'ar"] =                                { cat = TBC, type = MOUNT, method = BOSS, name = L["Ashes of Al'ar"], spellId = 40192, itemId = 32458, npcs = { 99999 }, tooltipNpcs = { 19622 }, chance = 100, statisticId = { 1088 }, blackMarket = true, coords = { {m=334,x=50.6,y=15.2,i=true} }, },
-     ["Fiery Warhorse's Reins"] =                        { cat = TBC, type = MOUNT, method = NPC, name = L["Fiery Warhorse's Reins"], spellId = 36702, itemId = 30480, npcs = { 16152 }, chance = 100, blackMarket = true, lockBossName = "Attumen the Huntsman", coords = { {m=350, x=46.6,y=82.6,i=true} }, },
-     ["Reins of the Raven Lord"] =                       { cat = TBC, type = MOUNT, method = NPC, name = L["Reins of the Raven Lord"], spellId = 41252, itemId = 32768, npcs = { 23035 }, chance = 67, instanceDifficulties = { --[[ Heroic 5-man ]] [2] = true, --[[ Timewalker ]] [24] = true, }, bonusSatchel = true, blackMarket = true, lockBossName = "Anzu", coords = { {m=258, x=32.6,y=54.5,i=true} }, },
-     ["Swift White Hawkstrider"] =                       { cat = TBC, type = MOUNT, method = NPC, name = L["Swift White Hawkstrider"], spellId = 46628, itemId = 35513, npcs = { 24664 }, chance = 33, instanceDifficulties = { --[[ Heroic 5-man ]] [2] = true, --[[ Timewalker ]] [24] = true, }, sourceText = L["Heroic difficulty"], bonusSatchel = true, blackMarket = true, coords = { {m=348, x=8.6,y=50.2,i=true} }, },
-					-- 3.x                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-     ["Invincible's Reins"] =                            { cat = WOTLK, type = MOUNT, method = BOSS, name = L["Invincible's Reins"], spellId = 72286, itemId = 50818, npcs = { 99999 }, tooltipNpcs = { 36597 }, chance = 100, instanceDifficulties = { --[[ Heroic 25-man (legacy) ]] [6] = true, }, statisticId = { 4688 }, sourceText = L["25-player heroic"], blackMarket = true, wasGuaranteed = true, lockBossName = "The Lich King", coords = { {m=191, x=49.8,y=52.8,i=true} }, },
-     ["Mimiron's Head"] =                                { cat = WOTLK, type = MOUNT, method = BOSS, name = L["Mimiron's Head"], spellId = 63796, itemId = 45693, npcs = { 33288 }, statisticId = {2869, 2883}, chance = 100, instanceDifficulties = { --[[ Normal (Raids) ]] [14] = true, }, sourceText = L["Dropped by Yogg-Saron in Ulduar with no Keepers assisting"], wasGuaranteed = true, blackMarket = true, lockBossName = "Yogg-Saron", coords = { {m=150, x=68,y=40.8,i=true} }, },
-     ["Reins of the Azure Drake"] =                      { cat = WOTLK, type = MOUNT, method = BOSS, name = L["Reins of the Azure Drake"], spellId = 59567, itemId = 43952, npcs = { 99999 }, tooltipNpcs = { 28859 }, chance = 100, statisticId = { 1391, 1394 }, sourceText = L["Dropped by Malygos in The Eye of Eternity (any raid size)"], blackMarket = true, lockBossName = "Malygos", coords = { {m=141, x=39,y=51.8,i=true} }, },
-     ["Reins of the Blue Drake"] =                       { cat = WOTLK, type = MOUNT, method = BOSS, name = L["Reins of the Blue Drake"], spellId = 59568, itemId = 43953, npcs = { 99999 }, tooltipNpcs = { 28859 }, chance = 100, statisticId = { 1391, 1394 }, sourceText = L["Dropped by Malygos in The Eye of Eternity (any raid size)"], bonusSatchel = true, blackMarket = true, lockBossName = "Malygos", coords = { {m=141, x=39,y=51.8,i=true} }, },
-     ["Reins of the Blue Proto-Drake"] =                 { cat = WOTLK, type = MOUNT, method = NPC, name = L["Reins of the Blue Proto-Drake"], spellId = 59996, itemId = 44151, npcs = { 26693 }, chance = 77, instanceDifficulties = { --[[ Heroic 5-man ]] [2] = true, --[[ Timewalker ]] [24] = true, }, sourceText = L["Heroic difficulty"], bonusSatchel = true, blackMarket = true, lockBossName = "Skadi the Ruthless", coords = { {m=136, x=68.4,y=36.2,i=true} }, },
-     ["Reins of the Grand Black War Mammoth Alliance"] = { cat = WOTLK, type = MOUNT, method = BOSS, name = L["Reins of the Grand Black War Mammoth"], spellId = 61465, itemId = 43959, npcs = { 99999 }, tooltipNpcs = { 35013, 33993, 31125, 38433 }, chance = 100, requiresAlliance = true, statisticId = { 1753, 1754, 2870, 3236, 4074, 4075, 4657, 4658 }, sourceText = L["Dropped by Koralon the Flame Watcher, Emalon the Storm Watcher, Archavon the Stone Watcher, and Toravon the Ice Watcher in Vault of Archavon (any raid size)."], lockBossName = "Archavon the Stone Watcher", coords = { {m=156, x=36,y=55.4,i=true},{m=156, x=62.6,y=55.4,i=true},{m=156, x=49.2,y=17,i=true},{m=156, x=62.6,y=36.8,i=true}, }, },
-     ["Reins of the Grand Black War Mammoth Horde"] =    { cat = WOTLK, type = MOUNT, method = BOSS, name = L["Reins of the Grand Black War Mammoth"], spellId = 61467, itemId = 44083, npcs = { 99999 }, tooltipNpcs = { 35013, 33993, 31125, 38433 }, chance = 100, requiresHorde = true, statisticId = { 1753, 1754, 2870, 3236, 4074, 4075, 4657, 4658 }, sourceText = L["Dropped by Koralon the Flame Watcher, Emalon the Storm Watcher, Archavon the Stone Watcher, and Toravon the Ice Watcher in Vault of Archavon (any raid size)."], lockBossName = "Archavon the Stone Watcher", coords = { {m=156, x=36,y=55.4,i=true},{m=156, x=62.6,y=55.4,i=true},{m=156, x=49.2,y=17,i=true},{m=156, x=62.6,y=36.8,i=true}, }, },
-     ["Reins of the Green Proto-Drake"] =                { cat = WOTLK, type = MOUNT, method = USE, name = L["Reins of the Green Proto-Drake"], spellId = 61294, itemId = 44707, items = { 39883 }, chance = 20, sourceText = L["Contained in Cracked Egg, which is obtained by becoming Revered with The Oracles, purchasing a Mysterious Egg from their reputation vendor, and waiting three days. The mount has a 5% chance to appear in the Cracked Egg."], bonusSatchel = true, blackMarket = true, coords = { {m=119,x=54.6,y=56.2} }, },
-     ["Reins of the Onyxian Drake"] =                    { cat = WOTLK, type = MOUNT, method = BOSS, name = L["Reins of the Onyxian Drake"], spellId = 69395, itemId = 49636, npcs = { 99999 }, tooltipNpcs = { 10184 }, chance = 100, statisticId = { 1098 }, sourceText = L["Any raid size"], blackMarket = true, lockBossName = "Onyxia", coords = { {m=248, x=68,y=31.4,i=true} }, },
-     ["Reins of the White Polar Bear"] =                 { cat = WOTLK, type = MOUNT, method = USE, name = L["Reins of the White Polar Bear"], spellId = 54753, itemId = 43962, items = { 44751, 69903 }, chance = 33, sourceText = L["Contained in Hyldnir Spoils, which is rewarded for completing daily quests given by Gretta the Arbiter in Brunnhildar Village, Storm Peaks. The mount has a 3% chance to appear in Hyldnir Spoils."], bonusSatchel = true, blackMarket = true, coords = { {m=120,x=50.8,y=65.6} }, },
-     ["Sea Turtle"] =                                    { cat = WOTLK, type = MOUNT, method = FISHING, name = L["Sea Turtle"], spellId = 64731, itemId = 46109, zones = { "116", "127", "115", "117", "114", "119", "245", "241", "249", "207", "198", "418", "371", "376", "379", "390", "422", "388", "407", "554", "507", "504", "433" }, chance = 10000, requiresPool = true, sourceText = L["Obtained very rarely by fishing in pools located in any expansion zone (not Classic zones)"], coords = { {m=116},{m=127},{m=115},{m=117},{m=114},{m=119},{m=245},{m=241},{m=249},{m=207},{m=198},{m=418},{m=371},{m=376},{m=379},{m=390},{m=422},{m=388},{m=407},{m=554},{m=507},{m=504},{m=433}, }, },
-					-- 4.x                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-     ["Armored Razzashi Raptor"] =                       { cat = CATA, type = MOUNT, method = BOSS, name = L["Armored Razzashi Raptor"], spellId = 96491, itemId = 68823, npcs = { 52151 }, chance = 100, sourceText = L["Heroic difficulty"], lockBossName = "Bloodlord Mandokir", coords = { {m=337,x=60.4,y=79.9,i=true} }, },
-     ["Experiment 12-B"] =                               { cat = CATA, type = MOUNT, method = BOSS, name = L["Experiment 12-B"], spellId = 110039, itemId = 78919, npcs = { 99999 }, tooltipNpcs = { 55294 }, chance = 100, statisticId = { 6161, 6162 }, sourceText = L["Dropped by Ultraxion in Dragon Soul (any raid size or difficulty)"], lockBossName = "Ultraxion", coords = { {m=409,x=49.6,y=57.6,i=true} }, },
-     ["Flametalon of Alysrazor"] =                       { cat = CATA, type = MOUNT, method = BOSS, name = L["Flametalon of Alysrazor"], spellId = 101542, itemId = 71665, npcs = { 99999 }, tooltipNpcs = { 52530 }, chance = 100, statisticId = { 5970, 5971 }, sourceText = L["Any raid size or difficulty"], blackMarket = true, lockBossName = "Alysrazor", coords = { {m=367, x=64.3,y=38,i=true} }, },
-     ["Fossilized Raptor"] =                             { cat = CATA, type = MOUNT, method = ARCH, name = L["Fossilized Raptor"], spellId = 84751, itemId = 60954, raceId = 18, chance = 30, sourceText = L["Obtained as a rare project for the Fossil branch of archaeology"], coords = { {m=1},{m=7},{m=10},{m=12},{m=13},{m=14},{m=15},{m=17},{m=18},{m=21},{m=22},{m=23},{m=25},{m=26},{m=27},{m=32},{m=36},{m=37},{m=42},{m=47},{m=48},{m=49},{m=50},{m=51},{m=52},{m=56},{m=57},{m=62},{m=63},{m=64},{m=65},{m=66},{m=69},{m=70},{m=71},{m=76},{m=77},{m=78},{m=80},{m=81},{m=83},{m=84},{m=85},{m=87},{m=88},{m=89},{m=998},{m=94},{m=95},{m=97},{m=103},{m=106},{m=110},{m=122},{m=124},{m=179},{m=198},{m=199},{m=201},{m=202},{m=203},{m=204},{m=205},{m=210},{m=217},{m=218},{m=224},{m=241},{m=244},{m=245},{m=249},{m=327},{m=338},{m=425},{m=427},{m=460},{m=461},{m=462},{m=463},{m=465},{m=467},{m=468},{m=469}, }, },
-     ["Life-Binder's Handmaiden"] =                      { cat = CATA, type = MOUNT, method = BOSS, name = L["Life-Binder's Handmaiden"], spellId = 107845, itemId = 77069, npcs = { 99999 }, chance = 100, statisticId = { 6168 }, sourceText = L["Dropped by the Madness of Deathwing encounter in Dragon Soul (heroic, any raid size)"], wasGuaranteed = true, blackMarket = true, lockBossName = "Madness of Deathwing", coords = { {m=409,i=true} }, },
-     ["Reins of the Blazing Drake"] =                    { cat = CATA, type = MOUNT, method = BOSS, name = L["Reins of the Blazing Drake"], spellId = 107842, itemId = 77067, npcs = { 99999 }, chance = 100, statisticId = { 6167, 6168 }, sourceText = L["Dropped by the Madness of Deathwing encounter in Dragon Soul (any raid size or difficulty)"], blackMarket = true, lockBossName = "Madness of Deathwing", coords = { {m=409,i=true} }, },
-     ["Reins of the Drake of the North Wind"] =          { cat = CATA, type = MOUNT, method = NPC, name = L["Reins of the Drake of the North Wind"], spellId = 88742, itemId = 63040, npcs = { 43873 }, chance = 100, sourceText = L["Any difficulty"], blackMarket = true, coords = { {m=325,x=51.9,y=82.1,i=true} }, },
-     ["Reins of the Drake of the South Wind"] =          { cat = CATA, type = MOUNT, method = BOSS, name = L["Reins of the Drake of the South Wind"], spellId = 88744, itemId = 63041, npcs = { 99999 }, tooltipNpcs = { 46753 }, chance = 100, statisticId = { 5576, 5577 }, sourceText = L["Any raid size or difficulty"], blackMarket = true, lockBossName = "Al'Akir", coords = { {m=328,x=47.5,y=50.1,i=true} }, },
-     ["Reins of the Grey Riding Camel"] =                { cat = CATA, type = MOUNT, method = SPECIAL, name = L["Reins of the Grey Riding Camel"], spellId = 88750, itemId = 63046, chance = 20, sourceText = L["Guaranteed drop from Dormus the Camel-Hoarder. Accessing this encounter requires finding a rare Mysterious Camel Figurine in Uldum. These are difficult to spot and, when clicked, have a small chance to grant you access to the Dormus encounter. Rarity will count how many Figurines you've found if you mouseover them."], coords = { {m=249} }, },
-     ["Reins of the Vitreous Stone Drake"] =             { cat = CATA, type = MOUNT, method = NPC, name = L["Reins of the Vitreous Stone Drake"], spellId = 88746, itemId = 63043, npcs = { 43214 }, chance = 100, sourceText = L["Any difficulty"], blackMarket = true, coords = { {m=324,x=37,y=44.7,i=true} }, },
-     ["Scepter of Azj'Aqir"] =                           { cat = CATA, type = MOUNT, method = ARCH, name = L["Scepter of Azj'Aqir"], spellId = 92155, itemId = 64883, raceId = 14, chance = 500, sourceText = L["Obtained as a very rare project for the Tol'vir branch of archaeology"], coords = { {m=249} }, },
-     ["Smoldering Egg of Millagazor"] =                  { cat = CATA, type = MOUNT, method = BOSS, name = L["Smoldering Egg of Millagazor"], spellId = 97493, itemId = 69224, npcs = { 99999 }, tooltipNpcs = { 52409 }, instanceDifficulties = { --[[ 10/25 Normal/Heroic ]] [3] = true, [4] = true, [5] = true, [6] = true, }, chance = 100, statisticId = { 5976, 5977 }, wasGuaranteed = true, blackMarket = true, coords = { {m=367, x=50.7,y=15.3,i=true} }, },
-     ["Swift Zulian Panther"] =                          { cat = CATA, type = MOUNT, method = BOSS, name = L["Swift Zulian Panther"], spellId = 96499, itemId = 68824, npcs = { 52059 }, chance = 100, sourceText = L["Heroic difficulty"], lockBossName = "High Priestess Kilnara", coords = { {m=337,x=48,y=20,i=true} }, },
-					-- 5.x                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-     ["Clutch of Ji-Kun"] =                              { cat = MOP, type = MOUNT, method = BOSS, name = L["Clutch of Ji-Kun"], spellId = 139448, itemId = 95059, npcs = { 99999 }, tooltipNpcs = { 69712 }, instanceDifficulties = { --[[ 10/25 Normal/Heroic ]] [3] = true, [4] = true, [5] = true, [6] = true, }, chance = 50, statisticId = { 8171, 8169, 8172, 8170 }, sourceText = L["All raid formats except Raid Finder"], lockBossName = "Ji-Kun", coords = { {m=510, x=49.7,y=41.6,i=true} }, },
-     ["Kor'kron Juggernaut"] =                           { cat = MOP, type = MOUNT, method = BOSS, name = L["Kor'kron Juggernaut"], spellId = 148417, itemId = 104253, npcs = { 99999 }, tooltipNpcs = { 71865 }, instanceDifficulties = { --[[ Mythic ]] [16] = true, }, chance = 100, statisticId = { 8638, 8637, }, sourceText = L["Mythic difficulty"], wasGuaranteed = true, lockBossName = "Garrosh Hellscream", coords = { {m=5671,x=49.4,y=71.3,i=true} }, },
-	 ["Reins of the Amber Primordial Direhorn"] =        { cat = MOP, type = MOUNT, method = NPC, name = L["Reins of the Amber Primordial Direhorn"], spellId = 138424, itemId = 94230, npcs = { 69841 }, chance = 20, sourceText = L["The Warbringer will be riding the mount color he has a chance to drop."], coords = { {m=418,x=39.08,y=67.13},{m=422,x=47.47,y=61.32},{m=388,x=36.53,y=85.67},{m=379,x=75.09,y=67.65},{m=371,x=52.73,y=18.99}, }, },
-     ["Reins of the Astral Cloud Serpent"] =             { cat = MOP, type = MOUNT, method = BOSS, name = L["Reins of the Astral Cloud Serpent"], spellId = 127170, itemId = 87777, npcs = { 99999 }, tooltipNpcs = { 60410 }, instanceDifficulties = { --[[ 10/25 Normal/Heroic ]] [3] = true, [4] = true, [5] = true, [6] = true, }, chance = 100, statisticId = { 6797, 6798, 7924, 7923, }, sourceText = L["Dropped by Elegon in Mogu'shan Vaults (all raid formats except Raid Finder)"], blackMarket = true, lockBossName = "Elegon", coords = { {m=471,x=21.7,y=51.1,i=true} }, },
-     ["Reins of the Bone-White Primal Raptor"] =         { cat = MOP, type = MOUNT, method = COLLECTION, name = L["Reins of the Bone-White Primal Raptor"], spellId = 138640, itemId = 94290, collectedItemId = 94288, chance = 9999, obtain = L["Dropped from dinosaurs on Isle of Giants"], tooltipNpcs = { 69992, 70013, 70012, 70015, 70014, 70006, 69925, 69993, 70004, 70005, 70007, 70020, 70016, 69983, 70017, 70019, 70018, 70011, 70009, 69991, 70021, 70010, 70008, }, sourceText = L["Earned by giving 9999 Giant Dinosaur Bones to Ku'ma on Isle of Giants. Giant Dinosaur bones drop from all dinosaurs and Zandalari Dinomancers on Isle of Giants."], coords = { {m=507} }, },
-     ["Reins of the Cobalt Primordial Direhorn"] =       { cat = MOP, type = MOUNT, method = BOSS, name = L["Reins of the Cobalt Primordial Direhorn"], spellId = 138423, itemId = 94228, npcs = { 99999 }, tooltipNpcs = { 69161 }, questId = 32519, chance = 2000, equalOdds = true, statisticId = { 8147 }, enableCoin = true, worldBossFactionless = true, coords = { {m=507,x=50.6,y=54.4} }, },
-     ["Reins of the Heavenly Onyx Cloud Serpent"] =      { cat = MOP, type = MOUNT, method = BOSS, name = L["Reins of the Heavenly Onyx Cloud Serpent"], spellId = 127158, itemId = 87771, npcs = { 99999 }, tooltipNpcs = { 60491 }, questId = 32099, chance = 2000, equalOdds = true, statisticId = { 6989 }, enableCoin = true, worldBossFactionless = true, blackMarket = true, coords = { {m=379} }, },
-     ["Reins of the Jade Primordial Direhorn"] =         { cat = MOP, type = MOUNT, method = NPC, name = L["Reins of the Jade Primordial Direhorn"], spellId = 138426, itemId = 94231, npcs = { 69842 }, chance = 20, sourceText = L["The Warbringer will be riding the mount color he has a chance to drop."], coords = { {m=418,x=39.08,y=67.13},{m=422,x=47.47,y=61.32},{m=388,x=36.53,y=85.67},{m=379,x=75.09,y=67.65},{m=371,x=52.73,y=18.99}, }, },
-     ["Reins of the Slate Primordial Direhorn"] =        { cat = MOP, type = MOUNT, method = NPC, name = L["Reins of the Slate Primordial Direhorn"], spellId = 138425, itemId = 94229, npcs = { 69769 }, chance = 20, sourceText = L["The Warbringer will be riding the mount color he has a chance to drop."], coords = { {m=418,x=39.08,y=67.13},{m=422,x=47.47,y=61.32},{m=388,x=36.53,y=85.67},{m=379,x=75.09,y=67.65},{m=371,x=52.73,y=18.99}, }, },
-     ["Reins of the Thundering Cobalt Cloud Serpent"] =  { cat = MOP, type = MOUNT, method = BOSS, name = L["Reins of the Thundering Cobalt Cloud Serpent"], spellId = 139442, itemId = 95057, npcs = { 99999 }, tooltipNpcs = { 69099 }, questId = 32518, chance = 2000, equalOdds = true, statisticId = { 8146 }, enableCoin = true, worldBossFactionless = true, blackMarket = true, coords = { {m=504,x=60.5,y=37.3} }, },
-     ["Reins of the Thundering Onyx Cloud Serpent"] =    { cat = MOP, type = MOUNT, method = NPC, name = L["Reins of the Thundering Onyx Cloud Serpent"], spellId = 148476, itemId = 104269, npcs = { 73167 }, chance = 100, sourceText = L["Players have a personal loot chance to obtain this item."], coords = { {m=554,x=67.8,y=59} }, },
-	 ["Son of Galleon's Saddle"] =                       { cat = MOP, type = MOUNT, method = BOSS, name = L["Son of Galleon's Saddle"], spellId = 130965, itemId = 89783, npcs = { 99999 }, tooltipNpcs = { 62346 }, questId = 32098, chance = 2000, equalOdds = true, statisticId = { 6990 }, enableCoin = true, worldBossFactionless = true, coords = { {m=376,x=71.6,y=64.4} }, },
-     ["Spawn of Horridon"] =                             { cat = MOP, type = MOUNT, method = BOSS, name = L["Spawn of Horridon"], spellId = 136471, itemId = 93666, npcs = { 99999 }, tooltipNpcs = { 68476 }, instanceDifficulties = { --[[ 10/25 Normal/Heroic ]] [3] = true, [4] = true, [5] = true, [6] = true, }, chance = 66, statisticId = { 8151, 8149, 8152, 8150 }, sourceText = L["All raid formats except Raid Finder"], lockBossName = "Horridon", coords = { {m=508, x=26.8,y=78.7,i=true} }, },
-					-- 6.x                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-     ["Armored Razorback"] =                             { cat = WOD, type = MOUNT, method = NPC, name = L["Armored Razorback"], spellId = 171630, itemId = 116669, npcs = { 95044, 95054, 95053, 95056, }, chance = 30, sourceText = L["Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount \"defeated\" for the day when you kill any of the four."], questId = { 39287, 39288, 39289, 39290, }, defeatAllQuests = true, coords = { {m=534,x=32.6,y=73.8,q=39290,n=L["Vengeance"]}, {m=534,x=47,y=52.6,q=39289,n=L["Doomroller"]}, {m=534,x=23.2,y=40.4,q=39287,n=L["Deathtalon"]}, {m=534,x=14.6,y=63,q=39288,n=L["Terrorfist"]}, }, defeatSteps = { [39290] = L["Vengeance"], [39287] = L["Deathtalon"], [39288] = L["Terrorfist"], [39289] = L["Doomroller"], }, },
-     ["Bristling Hellboar"] =                            { cat = WOD, type = MOUNT, method = COLLECTION, name = L["Bristling Hellboar"], spellId = 190690, itemId = 128481, collectedItemId = 124099, chance = 5000, obtain = L["Dropped from monsters in Fang'rila"], tooltipNpcs = { 92922, 92466, 89747, 89695, 89746, 92481, }, sourceText = L["Purchased from Z'tenga the Walker <Saberstalker Quartermaster> in Fang'rila in Tanaan Jungle. Blackfang Claws drop from all monsters in Fang'rila."], coords = { {m=534,x=55.2,y=74.8} }, },
-     ["Garn Steelmaw"] =                                 { cat = WOD, type = MOUNT, method = USE, name = L["Garn Steelmaw"], spellId = 171836, itemId = 116779, items = { 116980, 122163 }, chance = 50, sourceText = L["This bag is rewarded for earning a Gold or Platinum victory in a garrison invasion."], questId = { 37640, 38482 }, defeatAllQuests = true, coords = { zoneOverride = L["Draenor Garrison"], {m=579},{m=585}, }, defeatSteps = { [37640] = L["Garrison Invasion Gold Victory"], [38482] = L["Garrison Invasion Platinum Victory"], }, },
-     ["Giant Coldsnout"] =                               { cat = WOD, type = MOUNT, method = USE, name = L["Giant Coldsnout"], spellId = 171635, itemId = 116673, items = { 116980, 122163 }, chance = 50, sourceText = L["This bag is rewarded for earning a Gold or Platinum victory in a garrison invasion."], questId = { 37640, 38482 }, defeatAllQuests = true, coords = { zoneOverride = L["Draenor Garrison"], {m=579},{m=585}, }, defeatSteps = { [37640] = L["Garrison Invasion Gold Victory"], [38482] = L["Garrison Invasion Platinum Victory"], }, },
-     ["Reins of the Crimson Water Strider"] =            { cat = WOD, type = MOUNT, method = COLLECTION, name = L["Reins of the Crimson Water Strider"], spellId = 127271, itemId = 87791, collectedItemId = { 117397, 127994, 116820, 116818, 116819, 116821, 122696, 116817, 116822, }, chance = 100, obtain = L["Fished anywhere in Draenor (except your garrison) with the help of Nat Pagle"], sourceText = L["Lunkers can be fished anywhere in Draenor (except in your garrison) after you've obtained a level 3 Fishing Shack and acquired Nat Pagle as a follower."], coords = { {m=572},{m=588},{m=525},{m=543},{m=550},{m=539},{m=542},{m=622},{m=535},{m=534},{m=624}, }, },
-     ["Riding Turtle"] =                                 { cat = WOD, type = MOUNT, method = NPC, name = L["Riding Turtle"], spellId = 30174, itemId = 23720, npcs = { 8885, 85715, }, chance = 200, sourceText = L["After upgrading your garrison's Fishing Shack to level 3, fish up 5 minnows to summon a Cavedweller which can drop this mount."], coords = { zoneOverride = L["Draenor Garrison"], {m=579},{m=585}, }, },
-     ["Shadowhide Pearltusk"] =                          { cat = WOD, type = MOUNT, method = USE, name = L["Shadowhide Pearltusk"], spellId = 171624, itemId = 116663, items = { 116980, 122163 }, chance = 50, sourceText = L["This bag is rewarded for earning a Gold or Platinum victory in a garrison invasion."], questId = { 37640, 38482 }, defeatAllQuests = true, coords = { zoneOverride = L["Draenor Garrison"], {m=579},{m=585}, }, defeatSteps = { [37640] = L["Garrison Invasion Gold Victory"], [38482] = L["Garrison Invasion Platinum Victory"], }, },
-     ["Smoky Direwolf"] =                                { cat = WOD, type = MOUNT, method = USE, name = L["Smoky Direwolf"], spellId = 171843, itemId = 116786, items = { 116980, 122163 }, chance = 50, sourceText = L["This bag is rewarded for earning a Gold or Platinum victory in a garrison invasion."], questId = { 37640, 38482 }, defeatAllQuests = true, coords = { zoneOverride = L["Draenor Garrison"], {m=579},{m=585}, }, defeatSteps = { [37640] = L["Garrison Invasion Gold Victory"], [38482] = L["Garrison Invasion Platinum Victory"], }, },
-     ["Tundra Icehoof"] =                                { cat = WOD, type = MOUNT, method = NPC, name = L["Tundra Icehoof"], spellId = 171619, itemId = 116658, npcs = { 95044, 95054, 95053, 95056, }, chance = 30, sourceText = L["Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount \"defeated\" for the day when you kill any of the four."], questId = { 39287, 39288, 39289, 39290, }, defeatAllQuests = true, coords = { {m=534,x=32.6,y=73.8,q=39290,n=L["Vengeance"]}, {m=534,x=47,y=52.6,q=39289,n=L["Doomroller"]}, {m=534,x=23.2,y=40.4,q=39287,n=L["Deathtalon"]}, {m=534,x=14.6,y=63,q=39288,n=L["Terrorfist"]}, }, defeatSteps = { [39290] = L["Vengeance"], [39287] = L["Deathtalon"], [39288] = L["Terrorfist"], [39289] = L["Doomroller"], }, },
-     ["Warsong Direfang"] =                              { cat = WOD, type = MOUNT, method = NPC, name = L["Warsong Direfang"], spellId = 171837, itemId = 116780, npcs = { 95044, 95054, 95053, 95056, }, chance = 30, sourceText = L["Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount \"defeated\" for the day when you kill any of the four."], questId = { 39287, 39288, 39289, 39290, }, defeatAllQuests = true, coords = { {m=534,x=32.6,y=73.8,q=39290,n=L["Vengeance"]}, {m=534,x=47,y=52.6,q=39289,n=L["Doomroller"]}, {m=534,x=23.2,y=40.4,q=39287,n=L["Deathtalon"]}, {m=534,x=14.6,y=63,q=39288,n=L["Terrorfist"]}, }, defeatSteps = { [39290] = L["Vengeance"], [39287] = L["Deathtalon"], [39288] = L["Terrorfist"], [39289] = L["Doomroller"], }, },
-     ["Wild Goretusk"] =                                 { cat = WOD, type = MOUNT, method = COLLECTION, name = L["Wild Goretusk"], spellId = 171633, itemId = 116671, collectedItemId = 124099, chance = 1000, obtain = L["Dropped from monsters in Fang'rila"], tooltipNpcs = { 92922, 92466, 89747, 89695, 89746, 92481, }, sourceText = L["Purchased from Z'tenga the Walker <Saberstalker Quartermaster> in Fang'rila in Tanaan Jungle. Blackfang Claws drop from all monsters in Fang'rila."], coords = { {m=534,x=55.2,y=74.8} }, },
-					-- 7.0
-     --["Brinedeep Bottom-Feeder"] =                       { cat = LEGION, type = MOUNT, method = COLLECTION, name = L["Brinedeep Bottom-Feeder"], spellId = 214791, itemId = 138811, collectedItemId = { 138777, }, chance = 100, },
-     ["Cloudwing Hippogryph"] =                          { cat = LEGION, type = MOUNT, method = USE, name = L["Cloudwing Hippogryph"], spellId = 242881, itemId = 147806, items = { 152102, }, chance = 20, },
-     ["Highmountain Elderhorn"] =                        { cat = LEGION, type = MOUNT, method = USE, name = L["Highmountain Elderhorn"], spellId = 242874, itemId = 147807, items = { 152104, }, chance = 20, },
-     ["Leywoven Flying Carpet"] =                        { cat = LEGION, type = MOUNT, method = USE, name = L["Leywoven Flying Carpet"], spellId = 233364, itemId = 143764, items = { 152105, }, chance = 20, },
-     ["Torn Invitation"] =                               { cat = LEGION, type = MOUNT, method = SPECIAL, name = L["Torn Invitation"], spellId = 171850, itemId = 140495, chance = 200, questId = 43943,  sourceText = L["The quest starter item for Reins of the Llothien Prowler"], coords = {{m=680}} },
-     ["Valarjar Stormwing"] =                            { cat = LEGION, type = MOUNT, method = USE, name = L["Valarjar Stormwing"], spellId = 242882, itemId = 147805, items = { 152106, }, chance = 20, },
-     ["Wild Dreamrunner"] =                              { cat = LEGION, type = MOUNT, method = USE, name = L["Wild Dreamrunner"], spellId = 242875, itemId = 147804, items = { 152103, }, chance = 20, },
+						-- 1.x                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+		["Deathcharger's Reins"] =                          { cat = BASE, type = MOUNT, method = NPC, name = L["Deathcharger's Reins"], spellId = 17481, itemId = 13335, npcs = { 99999 }, tooltipNpcs = { 45412 }, chance = 100, statisticId = { 1097 }, bonusSatchel = true, blackMarket = true, coords = { {m=317, x=38.6,y=20,i=true} }, },
+		 ["Red Qiraji Resonating Crystal"] =                 { cat = BASE, type = MOUNT, method = NPC, name = L["Red Qiraji Resonating Crystal"], spellId = 26054, itemId = 21321, npcs = { 15311, 15250, 15247, 15246, 15264, 15262, 15277, 15312, 15252, 15249 }, chance = 100, coords = {{m=319,i=true}}, },
+						-- 2.x                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+		 ["Ashes of Al'ar"] =                                { cat = TBC, type = MOUNT, method = BOSS, name = L["Ashes of Al'ar"], spellId = 40192, itemId = 32458, npcs = { 99999 }, tooltipNpcs = { 19622 }, chance = 100, statisticId = { 1088 }, blackMarket = true, coords = { {m=334,x=50.6,y=15.2,i=true} }, },
+		 ["Fiery Warhorse's Reins"] =                        { cat = TBC, type = MOUNT, method = NPC, name = L["Fiery Warhorse's Reins"], spellId = 36702, itemId = 30480, npcs = { 16152 }, chance = 100, blackMarket = true, lockBossName = "Attumen the Huntsman", coords = { {m=350, x=46.6,y=82.6,i=true} }, },
+		 ["Reins of the Raven Lord"] =                       { cat = TBC, type = MOUNT, method = NPC, name = L["Reins of the Raven Lord"], spellId = 41252, itemId = 32768, npcs = { 23035 }, chance = 67, instanceDifficulties = { --[[ Heroic 5-man ]] [2] = true, --[[ Timewalker ]] [24] = true, }, bonusSatchel = true, blackMarket = true, lockBossName = "Anzu", coords = { {m=258, x=32.6,y=54.5,i=true} }, },
+		 ["Swift White Hawkstrider"] =                       { cat = TBC, type = MOUNT, method = NPC, name = L["Swift White Hawkstrider"], spellId = 46628, itemId = 35513, npcs = { 24664 }, chance = 33, instanceDifficulties = { --[[ Heroic 5-man ]] [2] = true, --[[ Timewalker ]] [24] = true, }, sourceText = L["Heroic difficulty"], bonusSatchel = true, blackMarket = true, coords = { {m=348, x=8.6,y=50.2,i=true} }, },
+						-- 3.x                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+		 ["Invincible's Reins"] =                            { cat = WOTLK, type = MOUNT, method = BOSS, name = L["Invincible's Reins"], spellId = 72286, itemId = 50818, npcs = { 99999 }, tooltipNpcs = { 36597 }, chance = 100, instanceDifficulties = { --[[ Heroic 25-man (legacy) ]] [6] = true, }, statisticId = { 4688 }, sourceText = L["25-player heroic"], blackMarket = true, wasGuaranteed = true, lockBossName = "The Lich King", coords = { {m=191, x=49.8,y=52.8,i=true} }, },
+		 ["Mimiron's Head"] =                                { cat = WOTLK, type = MOUNT, method = BOSS, name = L["Mimiron's Head"], spellId = 63796, itemId = 45693, npcs = { 33288 }, statisticId = {2869, 2883}, chance = 100, instanceDifficulties = { --[[ Normal (Raids) ]] [14] = true, }, sourceText = L["Dropped by Yogg-Saron in Ulduar with no Keepers assisting"], wasGuaranteed = true, blackMarket = true, lockBossName = "Yogg-Saron", coords = { {m=150, x=68,y=40.8,i=true} }, },
+		 ["Reins of the Azure Drake"] =                      { cat = WOTLK, type = MOUNT, method = BOSS, name = L["Reins of the Azure Drake"], spellId = 59567, itemId = 43952, npcs = { 99999 }, tooltipNpcs = { 28859 }, chance = 100, statisticId = { 1391, 1394 }, sourceText = L["Dropped by Malygos in The Eye of Eternity (any raid size)"], blackMarket = true, lockBossName = "Malygos", coords = { {m=141, x=39,y=51.8,i=true} }, },
+		 ["Reins of the Blue Drake"] =                       { cat = WOTLK, type = MOUNT, method = BOSS, name = L["Reins of the Blue Drake"], spellId = 59568, itemId = 43953, npcs = { 99999 }, tooltipNpcs = { 28859 }, chance = 100, statisticId = { 1391, 1394 }, sourceText = L["Dropped by Malygos in The Eye of Eternity (any raid size)"], bonusSatchel = true, blackMarket = true, lockBossName = "Malygos", coords = { {m=141, x=39,y=51.8,i=true} }, },
+		 ["Reins of the Blue Proto-Drake"] =                 { cat = WOTLK, type = MOUNT, method = NPC, name = L["Reins of the Blue Proto-Drake"], spellId = 59996, itemId = 44151, npcs = { 26693 }, chance = 77, instanceDifficulties = { --[[ Heroic 5-man ]] [2] = true, --[[ Timewalker ]] [24] = true, }, sourceText = L["Heroic difficulty"], bonusSatchel = true, blackMarket = true, lockBossName = "Skadi the Ruthless", coords = { {m=136, x=68.4,y=36.2,i=true} }, },
+		 ["Reins of the Grand Black War Mammoth Alliance"] = { cat = WOTLK, type = MOUNT, method = BOSS, name = L["Reins of the Grand Black War Mammoth"], spellId = 61465, itemId = 43959, npcs = { 99999 }, tooltipNpcs = { 35013, 33993, 31125, 38433 }, chance = 100, requiresAlliance = true, statisticId = { 1753, 1754, 2870, 3236, 4074, 4075, 4657, 4658 }, sourceText = L["Dropped by Koralon the Flame Watcher, Emalon the Storm Watcher, Archavon the Stone Watcher, and Toravon the Ice Watcher in Vault of Archavon (any raid size)."], lockBossName = "Archavon the Stone Watcher", coords = { {m=156, x=36,y=55.4,i=true},{m=156, x=62.6,y=55.4,i=true},{m=156, x=49.2,y=17,i=true},{m=156, x=62.6,y=36.8,i=true}, }, },
+		 ["Reins of the Grand Black War Mammoth Horde"] =    { cat = WOTLK, type = MOUNT, method = BOSS, name = L["Reins of the Grand Black War Mammoth"], spellId = 61467, itemId = 44083, npcs = { 99999 }, tooltipNpcs = { 35013, 33993, 31125, 38433 }, chance = 100, requiresHorde = true, statisticId = { 1753, 1754, 2870, 3236, 4074, 4075, 4657, 4658 }, sourceText = L["Dropped by Koralon the Flame Watcher, Emalon the Storm Watcher, Archavon the Stone Watcher, and Toravon the Ice Watcher in Vault of Archavon (any raid size)."], lockBossName = "Archavon the Stone Watcher", coords = { {m=156, x=36,y=55.4,i=true},{m=156, x=62.6,y=55.4,i=true},{m=156, x=49.2,y=17,i=true},{m=156, x=62.6,y=36.8,i=true}, }, },
+		 ["Reins of the Green Proto-Drake"] =                { cat = WOTLK, type = MOUNT, method = USE, name = L["Reins of the Green Proto-Drake"], spellId = 61294, itemId = 44707, items = { 39883 }, chance = 20, sourceText = L["Contained in Cracked Egg, which is obtained by becoming Revered with The Oracles, purchasing a Mysterious Egg from their reputation vendor, and waiting three days. The mount has a 5% chance to appear in the Cracked Egg."], bonusSatchel = true, blackMarket = true, coords = { {m=119,x=54.6,y=56.2} }, },
+		 ["Reins of the Onyxian Drake"] =                    { cat = WOTLK, type = MOUNT, method = BOSS, name = L["Reins of the Onyxian Drake"], spellId = 69395, itemId = 49636, npcs = { 99999 }, tooltipNpcs = { 10184 }, chance = 100, statisticId = { 1098 }, sourceText = L["Any raid size"], blackMarket = true, lockBossName = "Onyxia", coords = { {m=248, x=68,y=31.4,i=true} }, },
+		 ["Reins of the White Polar Bear"] =                 { cat = WOTLK, type = MOUNT, method = USE, name = L["Reins of the White Polar Bear"], spellId = 54753, itemId = 43962, items = { 44751, 69903 }, chance = 33, sourceText = L["Contained in Hyldnir Spoils, which is rewarded for completing daily quests given by Gretta the Arbiter in Brunnhildar Village, Storm Peaks. The mount has a 3% chance to appear in Hyldnir Spoils."], bonusSatchel = true, blackMarket = true, coords = { {m=120,x=50.8,y=65.6} }, },
+		 ["Sea Turtle"] =                                    { cat = WOTLK, type = MOUNT, method = FISHING, name = L["Sea Turtle"], spellId = 64731, itemId = 46109, zones = { "116", "127", "115", "117", "114", "119", "245", "241", "249", "207", "198", "418", "371", "376", "379", "390", "422", "388", "407", "554", "507", "504", "433" }, chance = 10000, requiresPool = true, sourceText = L["Obtained very rarely by fishing in pools located in any expansion zone (not Classic zones)"], coords = { {m=116},{m=127},{m=115},{m=117},{m=114},{m=119},{m=245},{m=241},{m=249},{m=207},{m=198},{m=418},{m=371},{m=376},{m=379},{m=390},{m=422},{m=388},{m=407},{m=554},{m=507},{m=504},{m=433}, }, },
+						-- 4.x                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+		 ["Armored Razzashi Raptor"] =                       { cat = CATA, type = MOUNT, method = BOSS, name = L["Armored Razzashi Raptor"], spellId = 96491, itemId = 68823, npcs = { 52151 }, chance = 100, sourceText = L["Heroic difficulty"], lockBossName = "Bloodlord Mandokir", coords = { {m=337,x=60.4,y=79.9,i=true} }, },
+		 ["Experiment 12-B"] =                               { cat = CATA, type = MOUNT, method = BOSS, name = L["Experiment 12-B"], spellId = 110039, itemId = 78919, npcs = { 99999 }, tooltipNpcs = { 55294 }, chance = 100, statisticId = { 6161, 6162 }, sourceText = L["Dropped by Ultraxion in Dragon Soul (any raid size or difficulty)"], lockBossName = "Ultraxion", coords = { {m=409,x=49.6,y=57.6,i=true} }, },
+		 ["Flametalon of Alysrazor"] =                       { cat = CATA, type = MOUNT, method = BOSS, name = L["Flametalon of Alysrazor"], spellId = 101542, itemId = 71665, npcs = { 99999 }, tooltipNpcs = { 52530 }, chance = 100, statisticId = { 5970, 5971 }, sourceText = L["Any raid size or difficulty"], blackMarket = true, lockBossName = "Alysrazor", coords = { {m=367, x=64.3,y=38,i=true} }, },
+		 ["Fossilized Raptor"] =                             { cat = CATA, type = MOUNT, method = ARCH, name = L["Fossilized Raptor"], spellId = 84751, itemId = 60954, raceId = 18, chance = 30, sourceText = L["Obtained as a rare project for the Fossil branch of archaeology"], coords = { {m=1},{m=7},{m=10},{m=12},{m=13},{m=14},{m=15},{m=17},{m=18},{m=21},{m=22},{m=23},{m=25},{m=26},{m=27},{m=32},{m=36},{m=37},{m=42},{m=47},{m=48},{m=49},{m=50},{m=51},{m=52},{m=56},{m=57},{m=62},{m=63},{m=64},{m=65},{m=66},{m=69},{m=70},{m=71},{m=76},{m=77},{m=78},{m=80},{m=81},{m=83},{m=84},{m=85},{m=87},{m=88},{m=89},{m=998},{m=94},{m=95},{m=97},{m=103},{m=106},{m=110},{m=122},{m=124},{m=179},{m=198},{m=199},{m=201},{m=202},{m=203},{m=204},{m=205},{m=210},{m=217},{m=218},{m=224},{m=241},{m=244},{m=245},{m=249},{m=327},{m=338},{m=425},{m=427},{m=460},{m=461},{m=462},{m=463},{m=465},{m=467},{m=468},{m=469}, }, },
+		 ["Life-Binder's Handmaiden"] =                      { cat = CATA, type = MOUNT, method = BOSS, name = L["Life-Binder's Handmaiden"], spellId = 107845, itemId = 77069, npcs = { 99999 }, chance = 100, statisticId = { 6168 }, sourceText = L["Dropped by the Madness of Deathwing encounter in Dragon Soul (heroic, any raid size)"], wasGuaranteed = true, blackMarket = true, lockBossName = "Madness of Deathwing", coords = { {m=409,i=true} }, },
+		 ["Reins of the Blazing Drake"] =                    { cat = CATA, type = MOUNT, method = BOSS, name = L["Reins of the Blazing Drake"], spellId = 107842, itemId = 77067, npcs = { 99999 }, chance = 100, statisticId = { 6167, 6168 }, sourceText = L["Dropped by the Madness of Deathwing encounter in Dragon Soul (any raid size or difficulty)"], blackMarket = true, lockBossName = "Madness of Deathwing", coords = { {m=409,i=true} }, },
+		 ["Reins of the Drake of the North Wind"] =          { cat = CATA, type = MOUNT, method = NPC, name = L["Reins of the Drake of the North Wind"], spellId = 88742, itemId = 63040, npcs = { 43873 }, chance = 100, sourceText = L["Any difficulty"], blackMarket = true, coords = { {m=325,x=51.9,y=82.1,i=true} }, },
+		 ["Reins of the Drake of the South Wind"] =          { cat = CATA, type = MOUNT, method = BOSS, name = L["Reins of the Drake of the South Wind"], spellId = 88744, itemId = 63041, npcs = { 99999 }, tooltipNpcs = { 46753 }, chance = 100, statisticId = { 5576, 5577 }, sourceText = L["Any raid size or difficulty"], blackMarket = true, lockBossName = "Al'Akir", coords = { {m=328,x=47.5,y=50.1,i=true} }, },
+		 ["Reins of the Grey Riding Camel"] =                { cat = CATA, type = MOUNT, method = SPECIAL, name = L["Reins of the Grey Riding Camel"], spellId = 88750, itemId = 63046, chance = 20, sourceText = L["Guaranteed drop from Dormus the Camel-Hoarder. Accessing this encounter requires finding a rare Mysterious Camel Figurine in Uldum. These are difficult to spot and, when clicked, have a small chance to grant you access to the Dormus encounter. Rarity will count how many Figurines you've found if you mouseover them."], coords = { {m=249} }, },
+		 ["Reins of the Vitreous Stone Drake"] =             { cat = CATA, type = MOUNT, method = NPC, name = L["Reins of the Vitreous Stone Drake"], spellId = 88746, itemId = 63043, npcs = { 43214 }, chance = 100, sourceText = L["Any difficulty"], blackMarket = true, coords = { {m=324,x=37,y=44.7,i=true} }, },
+		 ["Scepter of Azj'Aqir"] =                           { cat = CATA, type = MOUNT, method = ARCH, name = L["Scepter of Azj'Aqir"], spellId = 92155, itemId = 64883, raceId = 14, chance = 500, sourceText = L["Obtained as a very rare project for the Tol'vir branch of archaeology"], coords = { {m=249} }, },
+		 ["Smoldering Egg of Millagazor"] =                  { cat = CATA, type = MOUNT, method = BOSS, name = L["Smoldering Egg of Millagazor"], spellId = 97493, itemId = 69224, npcs = { 99999 }, tooltipNpcs = { 52409 }, instanceDifficulties = { --[[ 10/25 Normal/Heroic ]] [3] = true, [4] = true, [5] = true, [6] = true, }, chance = 100, statisticId = { 5976, 5977 }, wasGuaranteed = true, blackMarket = true, coords = { {m=367, x=50.7,y=15.3,i=true} }, },
+		 ["Swift Zulian Panther"] =                          { cat = CATA, type = MOUNT, method = BOSS, name = L["Swift Zulian Panther"], spellId = 96499, itemId = 68824, npcs = { 52059 }, chance = 100, sourceText = L["Heroic difficulty"], lockBossName = "High Priestess Kilnara", coords = { {m=337,x=48,y=20,i=true} }, },
+						-- 5.x                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+		 ["Clutch of Ji-Kun"] =                              { cat = MOP, type = MOUNT, method = BOSS, name = L["Clutch of Ji-Kun"], spellId = 139448, itemId = 95059, npcs = { 99999 }, tooltipNpcs = { 69712 }, instanceDifficulties = { --[[ 10/25 Normal/Heroic ]] [3] = true, [4] = true, [5] = true, [6] = true, }, chance = 50, statisticId = { 8171, 8169, 8172, 8170 }, sourceText = L["All raid formats except Raid Finder"], lockBossName = "Ji-Kun", coords = { {m=510, x=49.7,y=41.6,i=true} }, },
+		 ["Kor'kron Juggernaut"] =                           { cat = MOP, type = MOUNT, method = BOSS, name = L["Kor'kron Juggernaut"], spellId = 148417, itemId = 104253, npcs = { 99999 }, tooltipNpcs = { 71865 }, instanceDifficulties = { --[[ Mythic ]] [16] = true, }, chance = 100, statisticId = { 8638, 8637, }, sourceText = L["Mythic difficulty"], wasGuaranteed = true, lockBossName = "Garrosh Hellscream", coords = { {m=5671,x=49.4,y=71.3,i=true} }, },
+		 ["Reins of the Amber Primordial Direhorn"] =        { cat = MOP, type = MOUNT, method = NPC, name = L["Reins of the Amber Primordial Direhorn"], spellId = 138424, itemId = 94230, npcs = { 69841 }, chance = 20, sourceText = L["The Warbringer will be riding the mount color he has a chance to drop."], coords = { {m=418,x=39.08,y=67.13},{m=422,x=47.47,y=61.32},{m=388,x=36.53,y=85.67},{m=379,x=75.09,y=67.65},{m=371,x=52.73,y=18.99}, }, },
+		 ["Reins of the Astral Cloud Serpent"] =             { cat = MOP, type = MOUNT, method = BOSS, name = L["Reins of the Astral Cloud Serpent"], spellId = 127170, itemId = 87777, npcs = { 99999 }, tooltipNpcs = { 60410 }, instanceDifficulties = { --[[ 10/25 Normal/Heroic ]] [3] = true, [4] = true, [5] = true, [6] = true, }, chance = 100, statisticId = { 6797, 6798, 7924, 7923, }, sourceText = L["Dropped by Elegon in Mogu'shan Vaults (all raid formats except Raid Finder)"], blackMarket = true, lockBossName = "Elegon", coords = { {m=471,x=21.7,y=51.1,i=true} }, },
+		 ["Reins of the Bone-White Primal Raptor"] =         { cat = MOP, type = MOUNT, method = COLLECTION, name = L["Reins of the Bone-White Primal Raptor"], spellId = 138640, itemId = 94290, collectedItemId = 94288, chance = 9999, obtain = L["Dropped from dinosaurs on Isle of Giants"], tooltipNpcs = { 69992, 70013, 70012, 70015, 70014, 70006, 69925, 69993, 70004, 70005, 70007, 70020, 70016, 69983, 70017, 70019, 70018, 70011, 70009, 69991, 70021, 70010, 70008, }, sourceText = L["Earned by giving 9999 Giant Dinosaur Bones to Ku'ma on Isle of Giants. Giant Dinosaur bones drop from all dinosaurs and Zandalari Dinomancers on Isle of Giants."], coords = { {m=507} }, },
+		 ["Reins of the Cobalt Primordial Direhorn"] =       { cat = MOP, type = MOUNT, method = BOSS, name = L["Reins of the Cobalt Primordial Direhorn"], spellId = 138423, itemId = 94228, npcs = { 99999 }, tooltipNpcs = { 69161 }, questId = 32519, chance = 2000, equalOdds = true, statisticId = { 8147 }, enableCoin = true, worldBossFactionless = true, coords = { {m=507,x=50.6,y=54.4} }, },
+		 ["Reins of the Heavenly Onyx Cloud Serpent"] =      { cat = MOP, type = MOUNT, method = BOSS, name = L["Reins of the Heavenly Onyx Cloud Serpent"], spellId = 127158, itemId = 87771, npcs = { 99999 }, tooltipNpcs = { 60491 }, questId = 32099, chance = 2000, equalOdds = true, statisticId = { 6989 }, enableCoin = true, worldBossFactionless = true, blackMarket = true, coords = { {m=379} }, },
+		 ["Reins of the Jade Primordial Direhorn"] =         { cat = MOP, type = MOUNT, method = NPC, name = L["Reins of the Jade Primordial Direhorn"], spellId = 138426, itemId = 94231, npcs = { 69842 }, chance = 20, sourceText = L["The Warbringer will be riding the mount color he has a chance to drop."], coords = { {m=418,x=39.08,y=67.13},{m=422,x=47.47,y=61.32},{m=388,x=36.53,y=85.67},{m=379,x=75.09,y=67.65},{m=371,x=52.73,y=18.99}, }, },
+		 ["Reins of the Slate Primordial Direhorn"] =        { cat = MOP, type = MOUNT, method = NPC, name = L["Reins of the Slate Primordial Direhorn"], spellId = 138425, itemId = 94229, npcs = { 69769 }, chance = 20, sourceText = L["The Warbringer will be riding the mount color he has a chance to drop."], coords = { {m=418,x=39.08,y=67.13},{m=422,x=47.47,y=61.32},{m=388,x=36.53,y=85.67},{m=379,x=75.09,y=67.65},{m=371,x=52.73,y=18.99}, }, },
+		 ["Reins of the Thundering Cobalt Cloud Serpent"] =  { cat = MOP, type = MOUNT, method = BOSS, name = L["Reins of the Thundering Cobalt Cloud Serpent"], spellId = 139442, itemId = 95057, npcs = { 99999 }, tooltipNpcs = { 69099 }, questId = 32518, chance = 2000, equalOdds = true, statisticId = { 8146 }, enableCoin = true, worldBossFactionless = true, blackMarket = true, coords = { {m=504,x=60.5,y=37.3} }, },
+		 ["Reins of the Thundering Onyx Cloud Serpent"] =    { cat = MOP, type = MOUNT, method = NPC, name = L["Reins of the Thundering Onyx Cloud Serpent"], spellId = 148476, itemId = 104269, npcs = { 73167 }, chance = 100, sourceText = L["Players have a personal loot chance to obtain this item."], coords = { {m=554,x=67.8,y=59} }, },
+		 ["Son of Galleon's Saddle"] =                       { cat = MOP, type = MOUNT, method = BOSS, name = L["Son of Galleon's Saddle"], spellId = 130965, itemId = 89783, npcs = { 99999 }, tooltipNpcs = { 62346 }, questId = 32098, chance = 2000, equalOdds = true, statisticId = { 6990 }, enableCoin = true, worldBossFactionless = true, coords = { {m=376,x=71.6,y=64.4} }, },
+		 ["Spawn of Horridon"] =                             { cat = MOP, type = MOUNT, method = BOSS, name = L["Spawn of Horridon"], spellId = 136471, itemId = 93666, npcs = { 99999 }, tooltipNpcs = { 68476 }, instanceDifficulties = { --[[ 10/25 Normal/Heroic ]] [3] = true, [4] = true, [5] = true, [6] = true, }, chance = 66, statisticId = { 8151, 8149, 8152, 8150 }, sourceText = L["All raid formats except Raid Finder"], lockBossName = "Horridon", coords = { {m=508, x=26.8,y=78.7,i=true} }, },
+						-- 6.x                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+		 ["Armored Razorback"] =                             { cat = WOD, type = MOUNT, method = NPC, name = L["Armored Razorback"], spellId = 171630, itemId = 116669, npcs = { 95044, 95054, 95053, 95056, }, chance = 30, sourceText = L["Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount \"defeated\" for the day when you kill any of the four."], questId = { 39287, 39288, 39289, 39290, }, defeatAllQuests = true, coords = { {m=534,x=32.6,y=73.8,q=39290,n=L["Vengeance"]}, {m=534,x=47,y=52.6,q=39289,n=L["Doomroller"]}, {m=534,x=23.2,y=40.4,q=39287,n=L["Deathtalon"]}, {m=534,x=14.6,y=63,q=39288,n=L["Terrorfist"]}, }, defeatSteps = { [39290] = L["Vengeance"], [39287] = L["Deathtalon"], [39288] = L["Terrorfist"], [39289] = L["Doomroller"], }, },
+		 ["Bristling Hellboar"] =                            { cat = WOD, type = MOUNT, method = COLLECTION, name = L["Bristling Hellboar"], spellId = 190690, itemId = 128481, collectedItemId = 124099, chance = 5000, obtain = L["Dropped from monsters in Fang'rila"], tooltipNpcs = { 92922, 92466, 89747, 89695, 89746, 92481, }, sourceText = L["Purchased from Z'tenga the Walker <Saberstalker Quartermaster> in Fang'rila in Tanaan Jungle. Blackfang Claws drop from all monsters in Fang'rila."], coords = { {m=534,x=55.2,y=74.8} }, },
+		 ["Garn Steelmaw"] =                                 { cat = WOD, type = MOUNT, method = USE, name = L["Garn Steelmaw"], spellId = 171836, itemId = 116779, items = { 116980, 122163 }, chance = 50, sourceText = L["This bag is rewarded for earning a Gold or Platinum victory in a garrison invasion."], questId = { 37640, 38482 }, defeatAllQuests = true, coords = { zoneOverride = L["Draenor Garrison"], {m=579},{m=585}, }, defeatSteps = { [37640] = L["Garrison Invasion Gold Victory"], [38482] = L["Garrison Invasion Platinum Victory"], }, },
+		 ["Giant Coldsnout"] =                               { cat = WOD, type = MOUNT, method = USE, name = L["Giant Coldsnout"], spellId = 171635, itemId = 116673, items = { 116980, 122163 }, chance = 50, sourceText = L["This bag is rewarded for earning a Gold or Platinum victory in a garrison invasion."], questId = { 37640, 38482 }, defeatAllQuests = true, coords = { zoneOverride = L["Draenor Garrison"], {m=579},{m=585}, }, defeatSteps = { [37640] = L["Garrison Invasion Gold Victory"], [38482] = L["Garrison Invasion Platinum Victory"], }, },
+		 ["Reins of the Crimson Water Strider"] =            { cat = WOD, type = MOUNT, method = COLLECTION, name = L["Reins of the Crimson Water Strider"], spellId = 127271, itemId = 87791, collectedItemId = { 117397, 127994, 116820, 116818, 116819, 116821, 122696, 116817, 116822, }, chance = 100, obtain = L["Fished anywhere in Draenor (except your garrison) with the help of Nat Pagle"], sourceText = L["Lunkers can be fished anywhere in Draenor (except in your garrison) after you've obtained a level 3 Fishing Shack and acquired Nat Pagle as a follower."], coords = { {m=572},{m=588},{m=525},{m=543},{m=550},{m=539},{m=542},{m=622},{m=535},{m=534},{m=624}, }, },
+		 ["Riding Turtle"] =                                 { cat = WOD, type = MOUNT, method = NPC, name = L["Riding Turtle"], spellId = 30174, itemId = 23720, npcs = { 8885, 85715, }, chance = 200, sourceText = L["After upgrading your garrison's Fishing Shack to level 3, fish up 5 minnows to summon a Cavedweller which can drop this mount."], coords = { zoneOverride = L["Draenor Garrison"], {m=579},{m=585}, }, },
+		 ["Shadowhide Pearltusk"] =                          { cat = WOD, type = MOUNT, method = USE, name = L["Shadowhide Pearltusk"], spellId = 171624, itemId = 116663, items = { 116980, 122163 }, chance = 50, sourceText = L["This bag is rewarded for earning a Gold or Platinum victory in a garrison invasion."], questId = { 37640, 38482 }, defeatAllQuests = true, coords = { zoneOverride = L["Draenor Garrison"], {m=579},{m=585}, }, defeatSteps = { [37640] = L["Garrison Invasion Gold Victory"], [38482] = L["Garrison Invasion Platinum Victory"], }, },
+		 ["Smoky Direwolf"] =                                { cat = WOD, type = MOUNT, method = USE, name = L["Smoky Direwolf"], spellId = 171843, itemId = 116786, items = { 116980, 122163 }, chance = 50, sourceText = L["This bag is rewarded for earning a Gold or Platinum victory in a garrison invasion."], questId = { 37640, 38482 }, defeatAllQuests = true, coords = { zoneOverride = L["Draenor Garrison"], {m=579},{m=585}, }, defeatSteps = { [37640] = L["Garrison Invasion Gold Victory"], [38482] = L["Garrison Invasion Platinum Victory"], }, },
+		 ["Tundra Icehoof"] =                                { cat = WOD, type = MOUNT, method = NPC, name = L["Tundra Icehoof"], spellId = 171619, itemId = 116658, npcs = { 95044, 95054, 95053, 95056, }, chance = 30, sourceText = L["Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount \"defeated\" for the day when you kill any of the four."], questId = { 39287, 39288, 39289, 39290, }, defeatAllQuests = true, coords = { {m=534,x=32.6,y=73.8,q=39290,n=L["Vengeance"]}, {m=534,x=47,y=52.6,q=39289,n=L["Doomroller"]}, {m=534,x=23.2,y=40.4,q=39287,n=L["Deathtalon"]}, {m=534,x=14.6,y=63,q=39288,n=L["Terrorfist"]}, }, defeatSteps = { [39290] = L["Vengeance"], [39287] = L["Deathtalon"], [39288] = L["Terrorfist"], [39289] = L["Doomroller"], }, },
+		 ["Warsong Direfang"] =                              { cat = WOD, type = MOUNT, method = NPC, name = L["Warsong Direfang"], spellId = 171837, itemId = 116780, npcs = { 95044, 95054, 95053, 95056, }, chance = 30, sourceText = L["Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount \"defeated\" for the day when you kill any of the four."], questId = { 39287, 39288, 39289, 39290, }, defeatAllQuests = true, coords = { {m=534,x=32.6,y=73.8,q=39290,n=L["Vengeance"]}, {m=534,x=47,y=52.6,q=39289,n=L["Doomroller"]}, {m=534,x=23.2,y=40.4,q=39287,n=L["Deathtalon"]}, {m=534,x=14.6,y=63,q=39288,n=L["Terrorfist"]}, }, defeatSteps = { [39290] = L["Vengeance"], [39287] = L["Deathtalon"], [39288] = L["Terrorfist"], [39289] = L["Doomroller"], }, },
+		 ["Wild Goretusk"] =                                 { cat = WOD, type = MOUNT, method = COLLECTION, name = L["Wild Goretusk"], spellId = 171633, itemId = 116671, collectedItemId = 124099, chance = 1000, obtain = L["Dropped from monsters in Fang'rila"], tooltipNpcs = { 92922, 92466, 89747, 89695, 89746, 92481, }, sourceText = L["Purchased from Z'tenga the Walker <Saberstalker Quartermaster> in Fang'rila in Tanaan Jungle. Blackfang Claws drop from all monsters in Fang'rila."], coords = { {m=534,x=55.2,y=74.8} }, },
+						-- 7.0
+		 --["Brinedeep Bottom-Feeder"] =                       { cat = LEGION, type = MOUNT, method = COLLECTION, name = L["Brinedeep Bottom-Feeder"], spellId = 214791, itemId = 138811, collectedItemId = { 138777, }, chance = 100, },
+		 ["Cloudwing Hippogryph"] =                          { cat = LEGION, type = MOUNT, method = USE, name = L["Cloudwing Hippogryph"], spellId = 242881, itemId = 147806, items = { 152102, }, chance = 20, },
+		 ["Highmountain Elderhorn"] =                        { cat = LEGION, type = MOUNT, method = USE, name = L["Highmountain Elderhorn"], spellId = 242874, itemId = 147807, items = { 152104, }, chance = 20, },
+		 ["Leywoven Flying Carpet"] =                        { cat = LEGION, type = MOUNT, method = USE, name = L["Leywoven Flying Carpet"], spellId = 233364, itemId = 143764, items = { 152105, }, chance = 20, },
+		 ["Torn Invitation"] =                               { cat = LEGION, type = MOUNT, method = SPECIAL, name = L["Torn Invitation"], spellId = 171850, itemId = 140495, chance = 200, questId = 43943,  sourceText = L["The quest starter item for Reins of the Llothien Prowler"], coords = {{m=680}} },
+		 ["Valarjar Stormwing"] =                            { cat = LEGION, type = MOUNT, method = USE, name = L["Valarjar Stormwing"], spellId = 242882, itemId = 147805, items = { 152106, }, chance = 20, },
+		 ["Wild Dreamrunner"] =                              { cat = LEGION, type = MOUNT, method = USE, name = L["Wild Dreamrunner"], spellId = 242875, itemId = 147804, items = { 152103, }, chance = 20, },
 
-	 -- 7.3
-     ["Lambent Mana Ray"] =	{
-		cat = LEGION,
-		type = MOUNT,
-		method = NPC,
-		name = L["Lambent Mana Ray"],
-		itemId = 152844,
-		spellId = 253107,
-		npcs = { 126867 },
-		chance = 30,
-		questId = 48705,
-		coords = {
-			m = 882,
-			x = 34.01,
-			y = 47.83,
-			n = L["Venomtail Skyfin"],
+		 -- 7.3
+		 ["Lambent Mana Ray"] =	{
+			cat = LEGION,
+			type = MOUNT,
+			method = NPC,
+			name = L["Lambent Mana Ray"],
+			itemId = 152844,
+			spellId = 253107,
+			npcs = { 126867 },
+			chance = 30,
+			questId = 48705,
+			coords = {
+				m = 882,
+				x = 34.01,
+				y = 47.83,
+				n = L["Venomtail Skyfin"],
+			},	
+		 },
+		 ["Maddened Chaosrunner"] =	{
+			cat = LEGION,
+			type = MOUNT,
+			method = NPC,
+			name = L["Maddened Chaosrunner"],
+			itemId = 152814,
+			spellId = 253058,
+			npcs = { 126852 },
+			chance = 30,
+			questId = 48695,
+			coords = {
+				m = 882,
+				x = 55.65,
+				y = 59.95,
+				n = L["Wrangler Kravos"],
+			},
+		 },
+		 ["Vile Fiend"] = {
+			cat = LEGION,
+			type = MOUNT,
+			method = NPC,
+			name = L["Vile Fiend"],
+			itemId = 152790,
+			spellId = 243652,
+			npcs = { 127288 },
+			chance = 30,
+			questId = 48821,
+			coords = {
+				m = 885,
+				x = 62.96,
+				y = 24.86,
+				n = L["Houndmaster Kerrax"],
+			},			
+		 },
+		 ["Crimson Slavermaw"] = {
+			cat = LEGION,
+			type = MOUNT,
+			method = NPC,
+			name = L["Crimson Slavermaw"],
+			itemId = 152905,
+			spellId = 253661,
+			npcs = { 122958 },
+			chance = 30,
+			questId = 49183,	
+			coords = {
+				m = 885,
+				x = 61.78,
+				y = 36.97,
+				n = L["Blistermaw"],
+			},			
+		 },
+		 ["Biletooth Gnasher"] = {
+			cat = LEGION,
+			type = MOUNT,
+			method = NPC,
+			name = L["Biletooth Gnasher"],
+			itemId = 152903,
+			spellId = 253660,
+			npcs = { 126040, 126199, },
+			chance = 30,
+			questId = { 48809, 48810, }, 
+			defeatAllQuests = true,
+			defeatSteps = {
+				[48809] = L["Puscilla"],
+				[48810] = L["Vrax'thul"],
+			},
+			sourceText = format(L["Has a chance to drop from either %s or %s on Argus. Each can be looted once per day."], L["Puscilla"], L["Vrax'thul"]),
+			coords = {
+				{ m=885, x = 64.42, y = 20.35, q=48809, n=L["Puscilla"]},
+				{ m=885, x = 53.06, y = 36.12, q=48810, n=L["Vrax'thul"]},
+			},
+		 },
+		 ["Acid Belcher "] = {
+			cat = LEGION,
+			type = MOUNT,
+			method = NPC,
+			name = L["Acid Belcher"],
+			itemId = 152904,
+			spellId = 253662,
+			npcs = { 126912 },
+			chance = 30,
+			questId = 48721,
+			coords = {
+				m = 882,
+				x = 49.79,
+				y = 9.40,
+				n = L["Skreeg the Devourer"],
+			},		
+		 },
+		 ["Scintillating Mana Ray"] = {
+			cat = LEGION,
+			type = MOUNT,
+			method = USE,
+			name = L["Scintillating Mana Ray"],
+			spellId = 253109,
+			itemId = 152840,
+			items = { 153191 },
+			chance = 16,
+			sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
+			coords = {
+				{ m = 885, x = 64.32, y = 48.62, n = L["Varga"] },
+				{ m = 830, x = 70.21, y = 34.38, n = L["Naroua"] },
+				{ m = 882, x = 43.55, y = 49.19, n = L["Sabuul"] },
+			},
+		 },
+		 ["Felglow Mana Ray"] = {
+			cat = LEGION,
+			type = MOUNT,
+			method = USE,
+			name = L["Felglow Mana Ray"],
+			spellId = 253108,
+			itemId = 152841,
+			items = { 153191 },
+			chance = 16,
+			sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
+			coords = {
+				{ m = 885, x = 64.32, y = 48.62, n = L["Varga"] },
+				{ m = 830, x = 70.21, y = 34.38, n = L["Naroua"] },
+				{ m = 882, x = 43.55, y = 49.19, n = L["Sabuul"] },
+			},
+		 },
+		 ["Darkspore Mana Ray"] = {
+			cat = LEGION,
+			type = MOUNT,
+			method = USE,
+			name = L["Darkspore Mana Ray"],
+			spellId = 235764,
+			itemId = 152843,
+			items = { 153191 },
+			chance = 16,
+			sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
+			coords = {
+				{ m = 885, x = 64.32, y = 48.62, n = L["Varga"] },
+				{ m = 830, x = 70.21, y = 34.38, n = L["Naroua"] },
+				{ m = 882, x = 43.55, y = 49.19, n = L["Sabuul"] },
+			},
+		 },
+		 ["Vibrant Mana Ray"] = {
+			cat = LEGION,
+			type = MOUNT,
+			method = USE,
+			name = L["Vibrant Mana Ray"],
+			spellId = 253106,
+			itemId = 152842,
+			items = { 153191 },
+			chance = 16,
+			sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
+			coords = {
+				{ m = 885, x = 64.32, y = 48.62, n = L["Varga"] },
+				{ m = 830, x = 70.21, y = 34.38, n = L["Naroua"] },
+				{ m = 882, x = 43.55, y = 49.19, n = L["Sabuul"] },
+			},
+		 },	 
+		["Pond Nettle"] = {
+			cat = LEGION,
+			type = MOUNT,
+			method = FISHING,
+			name = L["Pond Nettle"],
+			zones = { "885" },
+			spellId = 253711,
+			itemId = 152912,
+			chance = 2000,
+			requiresPool = false,
+		},
+		["Avenging Felcrusher"] = {
+			cat = LEGION,
+			type = MOUNT,
+			method = USE,
+			name = L["Avenging Felcrusher"],
+			spellId = 254259,
+			itemId = 153044,
+			items = { 152923 },
+			chance = 20,
+		},
+		["Blessed Felcrusher"] = {
+			cat = LEGION,
+			type = MOUNT,
+			method = USE,
+			name = L["Blessed Felcrusher"],
+			spellId = 254258,
+			itemId = 153043,
+			items = { 152923 },
+			chance = 20,
+		},
+		["Glorious Felcrusher"] = {
+			cat = LEGION,
+			type = MOUNT,
+			method = USE,
+			name = L["Glorious Felcrusher"],
+			spellId = 254069,
+			itemId = 153042,
+			items = { 152923 },
+			chance = 20,
+		},
+		
+		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+						-- MOUNTS: Requires a group (some of these may be soloable by certain classes, but not in general)
+						--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+						-- Holiday                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+		 ["Big Love Rocket"] =                               { cat = HOLIDAY, type = MOUNT, method = USE, name = L["Big Love Rocket"], spellId = 71342, itemId = 50250, items = { 54537 }, chance = 3333, groupSize = 5, equalOdds = true, sourceText = L["Can be contained in Heart-Shaped Box, rewarded for defeating the World Event Dungeon during Love is in the Air."], lockDungeonId = 288, coords = {{m=310,x=40.8,y=52.6, i=true}}, },
+		 ["Great Brewfest Kodo"] =                           { cat = HOLIDAY, type = MOUNT, method = USE, name = L["Great Brewfest Kodo"], spellId = 49379, itemId = 37828, items = { 54535, 117393, }, chance = 25, groupSize = 5, equalOdds = true, sourceText = L["Can be contained in Keg-Shaped Treasure Chest, rewarded for defeating the World Event Dungeon during Brewfest."], lockDungeonId = 287, coords = {{m=243,x=46.6,y=60, i=true}}, },
+		 ["Swift Brewfest Ram"] =                            { cat = HOLIDAY, type = MOUNT, method = USE, name = L["Swift Brewfest Ram"], spellId = 43900, itemId = 33977, items = { 54535, 117393, }, chance = 25, groupSize = 5, equalOdds = true, sourceText = L["Can be contained in Keg-Shaped Treasure Chest, rewarded for defeating the World Event Dungeon during Brewfest."], lockDungeonId = 287, coords = {{m=242,x=46.6,y=60, i=true}}, },
+		 ["The Horseman's Reins"] =                          { cat = HOLIDAY, type = MOUNT, method = USE, name = L["The Horseman's Reins"], spellId = 48025, itemId = 37012, items = { 117392 }, chance = 200, groupSize = 5, equalOdds = true, sourceText = L["Can be contained in Loot-Filled Pumpkin, rewarded for defeating the World Event Dungeon during Hallow's End."], lockDungeonId = 285, coords = { {m=435,i=true} }, },
+						-- 6.x
+		 ["Felsteel Annihilator"] =                          { cat = WOD, type = MOUNT, method = BOSS, name = L["Felsteel Annihilator"], spellId = 182912, itemId = 123890, npcs = { 99999 }, tooltipNpcs = { 91331 }, chance = 100, wasGuaranteed = true, groupSize = 3, statisticId = { 10252 }, lockBossName = "Archimonde", coords = { {m=6610,x=58.4,y=53.3,i=true} }, },
+		 ["Garn Nighthowl"] =                                { cat = WOD, type = MOUNT, method = BOSS, name = L["Garn Nighthowl"], spellId = 171851, itemId = 116794, npcs = { 81001 }, chance = 1, coords = { {m=525,x=16,y=53.2} }, },
+		 ["Ironhoof Destroyer"] =                            { cat = WOD, type = MOUNT, method = BOSS, name = L["Ironhoof Destroyer"], spellId = 171621, itemId = 116660, npcs = { 99999 }, tooltipNpcs = { 77325 }, chance = 100, wasGuaranteed = true, groupSize = 3, statisticId = { 9365 }, lockBossName = "Blackhand", coords = { {m=600, x=48.4,y=34.5,i=true} }, },
+		 ["Solar Spirehawk"] =                               { cat = WOD, type = MOUNT, method = BOSS, name = L["Solar Spirehawk"], spellId = 171828, itemId = 116771, npcs = { 99999 }, tooltipNpcs = { 87493, 83746 }, chance = 500, statisticId = { 9279 }, worldBossFactionless = true, questId = 37464, coords = { {m=542,x=47.1,y=78.4} }, },
+		 ["Reins of the Infinite Timereaver"] =              { cat = WOD, type = MOUNT, method = BOSS, name = L["Reins of the Infinite Timereaver"], spellId = 201098, itemId = 133543, 
+		npcs = { -- NPCs marked with * can't be looted; they use a workaround and are detected via checking their achievement criteria. The entry here is mostly for the tooltip display....
+			-- TBC Dungeons
+			---- Magister's Terrace
+			24723, -- Selin Fireheart
+			24744, -- Vexallus
+			24560, -- Priestess Velrissa
+			24664, -- Kael'thas Sunstrider
+			---- The Slave Pens
+			17941, -- Mennu the Betrayer
+			17991, -- Rokmar the Crackler
+			17942, -- Quagmirran
+			---- The Shattered Halls
+			16807, -- Grand Warlock Nethekurse
+			20923, -- Blood Guard Porung
+			16809, -- Warbringer O'mrogg
+			16808, -- Warchief Kargath Bladefist
+			---- The Mana Tombs
+			18341, -- Pandemonius
+			18343, -- Tavarok
+			18344, -- Nexus-Prince Shaffar
+			22930, -- Yor
+			---- The Black Morass
+			17879, -- Chrono Lord Deja
+			17880, -- Temporus
+			17881, -- Aeonus
+			---- The Arcatraz
+			20870, -- Zereketh the Unbound
+			20885, -- Dalliah the Doomsayer
+			20886, -- Wrath-Scryer Soccothrates
+			20912, -- Harbinger Skyriss
+			-- WOTLK Dungeons
+			---- Pit of Saron
+			36494, -- Forgemaster Garfrost
+			36476, -- Ick
+			36658, -- Scourgelord Tyrannus
+			---- Utgarde Pinnacle
+			26668, -- Svala Sorrowgrave
+			26687, -- Gortok Palehoof
+			26693, -- Skadi the Ruthless
+			26861, -- King Ymiron
+			---- The Nexus
+			26731, -- Grand Magus Telestra
+			26763, -- Anomalus
+			26794, -- Ormorok the Tree-Shaper
+			26723, -- Keristrasza
+			26796, -- Commander Stoutbeard
+			26798, -- Commander Kolurg
+			---- Halls of Lightning
+			28586, -- General Bjarngrim
+			28587, -- Volkhan
+			28546, -- Ionar
+			28923, -- Loken
+			---- Gundrak
+			29304, -- Slad'ran
+			29573, -- Drakkari Elemental
+			29305, -- Moorabi
+			29306, -- Gal'darah
+			29932, -- Eck the Ferocious
+			---- Ahn'kahet: The Old Kingdom
+			29309, -- Elder Nadox
+			29308, -- Prince Taldaram
+			29310, -- Jedoga Shadowseeker
+			29311, -- Herald Volazj
+			30258, -- Amanitar
+			-- CATA Dungeons
+			---- Throne of the Tides
+			40586, -- Lady Naz'jar
+			40765, -- Commander Ulthok
+			40788, -- Mindbender Ghur'sha
+			44566, -- Ozumat *
+			---- The Vortex Pinnacle
+			43878, -- Grand Vizier Ertan
+			43873, -- Altairus
+			43875, -- Asaad 
+			---- The Stonecore
+			43438, -- Corborus
+			43214, -- Slabhide
+			42188, -- Ozruk
+			42333, -- High Priestess Azil
+			---- Lost City of the Tol'vir
+			44577, -- General Husam
+			43612, -- High Prophet Barim
+			44819, -- Siamat
+			49045, -- Augh
+			---- Grim Batol
+			39625, -- General Umbriss
+			40177, -- Forgemaster Throngus
+			40319, -- Drahga Shadowburner
+			40484, -- Erudax
+			---- End Time
+			54431, -- Echo of Baine
+			54445, -- Echo of Jaina
+			54123, -- Echo of Sylvanas
+			54544, -- Echo of Tyrande
+			54432, -- Murozond *
+			-- MOP Timewalking
+			---- Gate of the Setting Sun
+			56906, -- Saboteur Kip'tilak
+			56589, -- Striker Ga'dok
+			56636, -- Commander Ri'mok
+			56877, -- Raigonn
+			---- Temple of the Jade Serpent
+			56448, -- Wise Mari
+			59051, -- Strife (Trial of the Yaungol)
+			58826, -- Zao Sunseeker (Champion of the Five Suns)
+			56732, -- Liu Flameheart
+			56439, -- Sha of Doubt
+			---- Stormstout Brewery
+			56637, -- Ook-ook
+			56717, -- Hoptallus
+			59479, -- Yan-Zhu the Uncasked
+			---- Siege of Niuzao Temple
+			61567, -- Vizier Jin'bak
+			61634, -- Commander Vo'jak
+			61485, -- General Pa'valak
+			62205, -- Wing Leader Ner'onok
+			---- Shado-Pan Monastery
+			56747, -- Gu Cloudstrike
+			56541, -- Master Snowdrift *
+			56719, -- Sha of Violence
+			56884, -- Taran Zhu *
+			---- Mogu'shan Palace
+			61444, -- Ming the Cunning *
+			61243, -- Gekkan *
+			61398, -- Xin the Weaponmaster
+		},
+		chance = 4000, groupSize = 5, equalOdds = true, instanceDifficulties = { --[[ Timewalking 5-player dungeon ]] [24] = true, }, coords = {{m=348,i=true},{m=265,i=true},{m=246,i=true},{m=272,i=true},{m=273,i=true},{m=269,i=true},{m=184,i=true},{m=136,i=true},{m=129,i=true},{m=138,i=true},{m=153,i=true},{m=132,i=true},{m=322,i=true},{m=325,i=true},{m=324,i=true},{m=277,i=true},{m=293,i=true},{m=401,i=true},{m=437,i=true},{m=429,i=true},{m=439,i=true},{m=457,i=true},{m=443,i=true},{m=453,i=true}}, },
+		-- 7.x
+		["Abyss Worm"] =                                    { cat = LEGION, type = MOUNT, method = BOSS, name = L["Abyss Worm"], spellId = 232519, itemId = 143643, npcs = { 99999 }, tooltipNpcs = { 115767 }, chance = 100, groupSize = 10, equalOdds = true, statisticId = { 11893, 11894, 11895, 11896, }, coords = { {m=851, i=true} }, },
+		["Living Infernal Core"] =                          { cat = LEGION, type = MOUNT, method = BOSS, name = L["Living Infernal Core"], spellId = 213134, itemId = 137574, npcs = { 99999 }, tooltipNpcs = { 105503 }, chance = 100, groupSize = 10, equalOdds = true, statisticId = { 10979, 10980, 10978 }, coords = { {m=772, i=true} }, },
+		["Midnight's Eternal Reins"] =                      { cat = LEGION, type = MOUNT, method = BOSS, name = L["Midnight's Eternal Reins"], spellId = 229499, itemId = 142236, npcs = { 114262, }, chance = 100, groupSize = 5, equalOdds = true, instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true, }, coords = {{m=794,i=true}}, },
+
+		["Antoran Charhound"] = {
+			cat = LEGION,
+			type = MOUNT,
+			method = BOSS,
+			name = L["Antoran Charhound"],
+			spellId = 253088,
+			itemId = 152816,
+			npcs = { 99999 },
+			tooltipNpcs = { 126915, 126916 },
+			chance = 100,
+			groupSize = 10,
+			equalOdds = true,
+			statisticId = { 12118, 11957, 11958, 11959, },
+			coords = { {m=910, i=true} },
 		},	
-	 },
-     ["Maddened Chaosrunner"] =	{
-		cat = LEGION,
-		type = MOUNT,
-		method = NPC,
-		name = L["Maddened Chaosrunner"],
-		itemId = 152814,
-		spellId = 253058,
-		npcs = { 126852 },
-		chance = 30,
-		questId = 48695,
-		coords = {
-			m = 882,
-			x = 55.65,
-			y = 59.95,
-			n = L["Wrangler Kravos"],
-		},
-	 },
-	 ["Vile Fiend"] = {
-		cat = LEGION,
-		type = MOUNT,
-		method = NPC,
-		name = L["Vile Fiend"],
-		itemId = 152790,
-		spellId = 243652,
-		npcs = { 127288 },
-		chance = 30,
-		questId = 48821,
-		coords = {
-			m = 885,
-			x = 62.96,
-			y = 24.86,
-			n = L["Houndmaster Kerrax"],
-		},			
-	 },
-	 ["Crimson Slavermaw"] = {
-		cat = LEGION,
-		type = MOUNT,
-		method = NPC,
-		name = L["Crimson Slavermaw"],
-		itemId = 152905,
-		spellId = 253661,
-		npcs = { 122958 },
-		chance = 30,
-		questId = 49183,	
-		coords = {
-			m = 885,
-			x = 61.78,
-			y = 36.97,
-			n = L["Blistermaw"],
-		},			
-	 },
-	 ["Biletooth Gnasher"] = {
-		cat = LEGION,
-		type = MOUNT,
-		method = NPC,
-		name = L["Biletooth Gnasher"],
-		itemId = 152903,
-		spellId = 253660,
-		npcs = { 126040, 126199, },
-		chance = 30,
-		questId = { 48809, 48810, }, 
-		defeatAllQuests = true,
-		defeatSteps = {
-			[48809] = L["Puscilla"],
-			[48810] = L["Vrax'thul"],
-		},
-		sourceText = format(L["Has a chance to drop from either %s or %s on Argus. Each can be looted once per day."], L["Puscilla"], L["Vrax'thul"]),
-		coords = {
-			{ m=885, x = 64.42, y = 20.35, q=48809, n=L["Puscilla"]},
-			{ m=885, x = 53.06, y = 36.12, q=48810, n=L["Vrax'thul"]},
-		},
-	 },
-	 ["Acid Belcher "] = {
-		cat = LEGION,
-		type = MOUNT,
-		method = NPC,
-		name = L["Acid Belcher"],
-		itemId = 152904,
-		spellId = 253662,
-		npcs = { 126912 },
-		chance = 30,
-		questId = 48721,
-		coords = {
-			m = 882,
-			x = 49.79,
-			y = 9.40,
-			n = L["Skreeg the Devourer"],
-		},		
-	 },
-	 ["Scintillating Mana Ray"] = {
-		cat = LEGION,
-		type = MOUNT,
-		method = USE,
-		name = L["Scintillating Mana Ray"],
-		spellId = 253109,
-		itemId = 152840,
-		items = { 153191 },
-		chance = 16,
-		sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
-		coords = {
-			{ m = 885, x = 64.32, y = 48.62, n = L["Varga"] },
-			{ m = 830, x = 70.21, y = 34.38, n = L["Naroua"] },
-			{ m = 882, x = 43.55, y = 49.19, n = L["Sabuul"] },
-		},
-	 },
-	 ["Felglow Mana Ray"] = {
-		cat = LEGION,
-		type = MOUNT,
-		method = USE,
-		name = L["Felglow Mana Ray"],
-		spellId = 253108,
-		itemId = 152841,
-		items = { 153191 },
-		chance = 16,
-		sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
-		coords = {
-			{ m = 885, x = 64.32, y = 48.62, n = L["Varga"] },
-			{ m = 830, x = 70.21, y = 34.38, n = L["Naroua"] },
-			{ m = 882, x = 43.55, y = 49.19, n = L["Sabuul"] },
-		},
-	 },
-	 ["Darkspore Mana Ray"] = {
-		cat = LEGION,
-		type = MOUNT,
-		method = USE,
-		name = L["Darkspore Mana Ray"],
-		spellId = 235764,
-		itemId = 152843,
-		items = { 153191 },
-		chance = 16,
-		sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
-		coords = {
-			{ m = 885, x = 64.32, y = 48.62, n = L["Varga"] },
-			{ m = 830, x = 70.21, y = 34.38, n = L["Naroua"] },
-			{ m = 882, x = 43.55, y = 49.19, n = L["Sabuul"] },
-		},
-	 },
-	 ["Vibrant Mana Ray"] = {
-		cat = LEGION,
-		type = MOUNT,
-		method = USE,
-		name = L["Vibrant Mana Ray"],
-		spellId = 253106,
-		itemId = 152842,
-		items = { 153191 },
-		chance = 16,
-		sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
-		coords = {
-			{ m = 885, x = 64.32, y = 48.62, n = L["Varga"] },
-			{ m = 830, x = 70.21, y = 34.38, n = L["Naroua"] },
-			{ m = 882, x = 43.55, y = 49.19, n = L["Sabuul"] },
-		},
-	 },	 
-	["Pond Nettle"] = {
-		cat = LEGION,
-		type = MOUNT,
-		method = FISHING,
-		name = L["Pond Nettle"],
-		zones = { "885" },
-		spellId = 253711,
-		itemId = 152912,
-		chance = 2000,
-		requiresPool = false,
-	},
-	["Avenging Felcrusher"] = {
-		cat = LEGION,
-		type = MOUNT,
-		method = USE,
-		name = L["Avenging Felcrusher"],
-		spellId = 254259,
-		itemId = 153044,
-		items = { 152923 },
-		chance = 20,
-	},
-	["Blessed Felcrusher"] = {
-		cat = LEGION,
-		type = MOUNT,
-		method = USE,
-		name = L["Blessed Felcrusher"],
-		spellId = 254258,
-		itemId = 153043,
-		items = { 152923 },
-		chance = 20,
-	},
-	["Glorious Felcrusher"] = {
-		cat = LEGION,
-		type = MOUNT,
-		method = USE,
-		name = L["Glorious Felcrusher"],
-		spellId = 254069,
-		itemId = 153042,
-		items = { 152923 },
-		chance = 20,
-	},
-	
-	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-					-- MOUNTS: Requires a group (some of these may be soloable by certain classes, but not in general)
-					--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-					-- Holiday                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-     ["Big Love Rocket"] =                               { cat = HOLIDAY, type = MOUNT, method = USE, name = L["Big Love Rocket"], spellId = 71342, itemId = 50250, items = { 54537 }, chance = 3333, groupSize = 5, equalOdds = true, sourceText = L["Can be contained in Heart-Shaped Box, rewarded for defeating the World Event Dungeon during Love is in the Air."], lockDungeonId = 288, coords = {{m=310,x=40.8,y=52.6, i=true}}, },
-     ["Great Brewfest Kodo"] =                           { cat = HOLIDAY, type = MOUNT, method = USE, name = L["Great Brewfest Kodo"], spellId = 49379, itemId = 37828, items = { 54535, 117393, }, chance = 25, groupSize = 5, equalOdds = true, sourceText = L["Can be contained in Keg-Shaped Treasure Chest, rewarded for defeating the World Event Dungeon during Brewfest."], lockDungeonId = 287, coords = {{m=243,x=46.6,y=60, i=true}}, },
-     ["Swift Brewfest Ram"] =                            { cat = HOLIDAY, type = MOUNT, method = USE, name = L["Swift Brewfest Ram"], spellId = 43900, itemId = 33977, items = { 54535, 117393, }, chance = 25, groupSize = 5, equalOdds = true, sourceText = L["Can be contained in Keg-Shaped Treasure Chest, rewarded for defeating the World Event Dungeon during Brewfest."], lockDungeonId = 287, coords = {{m=242,x=46.6,y=60, i=true}}, },
-     ["The Horseman's Reins"] =                          { cat = HOLIDAY, type = MOUNT, method = USE, name = L["The Horseman's Reins"], spellId = 48025, itemId = 37012, items = { 117392 }, chance = 200, groupSize = 5, equalOdds = true, sourceText = L["Can be contained in Loot-Filled Pumpkin, rewarded for defeating the World Event Dungeon during Hallow's End."], lockDungeonId = 285, coords = { {m=435,i=true} }, },
-					-- 6.x
-     ["Felsteel Annihilator"] =                          { cat = WOD, type = MOUNT, method = BOSS, name = L["Felsteel Annihilator"], spellId = 182912, itemId = 123890, npcs = { 99999 }, tooltipNpcs = { 91331 }, chance = 100, wasGuaranteed = true, groupSize = 3, statisticId = { 10252 }, lockBossName = "Archimonde", coords = { {m=6610,x=58.4,y=53.3,i=true} }, },
-     ["Garn Nighthowl"] =                                { cat = WOD, type = MOUNT, method = BOSS, name = L["Garn Nighthowl"], spellId = 171851, itemId = 116794, npcs = { 81001 }, chance = 1, coords = { {m=525,x=16,y=53.2} }, },
-     ["Ironhoof Destroyer"] =                            { cat = WOD, type = MOUNT, method = BOSS, name = L["Ironhoof Destroyer"], spellId = 171621, itemId = 116660, npcs = { 99999 }, tooltipNpcs = { 77325 }, chance = 100, wasGuaranteed = true, groupSize = 3, statisticId = { 9365 }, lockBossName = "Blackhand", coords = { {m=600, x=48.4,y=34.5,i=true} }, },
-     ["Solar Spirehawk"] =                               { cat = WOD, type = MOUNT, method = BOSS, name = L["Solar Spirehawk"], spellId = 171828, itemId = 116771, npcs = { 99999 }, tooltipNpcs = { 87493, 83746 }, chance = 500, statisticId = { 9279 }, worldBossFactionless = true, questId = 37464, coords = { {m=542,x=47.1,y=78.4} }, },
-	 ["Reins of the Infinite Timereaver"] =              { cat = WOD, type = MOUNT, method = BOSS, name = L["Reins of the Infinite Timereaver"], spellId = 201098, itemId = 133543, 
-	npcs = { -- NPCs marked with * can't be looted; they use a workaround and are detected via checking their achievement criteria. The entry here is mostly for the tooltip display....
-		-- TBC Dungeons
-		---- Magister's Terrace
-		24723, -- Selin Fireheart
-		24744, -- Vexallus
-		24560, -- Priestess Velrissa
-		24664, -- Kael'thas Sunstrider
-		---- The Slave Pens
-		17941, -- Mennu the Betrayer
-		17991, -- Rokmar the Crackler
-		17942, -- Quagmirran
-		---- The Shattered Halls
-		16807, -- Grand Warlock Nethekurse
-		20923, -- Blood Guard Porung
-		16809, -- Warbringer O'mrogg
-		16808, -- Warchief Kargath Bladefist
-		---- The Mana Tombs
-		18341, -- Pandemonius
-		18343, -- Tavarok
-		18344, -- Nexus-Prince Shaffar
-		22930, -- Yor
-		---- The Black Morass
-		17879, -- Chrono Lord Deja
-		17880, -- Temporus
-		17881, -- Aeonus
-		---- The Arcatraz
-		20870, -- Zereketh the Unbound
-		20885, -- Dalliah the Doomsayer
-		20886, -- Wrath-Scryer Soccothrates
-		20912, -- Harbinger Skyriss
-		-- WOTLK Dungeons
-		---- Pit of Saron
-		36494, -- Forgemaster Garfrost
-		36476, -- Ick
-		36658, -- Scourgelord Tyrannus
-		---- Utgarde Pinnacle
-		26668, -- Svala Sorrowgrave
-		26687, -- Gortok Palehoof
-		26693, -- Skadi the Ruthless
-		26861, -- King Ymiron
-		---- The Nexus
-		26731, -- Grand Magus Telestra
-		26763, -- Anomalus
-		26794, -- Ormorok the Tree-Shaper
-		26723, -- Keristrasza
-		26796, -- Commander Stoutbeard
-		26798, -- Commander Kolurg
-		---- Halls of Lightning
-		28586, -- General Bjarngrim
-		28587, -- Volkhan
-		28546, -- Ionar
-		28923, -- Loken
-		---- Gundrak
-		29304, -- Slad'ran
-		29573, -- Drakkari Elemental
-		29305, -- Moorabi
-		29306, -- Gal'darah
-		29932, -- Eck the Ferocious
-		---- Ahn'kahet: The Old Kingdom
-		29309, -- Elder Nadox
-		29308, -- Prince Taldaram
-		29310, -- Jedoga Shadowseeker
-		29311, -- Herald Volazj
-		30258, -- Amanitar
-		-- CATA Dungeons
-		---- Throne of the Tides
-		40586, -- Lady Naz'jar
-		40765, -- Commander Ulthok
-		40788, -- Mindbender Ghur'sha
-		44566, -- Ozumat *
-		---- The Vortex Pinnacle
-		43878, -- Grand Vizier Ertan
-		43873, -- Altairus
-		43875, -- Asaad 
-		---- The Stonecore
-		43438, -- Corborus
-		43214, -- Slabhide
-		42188, -- Ozruk
-		42333, -- High Priestess Azil
-		---- Lost City of the Tol'vir
-		44577, -- General Husam
-		43612, -- High Prophet Barim
-		44819, -- Siamat
-		49045, -- Augh
-		---- Grim Batol
-		39625, -- General Umbriss
-		40177, -- Forgemaster Throngus
-		40319, -- Drahga Shadowburner
-		40484, -- Erudax
-		---- End Time
-		54431, -- Echo of Baine
-		54445, -- Echo of Jaina
-		54123, -- Echo of Sylvanas
-		54544, -- Echo of Tyrande
-		54432, -- Murozond *
-		-- MOP Timewalking
-		---- Gate of the Setting Sun
-		56906, -- Saboteur Kip'tilak
-		56589, -- Striker Ga'dok
-		56636, -- Commander Ri'mok
-		56877, -- Raigonn
-		---- Temple of the Jade Serpent
-		56448, -- Wise Mari
-		59051, -- Strife (Trial of the Yaungol)
-		58826, -- Zao Sunseeker (Champion of the Five Suns)
-		56732, -- Liu Flameheart
-		56439, -- Sha of Doubt
-		---- Stormstout Brewery
-		56637, -- Ook-ook
-		56717, -- Hoptallus
-		59479, -- Yan-Zhu the Uncasked
-		---- Siege of Niuzao Temple
-		61567, -- Vizier Jin'bak
-		61634, -- Commander Vo'jak
-		61485, -- General Pa'valak
-		62205, -- Wing Leader Ner'onok
-		---- Shado-Pan Monastery
-		56747, -- Gu Cloudstrike
-		56541, -- Master Snowdrift *
-		56719, -- Sha of Violence
-		56884, -- Taran Zhu *
-		---- Mogu'shan Palace
-		61444, -- Ming the Cunning *
-		61243, -- Gekkan *
-		61398, -- Xin the Weaponmaster
-	},
-	chance = 4000, groupSize = 5, equalOdds = true, instanceDifficulties = { --[[ Timewalking 5-player dungeon ]] [24] = true, }, coords = {{m=348,i=true},{m=265,i=true},{m=246,i=true},{m=272,i=true},{m=273,i=true},{m=269,i=true},{m=184,i=true},{m=136,i=true},{m=129,i=true},{m=138,i=true},{m=153,i=true},{m=132,i=true},{m=322,i=true},{m=325,i=true},{m=324,i=true},{m=277,i=true},{m=293,i=true},{m=401,i=true},{m=437,i=true},{m=429,i=true},{m=439,i=true},{m=457,i=true},{m=443,i=true},{m=453,i=true}}, },
-	-- 7.x
-	["Abyss Worm"] =                                    { cat = LEGION, type = MOUNT, method = BOSS, name = L["Abyss Worm"], spellId = 232519, itemId = 143643, npcs = { 99999 }, tooltipNpcs = { 115767 }, chance = 100, groupSize = 10, equalOdds = true, statisticId = { 11893, 11894, 11895, 11896, }, coords = { {m=851, i=true} }, },
-    ["Living Infernal Core"] =                          { cat = LEGION, type = MOUNT, method = BOSS, name = L["Living Infernal Core"], spellId = 213134, itemId = 137574, npcs = { 99999 }, tooltipNpcs = { 105503 }, chance = 100, groupSize = 10, equalOdds = true, statisticId = { 10979, 10980, 10978 }, coords = { {m=772, i=true} }, },
-	["Midnight's Eternal Reins"] =                      { cat = LEGION, type = MOUNT, method = BOSS, name = L["Midnight's Eternal Reins"], spellId = 229499, itemId = 142236, npcs = { 114262, }, chance = 100, groupSize = 5, equalOdds = true, instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true, }, coords = {{m=794,i=true}}, },
-
-	["Antoran Charhound"] = {
-		cat = LEGION,
-		type = MOUNT,
-		method = BOSS,
-		name = L["Antoran Charhound"],
-		spellId = 253088,
-		itemId = 152816,
-		npcs = { 99999 },
-		tooltipNpcs = { 126915, 126916 },
-		chance = 100,
-		groupSize = 10,
-		equalOdds = true,
-		statisticId = { 12118, 11957, 11958, 11959, },
-		coords = { {m=910, i=true} },
-	},	
 	
     },
 
