@@ -877,9 +877,9 @@ function R:PrepareDefaults()
 		 ["Swift Brewfest Ram"] =                            { cat = HOLIDAY, type = MOUNT, method = USE, name = L["Swift Brewfest Ram"], spellId = 43900, itemId = 33977, items = { 54535, 117393, }, chance = 25, groupSize = 5, equalOdds = true, sourceText = L["Can be contained in Keg-Shaped Treasure Chest, rewarded for defeating the World Event Dungeon during Brewfest."], lockDungeonId = 287, coords = {{m=242,x=46.6,y=60, i=true}}, },
 		 ["The Horseman's Reins"] =                          { cat = HOLIDAY, type = MOUNT, method = USE, name = L["The Horseman's Reins"], spellId = 48025, itemId = 37012, items = { 117392 }, chance = 200, groupSize = 5, equalOdds = true, sourceText = L["Can be contained in Loot-Filled Pumpkin, rewarded for defeating the World Event Dungeon during Hallow's End."], lockDungeonId = 285, coords = { {m=435,i=true} }, },
 						-- 6.x
-		 ["Felsteel Annihilator"] =                          { cat = WOD, type = MOUNT, method = BOSS, name = L["Felsteel Annihilator"], spellId = 182912, itemId = 123890, npcs = { 99999 }, tooltipNpcs = { 91331 }, chance = 100, wasGuaranteed = true, groupSize = 3, statisticId = { 10252 }, lockBossName = "Archimonde", coords = { {m=6610,x=58.4,y=53.3,i=true} }, },
+		 ["Felsteel Annihilator"] =                          { cat = WOD, type = MOUNT, method = BOSS, name = L["Felsteel Annihilator"], spellId = 182912, itemId = 123890, npcs = { 99999 }, tooltipNpcs = { 91331 }, chance = 100, wasGuaranteed = true, statisticId = { 10252 }, lockBossName = "Archimonde", coords = { {m=6610,x=58.4,y=53.3,i=true} }, },
 		 ["Garn Nighthowl"] =                                { cat = WOD, type = MOUNT, method = BOSS, name = L["Garn Nighthowl"], spellId = 171851, itemId = 116794, npcs = { 81001 }, chance = 1, coords = { {m=525,x=16,y=53.2} }, },
-		 ["Ironhoof Destroyer"] =                            { cat = WOD, type = MOUNT, method = BOSS, name = L["Ironhoof Destroyer"], spellId = 171621, itemId = 116660, npcs = { 99999 }, tooltipNpcs = { 77325 }, chance = 100, wasGuaranteed = true, groupSize = 3, statisticId = { 9365 }, lockBossName = "Blackhand", coords = { {m=600, x=48.4,y=34.5,i=true} }, },
+		 ["Ironhoof Destroyer"] =                            { cat = WOD, type = MOUNT, method = BOSS, name = L["Ironhoof Destroyer"], spellId = 171621, itemId = 116660, npcs = { 99999 }, tooltipNpcs = { 77325 }, chance = 100, wasGuaranteed = true, statisticId = { 9365 }, lockBossName = "Blackhand", coords = { {m=600, x=48.4,y=34.5,i=true} }, },
 		 ["Solar Spirehawk"] =                               { cat = WOD, type = MOUNT, method = BOSS, name = L["Solar Spirehawk"], spellId = 171828, itemId = 116771, npcs = { 99999 }, tooltipNpcs = { 87493, 83746 }, chance = 500, statisticId = { 9279 }, worldBossFactionless = true, questId = 37464, coords = { {m=542,x=47.1,y=78.4} }, },
 		 ["Reins of the Infinite Timereaver"] =              { cat = WOD, type = MOUNT, method = BOSS, name = L["Reins of the Infinite Timereaver"], spellId = 201098, itemId = 133543, 
 		npcs = { -- NPCs marked with * can't be looted; they use a workaround and are detected via checking their achievement criteria. The entry here is mostly for the tooltip display....
@@ -1010,9 +1010,9 @@ function R:PrepareDefaults()
 		},
 		chance = 4000, groupSize = 5, equalOdds = true, instanceDifficulties = { --[[ Timewalking 5-player dungeon ]] [24] = true, }, coords = {{m=348,i=true},{m=265,i=true},{m=246,i=true},{m=272,i=true},{m=273,i=true},{m=269,i=true},{m=184,i=true},{m=136,i=true},{m=129,i=true},{m=138,i=true},{m=153,i=true},{m=132,i=true},{m=322,i=true},{m=325,i=true},{m=324,i=true},{m=277,i=true},{m=293,i=true},{m=401,i=true},{m=437,i=true},{m=429,i=true},{m=439,i=true},{m=457,i=true},{m=443,i=true},{m=453,i=true}}, },
 		-- 7.x
-		["Abyss Worm"] =                                    { cat = LEGION, type = MOUNT, method = BOSS, name = L["Abyss Worm"], spellId = 232519, itemId = 143643, npcs = { 99999 }, tooltipNpcs = { 115767 }, chance = 100, groupSize = 10, equalOdds = true, statisticId = { 11893, 11894, 11895, 11896, }, coords = { {m=851, i=true} }, },
-		["Living Infernal Core"] =                          { cat = LEGION, type = MOUNT, method = BOSS, name = L["Living Infernal Core"], sourceText = L["All raid formats except Raid Finder"],spellId = 213134, itemId = 137574, npcs = { 99999 }, tooltipNpcs = { 105503 }, chance = 100, groupSize = 10, equalOdds = true, statisticId = { 10979, 10980, 10978 }, coords = { {m=772, i=true} }, },
-		["Midnight's Eternal Reins"] =                      { cat = LEGION, type = MOUNT, method = BOSS, name = L["Midnight's Eternal Reins"], spellId = 229499, itemId = 142236, npcs = { 114262, }, chance = 100, groupSize = 5, equalOdds = true, instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true, }, coords = {{m=794,i=true}}, },
+		["Abyss Worm"] =                                    { cat = LEGION, type = MOUNT, method = BOSS, name = L["Abyss Worm"], spellId = 232519, itemId = 143643, npcs = { 99999 }, tooltipNpcs = { 115767 }, chance = 100, groupSize = 3, equalOdds = true, statisticId = { 11893, 11894, 11895, 11896, }, coords = { {m=851, i=true} }, },
+		["Living Infernal Core"] =                          { cat = LEGION, type = MOUNT, method = BOSS, name = L["Living Infernal Core"], sourceText = L["All raid formats except Raid Finder"],spellId = 213134, itemId = 137574, npcs = { 99999 }, tooltipNpcs = { 105503 }, chance = 100, groupSize = 3, equalOdds = true, statisticId = { 10979, 10980, 10978 }, coords = { {m=772, i=true} }, },
+		["Midnight's Eternal Reins"] =                      { cat = LEGION, type = MOUNT, method = BOSS, name = L["Midnight's Eternal Reins"], spellId = 229499, itemId = 142236, npcs = { 114262, }, chance = 100, equalOdds = true, instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true, }, coords = {{m=794,i=true}}, },
 
 		["Fiendish Hellfire Core"] ={
 			cat = LEGION,
@@ -1026,7 +1026,7 @@ function R:PrepareDefaults()
 			instanceDifficulties = { --[[ Mythic ]] [16] = true, },
 			chance = 100,
 			wasGuaranteed = true,
-			groupSize = 10,
+			groupSize = 3,
 			equalOdds = true,
 			statisticId = { 10980 },
 			coords = { {m=772, i=true} },
@@ -1042,7 +1042,7 @@ function R:PrepareDefaults()
 			npcs = { 99999 },
 			tooltipNpcs = { 126915, 126916 },
 			chance = 100,
-			groupSize = 10,
+			groupSize = 3,
 			equalOdds = true,
 			statisticId = { 12118, 11957, 11958, 11959, },
 			coords = { {m=910, i=true} },
@@ -1060,7 +1060,7 @@ function R:PrepareDefaults()
 			instanceDifficulties = { --[[ Mythic ]] [16] = true, },
 			chance = 100,
 			wasGuaranteed = true,
-			groupSize = 10,
+			groupSize = 3,
 			equalOdds = true,
 			statisticId = { 11986 },
 			coords = { {m=910, i=true} },
@@ -1222,7 +1222,7 @@ function R:PrepareDefaults()
 	 ["Void Collar"] =                                   { cat = WOD, type = PET, method = NPC, name = L["Void Collar"], spellId = 179839, itemId = 122114, npcs = { 25840 }, chance = 10, creatureId = 90213, coords = {{m=335,x=46.7,y=23.8,i=true}}, },
 	 ["Young Talbuk"] =                                  { cat = WOD, type = PET, method = USE, name = L["Young Talbuk"], spellId = 177218, itemId = 122533, items = { 122535 }, chance = 33, creatureId = 91408, questId = { 382994, 38300 }, },
 					-- 6.2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-     ["Corrupted Nest Guardian"] =                       { cat = WOD, type = PET, method = BOSS, name = L["Corrupted Nest Guardian"], spellId = 187532, itemId = 127749, npcs = { 99999 }, tooltipNpcs = { 95067 }, chance = 100, statisticId = { 10228, 10227, 10226, 10225 }, creatureId = 94623, enableCoin = true, lockBossName = "Shadow-Lord Iskar", groupSize = 3,  equalOdds = true, coords = {{m=661,x=40.1,y=76.1,i=true}}, },
+     ["Corrupted Nest Guardian"] =                       { cat = WOD, type = PET, method = BOSS, name = L["Corrupted Nest Guardian"], spellId = 187532, itemId = 127749, npcs = { 99999 }, tooltipNpcs = { 95067 }, chance = 100, statisticId = { 10228, 10227, 10226, 10225 }, creatureId = 94623, enableCoin = true, lockBossName = "Shadow-Lord Iskar", equalOdds = true, coords = {{m=661,x=40.1,y=76.1,i=true}}, },
 	 ["Glittering Arcane Crystal"] =                     { cat = WOD, type = PET, method = NPC, name = L["Glittering Arcane Crystal"], spellId = 193589, itemId = 129218, npcs = { 98200, }, chance = 10, creatureId = 98238, questId = 40074, coords = { {m=550,x=23.8,y=37.9,n=L["Guk"]} }},
 	 ["Nightmare Bell"] =                                { cat = WOD, type = PET, method = USE, name = L["Nightmare Bell"], spellId = 185055, itemId = 127753, items = { 127751 }, chance = 33, creatureId = 93483, sourceText = L["Can drop from Fel-Touched Pet Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."], questId = { 39157, 39160, 39161, 39162, 39163, 39164, 39165, 39166, 39167, 39168, 39169, 39170, 39171, 39172, 39173, }, defeatAllQuests = true, defeatSteps = { [39168] = L["Bleakclaw"], [39161] = L["Chaos Pup"], [39160] = L["Corrupted Thundertail"], [39162] = L["Cursed Spirit"], [39167] = L["Dark Gazer"], [39173] = L["Defiled Earth"], [39170] = L["Dreadwalker"], [39165] = L["Direflame"], [39163] = L["Felfly"], [39157] = L["Felsworn Sentry"], [39166] = L["Mirecroak"], [39171] = L["Netherfist"], [39172] = L["Skrillix"], [39164] = L["Tainted Maulclaw"], [39169] = L["Vile Blood of Draenor"], }, coords = { {m=534,x=15.8,y=44.6,q=39168,n=L["Bleakclaw"]},{m=534,x=25,y=76.2,q=39161,n=L["Chaos Pup"]},{m=534,x=53,y=65.2,q=39160,n=L["Corrupted Thundertail"]},{m=534,x=31.4,y=38,q=39162,n=L["Cursed Spirit"]},{m=534,x=54,y=29.8,q=39167,n=L["Dark Gazer"]},{m=534,x=75.4,y=37.4,q=39173,n=L["Defiled Earth"]},{m=534,x=47.2,y=52.6,q=39170,n=L["Dreadwalker"]},{m=534,x=57.8,y=37.2,q=39165,n=L["Direflame"]},{m=534,x=55.8,y=80.8,q=39163,n=L["Felfly"]},{m=534,x=26,y=31.6,q=39157,n=L["Felsworn Sentry"]},{m=534,x=42.2,y=71.6,q=39166,n=L["Mirecroak"]},{m=534,x=48.4,y=35.6,q=39171,n=L["Netherfist"]},{m=534,x=48.4,y=31.2,q=39172,n=L["Skrillix"]},{m=534,x=43.4,y=84.6,q=39164,n=L["Tainted Maulclaw"]},{m=534,x=44,y=45.8,q=39169,n=L["Vile Blood of Draenor"]}, }, },
 	 ["Periwinkle Calf"] =                               { cat = WOD, type = PET, method = USE, name = L["Periwinkle Calf"], spellId = 187555, itemId = 127754, items = { 127751 }, chance = 33, creatureId = 93352, sourceText = L["Can drop from Fel-Touched Pet Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."], questId = { 39157, 39160, 39161, 39162, 39163, 39164, 39165, 39166, 39167, 39168, 39169, 39170, 39171, 39172, 39173, }, defeatAllQuests = true, defeatSteps = { [39168] = L["Bleakclaw"], [39161] = L["Chaos Pup"], [39160] = L["Corrupted Thundertail"], [39162] = L["Cursed Spirit"], [39167] = L["Dark Gazer"], [39173] = L["Defiled Earth"], [39170] = L["Dreadwalker"], [39165] = L["Direflame"], [39163] = L["Felfly"], [39157] = L["Felsworn Sentry"], [39166] = L["Mirecroak"], [39171] = L["Netherfist"], [39172] = L["Skrillix"], [39164] = L["Tainted Maulclaw"], [39169] = L["Vile Blood of Draenor"], }, coords = { {m=534,x=15.8,y=44.6,q=39168,n=L["Bleakclaw"]},{m=534,x=25,y=76.2,q=39161,n=L["Chaos Pup"]},{m=534,x=53,y=65.2,q=39160,n=L["Corrupted Thundertail"]},{m=534,x=31.4,y=38,q=39162,n=L["Cursed Spirit"]},{m=534,x=54,y=29.8,q=39167,n=L["Dark Gazer"]},{m=534,x=75.4,y=37.4,q=39173,n=L["Defiled Earth"]},{m=534,x=47.2,y=52.6,q=39170,n=L["Dreadwalker"]},{m=534,x=57.8,y=37.2,q=39165,n=L["Direflame"]},{m=534,x=55.8,y=80.8,q=39163,n=L["Felfly"]},{m=534,x=26,y=31.6,q=39157,n=L["Felsworn Sentry"]},{m=534,x=42.2,y=71.6,q=39166,n=L["Mirecroak"]},{m=534,x=48.4,y=35.6,q=39171,n=L["Netherfist"]},{m=534,x=48.4,y=31.2,q=39172,n=L["Skrillix"]},{m=534,x=43.4,y=84.6,q=39164,n=L["Tainted Maulclaw"]},{m=534,x=44,y=45.8,q=39169,n=L["Vile Blood of Draenor"]}, }, },
@@ -1259,7 +1259,7 @@ function R:PrepareDefaults()
      ["Bronze Proto-Whelp"] =                            { cat = LEGION, type = PET, method = USE, name = L["Bronze Proto-Whelp"], spellId = 248025, itemId = 151829, items = { 151482 }, chance = 33, creatureId = 124858, coords = {{m=115,x=60,y=54.4,n=L["Chromie"]}}, },
 	 ["Cavern Moccasin"] =                               { cat = LEGION, type = PET, method = USE, name = L["Cavern Moccasin"], spellId = 233333, itemId = 143754, items = { 143753 }, chance = 100, creatureId = 117182, questId = 45539, coords = {{m=10,x=38.8,y=68.2,n=L["Muyani"]}}, },
 	 ["Everliving Spore"] =                              { cat = LEGION, type = PET, method = USE, name = L["Everliving Spore"], spellId = 233331, itemId = 143756, items = { 143753 }, chance = 100, creatureId = 117180, questId = 45539, coords = {{m=10,x=38.8,y=68.2,n=L["Muyani"]}}, },
-	 ["Nightmare Whelpling"] =                           { cat = LEGION, type = PET, method = BOSS, name = L["Nightmare Whelpling"], spellId = 210675, itemId = 136903, creatureId = 112015, npcs = { 99999 }, tooltipNpcs = { 102679 }, chance = 100, groupSize = 10, equalOdds = true, statisticId = { 10928, 10929, 10930, 10931, }, enableCoin = true, coords = { {m=781, i=true} }, },
+	 ["Nightmare Whelpling"] =                           { cat = LEGION, type = PET, method = BOSS, name = L["Nightmare Whelpling"], spellId = 210675, itemId = 136903, creatureId = 112015, npcs = { 99999 }, tooltipNpcs = { 102679 }, chance = 100, groupSize = 3, equalOdds = true, statisticId = { 10928, 10929, 10930, 10931, }, enableCoin = true, coords = { {m=781, i=true} }, },
 	 ["Orphaned Felbat"] =                               { cat = LEGION, type = PET, method = USE, name = L["Orphaned Felbat"], spellId = 243136, itemId = 147841, items = { 152108 }, chance = 20, creatureId = 121715, },
      ["Scraps"] =                                        { cat = LEGION, type = PET, method = SPECIAL, name = L["Scraps"], spellId = 240064, itemId = 146953, chance = 33, creatureId = 120397, coords = {{m=646}}, },
 	 ["Young Venomfang"] =                               { cat = LEGION, type = PET, method = USE, name = L["Young Venomfang"], spellId = 233335, itemId = 143755, items = { 143753 }, chance = 100, creatureId = 117184, questId = 45539, coords = {{m=10,x=38.8,y=68.2,n=L["Muyani"]}}, },				
@@ -1592,7 +1592,7 @@ function R:PrepareDefaults()
 		itemId = 143544,
 		npcs = { 99999 },
 		tooltipNpcs = { 105503, 111022 }, -- Gul'dan / The Demon Within (Mythic only)
-		groupSize = 10,
+		groupSize = 3,
 		equalOdds = true,
 		chance = 30,
 		enableCoin = true,
@@ -1612,7 +1612,7 @@ function R:PrepareDefaults()
 		itemId = 119211,
 		npcs = { 99999 },
 		tooltipNpcs = { 105503, 111022 }, -- Gul'dan / The Demon Within (Mythic only)
-		groupSize = 10,
+		groupSize = 3,
 		equalOdds = true,
 		chance = 275,
 		statisticId = { 10977, 10979, 10980, 10978 },
