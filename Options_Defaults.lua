@@ -867,25 +867,6 @@ function R:PrepareDefaults()
 		chance = 20,
 	},
 	
-	-- 7.3.5 (Antorus)
-	
-	["Antoran Charhound"] = {
-		cat = LEGION,
-		type = MOUNT,
-		method = BOSS,
-		name = L["Antoran Charhound"],
-		spellId = 253088,
-		itemId = 152816,
-		npcs = { 99999 },
-		tooltipNpcs = { 126915, 126916 },
-		-- Instance difficulties?
-		chance = 100,
-		groupSize = 10, -- Eh?
-		equalOdds = true,
-		statisticId = { 12118, 11957, 11958, 11959, },
-		coords = { {m=910, i=true} },
-	},
-	
 	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 					-- MOUNTS: Requires a group (some of these may be soloable by certain classes, but not in general)
 					--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1033,6 +1014,22 @@ function R:PrepareDefaults()
     ["Living Infernal Core"] =                          { cat = LEGION, type = MOUNT, method = BOSS, name = L["Living Infernal Core"], spellId = 213134, itemId = 137574, npcs = { 99999 }, tooltipNpcs = { 105503 }, chance = 100, groupSize = 10, equalOdds = true, statisticId = { 10979, 10980, 10978 }, coords = { {m=772, i=true} }, },
 	["Midnight's Eternal Reins"] =                      { cat = LEGION, type = MOUNT, method = BOSS, name = L["Midnight's Eternal Reins"], spellId = 229499, itemId = 142236, npcs = { 114262, }, chance = 100, groupSize = 5, equalOdds = true, instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true, }, coords = {{m=794,i=true}}, },
 
+	["Antoran Charhound"] = {
+		cat = LEGION,
+		type = MOUNT,
+		method = BOSS,
+		name = L["Antoran Charhound"],
+		spellId = 253088,
+		itemId = 152816,
+		npcs = { 99999 },
+		tooltipNpcs = { 126915, 126916 },
+		chance = 100,
+		groupSize = 10,
+		equalOdds = true,
+		statisticId = { 12118, 11957, 11958, 11959, },
+		coords = { {m=910, i=true} },
+	},	
+	
     },
 
 
