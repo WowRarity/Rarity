@@ -23,6 +23,7 @@ local CATA = "CATA"
 local MOP = "MOP"
 local WOD = "WOD"
 local LEGION = "LEGION"
+local BFA = "BFA"
 local HOLIDAY = "HOLIDAY"
 
 -- Holiday calendar textures
@@ -115,6 +116,7 @@ R.catIcons = {
  [MOP] = "mop",
  [WOD] = "wod",
  [LEGION] = "legion",
+ [BFA] = "bfa",
 }
 R.catOrder = {
  [HOLIDAY] = 0,
@@ -125,6 +127,7 @@ R.catOrder = {
  [MOP] = 5,
  [WOD] = 6,
  [LEGION] = 7,
+ [BFA] = 8,
 }
 
 -- Tooltip Filters (Note: Currently, this system is merely a stub. but more (and custom) filters may be added in the future)
@@ -197,6 +200,7 @@ function R:PrepareDefaults()
 				[WOD] = true,
 				[LEGION] = true,
 				[HOLIDAY] = true,
+				[BFA] = true,
 			},
 
 			-- These are achievements with the names of rare NPCs as criteria to kill
