@@ -1122,6 +1122,8 @@ L["Fossorial Bile Larva"] = true
 L["Obtained by skinning creatures on Argus"] = true
 L["Fel Lasher"] = true
 L["Obtained by gathering herbs on Argus"] = true
+L["Fiendish Hellfire Core"] = true
+
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

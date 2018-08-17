@@ -1014,6 +1014,24 @@ function R:PrepareDefaults()
 		["Living Infernal Core"] =                          { cat = LEGION, type = MOUNT, method = BOSS, name = L["Living Infernal Core"], spellId = 213134, itemId = 137574, npcs = { 99999 }, tooltipNpcs = { 105503 }, chance = 100, groupSize = 10, equalOdds = true, statisticId = { 10979, 10980, 10978 }, coords = { {m=772, i=true} }, },
 		["Midnight's Eternal Reins"] =                      { cat = LEGION, type = MOUNT, method = BOSS, name = L["Midnight's Eternal Reins"], spellId = 229499, itemId = 142236, npcs = { 114262, }, chance = 100, groupSize = 5, equalOdds = true, instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true, }, coords = {{m=794,i=true}}, },
 
+		["Fiendish Hellfire Core"] ={
+			cat = LEGION,
+			type = MOUNT,
+			method = BOSS,
+			name = L["Fiendish Hellfire Core"],
+			spellId = 171827,
+			itemId = 137575,
+			npcs = { 99999 },
+			tooltipNpcs = { 105503, 111022 }, -- Gul'dan / The Demon Within (Mythic only)
+			instanceDifficulties = { --[[ Mythic ]] [16] = true, },
+			chance = 100,
+			wasGuaranteed = true,
+			groupSize = 10,
+			equalOdds = true,
+			statisticId = { 10980 },
+			coords = { {m=772, i=true} },
+		},
+		
 		["Antoran Charhound"] = {
 			cat = LEGION,
 			type = MOUNT,
