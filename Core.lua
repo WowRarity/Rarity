@@ -325,6 +325,17 @@ R.fishnodes = {
 	[L["Fever of Stormrays"]]		= true,
 	[L["Highmountain Salmon School"]]	= true,
 	[L["Mossgill Perch School"]]	= true,
+	-- Battle for Azeroth	
+	[L["Frenzied Fangtooth School"]] = true,
+	[L["Great Sea Catfish School"]] = true,
+	[L["Lane Snapper School"]] = true,
+	[L["Rasboralus School"]] = true,
+	[L["Redtail Loach School"]] = true,
+	[L["Sand Shifter School"]] = true,
+	[L["Slimy Mackerel School"]] = true,
+	[L["Tiragarde Perch School"]] = true,
+	[L["U'taka School"]] = true,
+	
 }
 
 R.miningnodes = {

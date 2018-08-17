@@ -1124,6 +1124,15 @@ L["Fel Lasher"] = true
 L["Obtained by gathering herbs on Argus"] = true
 L["Fiendish Hellfire Core"] = true
 L["Shackled Ur'zul"] = true
+L["Frenzied Fangtooth School"] = true
+L["Great Sea Catfish School"] = true
+L["Lane Snapper School"] = true
+L["Rasboralus School"] = true
+L["Redtail Loach School"] = true
+L["Sand Shifter School"] = true
+L["Slimy Mackerel School"] = true
+L["Tiragarde Perch School"] = true
+L["U'taka School"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
