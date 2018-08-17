@@ -1048,6 +1048,24 @@ function R:PrepareDefaults()
 			coords = { {m=910, i=true} },
 		},	
 	
+		["Shackled Ur'zul"] ={
+			cat = LEGION,
+			type = MOUNT,
+			method = BOSS,
+			name = L["Shackled Ur'zul"],
+			spellId = 243651,
+			itemId = 152789,
+			npcs = { 99999 },
+			tooltipNpcs = { 130352 }, -- Argus the Unmaker
+			instanceDifficulties = { --[[ Mythic ]] [16] = true, },
+			chance = 100,
+			wasGuaranteed = true,
+			groupSize = 10,
+			equalOdds = true,
+			statisticId = { 11986 },
+			coords = { {m=910, i=true} },
+		},
+	
     },
 
 
