@@ -136,6 +136,11 @@ local TOOLTIP_FILTERS = {
 	IS_SPELL_KNOWN = IsSpellKnown,
 }
 
+-- Embedded mapIDs: It's best to avoid hardcoding these in case of yet another re-mapping on Blizzard's end...
+local UIMAPIDS = {
+	ARATHI_HIGHLANDS = 14,
+}
+
 
 function R:PrepareDefaults()
 	self.defaults = {
