@@ -1163,7 +1163,51 @@ function R:PrepareDefaults()
 			statisticId = { 11986 },
 			coords = { {m=910, i=true} },
 		},
-	
+
+		-- 8.0
+		
+		["Sharkbait's Favorite Crackers"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = BOSS,
+			name = L["Sharkbait's Favorite Crackers"],
+			spellId = 254813,
+			itemId = 159842,
+			npcs = 129440,
+			chance = 100,
+			equalOdds = true,
+			instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true },
+			groupSize = 5,
+		},
+
+		["Underrot Crawg Harness"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = BOSS,
+			name = L["Underrot Crawg Harness"],
+			spellId = 273541,
+			itemId = 160829,
+			npcs = 133007,
+			chance = 100,
+			equalOdds = true,
+			instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true },
+			groupSize = 5,
+		},
+		
+		["Mummified Raptor Skull"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = BOSS,
+			name = L["Mummified Raptor Skull"],
+			spellId = 266058,
+			itemId = 159921,
+			npcs = 136160,
+			chance = 100,
+			equalOdds = true,
+			instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true },
+			groupSize = 5,
+		},
+		
     },
 
 
