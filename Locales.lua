@@ -1,6 +1,17 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+L["Witherbark Direwing"] = true
+L["Nimar the Slayer"] = true
+L["Lil' Donkey"] = true
+L["Overseer Krix"] = true
+L["Skullripper"] = true
+L["Swift Albino Raptor"] = true
+L["Beastrider Kama"] = true
+L["Highland Mustang"] = true
+L["Doomrider Helgrim"] = true
+L["Broken Highland Mustang"] = true
+L["Knight-Captain Aldrin"] = true
 L["Loading"] = true
 L["Loaded (running in debug mode)"] = true
 L["Profile modified, rebooting"] = true
