@@ -872,6 +872,99 @@ function R:PrepareDefaults()
 			chance = 20,
 		},
 		
+		--- 8.0
+
+		 ["Witherbark Direwing"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Witherbark Direwing"],
+			itemId = 163706,
+			spellId = 279868,
+			npcs = { 142692 },
+			chance = 100,
+			questId = 000000000000000000,
+			coords = {
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 67.48, y = 60.58, n = L["Nimar the Slayer"] },
+			},		
+		 },
+
+		 ["Lil' Donkey"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Lil' Donkey"],
+			itemId = 163646,
+			spellId = 279608,
+			npcs = { 142423 },
+			chance = 100,
+			questId = 000000000000000000,
+			coords = {
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 27.46, y = 55.89, n = L["Overseer Krix"] .. " - " .. L["Horde only"] }, 
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 33.04, y = 37.49, n = L["Overseer Krix"]  .. " - " .. L["Alliance only"] },
+			},		
+		 },
+		
+		["Skullripper"] = { 
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Skullripper"],
+			itemId = 163645,
+			spellId = 279611,
+			npcs = { 142437 },
+			chance = 100,
+			questId = 000000000000000000,
+			coords = {
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 57.15, y = 45.75, n = L["Skullripper"] },
+			},		
+		 },
+
+		 ["Swift Albino Raptor"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Swift Albino Raptor"],
+			itemId = 163644,
+			spellId = 279569,
+			npcs = { 142709 },
+			chance = 100,
+			questId = 000000000000000000,
+			coords = {
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 67.06, y = 65.89, n = L["Beastrider Kama"] },
+			},		
+		 },
+
+		 ["Highland Mustang"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Highland Mustang"],
+			itemId = 163579,
+			spellId = 279456,
+			npcs = { 142741 },
+			chance = 100,
+			questId = 000000000000000000,
+			coords = {
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 53.97, y = 56.96, n = L["Doomrider Helgrim"] .. " - " .. L["Alliance only"] },
+			},		
+		 },
+
+		 ["Broken Highland Mustang"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Broken Highland Mustang"],
+			itemId = 163578,
+			spellId = 279457,
+			npcs = { 142739 },
+			chance = 100,
+			questId = 000000000000000000,
+			coords = {
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 49.27, y = 40.05, n = L["Knight-Captain Aldrin"] .. " - " .. L["Horde only"] },
+			},		
+		 },
+
 		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 						-- MOUNTS: Requires a group (some of these may be soloable by certain classes, but not in general)
 						--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
