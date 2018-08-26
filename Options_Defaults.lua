@@ -671,10 +671,7 @@ function R:PrepareDefaults()
 			chance = 30,
 			questId = 48705,
 			coords = {
-				m = 882,
-				x = 34.01,
-				y = 47.83,
-				n = L["Venomtail Skyfin"],
+				{ m = 882,	x = 34.01, y = 47.83, n = L["Venomtail Skyfin"] },
 			},	
 		 },
 		 ["Maddened Chaosrunner"] =	{
@@ -688,10 +685,7 @@ function R:PrepareDefaults()
 			chance = 30,
 			questId = 48695,
 			coords = {
-				m = 882,
-				x = 55.65,
-				y = 59.95,
-				n = L["Wrangler Kravos"],
+				{ m = 882, x = 55.65, y = 59.95, n = L["Wrangler Kravos"] },
 			},
 		 },
 		 ["Vile Fiend"] = {
@@ -705,10 +699,7 @@ function R:PrepareDefaults()
 			chance = 30,
 			questId = 48821,
 			coords = {
-				m = 885,
-				x = 62.96,
-				y = 24.86,
-				n = L["Houndmaster Kerrax"],
+				{ m = 885, x = 62.96, y = 24.86, n = L["Houndmaster Kerrax"] },
 			},			
 		 },
 		 ["Crimson Slavermaw"] = {
@@ -722,10 +713,7 @@ function R:PrepareDefaults()
 			chance = 30,
 			questId = 49183,	
 			coords = {
-				m = 885,
-				x = 61.78,
-				y = 36.97,
-				n = L["Blistermaw"],
+				{ m = 885, x = 61.78, y = 36.97, n = L["Blistermaw"] },
 			},			
 		 },
 		 ["Biletooth Gnasher"] = {
@@ -760,10 +748,7 @@ function R:PrepareDefaults()
 			chance = 30,
 			questId = 48721,
 			coords = {
-				m = 882,
-				x = 49.79,
-				y = 9.40,
-				n = L["Skreeg the Devourer"],
+				{ m = 882, x = 49.79, y = 9.40, n = L["Skreeg the Devourer"] },
 			},		
 		 },
 		 ["Scintillating Mana Ray"] = {
