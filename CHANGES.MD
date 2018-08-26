@@ -1,3 +1,23 @@
+**r676-beta:**
+
+> Added tracking for mount: Hellfire/Felblaze Infernal (Drop: Gul'dan)
+<br>Added tracking for mount: Shackled Ur'zul (Drop: Argus the Unmaker)
+<br>Added tracking for mounts that will be obtainable from killing the Warfront: Arathi Highlands rares (see notes below)
+<br>Added tracking for mounts obtainable from Mythic difficulty BFA dungeons
+
+> All Warlords of Draenor raids are now considered soloable
+<br>Midnight's Eternal Reins: Attumen the Huntsman is now considered soloable
+<br>Updated group size estimations for various Legion raids
+
+> Mouseover tooltips for the Assembly of Iron encounter in Ulduar should once again display tracking data for Stormforged Rune
+<br>Fixed TomTom waypoint creation for some rares on Argus that previously had invalid entries
+
+Developer Notes:
+> Since there isn't any data available, it's virtually guaranteed that the drop chances for these items are wrong. They will be corrected in a future update.
+<br>Defeat detection for the new rares is also not yet implemented.
+
+-----
+
 **r675-beta:**
 
 > Added tooltip for the "Adventurer of ..." exploration achievements to all relevant rares in Kul'tiras and Zandalar
@@ -18,6 +38,7 @@
 
 > Installing the addon without embedded libraries is no longer possible
 
+Developer Notes:
 > This Curse/Twitch "feature" caused many bug reports and offers little tangible benefit, as it was often done in error or automatically by the Twitch client. I ultimately chose to disable it in order to reduce the time spent on providing support instead of working on bug fixes or new features
 
 -----
@@ -28,11 +49,5 @@
 <br>Added pet: Fossorial Bile Larva
 
 > Fixed detection for various 8.0.1 gathering (and fishing) spells that had not already been supported
-
------
-
-**r671-release:**
-
-> Minor cosmetic changes to the addon's output
 
 -----
