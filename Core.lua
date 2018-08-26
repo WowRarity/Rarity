@@ -210,6 +210,8 @@ R.coins = {
 	[1129] = true, -- Seal of Inevitable Fate
 	-- Legion
 	[1273] = true, -- Seal of Broken Fate
+	-- Battle for Azeroth
+	[1580] = true, -- Seal of Wartorn Fate
 }
 
 R.fishnodes = {
@@ -323,6 +325,17 @@ R.fishnodes = {
 	[L["Fever of Stormrays"]]		= true,
 	[L["Highmountain Salmon School"]]	= true,
 	[L["Mossgill Perch School"]]	= true,
+	-- Battle for Azeroth	
+	[L["Frenzied Fangtooth School"]] = true,
+	[L["Great Sea Catfish School"]] = true,
+	[L["Lane Snapper School"]] = true,
+	[L["Rasboralus School"]] = true,
+	[L["Redtail Loach School"]] = true,
+	[L["Sand Shifter School"]] = true,
+	[L["Slimy Mackerel School"]] = true,
+	[L["Tiragarde Perch School"]] = true,
+	[L["U'taka School"]] = true,
+	
 }
 
 R.miningnodes = {

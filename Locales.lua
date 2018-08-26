@@ -1,6 +1,20 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+L["Witherbark Direwing"] = true
+L["Nimar the Slayer"] = true
+L["Lil' Donkey"] = true
+L["Overseer Krix"] = true
+L["Skullripper"] = true
+L["Swift Albino Raptor"] = true
+L["Beastrider Kama"] = true
+L["Highland Mustang"] = true
+L["Doomrider Helgrim"] = true
+L["Broken Highland Mustang"] = true
+L["Knight-Captain Aldrin"] = true
+L["Sharkbait's Favorite Crackers"] = true
+L["Underrot Crawg Harness"] = true
+L["Mummified Raptor Skull"] = true
 L["Loading"] = true
 L["Loaded (running in debug mode)"] = true
 L["Profile modified, rebooting"] = true
@@ -1122,6 +1136,17 @@ L["Fossorial Bile Larva"] = true
 L["Obtained by skinning creatures on Argus"] = true
 L["Fel Lasher"] = true
 L["Obtained by gathering herbs on Argus"] = true
+L["Fiendish Hellfire Core"] = true
+L["Shackled Ur'zul"] = true
+L["Frenzied Fangtooth School"] = true
+L["Great Sea Catfish School"] = true
+L["Lane Snapper School"] = true
+L["Rasboralus School"] = true
+L["Redtail Loach School"] = true
+L["Sand Shifter School"] = true
+L["Slimy Mackerel School"] = true
+L["Tiragarde Perch School"] = true
+L["U'taka School"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
