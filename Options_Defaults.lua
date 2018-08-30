@@ -1669,6 +1669,7 @@ function R:PrepareDefaults()
 			itemId = 163797,
 			chance = 1000,
 			creatureId = 143794,
+			groupSize = 3,
 		},
 		
 		["Captain Nibs"] = {
@@ -1680,6 +1681,7 @@ function R:PrepareDefaults()
 			itemId = 163798,
 			chance = 1000,
 			creatureId = 143795,
+			groupSize = 3,
 		},
 		
 		["Barnaby"] = {
@@ -1691,6 +1693,7 @@ function R:PrepareDefaults()
 			itemId = 163799,
 			chance = 1000,
 			creatureId = 143796,
+			groupSize = 3,
 		},
 		
 		["Poro"] = {
@@ -1702,6 +1705,7 @@ function R:PrepareDefaults()
 			itemId = 163800,
 			chance = 1000,
 			creatureId = 143797,
+			groupSize = 3,
 		},
 		
 		["Octopode Fry"] = {
@@ -1713,6 +1717,7 @@ function R:PrepareDefaults()
 			itemId = 163801,
 			chance = 1000,
 			creatureId = 143798,
+			groupSize = 3,
 		},
 		
 		["Inky"] = {
@@ -1724,6 +1729,7 @@ function R:PrepareDefaults()
 			itemId = 163802,
 			chance = 1000,
 			creatureId = 143799,
+			groupSize = 3,
 		},
 		
 		["Sparkleshell Sandcrawler"] = {
@@ -1735,6 +1741,7 @@ function R:PrepareDefaults()
 			itemId = 163803,
 			chance = 1000,
 			creatureId = 143801,
+			groupSize = 3,
 		},
 		
 		["Kindleweb Spiderling"] = {
@@ -1746,6 +1753,7 @@ function R:PrepareDefaults()
 			itemId = 163804,
 			chance = 1000,
 			creatureId = 143802,
+			groupSize = 3,
 		},
 		
 		["Mischievous Zephyr"] = {
@@ -1757,6 +1765,7 @@ function R:PrepareDefaults()
 			itemId = 163814,
 			chance = 1000,
 			creatureId = 143812,
+			groupSize = 3,
 		},
 		
 		["Littlehoof"] = {
@@ -1768,6 +1777,7 @@ function R:PrepareDefaults()
 			itemId = 163815,
 			chance = 1000,
 			creatureId = 143813,
+			groupSize = 3,
 		},
 		
 		["Snapper"] = {
@@ -1779,6 +1789,7 @@ function R:PrepareDefaults()
 			itemId = 163816,
 			chance = 1000,
 			creatureId = 143814,
+			groupSize = 3,
 		},
 		
 		["Sunscale Hatchling"] = {
@@ -1790,6 +1801,7 @@ function R:PrepareDefaults()
 			itemId = 163817,
 			chance = 1000,
 			creatureId = 143815,
+			groupSize = 3,
 		},
 		
 		["Bloodstone Tunneler"] = {
@@ -1801,6 +1813,7 @@ function R:PrepareDefaults()
 			itemId = 163818,
 			chance = 1000,
 			creatureId = 143816,
+			groupSize = 3,
 		},
 		
 		["Snort"] = {
@@ -1812,6 +1825,7 @@ function R:PrepareDefaults()
 			itemId = 163819,
 			chance = 1000,
 			creatureId = 143817,
+			groupSize = 3,
 		},
 		
 		["Muskflank Calfling"] = {
@@ -1823,6 +1837,7 @@ function R:PrepareDefaults()
 			itemId = 163820,
 			chance = 1000,
 			creatureId = 143818,
+			groupSize = 3,
 		},
 		
 		["Juvenile Brineshell"] = {
@@ -1834,6 +1849,7 @@ function R:PrepareDefaults()
 			itemId = 163821,
 			chance = 1000,
 			creatureId = 143819,
+			groupSize = 3,
 		},
 		
 		["Kunchong Hatchling"] = {
@@ -1845,6 +1861,7 @@ function R:PrepareDefaults()
 			itemId = 163822,
 			chance = 1000,
 			creatureId = 143820,
+			groupSize = 3,
 		},
 		
 		["Coldlight Surfrunner"] = {
@@ -1856,6 +1873,7 @@ function R:PrepareDefaults()
 			itemId = 163823,
 			chance = 1000,
 			creatureId = 143821,
+			groupSize = 3,
 		},
 		
 		["Voru'kar Leecher"] = {
@@ -1867,6 +1885,7 @@ function R:PrepareDefaults()
 			itemId = 163824,
 			chance = 1000,
 			creatureId = 143822,
+			groupSize = 3,
 		},
 		
 		["Tinder Pup"] = {
@@ -1878,6 +1897,7 @@ function R:PrepareDefaults()
 			itemId = 163807,
 			chance = 1000,
 			creatureId = 143805,
+			groupSize = 3,
 		},
 		
 		["Sandshell Chitterer"] = {
@@ -1889,6 +1909,7 @@ function R:PrepareDefaults()
 			itemId = 163808,
 			chance = 1000,
 			creatureId = 143806,
+			groupSize = 3,
 		},
 		
 		["Deathsting Scorpid"] = {
@@ -1900,6 +1921,7 @@ function R:PrepareDefaults()
 			itemId = 163809,
 			chance = 1000,
 			creatureId = 143807,
+			groupSize = 3,
 		},
 		
 		["Thistlebrush Bud"] = {
@@ -1911,6 +1933,7 @@ function R:PrepareDefaults()
 			itemId = 163810,
 			chance = 1000,
 			creatureId = 143808,
+			groupSize = 3,
 		},
 		
 		["Giggling Flame"] = {
@@ -1922,6 +1945,7 @@ function R:PrepareDefaults()
 			itemId = 163811,
 			chance = 1000,
 			creatureId = 143809,
+			groupSize = 3,
 		},
 		
 		["Laughing Stonekin"] = {
@@ -1933,6 +1957,7 @@ function R:PrepareDefaults()
 			itemId = 163812,
 			chance = 1000,
 			creatureId = 143810,
+			groupSize = 3,
 		},
 		
 		["Playful Frostkin"] = {
@@ -1944,6 +1969,7 @@ function R:PrepareDefaults()
 			itemId = 163813,
 			chance = 1000,
 			creatureId = 143811,
+			groupSize = 3,
 		},
 		
 		["False Knucklebump"] = {
@@ -1955,6 +1981,7 @@ function R:PrepareDefaults()
 			itemId = 163806,
 			chance = 1000,
 			creatureId = 143804,
+			groupSize = 3,
 		},
 		
 		["Craghoof Kid"] = {
@@ -1966,6 +1993,7 @@ function R:PrepareDefaults()
 			itemId = 163805,
 			chance = 1000,
 			creatureId = 143803,
+			groupSize = 3,
 		},
 		
 
@@ -2316,6 +2344,7 @@ function R:PrepareDefaults()
 		name = L["Oomgut Ritual Drum"],
 		itemId = 163795,
 		chance = 250,
+		groupSize = 3,
 	},	
 	
 	["Whiskerwax Candle"] = {
@@ -2326,6 +2355,7 @@ function R:PrepareDefaults()
 		name = L["Whiskerwax Candle"],
 		itemId = 163924,
 		chance = 250,
+		groupSize = 3,
 	},	
 	
 	["Yaungol Oil Stove"] = {
@@ -2336,6 +2366,7 @@ function R:PrepareDefaults()
 		name = L["Yaungol Oil Stove"],
 		itemId = 164371,
 		chance = 250,
+		groupSize = 3,
 	},	
 	
 	["Jinyu Light Globe"] = {
@@ -2346,6 +2377,7 @@ function R:PrepareDefaults()
 		name = L["Jinyu Light Globe"],
 		itemId = 164372,
 		chance = 250,
+		groupSize = 3,
 	},	
 	
 	["Enchanted Soup Stone"] = {
@@ -2356,6 +2388,7 @@ function R:PrepareDefaults()
 		name = L["Enchanted Soup Stone"],
 		itemId = 164373,
 		chance = 250,
+		groupSize = 3,
 	},	
 	
 	["Magic Monkey Banana"] = {
@@ -2366,6 +2399,7 @@ function R:PrepareDefaults()
 		name = L["Magic Monkey Banana"],
 		itemId = 164374,
 		chance = 250,
+		groupSize = 3,
 	},	
 	
 	["Bad Mojo Banana"] = {
@@ -2376,6 +2410,7 @@ function R:PrepareDefaults()
 		name = L["Bad Mojo Banana"],
 		itemId = 164375,
 		chance = 250,
+		groupSize = 3,
 	},	
 	
 	["Regenerating Banana Bunch"] = {
@@ -2386,6 +2421,7 @@ function R:PrepareDefaults()
 		name = L["Regenerating Banana Bunch"],
 		itemId = 164377,
 		chance = 250,
+		groupSize = 3,
 	},	
 	
 		-- Mount-related items (5.x)
