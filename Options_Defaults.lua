@@ -1149,7 +1149,7 @@ function R:PrepareDefaults()
 			coords = { {m=910, i=true} },
 		},
 
-		-- 8.0
+		-- 8.0 Mounts
 		
 		["Sharkbait's Favorite Crackers"] = {
 			cat = BFA,
@@ -1193,6 +1193,71 @@ function R:PrepareDefaults()
 			groupSize = 5,
 		},
 		
+		["Twilight Avenger"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Twilight Avenger"],
+			spellId = 279466,
+			itemId = 163584,
+			npcs = 99999,
+			chance = 100,
+			equalOdds = true,
+			groupSize = 3,
+		},
+
+		["Craghorn Chasm-Leaper"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Craghorn Chasm-Leaper"],
+			spellId = 279467,
+			itemId = 163583,
+			npcs = 99999,
+			chance = 100,
+			equalOdds = true,
+			groupSize = 3,
+		},
+	
+		["Qinsho's Eternal Hound"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Qinsho's Eternal Hound"],
+			spellId = 279469,
+			itemId = 163582,
+			npcs = 99999,
+			chance = 100,
+			equalOdds = true,
+			groupSize = 3,
+		},
+
+		["Squawks"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Squawks"],
+			spellId = 254811,
+			itemId = 163586,
+			npcs = 99999,
+			chance = 100,
+			equalOdds = true,
+			groupSize = 3,
+		},
+
+		["Surf Jelly"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Surf Jelly"],
+			spellId = 278979,
+			itemId = 163585,
+			npcs = 99999,
+			chance = 100,
+			equalOdds = true,
+			groupSize = 3,
+		},
+
     },
 
 
@@ -1592,6 +1657,345 @@ function R:PrepareDefaults()
 			sourceText = L["Obtained by gathering herbs on Argus"],
 			showTooltipCondition = { filter = TOOLTIP_FILTERS.IS_SPELL_KNOWN, value = "Skinning" }, -- Display only if player can actually skin them
 		},
+		
+		-- 8.0 Pets
+		
+		["Scuttle"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Scuttle"],
+			spellId = 177244,
+			itemId = 163797,
+			chance = 1000,
+			creatureId = 143794,
+			groupSize = 3,
+		},
+		
+		["Captain Nibs"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Captain Nibs"],
+			spellId = 177243,
+			itemId = 163798,
+			chance = 1000,
+			creatureId = 143795,
+			groupSize = 3,
+		},
+		
+		["Barnaby"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Barnaby"],
+			spellId = 177242,
+			itemId = 163799,
+			chance = 1000,
+			creatureId = 143796,
+			groupSize = 3,
+		},
+		
+		["Poro"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Poro"],
+			spellId = 177241,
+			itemId = 163800,
+			chance = 1000,
+			creatureId = 143797,
+			groupSize = 3,
+		},
+		
+		["Octopode Fry"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Octopode Fry"],
+			spellId = 177240,
+			itemId = 163801,
+			chance = 1000,
+			creatureId = 143798,
+			groupSize = 3,
+		},
+		
+		["Inky"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Inky"],
+			spellId = 177239,
+			itemId = 163802,
+			chance = 1000,
+			creatureId = 143799,
+			groupSize = 3,
+		},
+		
+		["Sparkleshell Sandcrawler"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Sparkleshell Sandcrawler"],
+			spellId = 177237,
+			itemId = 163803,
+			chance = 1000,
+			creatureId = 143801,
+			groupSize = 3,
+		},
+		
+		["Kindleweb Spiderling"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Kindleweb Spiderling"],
+			spellId = 177236,
+			itemId = 163804,
+			chance = 1000,
+			creatureId = 143802,
+			groupSize = 3,
+		},
+		
+		["Mischievous Zephyr"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Mischievous Zephyr"],
+			spellId = 177221,
+			itemId = 163814,
+			chance = 1000,
+			creatureId = 143812,
+			groupSize = 3,
+		},
+		
+		["Littlehoof"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Littlehoof"],
+			spellId = 177219,
+			itemId = 163815,
+			chance = 1000,
+			creatureId = 143813,
+			groupSize = 3,
+		},
+		
+		["Snapper"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Snapper"],
+			spellId = 177217,
+			itemId = 163816,
+			chance = 1000,
+			creatureId = 143814,
+			groupSize = 3,
+		},
+		
+		["Sunscale Hatchling"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Sunscale Hatchling"],
+			spellId = 280331,
+			itemId = 163817,
+			chance = 1000,
+			creatureId = 143815,
+			groupSize = 3,
+		},
+		
+		["Bloodstone Tunneler"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Bloodstone Tunneler"],
+			spellId = 280332,
+			itemId = 163818,
+			chance = 1000,
+			creatureId = 143816,
+			groupSize = 3,
+		},
+		
+		["Snort"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Snort"],
+			spellId = 280333,
+			itemId = 163819,
+			chance = 1000,
+			creatureId = 143817,
+			groupSize = 3,
+		},
+		
+		["Muskflank Calfling"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Muskflank Calfling"],
+			spellId = 280334,
+			itemId = 163820,
+			chance = 1000,
+			creatureId = 143818,
+			groupSize = 3,
+		},
+		
+		["Juvenile Brineshell"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Juvenile Brineshell"],
+			spellId = 280335,
+			itemId = 163821,
+			chance = 1000,
+			creatureId = 143819,
+			groupSize = 3,
+		},
+		
+		["Kunchong Hatchling"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Kunchong Hatchling"],
+			spellId = 280336,
+			itemId = 163822,
+			chance = 1000,
+			creatureId = 143820,
+			groupSize = 3,
+		},
+		
+		["Coldlight Surfrunner"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Coldlight Surfrunner"],
+			spellId = 280337,
+			itemId = 163823,
+			chance = 1000,
+			creatureId = 143821,
+			groupSize = 3,
+		},
+		
+		["Voru'kar Leecher"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Voru'kar Leecher"],
+			spellId = 280338,
+			itemId = 163824,
+			chance = 1000,
+			creatureId = 143822,
+			groupSize = 3,
+		},
+		
+		["Tinder Pup"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Tinder Pup"],
+			spellId = 177230,
+			itemId = 163807,
+			chance = 1000,
+			creatureId = 143805,
+			groupSize = 3,
+		},
+		
+		["Sandshell Chitterer"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Sandshell Chitterer"],
+			spellId = 177229,
+			itemId = 163808,
+			chance = 1000,
+			creatureId = 143806,
+			groupSize = 3,
+		},
+		
+		["Deathsting Scorpid"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Deathsting Scorpid"],
+			spellId = 177228,
+			itemId = 163809,
+			chance = 1000,
+			creatureId = 143807,
+			groupSize = 3,
+		},
+		
+		["Thistlebrush Bud"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Thistlebrush Bud"],
+			spellId = 177226,
+			itemId = 163810,
+			chance = 1000,
+			creatureId = 143808,
+			groupSize = 3,
+		},
+		
+		["Giggling Flame"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Giggling Flame"],
+			spellId = 177225,
+			itemId = 163811,
+			chance = 1000,
+			creatureId = 143809,
+			groupSize = 3,
+		},
+		
+		["Laughing Stonekin"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Laughing Stonekin"],
+			spellId = 177224,
+			itemId = 163812,
+			chance = 1000,
+			creatureId = 143810,
+			groupSize = 3,
+		},
+		
+		["Playful Frostkin"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Playful Frostkin"],
+			spellId = 177222,
+			itemId = 163813,
+			chance = 1000,
+			creatureId = 143811,
+			groupSize = 3,
+		},
+		
+		["False Knucklebump"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["False Knucklebump"],
+			spellId = 177231,
+			itemId = 163806,
+			chance = 1000,
+			creatureId = 143804,
+			groupSize = 3,
+		},
+		
+		["Craghoof Kid"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Craghoof Kid"],
+			spellId = 177235,
+			itemId = 163805,
+			chance = 1000,
+			creatureId = 143803,
+			groupSize = 3,
+		},
+		
 
 	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
@@ -1929,6 +2333,96 @@ function R:PrepareDefaults()
 			{ m = 70, x = 76, y = 18.6, n = L["Doctor Weavil"] },
 		},
 	 },
+	
+	-- 8.0 Toys
+	
+	["Oomgut Ritual Drum"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Oomgut Ritual Drum"],
+		itemId = 163795,
+		chance = 250,
+		groupSize = 3,
+	},	
+	
+	["Whiskerwax Candle"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Whiskerwax Candle"],
+		itemId = 163924,
+		chance = 250,
+		groupSize = 3,
+	},	
+	
+	["Yaungol Oil Stove"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Yaungol Oil Stove"],
+		itemId = 164371,
+		chance = 250,
+		groupSize = 3,
+	},	
+	
+	["Jinyu Light Globe"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Jinyu Light Globe"],
+		itemId = 164372,
+		chance = 250,
+		groupSize = 3,
+	},	
+	
+	["Enchanted Soup Stone"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Enchanted Soup Stone"],
+		itemId = 164373,
+		chance = 250,
+		groupSize = 3,
+	},	
+	
+	["Magic Monkey Banana"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Magic Monkey Banana"],
+		itemId = 164374,
+		chance = 250,
+		groupSize = 3,
+	},	
+	
+	["Bad Mojo Banana"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Bad Mojo Banana"],
+		itemId = 164375,
+		chance = 250,
+		groupSize = 3,
+	},	
+	
+	["Regenerating Banana Bunch"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Regenerating Banana Bunch"],
+		itemId = 164377,
+		chance = 250,
+		groupSize = 3,
+	},	
 	
 		-- Mount-related items (5.x)
      ["Primal Egg"] =                                    { cat = MOP, type = ITEM, method = NPC, name = L["Primal Egg"], itemId = 94295, npcs = { 69983, 69991, 69992, 69993, 70004, 70005, 70006, 70007, 70008, 70009, 70010, 70011, 70012, 70013, 70014, 70015, 70016, 70017, 70018, 70019, 70020, 70021, }, chance = 100,  unique = true, sourceText = L["Dropped by dinosaurs on Isle of Giants Will hatch into one of three Primal Raptor mounts after three days."], coords = { {m=507} }, },
