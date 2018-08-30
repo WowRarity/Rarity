@@ -2515,7 +2515,7 @@ local islandExpeditionCollectibles = { -- List of collectibles (so we don't have
 	"Octopode Fry",
 	"Inky",
 	"Sparkleshell Sandcrawler",
-	"Kindleweb Spiderling"",
+	"Kindleweb Spiderling",
 	"Mischievous Zephyr",
 	"Littlehoof",
 	"Snapper",
