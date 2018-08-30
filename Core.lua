@@ -2556,7 +2556,7 @@ do
 		"Twilight Avenger",
 	}
 
-	function R:OnIslandCompleted(mapID, winner)
+	function R:OnIslandCompleted(event, mapID, winner)
 		
 		R:Debug("Detected completion for Island Expedition: " .. (islandMapIDs[mapID] or "Unknown Map") .. " (mapID = " .. tostring(mapID) .. ")")
 		
