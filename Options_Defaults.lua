@@ -1149,7 +1149,7 @@ function R:PrepareDefaults()
 			coords = { {m=910, i=true} },
 		},
 
-		-- 8.0
+		-- 8.0 Mounts
 		
 		["Sharkbait's Favorite Crackers"] = {
 			cat = BFA,
@@ -1657,6 +1657,8 @@ function R:PrepareDefaults()
 			sourceText = L["Obtained by gathering herbs on Argus"],
 			showTooltipCondition = { filter = TOOLTIP_FILTERS.IS_SPELL_KNOWN, value = "Skinning" }, -- Display only if player can actually skin them
 		},
+		
+		-- 8.0 Pets
 		
 		["Scuttle"] = {
 			cat = BFA,
@@ -2303,6 +2305,8 @@ function R:PrepareDefaults()
 			{ m = 70, x = 76, y = 18.6, n = L["Doctor Weavil"] },
 		},
 	 },
+	
+	-- 8.0 Toys
 	
 	["Oomgut Ritual Drum"] = {
 		cat = BFA,
