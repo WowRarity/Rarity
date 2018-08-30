@@ -2506,8 +2506,53 @@ local islandMapIDs = { -- These IDs can be found in DBFilesClient\Map.db2
 }
 
 local islandExpeditionCollectibles = { -- List of collectibles (so we don't have to search the item DB for them)
-	pets = {},
-	toys = {},
+	
+	-- Pets
+	"Scuttle",
+	"Captain Nibs",
+	"Barnaby",
+	"Poro",
+	"Octopode Fry",
+	"Inky",
+	"Sparkleshell Sandcrawler",
+	"Kindleweb Spiderling"",
+	"Mischievous Zephyr",
+	"Littlehoof",
+	"Snapper",
+	"Sunscale Hatchling",
+	"Bloodstone Tunneler",
+	"Snort",
+	"Muskflank Calfling",
+	"Juvenile Brineshell",
+	"Kunchong Hatchling",
+	"Coldlight Surfrunner",
+	"Voru'kar Leecher",
+	"Tinder Pup",
+	"Sandshell Chitterer",
+	"Deathsting Scorpid",
+	"Thistlebrush Bud",
+	"Giggling Flame",
+	"Laughing Stonekin",
+	"Playful Frostkin",
+	"False Knucklebump",
+	"Craghoof Kid",
+	
+	-- Toys
+	"Oomgut Ritual Drum",
+	"Whiskerwax Candle",
+	"Yaungol Oil Stove",
+	"Jinyu Light Globe",
+	"Enchanted Soup Stone",
+	"Magic Monkey Banana",
+	"Bad Mojo Banana",
+	"Regenerating Banana Bunch",
+	
+	-- Mounts
+	"Surf Jelly",
+	"Squawks",
+	"Qinsho's Eternal Hound",
+	"Craghorn Chasm-Leaper",
+	"Twilight Avenger",
 }
 
 function R:OnIslandCompleted(mapID, winner)
@@ -2516,6 +2561,17 @@ function R:OnIslandCompleted(mapID, winner)
 	
 	if islandMapIDs[mapID] then -- Is a relevant map -> Add attempts for all collectibles (for now, I'm assuming they just drop from everything at the same rate. This may have to be revised once more data is available...)
 	
+		R:Debug("Found this Island Expedition to be relevant -> Adding attempts for all known collectibles...")
+
+		for index, name in pairs(islandExpeditionCollectibles) do -- Add an attempt for each item
+			
+			local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name] or self.db.profile.groups.mounts[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+				self:OutputAttempts(v)
+			end		
+
+		end
 		
 	end
 
