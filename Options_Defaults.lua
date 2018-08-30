@@ -2304,6 +2304,86 @@ function R:PrepareDefaults()
 		},
 	 },
 	
+	["Oomgut Ritual Drum"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Oomgut Ritual Drum"],
+		itemId = 163795,
+		chance = 250,
+	},	
+	
+	["Whiskerwax Candle"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Whiskerwax Candle"],
+		itemId = 163924,
+		chance = 250,
+	},	
+	
+	["Yaungol Oil Stove"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Yaungol Oil Stove"],
+		itemId = 164371,
+		chance = 250,
+	},	
+	
+	["Jinyu Light Globe"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Jinyu Light Globe"],
+		itemId = 164372,
+		chance = 250,
+	},	
+	
+	["Enchanted Soup Stone"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Enchanted Soup Stone"],
+		itemId = 164373,
+		chance = 250,
+	},	
+	
+	["Magic Monkey Banana"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Magic Monkey Banana"],
+		itemId = 164374,
+		chance = 250,
+	},	
+	
+	["Bad Mojo Banana"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Bad Mojo Banana"],
+		itemId = 164375,
+		chance = 250,
+	},	
+	
+	["Regenerating Banana Bunch"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Regenerating Banana Bunch"],
+		itemId = 164377,
+		chance = 250,
+	},	
+	
 		-- Mount-related items (5.x)
      ["Primal Egg"] =                                    { cat = MOP, type = ITEM, method = NPC, name = L["Primal Egg"], itemId = 94295, npcs = { 69983, 69991, 69992, 69993, 70004, 70005, 70006, 70007, 70008, 70009, 70010, 70011, 70012, 70013, 70014, 70015, 70016, 70017, 70018, 70019, 70020, 70021, }, chance = 100,  unique = true, sourceText = L["Dropped by dinosaurs on Isle of Giants Will hatch into one of three Primal Raptor mounts after three days."], coords = { {m=507} }, },
      ["Skyshard"] =                                      { cat = MOP, type = ITEM, method = ZONE, name = L["Skyshard"], spellId = 90655, itemId = 86547, zones = { "390" }, chance = 1000,  sourceText = L["Dropped by any mob in Vale of Eternal Blossoms (except minor mobs). 10 of these can be combined to pierce Alani's shield, allowing combat and a guaranteed drop of Reins of the Thundering Ruby Cloud Serpent."], coords = { {m=390} }, },
