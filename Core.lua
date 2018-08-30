@@ -2558,7 +2558,7 @@ do
 
 	function R:OnIslandCompleted(mapID, winner)
 		
-		R:Debug("Detected completion for Island Expedition: " .. (islandMapIDs[mapID] or "Unknown Map") .. " (mapID = " .. tostring(mapIDs) .. ")")
+		R:Debug("Detected completion for Island Expedition: " .. (islandMapIDs[mapID] or "Unknown Map") .. " (mapID = " .. tostring(mapID) .. ")")
 		
 		if islandMapIDs[mapID] then -- Is a relevant map -> Add attempts for all collectibles (for now, I'm assuming they just drop from everything at the same rate. This may have to be revised once more data is available...)
 		
