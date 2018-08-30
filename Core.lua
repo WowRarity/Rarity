@@ -3985,7 +3985,7 @@ function R:ShowFoundAlert(itemId, attempts, item)
 				s = format(L["%s: Found after %d attempts!"], itemName, attempts)
 			end
 		end
-  self:Pour(" " .. s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
+  self:Pour(s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
  end
 	
  -- The following code is adapted from Blizzard's AlertFrameMixin:OnEvent function found in FrameXML\AlertFrames.lua [heavily updated in 7.0]
@@ -4115,7 +4115,7 @@ function R:OutputAttempts(item, skipTimeUpdate)
 				if item.method == COLLECTION then
 					s = format(L["%s: %d collected"], itemName or item.name, attempts)
 				end
-    self:Pour(" " .. s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
+    self:Pour(s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
    end
 
   end
