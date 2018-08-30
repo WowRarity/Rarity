@@ -639,6 +639,7 @@ do
   self:RegisterEvent("PLAYER_REGEN_ENABLED", "OnCombatEnded")
   self:RegisterEvent("PET_BATTLE_OPENING_START", "OnPetBattleStart")
   self:RegisterEvent("PET_BATTLE_CLOSE", "OnPetBattleEnd")
+  self:RegisterEvent("ISLAND_COMPLETED", "OnIslandCompleted")
   self:RegisterBucketEvent("LFG_LIST_SEARCH_RESULT_UPDATED", 1, "GroupFinderResultsUpdated")
   self:RegisterBucketEvent("LFG_LIST_SEARCH_RESULTS_RECEIVED", 1, "GroupFinderResultsUpdated")
   self:RegisterBucketEvent("UPDATE_INSTANCE_INFO", 1, "OnEvent")
@@ -2484,6 +2485,37 @@ function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidS
 				R:OutputAttempts(v)
 			end
 		end
+		
+	end
+
+end
+
+-------------------------------------------------------------------------------------
+-- ISLAND_COMPLETED handling: Used for detecting Island Expeditions in Battle for Azeroth
+-- The collectibles are awarded randomly once the scenario has ended and appear in the "Pose" screen, right after this event is fired (indicated by a subsequent LFG_COMPLETION_REWARD event)
+-------------------------------------------------------------------------------------
+
+local islandMapIDs = { -- These IDs can be found in DBFilesClient\Map.db2
+	[1813] = "Un'gol Ruins",
+	[1897] = "Molten Cay",
+	[1883] = "Whispering Reef",
+	[1882] = "Verdant Wilds",
+	[1892] = "Rotting Mire",
+	[1893] = "Dread Chain",
+	[1898] = "Skittering Hollow",
+}
+
+local islandExpeditionCollectibles = { -- List of collectibles (so we don't have to search the item DB for them)
+	pets = {},
+	toys = {},
+}
+
+function R:OnIslandCompleted(mapID, winner)
+
+	R:Debug("Detected completion for Island Expedition: " .. (islandMapIDs[mapID] or "Unknown Map") .. " (mapID = " .. tostring(mapIDs) .. .. ")")
+	
+	if islandMapIDs[mapID] then -- Is a relevant map -> Add attempts for all collectibles (for now, I'm assuming they just drop from everything at the same rate. This may have to be revised once more data is available...)
+	
 		
 	end
 
