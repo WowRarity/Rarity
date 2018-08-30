@@ -1193,6 +1193,71 @@ function R:PrepareDefaults()
 			groupSize = 5,
 		},
 		
+		["Twilight Avenger"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Twilight Avenger"],
+			spellId = 279466,
+			itemId = 163584,
+			npcs = 99999,
+			chance = 100,
+			equalOdds = true,
+			groupSize = 3,
+		},
+
+		["Craghorn Chasm-Leaper"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Craghorn Chasm-Leaper"],
+			spellId = 279467,
+			itemId = 163583,
+			npcs = 99999,
+			chance = 100,
+			equalOdds = true,
+			groupSize = 3,
+		},
+	
+		["Qinsho's Eternal Hound"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Qinsho's Eternal Hound"],
+			spellId = 279469,
+			itemId = 163582,
+			npcs = 99999,
+			chance = 100,
+			equalOdds = true,
+			groupSize = 3,
+		},
+
+		["Squawks"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Squawks"],
+			spellId = 254811,
+			itemId = 163586,
+			npcs = 99999,
+			chance = 100,
+			equalOdds = true,
+			groupSize = 3,
+		},
+
+		["Surf Jelly"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Surf Jelly"],
+			spellId = 278979,
+			itemId = 163585,
+			npcs = 99999,
+			chance = 100,
+			equalOdds = true,
+			groupSize = 3,
+		},
+
     },
 
 
