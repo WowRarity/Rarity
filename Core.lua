@@ -2495,84 +2495,87 @@ end
 -- The collectibles are awarded randomly once the scenario has ended and appear in the "Pose" screen, right after this event is fired (indicated by a subsequent LFG_COMPLETION_REWARD event)
 -------------------------------------------------------------------------------------
 
-local islandMapIDs = { -- These IDs can be found in DBFilesClient\Map.db2
-	[1813] = "Un'gol Ruins",
-	[1897] = "Molten Cay",
-	[1883] = "Whispering Reef",
-	[1882] = "Verdant Wilds",
-	[1892] = "Rotting Mire",
-	[1893] = "Dread Chain",
-	[1898] = "Skittering Hollow",
-}
+do
 
-local islandExpeditionCollectibles = { -- List of collectibles (so we don't have to search the item DB for them)
-	
-	-- Pets
-	"Scuttle",
-	"Captain Nibs",
-	"Barnaby",
-	"Poro",
-	"Octopode Fry",
-	"Inky",
-	"Sparkleshell Sandcrawler",
-	"Kindleweb Spiderling",
-	"Mischievous Zephyr",
-	"Littlehoof",
-	"Snapper",
-	"Sunscale Hatchling",
-	"Bloodstone Tunneler",
-	"Snort",
-	"Muskflank Calfling",
-	"Juvenile Brineshell",
-	"Kunchong Hatchling",
-	"Coldlight Surfrunner",
-	"Voru'kar Leecher",
-	"Tinder Pup",
-	"Sandshell Chitterer",
-	"Deathsting Scorpid",
-	"Thistlebrush Bud",
-	"Giggling Flame",
-	"Laughing Stonekin",
-	"Playful Frostkin",
-	"False Knucklebump",
-	"Craghoof Kid",
-	
-	-- Toys
-	"Oomgut Ritual Drum",
-	"Whiskerwax Candle",
-	"Yaungol Oil Stove",
-	"Jinyu Light Globe",
-	"Enchanted Soup Stone",
-	"Magic Monkey Banana",
-	"Bad Mojo Banana",
-	"Regenerating Banana Bunch",
-	
-	-- Mounts
-	"Surf Jelly",
-	"Squawks",
-	"Qinsho's Eternal Hound",
-	"Craghorn Chasm-Leaper",
-	"Twilight Avenger",
-}
+	local islandMapIDs = { -- These IDs can be found in DBFilesClient\Map.db2
+		[1813] = "Un'gol Ruins",
+		[1897] = "Molten Cay",
+		[1883] = "Whispering Reef",
+		[1882] = "Verdant Wilds",
+		[1892] = "Rotting Mire",
+		[1893] = "Dread Chain",
+		[1898] = "Skittering Hollow",
+	}
 
-function R:OnIslandCompleted(mapID, winner)
-
-	R:Debug("Detected completion for Island Expedition: " .. (islandMapIDs[mapID] or "Unknown Map") .. " (mapID = " .. tostring(mapIDs) .. ")")
-	
-	if islandMapIDs[mapID] then -- Is a relevant map -> Add attempts for all collectibles (for now, I'm assuming they just drop from everything at the same rate. This may have to be revised once more data is available...)
-	
-		R:Debug("Found this Island Expedition to be relevant -> Adding attempts for all known collectibles...")
-
-		for index, name in pairs(islandExpeditionCollectibles) do -- Add an attempt for each item
-			
-			local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name] or self.db.profile.groups.mounts[name]
-			if v and type(v) == "table" and v.enabled ~= false then
-				if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
-				self:OutputAttempts(v)
-			end		
-
-		end
+	local islandExpeditionCollectibles = { -- List of collectibles (so we don't have to search the item DB for them)
+		-- Pets
+		"Scuttle",
+		"Captain Nibs",
+		"Barnaby",
+		"Poro",
+		"Octopode Fry",
+		"Inky",
+		"Sparkleshell Sandcrawler",
+		"Kindleweb Spiderling",
+		"Mischievous Zephyr",
+		"Littlehoof",
+		"Snapper",
+		"Sunscale Hatchling",
+		"Bloodstone Tunneler",
+		"Snort",
+		"Muskflank Calfling",
+		"Juvenile Brineshell",
+		"Kunchong Hatchling",
+		"Coldlight Surfrunner",
+		"Voru'kar Leecher",
+		"Tinder Pup",
+		"Sandshell Chitterer",
+		"Deathsting Scorpid",
+		"Thistlebrush Bud",
+		"Giggling Flame",
+		"Laughing Stonekin",
+		"Playful Frostkin",
+		"False Knucklebump",
+		"Craghoof Kid",
 		
+		-- Toys
+		"Oomgut Ritual Drum",
+		"Whiskerwax Candle",
+		"Yaungol Oil Stove",
+		"Jinyu Light Globe",
+		"Enchanted Soup Stone",
+		"Magic Monkey Banana",
+		"Bad Mojo Banana",
+		"Regenerating Banana Bunch",
+		
+		-- Mounts
+		"Surf Jelly",
+		"Squawks",
+		"Qinsho's Eternal Hound",
+		"Craghorn Chasm-Leaper",
+		"Twilight Avenger",
+	}
+
+	function R:OnIslandCompleted(mapID, winner)
+		
+		R:Debug("Detected completion for Island Expedition: " .. (islandMapIDs[mapID] or "Unknown Map") .. " (mapID = " .. tostring(mapIDs) .. ")")
+		
+		if islandMapIDs[mapID] then -- Is a relevant map -> Add attempts for all collectibles (for now, I'm assuming they just drop from everything at the same rate. This may have to be revised once more data is available...)
+		
+			R:Debug("Found this Island Expedition to be relevant -> Adding attempts for all known collectibles...")
+
+			for index, name in pairs(islandExpeditionCollectibles) do -- Add an attempt for each item
+				
+				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name] or self.db.profile.groups.mounts[name]
+				if v and type(v) == "table" and v.enabled ~= false then
+					if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+					self:OutputAttempts(v)
+				end		
+
+			end
+			
+		end
+
 	end
 
 end
