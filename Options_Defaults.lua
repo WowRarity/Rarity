@@ -1158,7 +1158,8 @@ function R:PrepareDefaults()
 			name = L["Sharkbait's Favorite Crackers"],
 			spellId = 254813,
 			itemId = 159842,
-			npcs = 129440,
+			npcs = 99999, -- 129440 (Heroic)
+			statisticId = 12752,
 			chance = 100,
 			equalOdds = true,
 			instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true },
@@ -1172,7 +1173,8 @@ function R:PrepareDefaults()
 			name = L["Underrot Crawg Harness"],
 			spellId = 273541,
 			itemId = 160829,
-			npcs = 133007,
+			npcs = 99999, -- 133007
+			statisticId = 12745,
 			chance = 100,
 			equalOdds = true,
 			instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true },
@@ -1186,7 +1188,8 @@ function R:PrepareDefaults()
 			name = L["Mummified Raptor Skull"],
 			spellId = 266058,
 			itemId = 159921,
-			npcs = 136160,
+			npcs = 99999, -- 136160
+			statisticId = 12763,
 			chance = 100,
 			equalOdds = true,
 			instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true },
