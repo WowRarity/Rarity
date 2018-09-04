@@ -2452,7 +2452,21 @@ function R:PrepareDefaults()
 	 
 					-- Battle pet-related items
      ["Mr. Pinchy"] =                                    { cat = TBC, type = ITEM, method = FISHING, name = L["Mr. Pinchy"], spellId = 33050, itemId = 27388, zones = { "Lake Jorune", "Lake Ere'Noru", "Skethyl Mountains", "Blackwind Landing", "Blackwind Valley", "Skettis", "Blackwind Lake", "Veil Harr'ik", "Veil Ala'rak", "Terokk's Rest" }, chance = 500, requiresPool = true, creatureId = 18839, sourceText = L["Obtained by fishing in pools located in Terrokar Forest"], coords = { {m=108} }, },
-     
+
+		["Viable Cobra Egg"] = {
+			cat = BFA,
+			type = ITEM,
+			method = NPC,
+			name = L["Viable Cobra Egg"],
+			itemId = 160832,
+			npcs = 133384,
+			chance = 50,
+			equalOdds = true,
+			instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true },
+			groupSize = 5,
+			sourceText = L["Dropped by Merektha in Temple of Sethraliss. Will hatch into Spawn of Merektha pet after three days."],
+		},	 
+	 
 					-- Achievements
      ["Old Crafty"] =                                    { cat = TBC, type = ITEM, method = FISHING, name = L["Old Crafty"], itemId = 34486, zones = { "Orgrimmar" }, chance = 10000, requiresPool = false, achievementId = 1836, sourceText = L["Obtained by fishing in any water in Orgrimmar"], coords = { {m=85} }, },
      ["Old Ironjaw"] =                                   { cat = TBC, type = ITEM, method = FISHING, name = L["Old Ironjaw"], itemId = 34484, zones = { "Ironforge", "The Forlorn Cavern" }, chance = 10000, requiresPool = false, achievementId = 1837, sourceText = L["Obtained by fishing in any water in Ironforge"], coords = { {m=87} }, },
