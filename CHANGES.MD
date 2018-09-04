@@ -1,20 +1,15 @@
-**r677-alpha:**
+**r677:**
 
 > Added tracking for all collectibles obtainable from Island Expeditions (see notes below)
+
+> Reverted a minor cosmetic change to the addon's output because it had harmless, but unintended, side effects
 
 Developer Notes:
 > Since there's virtually no data on anything regarding these items right now, most estimates are little more than a wild guess. They will need to be refined in future updates.
 
 -----
 
-**r676-beta:**
-
-> Fixed TomTom waypoint creation for some rares on Argus that previously had invalid entries
-<br>Looting Frostdeep Cavedwellers in the Horde garrison should now correctly add attempts for the Riding Turtle mount
-
------
-
-**r676-alpha:**
+**r676:**
 
 > Added tracking for mount: Hellfire/Felblaze Infernal (Drop: Gul'dan)
 <br>Added tracking for mount: Shackled Ur'zul (Drop: Argus the Unmaker)
@@ -26,6 +21,8 @@ Developer Notes:
 <br>Updated group size estimations for various Legion raids
 
 > Mouseover tooltips for the Assembly of Iron encounter in Ulduar should once again display tracking data for Stormforged Rune
+<br>Fixed TomTom waypoint creation for some rares on Argus that previously had invalid entries
+<br>Looting Frostdeep Cavedwellers in the Horde garrison should now correctly add attempts for the Riding Turtle mount
 
 Developer Notes:
 > Since there isn't any data available, it's virtually guaranteed that the drop chances for these items are wrong. They will be corrected in a future update.
@@ -33,7 +30,7 @@ Developer Notes:
 
 -----
 
-**r675-beta:**
+**r675:**
 
 > Added tooltip for the "Adventurer of ..." exploration achievements to all relevant rares in Kul'tiras and Zandalar
 
@@ -41,10 +38,19 @@ Developer Notes:
 
 -----
 
-**r674-beta:**
+**r674:**
 
 > Added tooltip for the "Commander of Argus" achievement to all relevant rares on Argus
 
 > Fixed tooltip display for Fossorial Bile Larva (Profession: Skinning)
+
+-----
+
+**r673:**
+
+> Installing the addon without embedded libraries is no longer possible
+
+Developer Notes:
+> This Curse/Twitch "feature" caused many bug reports and offers little tangible benefit, as it was often done in error or automatically by the Twitch client. I ultimately chose to disable it in order to reduce the time spent on providing support instead of working on bug fixes or new features
 
 -----
