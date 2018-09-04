@@ -1,8 +1,9 @@
 **r677:**
 
 > Added tracking for all collectibles obtainable from Island Expeditions (see notes below)
+<br>Added item: Viable Cobra Egg (Drop: Merektha)
 
-> Reverted a minor cosmetic change to the addon's output because it had harmless, but unintended, side effects
+> Reverted a minor cosmetic change to the addon's output that had harmless, but unintended, side effects
 
 Developer Notes:
 > Since there's virtually no data on anything regarding these items right now, most estimates are little more than a wild guess. They will need to be refined in future updates.
