@@ -2358,16 +2358,16 @@ function R:PrepareDefaults()
 		groupSize = 3,
 	},	
 	
-	["Yaungol Oil Stove"] = {
-		cat = BFA,
-		type = ITEM,
-		isToy = true,
-		method = SPECIAL,
-		name = L["Yaungol Oil Stove"],
-		itemId = 164371,
-		chance = 250,
-		groupSize = 3,
-	},	
+	-- ["Yaungol Oil Stove"] = { -- NYI?
+		-- cat = BFA,
+		-- type = ITEM,
+		-- isToy = true,
+		-- method = SPECIAL,
+		-- name = L["Yaungol Oil Stove"],
+		-- itemId = 164371,
+		-- chance = 250,
+		-- groupSize = 3,
+	-- },	
 	
 	["Jinyu Light Globe"] = {
 		cat = BFA,

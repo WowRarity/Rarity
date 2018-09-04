@@ -2541,7 +2541,7 @@ do
 		-- Toys
 		"Oomgut Ritual Drum",
 		"Whiskerwax Candle",
-		"Yaungol Oil Stove",
+		-- "Yaungol Oil Stove", -- NYI?
 		"Jinyu Light Globe",
 		"Enchanted Soup Stone",
 		"Magic Monkey Banana",
