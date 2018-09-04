@@ -1655,7 +1655,6 @@ function R:PrepareDefaults()
 			creatureId = 128137,
 			obtain = L["Obtained by gathering herbs on Argus"],
 			sourceText = L["Obtained by gathering herbs on Argus"],
-			showTooltipCondition = { filter = TOOLTIP_FILTERS.IS_SPELL_KNOWN, value = "Skinning" }, -- Display only if player can actually skin them
 		},
 		
 		-- 8.0 Pets
