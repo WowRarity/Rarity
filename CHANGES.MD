@@ -5,6 +5,8 @@
 
 > Reverted a minor cosmetic change to the addon's output that had harmless, but unintended, side effects
 
+> Looting Nok-Karosh should no longer count attempts for the Eye of Observation pet (which is a drop from Orumo the Observer)
+
 Developer Notes:
 > Since there's virtually no data on anything regarding these items right now, most estimates are little more than a wild guess. They will need to be refined in future updates.
 
