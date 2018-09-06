@@ -2426,6 +2426,198 @@ function R:PrepareDefaults()
 		groupSize = 3,
 	},	
 	
+	["Brazier Cap"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Brazier Cap"],
+		itemId = 163713,
+		npcs = { 142662 },
+		questId = 0000000000000000000000000000000000000000000000,
+		chance = 30,
+		groupSize = 10,
+		equalOdds = true,
+		coords = {
+			{ m = 14, x =  79.6, y = 30.3, n = L["Geomancer Flintdagger"] },
+		},
+	},	
+
+	["Molok Morion"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Molok Morion"],
+		itemId = 163775,
+		npcs = { 141942 },
+		questId = 0000000000000000000000000000000000000000000000,
+		chance = 30,
+		groupSize = 10,
+		equalOdds = true,
+		-- coords = {
+			-- { m = 14, x = 0000, y = 0000000, n = L["NNNNNNNNNNNNNNNAAAAAMEEEE"] },
+		-- },
+	},	
+
+	["Kovork Kostume"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Kovork Kostume"],
+		itemId = 163750,
+		npcs = { 142684 },
+		questId = 0000000000000000000000000000000000000000000000,
+		chance = 30,
+		groupSize = 10,
+		equalOdds = true,
+		-- coords = {
+			-- { m = 14, x = 0000, y = 0000000, n = L["Kovork"] },
+		-- },
+	},	
+
+	["Witherbark Gong"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Witherbark Gong"],
+		itemId = 163745,
+		npcs = { 142682 },
+		questId = 0000000000000000000000000000000000000000000000,
+		chance = 30,
+		groupSize = 10,
+		equalOdds = true,
+		-- coords = {
+			-- { m = 14, x = 0000, y = 0000000, n = L["Zalas Witherbark"] },
+		-- },
+	},	
+
+	["Coldrage's Cooler"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Coldrage's Cooler"],
+		itemId = 163744,
+		npcs = { 142112 },
+		questId = 0000000000000000000000000000000000000000000000,
+		chance = 30,
+		groupSize = 10,
+		equalOdds = true,
+		-- coords = {
+			-- { m = 14, x = 0000, y = 0000000, n = L["Kor'gresh Coldrage"] },
+		-- },
+	},	
+
+	["Magic Fun Rock"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Magic Fun Rock"],
+		itemId = 163741,
+		npcs = { 142683 },
+		questId = 0000000000000000000000000000000000000000000000,
+		chance = 30,
+		groupSize = 10,
+		equalOdds = true,
+		-- coords = {
+			-- { m = 14, x = 0000, y = 0000000, n = L["Ruul Onestone"] },
+		-- },
+	},	
+
+	["Syndicate Mask"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Syndicate Mask"],
+		itemId = 163738,
+		npcs = { 142690 },
+		questId = 0000000000000000000000000000000000000000000000,
+		chance = 30,
+		groupSize = 10,
+		equalOdds = true,
+		-- coords = {
+			-- { m = 14, x = 0000, y = 0000000, n = L["Singer"] },
+		-- },
+	},	
+
+	["Spectral Visage"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Spectral Visage"],
+		itemId = 163736,
+		npcs = { 142725 },
+		questId = 0000000000000000000000000000000000000000000000,
+		chance = 30,
+		groupSize = 10,
+		equalOdds = true,
+		-- coords = {
+			-- { m = 14, x = 0000, y = 0000000, n = L["Horrific Apparition"] },
+		-- },
+	},	
+
+	["Foul Belly"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Foul Belly"],
+		itemId = 163735,
+		npcs = { 142686 },
+		questId = 0000000000000000000000000000000000000000000000,
+		chance = 30,
+		groupSize = 10,
+		equalOdds = true,
+		-- coords = {
+			-- { m = 14, x = 0000, y = 0000000, n = L["Foulbelly"] },
+		-- },
+	},	
+
+	["Toy Siege Tower"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = BOSS,
+		name = L["Toy Siege Tower"],
+		itemId = 163828,
+		npcs = { 99999 },
+		tooltipNpcs = { 138122 },
+		questId = 53002, -- Loot lockout (could also use WQ with ID = 52847 instead?)
+		chance = 100, -- Need more data. Until then, this is a blind guess...
+		groupSize = 25,
+		equalOdds = true,
+		coords = {
+			{ m = 14, x = 37.09, y = 39.21, n = L["Doom's Howl"] },
+		},
+	},	
+
+	["Toy War Machine"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = BOSS,
+		name = L["Toy War Machine"],
+		itemId = 163829,
+		npcs = { 99999 },
+		tooltipNpcs = { 137374 },
+		questId = 0000000000000000000000000000000000000000000000,
+		chance = 100,
+		groupSize = 25,
+		equalOdds = true,
+		coords = {
+			{ m = 14, x = 37.09, y = 39.21, n = L["The Lion's Roar"] },
+		},
+	},	
+
+	
+
+	 
 		-- Mount-related items (5.x)
      ["Primal Egg"] =                                    { cat = MOP, type = ITEM, method = NPC, name = L["Primal Egg"], itemId = 94295, npcs = { 69983, 69991, 69992, 69993, 70004, 70005, 70006, 70007, 70008, 70009, 70010, 70011, 70012, 70013, 70014, 70015, 70016, 70017, 70018, 70019, 70020, 70021, }, chance = 100,  unique = true, sourceText = L["Dropped by dinosaurs on Isle of Giants Will hatch into one of three Primal Raptor mounts after three days."], coords = { {m=507} }, },
      ["Skyshard"] =                                      { cat = MOP, type = ITEM, method = ZONE, name = L["Skyshard"], spellId = 90655, itemId = 86547, zones = { "390" }, chance = 1000,  sourceText = L["Dropped by any mob in Vale of Eternal Blossoms (except minor mobs). 10 of these can be combined to pierce Alani's shield, allowing combat and a guaranteed drop of Reins of the Thundering Ruby Cloud Serpent."], coords = { {m=390} }, },
