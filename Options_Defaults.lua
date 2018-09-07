@@ -1168,7 +1168,7 @@ function R:PrepareDefaults()
 			spellId = 254813,
 			itemId = 159842,
 			npcs = 99999, -- 129440 (Heroic)
-			statisticId = 12752,
+			statisticId = { 12752 },
 			chance = 100,
 			equalOdds = true,
 			instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true },
@@ -1183,7 +1183,7 @@ function R:PrepareDefaults()
 			spellId = 273541,
 			itemId = 160829,
 			npcs = 99999, -- 133007
-			statisticId = 12745,
+			statisticId = { 12745 },
 			chance = 100,
 			equalOdds = true,
 			instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true },
@@ -1198,7 +1198,7 @@ function R:PrepareDefaults()
 			spellId = 266058,
 			itemId = 159921,
 			npcs = 99999, -- 136160
-			statisticId = 12763,
+			statisticId = { 12763 },
 			chance = 100,
 			equalOdds = true,
 			instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true },
