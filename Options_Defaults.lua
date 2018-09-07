@@ -887,8 +887,9 @@ function R:PrepareDefaults()
 			equalOdds = true,
 			questId = 53014,
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 27.46, y = 55.89, n = L["Overseer Krix"] .. " - " .. L["Horde only"] }, 
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 33.04, y = 37.49, n = L["Overseer Krix"]  .. " - " .. L["Alliance only"] },
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 27.46, y = 55.89, n = L["Overseer Krix"] .. " - " .. L["Horde controls Stromgarde"] }, 
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 33.04, y = 37.49, n = L["Overseer Krix"]  .. " - " .. L["Alliance controls Stromgarde"] },
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 33.44, y = 36.94, n = L["Cave Entrance"] },
 			},		
 		 },
 		
@@ -937,7 +938,7 @@ function R:PrepareDefaults()
 			equalOdds = true,
 			questId = 53085,
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 53.97, y = 56.96, n = L["Doomrider Helgrim"] .. " - " .. L["Alliance only"] },
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 53.97, y = 56.96, n = L["Doomrider Helgrim"] .. " - " .. L["Alliance controls Stromgarde"] .. " - " .. L["Alliance only"] },
 			},		
 		 },
 
@@ -954,7 +955,7 @@ function R:PrepareDefaults()
 			equalOdds = true,
 			questId = 000000000000000000,
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 49.27, y = 40.05, n = L["Knight-Captain Aldrin"] .. " - " .. L["Horde only"] },
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 49.27, y = 40.05, n = L["Knight-Captain Aldrin"] .. " - " .. L["Horde controls Stromgarde"] .. " - " .. L["Horde only"] },
 			},		
 		 },
 
