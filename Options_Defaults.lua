@@ -867,8 +867,8 @@ function R:PrepareDefaults()
 			itemId = 163706,
 			spellId = 279868,
 			npcs = { 142692 },
-			chance = 100,
-			questId = 000000000000000000,
+			chance = 33,
+			questId = 53091,
 			coords = {
 				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 67.48, y = 60.58, n = L["Nimar the Slayer"] },
 			},		
@@ -882,11 +882,14 @@ function R:PrepareDefaults()
 			itemId = 163646,
 			spellId = 279608,
 			npcs = { 142423 },
-			chance = 100,
-			questId = 000000000000000000,
+			chance = 33,
+			groupSize = 5,
+			equalOdds = true,
+			questId = 53014,
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 27.46, y = 55.89, n = L["Overseer Krix"] .. " - " .. L["Horde only"] }, 
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 33.04, y = 37.49, n = L["Overseer Krix"]  .. " - " .. L["Alliance only"] },
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 27.46, y = 55.89, n = L["Overseer Krix"] .. " - " .. L["Horde controls Stromgarde"] }, 
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 33.04, y = 37.49, n = L["Overseer Krix"]  .. " - " .. L["Alliance controls Stromgarde"] },
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 33.44, y = 36.94, n = L["Cave Entrance"] },
 			},		
 		 },
 		
@@ -898,8 +901,10 @@ function R:PrepareDefaults()
 			itemId = 163645,
 			spellId = 279611,
 			npcs = { 142437 },
-			chance = 100,
-			questId = 000000000000000000,
+			chance = 33,
+			groupSize = 5,
+			equalOdds = 5,
+			questId = 53022,
 			coords = {
 				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 57.15, y = 45.75, n = L["Skullripper"] },
 			},		
@@ -913,8 +918,8 @@ function R:PrepareDefaults()
 			itemId = 163644,
 			spellId = 279569,
 			npcs = { 142709 },
-			chance = 100,
-			questId = 000000000000000000,
+			chance = 33,
+			questId = 53083,
 			coords = {
 				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 67.06, y = 65.89, n = L["Beastrider Kama"] },
 			},		
@@ -928,10 +933,12 @@ function R:PrepareDefaults()
 			itemId = 163579,
 			spellId = 279456,
 			npcs = { 142741 },
-			chance = 100,
-			questId = 000000000000000000,
+			chance = 33,
+			groupSize = 3,
+			equalOdds = true,
+			questId = 53085,
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 53.97, y = 56.96, n = L["Doomrider Helgrim"] .. " - " .. L["Alliance only"] },
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 53.97, y = 56.96, n = L["Doomrider Helgrim"] .. " - " .. L["Alliance controls Stromgarde"] .. " - " .. L["Alliance only"] },
 			},		
 		 },
 
@@ -943,10 +950,12 @@ function R:PrepareDefaults()
 			itemId = 163578,
 			spellId = 279457,
 			npcs = { 142739 },
-			chance = 100,
+			chance = 33,
+			groupSize = 3,
+			equalOdds = true,
 			questId = 000000000000000000,
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 49.27, y = 40.05, n = L["Knight-Captain Aldrin"] .. " - " .. L["Horde only"] },
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 49.27, y = 40.05, n = L["Knight-Captain Aldrin"] .. " - " .. L["Horde controls Stromgarde"] .. " - " .. L["Horde only"] },
 			},		
 		 },
 
@@ -1998,6 +2007,165 @@ function R:PrepareDefaults()
 			groupSize = 3,
 		},
 		
+		["Mana-Warped Egg"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Mana-Warped Egg"],
+			npcs = { 142716 },
+			spellId = 279930,
+			itemId = 163712,
+			creatureId = 143628,
+			questId = 53090,
+			chance = 20,
+			coords = {
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  52.3, y = 72.4, n = L["Man-Hunter Rog"] },
+			},
+		},
+
+		["Fuzzy Creepling"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Fuzzy Creepling"],
+			npcs = { 142438 },
+			spellId = 279631,
+			itemId = 163648,
+			creatureId = 143499,
+			questId = 53024,
+			chance = 20,
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  56.7, y = 54.1, n = L["Venomarus"] },
+			},
+		},
+
+		["Aldrusian Sproutling"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Aldrusian Sproutling"],
+			npcs = { 142508 },
+			spellId = 279638,
+			itemId = 163650,
+			creatureId = 143503,
+			questId = 53013,
+			chance = 20,
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  22.9, y = 22.2, n = L["Branchlord Aldrus"] },
+			},
+		},
+
+		["Tiny Grimoire"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Tiny Grimoire"],
+			npcs = { 142688 },
+			spellId = 279643,
+			itemId = 163652,
+			creatureId = 143507,
+			questId = 53084,
+			chance = 20,
+			coords = {
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  50.8, y = 36.5, n = L["Darbel Montrose"] .. " - " .. L["Alliance controls Stromgarde"] },
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  50.4, y = 61.2, n = L["Darbel Montrose"] .. " - " .. L["Horde controls Stromgarde"] },
+			},
+		},
+
+		["Scabby"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Scabby"],
+			npcs = { 142440 },
+			spellId = 279686,
+			itemId = 163684,
+			creatureId = 143533,
+			questId = 53015,
+			chance = 20,
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  14, y = 36.9, n = L["Yogursa"] },
+			},
+		},
+
+		["Teeny Titan Orb"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Teeny Titan Orb"],
+			npcs = { 141668 },
+			spellId = 279657,
+			itemId = 163677,
+			creatureId = 143515,
+			questId = 53059,
+			chance = 20,
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  56.6, y = 36.0, n = L["Echo of Myzrael"] },
+			},
+		},
+
+		["Shard of Fozruk"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Shard of Fozruk"],
+			npcs = { 142433 },
+			spellId = 279929,
+			itemId = 163711,
+			creatureId = 143627,
+			questId = 53019,
+			chance = 20,
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  51, y = 53.2, n = L["Fozruk"] },
+			},
+		},
+	
+		["Angry Egg"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Angry Egg"],
+			npcs = { 142436 },
+			spellId = 279723,
+			itemId = 163689,
+			creatureId = 143563,
+			questId = 53016,
+			chance = 20,
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  18.4, y = 27.9, n = L["Ragebeak"] .. " - " .. L["Alliance controls Stromgarde"] },
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  11.9, y = 52.1, n = L["Ragebeak"] .. " - " .. L["Horde controls Stromgarde"] },
+			},
+		},
+
+		["Plagued Egg"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Plagued Egg"],
+			npcs = { 142435 },
+			spellId = 279724,
+			itemId = 163690,
+			creatureId = 143564,
+			questId = 53020,
+			chance = 20,
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  36.9, y = 66, n = L["Plaguefeather"] },
+			},
+		},
 
 	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
@@ -2426,6 +2594,187 @@ function R:PrepareDefaults()
 		groupSize = 3,
 	},	
 	
+	["Brazier Cap"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Brazier Cap"],
+		itemId = 163713,
+		npcs = { 142662 },
+		questId = 53060,
+		chance = 30,
+		coords = {
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  79.6, y = 30.3, n = L["Geomancer Flintdagger"] },
+		},
+	},	
+
+	["Molok Morion"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Molok Morion"],
+		itemId = 163775,
+		npcs = { 141942 },
+		questId = 53057,
+		chance = 30,
+		groupSize = 5,
+		equalOdds = true,
+		coords = {
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 47.6, y = 77.9, n = L["Molok the Crusher"] },
+		},
+	},	
+
+	["Kovork Kostume"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Kovork Kostume"],
+		itemId = 163750,
+		npcs = { 142684 },
+		questId = 53089,
+		chance = 30,
+		coords = {
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 25, y = 49.1, n = L["Kovork"] },
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 28.8, y = 45.4, n = L["Cave Entrance"] },
+		},
+	},	
+
+	["Witherbark Gong"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Witherbark Gong"],
+		itemId = 163745,
+		npcs = { 142682 },
+		questId = 53094,
+		chance = 30,
+		coords = {
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 62.8, y = 80.8, n = L["Zalas Witherbark"] },
+		},
+	},	
+
+	["Coldrage's Cooler"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Coldrage's Cooler"],
+		itemId = 163744,
+		npcs = { 142112 },
+		questId = 53058,
+		chance = 30,
+		coords = {
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 49.31, y = 84.26, n = L["Kor'gresh Coldrage"] },
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 48, y = 79, n = L["Cave Entrance"] },
+		},
+	},	
+
+	["Magic Fun Rock"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Magic Fun Rock"],
+		itemId = 163741,
+		npcs = { 142683 },
+		questId = 53092,
+		chance = 30,
+		coords = {
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 43, y = 57, n = L["Ruul Onestone"] },
+		},
+	},	
+
+	["Syndicate Mask"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Syndicate Mask"],
+		itemId = 163738,
+		npcs = { 142690 },
+		questId = 53093,
+		chance = 30,
+		coords = {
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 50.8, y = 40.85, n = L["Singer"]  .. " - " .. L["Alliance controls Stromgarde"] }, 
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 50.7, y = 57.48, n = L["Singer"]  .. " - " .. L["Horde controls Stromgarde"] },
+		},
+	},	
+
+	["Spectral Visage"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Spectral Visage"],
+		itemId = 163736,
+		npcs = { 142725 },
+		questId = 53087,
+		chance = 30,
+		coords = {
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 26.7, y = 32.6, n = L["Horrific Apparition"] .. " - " .. L["Alliance controls Stromgarde"] },
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 19.5, y = 60.9, n = L["Horrific Apparition"] .. " - " .. L["Horde controls Stromgarde"] },
+		},
+	},	
+
+	["Foul Belly"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Foul Belly"],
+		itemId = 163735,
+		npcs = { 142686 },
+		questId = 53086,
+		chance = 30,
+		coords = {
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 23.1, y = 46.7, n = L["Foulbelly"] },
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 29, y = 45.5, n = L["Cave Entrance"] },
+		},
+	},	
+
+	["Toy Siege Tower"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = BOSS,
+		name = L["Toy Siege Tower"],
+		itemId = 163828,
+		npcs = { 99999 },
+		tooltipNpcs = { 138122 },
+		questId = 53002, -- Loot lockout (could also use WQ with ID = 52847 instead?)
+		chance = 100, -- Need more data. Until then, this is a blind guess...
+		groupSize = 25,
+		equalOdds = true,
+		coords = {
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 37.09, y = 39.21, n = L["Doom's Howl"] },
+		},
+	},	
+
+	["Toy War Machine"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = BOSS,
+		name = L["Toy War Machine"],
+		itemId = 163829,
+		npcs = { 99999 },
+		tooltipNpcs = { 137374 },
+		questId = 0000000000000000000000000000000000000000000000,
+		chance = 100,
+		groupSize = 25,
+		equalOdds = true,
+		coords = {
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 37.09, y = 39.21, n = L["The Lion's Roar"] },
+		},
+	},	
+
+	
+
+	 
 		-- Mount-related items (5.x)
      ["Primal Egg"] =                                    { cat = MOP, type = ITEM, method = NPC, name = L["Primal Egg"], itemId = 94295, npcs = { 69983, 69991, 69992, 69993, 70004, 70005, 70006, 70007, 70008, 70009, 70010, 70011, 70012, 70013, 70014, 70015, 70016, 70017, 70018, 70019, 70020, 70021, }, chance = 100,  unique = true, sourceText = L["Dropped by dinosaurs on Isle of Giants Will hatch into one of three Primal Raptor mounts after three days."], coords = { {m=507} }, },
      ["Skyshard"] =                                      { cat = MOP, type = ITEM, method = ZONE, name = L["Skyshard"], spellId = 90655, itemId = 86547, zones = { "390" }, chance = 1000,  sourceText = L["Dropped by any mob in Vale of Eternal Blossoms (except minor mobs). 10 of these can be combined to pierce Alani's shield, allowing combat and a guaranteed drop of Reins of the Thundering Ruby Cloud Serpent."], coords = { {m=390} }, },
