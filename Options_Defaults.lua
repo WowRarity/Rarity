@@ -2604,7 +2604,7 @@ function R:PrepareDefaults()
 		questId = 53060,
 		chance = 30,
 		coords = {
-			{ m = 14, x =  79.6, y = 30.3, n = L["Geomancer Flintdagger"] },
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  79.6, y = 30.3, n = L["Geomancer Flintdagger"] },
 		},
 	},	
 
@@ -2744,7 +2744,7 @@ function R:PrepareDefaults()
 		groupSize = 25,
 		equalOdds = true,
 		coords = {
-			{ m = 14, x = 37.09, y = 39.21, n = L["Doom's Howl"] },
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 37.09, y = 39.21, n = L["Doom's Howl"] },
 		},
 	},	
 
@@ -2762,7 +2762,7 @@ function R:PrepareDefaults()
 		groupSize = 25,
 		equalOdds = true,
 		coords = {
-			{ m = 14, x = 37.09, y = 39.21, n = L["The Lion's Roar"] },
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 37.09, y = 39.21, n = L["The Lion's Roar"] },
 		},
 	},	
 
