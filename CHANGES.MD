@@ -1,3 +1,24 @@
+**r678:**
+
+> Added tracking for the remaining collectibles (pets and toys) dropped by rares in the Arathi Highlands
+<br>Added tracking for both toys obtainable from the Arathi Highlands world bosses (Doom's Howl and The Lion's Roar)
+
+> Existing mounts that are obtained from killing rares in the Arathi Highlands are now correctly listed under the "Groups" category if they're difficult to kill alone
+
+> Luckiness calculation for the mounts dropped by rares in the Arathi Highlands now correctly ignores group size
+
+Known Issues:
+> Looting a Challenger's Cache in The Underrot, Freehold, or King's Rest (Mythic Keystone difficulty) doesn't currently add attempts for the mounts that it can contain
+<br>Defeat detection for The Lion's Roar is not currently implemented (see notes below)
+<br>Defeat detection for Knight-Captain Aldrin doesn't currently work (ditto)
+<br>The drop rates for many, if not most, of the new items are likely inaccurate. They will have to be updated once more data is available
+
+Developer Notes:
+> I don't have a Horde character at max level. Someone will have to find out the quest ID - feel free to message me for instructions on how to do this (it's quite simple if you haven't killed the boss yet for a given warfront cycle)
+<br>It is unclear whether or not the toys from Arathi Highlands world bosses can be obtained via bonus roll. Please let me know if someone has obtained them after using theirs. For the time being, Rarity will not consider bonus rolls to  be valid attempts, which may or may not be correct.
+
+-----
+
 **r677:**
 
 > Added tracking for all collectibles obtainable from Island Expeditions (see notes below)
@@ -46,14 +67,5 @@ Developer Notes:
 > Added tooltip for the "Commander of Argus" achievement to all relevant rares on Argus
 
 > Fixed tooltip display for Fossorial Bile Larva (Profession: Skinning)
-
------
-
-**r673:**
-
-> Installing the addon without embedded libraries is no longer possible
-
-Developer Notes:
-> This Curse/Twitch "feature" caused many bug reports and offers little tangible benefit, as it was often done in error or automatically by the Twitch client. I ultimately chose to disable it in order to reduce the time spent on providing support instead of working on bug fixes or new features
 
 -----
