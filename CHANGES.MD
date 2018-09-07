@@ -6,6 +6,7 @@
 > Existing mounts that are obtained from killing rares in the Arathi Highlands are now correctly listed under the "Groups" category if they're difficult to kill alone
 
 > Luckiness calculation for the mounts dropped by rares in the Arathi Highlands now correctly ignores group size
+<br>Statistics tracking for the mounts dropped from Mythic difficulty dungeon bosses in The Underrot, Freehold, and King's Rest should now function properly
 
 Known Issues:
 > Looting a Challenger's Cache in The Underrot, Freehold, or King's Rest (Mythic Keystone difficulty) doesn't currently add attempts for the mounts that it can contain
