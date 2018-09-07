@@ -883,6 +883,8 @@ function R:PrepareDefaults()
 			spellId = 279608,
 			npcs = { 142423 },
 			chance = 33,
+			groupSize = 5,
+			equalOdds = true,
 			questId = 53014,
 			coords = {
 				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 27.46, y = 55.89, n = L["Overseer Krix"] .. " - " .. L["Horde only"] }, 
@@ -899,6 +901,8 @@ function R:PrepareDefaults()
 			spellId = 279611,
 			npcs = { 142437 },
 			chance = 33,
+			groupSize = 5,
+			equalOdds = 5,
 			questId = 53022,
 			coords = {
 				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 57.15, y = 45.75, n = L["Skullripper"] },
@@ -929,6 +933,8 @@ function R:PrepareDefaults()
 			spellId = 279456,
 			npcs = { 142741 },
 			chance = 33,
+			groupSize = 3,
+			equalOdds = true,
 			questId = 53085,
 			coords = {
 				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 53.97, y = 56.96, n = L["Doomrider Helgrim"] .. " - " .. L["Alliance only"] },
@@ -944,6 +950,8 @@ function R:PrepareDefaults()
 			spellId = 279457,
 			npcs = { 142739 },
 			chance = 33,
+			groupSize = 3,
+			equalOdds = true,
 			questId = 000000000000000000,
 			coords = {
 				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 49.27, y = 40.05, n = L["Knight-Captain Aldrin"] .. " - " .. L["Horde only"] },
@@ -2595,8 +2603,6 @@ function R:PrepareDefaults()
 		npcs = { 142662 },
 		questId = 53060,
 		chance = 30,
-		groupSize = 10,
-		equalOdds = true,
 		coords = {
 			{ m = 14, x =  79.6, y = 30.3, n = L["Geomancer Flintdagger"] },
 		},
@@ -2612,7 +2618,7 @@ function R:PrepareDefaults()
 		npcs = { 141942 },
 		questId = 53057,
 		chance = 30,
-		groupSize = 10,
+		groupSize = 5,
 		equalOdds = true,
 		-- coords = {
 			-- { m = 14, x = 0000, y = 0000000, n = L["NNNNNNNNNNNNNNNAAAAAMEEEE"] },
@@ -2629,8 +2635,6 @@ function R:PrepareDefaults()
 		npcs = { 142684 },
 		questId = 53089,
 		chance = 30,
-		groupSize = 10,
-		equalOdds = true,
 		-- coords = {
 			-- { m = 14, x = 0000, y = 0000000, n = L["Kovork"] },
 		-- },
@@ -2646,8 +2650,6 @@ function R:PrepareDefaults()
 		npcs = { 142682 },
 		questId = 53094,
 		chance = 30,
-		groupSize = 10,
-		equalOdds = true,
 		-- coords = {
 			-- { m = 14, x = 0000, y = 0000000, n = L["Zalas Witherbark"] },
 		-- },
@@ -2663,8 +2665,6 @@ function R:PrepareDefaults()
 		npcs = { 142112 },
 		questId = 53058,
 		chance = 30,
-		groupSize = 10,
-		equalOdds = true,
 		-- coords = {
 			-- { m = 14, x = 0000, y = 0000000, n = L["Kor'gresh Coldrage"] },
 		-- },
@@ -2680,8 +2680,6 @@ function R:PrepareDefaults()
 		npcs = { 142683 },
 		questId = 53092,
 		chance = 30,
-		groupSize = 10,
-		equalOdds = true,
 		-- coords = {
 			-- { m = 14, x = 0000, y = 0000000, n = L["Ruul Onestone"] },
 		-- },
@@ -2697,8 +2695,6 @@ function R:PrepareDefaults()
 		npcs = { 142690 },
 		questId = 53093,
 		chance = 30,
-		groupSize = 10,
-		equalOdds = true,
 		-- coords = {
 			-- { m = 14, x = 0000, y = 0000000, n = L["Singer"] },
 		-- },
@@ -2714,8 +2710,6 @@ function R:PrepareDefaults()
 		npcs = { 142725 },
 		questId = 53087,
 		chance = 30,
-		groupSize = 10,
-		equalOdds = true,
 		-- coords = {
 			-- { m = 14, x = 0000, y = 0000000, n = L["Horrific Apparition"] },
 		-- },
@@ -2731,8 +2725,6 @@ function R:PrepareDefaults()
 		npcs = { 142686 },
 		questId = 53086,
 		chance = 30,
-		groupSize = 10,
-		equalOdds = true,
 		-- coords = {
 			-- { m = 14, x = 0000, y = 0000000, n = L["Foulbelly"] },
 		-- },
