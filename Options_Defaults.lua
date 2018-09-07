@@ -2621,9 +2621,9 @@ function R:PrepareDefaults()
 		chance = 30,
 		groupSize = 5,
 		equalOdds = true,
-		-- coords = {
-			-- { m = 14, x = 0000, y = 0000000, n = L["NNNNNNNNNNNNNNNAAAAAMEEEE"] },
-		-- },
+		coords = {
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 47.6, y = 77.9, n = L["Molok the Crusher"] },
+		},
 	},	
 
 	["Kovork Kostume"] = {
@@ -2636,9 +2636,10 @@ function R:PrepareDefaults()
 		npcs = { 142684 },
 		questId = 53089,
 		chance = 30,
-		-- coords = {
-			-- { m = 14, x = 0000, y = 0000000, n = L["Kovork"] },
-		-- },
+		coords = {
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 25, y = 49.1, n = L["Kovork"] },
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 28.8, y = 45.4, n = L["Cave Entrance"] },
+		},
 	},	
 
 	["Witherbark Gong"] = {
@@ -2651,9 +2652,9 @@ function R:PrepareDefaults()
 		npcs = { 142682 },
 		questId = 53094,
 		chance = 30,
-		-- coords = {
-			-- { m = 14, x = 0000, y = 0000000, n = L["Zalas Witherbark"] },
-		-- },
+		coords = {
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 62.8, y = 80.8, n = L["Zalas Witherbark"] },
+		},
 	},	
 
 	["Coldrage's Cooler"] = {
@@ -2666,9 +2667,10 @@ function R:PrepareDefaults()
 		npcs = { 142112 },
 		questId = 53058,
 		chance = 30,
-		-- coords = {
-			-- { m = 14, x = 0000, y = 0000000, n = L["Kor'gresh Coldrage"] },
-		-- },
+		coords = {
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 49.31, y = 84.26, n = L["Kor'gresh Coldrage"] },
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 48, y = 79, n = L["Cave Entrance"] },
+		},
 	},	
 
 	["Magic Fun Rock"] = {
@@ -2681,9 +2683,9 @@ function R:PrepareDefaults()
 		npcs = { 142683 },
 		questId = 53092,
 		chance = 30,
-		-- coords = {
-			-- { m = 14, x = 0000, y = 0000000, n = L["Ruul Onestone"] },
-		-- },
+		coords = {
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 43, y = 57, n = L["Ruul Onestone"] },
+		},
 	},	
 
 	["Syndicate Mask"] = {
@@ -2696,9 +2698,10 @@ function R:PrepareDefaults()
 		npcs = { 142690 },
 		questId = 53093,
 		chance = 30,
-		-- coords = {
-			-- { m = 14, x = 0000, y = 0000000, n = L["Singer"] },
-		-- },
+		coords = {
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 50.8, y = 40.85, n = L["Singer"]  .. " - " .. L["Alliance controls Stromgarde"] }, 
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 50.7, y = 57.48, n = L["Singer"]  .. " - " .. L["Horde controls Stromgarde"] },
+		},
 	},	
 
 	["Spectral Visage"] = {
@@ -2711,9 +2714,10 @@ function R:PrepareDefaults()
 		npcs = { 142725 },
 		questId = 53087,
 		chance = 30,
-		-- coords = {
-			-- { m = 14, x = 0000, y = 0000000, n = L["Horrific Apparition"] },
-		-- },
+		coords = {
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 26.7, y = 32.6, n = L["Horrific Apparition"] .. " - " .. L["Alliance controls Stromgarde"] },
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 19.5, y = 60.9, n = L["Horrific Apparition"] .. " - " .. L["Horde controls Stromgarde"] },
+		},
 	},	
 
 	["Foul Belly"] = {
@@ -2726,9 +2730,10 @@ function R:PrepareDefaults()
 		npcs = { 142686 },
 		questId = 53086,
 		chance = 30,
-		-- coords = {
-			-- { m = 14, x = 0000, y = 0000000, n = L["Foulbelly"] },
-		-- },
+		coords = {
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 23.1, y = 46.7, n = L["Foulbelly"] },
+			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 29, y = 45.5, n = L["Cave Entrance"] },
+		},
 	},	
 
 	["Toy Siege Tower"] = {
