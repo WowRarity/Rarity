@@ -1,6 +1,8 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+L["Horde controls Stromgarde"] = true
+L["Alliance controls Stromgarde"] = true
 L["Scuttle"] = true
 L["Captain Nibs"] = true
 L["Barnaby"] = true
@@ -66,6 +68,25 @@ L["Toy War Machine"] = true
 L["The Lion's Roar"] = true
 L["Toy Siege Tower"] = true
 L["Doom's Howl"] = true
+L["Mana-Warped Egg"] = true
+L["Man-Hunter Rog"] = true
+L["Fuzzy Creepling"] = true
+L["Venomarus"] = true
+L["Aldrusian Sproutling"] = true
+L["Branchlord Aldrus"] = true
+L["Tiny Grimoire"] = true
+L["Darbel Montrose"] = true
+L["Teeny Titan Orb"] = true
+L["Echo of Myzrael"] = true
+L["Scabby"] = true
+L["Yogursa"] = true
+L["Angry Egg"] = true
+L["Ragebeak"] = true
+L["Shard of Fozruk"] = true
+L["Fozruk"] = true
+L["Plagued Egg"] = true
+L["Plaguefeather"] = true
+L["Cave Entrance"] = true
 L["Surf Jelly"] = true
 L["Witherbark Direwing"] = true
 L["Nimar the Slayer"] = true
