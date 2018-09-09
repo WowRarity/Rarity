@@ -912,6 +912,14 @@ function R:ChatCommand(input)
 			self.db.profile.debugMode = true
 			self:Print(L["Debug mode ON"])
 		end
+	elseif strlower(input) == "profiling" then
+		if self.db.profile.enableProfiling then
+			self.db.profile.enableProfiling = false
+			self:Print(L["Profiling OFF"])
+		else
+			self.db.profile.enableProfiling = true
+			self:Print(L["Profiling ON"])
+		end
 	else
 		LoadAddOn("Rarity_Options")
 		if R.optionsFrame then
