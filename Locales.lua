@@ -1,6 +1,10 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+L["Goldenmane's Reins"] = true
+L["Reins of a Tamed Bloodfeaster"] = true
+L["Chewed-On Reins of the Terrified Pack Mule"] = true
+L["Captured Dune Scavenger"] = true
 L["Horde controls Stromgarde"] = true
 L["Alliance controls Stromgarde"] = true
 L["Scuttle"] = true
