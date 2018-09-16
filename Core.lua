@@ -2168,6 +2168,7 @@ function R:OnCombat()
  if eventType == "UNIT_DIED" then -- A unit died near you
   local npcid = self:GetNPCIDFromGUID(dstGuid)
   if bosses[npcid] then -- It's a boss we're interested in
+  R:Debug("Detected UNIT_DIED for relevant NPC with ID = " .. tostring(npcid))
    if bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_MINE) or bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_PARTY) or bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_RAID) then -- You, a party member, or a raid member killed it
     if not guids[dstGuid] then
 
