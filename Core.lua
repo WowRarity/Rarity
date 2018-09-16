@@ -3671,13 +3671,13 @@ do
 							-- Support for Defeated items with multiple steps of defeat (supports quests only)
 							if status == colorize(L["Defeated"], red) and v.defeatAllQuests and v.questId ~= nil and type(v.questId) == "table" then
 								local totalQuests = 0
-								local numQuests = 0
+								local numCompletedQuests = 0
 								for _, quest in pairs(v.questId) do
 									totalQuests = totalQuests + 1
-									if IsQuestFlaggedCompleted(quest) then numQuests = numQuests + 1 end
+									if IsQuestFlaggedCompleted(quest) then numCompletedQuests = numCompletedQuests + 1 end
 								end
-								if totalQuests > numQuests then
-									status = colorize(format(L["Defeated"].." (%d of %d)", numQuests, totalQuests), yellow)
+								if totalQuests > numCompletedQuests then
+									status = colorize(format(L["Defeated"].." (%d of %d)", numCompletedQuests, totalQuests), yellow)
 								end
 							end
 
