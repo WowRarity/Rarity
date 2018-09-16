@@ -2849,9 +2849,8 @@ function R:PrepareDefaults()
 		method = BOSS,
 		name = L["Toy Siege Tower"],
 		itemId = 163828,
-		npcs = { 99999 },
-		tooltipNpcs = { 138122 },
-		questId = 53002, -- Loot lockout (could also use WQ with ID = 52847 instead?)
+		npcs = { 138122 },
+		questId = { 53001, 53002 }, -- Loot lockout
 		chance = 100, -- Need more data. Until then, this is a blind guess...
 		groupSize = 25,
 		equalOdds = true,
@@ -2867,10 +2866,9 @@ function R:PrepareDefaults()
 		method = BOSS,
 		name = L["Toy War Machine"],
 		itemId = 163829,
-		npcs = { 99999 },
-		tooltipNpcs = { 137374 },
-		questId = 0000000000000000000000000000000000000000000000,
-		chance = 100,
+		npcs = { 137374 },
+		questId = { 53001, 53002 }, -- Loot Lockout
+		chance = 100, -- Blind guess :|
 		groupSize = 25,
 		equalOdds = true,
 		coords = {
