@@ -1,3 +1,11 @@
+**r680:**
+
+> Added defeat detection for The Lion's Roar and Doom's Howl
+
+> Defeat detection for rares in the Arathi Highlands should now function correctly regardless of the player's faction
+
+-----
+
 **r679:**
 
 > Added tracking for BOE mount drops from BFA zones: Terrified Pack Mule, Dune Scavenger, Leaping Veinseeker, and Goldenmane
@@ -63,11 +71,3 @@ Developer Notes:
 Developer Notes:
 > Since there isn't any data available, it's virtually guaranteed that the drop chances for these items are wrong. They will be corrected in a future update.
 <br>Defeat detection for the new rares is also not yet implemented.
-
------
-
-**r675:**
-
-> Added tooltip for the "Adventurer of ..." exploration achievements to all relevant rares in Kul'tiras and Zandalar
-
-> Fixed tracking for Stormforged Rune (Drop: The Assembly of Iron)
