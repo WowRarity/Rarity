@@ -1,3 +1,9 @@
+**r681:**
+
+> Fixed tracking for Skyshard attempts while in the Guo-Lai Halls subzone
+
+-----
+
 **r680:**
 
 > Added defeat detection for The Lion's Roar and Doom's Howl
@@ -50,24 +56,3 @@ Developer Notes:
 
 Developer Notes:
 > Since there's virtually no data on anything regarding these items right now, most estimates are little more than a wild guess. They will need to be refined in future updates.
-
------
-
-**r676:**
-
-> Added tracking for mount: Hellfire/Felblaze Infernal (Drop: Gul'dan)
-<br>Added tracking for mount: Shackled Ur'zul (Drop: Argus the Unmaker)
-<br>Added tracking for mounts that will be obtainable from killing the Warfront: Arathi Highlands rares (see notes below)
-<br>Added tracking for mounts obtainable from Mythic difficulty BFA dungeons
-
-> All Warlords of Draenor raids are now considered soloable
-<br>Midnight's Eternal Reins: Attumen the Huntsman is now considered soloable
-<br>Updated group size estimations for various Legion raids
-
-> Mouseover tooltips for the Assembly of Iron encounter in Ulduar should once again display tracking data for Stormforged Rune
-<br>Fixed TomTom waypoint creation for some rares on Argus that previously had invalid entries
-<br>Looting Frostdeep Cavedwellers in the Horde garrison should now correctly add attempts for the Riding Turtle mount
-
-Developer Notes:
-> Since there isn't any data available, it's virtually guaranteed that the drop chances for these items are wrong. They will be corrected in a future update.
-<br>Defeat detection for the new rares is also not yet implemented.
