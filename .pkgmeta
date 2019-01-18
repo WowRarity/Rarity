@@ -89,3 +89,4 @@ move-folders:
 
 ignore:
  - README.MD
+ - Changes.lua
