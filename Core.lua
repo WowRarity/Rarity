@@ -2618,9 +2618,9 @@ do
 		local mapName = challengeMapNames[mapID]
 		R:Debug("Detected completion for Challenge Mode: " .. (mapName or "Unknown Map") .. " (mapID = " .. tostring(mapID) .. ")")
 		
-		if mapName and challengeMapItems[mapName] then -- Is a relevant map -> Add attempts for the item
+		if mapName and challengeMapItems[mapID] then -- Is a relevant map -> Add attempts for the item
 			
-				R:Debug("Found this Challenge Mode to be relevant -> Adding attempts for item " .. tostring(challengeMapItems[mapName]))
+				R:Debug("Found this Challenge Mode to be relevant -> Adding attempts for item " .. tostring(challengeMapItems[mapID]))
 			
 				-- Actually add the attempt
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name] or self.db.profile.groups.mounts[name]
