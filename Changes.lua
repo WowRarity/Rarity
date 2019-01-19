@@ -1,4 +1,9 @@
 local changes = {
+	["r682"] = {
+		additions = {
+			"Added tracking for BFA paragon reputation rewards",
+		},
+	},
 	["r681"] = {
 		fixes = {
 			"Fixed tracking for Skyshard attempts while in the Guo-Lai Halls subzone",

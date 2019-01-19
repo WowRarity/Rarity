@@ -1,3 +1,9 @@
+**r682:**
+
+> Added tracking for BFA paragon reputation rewards
+
+-----
+
 **r681:**
 
 > Fixed tracking for Skyshard attempts while in the Guo-Lai Halls subzone
@@ -42,17 +48,3 @@ Known Issues:
 Developer Notes:
 > I don't have a Horde character at max level. Someone will have to find out the quest ID - feel free to message me for instructions on how to do this (it's quite simple if you haven't killed the boss yet for a given warfront cycle)
 <br>It is unclear whether or not the toys from Arathi Highlands world bosses can be obtained via bonus roll. Please let me know if someone has obtained them after using theirs. For the time being, Rarity will not consider bonus rolls to  be valid attempts, which may or may not be correct.
-
------
-
-**r677:**
-
-> Added tracking for all collectibles obtainable from Island Expeditions (see notes below)
-<br>Added item: Viable Cobra Egg (Drop: Merektha)
-
-> Reverted a minor cosmetic change to the addon's output that had harmless, but unintended, side effects
-
-> Looting Nok-Karosh should no longer count attempts for the Eye of Observation pet (which is a drop from Orumo the Observer)
-
-Developer Notes:
-> Since there's virtually no data on anything regarding these items right now, most estimates are little more than a wild guess. They will need to be refined in future updates.
