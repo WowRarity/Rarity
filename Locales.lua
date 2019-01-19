@@ -1,6 +1,19 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+L["Azerite Firework Launcher"] = true
+L["Bowl of Glowing Pufferfish"] = true
+L["Kojo's Master Matching Set"] = true
+L["Proudmoore Music Box"] = true
+L["Albatross Feather"] = true
+L["Cobalt Raven Hatchling"] = true
+L["Bewitching Tea Set"] = true
+L["Violet Abyssal Eel"] = true
+L["For da Blood God!"] = true
+L["Pair of Tiny Bat Wings"] = true
+L["Goldtusk Inn Breakfast Buffet"] = true
+L["Words of Akunda"] = true
+L["Meerah's Jukebox"] = true
 L["Goldenmane's Reins"] = true
 L["Reins of a Tamed Bloodfeaster"] = true
 L["Chewed-On Reins of the Terrified Pack Mule"] = true
