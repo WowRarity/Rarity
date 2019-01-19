@@ -2273,6 +2273,52 @@ function R:PrepareDefaults()
 			},
 		},
 
+		-- 8.1 Pets
+			
+		["Albatross Feather"] = {
+				cat = BFA,
+				type = PET,
+				name = L["Albatross Feather"],
+				spellId = 289606,
+				itemId = 166714,
+				items = { 166295 },
+				chance = 10,
+				creatureId = 149363,
+			},
+			
+			["Cobalt Raven Hatchling"] = {
+				cat = BFA,
+				type = PET,
+				name = L["Cobalt Raven Hatchling"],
+				spellId = 289629,
+				itemId = 166718,
+				items = { 166297 },
+				chance = 10,
+				creatureId = 149375,
+			},
+			
+			["Violet Abyssal Eel"] = {
+				cat = BFA,
+				type = PET,
+				name = L["Violet Abyssal Eel"],
+				spellId = 289633,
+				itemId = 166719,
+				items = { 166294 },
+				chance = 10,
+				creatureId = 149376,
+			},
+			
+			["Pair of Tiny Bat Wings"] = {
+				cat = BFA,
+				type = PET,
+				name = L["Pair of Tiny Bat Wings"],
+				spellId = 289622,
+				itemId = 166716,
+				items = { 166282 },
+				chance = 10,
+				creatureId = 149372,
+			},		
+		
 	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2876,7 +2922,129 @@ function R:PrepareDefaults()
 		},
 	},	
 
+	-- 8.1. Toys
 	
+	["Azerite Firework Launcher"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = USE,
+		name = L["Azerite Firework Launcher"],
+		itemId = 166877,
+		items = { 166298 },
+		chance = 8,
+	},
+
+	["Bowl of Glowing Pufferfish"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = USE,
+		name = L["Bowl of Glowing Pufferfish"],
+		itemId = 166704,
+		items = { 166245 },
+		chance = 10,
+	},
+		
+		
+	["Kojo's Master Matching Set"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = USE,
+		name = L["Kojo's Master Matching Set"],
+		itemId = 166851,
+		items = { 166245 },
+		chance = 10,
+	},
+
+	["Warbeast Kraal Dinner Bell"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = USE,
+		name = L["Warbeast Kraal Dinner Bell"],
+		itemId = 166701,
+		items = { 166292 },
+		chance = 10,
+	},
+	
+	["For da Blood God!"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = USE,
+		name = L["For da Blood God!"],
+		itemId = 166308,
+		items = { 166282 },
+		chance = 10,
+	},
+	
+	["Goldtusk Inn Breakfast Buffet"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = USE,
+		name = L["Goldtusk Inn Breakfast Buffet"],
+		itemId = 166703,
+		items = { 166290 },
+		chance = 10,
+	},
+	
+	["Words of Akunda"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = USE,
+		name = L["Words of Akunda"],
+		itemId = 165021,
+		items = { 166290 },
+		chance = 10,
+	},
+	
+	["Meerah's Jukebox"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = USE,
+		name = L["Meerah's Jukebox"],
+		itemId = 166880,
+		items = { 166290 },
+		chance = 10,
+	},
+	
+	["Rallying War Banner"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = USE,
+		name = L["Rallying War Banner"],
+		itemId = 166879,
+		items = { 166299, 166300 },
+		chance = 10,
+	},
+	
+	["Bewitching Tea Set"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = USE,
+		name = L["Bewitching Tea Set"],
+		itemId = 166808,
+		items = { 166297 },
+		chance = 10,
+	},
+	
+	["Proudmoore Music Box"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = USE,
+		name = L["Proudmoore Music Box"],
+		itemId = 166702,
+		items = { 166295 },
+		chance = 10,
+	},
 
 	 
 		-- Mount-related items (5.x)
