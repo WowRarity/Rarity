@@ -1,6 +1,8 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+L["Warbeast Kraal Dinner Bell"] = true
+L["Rallying War Banner"] = true
 L["Azerite Firework Launcher"] = true
 L["Bowl of Glowing Pufferfish"] = true
 L["Kojo's Master Matching Set"] = true
