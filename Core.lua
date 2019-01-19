@@ -3373,6 +3373,7 @@ do
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
 		
 		-- TSM Pricing
+		local TSMAPI_FOUR = TSMAPI_FOUR
 		if TSMAPI_FOUR and item.type == PET and Rarity.db.profile.showTSMColumn then
 			
 			local hasPrice = false
