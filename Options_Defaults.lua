@@ -2914,7 +2914,7 @@ function R:PrepareDefaults()
 			method = NPC,
 			name = L["Viable Cobra Egg"],
 			itemId = 160832,
-			npcs = 133384,
+			npcs = { 133384 },
 			chance = 50,
 			equalOdds = true,
 			instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true },
