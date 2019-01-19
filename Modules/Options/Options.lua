@@ -503,7 +503,7 @@ function R:PrepareOptions()
 								type = "toggle",
 								order = newOrder(),
 								name = L["Show TSM column"],
-								desc = L["When on, the TSM Minimum Buyout column will be shown in the main tooltip."],
+								desc = L["When on, the TSM Market Price will be shown in the main tooltip."],
 								hidden = function () return not TSMAPI_FOUR end,
 								get = function() return TSMAPI_FOUR ~= nil and self.db.profile.showTSMColumn == true end,
 								set = function(info, val)
