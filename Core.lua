@@ -3370,10 +3370,10 @@ do
 			end
 		end
 
+		tooltip2:AddSeparator(1, 1, 1, 1, 1)
+		
 		-- TSM Pricing
 		if TSMAPI_FOUR and item.type == PET and Rarity.db.profile.showTSMColumn then
-
-			tooltip2:AddSeparator(1, 1, 1, 1, 1)
 			
 			local hasPrice = false
 			local dbPrice = TSMAPI_FOUR.CustomPrice.GetItemPrice(item.itemId, 'DBMinBuyout')
@@ -3419,8 +3419,7 @@ do
 			if hasPrice then
 				tooltip2:AddSeparator(1, 1, 1, 1, 1)
 			end
-		else
-			tooltip2:AddSeparator(1, 1, 1, 1, 1)
+
 		end
 		
 		-- Click instructions
