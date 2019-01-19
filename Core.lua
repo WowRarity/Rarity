@@ -2551,12 +2551,12 @@ do
 		-- Toys
 		"Oomgut Ritual Drum",
 		"Whiskerwax Candle",
-		-- "Yaungol Oil Stove", -- NYI?
-		"Jinyu Light Globe",
+		-- "Yaungol Oil Stove", -- NYI as of 18/01/19
+		-- "Jinyu Light Globe", -- NYI as of 18/01/19
 		"Enchanted Soup Stone",
 		"Magic Monkey Banana",
 		"Bad Mojo Banana",
-		"Regenerating Banana Bunch",
+		-- "Regenerating Banana Bunch", -- NYI as of 18/01/19
 		
 		-- Mounts
 		"Surf Jelly",

@@ -2634,7 +2634,7 @@ function R:PrepareDefaults()
 		groupSize = 3,
 	},	
 	
-	-- ["Yaungol Oil Stove"] = { -- NYI?
+	-- ["Yaungol Oil Stove"] = { -- NYI as of 18/01/19
 		-- cat = BFA,
 		-- type = ITEM,
 		-- isToy = true,
@@ -2645,16 +2645,16 @@ function R:PrepareDefaults()
 		-- groupSize = 3,
 	-- },	
 	
-	["Jinyu Light Globe"] = {
-		cat = BFA,
-		type = ITEM,
-		isToy = true,
-		method = SPECIAL,
-		name = L["Jinyu Light Globe"],
-		itemId = 164372,
-		chance = 250,
-		groupSize = 3,
-	},	
+	-- ["Jinyu Light Globe"] = { -- NYI as of 18/01/19
+		-- cat = BFA,
+		-- type = ITEM,
+		-- isToy = true,
+		-- method = SPECIAL,
+		-- name = L["Jinyu Light Globe"],
+		-- itemId = 164372,
+		-- chance = 250,
+		-- groupSize = 3,
+	-- },	
 	
 	["Enchanted Soup Stone"] = {
 		cat = BFA,
@@ -2689,16 +2689,16 @@ function R:PrepareDefaults()
 		groupSize = 3,
 	},	
 	
-	["Regenerating Banana Bunch"] = {
-		cat = BFA,
-		type = ITEM,
-		isToy = true,
-		method = SPECIAL,
-		name = L["Regenerating Banana Bunch"],
-		itemId = 164377,
-		chance = 250,
-		groupSize = 3,
-	},	
+	-- ["Regenerating Banana Bunch"] = { -- NYI as of 18/01/19
+		-- cat = BFA,
+		-- type = ITEM,
+		-- isToy = true,
+		-- method = SPECIAL,
+		-- name = L["Regenerating Banana Bunch"],
+		-- itemId = 164377,
+		-- chance = 250,
+		-- groupSize = 3,
+	-- },	
 	
 	["Brazier Cap"] = {
 		cat = BFA,
