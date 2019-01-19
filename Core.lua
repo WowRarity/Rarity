@@ -2599,7 +2599,6 @@ local C_ChallengeMode = C_ChallengeMode
 
 do
 
-	local challengeMaps = C_ChallengeMode.GetMapTable()
 	local challengeMapNames = { -- Only  the relevant dungeons are included
 	-- Note: Blizzard seems to return the InstanceMapID instead of mapChallengeModeID with their C_MythicPlus.GetCompletionInfo() API. They SHOULD be using the right ones, but since it doesn't matter here I've merely added them as a comment in case they ever fix this
 		[1754] = "Freehold", -- 245	
