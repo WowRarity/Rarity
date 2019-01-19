@@ -86,3 +86,7 @@ tools-used:
 
 move-folders:
     Rarity/Modules/Options: Rarity_Options
+
+ignore:
+ - README.MD
+ - Changes.lua
