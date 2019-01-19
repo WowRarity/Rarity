@@ -2592,7 +2592,7 @@ end
 
 -------------------------------------------------------------------------------------
 -- Challenge modes: Used to detect Mythic Keystone dungeon completions
--- Some of them can have the mount that drops from the final boss on mythic difficulty in ther Challenger's Cache (completion reward)
+-- Some of them can have the mount that drops from the final boss on mythic difficulty in their Challenger's Cache (completion reward)
 -------------------------------------------------------------------------------------
 
 local C_ChallengeMode = C_ChallengeMode
