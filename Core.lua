@@ -2601,15 +2601,16 @@ do
 
 	local challengeMaps = C_ChallengeMode.GetMapTable()
 	local challengeMapNames = { -- Only  the relevant dungeons are included
-		[245] = "Freehold",
-		[249] = "King's Rest",
-		[251] = "The Underrot",
+	-- Note: Blizzard seems to return the InstanceMapID instead of mapChallengeModeID with their C_MythicPlus.GetCompletionInfo() API. They SHOULD be using the right ones, but since it doesn't matter here I've merely added them as a comment in case they ever fix this
+		[1754] = "Freehold", -- 245	
+		[1762] = "King's Rest", -- 249
+		[1841] = "The Underrot", -- 251
 	}
 	
 	local challengeMapItems = {
-		[245] = "Sharkbait's Favorite Crackers", -- Freehold
-		[249] = "Mummified Raptor Skull", -- King's Rest
-		[251] = "Underrot Crawg Harness", -- The Underrot
+		[1754] = "Sharkbait's Favorite Crackers", -- Freehold
+		[1762] = "Mummified Raptor Skull", -- King's Rest
+		[1841] = "Underrot Crawg Harness", -- The Underrot
 	}
 
 	function R:OnChallengeModeCompleted(event, ...)
