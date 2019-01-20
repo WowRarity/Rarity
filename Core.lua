@@ -3369,11 +3369,38 @@ do
 				tooltip2AddDoubleLine(defeatStepText, defeated)
 			end
 		end
+
+		tooltip2:AddSeparator(1, 1, 1, 1, 1)
+		
+		-- TSM Pricing
+		local TSMAPI_FOUR = TSMAPI_FOUR
+		if TSMAPI_FOUR and item.type == PET and Rarity.db.profile.showTSMColumn then
+		
+			local tooltipLines = { 
+				{ priceSource = "DBMinBuyout", isMonetaryValue = true, localisedDisplayText = L["Min Buyout"], },
+				{ priceSource = "DBMarket", isMonetaryValue = true, localisedDisplayText = L["Market Price"], },
+				{ priceSource = "DBRegionMarketAvg", isMonetaryValue = true, localisedDisplayText = L["Region Market Avg"], },
+				{ priceSource = "DBRegionSaleAvg", isMonetaryValue = true, localisedDisplayText = L["Region Sale Avg"], },
+				{ priceSource = "DBRegionSaleRate", isMonetaryValue = false, localisedDisplayText = L["Region Sale Rate"], },
+				{ priceSource = "DBRegionSoldPerDay", isMonetaryValue = false, localisedDisplayText = L["Region Avg Daily Sold"], },
+			}
+			
+			local hasPrice = false
+			for _, lineInfo in pairs(tooltipLines) do -- Add text to tooltip if TSM4 has pricing data for this source
+				local price = TSMAPI_FOUR.CustomPrice.GetItemPrice(item.itemId, lineInfo.priceSource)
+				if(price ~= nil) then
+					hasPrice = true
+					tooltip2AddDoubleLine(colorize(lineInfo.localisedDisplayText, blue), lineInfo.isMonetaryValue and TSMAPI_FOUR.Money.ToString(price) or price, nil, nil)
+				end
+			end
+
+			if hasPrice then tooltip2:AddSeparator(1, 1, 1, 1, 1) end
+
+		end
 		
 		-- Click instructions
-		tooltip2:AddSeparator(1, 1, 1, 1, 1)
-  tooltip2AddLine(colorize(L["Click to switch to this item"], gray))
-  tooltip2AddLine(colorize(L["Shift-Click to link your progress to chat"], gray))
+		tooltip2AddLine(colorize(L["Click to switch to this item"], gray))
+		tooltip2AddLine(colorize(L["Shift-Click to link your progress to chat"], gray))
 
 		-- Waypoint instructions
 		if item.coords ~= nil and type(item.coords) == "table" then
@@ -3676,7 +3703,7 @@ do
 														if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
 															line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
 														else
-															line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil, Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil, Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil, colorize(L["Defeated"], yellow))
+															line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil, Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil, Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil, colorize(L["Defeated"], yellow), TSMAPI_FOUR ~= nil and Rarity.db.profile.showTSMColumn and colorize(L["Market Price"], yellow) or nil)
 														end
 														tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
 													end
@@ -3685,10 +3712,17 @@ do
 												-- Zone
 												local zoneText, inMyZone, zoneColor, numZones = R:GetZone(v)
 
+												-- Get Price
+												local marketPrice
+												if TSMAPI_FOUR then
+													marketPrice = TSMAPI_FOUR.CustomPrice.GetItemPrice(v.itemId, 'DBMarket')
+													marketPrice = TSMAPI_FOUR.Money.ToString(marketPrice)
+												end
+
 												-- Add the item to the tooltip
 												local catIcon = ""
 												if Rarity.db.profile.showCategoryIcons and v.cat and Rarity.catIcons[v.cat] then catIcon = [[|TInterface\AddOns\Rarity\Icons\]]..Rarity.catIcons[v.cat]..".blp:0:4|t " end
-												line = tooltip:AddLine(icon, catIcon..(itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, Rarity.db.profile.showTimeColumn and time or nil, Rarity.db.profile.showLuckinessColumn and lucky or nil, Rarity.db.profile.showZoneColumn and colorize(zoneText, zoneColor) or nil, status)
+												line = tooltip:AddLine(icon, catIcon..(itemTexture and "|T"..itemTexture..":0|t " or "")..(itemLink or v.name or L["Unknown"]), attempts, likelihood, Rarity.db.profile.showTimeColumn and time or nil, Rarity.db.profile.showLuckinessColumn and lucky or nil, Rarity.db.profile.showZoneColumn and colorize(zoneText, zoneColor) or nil, status, Rarity.db.profile.showTSMColumn and marketPrice or nil)
 												tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
 												tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
 												tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)

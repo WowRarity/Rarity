@@ -2,6 +2,7 @@ local changes = {
 	["r682"] = {
 		additions = {
 			"Added tracking for BFA paragon reputation rewards",
+			"Added an option to display TSM pricing data in the addon's tooltips (courtesy of zsml) - This feature requires the TradeSkillMaster addon",
 		},
 	},
 	["r681"] = {

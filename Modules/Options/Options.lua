@@ -499,6 +499,21 @@ function R:PrepareOptions()
 								end,
 							},
 
+							showTSMColumn = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Show TSM column"],
+								desc = L["When on, the TSM Market Price will be shown in the main tooltip."],
+								hidden = function () return not TSMAPI_FOUR end,
+								get = function() return TSMAPI_FOUR ~= nil and self.db.profile.showTSMColumn == true end,
+								set = function(info, val)
+									if TSMAPI_FOUR ~= nil then
+										self.db.profile.showTSMColumn = val
+									end
+									self:UpdateText()
+								end,
+							},
+
 				   tooltipScale = {
 					   order = newOrder(),
 					   type = "range",
