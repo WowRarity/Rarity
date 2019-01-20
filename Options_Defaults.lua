@@ -2432,10 +2432,10 @@ function R:PrepareDefaults()
 			chance = 7,
 			creatureId = 148781,
 			questId = { 54431, 54768 },
-				coords = {
-					{ m = UIMAPIDS.DARKSHORE, x = 42.0, y = 77.6, n = L["Burninator Mark V"] .. " - " .. L["Alliance only"] },
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 42, y = 77.6, n = L["Burninator Mark V"] .. " - " .. L["Alliance only"] },
 				{ m = UIMAPIDS.DARKSHORE, x = 42, y = 77.6, n = L["Athil Dewfire"] .. " - " .. L["Horde only"] },
-				},
+			},
 		},
 
 		["Rattling Bones"] = {
@@ -2449,11 +2449,11 @@ function R:PrepareDefaults()
 			chance = 7,
 			creatureId = 148825,
 			questId = { 54232, 54233 },
-				coords = {
-					{ m = UIMAPIDS.DARKSHORE, x = 39.2, y = 62, n = L["Conflagros"] },
-				},
 			groupSize = 5,
 			equalOdds = true,
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 39.2, y = 62, n = L["Conflagros"] },
+			},
 		},
 
 		["Everburning Treant"] = {
@@ -2467,12 +2467,12 @@ function R:PrepareDefaults()
 			chance = 7,
 			creatureId = 148843,
 			questId = { 54274, 54291 },
-				coords = {
-					{ m = UIMAPIDS.DARKSHORE, x = 62.5, y = 9.4, n = L["Zim'kaga"] .. " - " .. L["Alliance only"] },
-					{ m = UIMAPIDS.DARKSHORE, x = 45.2, y = 75.1, n = L["Onu"] .. " - " .. L["Horde only"] },
-				},
 			groupSize = 5,
 			equalOdds = true,
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 62.5, y = 9.4, n = L["Zim'kaga"] .. " - " .. L["Alliance only"] },
+				{ m = UIMAPIDS.DARKSHORE, x = 45.2, y = 75.1, n = L["Onu"] .. " - " .. L["Horde only"] },
+			},
 		},
 
 		["Binding of Cyclarus"] = {
@@ -2486,11 +2486,11 @@ function R:PrepareDefaults()
 			chance = 7,
 			creatureId = 148784,
 			questId = { 54229, 54230 },
-				coords = {
-					{ m = UIMAPIDS.DARKSHORE, x = 43.8, y = 53.6, n = L["Cyclarus"] },
-				},
 			groupSize = 5,
 			equalOdds = true,
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 43.8, y = 53.6, n = L["Cyclarus"] },
+			},
 		},
 
 		["Bottled Essence of Hydrath"] = {
@@ -2504,9 +2504,9 @@ function R:PrepareDefaults()
 			chance = 7,
 			creatureId = 148841,
 			questId = { 54227, 54228 },
-				coords = {
-					{ m = UIMAPIDS.DARKSHORE, x = 53.0, y = 31.8, n = L["Hydrath"] },
-				},
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 53.0, y = 31.8, n = L["Hydrath"] },
+			},
 		},
 
 		["Squishy Purple Goo"] = {
@@ -2520,11 +2520,11 @@ function R:PrepareDefaults()
 			chance = 7,
 			creatureId = 148844,
 			questId = { 54320, 54321 },
-				coords = {
-					{ m = UIMAPIDS.DARKSHORE, x = 40.7, y = 84.6, n = L["Soggoth the Slitherer"] },
-				},
 			groupSize = 5,
 			equalOdds = true,
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 40.7, y = 84.6, n = L["Soggoth the Slitherer"] },
+			},
 		},
 
 		["Zur'aj the Depleted"] = {
@@ -2538,9 +2538,9 @@ function R:PrepareDefaults()
 			chance = 7,
 			creatureId = 148846,
 			questId = { 54397, 54398 },
-				coords = {
-					{ m = UIMAPIDS.DARKSHORE, x = 40.6, y = 82.7, n = L["Twilight Prophet Graeme"] },
-				},
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 40.6, y = 82.7, n = L["Twilight Prophet Graeme"] },
+			},
 		},
 
 	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3295,10 +3295,10 @@ function R:PrepareDefaults()
 		npcs = { 147435, 147845 },
 		chance = 10,
 		questId = { 54309, 54252 },
-			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 45.7, y = 86.9, n = L["Commander Drald"] .. " - " .. L["Alliance only"] },
-				{ m = UIMAPIDS.DARKSHORE, x = 62.0, y = 16.2, n = L["Thelar Moonstrike"] .. " - " .. L["Horde only"] },
-			},
+		coords = {
+			{ m = UIMAPIDS.DARKSHORE, x = 45.7, y = 86.9, n = L["Commander Drald"] .. " - " .. L["Alliance only"] },
+			{ m = UIMAPIDS.DARKSHORE, x = 62.0, y = 16.2, n = L["Thelar Moonstrike"] .. " - " .. L["Horde only"] },
+		},
 	},
 
 	["Narassin's Soul Gem"] = {
@@ -3311,11 +3311,11 @@ function R:PrepareDefaults()
 		npcs = { 147708 },
 		chance = 10,
 		questId = { 54278, 54279 },
-			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 58.3, y = 24.9, n = L["Athrikus Narassin"] },
-			},
 		groupSize = 5,
 		equalOdds = true,
+		coords = {
+			{ m = UIMAPIDS.DARKSHORE, x = 58.3, y = 24.9, n = L["Athrikus Narassin"] },
+		},
 	},
 
 	["Twiddle Twirler: Sentinel's Glaive"] = {
@@ -3328,9 +3328,9 @@ function R:PrepareDefaults()
 		npcs = { 148025 },
 		chance = 10,
 		questId = { 54426, 54427 },
-			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 37.9, y = 76.2, n = L["Commander Ral'esh"] },
-			},
+		coords = {
+			{ m = UIMAPIDS.DARKSHORE, x = 37.9, y = 76.2, n = L["Commander Ral'esh"] },
+		},
 	},
 
 	["Twiddle Twirler: Shredder Blade"] = {
@@ -3343,10 +3343,10 @@ function R:PrepareDefaults()
 		npcs = { 148103, 149141 },
 		chance = 10,
 		questId = { 54452, 54768 },
-			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 42.0, y = 77.6, n = L["Burninator Mark V"] .. " - " .. L["Alliance only"] },
-				{ m = UIMAPIDS.DARKSHORE, x = 32.9, y = 84, n = L["Sapper Odette"] .. " - " .. L["Horde only"] },
-			},
+		coords = {
+			{ m = UIMAPIDS.DARKSHORE, x = 42.0, y = 77.6, n = L["Burninator Mark V"] .. " - " .. L["Alliance only"] },
+			{ m = UIMAPIDS.DARKSHORE, x = 32.9, y = 84, n = L["Sapper Odette"] .. " - " .. L["Horde only"] },
+		},
 	},
 	 
 		-- Mount-related items (5.x)
