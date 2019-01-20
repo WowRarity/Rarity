@@ -2419,6 +2419,139 @@ function R:PrepareDefaults()
 				creatureId = 149372,
 			},		
 		
+		["Darkshore Sentinel"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Darkshore Sentinel"],
+			spellId = 288486,
+			itemId = 166449,
+			npcs = { 148037, 149141 },
+			chance = 7,
+			creatureId = 148781,
+			questId = { 54431, 54768 },
+				coords = {
+					{ m = UIMAPIDS.DARKSHORE, x = 42.0, y = 77.6, n = L["Burninator Mark V"] ..  "-" .. L["Alliance only"] },
+					{ m = UIMAPIDS.DARKSHORE, x = 40.6, y = 73.2, n = L["Athil Dewfire"] ..  "-" .. L["Horde only"] },
+				},
+		},
+
+		["Rattling Bones"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Rattling Bones"],
+			spellId = 288592,
+			itemId = 166451,
+			npcs = { 147260 },
+			chance = 7,
+			creatureId = 148825,
+			questId = { 54232, 54233 },
+				coords = {
+					{ m = UIMAPIDS.DARKSHORE, x = 39.2, y = 62, n = L["Conflagros"] },
+					{ m = UIMAPIDS.DARKSHORE, x = 39.9, y = 60.9, n = L["Cave Entrance"] },
+				},
+		},
+
+		["Everburning Treant"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Everburning Treant"],
+			spellId = 288597,
+			itemId = 166453,
+			npcs = { 147664, 147664 },
+			chance = 7,
+			creatureId = 148843,
+			questId = { 54274, 54291 },
+				coords = {
+					{ m = UIMAPIDS.DARKSHORE, x = 62.5, y = 9.4, n = L["Zim'kaga"] ..  "-" .. L["Alliance only"] },
+					{ m = UIMAPIDS.DARKSHORE, x = 45.2, y = 75.1, n = L["Onu"] ..  "-" .. L["Horde only"] },
+				},
+		},
+
+		["Binding of Cyclarus"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Binding of Cyclarus"],
+			spellId = 288582,
+			itemId = 166448,
+			npcs = { 147241 },
+			chance = 7,
+			creatureId = 148784,
+			questId = { 54229, 54230 },
+				coords = {
+					{ m = UIMAPIDS.DARKSHORE, x = 43.8, y = 53.6, n = L["Cyclarus"] },
+				},
+		},
+
+		["Bottled Essence of Hydrath"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Bottled Essence of Hydrath"],
+			spellId = 288595,
+			itemId = 166452,
+			npcs = { 147240 },
+			chance = 7,
+			creatureId = 148841,
+			questId = { 54227, 54228 },
+				coords = {
+					{ m = UIMAPIDS.DARKSHORE, x = 53.0, y = 31.8, n = L["Hydrath"] },
+				},
+		},
+
+		["Squishy Purple Goo"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Squishy Purple Goo"],
+			spellId = 288598,
+			itemId = 166454,
+			npcs = { 147897 },
+			chance = 7,
+			creatureId = 148844,
+			questId = { 54320, 54321 },
+				coords = {
+					{ m = UIMAPIDS.DARKSHORE, x = 40.7, y = 84.6, n = L["Soggoth the Slitherer"] },
+				},
+		},
+
+		["Zur'aj the Depleted"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Zur'aj the Depleted"],
+			spellId = 288600,
+			itemId = 166455,
+			npcs = { 147942 },
+			chance = 7,
+			creatureId = 148846,
+			questId = { 54397, 54398 },
+				coords = {
+					{ m = UIMAPIDS.DARKSHORE, x = 40.6, y = 82.7, n = L["Twilight Prophet Graeme"] },
+				},
+		},
+
+		["Nightwreathed Egg"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Nightwreathed Egg"],
+			spellId = 289359,
+			itemId = 166525,
+			npcs = { 149664, 149662 },
+			chance = 7,
+			creatureId = 149205,
+			questId = { 54891, 54889 },
+				coords = {
+					{ m = UIMAPIDS.DARKSHORE, x = 39.5, y = 34.4, n = L["Orwell Stevenson"] ..  "-" .. L["Alliance only"] },
+					{ m = UIMAPIDS.DARKSHORE, x = 50.6, y = 32.6, n = L["Grimhorn"] ..  "-" .. L["Horde only"] },
+				},
+			sourceText = L["Will hatch into Nightwreathed Watcher pet after five days."],
+		},			
+
 	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
