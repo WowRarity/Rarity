@@ -3394,9 +3394,7 @@ do
 				end
 			end
 
-			if hasPrice then
-				tooltip2:AddSeparator(1, 1, 1, 1, 1)
-			end
+			if hasPrice then tooltip2:AddSeparator(1, 1, 1, 1, 1) end
 
 		end
 		
