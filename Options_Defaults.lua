@@ -139,6 +139,7 @@ local TOOLTIP_FILTERS = {
 -- Embedded mapIDs: It's best to avoid hardcoding these in case of yet another re-mapping on Blizzard's end...
 local UIMAPIDS = {
 	ARATHI_HIGHLANDS = 14,
+	DARKSHORE = 62,
 }
 
 
