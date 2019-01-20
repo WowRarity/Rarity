@@ -2923,7 +2923,7 @@ function R:PrepareDefaults()
 		},
 	},	
 
-	-- 8.1. Toys
+	-- 8.1 Toys
 	
 	["Azerite Firework Launcher"] = {
 		cat = BFA,
