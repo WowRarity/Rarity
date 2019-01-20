@@ -2534,24 +2534,6 @@ function R:PrepareDefaults()
 				},
 		},
 
-		["Nightwreathed Egg"] = {
-			cat = BFA,
-			type = PET,
-			method = NPC,
-			name = L["Nightwreathed Egg"],
-			spellId = 289359,
-			itemId = 166525,
-			npcs = { 149664, 149662 },
-			chance = 7,
-			creatureId = 149205,
-			questId = { 54891, 54889 },
-				coords = {
-					{ m = UIMAPIDS.DARKSHORE, x = 39.5, y = 34.4, n = L["Orwell Stevenson"] ..  "-" .. L["Alliance only"] },
-					{ m = UIMAPIDS.DARKSHORE, x = 50.6, y = 32.6, n = L["Grimhorn"] ..  "-" .. L["Horde only"] },
-				},
-			sourceText = L["Will hatch into Nightwreathed Watcher pet after five days."],
-		},			
-
 	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3398,6 +3380,21 @@ function R:PrepareDefaults()
 			groupSize = 5,
 			sourceText = L["Dropped by Merektha in Temple of Sethraliss. Will hatch into Spawn of Merektha pet after three days."],
 		},	 
+		["Nightwreathed Egg"] = {
+			cat = BFA,
+			type = ITEM,
+			method = NPC,
+			name = L["Nightwreathed Egg"],
+			itemId = 166525,
+			npcs = { 149664, 149662 },
+			chance = 7,
+			questId = { 54891, 54889 },
+				coords = {
+					{ m = UIMAPIDS.DARKSHORE, x = 39.5, y = 34.4, n = L["Orwell Stevenson"] ..  "-" .. L["Alliance only"] },
+					{ m = UIMAPIDS.DARKSHORE, x = 50.6, y = 32.6, n = L["Grimhorn"] ..  "-" .. L["Horde only"] },
+				},
+			sourceText = L["Will hatch into Nightwreathed Watcher pet after five days."],
+		},	
 	 
 					-- Achievements
      ["Old Crafty"] =                                    { cat = TBC, type = ITEM, method = FISHING, name = L["Old Crafty"], itemId = 34486, zones = { "Orgrimmar" }, chance = 10000, requiresPool = false, achievementId = 1836, sourceText = L["Obtained by fishing in any water in Orgrimmar"], coords = { {m=85} }, },
