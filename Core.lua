@@ -3375,46 +3375,23 @@ do
 		-- TSM Pricing
 		local TSMAPI_FOUR = TSMAPI_FOUR
 		if TSMAPI_FOUR and item.type == PET and Rarity.db.profile.showTSMColumn then
+		
+			local tooltipLines = { 
+				{ priceSource = "DBMinBuyout", isMonetaryValue = true, localisedDisplayText = L["Min Buyout"], },
+				{ priceSource = "DBMarket", isMonetaryValue = true, localisedDisplayText = L["Market Price"], },
+				{ priceSource = "DBRegionMarketAvg", isMonetaryValue = true, localisedDisplayText = L["Region Market Avg"], },
+				{ priceSource = "DBRegionSaleAvg", isMonetaryValue = true, localisedDisplayText = L["Region Sale Avg"], },
+				{ priceSource = "DBRegionSaleRate", isMonetaryValue = false, localisedDisplayText = L["Region Sale Rate"], },
+				{ priceSource = "DBRegionSoldPerDay", isMonetaryValue = false, localisedDisplayText = L["Region Avg Daily Sold"], },
+			}
 			
 			local hasPrice = false
-			local dbPrice = TSMAPI_FOUR.CustomPrice.GetItemPrice(item.itemId, 'DBMinBuyout')
-			if (dbPrice) then
-				hasPrice = true
-				dbPrice = TSMAPI_FOUR.Money.ToString(dbPrice)
-				tooltip2AddDoubleLine(colorize(L["Min Buyout"], blue), dbPrice, nil, nil)
-			end
-
-			dbPrice = TSMAPI_FOUR.CustomPrice.GetItemPrice(item.itemId, 'DBMarket')
-			if (dbPrice) then
-				hasPrice = true
-				dbPrice = TSMAPI_FOUR.Money.ToString(dbPrice)
-				tooltip2AddDoubleLine(colorize(L["Market Price"], blue), dbPrice, nil, nil)
-			end
-
-			dbPrice = TSMAPI_FOUR.CustomPrice.GetItemPrice(item.itemId, 'DBRegionMarketAvg')
-			if (dbPrice) then
-				hasPrice = true
-				dbPrice = TSMAPI_FOUR.Money.ToString(dbPrice)
-				tooltip2AddDoubleLine(colorize(L["Region Market Avg"], blue), dbPrice, nil, nil)
-			end
-
-			dbPrice = TSMAPI_FOUR.CustomPrice.GetItemPrice(item.itemId, 'DBRegionSaleAvg')
-			if (dbPrice) then
-				hasPrice = true
-				dbPrice = TSMAPI_FOUR.Money.ToString(dbPrice)
-				tooltip2AddDoubleLine(colorize(L["Region Sale Avg"], blue), dbPrice, nil, nil)
-			end
-
-			dbPrice = TSMAPI_FOUR.CustomPrice.GetItemPrice(item.itemId, 'DBRegionSaleRate')
-			if (dbPrice) then
-				hasPrice = true
-				tooltip2AddDoubleLine(colorize(L["Region Sale Rate"], blue), dbPrice, nil, nil)
-			end
-
-			dbPrice = TSMAPI_FOUR.CustomPrice.GetItemPrice(item.itemId, 'DBRegionSoldPerDay')
-			if (dbPrice) then
-				hasPrice = true
-				tooltip2AddDoubleLine(colorize(L["Region Avg Daily Sold"], blue), dbPrice, nil, nil)
+			for _, lineInfo in pairs(tooltipLines) do -- Add text to tooltip if TSM4 has pricing data for this source
+				local price = TSMAPI_FOUR.CustomPrice.GetItemPrice(item.itemId, lineInfo.priceSource)
+				if(price ~= nil) then
+					hasPrice = true
+					tooltip2AddDoubleLine(colorize(lineInfo.localisedDisplayText, blue), lineInfo.isMonetaryValue and TSMAPI_FOUR.Money.ToString(price) or price, nil, nil)
+				end
 			end
 
 			if hasPrice then
