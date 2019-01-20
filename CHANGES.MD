@@ -1,6 +1,7 @@
 **r682:**
 
 > Added tracking for BFA paragon reputation rewards
+<br>Added an option to display TSM pricing data in the addon's tooltips (courtesy of zsml) - This feature requires the TradeSkillMaster addon
 
 -----
 
