@@ -1095,7 +1095,7 @@ function R:PrepareDefaults()
 			spellId = 288438,
 			npcs = { 149652 },
 			chance = 20,
-			questId = { 54883 },
+			questId = { 54883, 54890 },
 			coords = {
 				{ m = UIMAPIDS.DARKSHORE, x = 49.2, y = 24.8, n = L["Agathe Wyrmwood"] .. " - " .. L["Alliance only"] },
 			},
@@ -1110,7 +1110,7 @@ function R:PrepareDefaults()
 			spellId = 288438,
 			npcs = { 149660 },
 			chance = 20,
-			questId = { 54890 },
+			questId = { 54883, 54890 },
 			coords = {
 				{ m = UIMAPIDS.DARKSHORE, x = 49.2, y = 24.8, n = L["Blackpaw"] .. " - " .. L["Horde only"] },
 			},
@@ -1141,7 +1141,7 @@ function R:PrepareDefaults()
 			spellId = 288503,
 			npcs = { 148037 },
 			chance = 20,
-			questId = { 54431 },
+			questId = { 54277, 54431 },
 			coords = {
 				{ m = UIMAPIDS.DARKSHORE, x = 40.6, y = 73.2, n = L["Athil Dewfire"] .. " - " .. L["Horde only"] },
 			},
@@ -1156,7 +1156,7 @@ function R:PrepareDefaults()
 			spellId = 288503,
 			npcs = { 147701 },
 			chance = 20,
-			questId = { 54277 },
+			questId = { 54277, 54431 },
 			coords = {
 				{ m = UIMAPIDS.DARKSHORE, x = 63.7, y = 20.9, n = L["Moxo the Beheader"] .. " - " .. L["Alliance only"] },
 			},
