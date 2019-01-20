@@ -1143,7 +1143,7 @@ function R:PrepareDefaults()
 			chance = 20,
 			questId = { 54277, 54431 },
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 40.6, y = 73.2, n = L["Athil Dewfire"] .. " - " .. L["Horde only"] },
+				{ m = UIMAPIDS.DARKSHORE, x = 42, y = 77.6, n = L["Athil Dewfire"] .. " - " .. L["Horde only"] },
 			},
 		},
 		 
@@ -2434,7 +2434,7 @@ function R:PrepareDefaults()
 			questId = { 54431, 54768 },
 				coords = {
 					{ m = UIMAPIDS.DARKSHORE, x = 42.0, y = 77.6, n = L["Burninator Mark V"] .. " - " .. L["Alliance only"] },
-					{ m = UIMAPIDS.DARKSHORE, x = 40.6, y = 73.2, n = L["Athil Dewfire"] .. " - " .. L["Horde only"] },
+				{ m = UIMAPIDS.DARKSHORE, x = 42, y = 77.6, n = L["Athil Dewfire"] .. " - " .. L["Horde only"] },
 				},
 		},
 
