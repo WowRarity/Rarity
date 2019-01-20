@@ -1067,7 +1067,101 @@ function R:PrepareDefaults()
 			chance = 3000,		
 		 },
 
-		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		-- 8.1
+		
+		["Ashenvale Chimaera"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Ashenvale Chimaera"],
+			itemId = 166432,
+			spellId = 288495,
+			npcs = { 148787 },
+			chance = 20,
+			questId = { 54695, 54696},
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 56.4, y = 30.8, n = L["Alash'anir"] },
+			},
+		},
+
+		["Caged Bear"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Caged Bear"],
+			itemId = 166438,
+			spellId = 288438,
+			npcs = { 149652 },
+			chance = 20,
+			questId = { 54883 },
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 49.2, y = 24.8, n = L["Agathe Wyrmwood"] .. "-".. L["Alliance only"] },
+			},
+		},
+
+		["Blackpaw"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Blackpaw"],
+			itemId = 166428,
+			spellId = 288438,
+			npcs = { 149660 },
+			chance = 20,
+			questId = { 54890 },
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 49.2, y = 24.8, n = L["Blackpaw"] .. "-" .. L["Horde only"] },
+			},
+		},
+
+		["Captured Kaldorei Nightsaber"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Captured Kaldorei Nightsaber"],
+			itemId = 166437,
+			spellId = 288505,
+			npcs = { 149663, 149655 },
+			chance = 20,
+			questId = { 54886, 54892},
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 50.6, y = 32.6, n = L["Croz Bloodrage"] ..  "-" .. L["Alliance only"] },
+				{ m = UIMAPIDS.DARKSHORE, x = 39.9, y = 33.0, n = L["Shadowclaw"] ..  "-" .. L["Horde only"] },
+			},
+		},
+
+		["Umber Nightsaber"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Umber Nightsaber"],
+			itemId = 166803,
+			spellId = 288503,
+			npcs = { 148037 },
+			chance = 20,
+			questId = { 54431 },
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 40.6, y = 73.2, n = L["Athil Dewfire"] ..  "-" .. L["Horde only"] },
+			},
+		},
+		 
+		["Captured Umber Nightsaber"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Captured Umber Nightsaber"],
+			itemId = 166434,
+			spellId = 288503,
+			npcs = { 147701 },
+			chance = 20,
+			questId = { 54277 },
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 63.7, y = 20.9, n = L["Moxo the Beheader"] ..  "-" .. L["Alliance only"] },
+			},
+		},
+
+
+	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 						-- MOUNTS: Requires a group (some of these may be soloable by certain classes, but not in general)
 						--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
