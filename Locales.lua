@@ -1,6 +1,18 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+L["Ashenvale Chimaera"] = true
+L["Alash'anir"] = true
+L["Caged Bear"] = true
+L["Agathe Wyrmwood"] = true
+L["Blackpaw"] = true
+L["Captured Kaldorei Nightsaber"] = true
+L["Croz Bloodrage"] = true
+L["Shadowclaw"] = true
+L["Umber Nightsaber"] = true
+L["Moxo the Beheader"] = true
+L["Athil Dewfire"] = true
+L["Captured Umber Nightsaber"] = true
 L["Warbeast Kraal Dinner Bell"] = true
 L["Rallying War Banner"] = true
 L["Azerite Firework Launcher"] = true
