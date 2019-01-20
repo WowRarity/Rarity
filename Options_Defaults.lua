@@ -2451,7 +2451,6 @@ function R:PrepareDefaults()
 			questId = { 54232, 54233 },
 				coords = {
 					{ m = UIMAPIDS.DARKSHORE, x = 39.2, y = 62, n = L["Conflagros"] },
-					{ m = UIMAPIDS.DARKSHORE, x = 39.9, y = 60.9, n = L["Cave Entrance"] },
 				},
 			groupSize = 5,
 			equalOdds = true,
