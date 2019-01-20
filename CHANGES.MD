@@ -1,3 +1,11 @@
+**r683:**
+
+> Added tracking for mounts dropped by rares in Darkshore
+
+> Fixed tracking for pets obtained from BFA paragon reward boxes 
+
+-----
+
 **r682:**
 
 > Added tracking for BFA paragon reputation rewards
@@ -27,25 +35,3 @@
 
 Developer Notes:
 > Challenge mode (Mythic Keystone) detection is experimental at this point. Please report any issues you may encounter!
-
------
-
-**r678:**
-
-> Added tracking for the remaining collectibles (pets and toys) dropped by rares in the Arathi Highlands
-<br>Added tracking for both toys obtainable from the Arathi Highlands world bosses (Doom's Howl and The Lion's Roar)
-
-> Existing mounts that are dropped by rares in the Arathi Highlands are now listed under the "Groups" category if defeating said rare tends to require a group
-
-> Luckiness calculation for the mounts dropped by rares in the Arathi Highlands now correctly assumed Personal Loot
-<br>Statistics tracking for the mounts dropped from Mythic difficulty dungeon bosses in The Underrot, Freehold, and King's Rest should now function properly
-
-Known Issues:
-> Looting a Challenger's Cache in The Underrot, Freehold, or King's Rest (Mythic Keystone difficulty) doesn't currently add attempts for the mounts that it may contain
-<br>Defeat detection for The Lion's Roar is not currently implemented (see notes below)
-<br>Defeat detection for Knight-Captain Aldrin doesn't currently work (see notes below)
-<br>The drop rates for many, if not most, of the new items are likely inaccurate. They will have to be updated once more data is available
-
-Developer Notes:
-> I don't have a Horde character at max level. Someone will have to find out the quest ID - feel free to message me for instructions on how to do this (it's quite simple if you haven't killed the boss yet for a given warfront cycle)
-<br>It is unclear whether or not the toys from Arathi Highlands world bosses can be obtained via bonus roll. Please let me know if someone has obtained them after using theirs. For the time being, Rarity will not consider bonus rolls to  be valid attempts, which may or may not be correct.

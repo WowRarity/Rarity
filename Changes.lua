@@ -1,4 +1,12 @@
 local changes = {
+	["r683"] = {
+		additions = {
+			"Added tracking for mounts dropped by rares in Darkshore",
+		},
+		fixes = {
+			"Fixed tracking for pets obtained from BFA paragon reward boxes ",
+		},
+	},
 	["r682"] = {
 		additions = {
 			"Added tracking for BFA paragon reputation rewards",
