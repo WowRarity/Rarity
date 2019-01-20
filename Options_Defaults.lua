@@ -139,6 +139,7 @@ local TOOLTIP_FILTERS = {
 -- Embedded mapIDs: It's best to avoid hardcoding these in case of yet another re-mapping on Blizzard's end...
 local UIMAPIDS = {
 	ARATHI_HIGHLANDS = 14,
+	DARKSHORE = 62,
 }
 
 
@@ -1066,7 +1067,103 @@ function R:PrepareDefaults()
 			chance = 3000,		
 		 },
 
-		--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		-- 8.1
+		
+		["Ashenvale Chimaera"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Ashenvale Chimaera"],
+			itemId = 166432,
+			spellId = 288495,
+			npcs = { 148787 },
+			chance = 20,
+			questId = { 54695, 54696},
+			coords = {
+			groupSize = 5,
+			equalOdds = true,
+				{ m = UIMAPIDS.DARKSHORE, x = 56.4, y = 30.8, n = L["Alash'anir"] },
+			},
+		},
+
+		["Caged Bear"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Caged Bear"],
+			itemId = 166438,
+			spellId = 288438,
+			npcs = { 149652 },
+			chance = 20,
+			questId = { 54883, 54890 },
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 49.2, y = 24.8, n = L["Agathe Wyrmwood"] .. " - " .. L["Alliance only"] },
+			},
+		},
+
+		["Blackpaw"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Blackpaw"],
+			itemId = 166428,
+			spellId = 288438,
+			npcs = { 149660 },
+			chance = 20,
+			questId = { 54883, 54890 },
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 49.2, y = 24.8, n = L["Blackpaw"] .. " - " .. L["Horde only"] },
+			},
+		},
+
+		["Captured Kaldorei Nightsaber"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Captured Kaldorei Nightsaber"],
+			itemId = 166437,
+			spellId = 288505,
+			npcs = { 149663, 149655 },
+			chance = 20,
+			questId = { 54886, 54892},
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 50.6, y = 32.6, n = L["Croz Bloodrage"] .. " - " .. L["Alliance only"] },
+				{ m = UIMAPIDS.DARKSHORE, x = 39.9, y = 33.0, n = L["Shadowclaw"] .. " - " .. L["Horde only"] },
+			},
+		},
+
+		["Umber Nightsaber"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Umber Nightsaber"],
+			itemId = 166803,
+			spellId = 288503,
+			npcs = { 148037 },
+			chance = 20,
+			questId = { 54277, 54431 },
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 42, y = 77.6, n = L["Athil Dewfire"] .. " - " .. L["Horde only"] },
+			},
+		},
+		 
+		["Captured Umber Nightsaber"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Captured Umber Nightsaber"],
+			itemId = 166434,
+			spellId = 288503,
+			npcs = { 147701 },
+			chance = 20,
+			questId = { 54277, 54431 },
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 63.7, y = 20.9, n = L["Moxo the Beheader"] .. " - " .. L["Alliance only"] },
+			},
+		},
+
+
+	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 						-- MOUNTS: Requires a group (some of these may be soloable by certain classes, but not in general)
 						--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -2324,6 +2421,128 @@ function R:PrepareDefaults()
 				creatureId = 149372,
 			},		
 		
+		["Darkshore Sentinel"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Darkshore Sentinel"],
+			spellId = 288486,
+			itemId = 166449,
+			npcs = { 148037, 149141 },
+			chance = 7,
+			creatureId = 148781,
+			questId = { 54431, 54768 },
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 42, y = 77.6, n = L["Burninator Mark V"] .. " - " .. L["Alliance only"] },
+				{ m = UIMAPIDS.DARKSHORE, x = 42, y = 77.6, n = L["Athil Dewfire"] .. " - " .. L["Horde only"] },
+			},
+		},
+
+		["Rattling Bones"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Rattling Bones"],
+			spellId = 288592,
+			itemId = 166451,
+			npcs = { 147260 },
+			chance = 7,
+			creatureId = 148825,
+			questId = { 54232, 54233 },
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 39.2, y = 62, n = L["Conflagros"] },
+			},
+		},
+
+		["Everburning Treant"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Everburning Treant"],
+			spellId = 288597,
+			itemId = 166453,
+			npcs = { 147664, 147664 },
+			chance = 7,
+			creatureId = 148843,
+			questId = { 54274, 54291 },
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 62.5, y = 9.4, n = L["Zim'kaga"] .. " - " .. L["Alliance only"] },
+				{ m = UIMAPIDS.DARKSHORE, x = 45.2, y = 75.1, n = L["Onu"] .. " - " .. L["Horde only"] },
+			},
+		},
+
+		["Binding of Cyclarus"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Binding of Cyclarus"],
+			spellId = 288582,
+			itemId = 166448,
+			npcs = { 147241 },
+			chance = 7,
+			creatureId = 148784,
+			questId = { 54229, 54230 },
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 43.8, y = 53.6, n = L["Cyclarus"] },
+			},
+		},
+
+		["Bottled Essence of Hydrath"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Bottled Essence of Hydrath"],
+			spellId = 288595,
+			itemId = 166452,
+			npcs = { 147240 },
+			chance = 7,
+			creatureId = 148841,
+			questId = { 54227, 54228 },
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 53.0, y = 31.8, n = L["Hydrath"] },
+			},
+		},
+
+		["Squishy Purple Goo"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Squishy Purple Goo"],
+			spellId = 288598,
+			itemId = 166454,
+			npcs = { 147897 },
+			chance = 7,
+			creatureId = 148844,
+			questId = { 54320, 54321 },
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 40.7, y = 84.6, n = L["Soggoth the Slitherer"] },
+			},
+		},
+
+		["Zur'aj the Depleted"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Zur'aj the Depleted"],
+			spellId = 288600,
+			itemId = 166455,
+			npcs = { 147942 },
+			chance = 7,
+			creatureId = 148846,
+			questId = { 54397, 54398 },
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 40.6, y = 82.7, n = L["Twilight Prophet Graeme"] },
+			},
+		},
+
 	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3051,6 +3270,84 @@ function R:PrepareDefaults()
 		chance = 10,
 	},
 
+	["Detoxified Blight Grenade"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Detoxified Blight Grenade"],
+		itemId = 166785,
+		npcs = { 148031 },
+		chance = 10,
+		questId = { 54428, 54429 },
+		coords = {
+			{ m = UIMAPIDS.DARKSHORE, x = 40.9, y = 56.5, n = L["Gren Tornfur"] },
+		},
+	},
+	
+	["Highborne Memento"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Highborne Memento"],
+		itemId = 166790,
+		npcs = { 147435, 147845 },
+		chance = 10,
+		questId = { 54309, 54252 },
+		coords = {
+			{ m = UIMAPIDS.DARKSHORE, x = 45.7, y = 86.9, n = L["Commander Drald"] .. " - " .. L["Alliance only"] },
+			{ m = UIMAPIDS.DARKSHORE, x = 62.0, y = 16.2, n = L["Thelar Moonstrike"] .. " - " .. L["Horde only"] },
+		},
+	},
+
+	["Narassin's Soul Gem"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Narassin's Soul Gem"],
+		itemId = 166784,
+		npcs = { 147708 },
+		chance = 10,
+		questId = { 54278, 54279 },
+		groupSize = 5,
+		equalOdds = true,
+		coords = {
+			{ m = UIMAPIDS.DARKSHORE, x = 58.3, y = 24.9, n = L["Athrikus Narassin"] },
+		},
+	},
+
+	["Twiddle Twirler: Sentinel's Glaive"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Twiddle Twirler: Sentinel's Glaive"],
+		itemId = 166787,
+		npcs = { 148025 },
+		chance = 10,
+		questId = { 54426, 54427 },
+		coords = {
+			{ m = UIMAPIDS.DARKSHORE, x = 37.9, y = 76.2, n = L["Commander Ral'esh"] },
+		},
+	},
+
+	["Twiddle Twirler: Shredder Blade"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Twiddle Twirler: Shredder Blade"],
+		itemId = 166788,
+		npcs = { 148103, 149141 },
+		chance = 10,
+		questId = { 54452, 54768 },
+		coords = {
+			{ m = UIMAPIDS.DARKSHORE, x = 42.0, y = 77.6, n = L["Burninator Mark V"] .. " - " .. L["Alliance only"] },
+			{ m = UIMAPIDS.DARKSHORE, x = 32.9, y = 84, n = L["Sapper Odette"] .. " - " .. L["Horde only"] },
+		},
+	},
 	 
 		-- Mount-related items (5.x)
      ["Primal Egg"] =                                    { cat = MOP, type = ITEM, method = NPC, name = L["Primal Egg"], itemId = 94295, npcs = { 69983, 69991, 69992, 69993, 70004, 70005, 70006, 70007, 70008, 70009, 70010, 70011, 70012, 70013, 70014, 70015, 70016, 70017, 70018, 70019, 70020, 70021, }, chance = 100,  unique = true, sourceText = L["Dropped by dinosaurs on Isle of Giants Will hatch into one of three Primal Raptor mounts after three days."], coords = { {m=507} }, },
@@ -3094,6 +3391,21 @@ function R:PrepareDefaults()
 			groupSize = 5,
 			sourceText = L["Dropped by Merektha in Temple of Sethraliss. Will hatch into Spawn of Merektha pet after three days."],
 		},	 
+		["Nightwreathed Egg"] = {
+			cat = BFA,
+			type = ITEM,
+			method = NPC,
+			name = L["Nightwreathed Egg"],
+			itemId = 166525,
+			npcs = { 149664, 149662 },
+			chance = 7,
+			questId = { 54891, 54889 },
+				coords = {
+					{ m = UIMAPIDS.DARKSHORE, x = 39.5, y = 34.4, n = L["Orwell Stevenson"] .. " - " .. L["Alliance only"] },
+					{ m = UIMAPIDS.DARKSHORE, x = 50.6, y = 32.6, n = L["Grimhorn"] .. " - " .. L["Horde only"] },
+				},
+			sourceText = L["Will hatch into Nightwreathed Watcher pet after five days."],
+		},	
 	 
 					-- Achievements
      ["Old Crafty"] =                                    { cat = TBC, type = ITEM, method = FISHING, name = L["Old Crafty"], itemId = 34486, zones = { "Orgrimmar" }, chance = 10000, requiresPool = false, achievementId = 1836, sourceText = L["Obtained by fishing in any water in Orgrimmar"], coords = { {m=85} }, },
