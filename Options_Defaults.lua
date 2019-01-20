@@ -2279,6 +2279,7 @@ function R:PrepareDefaults()
 		["Albatross Feather"] = {
 				cat = BFA,
 				type = PET,
+				method = USE,
 				name = L["Albatross Feather"],
 				spellId = 289606,
 				itemId = 166714,
@@ -2290,6 +2291,7 @@ function R:PrepareDefaults()
 			["Cobalt Raven Hatchling"] = {
 				cat = BFA,
 				type = PET,
+				method = USE,
 				name = L["Cobalt Raven Hatchling"],
 				spellId = 289629,
 				itemId = 166718,
@@ -2301,6 +2303,7 @@ function R:PrepareDefaults()
 			["Violet Abyssal Eel"] = {
 				cat = BFA,
 				type = PET,
+				method = USE,
 				name = L["Violet Abyssal Eel"],
 				spellId = 289633,
 				itemId = 166719,
@@ -2312,6 +2315,7 @@ function R:PrepareDefaults()
 			["Pair of Tiny Bat Wings"] = {
 				cat = BFA,
 				type = PET,
+				method = USE,
 				name = L["Pair of Tiny Bat Wings"],
 				spellId = 289622,
 				itemId = 166716,
