@@ -1080,6 +1080,8 @@ function R:PrepareDefaults()
 			chance = 20,
 			questId = { 54695, 54696},
 			coords = {
+			groupSize = 5,
+			equalOdds = true,
 				{ m = UIMAPIDS.DARKSHORE, x = 56.4, y = 30.8, n = L["Alash'anir"] },
 			},
 		},
@@ -2451,6 +2453,8 @@ function R:PrepareDefaults()
 					{ m = UIMAPIDS.DARKSHORE, x = 39.2, y = 62, n = L["Conflagros"] },
 					{ m = UIMAPIDS.DARKSHORE, x = 39.9, y = 60.9, n = L["Cave Entrance"] },
 				},
+			groupSize = 5,
+			equalOdds = true,
 		},
 
 		["Everburning Treant"] = {
@@ -2468,6 +2472,8 @@ function R:PrepareDefaults()
 					{ m = UIMAPIDS.DARKSHORE, x = 62.5, y = 9.4, n = L["Zim'kaga"] .. " - " .. L["Alliance only"] },
 					{ m = UIMAPIDS.DARKSHORE, x = 45.2, y = 75.1, n = L["Onu"] .. " - " .. L["Horde only"] },
 				},
+			groupSize = 5,
+			equalOdds = true,
 		},
 
 		["Binding of Cyclarus"] = {
@@ -2484,6 +2490,8 @@ function R:PrepareDefaults()
 				coords = {
 					{ m = UIMAPIDS.DARKSHORE, x = 43.8, y = 53.6, n = L["Cyclarus"] },
 				},
+			groupSize = 5,
+			equalOdds = true,
 		},
 
 		["Bottled Essence of Hydrath"] = {
@@ -2516,6 +2524,8 @@ function R:PrepareDefaults()
 				coords = {
 					{ m = UIMAPIDS.DARKSHORE, x = 40.7, y = 84.6, n = L["Soggoth the Slitherer"] },
 				},
+			groupSize = 5,
+			equalOdds = true,
 		},
 
 		["Zur'aj the Depleted"] = {
@@ -3305,6 +3315,8 @@ function R:PrepareDefaults()
 			coords = {
 				{ m = UIMAPIDS.DARKSHORE, x = 58.3, y = 24.9, n = L["Athrikus Narassin"] },
 			},
+		groupSize = 5,
+		equalOdds = true,
 	},
 
 	["Twiddle Twirler: Sentinel's Glaive"] = {
