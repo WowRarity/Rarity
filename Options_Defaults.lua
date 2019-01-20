@@ -1095,7 +1095,7 @@ function R:PrepareDefaults()
 			chance = 20,
 			questId = { 54883 },
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 49.2, y = 24.8, n = L["Agathe Wyrmwood"] .. "-".. L["Alliance only"] },
+				{ m = UIMAPIDS.DARKSHORE, x = 49.2, y = 24.8, n = L["Agathe Wyrmwood"] .. " - " .. L["Alliance only"] },
 			},
 		},
 
@@ -1110,7 +1110,7 @@ function R:PrepareDefaults()
 			chance = 20,
 			questId = { 54890 },
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 49.2, y = 24.8, n = L["Blackpaw"] .. "-" .. L["Horde only"] },
+				{ m = UIMAPIDS.DARKSHORE, x = 49.2, y = 24.8, n = L["Blackpaw"] .. " - " .. L["Horde only"] },
 			},
 		},
 
@@ -1125,8 +1125,8 @@ function R:PrepareDefaults()
 			chance = 20,
 			questId = { 54886, 54892},
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 50.6, y = 32.6, n = L["Croz Bloodrage"] ..  "-" .. L["Alliance only"] },
-				{ m = UIMAPIDS.DARKSHORE, x = 39.9, y = 33.0, n = L["Shadowclaw"] ..  "-" .. L["Horde only"] },
+				{ m = UIMAPIDS.DARKSHORE, x = 50.6, y = 32.6, n = L["Croz Bloodrage"] .. " - " .. L["Alliance only"] },
+				{ m = UIMAPIDS.DARKSHORE, x = 39.9, y = 33.0, n = L["Shadowclaw"] .. " - " .. L["Horde only"] },
 			},
 		},
 
@@ -1141,7 +1141,7 @@ function R:PrepareDefaults()
 			chance = 20,
 			questId = { 54431 },
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 40.6, y = 73.2, n = L["Athil Dewfire"] ..  "-" .. L["Horde only"] },
+				{ m = UIMAPIDS.DARKSHORE, x = 40.6, y = 73.2, n = L["Athil Dewfire"] .. " - " .. L["Horde only"] },
 			},
 		},
 		 
@@ -1156,7 +1156,7 @@ function R:PrepareDefaults()
 			chance = 20,
 			questId = { 54277 },
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 63.7, y = 20.9, n = L["Moxo the Beheader"] ..  "-" .. L["Alliance only"] },
+				{ m = UIMAPIDS.DARKSHORE, x = 63.7, y = 20.9, n = L["Moxo the Beheader"] .. " - " .. L["Alliance only"] },
 			},
 		},
 
@@ -2431,8 +2431,8 @@ function R:PrepareDefaults()
 			creatureId = 148781,
 			questId = { 54431, 54768 },
 				coords = {
-					{ m = UIMAPIDS.DARKSHORE, x = 42.0, y = 77.6, n = L["Burninator Mark V"] ..  "-" .. L["Alliance only"] },
-					{ m = UIMAPIDS.DARKSHORE, x = 40.6, y = 73.2, n = L["Athil Dewfire"] ..  "-" .. L["Horde only"] },
+					{ m = UIMAPIDS.DARKSHORE, x = 42.0, y = 77.6, n = L["Burninator Mark V"] .. " - " .. L["Alliance only"] },
+					{ m = UIMAPIDS.DARKSHORE, x = 40.6, y = 73.2, n = L["Athil Dewfire"] .. " - " .. L["Horde only"] },
 				},
 		},
 
@@ -2465,8 +2465,8 @@ function R:PrepareDefaults()
 			creatureId = 148843,
 			questId = { 54274, 54291 },
 				coords = {
-					{ m = UIMAPIDS.DARKSHORE, x = 62.5, y = 9.4, n = L["Zim'kaga"] ..  "-" .. L["Alliance only"] },
-					{ m = UIMAPIDS.DARKSHORE, x = 45.2, y = 75.1, n = L["Onu"] ..  "-" .. L["Horde only"] },
+					{ m = UIMAPIDS.DARKSHORE, x = 62.5, y = 9.4, n = L["Zim'kaga"] .. " - " .. L["Alliance only"] },
+					{ m = UIMAPIDS.DARKSHORE, x = 45.2, y = 75.1, n = L["Onu"] .. " - " .. L["Horde only"] },
 				},
 		},
 
@@ -3287,8 +3287,8 @@ function R:PrepareDefaults()
 		chance = 10,
 		questId = { 54309, 54252 },
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 45.7, y = 86.9, n = L["Commander Drald"] ..  "-" .. L["Alliance only"] },
-				{ m = UIMAPIDS.DARKSHORE, x = 62.0, y = 16.2, n = L["Thelar Moonstrike"] ..  "-" .. L["Horde only"] },
+				{ m = UIMAPIDS.DARKSHORE, x = 45.7, y = 86.9, n = L["Commander Drald"] .. " - " .. L["Alliance only"] },
+				{ m = UIMAPIDS.DARKSHORE, x = 62.0, y = 16.2, n = L["Thelar Moonstrike"] .. " - " .. L["Horde only"] },
 			},
 	},
 
@@ -3333,8 +3333,8 @@ function R:PrepareDefaults()
 		chance = 10,
 		questId = { 54452, 54768 },
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 42.0, y = 77.6, n = L["Burninator Mark V"] ..  "-" .. L["Alliance only"] },
-				{ m = UIMAPIDS.DARKSHORE, x = 32.9, y = 84, n = L["Sapper Odette"] ..  "-" .. L["Horde only"] },
+				{ m = UIMAPIDS.DARKSHORE, x = 42.0, y = 77.6, n = L["Burninator Mark V"] .. " - " .. L["Alliance only"] },
+				{ m = UIMAPIDS.DARKSHORE, x = 32.9, y = 84, n = L["Sapper Odette"] .. " - " .. L["Horde only"] },
 			},
 	},
 	 
@@ -3390,8 +3390,8 @@ function R:PrepareDefaults()
 			chance = 7,
 			questId = { 54891, 54889 },
 				coords = {
-					{ m = UIMAPIDS.DARKSHORE, x = 39.5, y = 34.4, n = L["Orwell Stevenson"] ..  "-" .. L["Alliance only"] },
-					{ m = UIMAPIDS.DARKSHORE, x = 50.6, y = 32.6, n = L["Grimhorn"] ..  "-" .. L["Horde only"] },
+					{ m = UIMAPIDS.DARKSHORE, x = 39.5, y = 34.4, n = L["Orwell Stevenson"] .. " - " .. L["Alliance only"] },
+					{ m = UIMAPIDS.DARKSHORE, x = 50.6, y = 32.6, n = L["Grimhorn"] .. " - " .. L["Horde only"] },
 				},
 			sourceText = L["Will hatch into Nightwreathed Watcher pet after five days."],
 		},	
