@@ -1,6 +1,36 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+L["Darkshore Sentinel"] = true
+L["Burninator Mark V"] = true
+L["Rattling Bones"] = true
+L["Conflagros"] = true
+L["Everburning Treant"] = true
+L["Zim'kaga"] = true
+L["Onu"] = true
+L["Binding of Cyclarus"] = true
+L["Cyclarus"] = true
+L["Bottled Essence of Hydrath"] = true
+L["Hydrath"] = true
+L["Squishy Purple Goo"] = true
+L["Soggoth the Slitherer"] = true
+L["Zur'aj the Depleted"] = true
+L["Twilight Prophet Graeme"] = true
+L["Nightwreathed Egg"] = true
+L["Will hatch into Nightwreathed Watcher pet after five days."] = true
+L["Grimhorn"] = true
+L["Orwell Stevenson"] = true
+L["Detoxified Blight Grenade"] = true
+L["Gren Tornfur"] = true
+L["Highborne Memento"] = true
+L["Commander Drald"] = true
+L["Thelar Moonstrike"] = true
+L["Narassin's Soul Gem"] = true
+L["Athrikus Narassin"] = true
+L["Twiddle Twirler: Sentinel's Glaive"] = true
+L["Commander Ral'esh"] = true
+L["Twiddle Twirler: Shredder Blade"] = true
+L["Sapper Odette"] = true
 L["Ashenvale Chimaera"] = true
 L["Alash'anir"] = true
 L["Caged Bear"] = true
