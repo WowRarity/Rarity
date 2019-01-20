@@ -3279,6 +3279,82 @@ function R:PrepareDefaults()
 		chance = 10,
 	},
 
+	["Detoxified Blight Grenade"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Detoxified Blight Grenade"],
+		itemId = 166785,
+		npcs = { 148031 },
+		chance = 10,
+		questId = { 54428, 54429 },
+		coords = {
+			{ m = UIMAPIDS.DARKSHORE, x = 40.9, y = 56.5, n = L["Gren Tornfur"] },
+		},
+	},
+	
+	["Highborne Memento"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Highborne Memento"],
+		itemId = 166790,
+		npcs = { 147435, 147845 },
+		chance = 10,
+		questId = { 54309, 54252 },
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 45.7, y = 86.9, n = L["Commander Drald"] ..  "-" .. L["Alliance only"] },
+				{ m = UIMAPIDS.DARKSHORE, x = 62.0, y = 16.2, n = L["Thelar Moonstrike"] ..  "-" .. L["Horde only"] },
+			},
+	},
+
+	["Narassin's Soul Gem"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Narassin's Soul Gem"],
+		itemId = 166784,
+		npcs = { 147708 },
+		chance = 10,
+		questId = { 54278, 54279 },
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 58.3, y = 24.9, n = L["Athrikus Narassin"] },
+			},
+	},
+
+	["Twiddle Twirler: Sentinel's Glaive"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Twiddle Twirler: Sentinel's Glaive"],
+		itemId = 166787,
+		npcs = { 148025 },
+		chance = 10,
+		questId = { 54426, 54427 },
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 37.9, y = 76.2, n = L["Commander Ral'esh"] },
+			},
+	},
+
+	["Twiddle Twirler: Shredder Blade"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Twiddle Twirler: Shredder Blade"],
+		itemId = 166788,
+		npcs = { 148103, 149141 },
+		chance = 10,
+		questId = { 54452, 54768 },
+			coords = {
+				{ m = UIMAPIDS.DARKSHORE, x = 42.0, y = 77.6, n = L["Burninator Mark V"] ..  "-" .. L["Alliance only"] },
+				{ m = UIMAPIDS.DARKSHORE, x = 32.9, y = 84, n = L["Sapper Odette"] ..  "-" .. L["Horde only"] },
+			},
+	},
 	 
 		-- Mount-related items (5.x)
      ["Primal Egg"] =                                    { cat = MOP, type = ITEM, method = NPC, name = L["Primal Egg"], itemId = 94295, npcs = { 69983, 69991, 69992, 69993, 70004, 70005, 70006, 70007, 70008, 70009, 70010, 70011, 70012, 70013, 70014, 70015, 70016, 70017, 70018, 70019, 70020, 70021, }, chance = 100,  unique = true, sourceText = L["Dropped by dinosaurs on Isle of Giants Will hatch into one of three Primal Raptor mounts after three days."], coords = { {m=507} }, },
