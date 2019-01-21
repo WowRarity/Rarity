@@ -1308,7 +1308,7 @@ function R:PrepareDefaults()
 		-- 7.x
 		["Abyss Worm"] =                                    { cat = LEGION, type = MOUNT, method = BOSS, name = L["Abyss Worm"], spellId = 232519, itemId = 143643, npcs = { 99999 }, tooltipNpcs = { 115767 }, chance = 100, groupSize = 3, equalOdds = true, statisticId = { 11893, 11894, 11895, 11896, }, coords = { {m=851, i=true} }, },
 		["Living Infernal Core"] =                          { cat = LEGION, type = MOUNT, method = BOSS, name = L["Living Infernal Core"], sourceText = L["All raid formats except Raid Finder"],spellId = 213134, itemId = 137574, npcs = { 99999 }, tooltipNpcs = { 105503 }, chance = 100, groupSize = 3, equalOdds = true, statisticId = { 10979, 10980, 10978 }, coords = { {m=772, i=true} }, },
-		["Midnight's Eternal Reins"] =                      { cat = LEGION, type = MOUNT, method = BOSS, name = L["Midnight's Eternal Reins"], spellId = 229499, itemId = 142236, npcs = { 114262, }, chance = 100, equalOdds = true, instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true, }, coords = {{m=794,i=true}}, },
+		["Midnight's Eternal Reins"] =                      { cat = LEGION, type = MOUNT, method = BOSS, name = L["Midnight's Eternal Reins"], spellId = 229499, itemId = 142236, npcs = { 114262, }, chance = 100, equalOdds = true, instanceDifficulties = { --[[ Mythic 5-player instance ]] [23] = true, }, lockDungeonId = 1475, lockBossName = "Attumen the Huntsman", coords = {{m=794,i=true}}, },
 
 		["Fiendish Hellfire Core"] ={
 			cat = LEGION,
