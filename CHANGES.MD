@@ -1,6 +1,7 @@
 **r683:**
 
 > Added tracking for collectibles dropped by rares in Darkshore
+<br>Added defeat detection for Midnight's Eternal Reins (Return to Karazhan)
 
 > Fixed tracking for pets obtained from BFA paragon reward boxes 
 

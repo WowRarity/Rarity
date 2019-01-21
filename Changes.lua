@@ -2,6 +2,7 @@ local changes = {
 	["r683"] = {
 		additions = {
 			"Added tracking for collectibles dropped by rares in Darkshore",
+			"Added defeat detection for Midnight's Eternal Reins (Return to Karazhan)",
 		},
 		fixes = {
 			"Fixed tracking for pets obtained from BFA paragon reward boxes ",
