@@ -2621,7 +2621,7 @@ end
 -- TOOLTIP: NPCS
 
 _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
-	if R.db.profile.enableTooltipAdditions == false then return end
+	if not R.db or R.db.profile.enableTooltipAdditions == false then return end
 
 
 
