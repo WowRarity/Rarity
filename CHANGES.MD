@@ -4,6 +4,7 @@
 <br>Added defeat detection for Midnight's Eternal Reins (Return to Karazhan)
 
 > Fixed tracking for pets obtained from BFA paragon reward boxes 
+<br>Looting Orwell Stevenson in Darkshore should now correctly add an attempt for Nightwreathed Egg
 
 -----
 

@@ -6,6 +6,7 @@ local changes = {
 		},
 		fixes = {
 			"Fixed tracking for pets obtained from BFA paragon reward boxes ",
+			"Looting Orwell Stevenson in Darkshore should now correctly add an attempt for Nightwreathed Egg",
 		},
 	},
 	["r682"] = {
