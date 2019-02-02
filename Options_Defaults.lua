@@ -3397,7 +3397,7 @@ function R:PrepareDefaults()
 			method = NPC,
 			name = L["Nightwreathed Egg"],
 			itemId = 166525,
-			npcs = { 149664, 149662 },
+			npcs = { 149659, 149662 },
 			chance = 7,
 			questId = { 54891, 54889 },
 				coords = {
