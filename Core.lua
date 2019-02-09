@@ -1760,6 +1760,12 @@ function R:OnEvent(event, ...)
            end
           end
          end
+		 
+		if (vv.excludedMaps and type(vv.excludedMaps) == "table" and vv.excludedMaps[GetBestMapForUnit("player")]) then
+			Rarity:Debug("The current map is excluded for item: " .. tostring(vv.name) .. ". Attempts will not be counted")
+			found = false
+		end
+		 
          if found then
           if self:IsAttemptAllowed(vv) then
            if vv.attempts == nil then vv.attempts = 1 else vv.attempts = vv.attempts + 1 end
