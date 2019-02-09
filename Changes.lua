@@ -1,4 +1,9 @@
 local changes = {
+	["r684"] = {
+		fixes = {
+			"Fishing from pools in Skettis (Draenor) should no longer incorrectly add attempts for Mr. Pinchy",
+		},
+	},
 	["r683"] = {
 		additions = {
 			"Added tracking for collectibles dropped by rares in Darkshore",
@@ -6,7 +11,6 @@ local changes = {
 		},
 		fixes = {
 			"Fixed tracking for pets obtained from BFA paragon reward boxes ",
-			"Looting Orwell Stevenson in Darkshore should now correctly add an attempt for Nightwreathed Egg",
 		},
 	},
 	["r682"] = {
