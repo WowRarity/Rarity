@@ -1,5 +1,8 @@
 local changes = {
 	["r684"] = {
+		additions = {
+			"Added tracking for collectibles that can be obtained in the Battle of Dazar'alor raid (experimental)",
+		},
 		fixes = {
 			"Fishing from pools in Skettis (Draenor) should no longer incorrectly add attempts for Mr. Pinchy",
 		},

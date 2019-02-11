@@ -1,5 +1,7 @@
 **r684:**
 
+> Added tracking for collectibles that can be obtained in the Battle of Dazar'alor raid (experimental)
+
 > Fishing from pools in Skettis (Draenor) should no longer incorrectly add attempts for Mr. Pinchy
 
 -----
