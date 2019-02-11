@@ -2580,6 +2580,8 @@ function R:PrepareDefaults()
 			lockBossName = "Conclave of the Chosen",
 			chance = 20,
 			statisticId = { 13366 },
+			groupSize = 10,
+			equalOdds = true,
 		},	
 
 		["Thundering Scale of Akunda"] = {
@@ -2595,6 +2597,8 @@ function R:PrepareDefaults()
 			lockBossName = "Conclave of the Chosen",
 			chance = 20,
 			statisticId = { 13364, 13365, 13366 },
+			groupSize = 10,
+			equalOdds = true,
 		},	
 
 		["Enchanted Talon of Pa'ku"] = {
@@ -2610,6 +2614,8 @@ function R:PrepareDefaults()
 			lockBossName = "Conclave of the Chosen",
 			chance = 50,
 			statisticId = { 13364, 13365, 13366 },
+			groupSize = 10,
+			equalOdds = true,
 		},	
 		
 	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
