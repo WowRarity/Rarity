@@ -1496,6 +1496,9 @@ function R:PrepareDefaults()
 				[16] = true, -- Mythic (Raids)
 				[17] = true, -- LFR
 			},
+			coords = {
+				{ m = 1364, i = true },
+			},			
 		},	
 
     },
@@ -2582,6 +2585,9 @@ function R:PrepareDefaults()
 			statisticId = { 13366 },
 			groupSize = 10,
 			equalOdds = true,
+			coords = {
+				{ m = 1364, i = true },
+			},	
 		},	
 
 		["Thundering Scale of Akunda"] = {
@@ -2599,6 +2605,9 @@ function R:PrepareDefaults()
 			statisticId = { 13364, 13365, 13366 },
 			groupSize = 10,
 			equalOdds = true,
+			coords = {
+				{ m = 1364, i = true },
+			},	
 		},	
 
 		["Enchanted Talon of Pa'ku"] = {
@@ -2616,6 +2625,9 @@ function R:PrepareDefaults()
 			statisticId = { 13364, 13365, 13366 },
 			groupSize = 10,
 			equalOdds = true,
+			coords = {
+				{ m = 1364, i = true },
+			},	
 		},	
 		
 	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
