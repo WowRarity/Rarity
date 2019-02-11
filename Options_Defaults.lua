@@ -2596,6 +2596,20 @@ function R:PrepareDefaults()
 			statisticId = { 13364, 13365, 13366 },
 		},	
 
+		["Enchanted Talon of Pa'ku"] = {
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Enchanted Talon of Pa'ku"],
+			itemId = 165846,
+			spellId = 286483,
+			creatureId = 147586,
+			npcs = { 99999 },
+			tooltipNpcs = { 144747, 144941, 144767, 144963 },
+			lockBossName = "Conclave of the Chosen",
+			chance = 50,
+			statisticId = { 13364, 13365, 13366 },
+		},	
 				-- TOYS AND ITEMS
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
