@@ -1473,6 +1473,28 @@ function R:PrepareDefaults()
 			equalOdds = true,
 			groupSize = 3,
 		},
+		
+		["G.M.O.D."] = {
+			cat = BFA,
+			type = MOUNT,
+			method = BOSS,
+			name = L["G.M.O.D."],
+			spellId = 289083,
+			itemId = 166518,
+			npcs = { 99999 },
+			tooltipNpcs = { 144838 },
+			chance = 100,
+			groupSize = 10,
+			equalOdds = true,
+			statisticId = { 13371, 13372, 13373, 13374, },
+			lockBossName = "High Tinker Mekkatorque",
+			instanceDifficulties = {
+				[14] = true, -- Normal (Raids)
+				[15] = true, -- Heroic (Raids)
+				[16] = true, -- Mythic (Raids)
+				[17] = true, -- LFR
+			},
+		},	
 
     },
 
