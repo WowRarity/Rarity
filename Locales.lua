@@ -1,6 +1,10 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+L["G.M.O.D."] = true
+L["Spawn of Krag'wa"] = true
+L["Thundering Scale of Akunda"] = true
+L["Enchanted Talon of Pa'ku"] = true
 L["Darkshore Sentinel"] = true
 L["Burninator Mark V"] = true
 L["Rattling Bones"] = true

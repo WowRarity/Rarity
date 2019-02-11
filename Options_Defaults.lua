@@ -1473,6 +1473,33 @@ function R:PrepareDefaults()
 			equalOdds = true,
 			groupSize = 3,
 		},
+		
+		-- 8.1 Mounts
+		
+		["G.M.O.D."] = {
+			cat = BFA,
+			type = MOUNT,
+			method = BOSS,
+			name = L["G.M.O.D."],
+			spellId = 289083,
+			itemId = 166518,
+			npcs = { 99999 },
+			tooltipNpcs = { 144838 },
+			chance = 100,
+			groupSize = 10,
+			equalOdds = true,
+			statisticId = { 13371, 13372, 13373, 13374, },
+			lockBossName = "High Tinker Mekkatorque",
+			instanceDifficulties = {
+				[14] = true, -- Normal (Raids)
+				[15] = true, -- Heroic (Raids)
+				[16] = true, -- Mythic (Raids)
+				[17] = true, -- LFR
+			},
+			coords = {
+				{ m = 1364, i = true },
+			},			
+		},	
 
     },
 
@@ -2543,6 +2570,66 @@ function R:PrepareDefaults()
 			},
 		},
 
+		["Spawn of Krag'wa"] = {
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Spawn of Krag'wa"],
+			itemId = 165848,
+			spellId = 286484,
+			creatureId = 147585,
+			npcs = { 99999 },
+			tooltipNpcs = { 144747, 144941, 144767, 144963 },
+			lockBossName = "Conclave of the Chosen",
+			chance = 20,
+			statisticId = { 13366 },
+			groupSize = 10,
+			equalOdds = true,
+			coords = {
+				{ m = 1364, i = true },
+			},	
+		},	
+
+		["Thundering Scale of Akunda"] = {
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Thundering Scale of Akunda"],
+			itemId = 165847,
+			spellId = 286482,
+			creatureId = 147587,
+			npcs = { 99999 },
+			tooltipNpcs = { 144747, 144941, 144767, 144963 },
+			lockBossName = "Conclave of the Chosen",
+			chance = 20,
+			statisticId = { 13364, 13365, 13366 },
+			groupSize = 10,
+			equalOdds = true,
+			coords = {
+				{ m = 1364, i = true },
+			},	
+		},	
+
+		["Enchanted Talon of Pa'ku"] = {
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Enchanted Talon of Pa'ku"],
+			itemId = 165846,
+			spellId = 286483,
+			creatureId = 147586,
+			npcs = { 99999 },
+			tooltipNpcs = { 144747, 144941, 144767, 144963 },
+			lockBossName = "Conclave of the Chosen",
+			chance = 50,
+			statisticId = { 13364, 13365, 13366 },
+			groupSize = 10,
+			equalOdds = true,
+			coords = {
+				{ m = 1364, i = true },
+			},	
+		},	
+		
 	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
