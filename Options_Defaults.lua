@@ -2581,6 +2581,21 @@ function R:PrepareDefaults()
 			statisticId = { 13366 },
 		},	
 
+		["Thundering Scale of Akunda"] = {
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Thundering Scale of Akunda"],
+			itemId = 165847,
+			spellId = 286482,
+			creatureId = 147587,
+			npcs = { 99999 },
+			tooltipNpcs = { 144747, 144941, 144767, 144963 },
+			lockBossName = "Conclave of the Chosen",
+			chance = 20,
+			statisticId = { 13364, 13365, 13366 },
+		},	
+
 				-- TOYS AND ITEMS
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
