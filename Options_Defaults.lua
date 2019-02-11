@@ -1474,6 +1474,8 @@ function R:PrepareDefaults()
 			groupSize = 3,
 		},
 		
+		-- 8.1 Mounts
+		
 		["G.M.O.D."] = {
 			cat = BFA,
 			type = MOUNT,
