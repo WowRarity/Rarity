@@ -646,6 +646,7 @@ do
   self:RegisterEvent("PET_BATTLE_OPENING_START", "OnPetBattleStart")
   self:RegisterEvent("PET_BATTLE_CLOSE", "OnPetBattleEnd")
   self:RegisterEvent("ISLAND_COMPLETED", "OnIslandCompleted")
+  self:RegisterEvent("CHALLENGE_MODE_COMPLETED", "OnChallengeModeCompleted")
   self:RegisterBucketEvent("LFG_LIST_SEARCH_RESULT_UPDATED", 1, "GroupFinderResultsUpdated")
   self:RegisterBucketEvent("LFG_LIST_SEARCH_RESULTS_RECEIVED", 1, "GroupFinderResultsUpdated")
   self:RegisterBucketEvent("UPDATE_INSTANCE_INFO", 1, "OnEvent")
@@ -2603,6 +2604,51 @@ do
 
 	end
 
+end
+
+-------------------------------------------------------------------------------------
+-- Challenge modes: Used to detect Mythic Keystone dungeon completions
+-- Some of them can have the mount that drops from the final boss on mythic difficulty in their Challenger's Cache (completion reward)
+-------------------------------------------------------------------------------------
+
+local C_ChallengeMode = C_ChallengeMode
+
+do
+
+	local challengeMapNames = { -- Only  the relevant dungeons are included
+	-- Note: Blizzard seems to return the InstanceMapID instead of mapChallengeModeID with their C_MythicPlus.GetCompletionInfo() API. They SHOULD be using the right ones, but since it doesn't matter here I've merely added them as a comment in case they ever fix this
+		[1754] = "Freehold", -- 245	
+		[1762] = "King's Rest", -- 249
+		[1841] = "The Underrot", -- 251
+	}
+	
+	local challengeMapItems = {
+		[1754] = "Sharkbait's Favorite Crackers", -- Freehold
+		[1762] = "Mummified Raptor Skull", -- King's Rest
+		[1841] = "Underrot Crawg Harness", -- The Underrot
+	}
+
+	function R:OnChallengeModeCompleted(event, ...)
+		
+		local mapID, level, time, onTime, keystoneUpgradeLevels = C_ChallengeMode.GetCompletionInfo()
+		local mapName = challengeMapNames[mapID]
+		R:Debug("Detected completion for Challenge Mode: " .. (mapName or "Unknown Map") .. " (mapID = " .. tostring(mapID) .. ")")
+		
+		if mapName and challengeMapItems[mapID] then -- Is a relevant map -> Add attempts for the item
+			
+				R:Debug("Found this Challenge Mode to be relevant -> Adding attempts for item " .. tostring(challengeMapItems[mapID]))
+			
+				-- Actually add the attempt
+				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name] or self.db.profile.groups.mounts[name]
+				if v and type(v) == "table" and v.enabled ~= false then
+					if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+					self:OutputAttempts(v)
+				end
+				
+		end
+		
+	end
+	
 end
 
 -------------------------------------------------------------------------------------
