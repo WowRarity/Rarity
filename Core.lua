@@ -13,6 +13,7 @@ isDebugVersion = true
 do -- Set up the debug cache
 	local addonName, addonTable = ...
 	Rarity.DebugCache = addonTable.DebugCache
+	Rarity.DebugCache:SetOutputHandler(addonTable.PrettyPrint.DebugMsg)
 end
 
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
