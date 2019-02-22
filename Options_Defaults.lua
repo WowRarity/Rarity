@@ -2490,7 +2490,7 @@ function R:PrepareDefaults()
 			name = L["Everburning Treant"],
 			spellId = 288597,
 			itemId = 166453,
-			npcs = { 147664, 147664 },
+			npcs = { 147664, 147758 },
 			chance = 7,
 			creatureId = 148843,
 			questId = { 54274, 54291 },
