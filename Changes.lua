@@ -5,6 +5,7 @@ local changes = {
 		},
 		fixes = {
 			"Fishing from pools in Skettis (Draenor) should no longer incorrectly add attempts for Mr. Pinchy",
+			"Attempts for the Everburning Treant pet should now be properly tracked for players of both factions",
 		},
 	},
 	["r683"] = {

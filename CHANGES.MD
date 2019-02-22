@@ -3,6 +3,7 @@
 > Added tracking for collectibles that can be obtained in the Battle of Dazar'alor raid (experimental)
 
 > Fishing from pools in Skettis (Draenor) should no longer incorrectly add attempts for Mr. Pinchy
+<br>Attempts for the Everburning Treant pet should now be properly tracked for players of both factions
 
 -----
 
