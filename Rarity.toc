@@ -50,6 +50,8 @@ Libs\LibBars-1.0\lib.xml
 
 # Utility/Helpers
 Utils\DebugCache.lua
+Utils\PrettyPrint.lua
+
 # Addon Core
 Locales.lua
 Core.lua
