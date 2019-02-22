@@ -10,6 +10,12 @@ local isDebugVersion = false
 isDebugVersion = true
 --@end-debug@
 
+do -- Set up the debug cache
+	local addonName, addonTable = ...
+	Rarity.DebugCache = addonTable.DebugCache
+	Rarity.DebugCache:SetOutputHandler(addonTable.PrettyPrint.DebugMsg)
+end
+
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local R = Rarity
 local qtip = LibStub("LibQTip-1.0")
@@ -912,6 +918,9 @@ function R:ChatCommand(input)
 			self.db.profile.debugMode = true
 			self:Print(L["Debug mode ON"])
 		end
+	elseif strlower(input) == "dump" then	
+		local numMessages = 50 -- Hardcoded is meh, but it should suffice for the time being
+		self.DebugCache:PrintMessages(numMessages)
 	elseif strlower(input) == "profiling" then
 		if self.db.profile.enableProfiling then
 			self.db.profile.enableProfiling = false
@@ -1384,6 +1393,7 @@ end
 -- Debug mode and profiling
 function R:Debug(s, ...)
 	if self.db.profile.debugMode then self:Print(format(s, ...)) end
+	self.DebugCache:AddMessage(format(s, ...))
 end
 
 do

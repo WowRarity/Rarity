@@ -47,6 +47,12 @@ Libs\HereBeDragons-2.0\HereBeDragons-2.0.lua
 Libs\LibCompress\lib.xml
 #@end-no-lib-strip@
 Libs\LibBars-1.0\lib.xml
+
+# Utility/Helpers
+Utils\DebugCache.lua
+Utils\PrettyPrint.lua
+
+# Addon Core
 Locales.lua
 Core.lua
 Options_Defaults.lua
