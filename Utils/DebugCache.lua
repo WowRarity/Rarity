@@ -139,7 +139,7 @@ function DC:PrintMessages(numMessages)
 	for i=firstIndex, lastIndex do
 		local msg = self.messages[i]
 		local line = "(" .. tostring(i) .. ") - " .. tostring(msg.text)
-		self.print(line, msg.category)
+		self.print(line, msg.timestamp, msg.category)
 	end
 	
 end

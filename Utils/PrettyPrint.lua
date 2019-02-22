@@ -18,6 +18,7 @@ local addonName, addon = ...
 -- Upvalues
 local print = print
 local format = format
+local date = date
 
 -- Locals
 local PP = {}
@@ -28,10 +29,11 @@ function PP.Print(msg, ...)
 end
 
 -- Prints a prettier debug message, with source (module, category, etc.) if one was given
-function PP.DebugMsg(msg, source, ...)
+function PP.DebugMsg(msg, timestamp, source, ...)
 
 	source = source or ""
-	print("|c00C2C2C2[" .. format(date("%H:%M:%S") .. "] " .. "|c000072CA" .. "%s: " .. "|c00E6CC80%s", addonName .. (source ~= "" and "_" .. source or ""), msg, ...))
+	timestamp = timestamp or date()
+	print("|c00C2C2C2[" .. format(date("%H:%M:%S", timestamp) .. "] " .. "|c000072CA" .. "%s: " .. "|c00E6CC80%s", addonName .. (source ~= "" and "_" .. source or ""), msg, ...))
 
 end
 
