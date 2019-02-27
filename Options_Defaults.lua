@@ -146,6 +146,24 @@ local TOOLTIP_FILTERS = {
 	end,
 }
 
+-- Tooltip actions (used for modifiers)
+-- Building on the previous system, this extension can be used to adjust tooltips dynamically without adding separate logic to the addon's core
+local TOOLTIP_ACTIONS = {
+	OVERRIDE_TOOLTIP_NPCS = function(entry, newTooltipNpcs) -- Overwrites all tooltip NPCs
+		
+		-- Sanity checks
+		if not (entry and type(entry) == "table" and newTooltipNpcs and type(newTooltipNpcs) == "number" or type(newTooltipNpcs) == "table") then
+			R:Debug("Action OVERRIDE_TOOLTIP_NPCS failed! Required parameters: entry, newTooltipNpcs")
+			return
+		end
+		
+		-- The tooltipNpcs field needs to be a table (for backwards compatibiliy) even if it's only one NPC
+		entry.tooltipNpcs = (type(newTooltipNpcs) == "table") and newTooltipNpcs or { newTooltipNpcs }
+		return entry
+		
+	end,
+}
+
 -- Embedded mapIDs: It's best to avoid hardcoding these in case of yet another re-mapping on Blizzard's end...
 local UIMAPIDS = {
 	ARATHI_HIGHLANDS = 14,
