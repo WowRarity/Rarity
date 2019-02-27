@@ -1484,11 +1484,11 @@ function R:PrepareDefaults()
 			spellId = 289083,
 			itemId = 166518,
 			npcs = { 99999 },
-			tooltipNpcs = { 144838 },
+			tooltipNpcs = { 144838 }, -- TODO: 149684 for LFR only
 			chance = 100,
 			groupSize = 10,
 			equalOdds = true,
-			statisticId = { 13371, 13372, 13373, 13374, },
+			statisticId = { 13372, 13373, 13374, 13379 },
 			lockBossName = "High Tinker Mekkatorque",
 			instanceDifficulties = {
 				[14] = true, -- Normal (Raids)
