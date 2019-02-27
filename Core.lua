@@ -1542,9 +1542,9 @@ function R:UpdateInterestingThings()
 									end
 								end
 							end
-						
+
 						-- There aren't any other Filter types at the moment... but there could be!
-						end 
+						end
 						
 						-- Check for post-processing via tooltip modifiers (additional logic contained in a database entry that requires special handling)
 						-- This has to run last, as it is intended to update things on the fly where a filter isn't sufficient
