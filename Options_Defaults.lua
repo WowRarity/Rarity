@@ -141,8 +141,7 @@ local TOOLTIP_FILTERS = {
 	IS_PLAYER_IN_LFR = function() -- Returns true if the player is in a LFR instance
 	
 		local name, type, difficulty, difficultyName, maxPlayers, playerDifficulty, isDynamicInstance, mapID, instanceGroupSize = GetInstanceInfo()
-		
-		 return (difficulty == 7 or difficulty == 17) -- Legacy or regular LFR
+		return (difficulty == 7 or difficulty == 17) -- Legacy or regular LFR
 		
 	end,
 }
