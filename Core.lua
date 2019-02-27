@@ -1542,9 +1542,22 @@ function R:UpdateInterestingThings()
 									end
 								end
 							end
-						
+
 						-- There aren't any other Filter types at the moment... but there could be!
-						end 
+						end
+						
+						-- Check for post-processing via tooltip modifiers (additional logic contained in a database entry that requires special handling)
+						-- This has to run last, as it is intended to update things on the fly where a filter isn't sufficient
+						local tooltipModifier = vv.tooltipModifier
+						
+						if tooltipModifier ~= nil and type(tooltipModifier) == "table" and tooltipModifier.condition ~= nil and tooltipModifier.value ~= nil then -- Apply modifications where necessary
+							
+							local shouldApplyModification = type(tooltipModifier.condition) == "function" and tooltipModifier.condition()
+							if shouldApplyModification and tooltipModifier.action and type(tooltipModifier.action) == "function" then -- Apply this action to the entry
+								vv = tooltipModifier.action(vv, tooltipModifier.value) -- A tooltip modifier always returns the (modified) database entry to keep processing separate
+							end
+						
+						end
 						
 						-- Add entries to the list of relevant NPCs for this item
 						if showTooltipNpcs then

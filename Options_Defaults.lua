@@ -4,6 +4,9 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 
 local GetItemInfo = function(id) return nil end
 
+-- Upvalues
+local GetInstanceInfo = GetInstanceInfo
+
 -- Types of items
 local MOUNT = "MOUNT"
 local PET = "PET"
@@ -134,6 +137,31 @@ R.catOrder = {
 -- These are used to decide whether the tooltip should be extended to display information about an item for the NPCs listed in its tooltipNpcs table. Useful if we want to draw attention to an item, but not every player can obtain it
 local TOOLTIP_FILTERS = {
 	IS_SPELL_KNOWN = IsSpellKnown,
+	
+	IS_PLAYER_IN_LFR = function() -- Returns true if the player is in a LFR instance
+	
+		local name, type, difficulty, difficultyName, maxPlayers, playerDifficulty, isDynamicInstance, mapID, instanceGroupSize = GetInstanceInfo()
+		return (difficulty == 7 or difficulty == 17) -- Legacy or regular LFR
+		
+	end,
+}
+
+-- Tooltip actions (used for modifiers)
+-- Building on the previous system, this extension can be used to adjust tooltips dynamically without adding separate logic to the addon's core
+local TOOLTIP_ACTIONS = {
+	OVERRIDE_TOOLTIP_NPCS = function(entry, newTooltipNpcs) -- Overwrites all tooltip NPCs
+		
+		-- Sanity checks
+		if not (entry and type(entry) == "table" and newTooltipNpcs and type(newTooltipNpcs) == "number" or type(newTooltipNpcs) == "table") then
+			R:Debug("Action OVERRIDE_TOOLTIP_NPCS failed! Required parameters: entry, newTooltipNpcs")
+			return
+		end
+		
+		-- The tooltipNpcs field needs to be a table (for backwards compatibiliy) even if it's only one NPC
+		entry.tooltipNpcs = (type(newTooltipNpcs) == "table") and newTooltipNpcs or { newTooltipNpcs }
+		return entry
+		
+	end,
 }
 
 -- Embedded mapIDs: It's best to avoid hardcoding these in case of yet another re-mapping on Blizzard's end...
