@@ -1512,7 +1512,8 @@ function R:PrepareDefaults()
 			spellId = 289083,
 			itemId = 166518,
 			npcs = { 99999 },
-			tooltipNpcs = { 144838 }, -- TODO: 149684 for LFR only
+			tooltipNpcs = { 144796 },
+			tooltipModifier = { condition = TOOLTIP_FILTERS.IS_PLAYER_IN_LFR, action = TOOLTIP_ACTIONS.OVERRIDE_TOOLTIP_NPCS, value = 146409 },
 			chance = 100,
 			groupSize = 10,
 			equalOdds = true,
