@@ -1,4 +1,12 @@
 local changes = {
+	["r685"] = {
+		fixes = {
+			"Updated tracking for the G.M.O.D. mount to account for a recent hotfix by Blizzard",
+		},
+		notes = {
+			"This mount now drops from Lady Jaina Proudmoore in LFR difficulty only. The tooltip won't indicate this until it can be corrected in a future update.",
+		},
+	},
 	["r684"] = {
 		additions = {
 			"Added tracking for collectibles that can be obtained in the Battle of Dazar'alor raid (experimental)",

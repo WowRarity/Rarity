@@ -1,3 +1,12 @@
+**r685:**
+
+> Updated tracking for the G.M.O.D. mount to account for a recent hotfix by Blizzard
+
+Developer Notes:
+> This mount now drops from Lady Jaina Proudmoore in LFR difficulty only. The tooltip won't indicate this until it can be corrected in a future update.
+
+-----
+
 **r684:**
 
 > Added tracking for collectibles that can be obtained in the Battle of Dazar'alor raid (experimental)
@@ -26,11 +35,3 @@
 **r681:**
 
 > Fixed tracking for Skyshard attempts while in the Guo-Lai Halls subzone
-
------
-
-**r680:**
-
-> Added defeat detection for The Lion's Roar and Doom's Howl
-
-> Defeat detection for rares in the Arathi Highlands should now function correctly regardless of the player's faction
