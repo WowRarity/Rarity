@@ -25,3 +25,10 @@ C.UIMAPIDS = {
 	ANTORAN_WASTES = 885,
 
 }
+
+-- Types of items
+C.ITEM_TYPES = {
+	MOUNT = "MOUNT",
+	PET = "PET",
+	ITEM = "ITEM",
+}

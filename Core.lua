@@ -425,11 +425,6 @@ R.opennodes = {
   
 local CONSTANTS = addonTable.constants
 
--- Types of items
-local MOUNT = "MOUNT"
-local PET = "PET"
-local ITEM = "ITEM"
-
 -- Methods of obtaining
 local NPC = "NPC"
 local BOSS = "BOSS"
@@ -1045,11 +1040,11 @@ function R:CanItemBeExportedImported(item)
 		if not item.collectedItemId or tonumber(item.collectedItemId) == nil or item.collectedItemId <= 0 then return false end
 	end
 
-	if item.type ~= ITEM then
+	if item.type ~= CONSTANTS.ITEM_TYPES.ITEM then
 		if not item.spellId or tonumber(item.spellId) == nil or item.spellId <= 0 then return false end
 	end
 
-	if item.type == PET then
+	if item.type == CONSTANTS.ITEM_TYPES.PET then
 		if not item.creatureId or tonumber(item.creatureId) == nil or item.creatureId <= 0 then return false end
 	end
 
@@ -3200,12 +3195,12 @@ do
 		
 		-- Source text, bonus satchel, black market, etc.
 		local hadSource = false
-		if item.type == MOUNT and item.spellId ~= nil and Rarity.mount_sources[item.spellId] ~= nil then
+		if item.type == CONSTANTS.ITEM_TYPES.MOUNT and item.spellId ~= nil and Rarity.mount_sources[item.spellId] ~= nil then
 			tooltip2:AddSeparator(1, 1, 1, 1, 1)
 			tooltip2AddLine(Rarity.mount_sources[item.spellId])
 			hadSource = true
 		end
-		if item.type == PET and item.creatureId ~= nil and Rarity.pet_sources[item.creatureId] ~= nil then
+		if item.type == CONSTANTS.ITEM_TYPES.PET and item.creatureId ~= nil and Rarity.pet_sources[item.creatureId] ~= nil then
 			tooltip2:AddSeparator(1, 1, 1, 1, 1)
 			tooltip2AddLine(Rarity.pet_sources[item.creatureId])
 			hadSource = true
@@ -3399,7 +3394,7 @@ do
 		
 		-- TSM Pricing
 		local TSMAPI_FOUR = TSMAPI_FOUR
-		if TSMAPI_FOUR and item.type == PET and Rarity.db.profile.showTSMColumn then
+		if TSMAPI_FOUR and item.type == CONSTANTS.ITEM_TYPES.PET and Rarity.db.profile.showTSMColumn then
 		
 			local tooltipLines = { 
 				{ priceSource = "DBMinBuyout", isMonetaryValue = true, localisedDisplayText = L["Min Buyout"], },
