@@ -11,7 +11,6 @@ C.DEFEAT_DETECTION = {
 	MODE_AND = 2,
 }
 
-addonTable.constants = C
 -- Embedded mapIDs: It's best to avoid hardcoding these in case of yet another re-mapping on Blizzard's end...
 C.UIMAPIDS = {
 	
@@ -32,3 +31,5 @@ C.ITEM_TYPES = {
 	PET = "PET",
 	ITEM = "ITEM",
 }
+
+addonTable.constants = C
