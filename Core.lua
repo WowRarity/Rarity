@@ -3654,13 +3654,56 @@ do
 										if IsQuestFlaggedCompleted(v.questId) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
 								end
 							end
-							elseif v.lockBossName then
+							elseif v.lockBossName or v.lockoutDetails then -- Lockout-based defeat detection requires special treatment due to the underlying complexity
 								
 								if not lbb["Theralion and Valiona"] and lbb["Valiona and Theralion"] then -- LibBabble-Boss is still outdated -> Add correct encounter name
 									lbb["Theralion and Valiona"] = lbb["Valiona and Theralion"] -- Workaround for issue: https://github.com/SacredDuckwhale/Rarity/issues/22 - can be removed once the library was updated
 								end
 								
-								if lbb[v.lockBossName] and (Rarity.lockouts[lbb[v.lockBossName]] == true or Rarity.lockouts[v.lockBossName] == true) then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
+								local isDefeated
+								local mode = "OR" -- OR: At least one encounter must be defeated / AND: All encounters must be defeated (before the item will be displayed as defeated)
+								local usesNewDefeatDetection = v.lockoutDetails and type(v.lockoutDetails) == "table" and #v.lockoutDetails > 0
+								
+								if usesNewDefeatDetection then -- Resolve the defeat detection using the item's parameters
+									
+									isDefeated = false
+									local continue = true
+									
+									mode = v.lockoutDetails.mode or mode	
+									
+									for index, entry in ipairs(v.lockoutDetails) do
+									
+										local isValidEntry = entry.encounterName and type(entry.encounterName) == "string" and entry.instanceDifficulties and type(entry.instanceDifficulties) == "table"
+										
+										if not isValidEntry then
+											Rarity:Debug("Invalid lockout details for item " .. tostring(v.name) .. " - defeat detection will not be resolved")
+											continue = false
+										end
+
+										local lockoutInfo = Rarity.lockouts_detailed[entry.encounterName]
+										
+										if lockoutInfo and lockoutInfo.instanceDifficulty and entry.instanceDifficulties[lockoutInfo.instanceDifficulty] and continue then -- Currently locked to this encounter -> action depends on the mode setting (only the logical operations OR, AND are currently supported)
+
+											isDefeated = true
+										
+										else -- No lockout found for this entry
+
+											if mode == "AND" then -- Since at least one step isn't complete, the item shouldn't be marked as defeated
+												isDefeated = false
+												continue = false
+											end
+											
+										end
+										
+									end
+									
+								end
+								
+								-- Currently, only one of the two detection routines should be used
+								if (v.lockBossName and lbb[v.lockBossName] and (Rarity.lockouts[lbb[v.lockBossName]] == true or Rarity.lockouts[v.lockBossName] == true)) -- Legacy detection (I'll leave it be, for now)
+								or isDefeated
+								then status = colorize(L["Defeated"], red) else status = colorize(L["Undefeated"], green) end
+								
 							elseif v.lockDungeonId then
 								if Rarity.lockouts_holiday[v.lockDungeonId] == true then
 									status = colorize(L["Defeated"], red)
