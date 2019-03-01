@@ -32,4 +32,21 @@ C.ITEM_TYPES = {
 	ITEM = "ITEM",
 }
 
+-- Instance difficulties
+C.INSTANCE_DIFFICULTIES = {
+	HEROIC_DUNGEON = 2,
+	RAID_10_NORMAL = 3,
+	RAID_25_NORMAL = 4,
+	RAID_10_HEROIC = 5,
+	RAID_25_HEROIC = 6,
+	LEGACY_LFR = 7,
+	NORMAL_RAID = 14, -- Normal (Raids)
+	HEROIC_RAID = 15, -- Heroic (Raids)
+	MYTHIC_RAID = 16, -- Mythic (Raids)
+	LFR = 17,
+	MYTHIC_DUNGEON = 23, -- Mythic 5-player instance
+	TIMEWALKING_DUNGEON = 24, -- Timewalking 5-player instance
+	TIMEWALKING_RAID = 33,
+}
+
 addonTable.constants = C
