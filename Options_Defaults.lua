@@ -1,6 +1,10 @@
+local addonName, addonTable = ...
+
 if not Rarity then return end
 local R = Rarity
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
+
+local CONSTANTS = addonTable.constants
 
 local GetItemInfo = function(id) return nil end
 
@@ -164,11 +168,7 @@ local TOOLTIP_ACTIONS = {
 	end,
 }
 
--- Embedded mapIDs: It's best to avoid hardcoding these in case of yet another re-mapping on Blizzard's end...
-local UIMAPIDS = {
-	ARATHI_HIGHLANDS = 14,
-	DARKSHORE = 62,
-}
+
 
 
 function R:PrepareDefaults()
@@ -900,7 +900,7 @@ function R:PrepareDefaults()
 			chance = 33,
 			questId = { 53091, 53517},
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 67.48, y = 60.58, n = L["Nimar the Slayer"] },
+				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 67.48, y = 60.58, n = L["Nimar the Slayer"] },
 			},		
 		 },
 
@@ -917,9 +917,9 @@ function R:PrepareDefaults()
 			equalOdds = true,
 			questId = { 53014, 53518},
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 27.46, y = 55.89, n = L["Overseer Krix"] .. " - " .. L["Horde controls Stromgarde"] }, 
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 33.04, y = 37.49, n = L["Overseer Krix"]  .. " - " .. L["Alliance controls Stromgarde"] },
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 33.44, y = 36.94, n = L["Cave Entrance"] },
+				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 27.46, y = 55.89, n = L["Overseer Krix"] .. " - " .. L["Horde controls Stromgarde"] }, 
+				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 33.04, y = 37.49, n = L["Overseer Krix"]  .. " - " .. L["Alliance controls Stromgarde"] },
+				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 33.44, y = 36.94, n = L["Cave Entrance"] },
 			},		
 		 },
 		
@@ -936,7 +936,7 @@ function R:PrepareDefaults()
 			equalOdds = 5,
 			questId = { 53022, 53526 },
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 57.15, y = 45.75, n = L["Skullripper"] },
+				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 57.15, y = 45.75, n = L["Skullripper"] },
 			},		
 		 },
 
@@ -951,7 +951,7 @@ function R:PrepareDefaults()
 			chance = 33,
 			questId = { 53083, 53504},
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 67.06, y = 65.89, n = L["Beastrider Kama"] },
+				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 67.06, y = 65.89, n = L["Beastrider Kama"] },
 			},		
 		 },
 
@@ -968,7 +968,7 @@ function R:PrepareDefaults()
 			equalOdds = true,
 			questId = 53085,
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 53.97, y = 56.96, n = L["Doomrider Helgrim"] .. " - " .. L["Alliance controls Stromgarde"] .. " - " .. L["Alliance only"] },
+				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 53.97, y = 56.96, n = L["Doomrider Helgrim"] .. " - " .. L["Alliance controls Stromgarde"] .. " - " .. L["Alliance only"] },
 			},		
 		 },
 
@@ -985,7 +985,7 @@ function R:PrepareDefaults()
 			equalOdds = true,
 			questId = 53088,
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 49.27, y = 40.05, n = L["Knight-Captain Aldrin"] .. " - " .. L["Horde controls Stromgarde"] .. " - " .. L["Horde only"] },
+				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 49.27, y = 40.05, n = L["Knight-Captain Aldrin"] .. " - " .. L["Horde controls Stromgarde"] .. " - " .. L["Horde only"] },
 			},		
 		 },
 
@@ -1110,7 +1110,7 @@ function R:PrepareDefaults()
 			coords = {
 			groupSize = 5,
 			equalOdds = true,
-				{ m = UIMAPIDS.DARKSHORE, x = 56.4, y = 30.8, n = L["Alash'anir"] },
+				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 56.4, y = 30.8, n = L["Alash'anir"] },
 			},
 		},
 
@@ -1125,7 +1125,7 @@ function R:PrepareDefaults()
 			chance = 20,
 			questId = { 54883, 54890 },
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 49.2, y = 24.8, n = L["Agathe Wyrmwood"] .. " - " .. L["Alliance only"] },
+				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 49.2, y = 24.8, n = L["Agathe Wyrmwood"] .. " - " .. L["Alliance only"] },
 			},
 		},
 
@@ -1140,7 +1140,7 @@ function R:PrepareDefaults()
 			chance = 20,
 			questId = { 54883, 54890 },
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 49.2, y = 24.8, n = L["Blackpaw"] .. " - " .. L["Horde only"] },
+				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 49.2, y = 24.8, n = L["Blackpaw"] .. " - " .. L["Horde only"] },
 			},
 		},
 
@@ -1155,8 +1155,8 @@ function R:PrepareDefaults()
 			chance = 20,
 			questId = { 54886, 54892},
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 50.6, y = 32.6, n = L["Croz Bloodrage"] .. " - " .. L["Alliance only"] },
-				{ m = UIMAPIDS.DARKSHORE, x = 39.9, y = 33.0, n = L["Shadowclaw"] .. " - " .. L["Horde only"] },
+				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 50.6, y = 32.6, n = L["Croz Bloodrage"] .. " - " .. L["Alliance only"] },
+				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 39.9, y = 33.0, n = L["Shadowclaw"] .. " - " .. L["Horde only"] },
 			},
 		},
 
@@ -1171,7 +1171,7 @@ function R:PrepareDefaults()
 			chance = 20,
 			questId = { 54277, 54431 },
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 42, y = 77.6, n = L["Athil Dewfire"] .. " - " .. L["Horde only"] },
+				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 42, y = 77.6, n = L["Athil Dewfire"] .. " - " .. L["Horde only"] },
 			},
 		},
 		 
@@ -1186,7 +1186,7 @@ function R:PrepareDefaults()
 			chance = 20,
 			questId = { 54277, 54431 },
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 63.7, y = 20.9, n = L["Moxo the Beheader"] .. " - " .. L["Alliance only"] },
+				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 63.7, y = 20.9, n = L["Moxo the Beheader"] .. " - " .. L["Alliance only"] },
 			},
 		},
 
@@ -2279,7 +2279,7 @@ function R:PrepareDefaults()
 			questId = { 53090, 53515 },
 			chance = 20,
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  52.3, y = 72.4, n = L["Man-Hunter Rog"] },
+				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  52.3, y = 72.4, n = L["Man-Hunter Rog"] },
 			},
 		},
 
@@ -2297,7 +2297,7 @@ function R:PrepareDefaults()
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  56.7, y = 54.1, n = L["Venomarus"] },
+				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  56.7, y = 54.1, n = L["Venomarus"] },
 			},
 		},
 
@@ -2315,7 +2315,7 @@ function R:PrepareDefaults()
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  22.9, y = 22.2, n = L["Branchlord Aldrus"] },
+				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  22.9, y = 22.2, n = L["Branchlord Aldrus"] },
 			},
 		},
 
@@ -2331,8 +2331,8 @@ function R:PrepareDefaults()
 			questId = { 53084, 53507 },
 			chance = 20,
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  50.8, y = 36.5, n = L["Darbel Montrose"] .. " - " .. L["Alliance controls Stromgarde"] },
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  50.4, y = 61.2, n = L["Darbel Montrose"] .. " - " .. L["Horde controls Stromgarde"] },
+				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  50.8, y = 36.5, n = L["Darbel Montrose"] .. " - " .. L["Alliance controls Stromgarde"] },
+				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  50.4, y = 61.2, n = L["Darbel Montrose"] .. " - " .. L["Horde controls Stromgarde"] },
 			},
 		},
 
@@ -2350,7 +2350,7 @@ function R:PrepareDefaults()
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  14, y = 36.9, n = L["Yogursa"] },
+				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  14, y = 36.9, n = L["Yogursa"] },
 			},
 		},
 
@@ -2368,7 +2368,7 @@ function R:PrepareDefaults()
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  56.6, y = 36.0, n = L["Echo of Myzrael"] },
+				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  56.6, y = 36.0, n = L["Echo of Myzrael"] },
 			},
 		},
 
@@ -2386,7 +2386,7 @@ function R:PrepareDefaults()
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  51, y = 53.2, n = L["Fozruk"] },
+				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  51, y = 53.2, n = L["Fozruk"] },
 			},
 		},
 	
@@ -2404,8 +2404,8 @@ function R:PrepareDefaults()
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  18.4, y = 27.9, n = L["Ragebeak"] .. " - " .. L["Alliance controls Stromgarde"] },
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  11.9, y = 52.1, n = L["Ragebeak"] .. " - " .. L["Horde controls Stromgarde"] },
+				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  18.4, y = 27.9, n = L["Ragebeak"] .. " - " .. L["Alliance controls Stromgarde"] },
+				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  11.9, y = 52.1, n = L["Ragebeak"] .. " - " .. L["Horde controls Stromgarde"] },
 			},
 		},
 
@@ -2423,7 +2423,7 @@ function R:PrepareDefaults()
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
-				{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  36.9, y = 66, n = L["Plaguefeather"] },
+				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  36.9, y = 66, n = L["Plaguefeather"] },
 			},
 		},
 
@@ -2489,8 +2489,8 @@ function R:PrepareDefaults()
 			creatureId = 148781,
 			questId = { 54431, 54768 },
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 42, y = 77.6, n = L["Burninator Mark V"] .. " - " .. L["Alliance only"] },
-				{ m = UIMAPIDS.DARKSHORE, x = 42, y = 77.6, n = L["Athil Dewfire"] .. " - " .. L["Horde only"] },
+				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 42, y = 77.6, n = L["Burninator Mark V"] .. " - " .. L["Alliance only"] },
+				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 42, y = 77.6, n = L["Athil Dewfire"] .. " - " .. L["Horde only"] },
 			},
 		},
 
@@ -2508,7 +2508,7 @@ function R:PrepareDefaults()
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 39.2, y = 62, n = L["Conflagros"] },
+				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 39.2, y = 62, n = L["Conflagros"] },
 			},
 		},
 
@@ -2526,8 +2526,8 @@ function R:PrepareDefaults()
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 62.5, y = 9.4, n = L["Zim'kaga"] .. " - " .. L["Alliance only"] },
-				{ m = UIMAPIDS.DARKSHORE, x = 45.2, y = 75.1, n = L["Onu"] .. " - " .. L["Horde only"] },
+				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 62.5, y = 9.4, n = L["Zim'kaga"] .. " - " .. L["Alliance only"] },
+				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 45.2, y = 75.1, n = L["Onu"] .. " - " .. L["Horde only"] },
 			},
 		},
 
@@ -2545,7 +2545,7 @@ function R:PrepareDefaults()
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 43.8, y = 53.6, n = L["Cyclarus"] },
+				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 43.8, y = 53.6, n = L["Cyclarus"] },
 			},
 		},
 
@@ -2561,7 +2561,7 @@ function R:PrepareDefaults()
 			creatureId = 148841,
 			questId = { 54227, 54228 },
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 53.0, y = 31.8, n = L["Hydrath"] },
+				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 53.0, y = 31.8, n = L["Hydrath"] },
 			},
 		},
 
@@ -2579,7 +2579,7 @@ function R:PrepareDefaults()
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 40.7, y = 84.6, n = L["Soggoth the Slitherer"] },
+				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 40.7, y = 84.6, n = L["Soggoth the Slitherer"] },
 			},
 		},
 
@@ -2595,7 +2595,7 @@ function R:PrepareDefaults()
 			creatureId = 148846,
 			questId = { 54397, 54398 },
 			coords = {
-				{ m = UIMAPIDS.DARKSHORE, x = 40.6, y = 82.7, n = L["Twilight Prophet Graeme"] },
+				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 40.6, y = 82.7, n = L["Twilight Prophet Graeme"] },
 			},
 		},
 
@@ -3097,7 +3097,7 @@ function R:PrepareDefaults()
 		questId = { 53060, 53511},
 		chance = 30,
 		coords = {
-			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x =  79.6, y = 30.3, n = L["Geomancer Flintdagger"] },
+			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  79.6, y = 30.3, n = L["Geomancer Flintdagger"] },
 		},
 	},	
 
@@ -3114,7 +3114,7 @@ function R:PrepareDefaults()
 		groupSize = 5,
 		equalOdds = true,
 		coords = {
-			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 47.6, y = 77.9, n = L["Molok the Crusher"] },
+			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 47.6, y = 77.9, n = L["Molok the Crusher"] },
 		},
 	},	
 
@@ -3129,8 +3129,8 @@ function R:PrepareDefaults()
 		questId = { 53089, 53514},
 		chance = 30,
 		coords = {
-			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 25, y = 49.1, n = L["Kovork"] },
-			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 28.8, y = 45.4, n = L["Cave Entrance"] },
+			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 25, y = 49.1, n = L["Kovork"] },
+			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 28.8, y = 45.4, n = L["Cave Entrance"] },
 		},
 	},	
 
@@ -3145,7 +3145,7 @@ function R:PrepareDefaults()
 		questId = { 53094, 53530 },
 		chance = 30,
 		coords = {
-			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 62.8, y = 80.8, n = L["Zalas Witherbark"] },
+			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 62.8, y = 80.8, n = L["Zalas Witherbark"] },
 		},
 	},	
 
@@ -3160,8 +3160,8 @@ function R:PrepareDefaults()
 		questId = { 53058, 53513},
 		chance = 30,
 		coords = {
-			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 49.31, y = 84.26, n = L["Kor'gresh Coldrage"] },
-			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 48, y = 79, n = L["Cave Entrance"] },
+			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 49.31, y = 84.26, n = L["Kor'gresh Coldrage"] },
+			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 48, y = 79, n = L["Cave Entrance"] },
 		},
 	},	
 
@@ -3176,7 +3176,7 @@ function R:PrepareDefaults()
 		questId = { 53092, 53524},
 		chance = 30,
 		coords = {
-			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 43, y = 57, n = L["Ruul Onestone"] },
+			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 43, y = 57, n = L["Ruul Onestone"] },
 		},
 	},	
 
@@ -3191,8 +3191,8 @@ function R:PrepareDefaults()
 		questId = { 53093, 53525 },
 		chance = 30,
 		coords = {
-			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 50.8, y = 40.85, n = L["Singer"]  .. " - " .. L["Alliance controls Stromgarde"] }, 
-			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 50.7, y = 57.48, n = L["Singer"]  .. " - " .. L["Horde controls Stromgarde"] },
+			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 50.8, y = 40.85, n = L["Singer"]  .. " - " .. L["Alliance controls Stromgarde"] }, 
+			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 50.7, y = 57.48, n = L["Singer"]  .. " - " .. L["Horde controls Stromgarde"] },
 		},
 	},	
 
@@ -3207,8 +3207,8 @@ function R:PrepareDefaults()
 		questId = { 53087, 53512 },
 		chance = 30,
 		coords = {
-			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 26.7, y = 32.6, n = L["Horrific Apparition"] .. " - " .. L["Alliance controls Stromgarde"] },
-			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 19.5, y = 60.9, n = L["Horrific Apparition"] .. " - " .. L["Horde controls Stromgarde"] },
+			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 26.7, y = 32.6, n = L["Horrific Apparition"] .. " - " .. L["Alliance controls Stromgarde"] },
+			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 19.5, y = 60.9, n = L["Horrific Apparition"] .. " - " .. L["Horde controls Stromgarde"] },
 		},
 	},	
 
@@ -3223,8 +3223,8 @@ function R:PrepareDefaults()
 		questId = { 53086, 53509 },
 		chance = 30,
 		coords = {
-			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 23.1, y = 46.7, n = L["Foulbelly"] },
-			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 29, y = 45.5, n = L["Cave Entrance"] },
+			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 23.1, y = 46.7, n = L["Foulbelly"] },
+			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 29, y = 45.5, n = L["Cave Entrance"] },
 		},
 	},	
 
@@ -3241,7 +3241,7 @@ function R:PrepareDefaults()
 		groupSize = 25,
 		equalOdds = true,
 		coords = {
-			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 37.09, y = 39.21, n = L["Doom's Howl"] },
+			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 37.09, y = 39.21, n = L["Doom's Howl"] },
 		},
 	},	
 
@@ -3258,7 +3258,7 @@ function R:PrepareDefaults()
 		groupSize = 25,
 		equalOdds = true,
 		coords = {
-			{ m = UIMAPIDS.ARATHI_HIGHLANDS, x = 37.09, y = 39.21, n = L["The Lion's Roar"] },
+			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 37.09, y = 39.21, n = L["The Lion's Roar"] },
 		},
 	},	
 
@@ -3397,7 +3397,7 @@ function R:PrepareDefaults()
 		chance = 10,
 		questId = { 54428, 54429 },
 		coords = {
-			{ m = UIMAPIDS.DARKSHORE, x = 40.9, y = 56.5, n = L["Gren Tornfur"] },
+			{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 40.9, y = 56.5, n = L["Gren Tornfur"] },
 		},
 	},
 	
@@ -3412,8 +3412,8 @@ function R:PrepareDefaults()
 		chance = 10,
 		questId = { 54309, 54252 },
 		coords = {
-			{ m = UIMAPIDS.DARKSHORE, x = 45.7, y = 86.9, n = L["Commander Drald"] .. " - " .. L["Alliance only"] },
-			{ m = UIMAPIDS.DARKSHORE, x = 62.0, y = 16.2, n = L["Thelar Moonstrike"] .. " - " .. L["Horde only"] },
+			{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 45.7, y = 86.9, n = L["Commander Drald"] .. " - " .. L["Alliance only"] },
+			{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 62.0, y = 16.2, n = L["Thelar Moonstrike"] .. " - " .. L["Horde only"] },
 		},
 	},
 
@@ -3430,7 +3430,7 @@ function R:PrepareDefaults()
 		groupSize = 5,
 		equalOdds = true,
 		coords = {
-			{ m = UIMAPIDS.DARKSHORE, x = 58.3, y = 24.9, n = L["Athrikus Narassin"] },
+			{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 58.3, y = 24.9, n = L["Athrikus Narassin"] },
 		},
 	},
 
@@ -3445,7 +3445,7 @@ function R:PrepareDefaults()
 		chance = 10,
 		questId = { 54426, 54427 },
 		coords = {
-			{ m = UIMAPIDS.DARKSHORE, x = 37.9, y = 76.2, n = L["Commander Ral'esh"] },
+			{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 37.9, y = 76.2, n = L["Commander Ral'esh"] },
 		},
 	},
 
@@ -3460,8 +3460,8 @@ function R:PrepareDefaults()
 		chance = 10,
 		questId = { 54452, 54768 },
 		coords = {
-			{ m = UIMAPIDS.DARKSHORE, x = 42.0, y = 77.6, n = L["Burninator Mark V"] .. " - " .. L["Alliance only"] },
-			{ m = UIMAPIDS.DARKSHORE, x = 32.9, y = 84, n = L["Sapper Odette"] .. " - " .. L["Horde only"] },
+			{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 42.0, y = 77.6, n = L["Burninator Mark V"] .. " - " .. L["Alliance only"] },
+			{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 32.9, y = 84, n = L["Sapper Odette"] .. " - " .. L["Horde only"] },
 		},
 	},
 	 
@@ -3521,8 +3521,8 @@ function R:PrepareDefaults()
 			chance = 7,
 			questId = { 54891, 54889 },
 				coords = {
-					{ m = UIMAPIDS.DARKSHORE, x = 39.5, y = 34.4, n = L["Orwell Stevenson"] .. " - " .. L["Alliance only"] },
-					{ m = UIMAPIDS.DARKSHORE, x = 50.6, y = 32.6, n = L["Grimhorn"] .. " - " .. L["Horde only"] },
+					{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 39.5, y = 34.4, n = L["Orwell Stevenson"] .. " - " .. L["Alliance only"] },
+					{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 50.6, y = 32.6, n = L["Grimhorn"] .. " - " .. L["Horde only"] },
 				},
 			sourceText = L["Will hatch into Nightwreathed Watcher pet after five days."],
 		},	
