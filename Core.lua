@@ -1,3 +1,5 @@
+local addonName, addonTable = ...
+
 Rarity = LibStub("AceAddon-3.0"):NewAddon("Rarity", "AceConsole-3.0", "AceEvent-3.0", "AceTimer-3.0", "LibSink-2.0", "AceBucket-3.0", "LibBars-1.0", "AceSerializer-3.0")
 -- Rarity.MINOR_VERSION = tonumber(("$Revision: 650 $"):match("%d+"))  -- Disabled after switching entirely to Git (from SVN)
 local projectVersion, noReplacements = (GetAddOnMetadata("Rarity", "Version"):match("r%d+") or "r0"):gsub("r", "") -- e.g., r654	1 (the second value can be discarded)
@@ -11,7 +13,6 @@ isDebugVersion = true
 --@end-debug@
 
 do -- Set up the debug cache
-	local addonName, addonTable = ...
 	Rarity.DebugCache = addonTable.DebugCache
 	Rarity.DebugCache:SetOutputHandler(addonTable.PrettyPrint.DebugMsg)
 end
@@ -429,6 +430,8 @@ local UIMAPIDS = {
 --[[
       CONSTANTS ----------------------------------------------------------------------------------------------------------------
   ]]
+  
+local CONSTANTS = addonTable.constants
 
 -- Types of items
 local MOUNT = "MOUNT"
@@ -3661,7 +3664,7 @@ do
 								end
 								
 								local isDefeated
-								local mode = "OR" -- OR: At least one encounter must be defeated / AND: All encounters must be defeated (before the item will be displayed as defeated)
+								local mode = CONSTANTS.DEFEAT_DETECTION.MODE_OR -- OR: At least one encounter must be defeated / AND: All encounters must be defeated (before the item will be displayed as defeated)
 								local usesNewDefeatDetection = v.lockoutDetails and type(v.lockoutDetails) == "table" and #v.lockoutDetails > 0
 								
 								if usesNewDefeatDetection then -- Resolve the defeat detection using the item's parameters

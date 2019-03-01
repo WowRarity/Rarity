@@ -48,6 +48,9 @@ Libs\LibCompress\lib.xml
 #@end-no-lib-strip@
 Libs\LibBars-1.0\lib.xml
 
+# Database
+DB\SharedConstants.lua
+
 # Utility/Helpers
 Utils\DebugCache.lua
 Utils\PrettyPrint.lua
