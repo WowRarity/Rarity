@@ -1518,7 +1518,33 @@ function R:PrepareDefaults()
 			groupSize = 10,
 			equalOdds = true,
 			statisticId = { 13372, 13373, 13374, 13379 },
-			lockBossName = "High Tinker Mekkatorque",
+			lockoutDetails = {
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Mekkatorque",
+					instanceDifficulties = {
+						[14] = true,
+					},
+				},
+				{
+					encounterName = "Mekkatorque",
+					instanceDifficulties = {
+						[15] = true,
+					},
+				},
+				{
+					encounterName = "Mekkatorque",
+					instanceDifficulties = {
+						[16] = true,
+					},
+				},
+				{
+					encounterName = "Lady Jaina Proudmoore",
+					instanceDifficulties = {
+						[17] = true,
+					},
+				},
+			}, 
 			instanceDifficulties = {
 				[14] = true, -- Normal (Raids)
 				[15] = true, -- Heroic (Raids)
