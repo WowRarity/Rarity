@@ -62,6 +62,7 @@ local rarity_stats = {}
 Rarity.mount_sources = {}
 Rarity.pet_sources = {}
 Rarity.lockouts = {}
+Rarity.lockouts_detailed = {}
 Rarity.lockouts_holiday = {}
 Rarity.holiday_textures = {}
 Rarity.ach_npcs_isKilled = {}
@@ -4479,6 +4480,8 @@ function R:ScanInstanceLocks(reason)
 	local savedInstances = GetNumSavedInstances()
 	for i = 1, savedInstances do
 		local instanceName, instanceID, instanceReset, instanceDifficulty, locked, extended, instanceIDMostSig = GetSavedInstanceInfo(i)
+		
+		-- Legacy code (deprecated)
 		if instanceReset > 0 then
 			scanTip:ClearLines()
 			scanTip:SetInstanceLockEncountersComplete(i)
@@ -4488,7 +4491,28 @@ function R:ScanInstanceLocks(reason)
 					if txtRight == BOSS_DEAD then self.lockouts[_G["__Rarity_ScanTipTextLeft"..i]:GetText()] = true end
 				end
 			end
+		end
+
+		-- Detailed lockouts saving (stub - I'm leaving the legacy code above untouched, even if it's partly identical)
+		if instanceReset > 0 then -- Lockout isn't expired -> Scan it and store the defeated encounter names
+			scanTip:ClearLines()
+			scanTip:SetInstanceLockEncountersComplete(i)
+			for i = 2, scanTip:NumLines() do
+				local txtRight = _G["__Rarity_ScanTipTextRight"..i]:GetText()
+				if txtRight then
+					if txtRight == BOSS_DEAD then
+						
+						local encounterName  = _G["__Rarity_ScanTipTextLeft"..i]:GetText()
+						self.lockouts[encounterName] = true
+						self.lockouts_detailed[encounterName] = {
+							instanceDifficulty = instanceDifficulty,
+						}
+						
+						end
+				end
+			end
 		end		
+
 	end
 
 	table.wipe(Rarity.lockouts_holiday)
