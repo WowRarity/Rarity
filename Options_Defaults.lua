@@ -1151,11 +1151,25 @@ function R:PrepareDefaults()
 			name = L["Captured Kaldorei Nightsaber"],
 			itemId = 166437,
 			spellId = 288505,
-			npcs = { 149663, 149655 },
+			npcs = { 149655 },
 			chance = 20,
-			questId = { 54886, 54892},
+			questId = { 54886 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 50.6, y = 32.6, n = L["Croz Bloodrage"] .. " - " .. L["Alliance only"] },
+			},
+		},
+		
+		["Kaldorei Nightsaber"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Kaldorei Nightsaber"],
+			itemId = 166435,
+			spellId = 288505,
+			npcs = { 149663 },
+			chance = 20,
+			questId = { 54892 },
+			coords = {
 				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 39.9, y = 33.0, n = L["Shadowclaw"] .. " - " .. L["Horde only"] },
 			},
 		},

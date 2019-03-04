@@ -40,6 +40,7 @@ L["Alash'anir"] = true
 L["Caged Bear"] = true
 L["Agathe Wyrmwood"] = true
 L["Blackpaw"] = true
+L["Kaldorei Nightsaber"] = true
 L["Captured Kaldorei Nightsaber"] = true
 L["Croz Bloodrage"] = true
 L["Shadowclaw"] = true
