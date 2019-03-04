@@ -1,4 +1,10 @@
 local changes = {
+	["r686"] = {
+		fixes = {
+			"The tooltip for Mekkatorque (Normal/Heroic/Mythic) and Lady Jaina Proudmoore (LFR) should now show that the G.M.O.D. can be obtained from this encounter in the respective difficulty",
+			"Attempts for the Kaldorei Nightsaber mount (Drop: Darkshore) should now be tracked correctly for both factions'",
+		},
+	},
 	["r685"] = {
 		fixes = {
 			"Updated tracking for the G.M.O.D. mount to account for a recent hotfix by Blizzard",
