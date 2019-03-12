@@ -2539,7 +2539,9 @@ do
 	}
 
 	local islandExpeditionCollectibles = { -- List of collectibles (so we don't have to search the item DB for them)
+
 		-- Pets
+		---- 8.0
 		"Scuttle",
 		"Captain Nibs",
 		"Barnaby",
@@ -2568,6 +2570,7 @@ do
 		"Playful Frostkin",
 		"False Knucklebump",
 		"Craghoof Kid",
+		---- 8.1
 		"Baby Stonehide",
 		"Leatherwing Screecher",
 		"Rotting Ghoul",
@@ -2580,25 +2583,30 @@ do
 		"Shadefeather Hatchling",
 		
 		-- Toys
+		---- 8.0
 		"Oomgut Ritual Drum",
 		"Whiskerwax Candle",
-		-- "Yaungol Oil Stove", -- NYI as of 18/01/19
-		-- "Jinyu Light Globe", -- NYI as of 18/01/19
 		"Enchanted Soup Stone",
 		"Magic Monkey Banana",
 		"Bad Mojo Banana",
+		---- Not yet implemented?
 		-- "Regenerating Banana Bunch", -- NYI as of 18/01/19
+		-- "Yaungol Oil Stove", -- NYI as of 18/01/19
+		-- "Jinyu Light Globe", -- NYI as of 18/01/19
 		
 		-- Mounts
+		---- 8.0
 		"Surf Jelly",
 		"Squawks",
 		"Qinsho's Eternal Hound",
 		"Craghorn Chasm-Leaper",
 		"Twilight Avenger",
+		---- 8.1
 		"Risen Mare",
 		"Island Thunderscale",
 		"Bloodgorged Hunter",
 		"Stonehide Elderhorn",
+		
 	}
 
 	function R:OnIslandCompleted(event, mapID, winner)
