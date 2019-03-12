@@ -1,6 +1,7 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+L["Great Sea Ray"] = true
 L["Risen Mare"] = true
 L["Island Thunderscale"] = true
 L["Bloodgorged Hunter"]= true
