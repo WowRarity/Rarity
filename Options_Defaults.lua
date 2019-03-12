@@ -1570,6 +1570,58 @@ function R:PrepareDefaults()
 			},			
 		},	
 
+		["Risen Mare"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Risen Mare"],
+			spellId = 288722,
+			itemId = 166466,
+			npcs = 99999,
+			chance = 100,
+			equalOdds = true,
+			groupSize = 3,
+		},
+
+		["Island Thunderscale"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Island Thunderscale"],
+			spellId = 288721,
+			itemId = 166467,
+			npcs = 99999,
+			chance = 100,
+			equalOdds = true,
+			groupSize = 3,
+		},
+
+		["Bloodgorged Hunter"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Bloodgorged Hunter"],
+			spellId = 288720,
+			itemId = 166468,
+			npcs = 99999,
+			chance = 100,
+			equalOdds = true,
+			groupSize = 3,
+		},
+
+		["Stonehide Elderhorn"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Stonehide Elderhorn"],
+			spellId = 288712,
+			itemId = 166470,
+			npcs = 99999,
+			chance = 100,
+			equalOdds = true,
+			groupSize = 3,
+		},
+
     },
 
 
@@ -2699,6 +2751,126 @@ function R:PrepareDefaults()
 			},	
 		},	
 		
+		["Baby Stonehide"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Baby Stonehide"],
+			spellId = 288867,
+			itemId = 166486,
+			chance = 1000,
+			creatureId = 148976,
+			groupSize = 3,
+		},		
+
+		["Leatherwing Screecher"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Leatherwing Screecher"],
+			spellId = 288868,
+			itemId = 166487,
+			chance = 1000,
+			creatureId = 148979,
+			groupSize = 3,
+		},		
+
+		["Rotting Ghoul"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Rotting Ghoul"],
+			spellId = 288870,
+			itemId = 166488,
+			chance = 1000,
+			creatureId = 148981,
+			groupSize = 3,
+		},		
+
+		["Thunderscale Whelpling"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Thunderscale Whelpling"],
+			spellId = 288916,
+			itemId = 166499,
+			chance = 1000,
+			creatureId = 148995,
+			groupSize = 3,
+		},		
+
+		["Scritches"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Scritches"],
+			spellId = 288914,
+			itemId = 166498,
+			chance = 1000,
+			creatureId = 148991,
+			groupSize = 3,
+		},		
+
+		["Tonguelasher"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Tonguelasher"],
+			spellId = 288910,
+			itemId = 166495,
+			chance = 1000,
+			creatureId = 148990,
+			groupSize = 3,
+		},		
+
+		["Lord Woofington"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Lord Woofington"],
+			spellId = 288901,
+			itemId = 166494,
+			chance = 1000,
+			creatureId = 148989,
+			groupSize = 3,
+		},		
+
+		["Firesting Buzzer"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Firesting Buzzer"],
+			spellId = 288895,
+			itemId = 166493,
+			chance = 1000,
+			creatureId = 148988,
+			groupSize = 3,
+		},		
+
+		["Needleback Pup"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Needleback Pup"],
+			spellId = 288875,
+			itemId = 166489,
+			chance = 1000,
+			creatureId = 148982,
+			groupSize = 3,
+		},		
+
+		["Shadefeather Hatchling"] = {
+			cat = BFA,
+			type = PET,
+			method = SPECIAL,
+			name = L["Shadefeather Hatchling"],
+			spellId = 288889,
+			itemId = 166492,
+			chance = 1000,
+			creatureId = 148984,
+			groupSize = 3,
+		},		
+
 	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
