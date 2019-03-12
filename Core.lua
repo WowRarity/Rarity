@@ -2566,6 +2566,16 @@ do
 		"Playful Frostkin",
 		"False Knucklebump",
 		"Craghoof Kid",
+		"Baby Stonehide",
+		"Leatherwing Screecher",
+		"Rotting Ghoul",
+		"Thunderscale Whelpling",
+		"Scritches",
+		"Tonguelasher",
+		"Lord Woofington",
+		"Firesting Buzzer",
+		"Needleback Pup",
+		"Shadefeather Hatchling",
 		
 		-- Toys
 		"Oomgut Ritual Drum",
@@ -2583,6 +2593,10 @@ do
 		"Qinsho's Eternal Hound",
 		"Craghorn Chasm-Leaper",
 		"Twilight Avenger",
+		"Risen Mare",
+		"Island Thunderscale",
+		"Bloodgorged Hunter",
+		"Stonehide Elderhorn",
 	}
 
 	function R:OnIslandCompleted(event, mapID, winner)
