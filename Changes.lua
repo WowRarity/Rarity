@@ -1,8 +1,12 @@
 local changes = {
+
 	["r686"] = {
+		additions = {
+			"Added tracking for new collectibles that were added to Island Expeditions in 8.1 (the accuracy remains highly debatable)",
+		},
 		fixes = {
 			"The tooltip for Mekkatorque (Normal/Heroic/Mythic) and Lady Jaina Proudmoore (LFR) should now show that the G.M.O.D. can be obtained from this encounter in the respective difficulty",
-			"Attempts for the Kaldorei Nightsaber mount (Drop: Darkshore) should now be tracked correctly for both factions'",
+			"Attempts for the Kaldorei Nightsaber mount (Drop: Darkshore) should now be tracked correctly for both factions",
 		},
 	},
 	["r685"] = {
