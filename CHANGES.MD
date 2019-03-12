@@ -1,3 +1,9 @@
+**r687:**
+
+> Added tracking for the Great Sea Ray mount (courtesy of ZaruthEU)
+
+-----
+
 **r686:**
 
 > Added tracking for new collectibles that were added to Island Expeditions in 8.1 (the accuracy remains highly debatable)
@@ -31,10 +37,3 @@ Developer Notes:
 <br>Added defeat detection for Midnight's Eternal Reins (Return to Karazhan)
 
 > Fixed tracking for pets obtained from BFA paragon reward boxes 
-
------
-
-**r682:**
-
-> Added tracking for BFA paragon reputation rewards
-<br>Added an option to display TSM pricing data in the addon's tooltips (courtesy of zsml) - This feature requires the TradeSkillMaster addon

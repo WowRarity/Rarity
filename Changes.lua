@@ -1,5 +1,10 @@
 local changes = {
 
+	["r687"] = {
+		additions = {
+			"Added tracking for the Great Sea Ray mount (courtesy of ZaruthEU)",
+		},
+	},
 	["r686"] = {
 		additions = {
 			"Added tracking for new collectibles that were added to Island Expeditions in 8.1 (the accuracy remains highly debatable)",
