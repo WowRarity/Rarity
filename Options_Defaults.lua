@@ -1516,6 +1516,28 @@ function R:PrepareDefaults()
 			groupSize = 3,
 		},
 		
+		["Great Sea Ray"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = FISHING,
+			name = L["Great Sea Ray"],
+			spellId = 278803,
+			itemId = 163131,	
+			chance = 10000,			
+			zones = {
+				"896", -- Drustvar
+				"895", -- Tiragarde
+				"942", -- SSValley
+				"862", -- Zuldazar
+				"863", -- Nazmir
+				"864", -- Vol'dun
+				"875", -- Zandalar
+				"876", -- Kul'tiras
+				"974", -- Tol'Dagor
+				"1364", -- Battle for Dazar'alor (Raid)
+			},
+		},
+				
 		-- 8.1 Mounts
 		
 		["G.M.O.D."] = {
