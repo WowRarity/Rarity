@@ -1,6 +1,20 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+L["Risen Mare"] = true
+L["Island Thunderscale"] = true
+L["Bloodgorged Hunter"]= true
+L["Stonehide Elderhorn"] = true
+L["Baby Stonehide"] = true
+L["Leatherwing Screecher"] = true
+L["Rotting Ghoul"] = true
+L["Thunderscale Whelpling"] = true
+L["Scritches"] = true
+L["Tonguelasher"] = true
+L["Lord Woofington"] = true
+L["Firesting Buzzer"] = true
+L["Needleback Pup"] = true
+L["Shadefeather Hatchling"] = true
 L["G.M.O.D."] = true
 L["Spawn of Krag'wa"] = true
 L["Thundering Scale of Akunda"] = true
