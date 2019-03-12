@@ -2534,6 +2534,8 @@ do
 		[1892] = "Rotting Mire",
 		[1893] = "Dread Chain",
 		[1898] = "Skittering Hollow",
+		[1814] = "Havenswood",
+		[1879] = "Jorundall",
 	}
 
 	local islandExpeditionCollectibles = { -- List of collectibles (so we don't have to search the item DB for them)
