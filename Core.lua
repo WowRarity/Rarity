@@ -3702,7 +3702,7 @@ do
 										
 										else -- No lockout found for this entry
 
-											if mode == "AND" then -- Since at least one step isn't complete, the item shouldn't be marked as defeated
+											if mode == CONSTANTS.DEFEAT_DETECTION.MODE_AND then -- Since at least one step isn't complete, the item shouldn't be marked as defeated
 												isDefeated = false
 												continue = false
 											end
