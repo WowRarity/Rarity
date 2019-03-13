@@ -2893,6 +2893,271 @@ function R:PrepareDefaults()
 			groupSize = 3,
 		},		
 
+	-- 8.1.5 Pets
+	
+
+-- TODO: Double check lockBossName
+-- TODO: Add missing spell IDs
+-- TODO: Add kill statistics
+-- TODO: Find out UiMapIDs and add waypoints/maps
+-- TODO: Tsulong night/day = two different npcs
+
+		["Stoneclaw"] ={
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Stoneclaw"],
+			itemId = 167047,
+			spellId = 000000000000000000000000000000000000000000000000000000000,
+			creatureId = 150354,
+			npcs = { 99999 },
+			tooltipNpcs = { 59915, 60043, 60047, 60051 },
+			lockBossName = "The Stone Guard",
+			chance = 10, 
+			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			doNotUpdateToHighestStat = true,
+			enableCoin = true,
+			coords = {
+				{
+					m=000000000000000000000000000000000000000000000000000000000,
+					i=true
+				}
+			},
+		},	
+
+		["Wayward Spirit"] ={
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Wayward Spirit"],
+			itemId = 167048,
+			spellId = 000000000000000000000000000000000000000000000000000000000,
+			creatureId = 150356,
+			npcs = { 99999 },
+			tooltipNpcs = { 60143 },
+			lockBossName = "Gara'jal the Spiritbinder",
+			chance = 10, 
+			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			doNotUpdateToHighestStat = true,
+			enableCoin = true,
+			coords = {
+				{
+					m=000000000000000000000000000000000000000000000000000000000,
+					i=true
+				}
+			},
+		},	
+
+		["Celestial Gift"] ={
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Celestial Gift"],
+			itemId = 167049,
+			spellId = 150357,
+			creatureId = 000000000000000000000000000000000000000000000000000000000,
+			npcs = { 99999 },
+			tooltipNpcs = { 60410 },
+			lockBossName = "Elegon",
+			chance = 10, 
+			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			doNotUpdateToHighestStat = true,
+			enableCoin = true,
+			coords = {
+				{
+					m=000000000000000000000000000000000000000000000000000000000,
+					i=true
+				}
+			},
+		},	
+
+		["Mogu Statue"] ={
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Mogu Statue"],
+			itemId = 167050,
+			spellId = 000000000000000000000000000000000000000000000000000000000,
+			creatureId = 150360,
+			npcs = { 99999 },
+			tooltipNpcs = { 60400, 60399 },
+			lockBossName = "Will of the Emperor",
+			chance = 10, 
+			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			doNotUpdateToHighestStat = true,
+			enableCoin = true,
+			coords = {
+				{
+					m=000000000000000000000000000000000000000000000000000000000,
+					i=true
+				}
+			},
+		},	
+
+		["Kor'thik Swarmling"] ={
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Kor'thik Swarmling"],
+			itemId = 167058,
+			spellId = 000000000000000000000000000000000000000000000000000000000,
+			creatureId = 150374,
+			npcs = { 99999 },
+			tooltipNpcs = { 62980 },
+			lockBossName = "Imperial Vizier Zor'lok",
+			chance = 10, 
+			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			doNotUpdateToHighestStat = true,
+			enableCoin = true,
+			coords = {
+				{
+					m=000000000000000000000000000000000000000000000000000000000,
+					i=true
+				}
+			},
+		},	
+
+		["Tiny Amber Wings"] ={
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Tiny Amber Wings"],
+			itemId = 167053,
+			spellId = 000000000000000000000000000000000000000000000000000000000,
+			creatureId = 150375,
+			npcs = { 99999 },
+			tooltipNpcs = { 62543 },
+			lockBossName = "Blade Lord Ta'yak",
+			chance = 10, 
+			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			doNotUpdateToHighestStat = true,
+			enableCoin = true,
+			coords = {
+				{
+					m=000000000000000000000000000000000000000000000000000000000,
+					i=true
+				}
+			},
+		},	
+
+		["Spawn of Garalon"] ={
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Spawn of Garalon"],
+			itemId = 167054,
+			spellId = 000000000000000000000000000000000000000000000000000000000,
+			creatureId = 150377,
+			npcs = { 99999 },
+			tooltipNpcs = { 62164 },
+			lockBossName = "Garalon",
+			chance = 10, 
+			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			doNotUpdateToHighestStat = true,
+			enableCoin = true,
+			coords = {
+				{
+					m=000000000000000000000000000000000000000000000000000000000,
+					i=true
+				}
+			},
+		},	
+
+		["Amber Goo Puddle"] ={
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Amber Goo Puddle"],
+			itemId = 167055,
+			spellId = 000000000000000000000000000000000000000000000000000000000,
+			creatureId = 150380,
+			npcs = { 99999 },
+			tooltipNpcs = { 62511 },
+			lockBossName = "Amber-Shaper Un'sok",
+			chance = 10, 
+			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			doNotUpdateToHighestStat = true,
+			enableCoin = true,
+			coords = {
+				{
+					m=000000000000000000000000000000000000000000000000000000000,
+					i=true
+				}
+			},
+		},	
+
+		["Essence of Pride"] ={
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Essence of Pride"],
+			itemId = 167056,
+			spellId = 000000000000000000000000000000000000000000000000000000000,
+			creatureId = 150381,
+			npcs = { 99999 },
+			tooltipNpcs = { 62837 },
+			lockBossName = "Grand Empress Shek'zeer",
+			chance = 10, 
+			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			doNotUpdateToHighestStat = true,
+			enableCoin = true,
+			coords = {
+				{
+					m=000000000000000000000000000000000000000000000000000000000,
+					i=true
+				}
+			},
+		},	
+
+		["Azure Cloud Serpent Egg"] ={
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Azure Cloud Serpent Egg"],
+			itemId = 167051,
+			spellId = 000000000000000000000000000000000000000000000000000000000,
+			creatureId = 150365,
+			npcs = { 99999 },
+			tooltipNpcs = { 62442, 63025 },
+			lockBossName = "Tsulong",
+			chance = 10, 
+			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			doNotUpdateToHighestStat = true,
+			enableCoin = true,
+			coords = {
+				{
+					m=000000000000000000000000000000000000000000000000000000000,
+					i=true
+				}
+			},
+		},	
+
+		["Spirit of the Spring"] ={
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Spirit of the Spring"],
+			itemId = 167052,
+			spellId = 000000000000000000000000000000000000000000000000000000000,
+			creatureId = 150372,
+			npcs = { 99999 },
+			tooltipNpcs = { 62983 },
+			lockBossName = "Lei Shi",
+			chance = 10, 
+			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			doNotUpdateToHighestStat = true,
+			enableCoin = true,
+			coords = {
+				{
+					m=000000000000000000000000000000000000000000000000000000000,
+					i=true
+				}
+			},
+		},	
+
+
+	
+
 	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
