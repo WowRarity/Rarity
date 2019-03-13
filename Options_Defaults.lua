@@ -2912,7 +2912,25 @@ function R:PrepareDefaults()
 			creatureId = 150354,
 			npcs = { 99999 },
 			tooltipNpcs = { 59915, 60043, 60047, 60051 },
-			lockBossName = "The Stone Guard",
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "The Stone Guard",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "The Stone Guard",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			}, 
 			chance = 10, 
 			statisticId = { 6983, 6789, 6790, 7914, 7915 },
 			doNotUpdateToHighestStat = true,
@@ -2935,7 +2953,25 @@ function R:PrepareDefaults()
 			creatureId = 150356,
 			npcs = { 99999 },
 			tooltipNpcs = { 60143 },
-			lockBossName = "Gara'jal the Spiritbinder",
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Gara'jal the Spiritbinder",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Gara'jal the Spiritbinder",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
 			chance = 10, 
 			statisticId = { 6985, 6793, 6794, 7919, 7920 },
 			doNotUpdateToHighestStat = true,
@@ -2958,7 +2994,25 @@ function R:PrepareDefaults()
 			creatureId = 150357,
 			npcs = { 99999 },
 			tooltipNpcs = { 60410 },
-			lockBossName = "Elegon",
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Elegon",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Elegon",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
 			chance = 10, 
 			statisticId = { 6987, 6797, 6798, 7923, 7924 },
 			doNotUpdateToHighestStat = true,
@@ -2981,7 +3035,25 @@ function R:PrepareDefaults()
 			creatureId = 150360,
 			npcs = { 99999 },
 			tooltipNpcs = { 60400, 60399 },
-			lockBossName = "Will of the Emperor",
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Will of the Emperor",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Will of the Emperor",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
 			chance = 10, 
 			statisticId = { 6988, 6799, 6800, 7926, 7927 },
 			doNotUpdateToHighestStat = true,
@@ -3004,7 +3076,25 @@ function R:PrepareDefaults()
 			creatureId = 150374,
 			npcs = { 99999 },
 			tooltipNpcs = { 62980 },
-			lockBossName = "Imperial Vizier Zor'lok",
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Imperial Vizier Zor'lok",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Imperial Vizier Zor'lok",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
 			chance = 10, 
 			statisticId = { 6991, 6801, 6802, 7951, 7953 },
 			doNotUpdateToHighestStat = true,
@@ -3027,7 +3117,25 @@ function R:PrepareDefaults()
 			creatureId = 150375,
 			npcs = { 99999 },
 			tooltipNpcs = { 62543 },
-			lockBossName = "Blade Lord Ta'yak",
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Blade Lord Ta'yak",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Blade Lord Ta'yak",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
 			chance = 10, 
 			statisticId = { 6992, 6803, 6804, 7954, 7955 },
 			doNotUpdateToHighestStat = true,
@@ -3050,7 +3158,25 @@ function R:PrepareDefaults()
 			creatureId = 150377,
 			npcs = { 99999 },
 			tooltipNpcs = { 62164 },
-			lockBossName = "Garalon",
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Garalon",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Garalon",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
 			chance = 10, 
 			statisticId = { 6993, 6805, 6806, 7956, 6805 },
 			doNotUpdateToHighestStat = true,
@@ -3073,7 +3199,25 @@ function R:PrepareDefaults()
 			creatureId = 150380,
 			npcs = { 99999 },
 			tooltipNpcs = { 62511 },
-			lockBossName = "Amber-Shaper Un'sok",
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Amber-Shaper Un'sok",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Amber-Shaper Un'sok",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
 			chance = 10, 
 			statisticId = { 6995, 6809, 6810, 7961, 7962 },
 			doNotUpdateToHighestStat = true,
@@ -3096,7 +3240,25 @@ function R:PrepareDefaults()
 			creatureId = 150381,
 			npcs = { 99999 },
 			tooltipNpcs = { 62837 },
-			lockBossName = "Grand Empress Shek'zeer",
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Grand Empress Shek'zeer",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Grand Empress Shek'zeer",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
 			chance = 10, 
 			statisticId = { 6996, 6811, 6812, 7963, 7964 },
 			doNotUpdateToHighestStat = true,
@@ -3119,7 +3281,25 @@ function R:PrepareDefaults()
 			creatureId = 150365,
 			npcs = { 99999 },
 			tooltipNpcs = { 62442, 63025 },
-			lockBossName = "Tsulong",
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Tsulong",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Tsulong",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
 			chance = 10, 
 			statisticId = { 6998, 6815, 6816, 7967, 7968 },
 			doNotUpdateToHighestStat = true,
@@ -3143,6 +3323,25 @@ function R:PrepareDefaults()
 			npcs = { 99999 },
 			tooltipNpcs = { 62983 },
 			lockBossName = "Lei Shi",
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Lei Shi",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Lei Shi",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
 			chance = 10, 
 			statisticId = { 6999, 6817, 6818, 7969, 7970 },
 			doNotUpdateToHighestStat = true,
