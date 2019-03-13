@@ -2896,11 +2896,7 @@ function R:PrepareDefaults()
 	-- 8.1.5 Pets
 	
 
--- TODO: Double check lockBossName
 -- TODO: Add missing spell IDs
--- TODO: Add kill statistics
--- TODO: Find out UiMapIDs and add waypoints/maps
--- TODO: Tsulong night/day = two different npcs
 
 		["Stoneclaw"] ={
 			cat = BFA,
