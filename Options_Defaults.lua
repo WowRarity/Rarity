@@ -2919,7 +2919,7 @@ function R:PrepareDefaults()
 			enableCoin = true,
 			coords = {
 				{
-					m=000000000000000000000000000000000000000000000000000000000,
+					m=471,
 					i=true
 				}
 			},
@@ -2942,7 +2942,7 @@ function R:PrepareDefaults()
 			enableCoin = true,
 			coords = {
 				{
-					m=000000000000000000000000000000000000000000000000000000000,
+					m=471,
 					i=true
 				}
 			},
@@ -2965,7 +2965,7 @@ function R:PrepareDefaults()
 			enableCoin = true,
 			coords = {
 				{
-					m=000000000000000000000000000000000000000000000000000000000,
+					m=471,
 					i=true
 				}
 			},
@@ -2988,7 +2988,7 @@ function R:PrepareDefaults()
 			enableCoin = true,
 			coords = {
 				{
-					m=000000000000000000000000000000000000000000000000000000000,
+					m=471,
 					i=true
 				}
 			},
@@ -3011,7 +3011,7 @@ function R:PrepareDefaults()
 			enableCoin = true,
 			coords = {
 				{
-					m=000000000000000000000000000000000000000000000000000000000,
+					m=475,
 					i=true
 				}
 			},
@@ -3034,7 +3034,7 @@ function R:PrepareDefaults()
 			enableCoin = true,
 			coords = {
 				{
-					m=000000000000000000000000000000000000000000000000000000000,
+					m=475,
 					i=true
 				}
 			},
@@ -3057,7 +3057,7 @@ function R:PrepareDefaults()
 			enableCoin = true,
 			coords = {
 				{
-					m=000000000000000000000000000000000000000000000000000000000,
+					m=475,
 					i=true
 				}
 			},
@@ -3080,7 +3080,7 @@ function R:PrepareDefaults()
 			enableCoin = true,
 			coords = {
 				{
-					m=000000000000000000000000000000000000000000000000000000000,
+					m=475,
 					i=true
 				}
 			},
@@ -3103,7 +3103,7 @@ function R:PrepareDefaults()
 			enableCoin = true,
 			coords = {
 				{
-					m=000000000000000000000000000000000000000000000000000000000,
+					m=475,
 					i=true
 				}
 			},
@@ -3126,7 +3126,7 @@ function R:PrepareDefaults()
 			enableCoin = true,
 			coords = {
 				{
-					m=000000000000000000000000000000000000000000000000000000000,
+					m=456,
 					i=true
 				}
 			},
@@ -3149,7 +3149,7 @@ function R:PrepareDefaults()
 			enableCoin = true,
 			coords = {
 				{
-					m=000000000000000000000000000000000000000000000000000000000,
+					m=456,
 					i=true
 				}
 			},
