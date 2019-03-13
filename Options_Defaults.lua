@@ -2914,7 +2914,7 @@ function R:PrepareDefaults()
 			tooltipNpcs = { 59915, 60043, 60047, 60051 },
 			lockBossName = "The Stone Guard",
 			chance = 10, 
-			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			statisticId = { 6983, 6789, 6790, 7914, 7915 },
 			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
@@ -2937,7 +2937,7 @@ function R:PrepareDefaults()
 			tooltipNpcs = { 60143 },
 			lockBossName = "Gara'jal the Spiritbinder",
 			chance = 10, 
-			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			statisticId = { 6985, 6793, 6794, 7919, 7920 },
 			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
@@ -2960,7 +2960,7 @@ function R:PrepareDefaults()
 			tooltipNpcs = { 60410 },
 			lockBossName = "Elegon",
 			chance = 10, 
-			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			statisticId = { 6987, 6797, 6798, 7923, 7924 },
 			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
@@ -2983,7 +2983,7 @@ function R:PrepareDefaults()
 			tooltipNpcs = { 60400, 60399 },
 			lockBossName = "Will of the Emperor",
 			chance = 10, 
-			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			statisticId = { 6988, 6799, 6800, 7926, 7927 },
 			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
@@ -3006,7 +3006,7 @@ function R:PrepareDefaults()
 			tooltipNpcs = { 62980 },
 			lockBossName = "Imperial Vizier Zor'lok",
 			chance = 10, 
-			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			statisticId = { 6991, 6801, 6802, 7951, 7953 },
 			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
@@ -3029,7 +3029,7 @@ function R:PrepareDefaults()
 			tooltipNpcs = { 62543 },
 			lockBossName = "Blade Lord Ta'yak",
 			chance = 10, 
-			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			statisticId = { 6992, 6803, 6804, 7954, 7955 },
 			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
@@ -3052,7 +3052,7 @@ function R:PrepareDefaults()
 			tooltipNpcs = { 62164 },
 			lockBossName = "Garalon",
 			chance = 10, 
-			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			statisticId = { 6993, 6805, 6806, 7956, 6805 },
 			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
@@ -3075,7 +3075,7 @@ function R:PrepareDefaults()
 			tooltipNpcs = { 62511 },
 			lockBossName = "Amber-Shaper Un'sok",
 			chance = 10, 
-			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			statisticId = { 6995, 6809, 6810, 7961, 7962 },
 			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
@@ -3098,7 +3098,7 @@ function R:PrepareDefaults()
 			tooltipNpcs = { 62837 },
 			lockBossName = "Grand Empress Shek'zeer",
 			chance = 10, 
-			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			statisticId = { 6996, 6811, 6812, 7963, 7964 },
 			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
@@ -3121,7 +3121,7 @@ function R:PrepareDefaults()
 			tooltipNpcs = { 62442, 63025 },
 			lockBossName = "Tsulong",
 			chance = 10, 
-			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			statisticId = { 6998, 6815, 6816, 7967, 7968 },
 			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
@@ -3144,7 +3144,7 @@ function R:PrepareDefaults()
 			tooltipNpcs = { 62983 },
 			lockBossName = "Lei Shi",
 			chance = 10, 
-			statisticId = { 000000000000000000000000000000000000000000000000000000000, 000000000000000000000000000000000000000000000000000000000 },
+			statisticId = { 6999, 6817, 6818, 7969, 7970 },
 			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
