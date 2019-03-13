@@ -769,6 +769,8 @@ function R:PrepareOptions()
 						  end,
 					  },
 
+-- TODO: BFA is missing here?
+
 						}, -- args
 					}, -- contentCategory
 
@@ -960,22 +962,49 @@ function R:PrepareOptions()
 						inline = true,
 						args = {
 						
-					  onlyAnnounceFound = {
-						  type = "toggle",
-						  order = newOrder(),
-						  name = L["Only announce when found"],
+							onlyAnnounceFound = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Only announce when found"],
 								desc = L["Announcements will only be triggered when the item is found. When this is off, Rarity will announce every attempt and when the item is found."],
-						  get = function() return self.db.profile.onlyAnnounceFound end,
-						  set = function(info, val)
-							  self.db.profile.onlyAnnounceFound = val
-						  end,
-					  },
-
+								get = function()
+									return self.db.profile.onlyAnnounceFound end,
+								set = function(info, val)
+									self.db.profile.onlyAnnounceFound = val
+								end,
+							},
+							
 							output = self:GetSinkAce3OptionsDataTable(),
 
+						
 						}, -- args
+
 					}, -- announcements
 
+					
+					advanced = {
+						type = "group",
+						name = L["Advanced"],
+						order = newOrder(),
+						inline = true,
+						args = {	  
+					
+					-- TODO: add a note that this is active to the battle pet checkboxes so people will not be confused. maybe grey them out, too?
+					-- TODO: They're still missing from the tooltip if not set as repeatable
+							alwaysTreatPetsAsRepeatable = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Track pets repeatedly"],
+								desc = L["Keep tracking battle pets after they've been found. When this is off, Rarity will stop tracking them unless they're marked as \"repeatable\"."],
+								get = function()
+									return self.db.profile.alwaysTreatPetsAsRepeatable end,
+								set = function(info, val)
+									self.db.profile.alwaysTreatPetsAsRepeatable = val
+								end,
+							},
+				
+						}, -- args
+					}, -- advanced
 				}, -- args
 			}, -- general
 		
@@ -1287,7 +1316,7 @@ function R:PrepareOptions()
 						end,
 						order = newOrder(),
 						disabled = function()
-							for itemkey, item in pairs(self.db.profile.groups.user) do
+							for itemkey,	 item in pairs(self.db.profile.groups.user) do
 								if item and type(item) == "table" and item.export then return false end
 							end
 							return true

@@ -1455,7 +1455,7 @@ function R:UpdateInterestingThings()
   if type(v) == "table" then
    for kk, vv in pairs(v) do
     if type(vv) == "table" then
-					if vv.enabled ~= false and vv.statisticId and type(vv.statisticId) == "table" then
+					if vv.enabled ~= false and vv.statisticId and type(vv.statisticId) == "table" then -- TODO: BPO !! important or Elegon wont work
 						local numStats = 0
 						for kkk, vvv in pairs(vv.statisticId) do
 							Rarity.stats_to_scan[vvv] = vv
@@ -1684,7 +1684,7 @@ function R:OnEvent(event, ...)
   if fishing and opening and lastNode and (lastNode == L["Crane Nest"]) then
 	Rarity:Debug("Detected Opening on " .. L["Crane Nest"] .. " (method = SPECIAL)")  
    local v = self.db.profile.groups.pets["Azure Crane Chick"]
-   if v and type(v) == "table" and v.enabled ~= false then
+   if v and type(v) == "table" and v.enabled ~= false then -- TODO BPO
     if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
     self:OutputAttempts(v)
    end
@@ -1694,7 +1694,7 @@ function R:OnEvent(event, ...)
   if fishing and opening and lastNode and (lastNode == L["Timeless Chest"]) then
  	Rarity:Debug("Detected Opening on " .. L["Timeless Chest"] .. " (method = SPECIAL)")
    local v = self.db.profile.groups.pets["Bonkers"]
-   if v and type(v) == "table" and v.enabled ~= false then
+   if v and type(v) == "table" and v.enabled ~= false then -- TODO BPO
     if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
     self:OutputAttempts(v)
    end
@@ -1716,7 +1716,7 @@ function R:OnEvent(event, ...)
 			Rarity:Debug("Detected Opening on " .. L["Curious Wyrmtongue Cache"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
-				if v and type(v) == "table" and v.enabled ~= false then
+				if v and type(v) == "table" and v.enabled ~= false then -- TODO BPO?
 					if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
 					self:OutputAttempts(v)
 				end
@@ -1762,7 +1762,7 @@ function R:OnEvent(event, ...)
      if type(v) == "table" then
       for kk, vv in pairs(v) do
        if type(vv) == "table" then
-        if vv.enabled ~= false then
+        if vv.enabled ~= false then -- TODO BPO
          local found = false
          if vv.method == FISHING and vv.zones ~= nil and type(vv.zones) == "table" then
           for kkk, vvv in pairs(vv.zones) do
@@ -1813,7 +1813,7 @@ function R:OnEvent(event, ...)
 	and (GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.KROKUUN or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.MACAREE or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.ANTORAN_WASTES) then -- Player is on Argus -> Can obtain the pet from skinning creatures
 		Rarity:Debug("Detected skinning on Argus - Can obtain " .. L["Fossorial Bile Larva"] .. " (method = SPECIAL)")
 		local v = self.db.profile.groups.pets["Fossorial Bile Larva"]
-		if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt
+		if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt -- TODO BPO
 			v.attempts = v.attempts ~= nil and v.attempts + 1 or 1 -- Defaults to 1 if this is the first attempt
 			self:OutputAttempts(v)
 		end
@@ -1824,7 +1824,7 @@ function R:OnEvent(event, ...)
 	and (GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.KROKUUN or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.MACAREE or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.ANTORAN_WASTES) then -- Player is on Argus -> Can obtain the pet from gathering herbalism nodes
 		Rarity:Debug("Detected herb gathering on Argus - Can obtain " .. L["Fel Lasher"] .. " (method = SPECIAL)")
 		local v = self.db.profile.groups.pets["Fel Lasher"]
-		if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt
+		if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt - TODO BPO
 			v.attempts = v.attempts ~= nil and v.attempts + 1 or 1 -- Defaults to 1 if this is the first attempt
 			self:OutputAttempts(v)
 		end
@@ -1982,7 +1982,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
  -- Increment attempt counter(s). One NPC might drop multiple things we want, so scan for them all.
  if npcs_to_items[npcid] and type(npcs_to_items[npcid]) == "table" then
   for k, v in pairs(npcs_to_items[npcid]) do
-   if v.enabled ~= false and (v.method == NPC or v.method == ZONE) then
+   if v.enabled ~= false and (v.method == NPC or v.method == ZONE) then -- TODO BPO
     if self:IsAttemptAllowed(v) then
      -- Don't increment attempts if this NPC also has a statistic defined. This would result in two attempts counting instead of one.
      if not v.statisticId or type(v.statisticId) ~= "table" or #v.statisticId <= 0 then
@@ -2005,7 +2005,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
   if type(v) == "table" then
    for kk, vv in pairs(v) do
     if type(vv) == "table" then
-     if vv.enabled ~= false then
+     if vv.enabled ~= false then -- TODO BPO
       local found = false
       if vv.method == ZONE and vv.zones ~= nil and type(vv.zones) == "table" then
        for kkk, vvv in pairs(vv.zones) do
@@ -2138,7 +2138,7 @@ function R:OnBagUpdate()
 
 			-- Other items
 			if (bagitems[k] or 0) > (tempbagitems[k] or 0) then -- An inventory item went up in count
-				if items[k] and items[k].enabled ~= false and items[k].method ~= COLLECTION then
+				if items[k] and items[k].enabled ~= false and items[k].method ~= COLLECTION then -- TODO: BPO
 					self:FoundItem(k, items[k])
 				end
 			end
@@ -2194,7 +2194,7 @@ function R:OnCombat()
      -- Increment attempts counter(s). One NPC might drop multiple things we want, so scan for them all.
      if npcs_to_items[npcid] and type(npcs_to_items[npcid]) == "table" then
       for k, v in pairs(npcs_to_items[npcid]) do
-       if v.enabled ~= false and v.method == BOSS then
+       if v.enabled ~= false and v.method == BOSS then -- TODO: BP Override IMPORTANT here... or elegon etc won't work
         if self:IsAttemptAllowed(v) then
 									guids[dstGuid] = true
          if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
@@ -2620,7 +2620,7 @@ do
 			for index, name in pairs(islandExpeditionCollectibles) do -- Add an attempt for each item
 				
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name] or self.db.profile.groups.mounts[name]
-				if v and type(v) == "table" and v.enabled ~= false then
+				if v and type(v) == "table" and v.enabled ~= false then -- TODO: BPet override
 					if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
 					self:OutputAttempts(v)
 				end		
@@ -2980,11 +2980,11 @@ do
   attempts = 0
   if trackedItem.attempts then attempts = trackedItem.attempts end
   if trackedItem.lastAttempts then attempts = attempts - trackedItem.lastAttempts end
-  if trackedItem.realAttempts and trackedItem.found and not trackedItem.repeatable then attempts = trackedItem.realAttempts end
+  if trackedItem.realAttempts and trackedItem.found and not trackedItem.repeatable and not (trackedItem.type == CONSTANTS.ITEM_TYPES.PET and self.db.profile.alwaysTreatPetsAsRepeatable) then attempts = trackedItem.realAttempts end
   
   attempts = min(attempts, 2^31-1) -- Workaround to stop invalid attempt counts from breaking the addon; the correct count can be obtained by updating manually. It should also be restored automatically (at some point...) if the addon loads without errors. See issue: https://github.com/SacredDuckwhale/Rarity/issues/43) - This is mostly relevant for the two Archaeology mounts that may have invalid entries after the API was changed and not updated in the addon for quite some time
   
-  if trackedItem.found and not trackedItem.repeatable then
+  if trackedItem.found and not trackedItem.repeatable and not (trackedItem.type == CONSTANTS.ITEM_TYPES.PET and self.db.profile.alwaysTreatPetsAsRepeatable) then
 			if trackedItem.method == COLLECTION then
 				dataobj.text = L["Collection complete!"]
 			else
@@ -3043,8 +3043,8 @@ do
 			attempts = 0
 			if trackedItem2.attempts then attempts = trackedItem2.attempts end
 			if trackedItem2.lastAttempts then attempts = attempts - trackedItem2.lastAttempts end
-			if trackedItem2.realAttempts and trackedItem2.found and not trackedItem2.repeatable then attempts = trackedItem2.realAttempts end
-			if trackedItem2.found and not trackedItem2.repeatable then
+			if trackedItem2.realAttempts and trackedItem2.found and not trackedItem2.repeatable and not (item.type == CONSTANTS.ITEM_TYPES.PET and self.db.profile.alwaysTreatPetsAsRepeatable) then attempts = trackedItem2.realAttempts end
+			if trackedItem2.found and not trackedItem2.repeatable  and not (trackedItem2.type == CONSTANTS.ITEM_TYPES.PET and self.db.profile.alwaysTreatPetsAsRepeatable) then
 				chance = 1.0
 			else
 				if trackedItem2.method == COLLECTION then
@@ -3591,8 +3591,8 @@ do
   elseif R.db.profile.sortMode == SORT_ZONE then g = sort_zone(group)
   else g = sort_progress(group)
   end
-  for k, v in pairs(g) do
-   if type(v) == "table" and v.enabled ~= false and ((requiresGroup and v.groupSize ~= nil and v.groupSize > 1) or (not requiresGroup and (v.groupSize == nil or v.groupSize <= 1))) then
+  for k, v in pairs(g) do -- TODO: New setting to hide them from tooltip if override is active. This only adds tooltip bloat, but tracking should continue in the background
+   if type(v) == "table" and (v.enabled ~= false or (v.type == CONSTANTS.ITEM_TYPES.PET and R.db.profile.alwaysTreatPetsAsRepeatable)) and ((requiresGroup and v.groupSize ~= nil and v.groupSize > 1) or (not requiresGroup and (v.groupSize == nil or v.groupSize <= 1))) then
 
 				local classGood = true
 				if not playerClass then playerClass = select(2, UnitClass("player")) end
@@ -4154,7 +4154,7 @@ end
 
 hooksecurefunc("BonusRollFrame_StartBonusRoll", function(spellID, text, duration, currencyID)
 	local self = Rarity
-	if self.lastCoinItem and self.lastCoinItem.enableCoin and self.lastCoinItem.enabled ~= false then
+	if self.lastCoinItem and self.lastCoinItem.enableCoin and self.lastCoinItem.enabled ~= false then -- TODO: BPet override
 		if self.lastCoinItem.itemId then
 			if not currencyID then currencyID = BONUS_ROLL_REQUIRED_CURRENCY end
 			local _, count, icon = GetCurrencyInfo(currencyID)
@@ -4173,8 +4173,9 @@ function R:OutputAttempts(item, skipTimeUpdate)
  if not item then return end
  if (item.requiresHorde and R:IsHorde()) or (item.requiresAlliance and not R:IsHorde()) or (not item.requiresHorde and not item.requiresAlliance) then
   self:Debug("New attempt found for %s", item.name)
-
-  if type(item) == "table" and item.enabled ~= false and (item.found ~= true or item.repeatable == true) and item.itemId ~= nil and item.attempts ~= nil then
+	
+ if item.found and not item.repeatable and not (item.type == CONSTANTS.ITEM_TYPES.PET and self.db.profile.alwaysTreatPetsAsRepeatable) then return end
+  if type(item) == "table" and item.enabled ~= false and (item.found ~= true or item.repeatable == true or (item.type == CONSTANTS.ITEM_TYPES.PET and self.db.profile.alwaysTreatPetsAsRepeatable)) and item.itemId ~= nil and item.attempts ~= nil then
 
    if skipTimeUpdate == nil or skipTimeUpdate == false then
     -- Increment attempt counter for today
@@ -4333,7 +4334,7 @@ function R:ScanExistingItems(reason)
    if type(v) == "table" then
     for kk, vv in pairs(v) do
      if type(vv) == "table" then
-      if vv.spellId and vv.spellId == spellId and not vv.repeatable then
+      if vv.spellId and vv.spellId == spellId and not vv.repeatable and not self.db.profile.alwaysTreatPetsAsRepeatable  then
 							vv.enabled = false
 							vv.found = true
       end
@@ -4367,7 +4368,7 @@ function R:ScanExistingItems(reason)
 					for kk, vv in pairs(v) do
 						if type(vv) == "table" then
 							if vv.creatureId and vv.creatureId == companionID then vv.known = true end
-							if vv.creatureId and vv.creatureId == companionID and not vv.repeatable then
+							if vv.creatureId and vv.creatureId == companionID and not vv.repeatable and not self.db.profile.alwaysTreatPetsAsRepeatable then
 								vv.enabled = false
 								vv.found = true
 							end
@@ -4723,7 +4724,10 @@ end
 
 
 function R:FoundItem(itemId, item)
- if item.found and not item.repeatable then return end
+
+	local isBattlePet = (item.type == CONSTANTS.ITEM_TYPES.PET)
+	
+ if item.found and not item.repeatable and not (isBattlePet and self.db.profile.alwaysTreatPetsAsRepeatable) then return end
 	
  self:Debug("FOUND ITEM %d!", itemId)
  if item.attempts == nil then item.attempts = 1 end
@@ -4752,7 +4756,7 @@ function R:FoundItem(itemId, item)
  item.lastTime = item.time
  self:UpdateTrackedItem(item)
  self:UpdateInterestingThings()
- if item.repeatable then self:ScheduleTimer(function()
+ if item.repeatable or (isBattlePet and self.db.profile.alwaysTreatPetsAsRepeatable) then self:ScheduleTimer(function()
   -- If this is a repeatable item, turn it back on in a few seconds.
   -- FoundItem() gets called repeatedly when we get an item, so we need to lock it out for a few seconds.
   item.enabled = nil

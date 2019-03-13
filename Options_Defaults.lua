@@ -177,6 +177,7 @@ function R:PrepareDefaults()
 			minimap = { hide = true },
 
    enableAnnouncements = true,
+   alwaysTreatPetsAsRepeatable = false,
    feedText = FEED_NORMAL,
    statusTip = TIP_LEFT,
    sortMode = SORT_CATEGORY,

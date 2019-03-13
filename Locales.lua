@@ -1,6 +1,9 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+L["Track pets repeatedly"] = true
+L["Keep tracking battle pets after they've been found. When this is off, Rarity will stop tracking them unless they're marked as \"repeatable\"."] = true
+L["Advanced"] = true
 L["Stoneclaw"] = true
 L["Wayward Spirit"] = true
 L["Celestial Gift"] = true
