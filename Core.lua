@@ -4677,7 +4677,7 @@ function R:ScanStatistics(reason)
      end
 
      -- We've never seen any attempts for this yet; update to this player's statistic total
-     if count > 0 and (vv.attempts or 0) <= 0 and vv.doNotUpdateToHighestStat ~= true then
+     if count > 0 and (vv.attempts or 0) <= 0 then
       vv.attempts = count
       self:OutputAttempts(vv, true)
 
