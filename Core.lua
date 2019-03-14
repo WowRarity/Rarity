@@ -2496,6 +2496,9 @@ local encounterLUT = {
 	[1135] = "Ominous Pile of Snow", -- Hodir
 	[1138] = "Overcomplicated Controller", -- Mimiron
 	[1143] = "Wriggling Darkness", -- Yogg-Saron (mount uses the BOSS method and is tracked separately)
+	[1500] = "Celestial Gift", -- Elegon
+	[1505] = "Azure Cloud Serpent Egg", -- Tsulong
+	[1506] = "Spirit of the Spring", -- Lei Shi
 }
 
 function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidSize, endStatus)
