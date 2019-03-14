@@ -3289,7 +3289,6 @@ function R:PrepareDefaults()
 			creatureId = 150372,
 			npcs = { 99999 },
 			tooltipNpcs = { 62983 },
-			lockBossName = "Lei Shi",
 			lockoutDetails = { 
 				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
 				{
