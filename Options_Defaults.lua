@@ -2901,13 +2901,12 @@ function R:PrepareDefaults()
 		["Stoneclaw"] ={
 			cat = BFA,
 			type = PET,
-			method = BOSS,
+			method = NPC,
 			name = L["Stoneclaw"],
 			itemId = 167047,
 			spellId = 000000000000000000000000000000000000000000000000000000000,
 			creatureId = 150354,
-			npcs = { 99999 },
-			tooltipNpcs = { 59915, 60043, 60047, 60051 },
+			npcs = { 59915, 60043, 60047, 60051 },
 			lockoutDetails = { 
 				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
 				{
@@ -2928,8 +2927,6 @@ function R:PrepareDefaults()
 				},
 			}, 
 			chance = 10, 
-			statisticId = { 6983, 6789, 6790, 7914, 7915 },
-			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
 				{
@@ -2942,13 +2939,12 @@ function R:PrepareDefaults()
 		["Wayward Spirit"] ={
 			cat = BFA,
 			type = PET,
-			method = BOSS,
+			method = NPC,
 			name = L["Wayward Spirit"],
 			itemId = 167048,
 			spellId = 000000000000000000000000000000000000000000000000000000000,
 			creatureId = 150356,
-			npcs = { 99999 },
-			tooltipNpcs = { 60143 },
+			npcs = { 60143 },
 			lockoutDetails = { 
 				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
 				{
@@ -2969,8 +2965,6 @@ function R:PrepareDefaults()
 				},
 			},
 			chance = 10, 
-			statisticId = { 6985, 6793, 6794, 7919, 7920 },
-			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
 				{
@@ -3010,8 +3004,6 @@ function R:PrepareDefaults()
 				},
 			},
 			chance = 10, 
-			statisticId = { 6987, 6797, 6798, 7923, 7924 },
-			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
 				{
@@ -3024,13 +3016,12 @@ function R:PrepareDefaults()
 		["Mogu Statue"] ={
 			cat = BFA,
 			type = PET,
-			method = BOSS,
+			method = NPC,
 			name = L["Mogu Statue"],
 			itemId = 167050,
 			spellId = 000000000000000000000000000000000000000000000000000000000,
 			creatureId = 150360,
-			npcs = { 99999 },
-			tooltipNpcs = { 60400, 60399 },
+			npcs = { 60400, 60399 },
 			lockoutDetails = { 
 				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
 				{
@@ -3051,8 +3042,6 @@ function R:PrepareDefaults()
 				},
 			},
 			chance = 10, 
-			statisticId = { 6988, 6799, 6800, 7926, 7927 },
-			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
 				{
@@ -3065,13 +3054,12 @@ function R:PrepareDefaults()
 		["Kor'thik Swarmling"] ={
 			cat = BFA,
 			type = PET,
-			method = BOSS,
+			method = NPC,
 			name = L["Kor'thik Swarmling"],
 			itemId = 167058,
 			spellId = 000000000000000000000000000000000000000000000000000000000,
 			creatureId = 150374,
-			npcs = { 99999 },
-			tooltipNpcs = { 62980 },
+			npcs = { 62980 },
 			lockoutDetails = { 
 				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
 				{
@@ -3092,8 +3080,6 @@ function R:PrepareDefaults()
 				},
 			},
 			chance = 10, 
-			statisticId = { 6991, 6801, 6802, 7951, 7953 },
-			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
 				{
@@ -3106,13 +3092,12 @@ function R:PrepareDefaults()
 		["Tiny Amber Wings"] ={
 			cat = BFA,
 			type = PET,
-			method = BOSS,
+			method = NPC,
 			name = L["Tiny Amber Wings"],
 			itemId = 167053,
 			spellId = 000000000000000000000000000000000000000000000000000000000,
 			creatureId = 150375,
-			npcs = { 99999 },
-			tooltipNpcs = { 62543 },
+			npcs = { 62543 },
 			lockoutDetails = { 
 				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
 				{
@@ -3133,8 +3118,6 @@ function R:PrepareDefaults()
 				},
 			},
 			chance = 10, 
-			statisticId = { 6992, 6803, 6804, 7954, 7955 },
-			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
 				{
@@ -3147,13 +3130,12 @@ function R:PrepareDefaults()
 		["Spawn of Garalon"] ={
 			cat = BFA,
 			type = PET,
-			method = BOSS,
+			method = NPC,
 			name = L["Spawn of Garalon"],
 			itemId = 167054,
 			spellId = 000000000000000000000000000000000000000000000000000000000,
 			creatureId = 150377,
-			npcs = { 99999 },
-			tooltipNpcs = { 62164 },
+			npcs = { 62164 },
 			lockoutDetails = { 
 				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
 				{
@@ -3174,8 +3156,6 @@ function R:PrepareDefaults()
 				},
 			},
 			chance = 10, 
-			statisticId = { 6993, 6805, 6806, 7956, 6805 },
-			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
 				{
@@ -3188,13 +3168,12 @@ function R:PrepareDefaults()
 		["Amber Goo Puddle"] ={
 			cat = BFA,
 			type = PET,
-			method = BOSS,
+			method = NPC,
 			name = L["Amber Goo Puddle"],
 			itemId = 167055,
 			spellId = 000000000000000000000000000000000000000000000000000000000,
 			creatureId = 150380,
-			npcs = { 99999 },
-			tooltipNpcs = { 62511 },
+			npcs = { 62511 },
 			lockoutDetails = { 
 				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
 				{
@@ -3215,8 +3194,6 @@ function R:PrepareDefaults()
 				},
 			},
 			chance = 10, 
-			statisticId = { 6995, 6809, 6810, 7961, 7962 },
-			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
 				{
@@ -3229,13 +3206,12 @@ function R:PrepareDefaults()
 		["Essence of Pride"] ={
 			cat = BFA,
 			type = PET,
-			method = BOSS,
+			method = NPC,
 			name = L["Essence of Pride"],
 			itemId = 167056,
 			spellId = 000000000000000000000000000000000000000000000000000000000,
 			creatureId = 150381,
-			npcs = { 99999 },
-			tooltipNpcs = { 62837 },
+			npcs = { 62837 },
 			lockoutDetails = { 
 				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
 				{
@@ -3256,8 +3232,6 @@ function R:PrepareDefaults()
 				},
 			},
 			chance = 10, 
-			statisticId = { 6996, 6811, 6812, 7963, 7964 },
-			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
 				{
@@ -3297,8 +3271,6 @@ function R:PrepareDefaults()
 				},
 			},
 			chance = 10, 
-			statisticId = { 6998, 6815, 6816, 7967, 7968 },
-			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
 				{
@@ -3339,8 +3311,6 @@ function R:PrepareDefaults()
 				},
 			},
 			chance = 10, 
-			statisticId = { 6999, 6817, 6818, 7969, 7970 },
-			doNotUpdateToHighestStat = true,
 			enableCoin = true,
 			coords = {
 				{
