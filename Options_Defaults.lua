@@ -2896,7 +2896,6 @@ function R:PrepareDefaults()
 	-- 8.1.5 Pets
 	
 
--- TODO: Add missing spell IDs
 
 		["Stoneclaw"] ={
 			cat = BFA,
@@ -2904,7 +2903,7 @@ function R:PrepareDefaults()
 			method = NPC,
 			name = L["Stoneclaw"],
 			itemId = 167047,
-			spellId = 000000000000000000000000000000000000000000000000000000000,
+			spellId = 291513,
 			creatureId = 150354,
 			npcs = { 59915, 60043, 60047, 60051 },
 			lockoutDetails = { 
@@ -2942,7 +2941,7 @@ function R:PrepareDefaults()
 			method = NPC,
 			name = L["Wayward Spirit"],
 			itemId = 167048,
-			spellId = 000000000000000000000000000000000000000000000000000000000,
+			spellId = 291515,
 			creatureId = 150356,
 			npcs = { 60143 },
 			lockoutDetails = { 
@@ -2980,7 +2979,7 @@ function R:PrepareDefaults()
 			method = BOSS,
 			name = L["Celestial Gift"],
 			itemId = 167049,
-			spellId = 000000000000000000000000000000000000000000000000000000000,
+			spellId = 291517,
 			creatureId = 150357,
 			npcs = { 99999 },
 			tooltipNpcs = { 60410 },
@@ -3019,7 +3018,7 @@ function R:PrepareDefaults()
 			method = NPC,
 			name = L["Mogu Statue"],
 			itemId = 167050,
-			spellId = 000000000000000000000000000000000000000000000000000000000,
+			spellId = 291533,
 			creatureId = 150360,
 			npcs = { 60400, 60399 },
 			lockoutDetails = { 
@@ -3057,7 +3056,7 @@ function R:PrepareDefaults()
 			method = NPC,
 			name = L["Kor'thik Swarmling"],
 			itemId = 167058,
-			spellId = 000000000000000000000000000000000000000000000000000000000,
+			spellId = 291548,
 			creatureId = 150374,
 			npcs = { 62980 },
 			lockoutDetails = { 
@@ -3095,7 +3094,7 @@ function R:PrepareDefaults()
 			method = NPC,
 			name = L["Tiny Amber Wings"],
 			itemId = 167053,
-			spellId = 000000000000000000000000000000000000000000000000000000000,
+			spellId = 291549,
 			creatureId = 150375,
 			npcs = { 62543 },
 			lockoutDetails = { 
@@ -3133,7 +3132,7 @@ function R:PrepareDefaults()
 			method = NPC,
 			name = L["Spawn of Garalon"],
 			itemId = 167054,
-			spellId = 000000000000000000000000000000000000000000000000000000000,
+			spellId = 291553,
 			creatureId = 150377,
 			npcs = { 62164 },
 			lockoutDetails = { 
@@ -3171,7 +3170,7 @@ function R:PrepareDefaults()
 			method = NPC,
 			name = L["Amber Goo Puddle"],
 			itemId = 167055,
-			spellId = 000000000000000000000000000000000000000000000000000000000,
+			spellId = 291556,
 			creatureId = 150380,
 			npcs = { 62511 },
 			lockoutDetails = { 
@@ -3209,7 +3208,7 @@ function R:PrepareDefaults()
 			method = NPC,
 			name = L["Essence of Pride"],
 			itemId = 167056,
-			spellId = 000000000000000000000000000000000000000000000000000000000,
+			spellId = 291560,
 			creatureId = 150381,
 			npcs = { 62837 },
 			lockoutDetails = { 
@@ -3247,7 +3246,7 @@ function R:PrepareDefaults()
 			method = BOSS,
 			name = L["Azure Cloud Serpent Egg"],
 			itemId = 167051,
-			spellId = 000000000000000000000000000000000000000000000000000000000,
+			spellId = 291537,
 			creatureId = 150365,
 			npcs = { 99999 },
 			tooltipNpcs = { 62442, 63025 },
@@ -3286,7 +3285,7 @@ function R:PrepareDefaults()
 			method = BOSS,
 			name = L["Spirit of the Spring"],
 			itemId = 167052,
-			spellId = 000000000000000000000000000000000000000000000000000000000,
+			spellId = 291547,
 			creatureId = 150372,
 			npcs = { 99999 },
 			tooltipNpcs = { 62983 },
