@@ -1,6 +1,17 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+L["Stoneclaw"] = true
+L["Wayward Spirit"] = true
+L["Celestial Gift"] = true
+L["Mogu Statue"] = true
+L["Kor'thik Swarmling"] = true
+L["Tiny Amber Wings"] = true
+L["Spawn of Garalon"] = true
+L["Amber Goo Puddle"] = true
+L["Essence of Pride"] = true
+L["Azure Cloud Serpent Egg"] = true
+L["Spirit of the Spring"] = true
 L["Great Sea Ray"] = true
 L["Risen Mare"] = true
 L["Island Thunderscale"] = true

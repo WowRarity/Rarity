@@ -2496,6 +2496,9 @@ local encounterLUT = {
 	[1135] = "Ominous Pile of Snow", -- Hodir
 	[1138] = "Overcomplicated Controller", -- Mimiron
 	[1143] = "Wriggling Darkness", -- Yogg-Saron (mount uses the BOSS method and is tracked separately)
+	[1500] = "Celestial Gift", -- Elegon
+	[1505] = "Azure Cloud Serpent Egg", -- Tsulong
+	[1506] = "Spirit of the Spring", -- Lei Shi
 }
 
 function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidSize, endStatus)
@@ -3682,31 +3685,40 @@ do
 									
 									isDefeated = false
 									local continue = true
-									
-									mode = v.lockoutDetails.mode or mode	
-									
-									for index, entry in ipairs(v.lockoutDetails) do
-									
-										local isValidEntry = entry.encounterName and type(entry.encounterName) == "string" and entry.instanceDifficulties and type(entry.instanceDifficulties) == "table"
-										
+
+									mode = v.lockoutDetails.mode or mode
+
+									for index, sharedDifficultyGroup in ipairs(v.lockoutDetails) do  -- Check all stored lockouts and resolve the defeat detection (if there are none there isn't anything left to do)
+
+										local isValidEntry = sharedDifficultyGroup.encounterName and type(sharedDifficultyGroup.encounterName) == "string" and sharedDifficultyGroup.instanceDifficulties and type(sharedDifficultyGroup.instanceDifficulties) == "table"
+
 										if not isValidEntry then
 											Rarity:Debug("Invalid lockout details for item " .. tostring(v.name) .. " - defeat detection will not be resolved")
 											continue = false
 										end
 
-										local lockoutInfo = Rarity.lockouts_detailed[entry.encounterName]
-										
-										if lockoutInfo and lockoutInfo.instanceDifficulty and entry.instanceDifficulties[lockoutInfo.instanceDifficulty] and continue then -- Currently locked to this encounter -> action depends on the mode setting (only the logical operations OR, AND are currently supported)
+										local storedLockouts = Rarity.lockouts_detailed[sharedDifficultyGroup.encounterName] or {}
 
-											isDefeated = true
+										local isGroupCompleted = false
+										for instanceDifficulty, membershipFlag in pairs(sharedDifficultyGroup.instanceDifficulties) do -- Check if a lockout is stored for any of the group's members (difficulties)
 										
-										else -- No lockout found for this entry
-
-											if mode == "AND" then -- Since at least one step isn't complete, the item shouldn't be marked as defeated
-												isDefeated = false
-												continue = false
+											if storedLockouts[instanceDifficulty] then -- Flag the entire group as locked out
+												isGroupCompleted = true -- isGroupCompleted = storedLockouts[instanceDifficulty]
 											end
-											
+
+										end
+
+										if mode == CONSTANTS.DEFEAT_DETECTION.MODE_AND and not isGroupCompleted and continue then -- Since at least one step isn't complete, the item shouldn't be marked as defeated
+											isDefeated = false
+											continue = false
+										elseif continue then -- Overwrite default value
+											isDefeated = true
+										end
+
+										-- Otherwise, at least one version was defeated, so the item should be marked as defeated
+										if mode == CONSTANTS.DEFEAT_DETECTION.MODE_OR and isGroupCompleted and continue then
+												isDefeated = true
+												continue = false
 										end
 										
 									end
@@ -4561,9 +4573,11 @@ function R:ScanInstanceLocks(reason)
 						
 						local encounterName  = _G["__Rarity_ScanTipTextLeft"..i]:GetText()
 						self.lockouts[encounterName] = true
-						self.lockouts_detailed[encounterName] = {
-							instanceDifficulty = instanceDifficulty,
-						}
+						-- Create containers if this is the first lockout for a given instance
+						self.lockouts_detailed[encounterName] = self.lockouts_detailed[encounterName] or {}
+						self.lockouts_detailed[encounterName][instanceDifficulty] = self.lockouts_detailed[encounterName][instanceDifficulty] or {}
+						-- Add this lockout to the container
+						self.lockouts_detailed[encounterName][instanceDifficulty] = true
 						
 						end
 				end

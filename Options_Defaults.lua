@@ -2893,6 +2893,418 @@ function R:PrepareDefaults()
 			groupSize = 3,
 		},		
 
+		-- 8.1.5 Pets
+	
+		["Stoneclaw"] ={
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Stoneclaw"],
+			itemId = 167047,
+			spellId = 291513,
+			creatureId = 150354,
+			npcs = { 59915, 60043, 60047, 60051 },
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "The Stone Guard",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "The Stone Guard",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			}, 
+			chance = 4,
+			coords = {
+				{
+					m=471,
+					i=true
+				}
+			},
+		},	
+
+		["Wayward Spirit"] ={
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Wayward Spirit"],
+			itemId = 167048,
+			spellId = 291515,
+			creatureId = 150356,
+			npcs = { 60143 },
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Gara'jal the Spiritbinder",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Gara'jal the Spiritbinder",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
+			chance = 10,
+			coords = {
+				{
+					m=471,
+					i=true
+				}
+			},
+		},	
+
+		["Celestial Gift"] ={
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Celestial Gift"],
+			itemId = 167049,
+			spellId = 291517,
+			creatureId = 150357,
+			npcs = { 99999 },
+			tooltipNpcs = { 60410 },
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Elegon",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Elegon",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
+			chance = 4,
+			coords = {
+				{
+					m=471,
+					i=true
+				}
+			},
+		},	
+
+		["Mogu Statue"] ={
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Mogu Statue"],
+			itemId = 167050,
+			spellId = 291533,
+			creatureId = 150360,
+			npcs = { 60400, 60399 },
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Will of the Emperor",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Will of the Emperor",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
+			chance = 4,
+			coords = {
+				{
+					m=471,
+					i=true
+				}
+			},
+		},	
+
+		["Kor'thik Swarmling"] ={
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Kor'thik Swarmling"],
+			itemId = 167058,
+			spellId = 291548,
+			creatureId = 150374,
+			npcs = { 62980 },
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Imperial Vizier Zor'lok",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Imperial Vizier Zor'lok",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
+			chance = 4,
+			coords = {
+				{
+					m=475,
+					i=true
+				}
+			},
+		},	
+
+		["Tiny Amber Wings"] ={
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Tiny Amber Wings"],
+			itemId = 167053,
+			spellId = 291549,
+			creatureId = 150375,
+			npcs = { 62543 },
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Blade Lord Ta'yak",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Blade Lord Ta'yak",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
+			chance = 3,
+			coords = {
+				{
+					m=475,
+					i=true
+				}
+			},
+		},	
+
+		["Spawn of Garalon"] ={
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Spawn of Garalon"],
+			itemId = 167054,
+			spellId = 291553,
+			creatureId = 150377,
+			npcs = { 62164 },
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Garalon",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Garalon",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
+			chance = 4,
+			coords = {
+				{
+					m=475,
+					i=true
+				}
+			},
+		},	
+
+		["Amber Goo Puddle"] ={
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Amber Goo Puddle"],
+			itemId = 167055,
+			spellId = 291556,
+			creatureId = 150380,
+			npcs = { 62511 },
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Amber-Shaper Un'sok",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Amber-Shaper Un'sok",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
+			chance = 4,
+			coords = {
+				{
+					m=475,
+					i=true
+				}
+			},
+		},	
+
+		["Essence of Pride"] ={
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Essence of Pride"],
+			itemId = 167056,
+			spellId = 291560,
+			creatureId = 150381,
+			npcs = { 62837 },
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Grand Empress Shek'zeer",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Grand Empress Shek'zeer",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
+			chance = 10,
+			coords = {
+				{
+					m=475,
+					i=true
+				}
+			},
+		},	
+
+		["Azure Cloud Serpent Egg"] ={
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Azure Cloud Serpent Egg"],
+			itemId = 167051,
+			spellId = 291537,
+			creatureId = 150365,
+			npcs = { 99999 },
+			tooltipNpcs = { 62442, 63025 },
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Tsulong",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Tsulong",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
+			chance = 3,
+			coords = {
+				{
+					m=456,
+					i=true
+				}
+			},
+		},	
+
+		["Spirit of the Spring"] ={
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Spirit of the Spring"],
+			itemId = 167052,
+			spellId = 291547,
+			creatureId = 150372,
+			npcs = { 99999 },
+			tooltipNpcs = { 62983 },
+			lockoutDetails = { 
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
+				{
+					encounterName = "Lei Shi",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true,
+						[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
+						
+					},
+				},
+				{
+					encounterName = "Lei Shi",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true,
+					},
+				},
+			},
+			chance = 4,
+			coords = {
+				{
+					m=456,
+					i=true
+				}
+			},
+		},	
+
 	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
