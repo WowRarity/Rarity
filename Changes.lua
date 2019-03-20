@@ -3,6 +3,10 @@ local changes = {
 	["r687"] = {
 		additions = {
 			"Added tracking for the Great Sea Ray mount (courtesy of ZaruthEU)",
+			"Added tracking for Raiding with Leashes VI: Pets of Pandaria", 
+		},
+		fixes = {
+			"Improved defeat detection for the G.M.O.D. mount (still somewhat experimental)",
 		},
 	},
 	["r686"] = {

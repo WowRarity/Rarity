@@ -1,6 +1,9 @@
 **r687:**
 
 > Added tracking for the Great Sea Ray mount (courtesy of ZaruthEU)
+<br>Added tracking for Raiding with Leashes VI: Pets of Pandaria
+
+> Improved defeat detection for the G.M.O.D. mount (still somewhat experimental)
 
 -----
 
