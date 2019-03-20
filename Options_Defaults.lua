@@ -2925,8 +2925,7 @@ function R:PrepareDefaults()
 					},
 				},
 			}, 
-			chance = 10, 
-			enableCoin = true,
+			chance = 10,
 			coords = {
 				{
 					m=471,
@@ -2963,8 +2962,7 @@ function R:PrepareDefaults()
 					},
 				},
 			},
-			chance = 10, 
-			enableCoin = true,
+			chance = 10,
 			coords = {
 				{
 					m=471,
@@ -3002,8 +3000,7 @@ function R:PrepareDefaults()
 					},
 				},
 			},
-			chance = 10, 
-			enableCoin = true,
+			chance = 10,
 			coords = {
 				{
 					m=471,
@@ -3040,8 +3037,7 @@ function R:PrepareDefaults()
 					},
 				},
 			},
-			chance = 10, 
-			enableCoin = true,
+			chance = 10,
 			coords = {
 				{
 					m=471,
@@ -3078,8 +3074,7 @@ function R:PrepareDefaults()
 					},
 				},
 			},
-			chance = 10, 
-			enableCoin = true,
+			chance = 10,
 			coords = {
 				{
 					m=475,
@@ -3116,8 +3111,7 @@ function R:PrepareDefaults()
 					},
 				},
 			},
-			chance = 10, 
-			enableCoin = true,
+			chance = 10,
 			coords = {
 				{
 					m=475,
@@ -3154,8 +3148,7 @@ function R:PrepareDefaults()
 					},
 				},
 			},
-			chance = 10, 
-			enableCoin = true,
+			chance = 10,
 			coords = {
 				{
 					m=475,
@@ -3192,8 +3185,7 @@ function R:PrepareDefaults()
 					},
 				},
 			},
-			chance = 10, 
-			enableCoin = true,
+			chance = 10,
 			coords = {
 				{
 					m=475,
@@ -3230,8 +3222,7 @@ function R:PrepareDefaults()
 					},
 				},
 			},
-			chance = 10, 
-			enableCoin = true,
+			chance = 10,
 			coords = {
 				{
 					m=475,
@@ -3269,8 +3260,7 @@ function R:PrepareDefaults()
 					},
 				},
 			},
-			chance = 10, 
-			enableCoin = true,
+			chance = 10,
 			coords = {
 				{
 					m=456,
@@ -3308,8 +3298,7 @@ function R:PrepareDefaults()
 					},
 				},
 			},
-			chance = 10, 
-			enableCoin = true,
+			chance = 10,
 			coords = {
 				{
 					m=456,
