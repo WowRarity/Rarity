@@ -2925,7 +2925,7 @@ function R:PrepareDefaults()
 					},
 				},
 			}, 
-			chance = 10,
+			chance = 4,
 			coords = {
 				{
 					m=471,
@@ -3000,7 +3000,7 @@ function R:PrepareDefaults()
 					},
 				},
 			},
-			chance = 10,
+			chance = 4,
 			coords = {
 				{
 					m=471,
@@ -3037,7 +3037,7 @@ function R:PrepareDefaults()
 					},
 				},
 			},
-			chance = 10,
+			chance = 4,
 			coords = {
 				{
 					m=471,
@@ -3074,7 +3074,7 @@ function R:PrepareDefaults()
 					},
 				},
 			},
-			chance = 10,
+			chance = 4,
 			coords = {
 				{
 					m=475,
@@ -3111,7 +3111,7 @@ function R:PrepareDefaults()
 					},
 				},
 			},
-			chance = 10,
+			chance = 3,
 			coords = {
 				{
 					m=475,
@@ -3148,7 +3148,7 @@ function R:PrepareDefaults()
 					},
 				},
 			},
-			chance = 10,
+			chance = 4,
 			coords = {
 				{
 					m=475,
@@ -3185,7 +3185,7 @@ function R:PrepareDefaults()
 					},
 				},
 			},
-			chance = 10,
+			chance = 4,
 			coords = {
 				{
 					m=475,
@@ -3260,7 +3260,7 @@ function R:PrepareDefaults()
 					},
 				},
 			},
-			chance = 10,
+			chance = 3,
 			coords = {
 				{
 					m=456,
@@ -3298,7 +3298,7 @@ function R:PrepareDefaults()
 					},
 				},
 			},
-			chance = 10,
+			chance = 4,
 			coords = {
 				{
 					m=456,
