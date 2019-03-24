@@ -3134,7 +3134,7 @@ function R:PrepareDefaults()
 			itemId = 167054,
 			spellId = 291553,
 			creatureId = 150377,
-			npcs = { 62164 },
+			npcs = { 63191 },
 			lockoutDetails = { 
 				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,	
 				{
