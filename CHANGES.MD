@@ -1,3 +1,10 @@
+**r688:**
+
+> Resolved some display issues for faction-specific mount items that can be obtained from Darkshore rares
+<br>Fixed tracking for Spawn of Garalon
+
+-----
+
 **r687:**
 
 > Added tracking for the Great Sea Ray mount (courtesy of ZaruthEU)
@@ -31,12 +38,3 @@ Developer Notes:
 
 > Fishing from pools in Skettis (Draenor) should no longer incorrectly add attempts for Mr. Pinchy
 <br>Attempts for the Everburning Treant pet should now be properly tracked for players of both factions
-
------
-
-**r683:**
-
-> Added tracking for collectibles dropped by rares in Darkshore
-<br>Added defeat detection for Midnight's Eternal Reins (Return to Karazhan)
-
-> Fixed tracking for pets obtained from BFA paragon reward boxes 
