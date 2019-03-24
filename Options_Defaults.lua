@@ -967,6 +967,7 @@ function R:PrepareDefaults()
 			groupSize = 3,
 			equalOdds = true,
 			questId = 53085,
+			requiresAlliance = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 53.97, y = 56.96, n = L["Doomrider Helgrim"] .. " - " .. L["Alliance controls Stromgarde"] .. " - " .. L["Alliance only"] },
 			},		
@@ -984,6 +985,7 @@ function R:PrepareDefaults()
 			groupSize = 3,
 			equalOdds = true,
 			questId = 53088,
+			requiresHorde = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 49.27, y = 40.05, n = L["Knight-Captain Aldrin"] .. " - " .. L["Horde controls Stromgarde"] .. " - " .. L["Horde only"] },
 			},		
@@ -1107,9 +1109,9 @@ function R:PrepareDefaults()
 			npcs = { 148787 },
 			chance = 20,
 			questId = { 54695, 54696},
-			coords = {
 			groupSize = 5,
 			equalOdds = true,
+			coords = {
 				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 56.4, y = 30.8, n = L["Alash'anir"] },
 			},
 		},
@@ -1123,7 +1125,8 @@ function R:PrepareDefaults()
 			spellId = 288438,
 			npcs = { 149652 },
 			chance = 20,
-			questId = { 54883, 54890 },
+			questId = { 54883 },
+			requiresAlliance = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 49.2, y = 24.8, n = L["Agathe Wyrmwood"] .. " - " .. L["Alliance only"] },
 			},
@@ -1138,7 +1141,8 @@ function R:PrepareDefaults()
 			spellId = 288438,
 			npcs = { 149660 },
 			chance = 20,
-			questId = { 54883, 54890 },
+			requiresHorde = true,
+			questId = { 54890 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 49.2, y = 24.8, n = L["Blackpaw"] .. " - " .. L["Horde only"] },
 			},
@@ -1154,6 +1158,7 @@ function R:PrepareDefaults()
 			npcs = { 149655 },
 			chance = 20,
 			questId = { 54886 },
+			requiresAlliance = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 50.6, y = 32.6, n = L["Croz Bloodrage"] .. " - " .. L["Alliance only"] },
 			},
@@ -1169,6 +1174,7 @@ function R:PrepareDefaults()
 			npcs = { 149663 },
 			chance = 20,
 			questId = { 54892 },
+			requiresHorde = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 39.9, y = 33.0, n = L["Shadowclaw"] .. " - " .. L["Horde only"] },
 			},
@@ -1183,7 +1189,8 @@ function R:PrepareDefaults()
 			spellId = 288503,
 			npcs = { 148037 },
 			chance = 20,
-			questId = { 54277, 54431 },
+			questId = { 54431 },
+			requiresHorde = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 42, y = 77.6, n = L["Athil Dewfire"] .. " - " .. L["Horde only"] },
 			},
@@ -1198,7 +1205,8 @@ function R:PrepareDefaults()
 			spellId = 288503,
 			npcs = { 147701 },
 			chance = 20,
-			questId = { 54277, 54431 },
+			questId = { 54277 },
+			requiresAlliance = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 63.7, y = 20.9, n = L["Moxo the Beheader"] .. " - " .. L["Alliance only"] },
 			},
