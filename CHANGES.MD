@@ -1,6 +1,6 @@
 **r688:**
 
-> Resolved some display issues for faction-specific mount items that can be obtained from Darkshore rares
+> Resolved some display issues for faction-specific mounts that can be obtained from Darkshore rares
 <br>Fixed tracking for Spawn of Garalon
 
 -----

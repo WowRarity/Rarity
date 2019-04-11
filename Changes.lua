@@ -2,7 +2,7 @@ local changes = {
 
 	["r688"] = {
 		fixes = {
-			"Resolved some display issues for faction-specific mount items that can be obtained from Darkshore rares",
+			"Resolved some display issues for faction-specific mounts that can be obtained from Darkshore rares",
 			"Fixed tracking for Spawn of Garalon",
 		},
 	},
