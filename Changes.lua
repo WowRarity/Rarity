@@ -1,5 +1,9 @@
 local changes = {
-
+	["r689"] = {
+		fixes = {
+			"Removed some BFA Paragon reward toys that didn't make it to live servers",
+		}
+	},
 	["r688"] = {
 		fixes = {
 			"Resolved some display issues for faction-specific mounts that can be obtained from Darkshore rares",

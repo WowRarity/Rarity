@@ -1,3 +1,9 @@
+**r689:**
+
+> Removed some BFA Paragon reward toys that didn't make it to live servers
+
+-----
+
 **r688:**
 
 > Resolved some display issues for faction-specific mounts that can be obtained from Darkshore rares
@@ -29,12 +35,3 @@
 
 Developer Notes:
 > This mount now drops from Lady Jaina Proudmoore in LFR difficulty only. The tooltip won't indicate this until it can be corrected in a future update.
-
------
-
-**r684:**
-
-> Added tracking for collectibles that can be obtained in the Battle of Dazar'alor raid (experimental)
-
-> Fishing from pools in Skettis (Draenor) should no longer incorrectly add attempts for Mr. Pinchy
-<br>Attempts for the Everburning Treant pet should now be properly tracked for players of both factions
