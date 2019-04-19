@@ -3941,16 +3941,16 @@ function R:PrepareDefaults()
 	},
 		
 		
-	["Kojo's Master Matching Set"] = {
-		cat = BFA,
-		type = ITEM,
-		isToy = true,
-		method = USE,
-		name = L["Kojo's Master Matching Set"],
-		itemId = 166851,
-		items = { 166245 },
-		chance = 10,
-	},
+	-- ["Kojo's Master Matching Set"] = { -- Note: NYI as of 19/04/2019
+		-- cat = BFA,
+		-- type = ITEM,
+		-- isToy = true,
+		-- method = USE,
+		-- name = L["Kojo's Master Matching Set"],
+		-- itemId = 166851,
+		-- items = { 166245 },
+		-- chance = 10,
+	-- },
 
 	["Warbeast Kraal Dinner Bell"] = {
 		cat = BFA,
@@ -3985,16 +3985,16 @@ function R:PrepareDefaults()
 		chance = 10,
 	},
 	
-	["Words of Akunda"] = {
-		cat = BFA,
-		type = ITEM,
-		isToy = true,
-		method = USE,
-		name = L["Words of Akunda"],
-		itemId = 165021,
-		items = { 166290 },
-		chance = 10,
-	},
+	-- ["Words of Akunda"] = { -- Note: NYI as of 19/04/2019
+		-- cat = BFA,
+		-- type = ITEM,
+		-- isToy = true,
+		-- method = USE,
+		-- name = L["Words of Akunda"],
+		-- itemId = 165021,
+		-- items = { 166290 },
+		-- chance = 10,
+	-- },
 	
 	["Meerah's Jukebox"] = {
 		cat = BFA,
