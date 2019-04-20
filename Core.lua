@@ -3579,6 +3579,11 @@ do
 
 
  local function addGroup(group, requiresGroup)
+
+	R:ProfileStart2()	
+
+	local addGroupStart = debugprofilestop()
+
   if type(group) ~= "table" then return end
   if group.name == nil then return end
 
@@ -3588,12 +3593,18 @@ do
 		local headerAdded = false
 		local itemsExistInThisGroup = false
   local g
+  
+  local addGroupSortStart = debugprofilestop()
+  
   if R.db.profile.sortMode == SORT_NAME then g = sort(group)
   elseif R.db.profile.sortMode == SORT_DIFFICULTY then g = sort_difficulty(group)
   elseif R.db.profile.sortMode == SORT_CATEGORY then g = sort_category(group)
   elseif R.db.profile.sortMode == SORT_ZONE then g = sort_zone(group)
   else g = sort_progress(group)
   end
+  
+  local addGroupSortEnd = debugprofilestop()
+  
   for k, v in pairs(g) do
    if type(v) == "table" and v.enabled ~= false and ((requiresGroup and v.groupSize ~= nil and v.groupSize > 1) or (not requiresGroup and (v.groupSize == nil or v.groupSize <= 1))) then
 
@@ -3843,6 +3854,8 @@ do
    end
   end
 
+	local addGroupIterationEnd = debugprofilestop()
+	
 		-- Collapsed Header
 		if (not headerAdded) and itemsExistInThisGroup and ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
 			headerAdded = true
@@ -3859,6 +3872,10 @@ do
 				tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
 			end
 		end
+
+	local addGroupEnd = debugprofilestop()
+
+	R:ProfileStop2("addGroup(" .. group.name .. ", " .. tostring(requiresGroup) .. ") took %fms"..format(" (Total: %f, Sort: %f, Iteration: %f, Tooltip: %f", (addGroupEnd - addGroupStart), (addGroupSortEnd - addGroupSortStart), (addGroupIterationEnd - addGroupSortEnd), (addGroupEnd - addGroupIterationEnd)))
 
   return added, itemsExistInThisGroup
  end
