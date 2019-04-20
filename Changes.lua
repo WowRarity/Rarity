@@ -2,6 +2,7 @@ local changes = {
 	["r689"] = {
 		fixes = {
 			"Removed some BFA Paragon reward toys that didn't make it to live servers",
+			"Fishing in Mac'aree and Krokuun (on Argus) should now correctly add attempts for the Pond Nettle mount",
 		}
 	},
 	["r688"] = {
