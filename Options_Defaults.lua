@@ -850,7 +850,7 @@ function R:PrepareDefaults()
 			type = MOUNT,
 			method = FISHING,
 			name = L["Pond Nettle"],
-			zones = { "885" },
+			zones = { "885", "830", "882" },
 			spellId = 253711,
 			itemId = 152912,
 			chance = 2000,
