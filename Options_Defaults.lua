@@ -1353,6 +1353,39 @@ function R:PrepareDefaults()
 			61444, -- Ming the Cunning *
 			61243, -- Gekkan *
 			61398, -- Xin the Weaponmaster
+			-- WoD Timewalking
+			---- The Everbloom
+			83846, -- Yalnu
+			82682, -- Archmage Sol
+			84550, -- Xeri'tac
+			83894, -- Dulhu
+            81522, -- Witherbark
+			---- Bloodmaul Slag Mines
+            74366, -- Forgemaster Gog'duh
+            74787, -- Slave Watcher Crushto
+            75786, -- Roltall
+            74790, -- GugÄrokk
+            ---- Iron Docks
+            81305, -- Fleshrender Nok'gar
+            80816, -- Ahri'ok Dugru
+            79852, -- Oshir
+            83612, -- Skulloc
+            ---- Auchindoun
+            75839, -- Vigilant Kaathar
+            76177, -- Soulbinder Nyami
+            75927, -- Azzakel
+            77734, -- Teron'gor
+            ---- Shadowmoon Burial Grounds
+            75509, -- Sadana Bloodfury
+            75829, -- Nhallish
+            75452, -- Bonemaw
+            76407, -- Ner'zhul
+            ---- Skyreach
+            75964, -- Ranjit
+            76141, -- Araknath
+            76379, -- Rukhran
+            76266, -- High Sage Viryx			
+			
 		},
 		chance = 4000, groupSize = 5, equalOdds = true, instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.TIMEWALKING_DUNGEON] = true, }, coords = {{m=348,i=true},{m=265,i=true},{m=246,i=true},{m=272,i=true},{m=273,i=true},{m=269,i=true},{m=184,i=true},{m=136,i=true},{m=129,i=true},{m=138,i=true},{m=153,i=true},{m=132,i=true},{m=322,i=true},{m=325,i=true},{m=324,i=true},{m=277,i=true},{m=293,i=true},{m=401,i=true},{m=437,i=true},{m=429,i=true},{m=439,i=true},{m=457,i=true},{m=443,i=true},{m=453,i=true}}, },
 		-- 7.x
