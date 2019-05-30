@@ -1,8 +1,12 @@
 local changes = {
 	["r689"] = {
+		additions = {
+			"Added tracking for WOD Timewalking encounters to the Infinite Timereaver mount (courtesy of redpandamonium)",
+		},
 		fixes = {
 			"Removed some BFA Paragon reward toys that didn't make it to live servers",
 			"Fishing in Mac'aree and Krokuun (on Argus) should now correctly add attempts for the Pond Nettle mount",
+			"The Emerald Whelpling pet should now be listed with its proper name",
 		}
 	},
 	["r688"] = {

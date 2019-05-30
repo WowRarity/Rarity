@@ -1,7 +1,10 @@
 **r689:**
 
+> Added tracking for WOD Timewalking encounters to the Infinite Timereaver mount (courtesy of redpandamonium)
+
 > Removed some BFA Paragon reward toys that didn't make it to live servers
 <br>Fishing in Mac'aree and Krokuun (on Argus) should now correctly add attempts for the Pond Nettle mount
+<br>The Emerald Whelpling pet should now be listed with its proper name
 
 -----
 
