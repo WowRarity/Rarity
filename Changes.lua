@@ -1,4 +1,13 @@
 local changes = {
+	["r690"] = {
+		additions = {
+			"Added missing NPCs for Goldenmane's Reins",
+		},
+		fixes = {
+			"Fixed an error caused by Blizzard now blocking addons from accessing files via relative paths",
+		},
+	},
+
 	["r689"] = {
 		additions = {
 			"Added tracking for WOD Timewalking encounters to the Infinite Timereaver mount (courtesy of redpandamonium)",

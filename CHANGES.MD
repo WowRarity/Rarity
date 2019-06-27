@@ -1,3 +1,11 @@
+**r690:**
+
+> Added missing NPCs for Goldenmane's Reins
+
+> Fixed an error caused by Blizzard now blocking addons from accessing files via relative paths
+
+-----
+
 **r689:**
 
 > Added tracking for WOD Timewalking encounters to the Infinite Timereaver mount (courtesy of redpandamonium)
@@ -30,12 +38,3 @@
 
 > The tooltip for Mekkatorque (Normal/Heroic/Mythic) and Lady Jaina Proudmoore (LFR) should now show that the G.M.O.D. can be obtained from this encounter in the respective difficulty
 <br>Attempts for the Kaldorei Nightsaber mount (Drop: Darkshore) should now be tracked correctly for both factions
-
------
-
-**r685:**
-
-> Updated tracking for the G.M.O.D. mount to account for a recent hotfix by Blizzard
-
-Developer Notes:
-> This mount now drops from Lady Jaina Proudmoore in LFR difficulty only. The tooltip won't indicate this until it can be corrected in a future update.
