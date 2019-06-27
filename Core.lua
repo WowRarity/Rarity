@@ -4168,7 +4168,7 @@ function R:ShowFoundAlert(itemId, attempts, item)
  end, 2)
 
 
- PlaySoundFile("Sound\\Spells\\AchievmentSound1.ogg")
+ PlaySound(12891) -- UI_Alert_AchievementGained
 end
 
 
