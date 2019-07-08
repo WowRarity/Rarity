@@ -18,13 +18,9 @@ if not addon then return end
 
 
 -- Upvalues
+local pairs = pairs
 local tostring = tostring
-local type = type
-local tinsert = table.insert
-local tremove = table.remove
-local time = time
-local min = min
-local max = max
+local assert = assert
 
 
 -- Locals
@@ -75,6 +71,24 @@ local DBH = {
 	
 
 }
+
+function DBH:VerifyEntry(entry)
+
+	local itemType = entry.type
+	assert(self.itemTypes[itemType] ~= nil, tostring(itemType) .. " is not a valid item type" )
+
+	-- The most basic check: Make sure all required fields are set
+	for key, value in pairs(self.itemTypes) do
+		
+		if self.itemTypes.ANY[key] or self.itemTypes[itemType][key] then
+			assert(entry[key] ~= nil, tostring(key) .. " is a required field and must be set")
+		end
+		
+	end
+	
+	return true
+
+end
 
 
 addon.DatabaseMaintenanceHelper = DBH
