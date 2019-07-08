@@ -52,6 +52,7 @@ Libs\LibBars-1.0\lib.xml
 DB\SharedConstants.lua
 
 # Utility/Helpers
+Utils\DatabaseMaintenanceHelper.lua
 Utils\DebugCache.lua
 Utils\PrettyPrint.lua
 
