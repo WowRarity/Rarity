@@ -93,20 +93,18 @@ end
 
 function DBH:GetExportString(entry)
 
-	local exportString = ""
-	
 	local isValidEntry = self:VerifyEntry(entry)
 	assert(isValidEntry, "Cannot export an invalid entry")
 	
-	exportString += "[\"" .. entry.name .. "\"] = {/n"
+	local exportString = "[\"" .. entry.name .. "\"] = {/n"
 	
 	for key, value in pairs(entry) do -- Assemble the string
 	
-		exportString += key .. " = ".. value .. ","
+		exportString = exportString .. key .. " = ".. value .. ","
 	
 	end
 
-	exportString += "},\n"
+	exportString = exportString .. "},\n"
 	
 	return exportString
 
