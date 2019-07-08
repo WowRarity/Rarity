@@ -91,4 +91,26 @@ function DBH:VerifyEntry(entry)
 end
 
 
+function DBH:GetExportString(entry)
+
+	local exportString = ""
+	
+	local isValidEntry = self:VerifyEntry(entry)
+	assert(isValidEntry, "Cannot export an invalid entry")
+	
+	exportString += "[\"" .. entry.name .. "\"] = {/n"
+	
+	for key, value in pairs(entry) do -- Assemble the string
+	
+		exportString += key .. " = ".. value .. ","
+	
+	end
+
+	exportString += "},\n"
+	
+	return exportString
+
+end
+
+
 addon.DatabaseMaintenanceHelper = DBH
