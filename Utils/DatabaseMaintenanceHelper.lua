@@ -86,6 +86,14 @@ function DBH:VerifyEntry(entry)
 		
 	end
 	
+	-- Additional check: Allow only valid fields (result: Alert if something was entered incorrectly while updating the DB...)
+	for key, value in pairs(entry) do
+		
+		assert( (self.itemTypes.ANY[key] ~= nil) or (self.itemTypes[itemType][key] ~= nil), tostring(key) .. " is an invalid field and cannot be set")
+		-- TODO: Type checking, validation etc. here (if ever implemented)
+		
+	end
+	
 	return true
 
 end
