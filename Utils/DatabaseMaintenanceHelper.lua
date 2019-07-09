@@ -37,7 +37,7 @@ local DBH = {
 		MOUNT = {
 			spellId = true,
 		},
-		TOY = {
+		ITEM = { -- TODO: Internally, the item type TOY doesn't exist...
 			isToy = true,
 		},
 		
