@@ -84,11 +84,20 @@ local DBH = {
 			holidayTexture = false,
 			known = false,
 			finds = false,
+			found = false,
 			totalFinds = false,
 			time = false,
+			lastTime = false,
 			items = false,
 			excludedMaps = false,
 			npcs = false,
+			christmasOnly = false,
+			requiresPool = false,
+			creatureId = false
+			zones = false,
+			repeatable = false,
+			spellId = false
+			-- TODO: These fields seem to be all over the place. They should adhere to the structure defined above for each item type... Sigh.
 		
 		},
 	
