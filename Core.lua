@@ -922,6 +922,7 @@ function R:ChatCommand(input)
 		local ItemDB = self.db.profile.groups.items
 		local PetDB = self.db.profile.groups.pets
 		local MountDB = self.db.profile.groups.mounts
+		local UserDB = self.db.profile.groups.user
 		local DB = { ItemDB, PetDB, MountDB }
 
 		self:Print(L["Verifying database..."])
