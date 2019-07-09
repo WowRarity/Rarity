@@ -1,6 +1,11 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+L["Verifying database..."] = true
+L["Verification complete! Everything appears to be in order..."] = true
+L["Verification failed for entry: %s""] = true
+L["Verfication failed with % errors!"] = true
+
 L["Stoneclaw"] = true
 L["Wayward Spirit"] = true
 L["Celestial Gift"] = true

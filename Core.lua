@@ -912,6 +912,31 @@ function R:ChatCommand(input)
 	elseif strlower(input) == "dump" then	
 		local numMessages = 50 -- Hardcoded is meh, but it should suffice for the time being
 		self.DebugCache:PrintMessages(numMessages)
+	elseif strlower(input) == "verify" then -- Verify the ItemDB	
+		
+		local DBH = self.DatabaseMaintenanceHelper
+		local ItemDB = self.db.profile.groups.items
+		local PetDB = self.db.profile.groups.pets
+		local MountDB = self.db.profile.groups.mounts
+		local DB = { ItemDB, PetDB, MountDB }
+
+		self:Print(L["Verifying database..."])
+		
+		local numErrors = 0
+		
+		for category, entry in pairs(DB) do
+			for item, fields in pairs(entry) do
+				local isEntryValid = DBH:VerifyEntry(entry)
+				if not isEntryValid then
+					self:Print(format(L["Verification failed for entry: %s"], item)
+					numErrors = numErrors + 1
+				end
+			end
+		end
+		
+		if numErrors == 0 then self:Print(L["Verification complete! Everything appears to be in order..."])
+		else self:Print(format(L["Verfication failed with % errors!"], numErrors)) end
+		
 	elseif strlower(input) == "profiling" then
 		if self.db.profile.enableProfiling then
 			self.db.profile.enableProfiling = false
