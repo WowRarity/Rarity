@@ -99,6 +99,8 @@ local DBH = {
 
 function DBH:VerifyEntry(entry)
 
+	print("Verifying entry for item: " .. tostring(entry and entry.name))
+
 	local itemType = entry.type
 	assert_soft(self.itemTypes[itemType] ~= nil, tostring(itemType) .. " is not a valid item type" )
 
