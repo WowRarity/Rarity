@@ -88,7 +88,8 @@ local DBH = {
 			creatureId = false,
 			zones = false,
 			repeatable = false,
-			spellId = false
+			spellId = false,
+			lockDungeonId = false,
 			-- TODO: These fields seem to be all over the place. They should adhere to the structure defined above for each item type... Sigh.
 		
 		},
@@ -103,7 +104,7 @@ function DBH:VerifyEntry(entry)
 	print("Verifying entry for item: " .. tostring(entry and entry.name))
 
 	local itemType = entry.type
-	if self.itemTypes[itemType] ~= nil then
+	if self.itemTypes[itemType] == nil then
 		print(tostring(itemType) .. " is not a valid item type" )
 		return false
 	end
@@ -111,8 +112,8 @@ function DBH:VerifyEntry(entry)
 	-- The most basic check: Make sure all required fields are set
 	for key, value in pairs(self.itemTypes) do
 		
-		if self.itemTypes.ANY[key] or self.itemTypes[itemType][key] then
-			if entry[key] ~= nil then
+		if (self.itemTypes.ANY[key] ~= nil) or (self.itemTypes[itemType][key] ~= nil) then
+			if not entry[key] then
 				print(tostring(key) .. " is a required field and must be set")
 				return false
 			end
@@ -123,7 +124,7 @@ function DBH:VerifyEntry(entry)
 	-- Additional check: Allow only valid fields (result: Alert if something was entered incorrectly while updating the DB...)
 	for key, value in pairs(entry) do
 		
-		if  (self.itemTypes.ANY[key] ~= nil) or (self.itemTypes[itemType][key] ~= nil) then
+		if (self.itemTypes.ANY[key] == nil) and (self.itemTypes[itemType][key] == nil) then
 			print(tostring(key) .. " is an invalid field and cannot be set")
 			return false
 		end
