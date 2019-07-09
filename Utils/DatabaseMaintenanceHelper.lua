@@ -22,14 +22,6 @@ local pairs = pairs
 local tostring = tostring
 local assert = assert
 
--- "Soft" assert - don't raise an error (as debugging them is simply more annoying)
-local function assert_soft(condition, message)
-
-	if not condition then
-		print("ASSERTION FAILED: " .. tostring(message))
-	end
-
-end
 
 -- Locals
 -- Format: fieldName = isRequiredField (optional if set to FALSE)
@@ -111,13 +103,19 @@ function DBH:VerifyEntry(entry)
 	print("Verifying entry for item: " .. tostring(entry and entry.name))
 
 	local itemType = entry.type
-	assert_soft(self.itemTypes[itemType] ~= nil, tostring(itemType) .. " is not a valid item type" )
-
+	if self.itemTypes[itemType] ~= nil then
+		print(tostring(itemType) .. " is not a valid item type" )
+		return false
+	end
+	
 	-- The most basic check: Make sure all required fields are set
 	for key, value in pairs(self.itemTypes) do
 		
 		if self.itemTypes.ANY[key] or self.itemTypes[itemType][key] then
-			assert_soft(entry[key] ~= nil, tostring(key) .. " is a required field and must be set")
+			if entry[key] ~= nil then
+				print(tostring(key) .. " is a required field and must be set")
+				return false
+			end
 		end
 		
 	end
@@ -125,7 +123,10 @@ function DBH:VerifyEntry(entry)
 	-- Additional check: Allow only valid fields (result: Alert if something was entered incorrectly while updating the DB...)
 	for key, value in pairs(entry) do
 		
-		assert_soft( (self.itemTypes.ANY[key] ~= nil) or (self.itemTypes[itemType][key] ~= nil), tostring(key) .. " is an invalid field and cannot be set")
+		if  (self.itemTypes.ANY[key] ~= nil) or (self.itemTypes[itemType][key] ~= nil) then
+			print(tostring(key) .. " is an invalid field and cannot be set")
+			return false
+		end
 		-- TODO: Type checking, validation etc. here (if ever implemented)
 		
 	end
@@ -138,7 +139,7 @@ end
 function DBH:GetExportString(entry)
 
 	local isValidEntry = self:VerifyEntry(entry)
-	assert_soft(isValidEntry, "Cannot export an invalid entry")
+	assert(isValidEntry, "Cannot export an invalid entry")
 	
 	local exportString = "[\"" .. entry.name .. "\"] = {/n"
 	
