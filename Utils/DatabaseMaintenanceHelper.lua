@@ -22,6 +22,14 @@ local pairs = pairs
 local tostring = tostring
 local assert = assert
 
+-- "Soft" assert - don't raise an error (as debugging them is simply more annoying)
+local function assert_soft(condition, message)
+
+	if not condition then
+		print("ASSERTION FAILED: " .. tostring(message))
+	end
+
+end
 
 -- Locals
 -- Format: fieldName = isRequiredField (optional if set to FALSE)
@@ -75,13 +83,13 @@ local DBH = {
 function DBH:VerifyEntry(entry)
 
 	local itemType = entry.type
-	assert(self.itemTypes[itemType] ~= nil, tostring(itemType) .. " is not a valid item type" )
+	assert_soft(self.itemTypes[itemType] ~= nil, tostring(itemType) .. " is not a valid item type" )
 
 	-- The most basic check: Make sure all required fields are set
 	for key, value in pairs(self.itemTypes) do
 		
 		if self.itemTypes.ANY[key] or self.itemTypes[itemType][key] then
-			assert(entry[key] ~= nil, tostring(key) .. " is a required field and must be set")
+			assert_soft(entry[key] ~= nil, tostring(key) .. " is a required field and must be set")
 		end
 		
 	end
@@ -89,7 +97,7 @@ function DBH:VerifyEntry(entry)
 	-- Additional check: Allow only valid fields (result: Alert if something was entered incorrectly while updating the DB...)
 	for key, value in pairs(entry) do
 		
-		assert( (self.itemTypes.ANY[key] ~= nil) or (self.itemTypes[itemType][key] ~= nil), tostring(key) .. " is an invalid field and cannot be set")
+		assert_soft( (self.itemTypes.ANY[key] ~= nil) or (self.itemTypes[itemType][key] ~= nil), tostring(key) .. " is an invalid field and cannot be set")
 		-- TODO: Type checking, validation etc. here (if ever implemented)
 		
 	end
@@ -102,7 +110,7 @@ end
 function DBH:GetExportString(entry)
 
 	local isValidEntry = self:VerifyEntry(entry)
-	assert(isValidEntry, "Cannot export an invalid entry")
+	assert_soft(isValidEntry, "Cannot export an invalid entry")
 	
 	local exportString = "[\"" .. entry.name .. "\"] = {/n"
 	
