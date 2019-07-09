@@ -54,6 +54,7 @@ local DBH = {
 		
 			-- index = true, -- always defaults to the displayed name, for now
 			
+			-- Required ItemDB fields
 			name = true,
 			cat = true,
 			type = true,
@@ -61,6 +62,7 @@ local DBH = {
 			chance = true,
 			itemId = true,
 			
+			-- Optional ItemDB fields
 			questId = false,
 			groupSize = false,
 			equalOdds = false,
@@ -72,6 +74,21 @@ local DBH = {
 			lockoutDetails = false,
 			instanceDifficulties = false,
 			unique = false,
+			
+			-- Populated fields (SavedVariables)
+			attempts = false,
+			lastAttempts = false,
+			realAttempts = false,
+			enabled = false,
+			dates = false,
+			holidayTexture = false,
+			known = false,
+			finds = false,
+			totalFinds = false,
+			time = false,
+			items = false,
+			excludedMaps = false,
+			npcs = false,
 		
 		},
 	
