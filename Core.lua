@@ -934,7 +934,7 @@ function R:ChatCommand(input)
 				
 				if type(fields) == "table" then
 				
-					self:Print(format(L["Verifying entry: %s ..."], item))
+					self:Debug(format(L["Verifying entry: %s ..."], item))
 					local isEntryValid = DBH:VerifyEntry(fields)
 					if not isEntryValid then  -- Skip pseudo-groups... Another artifact that has to be worked around, I guess
 						self:Print(format(L["Verification failed for entry: %s"], item))
