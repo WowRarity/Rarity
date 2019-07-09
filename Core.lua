@@ -930,7 +930,8 @@ function R:ChatCommand(input)
 		
 		for category, entry in pairs(DB) do
 			for item, fields in pairs(entry) do
-				local isEntryValid = DBH:VerifyEntry(fields)
+				self:Print(format(L["Verifying entry: %s ..."], item))
+				local isEntryValid = (item ~= "collapsedGroup") and DBH:VerifyEntry(fields) or true -- Skip this pseudo-group... Another artifact that has to be worked around, I guess
 				if not isEntryValid then
 					self:Print(format(L["Verification failed for entry: %s"], item))
 					numErrors = numErrors + 1

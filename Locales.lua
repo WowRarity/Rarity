@@ -3,6 +3,7 @@ L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 L["Verifying database..."] = true
 L["Verification complete! Everything appears to be in order..."] = true
+L["Verifying entry: %s ..."] = true
 L["Verification failed for entry: %s"] = true
 L["Verfication failed with % errors!"] = true
 
