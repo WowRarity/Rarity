@@ -930,7 +930,7 @@ function R:ChatCommand(input)
 		
 		for category, entry in pairs(DB) do
 			for item, fields in pairs(entry) do
-				local isEntryValid = DBH:VerifyEntry(entry)
+				local isEntryValid = DBH:VerifyEntry(fields)
 				if not isEntryValid then
 					self:Print(format(L["Verification failed for entry: %s"], item))
 					numErrors = numErrors + 1
