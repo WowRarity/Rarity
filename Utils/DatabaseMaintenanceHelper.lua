@@ -38,7 +38,7 @@ local DBH = {
 			spellId = true,
 		},
 		ITEM = { -- TODO: Internally, the item type TOY doesn't exist...
-			isToy = true,
+			isToy = false,
 		},
 		
 		-- Fields that are valid for all types of items
@@ -53,6 +53,7 @@ local DBH = {
 			method = true,
 			chance = true,
 			itemId = true,
+		--	arbitraryRequiredTestField = true,
 			
 			-- Optional ItemDB fields
 			questId = false,
@@ -129,12 +130,15 @@ function DBH:VerifyEntry(entry)
 	end
 	
 	-- The most basic check: Make sure all required fields are set
-	for key, value in pairs(self.itemTypes) do
+	for type, fields in pairs(self.itemTypes) do
 		
-		if (self.itemTypes.ANY[key] ~= nil) or (self.itemTypes[itemType][key] ~= nil) then
-			if not entry[key] then
-				print(tostring(key) .. " is a required field and must be set")
-				return false
+		for key, isRequiredField in pairs(fields) do -- Check if required fields are actually set
+		
+			if isRequiredField and (type == itemType or type == "ANY") then -- This field is required for the given item type
+				if not entry[key] then -- ..	. but it isn't set
+					print(tostring(key) .. " is a required field and must be set")
+					return false
+				end
 			end
 		end
 		
