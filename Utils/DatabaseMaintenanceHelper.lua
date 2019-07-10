@@ -121,8 +121,8 @@ local DBH = {
 
 function DBH:VerifyEntry(entry)
 
-	print("Verifying entry for item: " .. tostring(entry and entry.name))
-
+	-- print("Verifying entry for item: " .. tostring(entry and entry.name))
+	
 	local itemType = entry.type
 	if self.itemTypes[itemType] == nil then
 		print(tostring(itemType) .. " is not a valid item type" )
@@ -137,6 +137,7 @@ function DBH:VerifyEntry(entry)
 			if isRequiredField and (type == itemType or type == "ANY") then -- This field is required for the given item type
 				if not entry[key] then -- ..	. but it isn't set
 					print(tostring(key) .. " is a required field and must be set")
+					-- dump(entry)
 					return false
 				end
 			end
