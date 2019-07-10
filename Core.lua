@@ -798,7 +798,11 @@ do
 		end, 240)
 		
 		self:Debug(L["Loaded (running in debug mode)"])
+		
+		if self.db.profile.verifyDatabaseOnLogin then self:VerifyItemDB() end	
+		
 	end
+	
 end
 
 
