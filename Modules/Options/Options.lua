@@ -107,6 +107,9 @@ do
 		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity-Profiles", R.profileOptions)
 		R.profileFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity-Profiles", "Profiles", "Rarity")
 		
+		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity-Advanced", R.advancedSettings)
+		R.advancedSettingsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity-Advanced", "Advanced", "Rarity")
+		
 	end
 	
 end
@@ -1307,6 +1310,37 @@ function R:PrepareOptions()
 	self:CreateGroup(self.options.args.companions, self.db.profile.groups.pets, false)
 	self:CreateGroup(self.options.args.items, self.db.profile.groups.items, false)
 	self:CreateGroup(self.options.args.custom, self.db.profile.groups.user, true)
+
+	self.advancedSettings  = {
+	
+		name = L["Advanced"],
+		type = "group",
+		handler = Rarity,
+		childGroups = "tab",
+		args = {
+			
+			experimental = {
+				name = L["Experimental"],
+				type = "group",
+				 order = newOrder(),
+				inline = true,
+				args = {
+					verifyDatabaseOnLogin = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Verify item database on login"],
+						  width = "full",
+						  desc = format(L["Run the verification routine automatically when logging in. It can always be run manually by typing %s"], "/rarity verify"),
+						  get = function() return self.db.profile.verifyDatabaseOnLogin end,
+						  set = function(info, val)
+							  self.db.profile.verifyDatabaseOnLogin = val
+						  end,
+					  },
+				},
+			},
+
+		},
+	}
 
 end -- function R:PrepareOptions()
 
