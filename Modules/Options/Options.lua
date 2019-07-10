@@ -1323,7 +1323,7 @@ function R:PrepareOptions()
 				name = L["Experimental"],
 				type = "group",
 				 order = newOrder(),
-				inline = true, -- TODO: L
+				inline = true,
 				args = {
 					verifyDatabaseOnLogin = {
 						  type = "toggle",
