@@ -917,7 +917,7 @@ function R:VerifyItemDB()
 	local UserDB = self.db.profile.groups.user
 	local DB = { ItemDB, PetDB, MountDB }
 
-	self:Print(L["Verifying database..."])
+	self:Print(L["Verifying item database..."])
 	
 	local numErrors = 0
 	
