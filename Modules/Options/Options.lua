@@ -1329,6 +1329,7 @@ function R:PrepareOptions()
 						  type = "toggle",
 						  order = newOrder(),
 						  name = L["Verify item database on login"],
+						  width = "full",
 						  desc = format(L["Run the verification routine automatically when logging in. It can always be run manually by typing %s"], "/rarity verify"),
 						  get = function() return self.db.profile.verifyDatabaseOnLogin end,
 						  set = function(info, val)
