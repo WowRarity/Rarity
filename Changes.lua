@@ -33,7 +33,7 @@ local changes = {
 	["r687"] = {
 		additions = {
 			"Added tracking for the Great Sea Ray mount (courtesy of ZaruthEU)",
-			"Added tracking for Raiding with Leashes VI: Pets of Pandaria", 
+			"Added tracking for Raiding with Leashes VI: Pets of Pandaria",
 		},
 		fixes = {
 			"Improved defeat detection for the G.M.O.D. mount (still somewhat experimental)",
@@ -106,55 +106,55 @@ local changes = {
 	},
 
 	["r678"] = {
-	
+
 		additions = {
 			"Added tracking for the remaining collectibles (pets and toys) dropped by rares in the Arathi Highlands",
 			"Added tracking for both toys obtainable from the Arathi Highlands world bosses (Doom's Howl and The Lion's Roar)",
 		},
-		
+
 		changes = {
 			"Existing mounts that are dropped by rares in the Arathi Highlands are now listed under the \"Groups\" category if defeating said rare tends to require a group",
 		},
-		
+
 		fixes = {
 			"Luckiness calculation for the mounts dropped by rares in the Arathi Highlands now correctly assumed Personal Loot",
 			"Statistics tracking for the mounts dropped from Mythic difficulty dungeon bosses in The Underrot, Freehold, and King's Rest should now function properly",
 		},
-	
+
 		issues = {
 			"Looting a Challenger's Cache in The Underrot, Freehold, or King's Rest (Mythic Keystone difficulty) doesn't currently add attempts for the mounts that it may contain",
 			"Defeat detection for The Lion's Roar is not currently implemented (see notes below)",
 			"Defeat detection for Knight-Captain Aldrin doesn't currently work (see notes below)",
 			"The drop rates for many, if not most, of the new items are likely inaccurate. They will have to be updated once more data is available",
-		},		
-		
+		},
+
 		notes = {
 			"I don't have a Horde character at max level. Someone will have to find out the quest ID - feel free to message me for instructions on how to do this (it's quite simple if you haven't killed the boss yet for a given warfront cycle)",
 			"It is unclear whether or not the toys from Arathi Highlands world bosses can be obtained via bonus roll. Please let me know if someone has obtained them after using theirs. For the time being, Rarity will not consider bonus rolls to  be valid attempts, which may or may not be correct.",
 		},
-	
+
 	},
 
-	["r677"] = {		
+	["r677"] = {
 		additions = {
 			"Added tracking for all collectibles obtainable from Island Expeditions (see notes below)",
 			"Added item: Viable Cobra Egg (Drop: Merektha)",
 		},
-		
+
 		changes = {
 			"Reverted a minor cosmetic change to the addon's output that had harmless, but unintended, side effects",
 		},
-		
+
 		fixes = {
 			"Looting Nok-Karosh should no longer count attempts for the Eye of Observation pet (which is a drop from Orumo the Observer)",
 		},
-		
+
 
 
 		notes = {
 			"Since there's virtually no data on anything regarding these items right now, most estimates are little more than a wild guess. They will need to be refined in future updates.",
 		},
-		
+
 	},
 
 	["r676"] = {
