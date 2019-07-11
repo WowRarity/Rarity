@@ -3,7 +3,7 @@ L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 L["Experimental"] = true
 L["Verify item database on login"] = true
-L["Run the verification routine automatically when logging in. It can always be run manually by typing %s"] = true
+L["Run the verification routine automatically after logging in. It can always be run manually (by typing %s)."] = true
 L["Advanced"] = true
 L["Adventurous Hopling Pack"] = true
 L["Ghostly Whelpling"] = true 
