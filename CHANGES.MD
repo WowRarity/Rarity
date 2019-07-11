@@ -1,8 +1,14 @@
 **r690:**
 
 > Added missing NPCs for Goldenmane's Reins
+<br>Added support for 8.2 island expedition maps
+<br>Added tracking for 8.2 island expedition pets
+<br>Added setting to automatically verify the database on login (experimental)
 
 > Fixed an error caused by Blizzard now blocking addons from accessing files via relative paths
+
+Developer Notes:
+> The remaining collectibles added in patch 8.2 are not yet supported. While this is being resolved, you may want to try this user-provided import string: https://www.curseforge.com/wow/addons/rarity?comment=1883
 
 -----
 

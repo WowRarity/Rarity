@@ -2,9 +2,15 @@ local changes = {
 	["r690"] = {
 		additions = {
 			"Added missing NPCs for Goldenmane's Reins",
+			"Added support for 8.2 island expedition maps",
+			"Added tracking for 8.2 island expedition pets",
+			"Added setting to automatically verify the database on login (experimental)",
 		},
 		fixes = {
 			"Fixed an error caused by Blizzard now blocking addons from accessing files via relative paths",
+		},
+		notes = {
+			"The remaining collectibles added in patch 8.2 are not yet supported. While this is being resolved, you may want to try this user-provided import string: https://www.curseforge.com/wow/addons/rarity?comment=1883",
 		},
 	},
 
