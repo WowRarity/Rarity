@@ -2585,6 +2585,8 @@ do
 		[1898] = "Skittering Hollow",
 		[1814] = "Havenswood",
 		[1879] = "Jorundall",
+		[1907] = "Snowblossom",
+		[2124] = "Crestfall",
 	}
 
 	local islandExpeditionCollectibles = { -- List of collectibles (so we don't have to search the item DB for them)
@@ -2630,6 +2632,9 @@ do
 		"Firesting Buzzer",
 		"Needleback Pup",
 		"Shadefeather Hatchling",
+		---- 8.2
+		"Adventurous Hopling Pack",
+		"Ghostly Whelpling",
 		
 		-- Toys
 		---- 8.0
