@@ -30,7 +30,7 @@
 
 ## Slash Commands
 
- Simply typing **/rarity** should open the options menu (if enabled)
+ Simply typing **/rarity** should open the options menu (unless disabled).
 
 For troubleshooting issues:
 
