@@ -1,5 +1,5 @@
 ## Author: Allara
-## Interface: 80100
+## Interface: 80200
 ## Notes: Rarity configuration. Use AddonLoader to load this on demand.
 ## Title: Rarity [|caaedc99fOptions|r]
 ## Dependencies: Rarity
