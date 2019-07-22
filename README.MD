@@ -28,14 +28,18 @@
 <li>Automatically imports data from Bunny Hunter if you're switching</li>
 </ul>
 
-## Slash Commands
+<h2>Slash Commands</h2>
 
- Simply typing **/rarity** should open the options menu (unless disabled).
+<p>Simply typing <strong>/rarity</strong> should open the options menu (unless disabled).</p>
 
-For troubleshooting issues:
+<p>For troubleshooting issues:
 
-* **/rarity dump** prints the most recent debug log entries (even if the debug mode is disabled)
-* **/rarity verify** attempts to verify the validity of your item database, including custom-added items (experimental)
+<ul><li><strong>/rarity dump</strong> prints the most recent debug log entries (even if the debug mode is disabled)
+</li>
+<li><strong>/rarity verify</strong> attempts to verify the validity of your item database, including custom-added items (experimental)
+</li></ul>
+
+</p>
 
 <h2 id="w-http-www-wowace-com-addons-rarity-comments-http-www"><a href="http://www.wowace.com/addons/rarity/">Comments</a> &amp; <a href="http://www.wowace.com/addons/rarity/tickets/">bug reports</a></h2>
 
