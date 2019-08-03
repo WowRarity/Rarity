@@ -4802,7 +4802,7 @@ function R:PrepareDefaults()
 	},
 
 	["Flopping Fish"] = {
-		cat = LEGION,
+		cat = BFA,
 		type = ITEM,
 		isToy = true,
 		method = USE,
@@ -4813,7 +4813,7 @@ function R:PrepareDefaults()
 	},
 
 	["Memento of the Deeps"] = {
-		cat = LEGION,
+		cat = BFA,
 		type = ITEM,
 		isToy = true,
 		method = USE,
