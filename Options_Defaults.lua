@@ -4812,6 +4812,18 @@ function R:PrepareDefaults()
 		chance = 20, -- Blind guess (no data)
 	},
 
+	["Memento of the Deeps"] = {
+		cat = LEGION,
+		type = ITEM,
+		isToy = true,
+		method = USE,
+		name = L["Memento of the Deeps"],
+		itemId = 170469,
+		items = { 169940, 169939 },
+		chance = 20, -- Blind guess (no data)
+	},
+
+
 
 
 		-- Mount-related items (5.x)
