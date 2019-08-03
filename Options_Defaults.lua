@@ -3674,6 +3674,22 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Necrofin Tadpole"] = {
+		cat = BFA,
+		type = PET,
+		method = NPC,
+		name = L["Necrofin Tadpole"],
+		npcs = { 152712 },
+		spellId = 301043,
+		itemId = 169372,
+		creatureId = 154821,
+		questId = { 00000000000000000, 00000000000000000 },
+		chance = 8,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  39.25, y = 77.35, n = L["Blindlight"] },
+		},
+	},
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
