@@ -1250,6 +1250,23 @@ function R:PrepareDefaults()
 			},
 		},
 
+		["Rusty Mechanocrawler"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Rusty Mechanocrawler"],
+			itemId = 168823,
+			spellId = 291492,
+			npcs = { 154342, 151934 },
+			chance = 500,
+			questId = { 55512 },
+			groupSize = 3,
+			equalOdds = true,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x = 000, y = 000, n = L["Arachnoid Harvester"] },
+			},
+		},
+
 
 
 	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
