@@ -3383,7 +3383,7 @@ function R:PrepareDefaults()
 			groupSize = 3,
 		},
 
-		["Mindlost Bloodfrenzy"] ={
+	["Mindlost Bloodfrenzy"] ={
 			cat = BFA,
 			type = PET,
 			method = BOSS,
@@ -3487,60 +3487,60 @@ function R:PrepareDefaults()
 		},
 		chance = 10, -- Blind guess (no data)
 
-},
+	},
 
-["Zanj'ir Poker"] ={
-	cat = BFA,
-	type = PET,
-	method = BOSS,
-	name = L["Zanj'ir Poker"],
-	itemId = 169348,
-	spellId = 301015,
-	creatureId = 154819,
-	npcs = { 99999 },
-	tooltipNpcs = { 155126 },
-	statisticId = {
-		13616,
-		13617,
-		13618,
-		13619
-	},
-	lockoutDetails = {
-		mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
-		{
-			encounterName = "Queen Azshara",
-			instanceDifficulties = {
-				[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+	["Zanj'ir Poker"] ={
+		cat = BFA,
+		type = PET,
+		method = BOSS,
+		name = L["Zanj'ir Poker"],
+		itemId = 169348,
+		spellId = 301015,
+		creatureId = 154819,
+		npcs = { 99999 },
+		tooltipNpcs = { 155126 },
+		statisticId = {
+			13616,
+			13617,
+			13618,
+			13619
+		},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Queen Azshara",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+				},
+			},
+			{
+				encounterName = "Queen Azshara",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+				},
+			},
+			{
+				encounterName = "Queen Azshara",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+				},
+			},
+			{
+				encounterName = "Queen Azshara",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+				},
 			},
 		},
-		{
-			encounterName = "Queen Azshara",
-			instanceDifficulties = {
-				[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
-			},
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
 		},
-		{
-			encounterName = "Queen Azshara",
-			instanceDifficulties = {
-				[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
-			},
-		},
-		{
-			encounterName = "Queen Azshara",
-			instanceDifficulties = {
-				[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
-			},
-		},
-	},
-	instanceDifficulties = {
-		[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
-		[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
-		[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
-		[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
-	},
-	chance = 10, -- Blind guess (no data)
+		chance = 10, -- Blind guess (no data)
 
-},
+	},
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
