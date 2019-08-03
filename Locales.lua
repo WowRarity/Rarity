@@ -54,6 +54,7 @@ L["Flopping Fish"] = true
 L["Memento of the Deeps"] = true
 L["Zanj'ir Weapon Rack"] = true
 L["Underlight Sealamp"] = true
+L["Royal Snapdragon"] = true
 L["Experimental"] = true
 L["Verify item database on login"] = true
 L["Run the verification routine automatically after logging in. It can always be run manually (by typing %s)."] = true

@@ -1223,6 +1223,19 @@ function R:PrepareDefaults()
 			},
 		},
 
+		-- 8.2 Mounts
+		["Royal Snapdragon"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = USE,
+			name = L["Royal Snapdragon"],
+			spellId = 294038,
+			itemId = 169198,
+			items = { 169940, 169939 },
+			chance = 100, -- Blind guess (no data). Possibly a lot higher?
+		},
+
+
 
 	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 						-- MOUNTS: Requires a group (some of these may be soloable by certain classes, but not in general)
