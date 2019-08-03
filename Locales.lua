@@ -10,6 +10,7 @@ L["Avarius"] = true
 L["Budding Algan"] = true
 L["Caverndark Nightmare"] = true
 L["Caverndark Terror"] = true
+L["Chitterspine Needler"] = true
 L["Experimental"] = true
 L["Verify item database on login"] = true
 L["Run the verification routine automatically after logging in. It can always be run manually (by typing %s)."] = true

@@ -3600,6 +3600,22 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Chitterspine Needler"] = {
+		cat = BFA,
+		type = PET,
+		method = NPC,
+		name = L["Chitterspine Needler"],
+		npcs = { 152465 },
+		spellId = 301026,
+		itemId = 169355,
+		creatureId = 154828,
+		questId = { 00000000000000000, 00000000000000000 },
+		chance = 8,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  000000000000000, y = 0000000000000, n = L["BBBBBBBBBBBBBBBBBBBBBB"] },
+		},
+	},
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
