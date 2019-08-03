@@ -25,7 +25,7 @@ C.UIMAPIDS = {
 
 	-- TODO: Find out the correct UiMapID for the zones below (WIP)
 	NAZJATAR = 12345,
-	MECHAGON = 12346,
+	MECHAGON_ISLAND = 12346,
 
 }
 

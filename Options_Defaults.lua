@@ -3800,6 +3800,22 @@ function R:PrepareDefaults()
 		chance = 9,
 	},
 
+	["Arachnoid Skitterbot"] = {
+		cat = BFA,
+		type = PET,
+		method = NPC,
+		name = L["Arachnoid Skitterbot"],
+		npcs = { 151672 },
+		spellId = 301137,
+		itemId = 169393,
+		creatureId = 154894,
+		questId = { 00000000000000000, 00000000000000000 },
+		chance = 14,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x =  87.90, y = 19.60, n = L["Mecharantula"] },
+		},
+	},
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
