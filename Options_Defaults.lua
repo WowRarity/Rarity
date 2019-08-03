@@ -1267,7 +1267,17 @@ function R:PrepareDefaults()
 			},
 		},
 
-
+		["Silent Glider"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Silent Glider"],
+			itemId = 169163,
+			spellId = 300149,
+			npcs = { 152290 },
+			chance = 200,
+			questId = { 56298 },
+		},
 
 	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 						-- MOUNTS: Requires a group (some of these may be soloable by certain classes, but not in general)
