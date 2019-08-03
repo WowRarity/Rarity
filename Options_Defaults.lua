@@ -3864,7 +3864,7 @@ function R:PrepareDefaults()
 		spellId = 301137,
 		itemId = 169393,
 		creatureId = 154894,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 55386 },
 		chance = 14,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x =  87.90, y = 19.60, n = L["Mecharantula"] },
@@ -3880,7 +3880,7 @@ function R:PrepareDefaults()
 		spellId = 301136,
 		itemId = 169392,
 		creatureId = 154893,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 55537 },
 		chance = 6,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x =  65.94, y = 26.35, n = L["Bonepicker"] },
@@ -3896,7 +3896,7 @@ function R:PrepareDefaults()
 		spellId = 301053,
 		itemId = 169382,
 		creatureId = 154854,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 55544 },
 		chance = 20,
 		groupSize = 5,
 		equalOdds = true,
@@ -3914,7 +3914,7 @@ function R:PrepareDefaults()
 		spellId = 301050,
 		itemId = 169379,
 		creatureId = 154851,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 55367 },
 		chance = 20,
 	},
 
@@ -3927,7 +3927,7 @@ function R:PrepareDefaults()
 		spellId = 303023,
 		itemId = 169886,
 		creatureId = 155600,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 55858 },
 		chance = 8,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x = 68.31, y = 47.18, n = L["The Kleptoboss"] },
@@ -4806,7 +4806,7 @@ function R:PrepareDefaults()
 		itemId = 167931,
 		npcs = { 152007 },
 		chance = 5, -- Blind guess (no data)
-		questId = { 0000000000000000, 0000000000000000 },
+		questId = { 55369 },
 	},
 
 	["Shadescale"] = {
@@ -4848,7 +4848,7 @@ function R:PrepareDefaults()
 		itemId = 169347,
 		npcs = { 154225 },
 		chance = 7,
-		questId = { 0000000000000000, 0000000000000000 },
+		questId = { 56182 },
 		groupSize = 5,
 		equalOdds = true,
 		coords = {
