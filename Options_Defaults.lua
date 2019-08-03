@@ -4849,8 +4849,6 @@ function R:PrepareDefaults()
 		npcs = { 154225 },
 		chance = 7,
 		questId = { 56182 },
-		groupSize = 5,
-		equalOdds = true,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x = 57.21, y = 58.38, n = L["The Rusty Prince"] },
 		},
