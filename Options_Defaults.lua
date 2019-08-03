@@ -3645,6 +3645,18 @@ function R:PrepareDefaults()
 		chance = 6,
 	},
 
+	["Glittering Diamondshell"] = {
+		cat = BFA,
+		type = PET,
+		method = NPC,
+		name = L["Glittering Diamondshell"],
+		npcs = { 152795 },
+		spellId = 301021,
+		itemId = 169350,
+		creatureId = 154823,
+		questId = { 00000000000000000, 00000000000000000 },
+		chance = 6,
+	},
 
 
 
