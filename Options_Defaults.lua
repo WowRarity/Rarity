@@ -3616,6 +3616,23 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Coral Lashling"] = {
+		cat = BFA,
+		type = PET,
+		method = NPC,
+		name = L["Coral Lashling"],
+		npcs = { 149653 },
+		spellId = 301046,
+		itemId = 169375,
+		creatureId = 154847,
+		questId = { 00000000000000000, 00000000000000000 },
+		chance = 12,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  54.8, y = 42.0, n = L["Carnivourous Lasher"] },
+		},
+	},
+
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
