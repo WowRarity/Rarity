@@ -39,6 +39,7 @@ L["Bonebiter"] = true
 L["Bonepicker"] = true
 L["Lost Robogrip"] = true
 L["Malfunctioning Beastbot"] = true
+L["Snowsoft Nibbler"] = true
 L["Experimental"] = true
 L["Verify item database on login"] = true
 L["Run the verification routine automatically after logging in. It can always be run manually (by typing %s)."] = true
