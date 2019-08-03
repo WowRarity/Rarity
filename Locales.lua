@@ -13,6 +13,7 @@ L["Caverndark Terror"] = true
 L["Chitterspine Needler"] = true
 L["Coral Lashling"] = true
 L["Carnivourous Lasher"] = true
+L["Daggertooth Frenzy"] = true
 L["Experimental"] = true
 L["Verify item database on login"] = true
 L["Run the verification routine automatically after logging in. It can always be run manually (by typing %s)."] = true
