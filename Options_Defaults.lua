@@ -3721,6 +3721,24 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Seafury"] = {
+		cat = BFA,
+		type = PET,
+		method = NPC,
+		name = L["Seafury"],
+		npcs = { 152681 },
+		spellId = 301038,
+		itemId = 169367,
+		creatureId = 154840,
+		questId = { 00000000000000000, 00000000000000000 },
+		chance = 14,
+		groupSize = 3,
+		equalOdds = true,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  43.1, y = 87.22, n = L["Prince Typhonus"] },
+		},
+	},
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
