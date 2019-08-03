@@ -7,7 +7,7 @@ L["Verify item database on login"] = true
 L["Run the verification routine automatically after logging in. It can always be run manually (by typing %s)."] = true
 L["Advanced"] = true
 L["Adventurous Hopling Pack"] = true
-L["Ghostly Whelpling"] = true 
+L["Ghostly Whelpling"] = true
 
 L["Verifying item database..."] = true
 L["Verification complete! Everything appears to be in order..."] = true
@@ -1352,8 +1352,8 @@ L["When on, the TSM Market Price will be shown in the main tooltip."] = true
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
 					Please go to http://www.wowace.com/projects/rarity/localization/ to update translations.
-					Anyone with a WowAce/CurseForge account can edit them. 
-]] 
+					Anyone with a WowAce/CurseForge account can edit them.
+]]
 
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "deDE")
 if L then
