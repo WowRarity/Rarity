@@ -4870,6 +4870,22 @@ function R:PrepareDefaults()
 		chance = 3333,
 	},
 
+	["Underlight Sealamp"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		npcs = {
+			153078,
+			153080,
+			151946,
+			145324,
+			153334
+		},
+		name = L["Underlight Sealamp"],
+		itemId = 170476,
+		chance = 20,
+	},
 
 
 		-- Mount-related items (5.x)
