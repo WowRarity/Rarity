@@ -1263,7 +1263,7 @@ function R:PrepareDefaults()
 			groupSize = 3,
 			equalOdds = true,
 			coords = {
-				{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x = 000, y = 000, n = L["Arachnoid Harvester"] },
+				{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x = 52.0, y = 41.4, n = L["Arachnoid Harvester"] },
 			},
 		},
 
