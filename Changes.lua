@@ -1,4 +1,12 @@
 local changes = {
+	["r691"] = {
+		additions = {
+			"Added tracking for most collectibles in Nazjatar and Mechagon Island (see notes below)",
+		},
+		notes = {
+			"A few items are still missing, as they can't be easily tracked. This is currently being investigated."
+		}
+	},
 	["r690"] = {
 		additions = {
 			"Added missing NPCs for Goldenmane's Reins",
