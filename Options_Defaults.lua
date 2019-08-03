@@ -3566,11 +3566,22 @@ function R:PrepareDefaults()
 		creatureId = 154845,
 		questId = { 00000000000000000, 00000000000000000 },
 		chance = 20,
-		groupSize = 5,
-		equalOdds = true,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  36.9, y = 11.2, n = L["Avarius"] },
 		},
+	},
+
+	["Budding Algan"] = {
+		cat = BFA,
+		type = PET,
+		method = NPC,
+		name = L["Budding Algan"],
+		npcs = { 150583 },
+		spellId = 301045,
+		itemId = 169374,
+		creatureId = 154846,
+		questId = { 00000000000000000, 00000000000000000 },
+		chance = 4,
 	},
 
 
