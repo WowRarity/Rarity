@@ -23,6 +23,10 @@ C.UIMAPIDS = {
 	MACAREE = 882,
 	ANTORAN_WASTES = 885,
 
+	-- TODO: Find out the correct UiMapID for the zones below (WIP)
+	NAZJATAR = 12345,
+	MECHAGON = 12346,
+
 }
 
 -- Types of items

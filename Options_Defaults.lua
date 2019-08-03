@@ -3555,6 +3555,24 @@ function R:PrepareDefaults()
 		chance = 8,
 	},
 
+	["Brinestone Algan"] = {
+		cat = BFA,
+		type = PET,
+		method = NPC,
+		name = L["Brinestone Algan"],
+		npcs = { 150191 },
+		spellId = 301044,
+		itemId = 169373,
+		creatureId = 154845,
+		questId = { 00000000000000000, 00000000000000000 },
+		chance = 20,
+		groupSize = 5,
+		equalOdds = true,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  36.9, y = 11.2, n = L["Avarius"] },
+		},
+	},
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
