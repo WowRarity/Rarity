@@ -4801,6 +4801,17 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Flopping Fish"] = {
+		cat = LEGION,
+		type = ITEM,
+		isToy = true,
+		method = USE,
+		name = L["Flopping Fish"],
+		itemId = 170203,
+		items = { 169940, 169939 },
+		chance = 20, -- Blind guess (no data)
+	},
+
 
 
 		-- Mount-related items (5.x)

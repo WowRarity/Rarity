@@ -50,6 +50,7 @@ L["Shirakess Warning Sign"] = true
 L["Tidemistress Leth'sindra"] = true
 L["Judgment of Mechagon"] = true
 L["The Rusty Prince"] = true
+L["Flopping Fish"] = true
 L["Experimental"] = true
 L["Verify item database on login"] = true
 L["Run the verification routine automatically after logging in. It can always be run manually (by typing %s)."] = true
