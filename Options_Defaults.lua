@@ -3434,7 +3434,62 @@ function R:PrepareDefaults()
 			},
 			chance = 10, -- Blind guess (no data)
 
-	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	},
+
+	["Lightless Ambusher"] ={
+		cat = BFA,
+		type = PET,
+		method = BOSS,
+		name = L["Lightless Ambusher"],
+		itemId = 169358,
+		spellId = 301029,
+		creatureId = 154831,
+		npcs = { 99999 },
+		tooltipNpcs = { 153142 },
+		statisticId = {
+			13600,
+			13601,
+			13602,
+			13603
+		},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Lady Ashvane",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+				},
+			},
+			{
+				encounterName = "Lady Ashvane",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+				},
+			},
+			{
+				encounterName = "Lady Ashvane",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+				},
+			},
+			{
+				encounterName = "Lady Ashvane",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+				},
+			},
+		},
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+		},
+		chance = 10, -- Blind guess (no data)
+
+},
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
