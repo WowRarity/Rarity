@@ -3666,9 +3666,6 @@ function R:PrepareDefaults()
 		creatureId = 154828,
 		questId = { 00000000000000000, 00000000000000000 },
 		chance = 8,
-		coords = {
-			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  000000000000000, y = 0000000000000, n = L["BBBBBBBBBBBBBBBBBBBBBB"] },
-		},
 	},
 
 	["Coral Lashling"] = {
