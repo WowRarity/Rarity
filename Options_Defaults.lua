@@ -4754,6 +4754,22 @@ function R:PrepareDefaults()
 		questId = { 0000000000000000, 0000000000000000 },
 	},
 
+	["Shadescale"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Shadescale"],
+		itemId = 170187,
+		npcs = { 152552 },
+		chance = 20, -- Blind guess (no data)
+		questId = { 0000000000000000, 0000000000000000 },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x = 62.74, y = 8.09, n = L["Shassera"] },
+		},
+	},
+
+
 
 		-- Mount-related items (5.x)
      ["Primal Egg"] =                                    { cat = MOP, type = ITEM, method = NPC, name = L["Primal Egg"], itemId = 94295, npcs = { 69983, 69991, 69992, 69993, 70004, 70005, 70006, 70007, 70008, 70009, 70010, 70011, 70012, 70013, 70014, 70015, 70016, 70017, 70018, 70019, 70020, 70021, }, chance = 100,  unique = true, sourceText = L["Dropped by dinosaurs on Isle of Giants Will hatch into one of three Primal Raptor mounts after three days."], coords = { {m=507} }, },
