@@ -42,6 +42,7 @@ L["Malfunctioning Beastbot"] = true
 L["Snowsoft Nibbler"] = true
 L["Spraybot 0D"] = true
 L["The Kleptoboss"] = true
+L["Nameless Octopode"] = true
 L["Experimental"] = true
 L["Verify item database on login"] = true
 L["Run the verification routine automatically after logging in. It can always be run manually (by typing %s)."] = true

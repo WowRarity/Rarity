@@ -3879,6 +3879,60 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Nameless Octopode"] ={
+		cat = BFA,
+		type = PET,
+		method = BOSS,
+		name = L["Nameless Octopode"],
+		itemId = 169362,
+		spellId = 301033,
+		creatureId = 154835,
+		npcs = { 99999 },
+		tooltipNpcs = { 150859 },
+		statisticId = {
+			13612,
+			13613,
+			13614,
+			13615
+		},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Za'qul",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+				},
+			},
+			{
+				encounterName = "Za'qul",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+				},
+			},
+			{
+				encounterName = "Za'qul",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+				},
+			},
+			{
+				encounterName = "Za'qul",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+				},
+			},
+		},
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+		},
+		chance = 10, -- Blind guess (no data)
+
+	},
+
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
