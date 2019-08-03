@@ -4769,6 +4769,21 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Shirakess Warning Sign"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Shirakess Warning Sign"],
+		itemId = 170196,
+		npcs = { 154148 },
+		chance = 20, -- Blind guess (no data)
+		questId = { 0000000000000000, 0000000000000000 },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x = 66, y = 23, n = L["Tidemistress Leth'sindra"] },
+		},
+	},
+
 
 
 		-- Mount-related items (5.x)
