@@ -1235,6 +1235,21 @@ function R:PrepareDefaults()
 			chance = 100, -- Blind guess (no data). Possibly a lot higher?
 		},
 
+		["Rusted Keys to the Junkheap Drifter"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = NPC,
+			name = L["Rusted Keys to the Junkheap Drifter"],
+			itemId = 168370,
+			spellId = 297157,
+			npcs = { 152182 },
+			chance = 200,
+			questId = { 000000000000000 },
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x = 65.8, y = 79.6, n = L["Rustfeather"] },
+			},
+		},
+
 
 
 	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
