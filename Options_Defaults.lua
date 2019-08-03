@@ -3832,6 +3832,24 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Lost Robogrip"] = {
+		cat = BFA,
+		type = PET,
+		method = NPC,
+		name = L["Lost Robogrip"],
+		npcs = { 151933 },
+		spellId = 301053,
+		itemId = 169382,
+		creatureId = 154854,
+		questId = { 00000000000000000, 00000000000000000 },
+		chance = 20,
+		groupSize = 5,
+		equalOdds = true,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x =  60.65, y = 42.22, n = L["Malfunctioning Beastbot"] },
+		},
+	},
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
