@@ -1244,7 +1244,7 @@ function R:PrepareDefaults()
 			spellId = 297157,
 			npcs = { 152182 },
 			chance = 200,
-			questId = { 000000000000000 },
+			questId = { 55811 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x = 65.8, y = 79.6, n = L["Rustfeather"] },
 			},
