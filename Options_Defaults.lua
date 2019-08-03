@@ -3584,6 +3584,22 @@ function R:PrepareDefaults()
 		chance = 4,
 	},
 
+	["Caverndark Nightmare"] = {
+		cat = BFA,
+		type = PET,
+		method = NPC,
+		name = L["Caverndark Nightmare"],
+		npcs = { 152464 },
+		spellId = 301027,
+		itemId = 169356,
+		creatureId = 154829,
+		questId = { 00000000000000000, 00000000000000000 },
+		chance = 20,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  42.29, y = 13.29, n = L["Caverndark Terror"] },
+		},
+	},
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
