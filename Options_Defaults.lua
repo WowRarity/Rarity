@@ -3703,6 +3703,23 @@ function R:PrepareDefaults()
 		chance = 20,
 	},
 
+	["Scalebrood Hydra"] = {
+		cat = BFA,
+		type = PET,
+		method = NPC,
+		name = L["Scalebrood Hydra"],
+		npcs = { 152545, 152548, 152542 },
+		spellId = 301041,
+		itemId = 169370,
+		creatureId = 154843,
+		questId = { 00000000000000, 00000000000000, 00000000000000 },
+		chance = 20,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x = 27.29, y = 37.16, n = L["Scale Matriarch Vynara"] },
+			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x = 35.6, y = 41, n = L["Scale Matriarch Gratinax"] },
+			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  28.8, y = 46.6, n = L["Scale Matriarch Zodia"] },
+		},
+	},
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
