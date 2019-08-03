@@ -3383,6 +3383,57 @@ function R:PrepareDefaults()
 			groupSize = 3,
 		},
 
+		["Mindlost Bloodfrenzy"] ={
+			cat = BFA,
+			type = PET,
+			method = BOSS,
+			name = L["Mindlost Bloodfrenzy"],
+			itemId = 169360,
+			spellId = 301031,
+			creatureId = 154833,
+			npcs = { 99999 },
+			tooltipNpcs = { 154986 },
+			statisticId = {
+				13591,
+				13592,
+				13593,
+				13594
+			},
+			lockoutDetails = {
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+				{
+					encounterName = "Blackwater Behemoth",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+					},
+				},
+				{
+					encounterName = "Blackwater Behemoth",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+					},
+				},
+				{
+					encounterName = "Blackwater Behemoth",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+					},
+				},
+				{
+					encounterName = "Blackwater Behemoth",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+					},
+				},
+			},
+			instanceDifficulties = {
+				[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+				[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+				[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+				[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+			},
+			chance = 10, -- Blind guess (no data)
+
 	},				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

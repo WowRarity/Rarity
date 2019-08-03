@@ -1,6 +1,7 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+L["Mindlost Bloodfrenzy"] = true
 L["Experimental"] = true
 L["Verify item database on login"] = true
 L["Run the verification routine automatically after logging in. It can always be run manually (by typing %s)."] = true
