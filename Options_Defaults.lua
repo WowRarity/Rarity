@@ -3995,6 +3995,22 @@ function R:PrepareDefaults()
 		chance = 200,
 	},
 
+	["Armored Vaultbot"] = {
+		cat = BFA,
+		type = PET,
+		method = SPECIAL,
+		name = L["Armored Vaultbot"],
+		tooltipNpcs = { 150394 },
+		spellId = 303784,
+		itemId = 170072,
+		creatureId = 155829,
+		questId = { 55546 },
+		chance = 20,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x =  53.99, y = 49.31, n = L["Armored Vaultbot"] },
+		},
+	},
+
 },
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS

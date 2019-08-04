@@ -6,6 +6,7 @@ L["Glimmering Chest"] = true
 L["Eternal Palace Dining Set"] = true
 L["Ocean Simulator"] = true
 L["Sandclaw Nestseeker"] = true
+L["Armored Vaultbot"] = true
 L["Mindlost Bloodfrenzy"] = true
 L["Lightless Ambusher"] = true
 L["Zanj'ir Poker"] = true
