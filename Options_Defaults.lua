@@ -3895,7 +3895,7 @@ function R:PrepareDefaults()
 		creatureId = 154854,
 		questId = { 55544 },
 		chance = 20,
-		groupSize = 5,
+		groupSize = 3,
 		equalOdds = true,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x =  60.65, y = 42.22, n = L["Malfunctioning Beastbot"] },
