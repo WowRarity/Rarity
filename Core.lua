@@ -1769,6 +1769,32 @@ function R:OnEvent(event, ...)
 			end
 		end
 
+		-- Handle opening Arcane Chest
+		if fishing and opening and lastNode and (lastNode == L["Arcane Chest"]) then
+			local names = {"Eternal Palace Dining Set", "Ocean Simulator" }
+				Rarity:Debug("Detected Opening on " .. L["Arcane Chest"] .. " (method = SPECIAL)")
+				for _, name in pairs(names) do
+					local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+					if v and type(v) == "table" and v.enabled ~= false then
+						if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+						self:OutputAttempts(v)
+					end
+				end
+			end
+
+		-- Handle opening Glimmering Chest
+		if fishing and opening and lastNode and (lastNode == L["Glimmering Chest"]) then
+			local names = {"Eternal Palace Dining Set", }
+				Rarity:Debug("Detected Opening on " .. L["Glimmering Chest"] .. " (method = SPECIAL)")
+				for _, name in pairs(names) do
+					local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+					if v and type(v) == "table" and v.enabled ~= false then
+						if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+						self:OutputAttempts(v)
+					end
+				end
+			end
+
 		-- Handle opening Glimmering Treasure Chest
 		if fishing and opening and lastNode and (lastNode == L["Glimmering Treasure Chest"]) and select(8, GetInstanceInfo()) == 1626 then -- Player is in Withered Army scenario and looted the reward chest
 			local bigChest = false

@@ -1,6 +1,8 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+L["Arcane Chest"] = true
+L["Glimmering Chest"] = true
 L["Eternal Palace Dining Set"] = true
 L["Ocean Simulator"] = true
 L["Mindlost Bloodfrenzy"] = true
