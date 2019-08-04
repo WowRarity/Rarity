@@ -1784,7 +1784,7 @@ function R:OnEvent(event, ...)
 
 		-- Handle opening Glimmering Chest
 		if fishing and opening and lastNode and (lastNode == L["Glimmering Chest"]) then
-			local names = {"Eternal Palace Dining Set", }
+			local names = {"Eternal Palace Dining Set", "Sandclaw Nestseeker"}
 				Rarity:Debug("Detected Opening on " .. L["Glimmering Chest"] .. " (method = SPECIAL)")
 				for _, name in pairs(names) do
 					local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
