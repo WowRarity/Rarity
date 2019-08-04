@@ -4011,6 +4011,24 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Echoing Oozeling"] = {
+		cat = BFA,
+		type = PET,
+		method = USE,
+		items = { 168394, 168395 },
+		name = L["Echoing Oozeling"],
+		spellId = 301162,
+		itemId = 169396,
+		creatureId = 154904,
+		questId = { 00000000000000000, 00000000000000000 },
+		chance = 20, -- Blind guess (no data)
+		groupSize = 3,
+		equalOdds = true,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x =  70.12, y = 61.99, n = L["Reclamation Rig"] },
+		},
+	},
+
 },
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
