@@ -2,6 +2,8 @@ local changes = {
 	["r691"] = {
 		additions = {
 			"Added tracking for most collectibles in Nazjatar and Mechagon Island (see notes below)",
+			"Added tracking for Paragon rewards from both Nazjatar factions",
+			"Added tracking for collectibles obtained from bosses in The Eternal Palace (raid)"
 		},
 		notes = {
 			"A few items are still missing, as they can't be easily tracked. This is currently being investigated."

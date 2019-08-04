@@ -1,6 +1,8 @@
 **r691:**
 
 > Added tracking for most collectibles in Nazjatar and Mechagon Island (see notes below)
+<br>Added tracking for Paragon rewards from both Nazjatar factions
+<br>Added tracking for collectibles obtained from bosses in The Eternal Palace (raid)
 
 Developer Notes:
 > A few items are still missing, as they can't be easily tracked. This is currently being investigated.
