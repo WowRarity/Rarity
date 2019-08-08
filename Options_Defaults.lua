@@ -3461,7 +3461,7 @@ function R:PrepareDefaults()
 			spellId = 301031,
 			creatureId = 154833,
 			npcs = { 99999 },
-			tooltipNpcs = { 154986 },
+			tooltipNpcs = { 154986, 150653 },
 			statisticId = {
 				13591,
 				13592,
@@ -3514,7 +3514,7 @@ function R:PrepareDefaults()
 		spellId = 301029,
 		creatureId = 154831,
 		npcs = { 99999 },
-		tooltipNpcs = { 153142 },
+		tooltipNpcs = { 153142, 152236 },
 		statisticId = {
 			13600,
 			13601,
