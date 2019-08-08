@@ -3691,7 +3691,7 @@ function R:PrepareDefaults()
 		spellId = 301046,
 		itemId = 169375,
 		creatureId = 154847,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 55366 }, -- 55366, 57186; 55404, 57042; 55366, 57187, 57188 ?
 		chance = 12,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  54.8, y = 42.0, n = L["Carnivourous Lasher"] },
@@ -3733,7 +3733,7 @@ function R:PrepareDefaults()
 		spellId = 301042,
 		itemId = 169371,
 		creatureId = 154820,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 56582 }, -- 55671 ?
 		chance = 4,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  29.41, y = 28.98, n = L["King Gakula"] },
@@ -4901,7 +4901,7 @@ function R:PrepareDefaults()
 		itemId = 170187,
 		npcs = { 152552 },
 		chance = 20, -- Blind guess (no data)
-		questId = { 56106 },
+		questId = { 56295 },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x = 62.74, y = 8.09, n = L["Shassera"] },
 		},
@@ -4916,7 +4916,7 @@ function R:PrepareDefaults()
 		itemId = 170196,
 		npcs = { 154148 },
 		chance = 20, -- Blind guess (no data)
-		questId = { 56295 },
+		questId = { 56106 },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x = 66, y = 23, n = L["Tidemistress Leth'sindra"] },
 		},
