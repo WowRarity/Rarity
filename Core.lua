@@ -425,6 +425,7 @@ R.opennodes = {
 	[L["Curious Wyrmtongue Cache"]] = true,
 	[L["Arcane Chest"]] = true,
 	[L["Glimmering Chest"]] = true,
+	[L["Pile of Coins"]] = true,
 }
 
 --[[
@@ -1801,7 +1802,7 @@ function R:OnEvent(event, ...)
 
 		-- Handle opening Pile of Coins
 		if fishing and opening and lastNode and (lastNode == L["Pile of Coins"]) then
-			local names = {"Amored Vaultbot"}
+			local names = { "Armored Vaultbot" }
 				Rarity:Debug("Detected Opening on " .. L["Pile of Coins"] .. " (method = SPECIAL)")
 				for _, name in pairs(names) do
 					local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
