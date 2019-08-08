@@ -5030,7 +5030,7 @@ function R:PrepareDefaults()
 		method = SPECIAL,
 		name = L["Eternal Palace Dining Set"],
 		itemId = 170198,
-		chance = 20,
+		chance = 50,
 	},
 
 	["Ocean Simulator"] = {
