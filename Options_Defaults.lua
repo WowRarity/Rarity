@@ -3662,7 +3662,7 @@ function R:PrepareDefaults()
 		spellId = 301027,
 		itemId = 169356,
 		creatureId = 154829,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 56283 },
 		chance = 20,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  42.29, y = 13.29, n = L["Caverndark Terror"] },
@@ -3707,7 +3707,7 @@ function R:PrepareDefaults()
 		spellId = 301032,
 		itemId = 169361,
 		creatureId = 154834,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 56271 },
 		chance = 6,
 	},
 
@@ -3720,7 +3720,7 @@ function R:PrepareDefaults()
 		spellId = 301021,
 		itemId = 169350,
 		creatureId = 154823,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 56277 },
 		chance = 6,
 	},
 
@@ -3765,7 +3765,7 @@ function R:PrepareDefaults()
 		spellId = 301040,
 		itemId = 169369,
 		creatureId = 154842,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 56276 },
 		chance = 20,
 	},
 
@@ -3778,7 +3778,7 @@ function R:PrepareDefaults()
 		spellId = 301041,
 		itemId = 169370,
 		creatureId = 154843,
-		questId = { 00000000000000, 00000000000000, 00000000000000 },
+		questId = { 52692, 56293, 56294 },
 		chance = 20,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x = 27.29, y = 37.16, n = L["Scale Matriarch Vynara"] },
@@ -3796,7 +3796,7 @@ function R:PrepareDefaults()
 		spellId = 301038,
 		itemId = 169367,
 		creatureId = 154840,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 56289 },
 		chance = 14,
 		groupSize = 3,
 		equalOdds = true,
@@ -3814,7 +3814,7 @@ function R:PrepareDefaults()
 		spellId = 301047,
 		itemId = 169376,
 		creatureId = 154848,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 55603 },
 		chance = 13,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  48.34, y = 23.99, n = L["Vor'koth"] },
@@ -3830,7 +3830,7 @@ function R:PrepareDefaults()
 		spellId = 301030,
 		itemId = 169359,
 		creatureId = 154832,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 56285 },
 		chance = 10,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  51.90, y = 75.40, n = L["Elderspawn Nalaada"] },
@@ -3846,7 +3846,7 @@ function R:PrepareDefaults()
 		spellId = 301039,
 		itemId = 169368,
 		creatureId = 154841,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 56290 },
 		chance = 8,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x = 42.98, y = 75.09, n = L["Prince Vortran"] },
@@ -4901,7 +4901,7 @@ function R:PrepareDefaults()
 		itemId = 170187,
 		npcs = { 152552 },
 		chance = 20, -- Blind guess (no data)
-		questId = { 0000000000000000, 0000000000000000 },
+		questId = { 56106 },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x = 62.74, y = 8.09, n = L["Shassera"] },
 		},
@@ -4916,7 +4916,7 @@ function R:PrepareDefaults()
 		itemId = 170196,
 		npcs = { 154148 },
 		chance = 20, -- Blind guess (no data)
-		questId = { 0000000000000000, 0000000000000000 },
+		questId = { 56295 },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x = 66, y = 23, n = L["Tidemistress Leth'sindra"] },
 		},
