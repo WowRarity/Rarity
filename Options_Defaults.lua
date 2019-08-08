@@ -4034,7 +4034,7 @@ function R:PrepareDefaults()
 		spellId = 301162,
 		itemId = 169396,
 		creatureId = 154904,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 55847 }, -- Not sure which is correct: 55847, 57134, 57132, 56079 ?
 		chance = 20, -- Blind guess (no data)
 		groupSize = 3,
 		equalOdds = true,
