@@ -1,6 +1,6 @@
 **r691:**
 
-> Added tracking for most collectibles in Nazjatar and Mechagon Island (see notes below)
+> Added tracking for collectibles obtained in Nazjatar and Mechagon Island
 <br>Added tracking for Paragon rewards from both Nazjatar factions
 <br>Added tracking for collectibles obtained from bosses in Azshara's Eternal Palace (raid)
 <br>Added tracking for collectibles obtained from bosses in Operation: Mechagon (dungeon)
