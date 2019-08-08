@@ -3633,7 +3633,7 @@ function R:PrepareDefaults()
 		spellId = 301044,
 		itemId = 169373,
 		creatureId = 154845,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 55584 },
 		chance = 20,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  36.9, y = 11.2, n = L["Avarius"] },
