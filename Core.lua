@@ -2536,7 +2536,7 @@ end
 function R:OnMouseOver(event)
  local guid = UnitGUID("mouseover")
  local npcid = self:GetNPCIDFromGUID(guid)
-
+Rarity:Debug("Mouse hovered over NPC with id = " .. tostring(npcid))
  if npcid == 50409 or npcid == 50410 then
   if not guids[guid] then
    guids[guid] = true
