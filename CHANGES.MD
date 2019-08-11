@@ -1,3 +1,12 @@
+**r691:**
+
+> Added tracking for collectibles obtained in Nazjatar and Mechagon Island
+<br>Added tracking for Paragon rewards from both Nazjatar factions
+<br>Added tracking for collectibles obtained from bosses in Azshara's Eternal Palace (raid)
+<br>Added tracking for collectibles obtained from bosses in Operation: Mechagon (dungeon)
+
+-----
+
 **r690:**
 
 > Added missing NPCs for Goldenmane's Reins
@@ -35,12 +44,3 @@ Developer Notes:
 <br>Added tracking for Raiding with Leashes VI: Pets of Pandaria
 
 > Improved defeat detection for the G.M.O.D. mount (still somewhat experimental)
-
------
-
-**r686:**
-
-> Added tracking for new collectibles that were added to Island Expeditions in 8.1 (the accuracy remains highly debatable)
-
-> The tooltip for Mekkatorque (Normal/Heroic/Mythic) and Lady Jaina Proudmoore (LFR) should now show that the G.M.O.D. can be obtained from this encounter in the respective difficulty
-<br>Attempts for the Kaldorei Nightsaber mount (Drop: Darkshore) should now be tracked correctly for both factions

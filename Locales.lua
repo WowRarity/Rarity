@@ -1,12 +1,83 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+L["Mechagon Peacekeeper"] = true
+L["Microbot 8D"] = true
+L["Golden Snorf"] = true
+L["Echoing Oozeling"] = true
+L["Reclamation Rig"] = true
+L["Arcane Chest"] = true
+L["Glimmering Chest"] = true
+L["Eternal Palace Dining Set"] = true
+L["Ocean Simulator"] = true
+L["Sandclaw Nestseeker"] = true
+L["Armored Vaultbot"] = true
+L["Pile of Coins"] = true
+L["Mindlost Bloodfrenzy"] = true
+L["Lightless Ambusher"] = true
+L["Zanj'ir Poker"] = true
+L["Amethyst Softshell"] = true
+L["Brinestone Algan"] = true
+L["Avarius"] = true
+L["Budding Algan"] = true
+L["Caverndark Nightmare"] = true
+L["Caverndark Terror"] = true
+L["Chitterspine Needler"] = true
+L["Coral Lashling"] = true
+L["Carnivourous Lasher"] = true
+L["Daggertooth Frenzy"] = true
+L["Glittering Diamondshell"] = true
+L["Murgle"] = true
+L["King Gakula"] = true
+L["Necrofin Tadpole"] = true
+L["Blindlight"] = true
+L["Sandkeep"] = true
+L["Scalebrood Hydra"] = true
+L["Scale Matriarch Vynara"] = true
+L["Scale Matriarch Gratinax"] = true
+L["Scale Matriarch Zodia"] = true
+L["Seafury"] = true
+L["Prince Typhonus"] = true
+L["Skittering Eel"] = true
+L["Vor'koth"] = true
+L["Spawn of Nalaada"] = true
+L["Elderspawn Nalaada"] = true
+L["Stormwrath"] = true
+L["Prince Vortran"] = true
+L["Wriggler"] = true
+L["Arachnoid Skitterbot"] = true
+L["Mecharantula"] = true
+L["Bonebiter"] = true
+L["Bonepicker"] = true
+L["Lost Robogrip"] = true
+L["Malfunctioning Beastbot"] = true
+L["Snowsoft Nibbler"] = true
+L["Spraybot 0D"] = true
+L["The Kleptoboss"] = true
+L["Nameless Octopode"] = true
+L["Mechagonian Sawblades"] = true
+L["Shadescale"] = true
+L["Shassera"] = true
+L["Shirakess Warning Sign"] = true
+L["Tidemistress Leth'sindra"] = true
+L["Judgment of Mechagon"] = true
+L["The Rusty Prince"] = true
+L["Flopping Fish"] = true
+L["Memento of the Deeps"] = true
+L["Zanj'ir Weapon Rack"] = true
+L["Underlight Sealamp"] = true
+L["Royal Snapdragon"] = true
+L["Rusted Keys to the Junkheap Drifter"] = true
+L["Rustfeather"] = true
+L["Rusty Mechanocrawler"] = true
+L["Arachnoid Harvester"] = true
+L["Silent Glider"] = true
 L["Experimental"] = true
 L["Verify item database on login"] = true
 L["Run the verification routine automatically after logging in. It can always be run manually (by typing %s)."] = true
 L["Advanced"] = true
 L["Adventurous Hopling Pack"] = true
-L["Ghostly Whelpling"] = true 
+L["Ghostly Whelpling"] = true
 
 L["Verifying item database..."] = true
 L["Verification complete! Everything appears to be in order..."] = true
@@ -1351,8 +1422,8 @@ L["When on, the TSM Market Price will be shown in the main tooltip."] = true
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
 					Please go to http://www.wowace.com/projects/rarity/localization/ to update translations.
-					Anyone with a WowAce/CurseForge account can edit them. 
-]] 
+					Anyone with a WowAce/CurseForge account can edit them.
+]]
 
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "deDE")
 if L then

@@ -1,4 +1,12 @@
 local changes = {
+	["r691"] = {
+		additions = {
+			"Added tracking for collectibles obtained in Nazjatar and Mechagon Island",
+			"Added tracking for Paragon rewards from both Nazjatar factions",
+			"Added tracking for collectibles obtained from bosses in Azshara's Eternal Palace (raid)",
+			"Added tracking for collectibles obtained from bosses in Operation: Mechagon (dungeon)",
+		},
+	},
 	["r690"] = {
 		additions = {
 			"Added missing NPCs for Goldenmane's Reins",
