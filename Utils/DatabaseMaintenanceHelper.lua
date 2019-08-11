@@ -156,14 +156,14 @@ function DBH:VerifyEntry(entry)
 
 	end
 
-	-- Warning: equalOdds and groupSize usually go together since everything is Personal Loot nowadays
+	-- equalOdds and groupSize usually go together since everything is Personal Loot nowadays
 	if entry.groupSize and not entry.equalOdds then
-		print("Warning: Used groupSize but equalOdds is not set")
+		print("Warning: Found setting for groupSize but equalOdds is not set")
 		return false
 	end
 
 	if entry.equalOdds and not entry.groupSize then
-		print("Warning: Used equalOdds but groupSize is not set")
+		print("Warning: Found setting for equalOdds but groupSize is not set")
 		return false
 	end
 
