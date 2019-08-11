@@ -3620,7 +3620,7 @@ function R:PrepareDefaults()
 		spellId = 301034,
 		itemId = 169363,
 		creatureId = 154836,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 56268 }, -- 56615 ?
 		chance = 8,
 	},
 
@@ -3862,7 +3862,7 @@ function R:PrepareDefaults()
 		spellId = 301037,
 		itemId = 169366,
 		creatureId = 154839,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 56274 },
 		chance = 9,
 	},
 
@@ -4034,7 +4034,7 @@ function R:PrepareDefaults()
 		spellId = 301162,
 		itemId = 169396,
 		creatureId = 154904,
-		questId = { 55847 }, -- Not sure which is correct: 55847, 57134, 57132, 56079 ?
+		questId = { 55847 }, -- Not sure which is correct: 55847, 57134, 57132, 56079 ? // 55847, 57132,
 		chance = 20, -- Blind guess (no data)
 		groupSize = 3,
 		equalOdds = true,
