@@ -3438,6 +3438,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 154693,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Ghostly Whelpling"] = {
@@ -3450,6 +3451,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 154165,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 	["Mindlost Bloodfrenzy"] ={
