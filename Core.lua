@@ -2554,7 +2554,8 @@ end
 -- Criteria in a dungeon completed, currently used for Reins of the Infinite Timereaver detection as a special case
 -------------------------------------------------------------------------------------
 local timewalkingCriteriaLUT = {
-	[24801] = "Ozumot",
+	[24801] = "Ozumat", -- Legacy (seems to no longer work? Perhaps the criterion ID was changed...)
+	[34414] = "Ozumat", -- Timewalking difficulty only? (need to test)
 	[24803] = "Murozond",
 	[24784] = "Trial of the King", -- [126952] = "Trial of the King", -- Object: Legacy of the Clan Leaders
 	[19256] = "Gekkan", -- Object: Ancient Mogu Treasure
