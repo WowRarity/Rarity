@@ -4653,6 +4653,7 @@ function R:PrepareDefaults()
 		chance = 100, -- Need more data. Until then, this is a blind guess...
 		groupSize = 25,
 		equalOdds = true,
+		requiresAlliance = true,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 37.09, y = 39.21, n = L["Doom's Howl"] },
 		},
@@ -4670,6 +4671,7 @@ function R:PrepareDefaults()
 		chance = 100, -- Blind guess :|
 		groupSize = 25,
 		equalOdds = true,
+		requiresHorde = true,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 37.09, y = 39.21, n = L["The Lion's Roar"] },
 		},
