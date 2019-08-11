@@ -1,4 +1,12 @@
 local changes = {
+	["r692"] = {
+		additions = {
+			"Added defeat detection for some missing rares in Nazjatar and Mechagon Island",
+		},
+		fixes = {
+			"Fixed tracking for the Timewalking version of the Ozumat encounter (Throne of the Tides)",
+		},
+	},
 	["r691"] = {
 		additions = {
 			"Added tracking for collectibles obtained in Nazjatar and Mechagon Island",
