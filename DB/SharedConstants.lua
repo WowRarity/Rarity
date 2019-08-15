@@ -48,6 +48,19 @@ C.DETECTION_METHODS = {
 	COLLECTION = "COLLECTION",
 }
 
+-- Categories (expansions-based, with some special types of items)
+C.ITEM_CATEGORIES = {
+	CLASSIC = "CLASSIC",
+	TBC = "TBC",
+	WOTLK = "WOTLK",
+	CATA = "CATA",
+	MOP = "MOP",
+	WOD = "WOD",
+	LEGION = "LEGION",
+	BFA = "BFA",
+	HOLIDAY = "HOLIDAY",
+}
+
 -- Instance difficulties
 C.INSTANCE_DIFFICULTIES = {
 	HEROIC_DUNGEON = 2,
