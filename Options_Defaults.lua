@@ -3626,6 +3626,19 @@ function R:PrepareDefaults()
 		chance = 8,
 	},
 
+	["Pearlescent Glimmershell"] = {
+		cat = BFA,
+		type = PET,
+		method = NPC,
+		name = L["Pearlescent Glimmershell"],
+		npcs = { 152448 },
+		spellId = 301023,
+		itemId = 169352,
+		creatureId = 154825,
+		questId = { 56286 }, -- 57260, 56597?
+		chance = 100,
+	},
+
 	["Brinestone Algan"] = {
 		cat = BFA,
 		type = PET,

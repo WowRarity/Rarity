@@ -1,6 +1,7 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+L["Pearlescent Glimmershell"] = true
 L["Mechagon Peacekeeper"] = true
 L["Microbot 8D"] = true
 L["Golden Snorf"] = true
