@@ -523,8 +523,8 @@ local pet_journal = _G.C_PetJournal
 local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
 local GetMapInfo = _G.C_Map.GetMapInfo
 local mount_journal = _G.C_MountJournal
-local C_Timer = C_Timer
-local IsSpellKnown = IsSpellKnown
+local C_Timer = _G.C_Timer
+local IsSpellKnown = _G.IsSpellKnown
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
 
 local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
