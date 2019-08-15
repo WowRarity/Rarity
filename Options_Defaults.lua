@@ -4672,6 +4672,7 @@ function R:PrepareDefaults()
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 37.09, y = 39.21, n = L["Doom's Howl"] },
 		},
+		enableCoin = true,
 	},
 
 	["Toy War Machine"] = {
@@ -4690,6 +4691,7 @@ function R:PrepareDefaults()
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 37.09, y = 39.21, n = L["The Lion's Roar"] },
 		},
+		enableCoin = true,
 	},
 
 	-- 8.1 Toys
