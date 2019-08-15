@@ -50,7 +50,7 @@ C.DETECTION_METHODS = {
 
 -- Categories (expansions-based, with some special types of items)
 C.ITEM_CATEGORIES = {
-	CLASSIC = "CLASSIC",
+	CLASSIC = "BASE",
 	TBC = "TBC",
 	WOTLK = "WOTLK",
 	CATA = "CATA",
