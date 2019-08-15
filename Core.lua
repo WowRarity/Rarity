@@ -525,6 +525,7 @@ local GetMapInfo = _G.C_Map.GetMapInfo
 local mount_journal = _G.C_MountJournal
 local C_Timer = C_Timer
 local IsSpellKnown = IsSpellKnown
+local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
 
 local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
 local COMBATLOG_OBJECT_AFFILIATION_MINE = _G.COMBATLOG_OBJECT_AFFILIATION_MINE
