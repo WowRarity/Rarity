@@ -933,7 +933,7 @@ function R:PrepareDefaults()
 			npcs = { 142437 },
 			chance = 33,
 			groupSize = 5,
-			equalOdds = 5,
+			equalOdds = true,
 			questId = { 53022, 53526 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 57.15, y = 45.75, n = L["Skullripper"] },
