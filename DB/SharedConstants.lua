@@ -35,6 +35,19 @@ C.ITEM_TYPES = {
 	ITEM = "ITEM",
 }
 
+-- Types of different detection methods
+C.DETECTION_METHODS = {
+	NPC = "NPC",
+	BOSS = "BOSS",
+	ZONE = "ZONE",
+	USE = "USE",
+	FISHING = "FISHING",
+	ARCH = "ARCH",
+	SPECIAL = "SPECIAL",
+	MINING = "MINING",
+	COLLECTION = "COLLECTION",
+}
+
 -- Instance difficulties
 C.INSTANCE_DIFFICULTIES = {
 	HEROIC_DUNGEON = 2,
