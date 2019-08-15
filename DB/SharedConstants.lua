@@ -1,6 +1,8 @@
 local addonName, addonTable = ...
 
 -- Set up shared constants (for ease of use, mainly)
+-- Note: Don't change the string values, refactoring is only partially complete (search all files to see)
+-- They were originally hardcoded EVERYWHERE and are also used directly as keys in the DB...
 addonTable.constants = addonTable.constants or {}
 
 local C = addonTable.constants
