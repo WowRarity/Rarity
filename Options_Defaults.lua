@@ -12,9 +12,9 @@ local GetItemInfo = function(id) return nil end
 local GetInstanceInfo = GetInstanceInfo
 
 -- Types of items
-local MOUNT = "MOUNT"
-local PET = "PET"
-local ITEM = "ITEM"
+local MOUNT = CONSTANTS.ITEM_TYPES.MOUNT
+local PET =  CONSTANTS.ITEM_TYPES.PET
+local ITEM =  CONSTANTS.ITEM_TYPES.ITEM -- Actually: Toy or item (but mostly toys...)
 
 R.string_types = {
  [MOUNT] = L["Mount"],
