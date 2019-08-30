@@ -1331,7 +1331,28 @@ function R:PrepareDefaults()
 		 ["Felsteel Annihilator"] =                          { cat = WOD, type = MOUNT, method = BOSS, name = L["Felsteel Annihilator"], spellId = 182912, itemId = 123890, npcs = { 99999 }, tooltipNpcs = { 91331 }, chance = 100, wasGuaranteed = true, statisticId = { 10252 }, lockBossName = "Archimonde", coords = { {m=6610,x=58.4,y=53.3,i=true} }, },
 		 ["Garn Nighthowl"] =                                { cat = WOD, type = MOUNT, method = BOSS, name = L["Garn Nighthowl"], spellId = 171851, itemId = 116794, npcs = { 81001 }, chance = 1, coords = { {m=525,x=16,y=53.2} }, },
 		 ["Ironhoof Destroyer"] =                            { cat = WOD, type = MOUNT, method = BOSS, name = L["Ironhoof Destroyer"], spellId = 171621, itemId = 116660, npcs = { 99999 }, tooltipNpcs = { 77325 }, chance = 100, wasGuaranteed = true, statisticId = { 9365 }, lockBossName = "Blackhand", coords = { {m=600, x=48.4,y=34.5,i=true} }, },
-		 ["Solar Spirehawk"] =                               { cat = WOD, type = MOUNT, method = BOSS, name = L["Solar Spirehawk"], spellId = 171828, itemId = 116771, npcs = { 99999 }, tooltipNpcs = { 87493, 83746 }, chance = 500, statisticId = { 9279 }, worldBossFactionless = true, questId = 37464, coords = { {m=542,x=47.1,y=78.4} }, },
+
+		 ["Solar Spirehawk"] = {
+			cat = WOD, type = MOUNT,
+			method = BOSS,
+			name = L["Solar Spirehawk"],
+			spellId = 171828,
+			itemId = 116771,
+			npcs = { 99999 },
+			tooltipNpcs = { 87493, 83746 },
+			chance = 500,
+			statisticId = { 9279 },
+			worldBossFactionless = true,
+			questId = 37464,
+			coords = {
+				{
+					m = 542,
+					x = 34.98,
+					y = 38.65
+				}
+			},
+		},
+
 		 ["Reins of the Infinite Timereaver"] =              { cat = WOD, type = MOUNT, method = BOSS, name = L["Reins of the Infinite Timereaver"], spellId = 201098, itemId = 133543,
 		npcs = { -- NPCs marked with * can't be looted; they use a workaround and are detected via checking their achievement criteria. The entry here is mostly for the tooltip display....
 			-- TBC Dungeons
