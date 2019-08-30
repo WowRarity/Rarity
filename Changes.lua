@@ -1,10 +1,11 @@
 local changes = {
 	["r692"] = {
 		additions = {
-			"Added defeat detection for some missing rares in Nazjatar and Mechagon Island",
+			"Added defeat detection for all relevant rares in Nazjatar and Mechagon Island",
 		},
 		fixes = {
 			"Fixed tracking for the Timewalking version of the Ozumat encounter (Throne of the Tides)",
+			"Fixed waypoint coordinates for Rukhmar and Sha of Anger (courtesy of divinemaiden)"
 		},
 	},
 	["r691"] = {

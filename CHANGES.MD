@@ -1,8 +1,9 @@
 **r692:**
 
-> Added defeat detection for some missing rares in Nazjatar and Mechagon Island
+> Added defeat detection for all relevant rares in Nazjatar and Mechagon Island
 
 > Fixed tracking for the Timewalking version of the Ozumat encounter (Throne of the Tides)
+<br>Fixed waypoint coordinates for Rukhmar and Sha of Anger (courtesy of divinemaiden)
 
 -----
 
