@@ -3664,7 +3664,7 @@ function R:PrepareDefaults()
 		spellId = 301045,
 		itemId = 169374,
 		creatureId = 154846,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 56291, 56917 }, -- Which one is it?
 		chance = 4,
 	},
 
@@ -3693,7 +3693,7 @@ function R:PrepareDefaults()
 		spellId = 301026,
 		itemId = 169355,
 		creatureId = 154828,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 56608, 56275 },-- Which one is it? Both completed upon killing it...
 		chance = 8,
 	},
 
@@ -3764,7 +3764,7 @@ function R:PrepareDefaults()
 		spellId = 301043,
 		itemId = 169372,
 		creatureId = 154821,
-		questId = { 00000000000000000, 00000000000000000 },
+		questId = { 56269, 56614 }, -- Which one is it? Hmm..
 		chance = 8,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  39.25, y = 77.35, n = L["Blindlight"] },
