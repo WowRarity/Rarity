@@ -1064,6 +1064,7 @@ function R:PrepareDefaults()
 				137134,
 				133736,
 				131530,
+				131529
 			},
 			chance = 4000,
 		 },
