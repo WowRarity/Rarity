@@ -3985,9 +3985,9 @@ do
 													local GetCustomPriceValue  = TSM_API.GetCustomPriceValue
 													local FormatMoneyString = TSM_API.FormatMoneyString
 
-													local itemLink = select(3, GetItemInfo(v.itemID))
+													local itemLink = select(2, GetItemInfo(v.itemId))
 													if type(itemLink) ~= "string" then
-														Rarity:Print(format("Attempting to use an invalid itemLink for item %d", v.itemID))
+														Rarity:Print(format("Attempting to use an invalid itemLink for item %d", v.itemId))
 														-- TODO: Error handling
 														-- TODO: return
 														break
@@ -3995,7 +3995,7 @@ do
 
 													local itemString = ToItemString(itemLink)
 													if type(itemString) ~= "string" then
-														Rarity:Print(format("Attempting to use an invalid itemString for item %d", v.itemID))
+														Rarity:Print(format("Attempting to use an invalid itemString for item %d", v.itemId))
 														-- TODO: Return
 														break
 													end
