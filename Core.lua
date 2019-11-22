@@ -3536,9 +3536,8 @@ do
 
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
 
-		-- TSM Pricing
-		local TSM_API
-		if TSM_API and item.type == CONSTANTS.ITEM_TYPES.PET and Rarity.db.profile.showTSMColumn then
+		-- Add TSM pricing information to the tooltip
+		if R.TSM_Interface:IsLoaded() and Rarity.db.profile.showTSMColumn then
 
 			local tooltipLines = {
 				{ priceSource = "DBMinBuyout", isMonetaryValue = true, localisedDisplayText = L["Min Buyout"], },
@@ -3552,15 +3551,15 @@ do
 			local hasPrice = false
 			for _, lineInfo in pairs(tooltipLines) do -- Add text to tooltip if TSM4 has pricing data for this source
 
-				if not IsValidPriceSource(lineInfo.priceSource) then
+				if not R.TSM_Interface:IsValidPriceSource(lineInfo.priceSource) then
 					Rarity:Print(format("Attempting to use invalid price source %s to retrieve a price for item %d via TSM_API. Please report this error so it can be fixed :)", lineInfo.priceSource, item.itemId))
 					break
 				end
 
-				local price = R.TSM_Interface:GetMarketPrice(lineInfo.priceSource, itemString, false) -- TODO: Upvalue
-				if(price ~= nil) then
+				local formattedPrice = R.TSM_Interface:GetMarketPrice(item.itemId, lineInfo.priceSource, true)
+				if(formattedPrice ~= nil) then
 					hasPrice = true
-					tooltip2AddDoubleLine(colorize(lineInfo.localisedDisplayText, blue), lineInfo.isMonetaryValue and FormatMoneyString(price) or price, nil, nil)
+					tooltip2AddDoubleLine(colorize(lineInfo.localisedDisplayText, blue), lineInfo.isMonetaryValue and formattedPrice, nil, nil)
 				else
 
 				end
