@@ -3592,7 +3592,7 @@ do
 					tooltip2AddDoubleLine(colorize(lineInfo.localisedDisplayText, blue), lineInfo.isMonetaryValue and FormatMoneyString(price) or price, nil, nil)
 				else
 					-- TODO: Display error message etc
-					Rarity:Print(format("Attempting to use an invalid price for item %d (TSM_API error: %s)", item.itemId, errorMessage or "<none>"))
+					Rarity:Print(format("Attempting to use an invalid price for item %d retrieved from price source %s (TSM_API error: %s)", item.itemId, lineInfo.priceSource, errorMessage or "<none>"))
 					-- TODO: return
 					break
 				end
@@ -4005,6 +4005,7 @@ do
 													marketPrice, errorMessage = GetCustomPriceValue("DBMarket", itemString)
 													if not marketPrice then
 														Rarity:Print(format("Attempting to use an invalid price for item %d (TSM_API error: %s)", v.itemId, errorMessage or "<none>" ))
+														Rarity:Print(format("Attempting to use an invalid price for item %d retrieved from price source %s (TSM_API error: %s)", v.itemId, "DBMarket", errorMessage or "<none>"))
 														-- TODO: return
 														break
 													end
