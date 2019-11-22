@@ -4003,9 +4003,16 @@ do
 														break
 													end
 
-													marketPrice = GetCustomPriceValue('DBMarket', itemString)
+													marketPrice, errorMessage = GetCustomPriceValue("DBMarket", itemString)
+													if not marketPrice then
+														Rarity:Print(format("Attempting to use an invalid price for item %d (TSM_API error: %s)", v.itemId, errorMessage))
+														-- TODO: return
+														break
+													end
+
 													-- TODO: Error handling - what if price source no longer exists?
 													marketPrice = FormatMoneyString(marketPrice) or marketPrice
+
 												end
 
 												-- Add the item to the tooltip
