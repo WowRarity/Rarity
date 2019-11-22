@@ -3587,14 +3587,15 @@ do
 				end
 
 				local price, errorMessage = GetCustomPriceValue(lineInfo.priceSource, itemString)
+				if errorMessage then
+					Rarity:Print(format("Error while retrieving price for item %d (%s) via TSM_API: %s", item.itemId, itemLink, errorMessage))
+				end
+
 				if(price ~= nil) then
 					hasPrice = true
 					tooltip2AddDoubleLine(colorize(lineInfo.localisedDisplayText, blue), lineInfo.isMonetaryValue and FormatMoneyString(price) or price, nil, nil)
 				else
-					-- TODO: Display error message etc
-					Rarity:Print(format("Attempting to use an invalid price for item %d retrieved from price source %s (TSM_API error: %s)", item.itemId, lineInfo.priceSource, errorMessage or "<none>"))
-					-- TODO: return
-					break
+
 				end
 			end
 
@@ -4003,14 +4004,15 @@ do
 													end
 
 													marketPrice, errorMessage = GetCustomPriceValue("DBMarket", itemString)
-													if not marketPrice then
-														Rarity:Print(format("Attempting to use an invalid price for item %d retrieved from price source %s (TSM_API error: %s)", v.itemId, "DBMarket", errorMessage or "<none>"))
-														-- TODO: return
-														break
+													if errorMessage then
+														Rarity:Print(format("Error while retrieving price for item %d (%s) via TSM_API: %s", v.itemId, itemLink, errorMessage))
+													end
+
+													if marketPrice then
+														marketPrice = FormatMoneyString(marketPrice)
 													end
 
 													-- TODO: Error handling - what if price source no longer exists?
-													marketPrice = FormatMoneyString(marketPrice) or marketPrice
 
 												end
 
