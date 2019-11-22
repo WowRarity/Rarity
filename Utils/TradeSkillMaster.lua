@@ -68,7 +68,7 @@ function TSM_Interface:GetMarketPrice(itemID, priceSource, formatAsString)
 		return
 	end
 
-	formatAsString = formatAsString or true
+	formatAsString = (formatAsString == nil) and true or formatAsString
 
 	if not self:IsLoaded() then return end
 
