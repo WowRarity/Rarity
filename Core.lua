@@ -3984,6 +3984,9 @@ do
 
 													local GetCustomPriceValue  = TSM_API.GetCustomPriceValue
 													local FormatMoneyString = TSM_API.FormatMoneyString
+													local ToItemString = TSM_API.ToItemString
+
+													-- TODO: Check for valid TSM APIs (separate function for easier reuse)
 
 													local itemLink = select(2, GetItemInfo(v.itemId))
 													if type(itemLink) ~= "string" then
