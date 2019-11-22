@@ -3572,7 +3572,7 @@ do
 					break
 				end
 
-				local itemLink = select(3, GetItemInfo(item.itemId))
+				local itemLink = select(2, GetItemInfo(item.itemId))
 				if type(itemLink) ~= "string" then
 					Rarity:Print(format("Attempting to use an invalid itemLink for item %d", item.itemId))
 					-- TODO: Error handling
