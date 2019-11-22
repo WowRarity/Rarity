@@ -3533,9 +3533,26 @@ do
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
 
 		-- TSM Pricing
-		local TSMAPI_FOUR = TSMAPI_FOUR
-		if TSMAPI_FOUR and item.type == CONSTANTS.ITEM_TYPES.PET and Rarity.db.profile.showTSMColumn then
+		local TSM_API
+		if TSM_API and item.type == CONSTANTS.ITEM_TYPES.PET and Rarity.db.profile.showTSMColumn then
 
+			local FormatMoneyString = TSM_API.FormatMoneyString
+			local GetPriceSourceKeys = TSM_API.GetPriceSourceKeys
+			local GetCustomPriceValue  = TSM_API.GetCustomPriceValue
+			local ToItemString  = TSM_API.ToItemString
+
+			-- TODO: Check all APIs that are used. Early exit if one wasn't found, then print a warning to have the user report it
+
+			local knownPriceSources = {}
+			knownPriceSources = TSM_API.GetPriceSourceKeys(knownPriceSources)
+			for index, priceSource in ipairs(knownPriceSources) do
+				-- TODO: Wasteful. Do it only once?
+				knownPriceSources[priceSource] = true -- Reusing this as a LUT to save some memory
+			end
+
+			dump(knownPriceSources)
+
+			-- TODO: Add localised display text (available via TSM API) on hover?
 			local tooltipLines = {
 				{ priceSource = "DBMinBuyout", isMonetaryValue = true, localisedDisplayText = L["Min Buyout"], },
 				{ priceSource = "DBMarket", isMonetaryValue = true, localisedDisplayText = L["Market Price"], },
@@ -3547,10 +3564,38 @@ do
 
 			local hasPrice = false
 			for _, lineInfo in pairs(tooltipLines) do -- Add text to tooltip if TSM4 has pricing data for this source
-				local price = TSMAPI_FOUR.CustomPrice.GetItemPrice(item.itemId, lineInfo.priceSource)
+
+				if not knownPriceSources[lineInfo.priceSource] then
+					-- TODO: Check if price source is actually known. If not, exit and have the user report it
+					Rarity:Print(format("Attempting to use unknown price source %s to retrieve a price for item %d via TSM_API", lineInfo.priceSource, item.itemId))
+					-- TODO: return
+					break
+				end
+
+				local itemLink = select(3, GetItemInfo(item.itemId))
+				if type(itemLink) ~= "string" then
+					Rarity:Print(format("Attempting to use an invalid itemLink for item %d", item.itemId))
+					-- TODO: Error handling
+					-- TODO: return
+					break
+				end
+				local itemString = ToItemString(itemLink)
+				if type(itemString) ~= "string" then
+					Rarity:Print(format("Attempting to use an invalid itemString for item %d", item.itemId))
+					-- TODO: Return
+					break
+				end
+
+				local price, errorMessage = GetCustomPriceValue(lineInfo.priceSource, itemString)
 				if(price ~= nil) then
 					hasPrice = true
-					tooltip2AddDoubleLine(colorize(lineInfo.localisedDisplayText, blue), lineInfo.isMonetaryValue and TSMAPI_FOUR.Money.ToString(price) or price, nil, nil)
+					tooltip2AddDoubleLine(colorize(lineInfo.localisedDisplayText, blue), lineInfo.isMonetaryValue and FormatMoneyString(price) or price, nil, nil)
+				else
+					-- TODO: Display error message etc
+					-- errorMessage
+					Rarity:Print(format("Attempting to use an invalid price for item %d (TSM_API error: %s)", item.itemId, errorMessage))
+					-- TODO: return
+					break
 				end
 			end
 
@@ -3924,7 +3969,7 @@ do
 														if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
 															line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
 														else
-															line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil, Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil, Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil, colorize(L["Defeated"], yellow), TSMAPI_FOUR ~= nil and Rarity.db.profile.showTSMColumn and colorize(L["Market Price"], yellow) or nil)
+															line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil, Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil, Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil, colorize(L["Defeated"], yellow), TSM_API ~= nil and Rarity.db.profile.showTSMColumn and colorize(L["Market Price"], yellow) or nil)
 														end
 														tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
 													end
@@ -3935,9 +3980,29 @@ do
 
 												-- Get Price
 												local marketPrice
-												if TSMAPI_FOUR then
-													marketPrice = TSMAPI_FOUR.CustomPrice.GetItemPrice(v.itemId, 'DBMarket')
-													marketPrice = TSMAPI_FOUR.Money.ToString(marketPrice)
+												if TSM_API then
+
+													local GetCustomPriceValue  = TSM_API.GetCustomPriceValue
+													local FormatMoneyString = TSM_API.FormatMoneyString
+
+													local itemLink = select(3, GetItemInfo(v.itemID))
+													if type(itemLink) ~= "string" then
+														Rarity:Print(format("Attempting to use an invalid itemLink for item %d", v.itemID))
+														-- TODO: Error handling
+														-- TODO: return
+														break
+													end
+
+													local itemString = ToItemString(itemLink)
+													if type(itemString) ~= "string" then
+														Rarity:Print(format("Attempting to use an invalid itemString for item %d", v.itemID))
+														-- TODO: Return
+														break
+													end
+
+													marketPrice = GetCustomPriceValue('DBMarket', itemString)
+													-- TODO: Error handling - what if price source no longer exists?
+													marketPrice = FormatMoneyString(marketPrice) or marketPrice
 												end
 
 												-- Add the item to the tooltip
