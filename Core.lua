@@ -21,6 +21,10 @@ do -- Set up the DB helper
 	Rarity.DatabaseMaintenanceHelper = addonTable.DatabaseMaintenanceHelper
 end
 
+do -- Set up the TSM_API interface (TODO: Combine loading of dependencies and modules, later)
+	Rarity.TSM_Interface = addonTable.TSM_Interface
+end
+
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local R = Rarity
 local qtip = LibStub("LibQTip-1.0")
@@ -3536,23 +3540,6 @@ do
 		local TSM_API
 		if TSM_API and item.type == CONSTANTS.ITEM_TYPES.PET and Rarity.db.profile.showTSMColumn then
 
-			local FormatMoneyString = TSM_API.FormatMoneyString
-			local GetPriceSourceKeys = TSM_API.GetPriceSourceKeys
-			local GetCustomPriceValue  = TSM_API.GetCustomPriceValue
-			local ToItemString  = TSM_API.ToItemString
-
-			-- TODO: Check all APIs that are used. Early exit if one wasn't found, then print a warning to have the user report it
-
-			local knownPriceSources = {}
-			knownPriceSources = TSM_API.GetPriceSourceKeys(knownPriceSources)
-			for index, priceSource in ipairs(knownPriceSources) do
-				-- TODO: Wasteful. Do it only once?
-				knownPriceSources[priceSource] = true -- Reusing this as a LUT to save some memory
-			end
-
-			dump(knownPriceSources)
-
-			-- TODO: Add localised display text (available via TSM API) on hover?
 			local tooltipLines = {
 				{ priceSource = "DBMinBuyout", isMonetaryValue = true, localisedDisplayText = L["Min Buyout"], },
 				{ priceSource = "DBMarket", isMonetaryValue = true, localisedDisplayText = L["Market Price"], },
@@ -3565,32 +3552,12 @@ do
 			local hasPrice = false
 			for _, lineInfo in pairs(tooltipLines) do -- Add text to tooltip if TSM4 has pricing data for this source
 
-				if not knownPriceSources[lineInfo.priceSource] then
-					-- TODO: Check if price source is actually known. If not, exit and have the user report it
-					Rarity:Print(format("Attempting to use unknown price source %s to retrieve a price for item %d via TSM_API", lineInfo.priceSource, item.itemId))
-					-- TODO: return
+				if not IsValidPriceSource(lineInfo.priceSource) then
+					Rarity:Print(format("Attempting to use invalid price source %s to retrieve a price for item %d via TSM_API. Please report this error so it can be fixed :)", lineInfo.priceSource, item.itemId))
 					break
 				end
 
-				local itemLink = select(2, GetItemInfo(item.itemId))
-				if type(itemLink) ~= "string" then
-					Rarity:Print(format("Attempting to use an invalid itemLink for item %d", item.itemId))
-					-- TODO: Error handling
-					-- TODO: return
-					break
-				end
-				local itemString = ToItemString(itemLink)
-				if type(itemString) ~= "string" then
-					Rarity:Print(format("Attempting to use an invalid itemString for item %d", item.itemId))
-					-- TODO: Return
-					break
-				end
-
-				local price, errorMessage = GetCustomPriceValue(lineInfo.priceSource, itemString)
-				if errorMessage then
-					Rarity:Print(format("Error while retrieving price for item %d (%s) via TSM_API: %s", item.itemId, itemLink, errorMessage))
-				end
-
+				local price = R.TSM_Interface:GetMarketPrice(lineInfo.priceSource, itemString, false) -- TODO: Upvalue
 				if(price ~= nil) then
 					hasPrice = true
 					tooltip2AddDoubleLine(colorize(lineInfo.localisedDisplayText, blue), lineInfo.isMonetaryValue and FormatMoneyString(price) or price, nil, nil)
@@ -3978,43 +3945,8 @@ do
 												-- Zone
 												local zoneText, inMyZone, zoneColor, numZones = R:GetZone(v)
 
-												-- Get Price
-												local marketPrice
-												if TSM_API then
-
-													local GetCustomPriceValue  = TSM_API.GetCustomPriceValue
-													local FormatMoneyString = TSM_API.FormatMoneyString
-													local ToItemString = TSM_API.ToItemString
-
-													-- TODO: Check for valid TSM APIs (separate function for easier reuse)
-
-													local itemLink = select(2, GetItemInfo(v.itemId))
-													if type(itemLink) ~= "string" then
-														Rarity:Print(format("Attempting to use an invalid itemLink for item %d", v.itemId))
-														-- TODO: Error handling
-														-- TODO: return
-														break
-													end
-
-													local itemString = ToItemString(itemLink)
-													if type(itemString) ~= "string" then
-														Rarity:Print(format("Attempting to use an invalid itemString for item %d", v.itemId))
-														-- TODO: Return
-														break
-													end
-
-													marketPrice, errorMessage = GetCustomPriceValue("DBMarket", itemString)
-													if errorMessage then
-														Rarity:Print(format("Error while retrieving price for item %d (%s) via TSM_API: %s", v.itemId, itemLink, errorMessage))
-													end
-
-													if marketPrice then
-														marketPrice = FormatMoneyString(marketPrice)
-													end
-
-													-- TODO: Error handling - what if price source no longer exists?
-
-												end
+												-- Retrieve the DBMarket price provided by the TSM_API (if loaded)
+												local marketPrice = Rarity.db.profile.showTSMColumn and R.TSM_Interface:GetMarketPrice(v.itemId, "DBMarket", true)
 
 												-- Add the item to the tooltip
 												local catIcon = ""
