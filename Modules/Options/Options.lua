@@ -507,10 +507,10 @@ function R:PrepareOptions()
 								order = newOrder(),
 								name = L["Show TSM column"],
 								desc = L["When on, the TSM Market Price will be shown in the main tooltip."],
-								hidden = function () return not TSMAPI_FOUR end,
-								get = function() return TSMAPI_FOUR ~= nil and self.db.profile.showTSMColumn == true end,
+								hidden = function () return not TSM_API end,
+								get = function() return TSM_API ~= nil and self.db.profile.showTSMColumn == true end,
 								set = function(info, val)
-									if TSMAPI_FOUR ~= nil then
+									if TSM_API ~= nil then
 										self.db.profile.showTSMColumn = val
 									end
 									self:UpdateText()
