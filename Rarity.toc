@@ -55,6 +55,7 @@ DB\SharedConstants.lua
 Utils\DatabaseMaintenanceHelper.lua
 Utils\DebugCache.lua
 Utils\PrettyPrint.lua
+Utils\TradeSkillMaster.lua
 
 # Addon Core
 Locales.lua

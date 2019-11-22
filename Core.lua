@@ -21,6 +21,10 @@ do -- Set up the DB helper
 	Rarity.DatabaseMaintenanceHelper = addonTable.DatabaseMaintenanceHelper
 end
 
+do -- Set up the TSM_API interface (TODO: Combine loading of dependencies and modules, later)
+	Rarity.TSM_Interface = addonTable.TSM_Interface
+end
+
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local R = Rarity
 local qtip = LibStub("LibQTip-1.0")
@@ -3532,9 +3536,8 @@ do
 
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
 
-		-- TSM Pricing
-		local TSMAPI_FOUR = TSMAPI_FOUR
-		if TSMAPI_FOUR and item.type == CONSTANTS.ITEM_TYPES.PET and Rarity.db.profile.showTSMColumn then
+		-- Add TSM pricing information to the tooltip
+		if R.TSM_Interface:IsLoaded() and Rarity.db.profile.showTSMColumn then
 
 			local tooltipLines = {
 				{ priceSource = "DBMinBuyout", isMonetaryValue = true, localisedDisplayText = L["Min Buyout"], },
@@ -3547,10 +3550,18 @@ do
 
 			local hasPrice = false
 			for _, lineInfo in pairs(tooltipLines) do -- Add text to tooltip if TSM4 has pricing data for this source
-				local price = TSMAPI_FOUR.CustomPrice.GetItemPrice(item.itemId, lineInfo.priceSource)
-				if(price ~= nil) then
+
+				if not R.TSM_Interface:IsValidPriceSource(lineInfo.priceSource) then
+					Rarity:Print(format("Attempting to use invalid price source %s to retrieve a price for item %d via TSM_API. Please report this error so it can be fixed :)", lineInfo.priceSource, item.itemId))
+					break
+				end
+
+				local formattedPrice = R.TSM_Interface:GetMarketPrice(item.itemId, lineInfo.priceSource, true)
+				if(formattedPrice ~= nil) then
 					hasPrice = true
-					tooltip2AddDoubleLine(colorize(lineInfo.localisedDisplayText, blue), lineInfo.isMonetaryValue and TSMAPI_FOUR.Money.ToString(price) or price, nil, nil)
+					tooltip2AddDoubleLine(colorize(lineInfo.localisedDisplayText, blue), lineInfo.isMonetaryValue and formattedPrice, nil, nil)
+				else
+
 				end
 			end
 
@@ -3924,7 +3935,7 @@ do
 														if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
 															line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
 														else
-															line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil, Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil, Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil, colorize(L["Defeated"], yellow), TSMAPI_FOUR ~= nil and Rarity.db.profile.showTSMColumn and colorize(L["Market Price"], yellow) or nil)
+															line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow), colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow), Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil, Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil, Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil, colorize(L["Defeated"], yellow), TSM_API ~= nil and Rarity.db.profile.showTSMColumn and colorize(L["Market Price"], yellow) or nil)
 														end
 														tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
 													end
@@ -3933,12 +3944,8 @@ do
 												-- Zone
 												local zoneText, inMyZone, zoneColor, numZones = R:GetZone(v)
 
-												-- Get Price
-												local marketPrice
-												if TSMAPI_FOUR then
-													marketPrice = TSMAPI_FOUR.CustomPrice.GetItemPrice(v.itemId, 'DBMarket')
-													marketPrice = TSMAPI_FOUR.Money.ToString(marketPrice)
-												end
+												-- Retrieve the DBMarket price provided by the TSM_API (if loaded)
+												local marketPrice = Rarity.db.profile.showTSMColumn and R.TSM_Interface:GetMarketPrice(v.itemId, "DBMarket", true)
 
 												-- Add the item to the tooltip
 												local catIcon = ""
