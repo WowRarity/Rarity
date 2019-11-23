@@ -1,3 +1,9 @@
+**r693:**
+
+> Fixed integration with the TradeSkillMaster4 addon (used to display pricing info in Rarity's tooltip)
+
+-----
+
 **r692:**
 
 > Added defeat detection for all relevant rares in Nazjatar and Mechagon Island
@@ -37,10 +43,3 @@ Developer Notes:
 > Removed some BFA Paragon reward toys that didn't make it to live servers
 <br>Fishing in Mac'aree and Krokuun (on Argus) should now correctly add attempts for the Pond Nettle mount
 <br>The Emerald Whelpling pet should now be listed with its proper name
-
------
-
-**r688:**
-
-> Resolved some display issues for faction-specific mounts that can be obtained from Darkshore rares
-<br>Fixed tracking for Spawn of Garalon

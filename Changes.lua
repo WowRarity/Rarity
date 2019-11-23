@@ -1,4 +1,9 @@
 local changes = {
+	["r693"] = {
+		fixes = {
+			"Fixed integration with the TradeSkillMaster4 addon (used to display pricing info in Rarity's tooltip)",
+		},
+	},
 	["r692"] = {
 		additions = {
 			"Added defeat detection for all relevant rares in Nazjatar and Mechagon Island",
