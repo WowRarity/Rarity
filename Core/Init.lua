@@ -12,4 +12,5 @@ Rarity.MINOR_VERSION = tonumber(projectVersion)
 
 
 -- Set up modules
+Rarity.Statistics = {}
 Rarity.Utils = {}
