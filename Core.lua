@@ -8,11 +8,6 @@ local isDebugVersion = false
 isDebugVersion = true
 --@end-debug@
 
-do -- Set up the debug cache
-	Rarity.DebugCache = addonTable.DebugCache
-	Rarity.DebugCache:SetOutputHandler(addonTable.PrettyPrint.DebugMsg)
-end
-
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local R = Rarity
 local qtip = LibStub("LibQTip-1.0")
@@ -526,7 +521,14 @@ local COMBATLOG_OBJECT_AFFILIATION_RAID = _G.COMBATLOG_OBJECT_AFFILIATION_RAID
 
 -- Addon APIs
 local TSM_Interface = Rarity.Utils.TSM_Interface
+local DebugCache = Rarity.Utils.DebugCache
 local GetRealDropPercentage = Rarity.Statistics.GetRealDropPercentage
+
+
+do 
+	-- Set up the debug cache (TODO: Move to initialisation routine after the refactoring is complete)
+	Rarity.Utils.DebugCache:SetOutputHandler(addonTable.PrettyPrint.DebugMsg)
+end
 
 --[[
       HELPERS ----------------------------------------------------------------------------------------------------------------
@@ -900,7 +902,7 @@ function R:ChatCommand(input)
 		end
 	elseif strlower(input) == "dump" then
 		local numMessages = 50 -- Hardcoded is meh, but it should suffice for the time being
-		self.DebugCache:PrintMessages(numMessages)
+		DebugCache:PrintMessages(numMessages)
 	elseif strlower(input) == "verify" then -- Verify the ItemDB
 
 		self:VerifyItemDB()
@@ -1373,7 +1375,7 @@ end
 -- Debug mode and profiling
 function R:Debug(s, ...)
 	if self.db.profile.debugMode then self:Print(format(s, ...)) end
-	self.DebugCache:AddMessage(format(s, ...))
+	DebugCache:AddMessage(format(s, ...))
 end
 
 do

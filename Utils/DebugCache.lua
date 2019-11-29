@@ -145,4 +145,4 @@ function DC:PrintMessages(numMessages)
 end
 
 
-addon.DebugCache = DC
+Rarity.Utils.DebugCache = DC
