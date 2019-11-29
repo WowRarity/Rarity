@@ -525,9 +525,9 @@ local DebugCache = Rarity.Utils.DebugCache
 local GetRealDropPercentage = Rarity.Statistics.GetRealDropPercentage
 
 
-do 
+do
 	-- Set up the debug cache (TODO: Move to initialisation routine after the refactoring is complete)
-	Rarity.Utils.DebugCache:SetOutputHandler(addonTable.PrettyPrint.DebugMsg)
+	Rarity.Utils.DebugCache:SetOutputHandler(Rarity.Utils.PrettyPrint.DebugMsg)
 end
 
 --[[

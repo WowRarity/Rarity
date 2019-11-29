@@ -1,5 +1,3 @@
-local addonName, addon = ...
-
 -- Upvalues
 local print = print
 local format = format
@@ -22,4 +20,5 @@ function PP.DebugMsg(msg, timestamp, source, ...)
 
 end
 
-addon.PrettyPrint = PP
+Rarity.Utils.PrettyPrint = PP
+return PP
