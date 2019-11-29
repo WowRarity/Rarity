@@ -49,6 +49,9 @@ Libs\LibCompress\lib.xml
 #@end-no-lib-strip@
 Libs\LibBars-1.0\lib.xml
 
+# This must be loaded first
+Core\Init.lua
+
 # Database
 DB\SharedConstants.lua
 
