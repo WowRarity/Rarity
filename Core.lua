@@ -523,7 +523,7 @@ local COMBATLOG_OBJECT_AFFILIATION_RAID = _G.COMBATLOG_OBJECT_AFFILIATION_RAID
 local TSM_Interface = Rarity.Utils.TSM_Interface
 local DebugCache = Rarity.Utils.DebugCache
 local GetRealDropPercentage = Rarity.Statistics.GetRealDropPercentage
-
+local FormatTime = Rarity.Utils.PrettyPrint.FormatTime
 
 do
 	-- Set up the debug cache (TODO: Move to initialisation routine after the refactoring is complete)
@@ -1597,28 +1597,7 @@ function R:IsHorde()
 end
 
 
-function R:FormatTime(t)
- if not t then return "0:00" end
-	if t == 0 then
-		return "0:00"
-	end
 
-	local h = math.floor(t / (60 * 60))
-	t = t - (60 * 60 * h)
-	local m = math.floor(t / 60)
-	t = t - (60 * m)
-	local s = t
-
-	if h > 0 then
-		return format("%d:%02d:%02d", h, m, s)
-	end
-
-	if m > 0 then
-		return format("%d:%02d", m, s)
-	end
-
-	return format("%d", s).."s"
-end
 
 
 
@@ -3357,7 +3336,7 @@ do
 			tooltip2AddDoubleLine(L["Attempts"], attempts)
 		end
   if item.method == NPC or item.method == ZONE or item.method == FISHING or item.method == USE then
-   tooltip2AddDoubleLine(L["Time spent farming"], R:FormatTime((item.time or 0) - (item.lastTime or 0) + len))
+   tooltip2AddDoubleLine(L["Time spent farming"], FormatTime((item.time or 0) - (item.lastTime or 0) + len))
   end
   if attempts > 0 then
 			if item.method == COLLECTION then
@@ -3377,7 +3356,7 @@ do
    local attempts = (item.attempts or 0)
    tooltip2AddDoubleLine(L["Attempts"], attempts)
    if item.method == NPC or item.method == ZONE or item.method == FISHING or item.method == USE then
-    tooltip2AddDoubleLine(L["Time spent farming"], R:FormatTime((item.time or 0) + len))
+    tooltip2AddDoubleLine(L["Time spent farming"], FormatTime((item.time or 0) + len))
    end
    tooltip2AddDoubleLine(L["Total found"], item.totalFinds)
    if item.finds then
@@ -3386,8 +3365,8 @@ do
     for k, v in pairs(f) do
      local dropChance  =GetRealDropPercentage(v)
      local chance = 100 * (1 - math.pow(1 - dropChance, v.attempts))
-     if v.attempts == 1 then tooltip2AddDoubleLine(format(L["#%d: %d attempt (%.2f%%)"], v.num, v.attempts, chance), R:FormatTime((v.time or 0) + len))
-     else tooltip2AddDoubleLine(format(L["#%d: %d attempts (%.2f%%)"], v.num, v.attempts, chance), R:FormatTime((v.time or 0) + len)) end
+     if v.attempts == 1 then tooltip2AddDoubleLine(format(L["#%d: %d attempt (%.2f%%)"], v.num, v.attempts, chance), FormatTime((v.time or 0) + len))
+     else tooltip2AddDoubleLine(format(L["#%d: %d attempts (%.2f%%)"], v.num, v.attempts, chance), FormatTime((v.time or 0) + len)) end
     end
    end
   end
@@ -3399,7 +3378,7 @@ do
    if item.session then
     local sessionAttempts = item.session.attempts or 0
     local sessionTime = item.session.time or 0
-    tooltip2AddDoubleLine(L["Session"], format("%d (%s)", sessionAttempts, R:FormatTime(sessionTime + len)))
+    tooltip2AddDoubleLine(L["Session"], format("%d (%s)", sessionAttempts, FormatTime(sessionTime + len)))
    end
 
    local todayDate = getDate()
@@ -3428,10 +3407,10 @@ do
     monthTime = monthTime + dayTime
    end
 
-   tooltip2AddDoubleLine(L["Today"], format("%d (%s)", todayAttempts or 0, R:FormatTime((todayTime or 0) + len)))
-   tooltip2AddDoubleLine(L["Yesterday"], format("%d (%s)", yesterAttempts or 0, R:FormatTime(yesterTime or 0)))
-   tooltip2AddDoubleLine(L["Last Week"], format("%d (%s)", weekAttempts or 0, R:FormatTime(weekTime or 0)))
-   tooltip2AddDoubleLine(L["Last Month"], format("%d (%s)", monthAttempts or 0, R:FormatTime(monthTime or 0)))
+   tooltip2AddDoubleLine(L["Today"], format("%d (%s)", todayAttempts or 0, FormatTime((todayTime or 0) + len)))
+   tooltip2AddDoubleLine(L["Yesterday"], format("%d (%s)", yesterAttempts or 0, FormatTime(yesterTime or 0)))
+   tooltip2AddDoubleLine(L["Last Week"], format("%d (%s)", weekAttempts or 0, FormatTime(weekTime or 0)))
+   tooltip2AddDoubleLine(L["Last Month"], format("%d (%s)", monthAttempts or 0, FormatTime(monthTime or 0)))
 
   end
 
@@ -3680,7 +3659,7 @@ do
 								local len = sessionLast - sessionStarted
 								time = time + len
 							end
-							time = R:FormatTime(time)
+							time = FormatTime(time)
 							local likelihood = format("%.2f%%", chance)
 							if attempts == 0 then
 								attempts = ""
@@ -4877,7 +4856,7 @@ function R:EndSession()
     if not i.session then i.session = {} end
     i.session.time = (i.session.time or 0) + len
    end
-   self:Debug("Ending session for %s (%s)", itemLink, self:FormatTime(trackedItem.time or 0))
+   self:Debug("Ending session for %s (%s)", itemLink, FormatTime(trackedItem.time or 0))
 	 end
   if trackedItem2 and trackedItem2.itemId then
    local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(trackedItem2.itemId)
@@ -4892,7 +4871,7 @@ function R:EndSession()
     if not i.session then i.session = {} end
     i.session.time = (i.session.time or 0) + len
    end
-   self:Debug("Also ending session for %s (%s)", itemLink, self:FormatTime(trackedItem2.time or 0))
+   self:Debug("Also ending session for %s (%s)", itemLink, FormatTime(trackedItem2.time or 0))
 	 end
  end
 	inSession = false
@@ -4961,7 +4940,7 @@ function R:ImportFromBunnyHunter()
        for itemkey, item in pairs(group) do
         if item.itemId == tonumber(k) then
          for kk, vv in pairs(v) do
-          self:Debug("%s: adding a kill after %d attempts, %s time", itemkey, vv.loots, self:FormatTime(vv.time))
+          self:Debug("%s: adding a kill after %d attempts, %s time", itemkey, vv.loots, FormatTime(vv.time))
           if not item.finds then item.finds = {} end
           local count = 0
           for x, y in pairs(item.finds) do count = count + 1 end
