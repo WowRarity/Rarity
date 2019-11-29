@@ -17,10 +17,6 @@ do -- Set up the DB helper
 	Rarity.DatabaseMaintenanceHelper = addonTable.DatabaseMaintenanceHelper
 end
 
-do -- Set up the TSM_API interface (TODO: Combine loading of dependencies and modules, later)
-	Rarity.TSM_Interface = addonTable.TSM_Interface
-end
-
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local R = Rarity
 local qtip = LibStub("LibQTip-1.0")
@@ -530,6 +526,7 @@ local COMBATLOG_OBJECT_AFFILIATION_MINE = _G.COMBATLOG_OBJECT_AFFILIATION_MINE
 local COMBATLOG_OBJECT_AFFILIATION_PARTY = _G.COMBATLOG_OBJECT_AFFILIATION_PARTY
 local COMBATLOG_OBJECT_AFFILIATION_RAID = _G.COMBATLOG_OBJECT_AFFILIATION_RAID
 
+local TSM_Interface = Rarity.Utils.TSM_Interface
 
 --[[
       HELPERS ----------------------------------------------------------------------------------------------------------------
@@ -3470,7 +3467,7 @@ do
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
 
 		-- Add TSM pricing information to the tooltip
-		if R.TSM_Interface:IsLoaded() and Rarity.db.profile.showTSMColumn then
+		if TSM_Interface:IsLoaded() and Rarity.db.profile.showTSMColumn then
 
 			local tooltipLines = {
 				{ priceSource = "DBMinBuyout", isMonetaryValue = true, localisedDisplayText = L["Min Buyout"], },
@@ -3484,12 +3481,12 @@ do
 			local hasPrice = false
 			for _, lineInfo in pairs(tooltipLines) do -- Add text to tooltip if TSM4 has pricing data for this source
 
-				if not R.TSM_Interface:IsValidPriceSource(lineInfo.priceSource) then
+				if not TSM_Interface:IsValidPriceSource(lineInfo.priceSource) then
 					Rarity:Print(format("Attempting to use invalid price source %s to retrieve a price for item %d via TSM_API. Please report this error so it can be fixed :)", lineInfo.priceSource, item.itemId))
 					break
 				end
 
-				local formattedPrice = R.TSM_Interface:GetMarketPrice(item.itemId, lineInfo.priceSource, true)
+				local formattedPrice = TSM_Interface:GetMarketPrice(item.itemId, lineInfo.priceSource, true)
 				if(formattedPrice ~= nil) then
 					hasPrice = true
 					tooltip2AddDoubleLine(colorize(lineInfo.localisedDisplayText, blue), lineInfo.isMonetaryValue and formattedPrice, nil, nil)
@@ -3878,7 +3875,7 @@ do
 												local zoneText, inMyZone, zoneColor, numZones = R:GetZone(v)
 
 												-- Retrieve the DBMarket price provided by the TSM_API (if loaded)
-												local marketPrice = Rarity.db.profile.showTSMColumn and R.TSM_Interface:GetMarketPrice(v.itemId, "DBMarket", true)
+												local marketPrice = Rarity.db.profile.showTSMColumn and TSM_Interface:GetMarketPrice(v.itemId, "DBMarket", true)
 
 												-- Add the item to the tooltip
 												local catIcon = ""

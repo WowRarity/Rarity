@@ -102,5 +102,5 @@ function TSM_Interface:GetMarketPrice(itemID, priceSource, formatAsString)
 
 end
 
-addonTable.TSM_Interface = TSM_Interface
+Rarity.Utils.TSM_Interface = TSM_Interface
 return TSM_Interface
