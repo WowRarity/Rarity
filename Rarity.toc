@@ -62,6 +62,7 @@ Utils\PrettyPrint.lua
 Utils\TradeSkillMaster.lua
 
 # Addon Core
+Core\Serialization.lua
 Core\Statistics.lua
 Locales.lua
 Core.lua

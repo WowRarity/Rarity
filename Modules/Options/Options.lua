@@ -1075,7 +1075,7 @@ function R:PrepareOptions()
 								for itemkey, item in pairs(e.items) do
 									local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
 									local status = colorize(" - "..L["will be imported"], green)
-									R:CleanItemForImport(item)
+									Rarity.Serialization:CleanItemForImport(item)
 									item.import = true
 									if not itemLink then status = status.." "..colorize(L["(Warning: item could not be retrieved from server)"], red) end
 
@@ -1178,7 +1178,7 @@ function R:PrepareOptions()
 							local g = sort(self.db.profile.groups.user)
 							local foundRed = false
 							for itemkey, item in pairs(g) do
-								if item and type(item) == "table" and item.export and Rarity:CanItemBeExportedImported(item) then
+								if item and type(item) == "table" and item.export and Rarity.Serialization:CanItemBeExportedImported(item) then
 									local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
 									s = s..(itemLink or colorize(item.name, red)).."\n"
 									if not itemLink then foundRed = true end
@@ -1205,7 +1205,7 @@ function R:PrepareOptions()
 							local e = { items = {} }
 							local g = sort(self.db.profile.groups.user)
 							for itemkey, item in pairs(g) do
-								if item and type(item) == "table" and item.export and Rarity:CanItemBeExportedImported(item) then
+								if item and type(item) == "table" and item.export and Rarity.Serialization:CanItemBeExportedImported(item) then
 									e.items[itemkey] = item
 								end
 							end
@@ -1373,7 +1373,7 @@ function R:CreateGroup(options, group, isUser)
 					name = L["Export this item"],
 					desc = L["Check this for every Custom item you wish to export. Then click on the Import/Export tab and click the Export button. This checkbox will be disabled until enough information has been filled in below to make it a detectable item."],
 					get = function()
-      if item.export == true and R:CanItemBeExportedImported(item) then
+      if item.export == true and Rarity.Serialization:CanItemBeExportedImported(item) then
 							return true
 						else
 							item.export = false
@@ -1385,7 +1385,7 @@ function R:CreateGroup(options, group, isUser)
 					end,
      hidden = not isUser,
      disabled = function()
-						return not R:CanItemBeExportedImported(item)
+						return not Rarity.Serialization:CanItemBeExportedImported(item)
 					end,
 				},
 
