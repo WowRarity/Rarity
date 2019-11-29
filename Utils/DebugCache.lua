@@ -66,10 +66,10 @@ function DC:SetCacheSize(newCacheSize)
 		self.print("Failed to set cache size to " .. tostring(newCacheSize))
 		return
 	end
-	
+
 	self.print("Cache size set to " .. tostring(newCacheSize) .. " (was " .. tostring(self.cacheSize) .. ")")
 	self.cacheSize = newCacheSize
-	
+
 end
 
 -- Sets the output handler (print replacement)
@@ -82,7 +82,7 @@ function DC:SetOutputHandler(outputHandler)
 	end
 
 	self.print = outputHandler
-	
+
 end
 
 -- AdDC a new message to the cache
@@ -97,13 +97,13 @@ function DC:AddMessage(text, category)
 		category = category,
 		timestamp = time(),
 	}
-	
+
 	-- Update cache
 	if self.cacheSize == #self.messages then -- Drop first item (FIFO)
 		tremove(self.messages, 1)
 	end
 	tinsert(self.messages, message)
-	
+
 end
 
 -- Prints the last X messages (defaults to one message if the 'numMessages' parameter is omitted)
@@ -113,10 +113,10 @@ function DC:PrintMessages(numMessages)
 		self.print("Failed to print messages: Cache is currently empty")
 		return
 	end
-	
+
 	-- Show at least one message, but no more than are currently cached. Default to one message if no parameter was given
 	numMessages = min(#self.messages, (type(numMessages) == "number" and numMessages > 0) and numMessages or 1)
-	
+
 	-- Show most recent messages first
 	local firstIndex = max(#self.messages - numMessages, 1)
 	local lastIndex	= #self.messages
@@ -126,7 +126,7 @@ function DC:PrintMessages(numMessages)
 		local line = "(" .. tostring(i) .. ") - " .. tostring(msg.text)
 		self.print(line, msg.timestamp, msg.category)
 	end
-	
+
 end
 
 
