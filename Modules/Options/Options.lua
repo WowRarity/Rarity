@@ -106,12 +106,12 @@ do
 		R.profileOptions = LibStub("AceDBOptions-3.0"):GetOptionsTable(R.db)
 		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity-Profiles", R.profileOptions)
 		R.profileFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity-Profiles", "Profiles", "Rarity")
-		
+
 		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity-Advanced", R.advancedSettings)
 		R.advancedSettingsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity-Advanced", "Advanced", "Rarity")
-		
+
 	end
-	
+
 end
 
 
@@ -190,16 +190,16 @@ local function alertWithCopy(msg, textToCopy)
 	StaticPopupDialogs["RARITY_OPTIONS_ALERT_WITH_COPY"] = {
 		text = msg,
 		button1 = L["Close"],
-		hasEditBox = 1,	
+		hasEditBox = 1,
 		button2 = "",
-	
+
 		OnShow = function(self)
 			self.editBox:SetText(textToCopy);
 			self.editBox:SetFocus();
 			self.editBox:HighlightText();
 			_G[self:GetName().."Button2"]:Hide();
 			_G[self:GetName().."Button1"]:ClearAllPoints();
-			_G[self:GetName().."Button1"]:SetPoint("TOP", self.editBox, "BOTTOM", 0, -8);		
+			_G[self:GetName().."Button1"]:SetPoint("TOP", self.editBox, "BOTTOM", 0, -8);
 		end,
 		OnHide = function(self)
 			self.editBox:SetText("");
@@ -233,7 +233,7 @@ end
 local b = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 
 function enc64(data)
-    return ((data:gsub('.', function(x) 
+    return ((data:gsub('.', function(x)
         local r,b='',x:byte()
         for i=8,1,-1 do r=r..(b%2^i-b%2^(i-1)>0 and '1' or '0') end
         return r;
@@ -288,7 +288,7 @@ function R:PrepareOptions()
 		type = "group",
 		childGroups = "tab",
 		args = {
-		
+
 -- General --------------------------------------------------------------------------------------------------------------------------------------
 
 			general = {
@@ -297,7 +297,7 @@ function R:PrepareOptions()
 				order = newOrder(),
 				childGroups = "tree",
 				args = {
-				
+
 
 					general = {
 						type = "group",
@@ -305,7 +305,7 @@ function R:PrepareOptions()
 						order = newOrder(),
 						inline = true,
 						args = {
-						
+
 							minimap = {
 								type = "toggle",
 								order = newOrder(),
@@ -318,7 +318,7 @@ function R:PrepareOptions()
 									self:Update("OPTIONS")
 								end,
 							}, -- minimap
-							
+
 							holidayReminder = {
 								type = "toggle",
 								order = newOrder(),
@@ -393,7 +393,7 @@ function R:PrepareOptions()
 						order = newOrder(),
 						inline = true,
 						args = {
-						
+
 							showCategoryIcons = {
 								type = "toggle",
 								order = newOrder(),
@@ -575,7 +575,7 @@ function R:PrepareOptions()
 						order = newOrder(),
 						inline = true,
 						args = {
-						
+
 							enableTooltipAdditions = {
 								type = "toggle",
 								order = newOrder(),
@@ -631,53 +631,13 @@ function R:PrepareOptions()
 						}, -- args
 					}, -- worldTooltips
 
-
-					--[[groupFinder = {
-						type = "group",
-						name = L["Group Finder Options"],
-						order = newOrder(),
-						inline = true,
-						args = {
-						
-							showGroupFinderAutoRefresh = {
-								type = "toggle",
-								order = newOrder(),
-								width = "double",
-								name = L["Show auto refresh checkbox"],
-								desc = L["When enabled, Rarity will add an Auto checkbox to the Group Finder's search window. You can check this checkbox to enable auto-refresh of your searches every 5 seconds."],
-								get = function() return self.db.profile.showGroupFinderAutoRefresh end,
-								set = function(info, val)
-									self.db.profile.showGroupFinderAutoRefresh = val
-									if RarityGroupFinderAutoRefresh ~= nil then
-										if self.db.profile.showGroupFinderAutoRefresh then RarityGroupFinderAutoRefresh:Show() else RarityGroupFinderAutoRefresh:Hide() end
-									end
-								end,
-							},
-
-							enableGroupFinderAlert = {
-								type = "toggle",
-								order = newOrder(),
-								width = "double",
-								name = L["Play a sound when groups are found"],
-								desc = L["When enabled, Rarity will play a sound when an auto-refresh search results in one or more groups found in the Group Finder. This sound cannot play more than once per minute."],
-								get = function() return self.db.profile.enableGroupFinderAlert end,
-								set = function(info, val)
-									self.db.profile.enableGroupFinderAlert = val
-									self:UpdateText()
-								end,
-							},
-
-						}, -- args
-					}, -- groupFinder
-]]
-
 					contentCategory = {
 						type = "group",
 						name = L["Content Category"],
 						order = newOrder(),
 						inline = true,
 						args = {
-						
+
 						desc = {
 							type = "description",
 							name = L["These toggles control which items appear in the main Rarity tooltip. Items are categorized by the expansion they were introduced in (although holiday items have a separate category). Turning off these checkboxes does not turn off tracking for any items within the category; it simply hides the item from the tooltip in order to help reduce the number of items in it."],
@@ -782,7 +742,7 @@ function R:PrepareOptions()
 						order = newOrder(),
 						inline = true,
 						args = {
-						
+
 					  anchor = {
 						  type = "toggle",
 						  order = newOrder(),
@@ -962,7 +922,7 @@ function R:PrepareOptions()
 						order = newOrder(),
 						inline = true,
 						args = {
-						
+
 					  onlyAnnounceFound = {
 						  type = "toggle",
 						  order = newOrder(),
@@ -981,7 +941,7 @@ function R:PrepareOptions()
 
 				}, -- args
 			}, -- general
-		
+
 -- Mounts ---------------------------------------------------------------------------------------------------------------------------------------
 
 			mounts = {
@@ -990,9 +950,9 @@ function R:PrepareOptions()
 				order = newOrder(),
 				childGroups = "tree",
 				args = {
-				
+
 					-- Filled in by Rarity:CreateGroup(...)
-			
+
 				}, -- args
 			}, -- mounts
 
@@ -1004,9 +964,9 @@ function R:PrepareOptions()
 				order = newOrder(),
 				childGroups = "tree",
 				args = {
-				
+
 					-- Filled in by Rarity:CreateGroup(...)
-			
+
 				}, -- args
 			}, -- companions
 
@@ -1018,9 +978,9 @@ function R:PrepareOptions()
 				order = newOrder(),
 				childGroups = "tree",
 				args = {
-				
+
 					-- Filled in by Rarity:CreateGroup(...)
-			
+
 				}, -- args
 			}, -- items
 
@@ -1032,9 +992,9 @@ function R:PrepareOptions()
 				order = newOrder(),
 				childGroups = "tree",
 				args = {
-				
+
 					-- Filled in by Rarity:CreateGroup(...)
-			
+
 				}, -- args
 			}, -- custom
 
@@ -1059,9 +1019,9 @@ function R:PrepareOptions()
 						order = newOrder(),
 						name = " ",
 					},
-				
+
 					spacer1 = { type = "header", name = L["Import Rarity Item Pack"], order = newOrder(), },
-				
+
 					head2 = {
 						type = "description",
 						order = newOrder(),
@@ -1098,7 +1058,7 @@ function R:PrepareOptions()
 								return "\n"..s.."\n"
 							end
 							Rarity.itemPack = e -- The decoded object is placed here for use during Import, this way we only have to do all of this one time
-							
+
 							-- We have an object, now do logical validation
 							local numItems = 0
 							if type(e) == "table" and e.items and type(e.items) == "table" then
@@ -1147,7 +1107,7 @@ function R:PrepareOptions()
 						end,
 						hidden = function() return not self.db.profile.lastImportString or strtrim(self.db.profile.lastImportString) == "" end,
 					},
-				
+
 					importText = {
 						order = newOrder(),
 						type = "input",
@@ -1182,7 +1142,7 @@ function R:PrepareOptions()
 									R:Print((itemLink or item.name or "Unknown").." - "..colorize(L["imported successfully"], green))
 								end
 							end
-							
+
 							self:CreateGroup(self.options.args.custom, self.db.profile.groups.user, true)
 							self:Update("IMPORT")
 							self.db.profile.lastImportString = ""
@@ -1200,9 +1160,9 @@ function R:PrepareOptions()
 						order = newOrder(),
 						name = " ",
 					},
-				
+
 					spacer2 = { type = "header", name = L["Export Rarity Item Pack"], order = newOrder(), },
-				
+
 					head3 = {
 						type = "description",
 						order = newOrder(),
@@ -1236,7 +1196,7 @@ function R:PrepareOptions()
 							return true
 	     end,
 					},
-				
+
 					export = {
 						type = "execute",
 						name = L["Export"],
@@ -1312,13 +1272,13 @@ function R:PrepareOptions()
 	self:CreateGroup(self.options.args.custom, self.db.profile.groups.user, true)
 
 	self.advancedSettings  = {
-	
+
 		name = L["Advanced"],
 		type = "group",
 		handler = Rarity,
 		childGroups = "tab",
 		args = {
-			
+
 			experimental = {
 				name = L["Experimental"],
 				type = "group",
@@ -1391,14 +1351,14 @@ function R:CreateGroup(options, group, isUser)
    order = newOrder(),
 		 name = function() return select(2, GetItemInfo(item.itemId or 0)) or item.name end,
 		 args = {
-			
+
 			 head = {
 				 type = "description",
 				 order = newOrder(),
 				 name = function() return select(2, GetItemInfo(item.itemId or 0)) or item.name end,
 				 fontSize = "large"
 			 },
-				
+
 			 head = {
 				 type = "description",
 				 order = newOrder(),
@@ -1406,7 +1366,7 @@ function R:CreateGroup(options, group, isUser)
 				 fontSize = "large",
 					hidden = function() return GetItemInfo(item.itemId) end
 			 },
-				
+
 				export = {
 					order = newOrder(),
 					type = "toggle",
@@ -1442,7 +1402,7 @@ function R:CreateGroup(options, group, isUser)
 				 order = newOrder(),
 				 hidden = not isUser,
 			 },
-				
+
 			 source = {
 				 type = "description",
 				 order = newOrder(),
@@ -1464,70 +1424,70 @@ function R:CreateGroup(options, group, isUser)
 						return true
 					end,
 			 },
-				
+
 			 sourceExtra = {
 				 type = "description",
 				 order = newOrder(),
 				 name = item.sourceText or "",
 					hidden = item.sourceText == nil or item.sourceText == "",
 			 },
-				
+
 			 worldBossFactionless = {
 				 type = "description",
 				 order = newOrder(),
 				 name = colorize(L["All players can participate in killing this world boss once per week, regardless of faction"], blue),
 					hidden = item.worldBossFactionless == false or item.worldBossFactionless == nil,
 			 },
-				
+
 			 wasGuaranteed = {
 				 type = "description",
 				 order = newOrder(),
 				 name = colorize(L["This was a guaranteed drop for players who defeated the encounter when it was current"], blue),
 					hidden = item.wasGuaranteed == false or item.wasGuaranteed == nil,
 			 },
-				
+
 			 bonusSatchel = {
 				 type = "description",
 				 order = newOrder(),
 				 name = colorize(L["Contained in bonus satchels"], yellow),
 					hidden = item.bonusSatchel == false or item.bonusSatchel == nil,
 			 },
-				
+
 			 blackMarket = {
 				 type = "description",
 				 order = newOrder(),
 				 name = colorize(L["Appears in the Black Market"], yellow),
 					hidden = item.blackMarket == false or item.blackMarket == nil,
 			 },
-				
+
 			 enableCoinD = {
 				 type = "description",
 				 order = newOrder(),
 				 name = colorize(L["Can be obtained with a bonus roll"], yellow),
 					hidden = item.enableCoin == false or item.enableCoin == nil,
 			 },
-				
+
 			 requiresAllianceT = {
 				 type = "description",
 				 order = newOrder(),
 				 name = colorize(L["This mount is only obtainable by Alliance players"], red),
 					hidden = item.requiresAlliance == false or item.requiresAlliance == nil,
 			 },
-				
+
 			 requiresHordeT = {
 				 type = "description",
 				 order = newOrder(),
 				 name = colorize(L["This mount is only obtainable by Horde players"], red),
 					hidden = item.requiresHorde == false or item.requiresHorde == nil,
 			 },
-				
+
 			 blankLine = {
 				 type = "description",
 				 order = newOrder(),
 				 name = " ",
 					hidden = item.sourceText == nil or item.sourceText == "",
 			 },
-				
+
 			 spacer1 = { type = "header", name = L["Identify the Item"], order = newOrder(), },
 
 				method = {
@@ -1595,7 +1555,7 @@ function R:CreateGroup(options, group, isUser)
      get = function(into) if item.itemId then return tostring(item.itemId) else return nil end end,
 			  disabled = not isUser,
 		  },
-							
+
 		  collectedItemId = {
 			  type = "input",
      order = newOrder(),
@@ -1635,7 +1595,7 @@ function R:CreateGroup(options, group, isUser)
 			  disabled = not isUser,
 			  hidden = function() return item.method ~= COLLECTION end,
 		  },
-							
+
 		  spellId = {
 			  type = "input",
      order = newOrder(),
@@ -1663,7 +1623,7 @@ function R:CreateGroup(options, group, isUser)
      end,
 			  disabled = not isUser,
 		  },
-							
+
 		  creatureId = {
 			  type = "input",
      order = newOrder(),
@@ -1691,7 +1651,7 @@ function R:CreateGroup(options, group, isUser)
      end,
 			  disabled = not isUser,
 		  },
-							
+
 				raceId = {
 					type = "select",
 					name = L["Archaeology race"],
@@ -1758,7 +1718,7 @@ function R:CreateGroup(options, group, isUser)
      end,
 			  disabled = not isUser,
 		  },
-							
+
 		  items = {
 			  type = "input",
      order = newOrder(),
@@ -1800,7 +1760,7 @@ function R:CreateGroup(options, group, isUser)
      end,
 			  disabled = not isUser,
 		  },
-							
+
 		  npcs = {
 			  type = "input",
      order = newOrder(),
@@ -1842,7 +1802,7 @@ function R:CreateGroup(options, group, isUser)
      end,
 			  disabled = not isUser,
 		  },
-							
+
 		  statistics = {
 			  type = "input",
      order = newOrder(),
@@ -1884,7 +1844,7 @@ function R:CreateGroup(options, group, isUser)
      end,
 			  disabled = not isUser,
 		  },
-							
+
 				requiresPool = {
 					order = newOrder(),
 					type = "toggle",
@@ -1993,7 +1953,7 @@ function R:CreateGroup(options, group, isUser)
 			  end,
      get = function(into) return tostring((item.attempts or 0) - (item.lastAttempts or 0)) end,
 		  },
-							
+
 		  chance = {
 			  type = "input",
      order = newOrder(),
@@ -2018,7 +1978,7 @@ function R:CreateGroup(options, group, isUser)
 			  end,
      get = function(into) if item.chance then return tostring(item.chance) else return nil end end,
 		  },
-							
+
 				enableCoin = {
 					order = newOrder(),
 					type = "toggle",
@@ -2090,7 +2050,7 @@ function R:CreateGroup(options, group, isUser)
      end,
 			  disabled = not isUser,
 		  },
-							
+
 		  lockDungeonId = {
 			  type = "input",
      order = newOrder(),
@@ -2110,7 +2070,7 @@ function R:CreateGroup(options, group, isUser)
      get = function(into) return tostring(item.lockDungeonId or "") end,
 			  disabled = not isUser,
 		  },
-							
+
 		  lockBossName = {
 			  type = "input",
      order = newOrder(),
@@ -2124,7 +2084,7 @@ function R:CreateGroup(options, group, isUser)
      get = function(into) return item.lockBossName or "" end,
 			  disabled = not isUser,
 		  },
-							
+
 			 spacer5 = { type = "header", name = L["Other Requirements"], order = newOrder(), },
 
 				pickpocket = {
@@ -2160,7 +2120,7 @@ function R:CreateGroup(options, group, isUser)
      get = function(into) if item.groupSize then return tostring(item.groupSize) else return nil end end,
      hidden = function() return item.method ~= BOSS and item.method ~= USE end,
 		  },
-							
+
 				equalOdds = {
 					order = newOrder(),
 					type = "toggle",
@@ -2281,7 +2241,7 @@ function R:CreateGroup(options, group, isUser)
 			  end,
      get = function(into) if item.obtainedQuestId then return tostring(item.obtainedQuestId) else return nil end end,
 		  },
-							
+
 		  achievementId = {
 			  type = "input",
      order = newOrder(),
@@ -2305,12 +2265,9 @@ function R:CreateGroup(options, group, isUser)
      get = function(into) if item.achievementId then return tostring(item.achievementId) else return nil end end,
 			  disabled = not isUser,
 		  },
-							
+
    }
   }
  end
 
 end
-
-
-
