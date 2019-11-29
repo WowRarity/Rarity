@@ -192,4 +192,4 @@ function DBH:GetExportString(entry)
 end
 
 
-addon.DatabaseMaintenanceHelper = DBH
+Rarity.Utils.DatabaseMaintenanceHelper = DBH

@@ -13,10 +13,6 @@ do -- Set up the debug cache
 	Rarity.DebugCache:SetOutputHandler(addonTable.PrettyPrint.DebugMsg)
 end
 
-do -- Set up the DB helper
-	Rarity.DatabaseMaintenanceHelper = addonTable.DatabaseMaintenanceHelper
-end
-
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local R = Rarity
 local qtip = LibStub("LibQTip-1.0")
@@ -861,7 +857,7 @@ end
 -- TODO: Move elsewhere (in the final refactoring pass)
 function R:VerifyItemDB()
 
-	local DBH = self.DatabaseMaintenanceHelper
+	local DBH = Rarity.Utils.DatabaseMaintenanceHelper
 	local ItemDB = self.db.profile.groups.items
 	local PetDB = self.db.profile.groups.pets
 	local MountDB = self.db.profile.groups.mounts
