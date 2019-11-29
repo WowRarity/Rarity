@@ -482,6 +482,7 @@ local categories = {
       UPVALUES -----------------------------------------------------------------------------------------------------------------
   ]]
 
+-- Lua APIs
 local _G = getfenv(0)
 local pairs = _G.pairs
 local strlower = _G.strlower
@@ -493,6 +494,7 @@ local bit_band = _G.bit.band
 local min = min
 local tostring = tostring
 
+-- WOW APIs
 local UnitGUID = _G.UnitGUID
 local UnitName = _G.UnitName
 local UnitCanAttack = _G.UnitCanAttack
@@ -526,6 +528,7 @@ local COMBATLOG_OBJECT_AFFILIATION_MINE = _G.COMBATLOG_OBJECT_AFFILIATION_MINE
 local COMBATLOG_OBJECT_AFFILIATION_PARTY = _G.COMBATLOG_OBJECT_AFFILIATION_PARTY
 local COMBATLOG_OBJECT_AFFILIATION_RAID = _G.COMBATLOG_OBJECT_AFFILIATION_RAID
 
+-- Addon APIs
 local TSM_Interface = Rarity.Utils.TSM_Interface
 local GetRealDropPercentage = Rarity.Statistics.GetRealDropPercentage
 
