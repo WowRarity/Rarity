@@ -59,6 +59,7 @@ DB\SharedConstants.lua
 Utils\DatabaseMaintenanceHelper.lua
 Utils\DebugCache.lua
 Utils\PrettyPrint.lua
+Utils\Time.lua
 Utils\TradeSkillMaster.lua
 
 # Addon Core
@@ -69,7 +70,9 @@ Core\GUI.lua
 Core\Profiling.lua
 Core\Serialization.lua
 Core\Session.lua
+Core\Settings.lua
 Core\Statistics.lua
+Core\Tracking.lua
 Locales.lua
 Core.lua
 Options_Defaults.lua

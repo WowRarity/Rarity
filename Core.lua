@@ -159,8 +159,6 @@ local fishing = false
 local opening = false
 local fishingTimer
 local FISHING_DELAY = 22
-local trackedItem
-local trackedItem2
 local lastAttemptTime
 local lastAttemptItem
 local DUAL_TRACK_THRESHOLD = 5
@@ -179,11 +177,7 @@ Rarity.itemsMasterList = {}
 local initTimer
 local numPrimeAttempts = 0
 
-local inSession = false
-local sessionStarted = 0
-local sessionLast = 0
-local SESSION_LENGTH = 60 * 10 -- 10 minutes
-local sessionTimer
+
 
 local playerClass = nil
 
@@ -524,6 +518,7 @@ local TSM_Interface = Rarity.Utils.TSM_Interface
 local DebugCache = Rarity.Utils.DebugCache
 local GetRealDropPercentage = Rarity.Statistics.GetRealDropPercentage
 local FormatTime = Rarity.Utils.PrettyPrint.FormatTime
+local GetDate = Rarity.Utils.Time.GetDate
 
 do
 	-- Set up the debug cache (TODO: Move to initialisation routine after the refactoring is complete)
@@ -915,9 +910,11 @@ end
 
 function R:OnProfileChanged(event, database, newProfileKey)
 	self:Debug("Profile changed. Reinitializing.")
- inSession = false
+ Rarity.Session:Cancel()
+
+ local sessionTimer = Rarity.Session:GetTimer()
  if sessionTimer then self:CancelTimer(sessionTimer, true) end
- sessionTimer = nil
+ Rarity.Session:SetTimer(nil)
 	self.db:RegisterDefaults(self.defaults)
  self:UpdateInterestingThings()
 	self:OnCurrencyUpdate(event)
@@ -1011,10 +1008,6 @@ local function containsOrIs(a, b)
 	return false
 end
 
-local function getDate(delta)
- local dt = date("*t", time() - (delta or 0))
- return dt.year * 10000 + dt.month * 100 + dt.day
-end
 
 function round(num)
  return math.floor(num + 0.5)
@@ -1858,7 +1851,7 @@ function R:OnEvent(event, ...)
 
  -- Logging out; end any open session
  elseif event == "PLAYER_LOGOUT" then
-  if inSession then self:EndSession() end
+  if Rarity.Session:IsActive() then Rarity.Session:End() end
 
 
  end
@@ -2892,6 +2885,7 @@ do
 		self:ProfileStart()
   local attempts, dropChance, chance = 0, 0, 0
 
+  local trackedItem = Rarity.Tracking:GetTrackedItem(1)
   if not trackedItem or (trackedItem and not trackedItem.itemId) then
    dataobj.text = L["None"]
    return
@@ -2957,6 +2951,7 @@ do
 		end
 
 		-- Bar 2
+		local trackedItem2 = Rarity.Tracking.GetTrackedItem(2)
 		if trackedItem2 == nil or trackedItem2.itemId == nil then
 			self.barGroup:RemoveBar("Track2")
 			self.bar2 = nil
@@ -3232,9 +3227,9 @@ do
 
 		-- Time and progress
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
-  local len = (sessionLast or 0) - (sessionStarted or 0)
+  local len = (Rarity.Session:GetLastTime() or 0) - (Rarity.Session:GetStartTime() or 0)
   local tracked = R:FindTrackedItem()
-  if not inSession or not len or tracked ~= item then len = 0 end
+  if not Rarity.Session:IsActive() or not len or tracked ~= item then len = 0 end
 
   if item.totalFinds and item.method ~= COLLECTION then
    tooltip2AddLine(colorize(L["Since last drop"], yellow))
@@ -3291,17 +3286,17 @@ do
     tooltip2AddDoubleLine(L["Session"], format("%d (%s)", sessionAttempts, FormatTime(sessionTime + len)))
    end
 
-   local todayDate = getDate()
-   local yesterDate = getDate(86400)
+   local todayDate = GetDate()
+   local yesterDate = GetDate(86400)
    local todayAttempts = item.dates[todayDate] and item.dates[todayDate].attempts or 0
    local todayTime = item.dates[todayDate] and item.dates[todayDate].time or 0
-   if tracked == item and inSession then todayTime = todayTime + len end
+   if tracked == item and Rarity.Session:IsActive() then todayTime = todayTime + len end
    local yesterAttempts = item.dates[yesterDate] and item.dates[yesterDate].attempts or 0
    local yesterTime = item.dates[yesterDate] and item.dates[yesterDate].time or 0
    local weekAttempts = (todayAttempts or 0) + (yesterAttempts or 0)
    local weekTime = (todayTime or 0) + (yesterTime or 0)
    for day = 2, 6 do
-    local dt = getDate(day * 86400)
+    local dt = GetDate(day * 86400)
 	   local dayAttempts = item.dates[dt] and item.dates[dt].attempts or 0
     local dayTime = item.dates[dt] and item.dates[dt].time or 0
     weekAttempts = weekAttempts + dayAttempts
@@ -3310,7 +3305,7 @@ do
    local monthAttempts = weekAttempts
    local monthTime = weekTime
    for day = 7, 29 do
-    local dt = getDate(day * 86400)
+    local dt = GetDate(day * 86400)
 	   local dayAttempts = item.dates[dt] and item.dates[dt].attempts or 0
     local dayTime = item.dates[dt] and item.dates[dt].time or 0
     monthAttempts = monthAttempts + dayAttempts
@@ -3452,6 +3447,9 @@ do
 
 
  local function onClickItem(cell, item)
+
+	local trackedItem = Rarity.Tracking:GetTrackedItem()
+
   if IsShiftKeyDown() then
    if not item or type(item) ~= "table" or not item.itemId then return end
    local v = item
@@ -3494,14 +3492,16 @@ do
 				if instance > 0 then Rarity:Print(format(L["%d |4waypoint:waypoints; |4is:are; located inside |4an instance:instances; and |4was:were; not added"], instance)) end
 			end
   else
-   if trackedItem ~= item and inSession then R:EndSession() end
-			trackedItem2 = nil
+   if trackedItem ~= item and Rarity.Session:IsActive() then Rarity.Session:End() end
+			Rarity.Tracking:SetTrackedItem(nil, 2)
    Rarity:UpdateTrackedItem(item)
   end
  end
 
 
  local function addGroup(group, requiresGroup)
+
+	trackedItem = Rarity.Tracking:GetTrackedItem()
 
 	R:ProfileStart2()
 
@@ -3565,8 +3565,8 @@ do
 							local time = 0
 							if v.time then time = v.time end
 							if v.lastTime then time = v.time - v.lastTime end
-							if inSession and trackedItem == v then
-								local len = sessionLast - sessionStarted
+							if Rarity.Session:IsActive() and trackedItem == v then
+								local len = Rarity.Session:GetLastTime() - Rarity.Session:GetStartTime()
 								time = time + len
 							end
 							time = FormatTime(time)
@@ -4044,6 +4044,8 @@ RarityAchievementAlertSystem:SetCanShowMoreConditionFunc(function() return not C
 
 -- test with: /run Rarity:ShowFoundAlert(32458, 5)
 function R:ShowFoundAlert(itemId, attempts, item)
+
+	trackedItem = Rarity.Tracking:GetTrackedItem()
 	if item == nil then item = trackedItem end
 
  local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(itemId)
@@ -4108,6 +4110,9 @@ end)
 
 
 function R:OutputAttempts(item, skipTimeUpdate)
+
+	trackedItem = Rarity.Tracking:GetTrackedItem()
+	trackedItem2 = Rarity.Tracking:GetTrackedItem(2)
  if not item then return end
  if (item.requiresHorde and R.Caching:IsHorde()) or (item.requiresAlliance and not R.Caching:IsHorde()) or (not item.requiresHorde and not item.requiresAlliance) then
   self:Debug("New attempt found for %s", item.name)
@@ -4116,7 +4121,7 @@ function R:OutputAttempts(item, skipTimeUpdate)
 
    if skipTimeUpdate == nil or skipTimeUpdate == false then
     -- Increment attempt counter for today
-    local dt = getDate()
+    local dt = GetDate()
     if not item.dates then item.dates = {} end
     if not item.dates[dt] then item.dates[dt] = {} end
     if not item.dates[dt].attempts then item.dates[dt].attempts = 0 end
@@ -4127,13 +4132,13 @@ function R:OutputAttempts(item, skipTimeUpdate)
 
     -- Handle time tracking
 				if lastAttemptItem and lastAttemptItem ~= item and GetTime() - (lastAttemptTime or 0) <= DUAL_TRACK_THRESHOLD then -- Beginning to track two things at once
-					self:UpdateSession()
+					Rarity.Session:Update()
 				else
 					if trackedItem == item or trackedItem2 == item then
-						self:UpdateSession()
+						Rarity.Session:Update()
 					else
-						self:EndSession()
-						self:StartSession()
+						Rarity.Session:End()
+						Rarity.Session:Start()
 					end
 				end
    end
@@ -4671,7 +4676,7 @@ function R:FoundItem(itemId, item)
 	if item.unique and item.attempts - item.lastAttempts <= 1 then return end
 
  self:ShowFoundAlert(itemId, item.attempts - item.lastAttempts, item, item)
- if inSession then self:EndSession() end
+ if Rarity.Session:IsActive() then Rarity.Session:End() end
  item.realAttempts = item.attempts - item.lastAttempts
  item.lastAttempts = item.attempts
  item.enabled = false
@@ -4702,15 +4707,16 @@ end
 
 
 function R:FindTrackedItem()
- trackedItem = self.db.profile.groups.pets["Parrot Cage (Hyacinth Macaw)"]
+ Rarity.Tracking:SetTrackedItem(self.db.profile.groups.pets["Parrot Cage (Hyacinth Macaw)"])
 
+ trackedItem = Rarity.Tracking:GetTrackedItem()
  if self.db.profile.trackedGroup and self.db.profile.groups[self.db.profile.trackedGroup] then
   if self.db.profile.trackedItem then
    for k, v in pairs(self.db.profile.groups[self.db.profile.trackedGroup]) do
     if type(v) == "table" and v.itemId and v.itemId == self.db.profile.trackedItem then
-     trackedItem = v
+     Rarity.Tracking:SetTrackedItem(v)
 	    if self.db.profile.debugMode then
-      R.trackedItem = trackedItem
+      R.trackedItem = trackedItem -- This seems entirely pointless?
 	    end
      return v
     end
@@ -4739,11 +4745,13 @@ function R:UpdateTrackedItem(item)
  end
  self:FindTrackedItem()
 	if lastAttemptItem and lastAttemptItem ~= item and GetTime() - (lastAttemptTime or 0) <= DUAL_TRACK_THRESHOLD then
-		trackedItem2 = lastAttemptItem
+		Rarity.Tracking:SetTrackedItem(lastAttemptItem, 2)
 		self:Debug("Setting second tracked item to "..trackedItem2.name)
 	else
-		if trackedItem2 then self:Debug("Clearing second tracked item") end
-		trackedItem2 = nil
+		if Rarity.Tracking:GetTrackedItem(2) then
+			self:Debug("Clearing second tracked item")
+			Rarity.Tracking:SetTrackedItem(nil, 2)
+		end
 	end
  self:UpdateText()
  --if self:InTooltip() then self:ShowTooltip() end
@@ -4751,71 +4759,6 @@ function R:UpdateTrackedItem(item)
 end
 
 
-function R:EndSession()
-	if inSession then
-  if trackedItem and trackedItem.itemId then
-   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(trackedItem.itemId)
-		 local len = sessionLast - sessionStarted
-   local i = R:FindTrackedItem()
-   if i then
-    i.time = (i.time or 0) + len
-    local dt = getDate()
-    if not i.dates then i.dates = {} end
-    if not i.dates[dt] then i.dates[dt] = {} end
-    i.dates[dt].time = (i.dates[dt].time or 0) + len
-    if not i.session then i.session = {} end
-    i.session.time = (i.session.time or 0) + len
-   end
-   self:Debug("Ending session for %s (%s)", itemLink, FormatTime(trackedItem.time or 0))
-	 end
-  if trackedItem2 and trackedItem2.itemId then
-   local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(trackedItem2.itemId)
-		 local len = sessionLast - sessionStarted
-   local i = trackedItem2
-   if i then
-    i.time = (i.time or 0) + len
-    local dt = getDate()
-    if not i.dates then i.dates = {} end
-    if not i.dates[dt] then i.dates[dt] = {} end
-    i.dates[dt].time = (i.dates[dt].time or 0) + len
-    if not i.session then i.session = {} end
-    i.session.time = (i.session.time or 0) + len
-   end
-   self:Debug("Also ending session for %s (%s)", itemLink, FormatTime(trackedItem2.time or 0))
-	 end
- end
-	inSession = false
-end
-
-
-function timeoutSession()
- R:Debug("Nothing happened in 5 minutes. Ending your session.")
- sessionTimer = nil
- R:EndSession()
-end
-
-
-function R:StartSession()
- self:Debug("Starting a session")
-	inSession = true
-	sessionStarted = GetTime()
-	sessionLast = sessionStarted
-	sessionStarted = sessionStarted - 1
- if sessionTimer then self:CancelTimer(sessionTimer, true) end
- sessionTimer = self:ScheduleTimer(timeoutSession, SESSION_LENGTH)
-end
-
-
-function R:UpdateSession()
-	if inSession then
-		sessionLast = GetTime()
-  --self:Debug("Extending current session")
-  if sessionTimer then self:CancelTimer(sessionTimer, true) end
-  sessionTimer = self:ScheduleTimer(timeoutSession, SESSION_LENGTH)
-	else
-		self:StartSession()
-	end
-end
 
 
 
