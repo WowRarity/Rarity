@@ -57,7 +57,7 @@ function Tracking:Update(item)
 			end
 		end
 	end
-	self:FindTrackedItem()
+	Rarity.Tracking:FindTrackedItem()
 	if lastAttemptItem and lastAttemptItem ~= item and GetTime() - (lastAttemptTime or 0) <= DUAL_TRACK_THRESHOLD then
 		Rarity.Tracking:SetTrackedItem(lastAttemptItem, 2)
 		self:Debug("Setting second tracked item to " .. trackedItem2.name)
@@ -86,6 +86,28 @@ end
 
 function Tracking:GetLastAttemptTime()
 	return lastAttemptTime
+end
+
+-- Sets the tracked item stored in the SavedVariables
+-- TODO: What's up with the Hyacinth Macaw? Leaving it at "None" might be a better default?
+function Tracking:FindTrackedItem()
+	self = Rarity
+	Rarity.Tracking:SetTrackedItem(self.db.profile.groups.pets["Parrot Cage (Hyacinth Macaw)"])
+
+	local trackedItem = Rarity.Tracking:GetTrackedItem()
+	if self.db.profile.trackedGroup and self.db.profile.groups[self.db.profile.trackedGroup] then
+		if self.db.profile.trackedItem then
+			for k, v in pairs(self.db.profile.groups[self.db.profile.trackedGroup]) do
+				if type(v) == "table" and v.itemId and v.itemId == self.db.profile.trackedItem then
+					Rarity.Tracking:SetTrackedItem(v)
+					if self.db.profile.debugMode then
+						R.trackedItem = trackedItem -- This seems entirely pointless?
+					end
+					return v
+				end
+			end
+		end
+	end
 end
 
 Rarity.Tracking = Tracking

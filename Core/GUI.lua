@@ -731,7 +731,7 @@ local function showSubTooltip(cell, item)
 	-- Time and progress
 	tooltip2:AddSeparator(1, 1, 1, 1, 1)
 	local len = (Rarity.Session:GetLastTime() or 0) - (Rarity.Session:GetStartTime() or 0)
-	local tracked = R:FindTrackedItem()
+	local tracked = Rarity.Tracking:FindTrackedItem()
 	if not Rarity.Session:IsActive() or not len or tracked ~= item then
 		len = 0
 	end

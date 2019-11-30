@@ -528,7 +528,7 @@ do
 		self:OnBagUpdate() -- This will update counters for collection items
 		self:OnCurrencyUpdate("INITIALIZING") -- Prepare our currency list
   self:UpdateInterestingThings()
-  self:FindTrackedItem()
+  Rarity.Tracking:FindTrackedItem()
 		Rarity.Caching:SetReadyState(false)
 		Rarity.GUI:UpdateText()
 		Rarity.Caching:SetReadyState(true)
@@ -832,7 +832,7 @@ function R:OnProfileChanged(event, database, newProfileKey)
  self:ScanAllArch(event)
 	Rarity.Collections:ScanExistingItems(event)
  self:ScanBags()
- self:FindTrackedItem()
+ Rarity.Tracking:FindTrackedItem()
  Rarity.GUI:UpdateText()
 	self.db.profile.lastRevision = R.MINOR_VERSION
 end
@@ -3026,38 +3026,10 @@ function R:FoundItem(itemId, item)
 end
 
 
-function R:FindTrackedItem()
- Rarity.Tracking:SetTrackedItem(self.db.profile.groups.pets["Parrot Cage (Hyacinth Macaw)"])
-
- trackedItem = Rarity.Tracking:GetTrackedItem()
- if self.db.profile.trackedGroup and self.db.profile.groups[self.db.profile.trackedGroup] then
-  if self.db.profile.trackedItem then
-   for k, v in pairs(self.db.profile.groups[self.db.profile.trackedGroup]) do
-    if type(v) == "table" and v.itemId and v.itemId == self.db.profile.trackedItem then
-     Rarity.Tracking:SetTrackedItem(v)
-	    if self.db.profile.debugMode then
-      R.trackedItem = trackedItem -- This seems entirely pointless?
-	    end
-     return v
-    end
-   end
-  end
- end
-
-end
-
-
-
-
-
-
-
-
-
 function R:Update(reason)
  Rarity.Collections:ScanExistingItems(reason)
  self:UpdateInterestingThings(reason)
- self:FindTrackedItem()
+ Rarity.Tracking:FindTrackedItem()
  Rarity.GUI:UpdateText()
  --if self:InTooltip() then self:ShowTooltip() end
 end

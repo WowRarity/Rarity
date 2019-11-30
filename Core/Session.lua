@@ -73,7 +73,7 @@ function Session:End()
 				itemTexture,
 				itemSellPrice = GetItemInfo(trackedItem.itemId)
 			local len = sessionLast - sessionStarted
-			local i = R:FindTrackedItem()
+			local i = Rarity.Tracking:FindTrackedItem()
 			if i then
 				i.time = (i.time or 0) + len
 				local dt = GetDate()
