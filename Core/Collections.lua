@@ -2,14 +2,19 @@ local _, addonTable = ...
 
 local Collections = {}
 
+-- Locals
+local archfragments = {}
+
 -- Upvalues
 local R = Rarity
 local CONSTANTS = addonTable.constants
+
 -- Lua APIs
 local pairs = pairs
 local type = type
 local select = select
 local tonumber = tonumber
+
 -- WOW APIs
 local PlayerHasToy = PlayerHasToy
 local InCombatLockdown = InCombatLockdown
@@ -23,6 +28,8 @@ local GetNumArchaeologyRaces = GetNumArchaeologyRaces
 local GetNumArtifactsByRace = GetNumArtifactsByRace
 local GetArtifactInfoByRace = GetArtifactInfoByRace
 local IsQuestComplete = IsQuestComplete
+local GetArchaeologyRaceInfo = GetArchaeologyRaceInfo
+local GetActiveArtifactByRace = GetActiveArtifactByRace
 
 function Collections:ScanTransmog(reason)
 	self = Rarity
@@ -77,7 +84,6 @@ function Collections:ScanToys(reason)
 end
 
 function Collections:ScanExistingItems(reason)
-
 	self = Rarity
 	-- Don't allow this scan in combat; it takes too long and the script will receive a "script ran too long" error
 	-- Under normal conditions this shouldn't be called during combat, except during the 5-minute final init, or
@@ -314,6 +320,103 @@ function Collections:ScanExistingItems(reason)
 	self:ProfileStop2("Instances took %fms")
 
 	self:ProfileStop("ScanExistingItems: Total time %fms")
+end
+
+-------------------------------------------------------------------------------------
+-- Archaeology detection. Basically we look to see if you spent any fragments, and rescan your projects if so.
+-------------------------------------------------------------------------------------
+
+function R:ScanAllArch(event)
+	self:UnregisterEvent("RESEARCH_ARTIFACT_HISTORY_READY")
+	self:ScanArchFragments(event)
+	self:ScanArchProjects(event)
+end
+
+function R:ScanArchFragments(event)
+	local scan = false
+	if GetNumArchaeologyRaces() == 0 then
+		return
+	end
+	for race_id = 1, GetNumArchaeologyRaces() do
+		local _, _, _, currencyAmount = GetArchaeologyRaceInfo(race_id)
+		local diff = currencyAmount - (archfragments[race_id] or 0)
+		archfragments[race_id] = currencyAmount
+		if diff < 0 then
+			-- We solved an artifact. If any of our items depend on this race ID, increment their attempt count.
+			for k, v in pairs(self.db.profile.groups) do
+				if type(v) == "table" then
+					for kk, vv in pairs(v) do
+						if type(vv) == "table" then
+							if vv.enabled ~= false then
+								local found = false
+								if vv.method == CONSTANTS.DETECTION_METHODS.ARCH and vv.raceId ~= nil then
+									if vv.raceId == race_id then
+										found = true
+									end
+								end
+								if found then
+									if vv.attempts == nil then
+										vv.attempts = 1
+									else
+										vv.attempts = vv.attempts + 1
+									end
+									self:OutputAttempts(vv)
+								end
+							end
+						end
+					end
+				end
+			end
+			scan = true
+		end
+	end
+
+	-- We solved an artifact; scan projects
+	if scan then
+		-- Scan now, and later. The server takes a while to decide on the next project. The time it takes varies considerably.
+		self:ScanArchProjects(event)
+		self:ScheduleTimer(
+			function()
+				R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 1")
+			end,
+			2
+		)
+		self:ScheduleTimer(
+			function()
+				R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 2")
+			end,
+			5
+		)
+		self:ScheduleTimer(
+			function()
+				R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 3")
+			end,
+			10
+		)
+		self:ScheduleTimer(
+			function()
+				R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 4")
+			end,
+			20
+		)
+	end
+end
+
+function R:ScanArchProjects(reason)
+	self:Debug("Scanning archaeology projects (%s)", reason)
+	if GetNumArchaeologyRaces() == 0 then
+		return
+	end
+	for race_id = 1, GetNumArchaeologyRaces() do
+		local name = GetActiveArtifactByRace(race_id)
+		if Rarity.architems[name] then
+			-- We started a project we were looking for!
+			local id = Rarity.architems[name].itemId
+			if id then
+				self:FoundItem(id, Rarity.items[id])
+			end
+		end
+	end
 end
 
 Rarity.Collections = Collections

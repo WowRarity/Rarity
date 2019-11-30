@@ -22,3 +22,7 @@ Rarity.MINOR_VERSION = tonumber(projectVersion)
 -- Set up modules
 Rarity.Statistics = {}
 Rarity.Utils = {}
+
+-- Global lookup tables (will be replaced eventually, but let's maintain backwards compatibility for now)
+Rarity.items = {}
+Rarity.architems = {}

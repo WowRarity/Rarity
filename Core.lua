@@ -36,9 +36,7 @@ local bagitems = {}
 local tempbagitems = {}
 local used = {}
 local fishzones = {}
-local archfragments = {}
 local coinamounts = {}
-local architems = {}
 local rarity_stats = {}
 Rarity.mount_sources = {}
 Rarity.pet_sources = {}
@@ -501,15 +499,12 @@ do
 		R.bosses = bosses
 		R.zones = zones
 		R.guids = guids
-		R.items = items
 		R.npcs_to_items = npcs_to_items
 		R.items_to_items = items_to_items
 		R.used = used
 		R.tempbagitems = tempbagitems
 		R.bagitems = bagitems
 		R.fishzones = fishzones
-		R.archfragments = archfragments
-		R.architems = architems
 		R.stats = rarity_stats
 
 		-- LibSink still tries to call a non-existent Blizzard function sometimes
@@ -953,13 +948,13 @@ function R:UpdateInterestingThings()
  table.wipe(npcs)
  table.wipe(bosses)
  table.wipe(zones)
- table.wipe(items)
+ table.wipe(Rarity.items)
  table.wipe(guids)
  table.wipe(npcs_to_items)
  table.wipe(items_to_items)
  table.wipe(used)
  table.wipe(fishzones)
- table.wipe(architems)
+ table.wipe(Rarity.architems)
 	table.wipe(Rarity.stats_to_scan)
 	table.wipe(Rarity.items_with_stats)
 	table.wipe(Rarity.collection_items)
@@ -1008,17 +1003,17 @@ function R:UpdateInterestingThings()
       end
      elseif vv.method == ARCH and vv.itemId ~= nil then
       local itemName = GetItemInfo(vv.itemId)
-      if itemName then architems[itemName] = vv end
+      if itemName then Rarity.architems[itemName] = vv end
      end
-     if vv.itemId ~= nil and vv.method ~= COLLECTION then items[vv.itemId] = vv end
-     if vv.itemId2 ~= nil and vv.method ~= COLLECTION then items[vv.itemId2] = vv end
+     if vv.itemId ~= nil and vv.method ~= COLLECTION then Rarity.items[vv.itemId] = vv end
+     if vv.itemId2 ~= nil and vv.method ~= COLLECTION then Rarity.items[vv.itemId2] = vv end
 					if vv.method == COLLECTION and vv.collectedItemId ~= nil then
 						if type(vv.collectedItemId) == "table" then
 							for kkk, vvv in pairs(vv.collectedItemId) do
-								items[vvv] = vv
+								Rarity.items[vvv] = vv
 							end
 						else
-							items[vv.collectedItemId] = vv
+							Rarity.items[vv.collectedItemId] = vv
 						end
 						table.insert(Rarity.collection_items, vv)
 					end
@@ -1394,8 +1389,8 @@ function R:OnEvent(event, ...)
     if itemLink then
 				 local _, itemId = strsplit(":", itemLink)
      itemId = tonumber(itemId)
-     if items[itemId] ~= nil and items[itemId].method ~= COLLECTION then
-      self:FoundItem(itemId, items[itemId])
+     if Rarity.items[itemId] ~= nil and Rarity.items[itemId].method ~= COLLECTION then
+      self:FoundItem(itemId, Rarity.items[itemId])
      end
     end
 			end
@@ -1598,8 +1593,8 @@ function R:OnBagUpdate()
   for k, v in pairs(bagitems) do
 
 			-- Handle collection items
-			if items[k] then
-				if items[k].method == COLLECTION then
+			if Rarity.items[k] then
+				if Rarity.items[k].method == COLLECTION then
 					local bagCount = (bagitems[k] or 0)
 
 					-- Our items hashtable only saves one item for this collected item, so we have to scan to find them all now.
@@ -1627,7 +1622,7 @@ function R:OnBagUpdate()
 
 						-- This item is a collection of a single type of item
 						else
-							if containsOrIs(items[k].collectedItemId, vv.collectedItemId) and vv.enabled ~= false then
+							if containsOrIs(Rarity.items[k].collectedItemId, vv.collectedItemId) and vv.enabled ~= false then
 								local originalCount = (vv.attempts or 0)
 								local goal = (vv.chance or 100)
 								vv.lastAttempts = 0
@@ -1649,8 +1644,8 @@ function R:OnBagUpdate()
 
 			-- Other items
 			if (bagitems[k] or 0) > (tempbagitems[k] or 0) then -- An inventory item went up in count
-				if items[k] and items[k].enabled ~= false and items[k].method ~= COLLECTION then
-					self:FoundItem(k, items[k])
+				if Rarity.items[k] and Rarity.items[k].enabled ~= false and Rarity.items[k].method ~= COLLECTION then
+					self:FoundItem(k, Rarity.items[k])
 				end
 			end
 
@@ -1881,74 +1876,6 @@ function R:CheckForCoinItem()
 	end
 end
 
-
-
--------------------------------------------------------------------------------------
--- Archaeology detection. Basically we look to see if you spent any fragments, and rescan your projects if so.
--------------------------------------------------------------------------------------
-
-function R:ScanAllArch(event)
- self:UnregisterEvent("RESEARCH_ARTIFACT_HISTORY_READY")
- self:ScanArchFragments(event)
- self:ScanArchProjects(event)
-end
-
-function R:ScanArchFragments(event)
- local scan = false
- if GetNumArchaeologyRaces() == 0 then return end
-	for race_id = 1, GetNumArchaeologyRaces() do
-		local _, _, _, currencyAmount = GetArchaeologyRaceInfo(race_id)
-		local diff = currencyAmount - (archfragments[race_id] or 0)
-		archfragments[race_id] = currencyAmount
-  if diff < 0 then
-   -- We solved an artifact. If any of our items depend on this race ID, increment their attempt count.
-   for k, v in pairs(self.db.profile.groups) do
-    if type(v) == "table" then
-     for kk, vv in pairs(v) do
-      if type(vv) == "table" then
-       if vv.enabled ~= false then
-        local found = false
-        if vv.method == ARCH and vv.raceId ~= nil then
-         if vv.raceId == race_id then found = true end
-        end
-        if found then
-         if vv.attempts == nil then vv.attempts = 1 else vv.attempts = vv.attempts + 1 end
-         self:OutputAttempts(vv)
-        end
-       end
-      end
-     end
-    end
-   end
-   scan = true
-  end
- end
-
- -- We solved an artifact; scan projects
- if scan then
-  -- Scan now, and later. The server takes a while to decide on the next project. The time it takes varies considerably.
-  self:ScanArchProjects(event)
-  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 1") end, 2)
-  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 2") end, 5)
-  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 3") end, 10)
-  self:ScheduleTimer(function() R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 4") end, 20)
- end
-end
-
-function R:ScanArchProjects(reason)
-	self:Debug("Scanning archaeology projects (%s)", reason)
-	if GetNumArchaeologyRaces() == 0 then return end
-	for race_id = 1, GetNumArchaeologyRaces() do
-		local name = GetActiveArtifactByRace(race_id)
-  		if architems[name] then
-   			-- We started a project we were looking for!
-   			local id = architems[name].itemId
-   			if id then
-   				self:FoundItem(id, items[id])
-   			end
-  		end
- 	end
-end
 
 -------------------------------------------------------------------------------------
 -- Mouseover detection, currently used for Mysterious Camel Figurine as a special case
