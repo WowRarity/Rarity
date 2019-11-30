@@ -159,9 +159,7 @@ local fishing = false
 local opening = false
 local fishingTimer
 local FISHING_DELAY = 22
-local lastAttemptTime
-local lastAttemptItem
-local DUAL_TRACK_THRESHOLD = 5
+
 local isPool = false
 local lastNode
 local STATUS_TOOLTIP_MAX_WIDTH = 200
@@ -3494,7 +3492,7 @@ do
   else
    if trackedItem ~= item and Rarity.Session:IsActive() then Rarity.Session:End() end
 			Rarity.Tracking:SetTrackedItem(nil, 2)
-   Rarity:UpdateTrackedItem(item)
+   Rarity.Tracking:Update(item)
   end
  end
 
@@ -4130,8 +4128,10 @@ function R:OutputAttempts(item, skipTimeUpdate)
     if not item.session.attempts then item.session.attempts = 0 end
     item.session.attempts = item.session.attempts + 1
 
-    -- Handle time tracking
-				if lastAttemptItem and lastAttemptItem ~= item and GetTime() - (lastAttemptTime or 0) <= DUAL_TRACK_THRESHOLD then -- Beginning to track two things at once
+	-- Handle time tracking
+	local lastAttemptItem = Rarity.Tracking:GetLastAttemptItem()
+	local DUAL_TRACK_THRESHOLD = Rarity.Tracking.DUAL_TRACK_THRESHOLD -- TODO: Clean this up once I know what it's used for
+				if lastAttemptItem and lastAttemptItem ~= item and GetTime() - (Rarity.Tracking:GetLastAttemptTime() or 0) <= DUAL_TRACK_THRESHOLD then -- Beginning to track two things at once
 					Rarity.Session:Update()
 				else
 					if trackedItem == item or trackedItem2 == item then
@@ -4147,11 +4147,11 @@ function R:OutputAttempts(item, skipTimeUpdate)
 			self:UpdateText()
 
    -- Switch to track this item
-   self:UpdateTrackedItem(item)
+   Rarity.Tracking:Update(item)
 
 			-- Save what we last tracked and when it happened
-			lastAttemptTime = GetTime()
-			lastAttemptItem = item
+			Rarity.Tracking:SetLastAttemptTime(GetTime())
+			Rarity.Tracking:SetLastAttemptItem(item)
 
 			-- If this item supports lockout detection, request updated instance info from the server now and in 10 seconds
 			if item.lockBossName or item.lockDungeonId then
@@ -4693,7 +4693,7 @@ function R:FoundItem(itemId, item)
   time = (item.time or 0) - (item.lastTime or 0)
  })
  item.lastTime = item.time
- self:UpdateTrackedItem(item)
+ Rarity.Tracking:Update(item)
  self:UpdateInterestingThings()
  if item.repeatable then self:ScheduleTimer(function()
   -- If this is a repeatable item, turn it back on in a few seconds.
@@ -4727,36 +4727,7 @@ function R:FindTrackedItem()
 end
 
 
-function R:UpdateTrackedItem(item)
-	self:ProfileStart2()
- if not item or not item.itemId then return end
-	if self.db.profile.trackedItem == item.itemId then return end -- Already tracking this item
- self.db.profile.trackedItem = item.itemId
- for k, v in pairs(R.db.profile.groups) do
-  if type(v) == "table" then
-   for kk, vv in pairs(v) do
-    if type(vv) == "table" then
-     if vv.itemId == item.itemId then
-      self.db.profile.trackedGroup = k
-     end
-    end
-   end
-  end
- end
- self:FindTrackedItem()
-	if lastAttemptItem and lastAttemptItem ~= item and GetTime() - (lastAttemptTime or 0) <= DUAL_TRACK_THRESHOLD then
-		Rarity.Tracking:SetTrackedItem(lastAttemptItem, 2)
-		self:Debug("Setting second tracked item to "..trackedItem2.name)
-	else
-		if Rarity.Tracking:GetTrackedItem(2) then
-			self:Debug("Clearing second tracked item")
-			Rarity.Tracking:SetTrackedItem(nil, 2)
-		end
-	end
- self:UpdateText()
- --if self:InTooltip() then self:ShowTooltip() end
-	self:ProfileStop2("UpdateTrackedItem: %fms")
-end
+
 
 
 
