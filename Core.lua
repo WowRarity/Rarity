@@ -36,7 +36,6 @@ local bagitems = {}
 local tempbagitems = {}
 local used = {}
 local fishzones = {}
-local coinamounts = {}
 local rarity_stats = {}
 Rarity.mount_sources = {}
 Rarity.pet_sources = {}
@@ -1833,46 +1832,6 @@ function R:GetWorldTarget()
   if fishingTimer then self:CancelTimer(fishingTimer, true) end
   fishingTimer = self:ScheduleTimer(cancelFish, FISHING_DELAY)
 		foundTarget = true
-	end
-end
-
-
-
--------------------------------------------------------------------------------------
--- Currency updates. Used for coin roll and archaeology solve detection.
--------------------------------------------------------------------------------------
-
-function R:OnCurrencyUpdate(event)
-	self:Debug("Currency updated ("..event..")")
-
-	-- Check if any archaeology projects were solved
-	self:ScanArchFragments(event)
-
-	-- Check if any coins were used
- for k, v in pairs(self.coins) do
-		local name, currencyAmount, texture, earnedThisWeek, weeklyMax, totalMax, isDiscovered = GetCurrencyInfo(k)
-		local diff = currencyAmount - (coinamounts[k] or 0)
-		coinamounts[k] = currencyAmount
-  if diff < 0 then
-			self:Debug("Used coin: "..name)
-			R:CheckForCoinItem()
-			self:ScheduleTimer(function() R:CheckForCoinItem() end, 2)
-			self:ScheduleTimer(function() R:CheckForCoinItem() end, 5)
-			self:ScheduleTimer(function() R:CheckForCoinItem() end, 10)
-			self:ScheduleTimer(function() R:CheckForCoinItem() end, 15)
-			self:ScheduleTimer(function() R:CheckForCoinItem() end, 20)
-			self:ScheduleTimer(function() R:CheckForCoinItem() end, 25)
-		end
-	end
-end
-
-
-function R:CheckForCoinItem()
-	if self.lastCoinItem and self.lastCoinItem.enableCoin then
-		self:Debug("COIN USE DETECTED FOR AN ITEM")
-  if self.lastCoinItem.attempts == nil then self.lastCoinItem.attempts = 1 else self.lastCoinItem.attempts = self.lastCoinItem.attempts + 1 end
-		self:OutputAttempts(self.lastCoinItem)
-		self.lastCoinItem = nil
 	end
 end
 
