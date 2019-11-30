@@ -197,7 +197,7 @@ function Serialization:ImportFromBunnyHunter()
 					end
 				end
 				self:UpdateInterestingThings()
-				self:UpdateText()
+				Rarity.GUI:UpdateText()
 				--if self:InTooltip() then self:ShowTooltip() end
 				self.db.profile.importedFromBunnyHunter = true
 				self:Print(L["Data has been imported from Bunny Hunter"])

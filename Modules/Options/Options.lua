@@ -9,7 +9,7 @@ local compress = LibStub("LibCompress")
 
 
 local GetItemInfo = function(id)
-	if Rarity:IsInitializing() then return nil end
+	if not Rarity.Caching:IsReady() then return nil end
 	return R:GetItemInfo(id)
 end
 
@@ -327,7 +327,7 @@ function R:PrepareOptions()
 								get = function() return self.db.profile.holidayReminder end,
 								set = function(info, val)
 									self.db.profile.holidayReminder = val
-									self:UpdateText()
+									Rarity.GUI:UpdateText()
 								end,
 							},
 
@@ -339,7 +339,7 @@ function R:PrepareOptions()
 								get = function() return self.db.profile.takeScreenshot end,
 								set = function(info, val)
 									self.db.profile.takeScreenshot = val
-									self:UpdateText()
+									Rarity.GUI:UpdateText()
 								end,
 							},
 
@@ -402,7 +402,7 @@ function R:PrepareOptions()
 								get = function() return self.db.profile.showCategoryIcons end,
 								set = function(info, val)
 									self.db.profile.showCategoryIcons = val
-									self:UpdateText()
+									Rarity.GUI:UpdateText()
 								end,
 							},
 
@@ -414,7 +414,7 @@ function R:PrepareOptions()
 								get = function() return self.db.profile.hideHighChance end,
 								set = function(info, val)
 									self.db.profile.hideHighChance = val
-									self:UpdateText()
+									Rarity.GUI:UpdateText()
 								end,
 							},
 
@@ -426,7 +426,7 @@ function R:PrepareOptions()
 								get = function() return self.db.profile.hideUnavailable end,
 								set = function(info, val)
 									self.db.profile.hideUnavailable = val
-									self:UpdateText()
+									Rarity.GUI:UpdateText()
 								end,
 							},
 
@@ -438,7 +438,7 @@ function R:PrepareOptions()
 								get = function() return self.db.profile.hideDefeated end,
 								set = function(info, val)
 									self.db.profile.hideDefeated = val
-									self:UpdateText()
+									Rarity.GUI:UpdateText()
 								end,
 							},
 
@@ -450,7 +450,7 @@ function R:PrepareOptions()
 								get = function() return self.db.profile.onlyShowItemsWithAttempts end,
 								set = function(info, val)
 									self.db.profile.onlyShowItemsWithAttempts = val
-									self:UpdateText()
+									Rarity.GUI:UpdateText()
 								end,
 							},
 
@@ -462,7 +462,7 @@ function R:PrepareOptions()
 								get = function() return self.db.profile.hideOutsideZone end,
 								set = function(info, val)
 									self.db.profile.hideOutsideZone = val
-									self:UpdateText()
+									Rarity.GUI:UpdateText()
 								end,
 							},
 
@@ -474,7 +474,7 @@ function R:PrepareOptions()
 								get = function() return self.db.profile.showTimeColumn end,
 								set = function(info, val)
 									self.db.profile.showTimeColumn = val
-									self:UpdateText()
+									Rarity.GUI:UpdateText()
 								end,
 							},
 
@@ -486,7 +486,7 @@ function R:PrepareOptions()
 								get = function() return self.db.profile.showLuckinessColumn end,
 								set = function(info, val)
 									self.db.profile.showLuckinessColumn = val
-									self:UpdateText()
+									Rarity.GUI:UpdateText()
 								end,
 							},
 
@@ -498,7 +498,7 @@ function R:PrepareOptions()
 								get = function() return self.db.profile.showZoneColumn end,
 								set = function(info, val)
 									self.db.profile.showZoneColumn = val
-									self:UpdateText()
+									Rarity.GUI:UpdateText()
 								end,
 							},
 
@@ -513,7 +513,7 @@ function R:PrepareOptions()
 									if TSM_API ~= nil then
 										self.db.profile.showTSMColumn = val
 									end
-									self:UpdateText()
+									Rarity.GUI:UpdateText()
 								end,
 							},
 
@@ -585,7 +585,7 @@ function R:PrepareOptions()
 								get = function() return self.db.profile.enableTooltipAdditions end,
 								set = function(info, val)
 									self.db.profile.enableTooltipAdditions = val
-									self:UpdateText()
+									Rarity.GUI:UpdateText()
 								end,
 							},
 
@@ -598,7 +598,7 @@ function R:PrepareOptions()
 								get = function() return self.db.profile.blankLineAfterRarity end,
 								set = function(info, val)
 									self.db.profile.blankLineAfterRarity = val
-									self:UpdateText()
+									Rarity.GUI:UpdateText()
 								end,
 							},
 
@@ -611,7 +611,7 @@ function R:PrepareOptions()
 								get = function() return self.db.profile.blankLineBeforeTooltipAdditions end,
 								set = function(info, val)
 									self.db.profile.blankLineBeforeTooltipAdditions = val
-									self:UpdateText()
+									Rarity.GUI:UpdateText()
 								end,
 							},
 
@@ -624,7 +624,7 @@ function R:PrepareOptions()
 								get = function() return self.db.profile.tooltipAttempts end,
 								set = function(info, val)
 									self.db.profile.tooltipAttempts = val
-									self:UpdateText()
+									Rarity.GUI:UpdateText()
 								end,
 							},
 
@@ -651,7 +651,7 @@ function R:PrepareOptions()
 						  get = function() return self.db.profile.cats[HOLIDAY] end,
 						  set = function(info, val)
 							  self.db.profile.cats[HOLIDAY] = val
-							  self:UpdateText()
+							  Rarity.GUI:UpdateText()
 						  end,
 					  },
 
@@ -662,7 +662,7 @@ function R:PrepareOptions()
 						  get = function() return self.db.profile.cats[BASE] end,
 						  set = function(info, val)
 							  self.db.profile.cats[BASE] = val
-							  self:UpdateText()
+							  Rarity.GUI:UpdateText()
 						  end,
 					  },
 
@@ -673,7 +673,7 @@ function R:PrepareOptions()
 						  get = function() return self.db.profile.cats[TBC] end,
 						  set = function(info, val)
 							  self.db.profile.cats[TBC] = val
-							  self:UpdateText()
+							  Rarity.GUI:UpdateText()
 						  end,
 					  },
 
@@ -684,7 +684,7 @@ function R:PrepareOptions()
 						  get = function() return self.db.profile.cats[WOTLK] end,
 						  set = function(info, val)
 							  self.db.profile.cats[WOTLK] = val
-							  self:UpdateText()
+							  Rarity.GUI:UpdateText()
 						  end,
 					  },
 
@@ -695,7 +695,7 @@ function R:PrepareOptions()
 						  get = function() return self.db.profile.cats[CATA] end,
 						  set = function(info, val)
 							  self.db.profile.cats[CATA] = val
-							  self:UpdateText()
+							  Rarity.GUI:UpdateText()
 						  end,
 					  },
 
@@ -706,7 +706,7 @@ function R:PrepareOptions()
 						  get = function() return self.db.profile.cats[MOP] end,
 						  set = function(info, val)
 							  self.db.profile.cats[MOP] = val
-							  self:UpdateText()
+							  Rarity.GUI:UpdateText()
 						  end,
 					  },
 
@@ -717,7 +717,7 @@ function R:PrepareOptions()
 						  get = function() return self.db.profile.cats[WOD] end,
 						  set = function(info, val)
 							  self.db.profile.cats[WOD] = val
-							  self:UpdateText()
+							  Rarity.GUI:UpdateText()
 						  end,
 					  },
 
@@ -728,7 +728,7 @@ function R:PrepareOptions()
 						  get = function() return self.db.profile.cats[LEGION] end,
 						  set = function(info, val)
 							  self.db.profile.cats[LEGION] = val
-							  self:UpdateText()
+							  Rarity.GUI:UpdateText()
 						  end,
 					  },
 
@@ -751,7 +751,7 @@ function R:PrepareOptions()
 						  set = function(info, val)
 							  self.db.profile.bar.anchor = val
 							  self:UpdateBar()
-							  self:UpdateText()
+							  Rarity.GUI:UpdateText()
 						  end,
 					  },
 
@@ -763,7 +763,7 @@ function R:PrepareOptions()
 						  set = function(info, val)
 							  self.db.profile.bar.locked = val
 							  self:UpdateBar()
-							  self:UpdateText()
+							  Rarity.GUI:UpdateText()
 						  end,
 					  },
 
@@ -775,7 +775,7 @@ function R:PrepareOptions()
 						  set = function(info, val)
 							  self.db.profile.bar.growUp = val
 									self:UpdateBar()
-							  self:UpdateText()
+							  Rarity.GUI:UpdateText()
 						  end,
 					  },
 
@@ -787,7 +787,7 @@ function R:PrepareOptions()
 						  set = function(info, val)
 							  self.db.profile.bar.rightAligned = val
 									self:UpdateBar()
-							  self:UpdateText()
+							  Rarity.GUI:UpdateText()
 						  end,
 					  },
 
@@ -799,7 +799,7 @@ function R:PrepareOptions()
 						  set = function(info, val)
 							  self.db.profile.bar.showIcon = val
 									self:UpdateBar()
-							  self:UpdateText()
+							  Rarity.GUI:UpdateText()
 						  end,
 					  },
 
@@ -811,7 +811,7 @@ function R:PrepareOptions()
 						  set = function(info, val)
 							  self.db.profile.bar.showText = val
 									self:UpdateBar()
-							  self:UpdateText()
+							  Rarity.GUI:UpdateText()
 						  end,
 					  },
 
@@ -827,7 +827,7 @@ function R:PrepareOptions()
 					   set = function(_, val)
          self.db.profile.bar.width = val
 							  self:UpdateBar()
-         self:UpdateText()
+         Rarity.GUI:UpdateText()
         end,
 				   },
 
@@ -843,7 +843,7 @@ function R:PrepareOptions()
 					   set = function(_, val)
          self.db.profile.bar.height = val
 							  self:UpdateBar()
-         self:UpdateText()
+         Rarity.GUI:UpdateText()
         end,
 				   },
 
@@ -859,7 +859,7 @@ function R:PrepareOptions()
 					   set = function(_, val)
          self.db.profile.bar.scale = val
 							  self:UpdateBar()
-         self:UpdateText()
+         Rarity.GUI:UpdateText()
         end,
 				   },
 
@@ -876,7 +876,7 @@ function R:PrepareOptions()
 								set = function(_, key)
 									self.db.profile.bar.font = key
 									self:UpdateBar()
-									self:UpdateText()
+									Rarity.GUI:UpdateText()
 								end,
 							},
 
@@ -892,7 +892,7 @@ function R:PrepareOptions()
 					   set = function(_, val)
          self.db.profile.bar.fontSize = val
 									self:UpdateBar()
-         self:UpdateText()
+         Rarity.GUI:UpdateText()
         end,
 				   },
 
@@ -909,7 +909,7 @@ function R:PrepareOptions()
 								set = function(_, key)
 									self.db.profile.bar.texture = key
 									self:UpdateBar()
-									self:UpdateText()
+									Rarity.GUI:UpdateText()
 								end,
 							},
 
