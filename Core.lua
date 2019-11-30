@@ -889,36 +889,6 @@ function R:GetDistanceToItem(item)
 	return nil
 end
 
-function R:GetZone(v)
-	local zoneText = ""
-	local inMyZone = false
-	local zoneColor = gray
-	local numZones = 0
-	local currentZone = GetBestMapForUnit("player")
-	if v.coords ~= nil and type(v.coords) == "table" then
-		local zoneList = {}
-		for _, zoneValue in pairs(v.coords) do
-			if type(zoneValue) == "table" and zoneValue.m ~= nil then
-				if zoneList[zoneValue.m] == nil then
-					numZones = numZones + 1
-					zoneList[zoneValue.m] = true
-				end
-				zoneText = GetMapNameByID(zoneValue.m)
-				if currentZone == zoneValue.m then inMyZone = true end
-			end
-		end
-		if numZones > 1 then zoneText = format(L["%d |4zone:zones;"], numZones) end
-		if v.coords.zoneOverride ~= nil then zoneText = v.coords.zoneOverride end
-		if inMyZone then
-			zoneColor = green
-			if numZones > 1 then
-				zoneText = GetMapNameByID(currentZone).." "..colorize(format("+%d", numZones - 1), gray)
-			end
-		end
-	end
-	return zoneText, inMyZone, zoneColor, numZones
-end
-
 
 -- Prepares a set of lookup tables to let us quickly determine if we're interested in various things.
 -- Many of the events we handle fire quite frequently, so speed is of the essence.
