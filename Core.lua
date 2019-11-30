@@ -489,7 +489,7 @@ do
 		self:PrepareDefaults() -- Loads in any new items
 
 		self.db = LibStub("AceDB-3.0"):New("RarityDB", self.defaults, true)
-  self:SetSinkStorage(self.db.profile)
+		self:SetSinkStorage(self.db.profile)
 
 		self:RegisterChatCommand("rarity", "ChatCommand")
 		self:RegisterChatCommand("rare", "ChatCommand")
@@ -497,47 +497,47 @@ do
 		Rarity.GUI:RegisterDataBroker()
 
 		-- Expose private objects
-  R.npcs = npcs
-  R.bosses = bosses
-  R.zones = zones
-  R.guids = guids
-  R.items = items
-  R.npcs_to_items = npcs_to_items
-  R.items_to_items = items_to_items
-  R.used = used
-  R.tempbagitems = tempbagitems
-  R.bagitems = bagitems
-  R.fishzones = fishzones
-  R.archfragments = archfragments
-  R.architems = architems
-  R.stats = rarity_stats
+		R.npcs = npcs
+		R.bosses = bosses
+		R.zones = zones
+		R.guids = guids
+		R.items = items
+		R.npcs_to_items = npcs_to_items
+		R.items_to_items = items_to_items
+		R.used = used
+		R.tempbagitems = tempbagitems
+		R.bagitems = bagitems
+		R.fishzones = fishzones
+		R.archfragments = archfragments
+		R.architems = architems
+		R.stats = rarity_stats
 
-  -- LibSink still tries to call a non-existent Blizzard function sometimes
-  if not CombatText_StandardScroll then CombatText_StandardScroll = 0 end
-  if not UIERRORS_HOLD_TIME then UIERRORS_HOLD_TIME = 2 end
-  if not CombatText_AddMessage then
-   CombatText_AddMessage = function(text, _, r, g, b, sticky, _)
-    UIErrorsFrame:AddMessage(text, r, g, b, 1, UIERRORS_HOLD_TIME)
-   end
-  end
+		-- LibSink still tries to call a non-existent Blizzard function sometimes
+		if not CombatText_StandardScroll then CombatText_StandardScroll = 0 end
+		if not UIERRORS_HOLD_TIME then UIERRORS_HOLD_TIME = 2 end
+		if not CombatText_AddMessage then
+		CombatText_AddMessage = function(text, _, r, g, b, sticky, _)
+		UIErrorsFrame:AddMessage(text, r, g, b, 1, UIERRORS_HOLD_TIME)
+		end
+		end
 
-  	Rarity.GUI:InitialiseBar()
+		Rarity.GUI:InitialiseBar()
 
 		Rarity.Collections:ScanExistingItems("INITIALIZING") -- Checks for items you already have
-  self:ScanBags() -- Initialize our inventory list, as well as checking if you've obtained an item
+		self:ScanBags() -- Initialize our inventory list, as well as checking if you've obtained an item
 		self:OnBagUpdate() -- This will update counters for collection items
 		self:OnCurrencyUpdate("INITIALIZING") -- Prepare our currency list
-  self:UpdateInterestingThings()
-  Rarity.Tracking:FindTrackedItem()
+		self:UpdateInterestingThings()
+		Rarity.Tracking:FindTrackedItem()
 		Rarity.Caching:SetReadyState(false)
 		Rarity.GUI:UpdateText()
 		Rarity.Caching:SetReadyState(true)
 		Rarity.GUI:UpdateText()
 		Rarity.GUI:UpdateBar()
 
-  Rarity.Serialization:ImportFromBunnyHunter()
+		Rarity.Serialization:ImportFromBunnyHunter()
 
-  Rarity.EventHandlers:Register()
+		Rarity.EventHandlers:Register()
 
 		if R.Options_DoEnable then R:Options_DoEnable() end
 		self.db.profile.lastRevision = R.MINOR_VERSION
@@ -547,7 +547,7 @@ do
 		self.db.RegisterCallback(self, "OnProfileReset", "OnProfileChanged")
 		self.db.RegisterCallback(self, "OnProfileDeleted", "OnProfileChanged")
 
-  RequestArtifactCompletionHistory() -- Request archaeology info from the server
+		RequestArtifactCompletionHistory() -- Request archaeology info from the server
 		RequestRaidInfo() -- Request raid lock info from the server
 		RequestLFDPlayerLockInfo() -- Request LFD data from the server; this is used for holiday boss detection
 		C_Calendar.OpenCalendar() -- Request calendar info from the server
@@ -595,28 +595,28 @@ do
 		end, 2)
 
 		-- Scan instance locks 5 seconds after init
-  self:ScheduleTimer(function()
+		self:ScheduleTimer(function()
 			R:ScanInstanceLocks("DELAYED INIT")
 		end, 5)
 
 		-- Scan bags, currency, and instance locks 10 seconds after init
-  self:ScheduleTimer(function()
+		self:ScheduleTimer(function()
 			R:ScanBags()
 			R:OnCurrencyUpdate("DELAYED INIT")
 			R:OnBagUpdate()
 			R:ScanInstanceLocks("DELAYED INIT 2")
 		end, 10)
 
-  -- Clean up session info
-  for k, v in pairs(self.db.profile.groups) do
-   if type(v) == "table" then
-    for kk, vv in pairs(v) do
-     if type(vv) == "table" then
-      vv.session = nil
-     end
-    end
-   end
-  end
+		-- Clean up session info
+		for k, v in pairs(self.db.profile.groups) do
+			if type(v) == "table" then
+				for kk, vv in pairs(v) do
+					if type(vv) == "table" then
+						vv.session = nil
+					end
+				end
+			end
+		end
 
 		-- Delayed calendar init a few times
 		self:ScheduleTimer(function()
@@ -634,14 +634,14 @@ do
 			end
 		end, 20)
 
-  -- Update text again several times later - this helps get the icon right after login
-  self:ScheduleTimer(function() R:DelayedInit() end, 10)
-  self:ScheduleTimer(function() R:DelayedInit() end, 20)
-  self:ScheduleTimer(function() R:DelayedInit() end, 30)
-  self:ScheduleTimer(function() R:DelayedInit() end, 60)
-  self:ScheduleTimer(function() R:DelayedInit() end, 120)
-  self:ScheduleTimer(function() R:DelayedInit() end, 180)
-  self:ScheduleTimer(function()
+		-- Update text again several times later - this helps get the icon right after login
+		self:ScheduleTimer(function() R:DelayedInit() end, 10)
+		self:ScheduleTimer(function() R:DelayedInit() end, 20)
+		self:ScheduleTimer(function() R:DelayedInit() end, 30)
+		self:ScheduleTimer(function() R:DelayedInit() end, 60)
+		self:ScheduleTimer(function() R:DelayedInit() end, 120)
+		self:ScheduleTimer(function() R:DelayedInit() end, 180)
+		self:ScheduleTimer(function()
 			self:ScanCalendar("FINAL INIT")
 			Rarity.Collections:ScanExistingItems("FINAL INIT")
 			Rarity.GUI:UpdateText()
@@ -896,19 +896,19 @@ end
 
 
 
--- Miscellaneous
-function R:tcopy(to, from)
- for k, v in pairs(from) do
-  if type(v) == "table" then
-   to[k] = {}
-   R:tcopy(to[k], v)
-  else
-   to[k] = v
-  end
- end
-end
+	-- Miscellaneous
+	function R:tcopy(to, from)
+		for k, v in pairs(from) do
+			if type(v) == "table" then
+				to[k] = {}
+				R:tcopy(to[k], v)
+			else
+				to[k] = v
+			end
+		end
+	end
 
-local function containsOrIs(a, b)
+	local function containsOrIs(a, b)
 	if type(a) == "table" then
 		for k, v in pairs(a) do
 			if v == b then return true end
@@ -1219,9 +1219,9 @@ end
 
 function R:OnEvent(event, ...)
 
- -------------------------------------------------------------------------------------
- -- You opened a loot window on a corpse or fishing node
- -------------------------------------------------------------------------------------
+	-------------------------------------------------------------------------------------
+	-- You opened a loot window on a corpse or fishing node
+	-------------------------------------------------------------------------------------
 	if event == "LOOT_READY" then
 
 		self:Debug("LOOT_READY with target: "..(UnitGUID("target") or "NO TARGET"))
@@ -2048,20 +2048,19 @@ end
 -------------------------------------------------------------------------------------
 
 function R:OnMouseOver(event)
- local guid = UnitGUID("mouseover")
- local npcid = self:GetNPCIDFromGUID(guid)
-Rarity:Debug("Mouse hovered over NPC with id = " .. tostring(npcid))
- if npcid == 50409 or npcid == 50410 then
-  if not guids[guid] then
-   guids[guid] = true
-   local v = self.db.profile.groups.mounts["Reins of the Grey Riding Camel"]
-   if v and type(v) == "table" and v.enabled ~= false then
-    if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
-    self:OutputAttempts(v)
-   end
-  end
- end
-
+	local guid = UnitGUID("mouseover")
+	local npcid = self:GetNPCIDFromGUID(guid)
+	Rarity:Debug("Mouse hovered over NPC with id = " .. tostring(npcid))
+	if npcid == 50409 or npcid == 50410 then
+		if not guids[guid] then
+			guids[guid] = true
+			local v = self.db.profile.groups.mounts["Reins of the Grey Riding Camel"]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
+				self:OutputAttempts(v)
+			end
+		end
+	end
 end
 
 -------------------------------------------------------------------------------------
