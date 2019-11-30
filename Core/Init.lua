@@ -29,3 +29,5 @@ Rarity.architems = {}
 Rarity.bosses = {}
 Rarity.guids = {}
 Rarity.npcs_to_items = {}
+Rarity.zones = {}
+Rarity.items_to_items = {}
