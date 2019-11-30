@@ -1,8 +1,10 @@
 local EventHandlers = {}
 
 
-function EventHandlers:Register()
+-- Upvalues
+local R = Rarity
 
+function EventHandlers:Register()
 	self = Rarity
 
 	self:UnregisterAllEvents()
@@ -42,6 +44,27 @@ function EventHandlers:Register()
 	self:RegisterBucketEvent("CALENDAR_UPDATE_EVENT_LIST", 1, "OnEvent")
 	self:RegisterBucketEvent("TOYS_UPDATED", 1, "OnEvent")
 	self:RegisterBucketEvent("COMPANION_UPDATE", 1, "OnEvent")
+end
+
+-------------------------------------------------------------------------------------
+-- Pet battles: we want to hide the progress bar(s) during them
+-------------------------------------------------------------------------------------
+
+local wasBarVisibleBeforePetBattle = false
+
+function R:OnPetBattleStart(event)
+	R:Debug("Pet battle started")
+	wasBarVisibleBeforePetBattle = R.db.profile.bar.visible
+	R.db.profile.bar.visible = false
+	Rarity.GUI:UpdateBar()
+	Rarity.GUI:UpdateText()
+end
+
+function R:OnPetBattleEnd(event)
+	R:Debug("Pet battle ended")
+	R.db.profile.bar.visible = wasBarVisibleBeforePetBattle
+	Rarity.GUI:UpdateBar()
+	Rarity.GUI:UpdateText()
 end
 
 Rarity.EventHandlers = EventHandlers

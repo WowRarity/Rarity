@@ -2079,28 +2079,6 @@ do
 
 end
 
--------------------------------------------------------------------------------------
--- Pet battles: we want to hide the progress bar(s) during them
--------------------------------------------------------------------------------------
-
-local wasBarVisibleBeforePetBattle = false
-
-function R:OnPetBattleStart(event)
-	R:Debug("Pet battle started")
-	wasBarVisibleBeforePetBattle = R.db.profile.bar.visible
- R.db.profile.bar.visible = false
-	Rarity.GUI:UpdateBar()
-	Rarity.GUI:UpdateText()
-end
-
-function R:OnPetBattleEnd(event)
-	R:Debug("Pet battle ended")
- R.db.profile.bar.visible = wasBarVisibleBeforePetBattle
-	Rarity.GUI:UpdateBar()
-	Rarity.GUI:UpdateText()
-end
-
-
 
 --[[
       GAME TOOLTIPS ------------------------------------------------------------------------------------------------------------
