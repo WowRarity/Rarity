@@ -2951,7 +2951,7 @@ do
 		end
 
 		-- Bar 2
-		local trackedItem2 = Rarity.Tracking.GetTrackedItem(2)
+		local trackedItem2 = Rarity.Tracking:GetTrackedItem(2)
 		if trackedItem2 == nil or trackedItem2.itemId == nil then
 			self.barGroup:RemoveBar("Track2")
 			self.bar2 = nil
