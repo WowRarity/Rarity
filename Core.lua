@@ -26,11 +26,8 @@ local hbd = LibStub("HereBeDragons-2.0")
 R.modulesEnabled = {}
 
 local npcs = {}
-local bosses = {}
 local zones = {}
-local guids = {}
 local items = {}
-local npcs_to_items = {}
 local items_to_items = {}
 local bagitems = {}
 local tempbagitems = {}
@@ -403,7 +400,6 @@ local _G = getfenv(0)
 local pairs = _G.pairs
 local strlower = _G.strlower
 local format = _G.format
-local bit_band = _G.bit.band
 local min = min
 local tostring = tostring
 
@@ -495,10 +491,7 @@ do
 
 		-- Expose private objects
 		R.npcs = npcs
-		R.bosses = bosses
 		R.zones = zones
-		R.guids = guids
-		R.npcs_to_items = npcs_to_items
 		R.items_to_items = items_to_items
 		R.used = used
 		R.tempbagitems = tempbagitems
@@ -945,11 +938,11 @@ function R:UpdateInterestingThings()
 	end
 
  table.wipe(npcs)
- table.wipe(bosses)
+ table.wipe(Rarity.bosses)
  table.wipe(zones)
  table.wipe(Rarity.items)
- table.wipe(guids)
- table.wipe(npcs_to_items)
+ table.wipe(Rarity.guids)
+ table.wipe(Rarity.npcs_to_items)
  table.wipe(items_to_items)
  table.wipe(used)
  table.wipe(fishzones)
@@ -973,14 +966,14 @@ function R:UpdateInterestingThings()
      if vv.method == NPC and vv.npcs ~= nil and type(vv.npcs) == "table" then
       for kkk, vvv in pairs(vv.npcs) do
        npcs[vvv] = vv
-       if npcs_to_items[vvv] == nil then npcs_to_items[vvv] = {} end
-       table.insert(npcs_to_items[vvv], vv)
+       if Rarity.npcs_to_items[vvv] == nil then Rarity.npcs_to_items[vvv] = {} end
+       table.insert(Rarity.npcs_to_items[vvv], vv)
       end
      elseif vv.method == BOSS and vv.npcs ~= nil and type(vv.npcs) == "table" then
       for kkk, vvv in pairs(vv.npcs) do
-       bosses[vvv] = vv
-       if npcs_to_items[vvv] == nil then npcs_to_items[vvv] = {} end
-       table.insert(npcs_to_items[vvv], vv)
+       Rarity.bosses[vvv] = vv
+       if Rarity.npcs_to_items[vvv] == nil then Rarity.npcs_to_items[vvv] = {} end
+       table.insert(Rarity.npcs_to_items[vvv], vv)
       end
      elseif vv.method == ZONE and vv.zones ~= nil and type(vv.zones) == "table" then
       for kkk, vvv in pairs(vv.zones) do
@@ -1060,8 +1053,8 @@ function R:UpdateInterestingThings()
 						-- Add entries to the list of relevant NPCs for this item
 						if showTooltipNpcs then
 							for kkk, vvv in pairs(vv.tooltipNpcs) do
-								if npcs_to_items[vvv] == nil then npcs_to_items[vvv] = {} end
-								table.insert(npcs_to_items[vvv], vv)
+								if Rarity.npcs_to_items[vvv] == nil then Rarity.npcs_to_items[vvv] = {} end
+								table.insert(Rarity.npcs_to_items[vvv], vv)
 							end
 						end
 					end
@@ -1363,7 +1356,7 @@ function R:OnEvent(event, ...)
     guidlist = { guid }
    end
    local guidIndex
-   for k, v in pairs(guidlist) do -- Loop through all NPC GUIDs being looted (will be 1 for single-target looting pre-5.0)
+   for k, v in pairs(guidlist) do -- Loop through all NPC Rarity.guids being looted (will be 1 for single-target looting pre-5.0)
     guid = v
     if guid and type(guid) == "string" then
      self:Debug("Checking NPC guid ("..(numChecked + 1).."): "..guid)
@@ -1454,7 +1447,7 @@ end
 function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, requiresPickpocket)
  if guid == nil then return end
  if type(guid) ~= "string" then return end
- if guids[guid] ~= nil then return end -- Already seen this NPC
+ if Rarity.guids[guid] ~= nil then return end -- Already seen this NPC
 
  local npcid = self:GetNPCIDFromGUID(guid)
  if npcs[npcid] == nil then -- Not an NPC we need, abort
@@ -1482,11 +1475,11 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
 	end
 
 	-- We're interested in this loot, process further
- guids[guid] = true
+ Rarity.guids[guid] = true
 
  -- Increment attempt counter(s). One NPC might drop multiple things we want, so scan for them all.
- if npcs_to_items[npcid] and type(npcs_to_items[npcid]) == "table" then
-  for k, v in pairs(npcs_to_items[npcid]) do
+ if Rarity.npcs_to_items[npcid] and type(Rarity.npcs_to_items[npcid]) == "table" then
+  for k, v in pairs(Rarity.npcs_to_items[npcid]) do
    if v.enabled ~= false and (v.method == NPC or v.method == ZONE) then
     if self:IsAttemptAllowed(v) then
      -- Don't increment attempts if this NPC also has a statistic defined. This would result in two attempts counting instead of one.
@@ -1681,74 +1674,6 @@ end
 
 
 -------------------------------------------------------------------------------------
--- Handle boss kills. You may not ever open a loot window on a boss, so we need to watch the combat log for its death.
--- This event also handles some special cases.
--------------------------------------------------------------------------------------
-function R:OnCombat()
-
-	-- Extract event payload (it's no longer being passed by the event iself as of 8.0.1)
-	local timestamp, eventType, hideCaster, srcGuid, srcName, srcFlags, srcRaidFlags, dstGuid, dstName, dstFlags, dstRaidFlags, spellId, spellName, spellSchool, auraType = CombatLogGetCurrentEventInfo()
-
- if eventType == "UNIT_DIED" then -- A unit died near you
-  local npcid = self:GetNPCIDFromGUID(dstGuid)
-  if bosses[npcid] then -- It's a boss we're interested in
-  R:Debug("Detected UNIT_DIED for relevant NPC with ID = " .. tostring(npcid))
-   if bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_MINE) or bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_PARTY) or bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_RAID) then -- You, a party member, or a raid member killed it
-    if not guids[dstGuid] then
-
-     -- Increment attempts counter(s). One NPC might drop multiple things we want, so scan for them all.
-     if npcs_to_items[npcid] and type(npcs_to_items[npcid]) == "table" then
-      for k, v in pairs(npcs_to_items[npcid]) do
-       if v.enabled ~= false and v.method == BOSS then
-        if self:IsAttemptAllowed(v) then
-									guids[dstGuid] = true
-         if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
-         self:OutputAttempts(v)
-        end
-       end
-      end
-     end
-
-    end
-   end
-  end
-
- end
-
-end
-
-
-
--------------------------------------------------------------------------------------
--- When combat ends, we scan your statistics a few times. This helps catch some items that can't be tracked by normal means (i.e. Ragnaros),
--- as well as acting as another backup to detect attempts if we missed one. WoW can take a few seconds to update statistics, thus the repeated scans.
--- This is also where we detect if an achievement criteria has been met.
--------------------------------------------------------------------------------------
-do
- local timer1, timer2, timer3, timer4, timer5, timer6
- function R:OnCombatEnded(event)
-  --if R:InTooltip() then Rarity:ShowTooltip() end
-
-		self:CancelTimer(timer1, true)
-  self:CancelTimer(timer2, true)
-  self:CancelTimer(timer3, true)
-  self:CancelTimer(timer4, true)
-  self:CancelTimer(timer5, true)
-  self:CancelTimer(timer6, true)
-
-		self:ScanStatistics(event)
-
-  timer1 = self:ScheduleTimer(function() Rarity:ScanStatistics(event.." 1") end, 2)
-  timer2 = self:ScheduleTimer(function() Rarity:ScanStatistics(event.." 2") end, 5)
-  timer3 = self:ScheduleTimer(function() Rarity:ScanStatistics(event.." 3") end, 8)
-  timer4 = self:ScheduleTimer(function() Rarity:ScanStatistics(event.." 4") end, 10)
-  timer5 = self:ScheduleTimer(function() Rarity:ScanStatistics(event.." 5") end, 15)
-  timer6 = self:ScheduleTimer(function() Rarity:ScanStatistics(event.." 6") end, 20)
- end
-end
-
-
--------------------------------------------------------------------------------------
 -- Gathering detection (fishing, mining, etc.)
 -------------------------------------------------------------------------------------
 
@@ -1845,8 +1770,8 @@ function R:OnMouseOver(event)
 	local npcid = self:GetNPCIDFromGUID(guid)
 	Rarity:Debug("Mouse hovered over NPC with id = " .. tostring(npcid))
 	if npcid == 50409 or npcid == 50410 then
-		if not guids[guid] then
-			guids[guid] = true
+		if not Rarity.guids[guid] then
+			Rarity.guids[guid] = true
 			local v = self.db.profile.groups.mounts["Reins of the Grey Riding Camel"]
 			if v and type(v) == "table" and v.enabled ~= false then
 				if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
@@ -1883,41 +1808,6 @@ function R:OnCriteriaComplete(event, id)
 	end
 end
 
--------------------------------------------------------------------------------------
--- Raid encounter ended: Used for detecting raid bosses that don't actually die when the encounter ends and have no statistic tied to them (e.g., the Keepers of Ulduar)
--- While it might work to change their method from NPC to BOSS, at this time I'm not sure if that wouldn't cause problems elsewhere... so I won't touch it
--------------------------------------------------------------------------------------
-local encounterLUT = {
-	[1140] = "Stormforged Rune", -- The Assembly of Iron
-	[1133] = "Blessed Seed", -- Freya
-	[1135] = "Ominous Pile of Snow", -- Hodir
-	[1138] = "Overcomplicated Controller", -- Mimiron
-	[1143] = "Wriggling Darkness", -- Yogg-Saron (mount uses the BOSS method and is tracked separately)
-	[1500] = "Celestial Gift", -- Elegon
-	[1505] = "Azure Cloud Serpent Egg", -- Tsulong
-	[1506] = "Spirit of the Spring", -- Lei Shi
-}
-
-function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidSize, endStatus)
-
-	R:Debug("ENCOUNTER_END with encounterID = " .. tonumber(encounterID or "0") .. ", name = " .. tostring(encounterName) .. ", endStatus = " .. tostring(endStatus))
-
-	local item = encounterLUT[encounterID]
-	if item and type(item) == "string" then -- This encounter has an entry in the LUT and needs special handling
-
-		R:Debug("Found item of interest for this encounter: " .. tostring(item))
-		local v = self.db.profile.groups.pets[item] -- v = value = number of attempts for this item
-
-		if endStatus == 1 then -- Encounter succeeded -> Check if number of attempts should be increased
-			if v and type(v) == "table" and v.enabled ~= false and R:IsAttemptAllowed(v) then -- Add one attempt for this item
-				if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
-				R:OutputAttempts(v)
-			end
-		end
-
-	end
-
-end
 
 -------------------------------------------------------------------------------------
 -- ISLAND_COMPLETED handling: Used for detecting Island Expeditions in Battle for Azeroth
@@ -2071,8 +1961,8 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 	local rarityAdded = false
 
 	-- This NPC is known to be used for obtaining something
- if npcs_to_items[npcid] and type(npcs_to_items[npcid]) == "table" then
-  for k, v in pairs(npcs_to_items[npcid]) do
+ if Rarity.npcs_to_items[npcid] and type(Rarity.npcs_to_items[npcid]) == "table" then
+  for k, v in pairs(Rarity.npcs_to_items[npcid]) do
    if R:IsAttemptAllowed(v) then
     if (v.requiresHorde and R.Caching:IsHorde()) or (v.requiresAlliance and not R.Caching:IsHorde()) or (not v.requiresHorde and not v.requiresAlliance) then
 					local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
