@@ -1,4 +1,4 @@
-local addonName, addonTable = ...
+local _, addonTable = ...
 
 local FORCE_PROFILE_RESET_BEFORE_REVISION = 1 -- Set this to one higher than the Revision on the line above this
 
@@ -71,7 +71,7 @@ local tradeOpen = false
 local tradeSkillOpen = false
 local mailOpen = false
 
-local prevSpell, curSpell, foundTarget, gatherEvents, ga
+local prevSpell, curSpell, foundTarget
 
 -- Maps spells of interest to their respective spell IDs (useful since both info is used by Blizzard APIs and the addon itself) - Only some of these are actually used right now, but who knows what the future will bring?
 -- Note: Spell names are no longer needed, and dealing with them is actually more complicated after the 8.0.1 API changes. They're only used for readability's sake
@@ -184,9 +184,7 @@ local blue = { r = 0.4, g = 0.4, b = 1.0 }
 local green = { r = 0.2, g = 1.0, b = 0.2 }
 local yellow = { r = 1.0, g = 1.0, b = 0.2 }
 local gray = { r = 0.5, g = 0.5, b = 0.5 }
-local black = { r = 0.0, g = 0.0, b = 0.0 }
 local white = { r = 1.0, g = 1.0, b = 1.0 }
-local orange = { r = 1.0, g = 0.3, b = 0.0 }
 
 local scanTip = CreateFrame("GameTooltip", "__Rarity_ScanTip", nil, "GameTooltipTemplate")
 scanTip:SetOwner(WorldFrame, "ANCHOR_NONE")
@@ -419,12 +417,10 @@ local USE = "USE"
 local FISHING = "FISHING"
 local ARCH = "ARCH"
 local SPECIAL = "SPECIAL"
-local MINING = "MINING"
 local COLLECTION = "COLLECTION"
 
 -- Feed text
 local FEED_MINIMAL = "FEED_MINIMAL"
-local FEED_NORMAL = "FEED_NORMAL"
 local FEED_VERBOSE = "FEED_VERBOSE"
 
 -- Tooltip position
@@ -440,25 +436,7 @@ local SORT_CATEGORY = "SORT_CATEGORY"
 local SORT_ZONE = "SORT_ZONE"
 
 -- Categories of origin
-local BASE = "BASE"
-local TBC = "TBC"
-local WOTLK = "WOTLK"
-local CATA = "CATA"
-local MOP = "MOP"
-local WOD = "WOD"
-local LEGION = "LEGION"
 local HOLIDAY = "HOLIDAY"
-local categories = {
-	[BASE] =    L["Classic"],
-	[TBC] =     L["The Burning Crusade"],
-	[WOTLK] =   L["Wrath of the Lich King"],
-	[CATA] =    L["Cataclysm"],
-	[MOP] =     L["Mists of Pandaria"],
-	[WOD] =     L["Warlords of Draenor"],
-	[LEGION] =  L["Legion"],
-	[HOLIDAY] = L["Holiday"],
-}
-
 
 
 --[[
@@ -469,10 +447,7 @@ local categories = {
 local _G = getfenv(0)
 local pairs = _G.pairs
 local strlower = _G.strlower
-local strupper = _G.strupper
 local format = _G.format
-local strsub = _G.strsub
-local strlen = _G.strlen
 local bit_band = _G.bit.band
 local min = min
 local tostring = tostring
@@ -494,8 +469,6 @@ local GetContainerItemID = _G.GetContainerItemID
 local GetContainerItemInfo = _G.GetContainerItemInfo
 local GetNumArchaeologyRaces = _G.GetNumArchaeologyRaces
 local GetArchaeologyRaceInfo = _G.GetArchaeologyRaceInfo
-local SetSelectedArtifact = _G.SetSelectedArtifact
-local GetSelectedArtifactInfo = _G.GetSelectedArtifactInfo
 local GetStatistic = _G.GetStatistic
 local GetLootSourceInfo = _G.GetLootSourceInfo
 local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
