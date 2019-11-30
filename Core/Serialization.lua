@@ -3,6 +3,12 @@ local _, addonTable = ...
 local Serialization = {}
 
 -- Upvalues
+local R = Rarity
+
+-- Externals
+local compress = LibStub("LibCompress")
+
+-- Lua APIs
 local tonumber = tonumber
 local pairs = pairs
 local type = type
@@ -89,7 +95,6 @@ end
 -- This must be ancient, I've never even heard of it before...
 -- TODO: LuaDoc
 function Serialization:ImportFromBunnyHunter()
-
 	self = Rarity
 
 	if self.db.profile.importedFromBunnyHunter then
@@ -205,6 +210,41 @@ function Serialization:ImportFromBunnyHunter()
 		}
 		StaticPopup_Show("RARITY_IMPORT_FROM_BUNNYHUNTER")
 	end
+end
+
+-- Compression encoding
+local encode_translate = {
+	[255] = "\255\001",
+	[0] = "\255\002"
+}
+
+local function encode_helper(char)
+	return encode_translate[char:byte()]
+end
+
+local decode_translate = {
+	["\001"] = "\255",
+	["\002"] = "\000"
+}
+
+local function decode_helper(text)
+	return decode_translate[text]
+end
+
+function R:Encode(data)
+	return data:gsub("([\255%z])", encode_helper)
+end
+
+function R:Decode(data)
+	return data:gsub("\255([\001\002])", decode_helper)
+end
+
+function R:Compress(data)
+	return self:Encode(compress:Compress(data))
+end
+
+function R:Decompress(data)
+	return compress:Decompress(self:Decode(data))
 end
 
 Rarity.Serialization = Serialization

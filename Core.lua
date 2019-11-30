@@ -15,7 +15,7 @@ local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 local lbct = LibStub("LibBabble-CreatureType-3.0"):GetUnstrictLookupTable()
 local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
 local hbd = LibStub("HereBeDragons-2.0")
-local compress = LibStub("LibCompress")
+
 ---
 
 
@@ -857,41 +857,6 @@ function R:GetItemInfo(id)
 	return unpack(R.itemInfoCache[id])
 end
 
-
--- Compression encoding
-local encode_translate = {
- [255] = "\255\001",
- [0] = "\255\002"
-}
-
-local function encode_helper(char)
- return encode_translate[char:byte()]
-end
-
-local decode_translate = {
- ["\001"] = "\255",
- ["\002"] = "\000"
-}
-
-local function decode_helper(text)
- return decode_translate[text]
-end
-
-function R:Encode(data)
- return data:gsub("([\255%z])", encode_helper)
-end
-
-function R:Decode(data)
- return data:gsub("\255([\001\002])", decode_helper)
-end
-
-function R:Compress(data)
- return self:Encode(compress:Compress(data))
-end
-
-function R:Decompress(data)
- return compress:Decompress(self:Decode(data))
-end
 
 
 
