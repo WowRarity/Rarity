@@ -734,8 +734,8 @@ end
 function R:DelayedInit()
 	self:ScanStatistics("DELAYED INIT")
 	self:ScanCalendar("DELAYED INIT")
-	self:ScanToys("DELAYED INIT")
-	self:ScanTransmog("DELAYED INIT")
+	Rarity.Collections:ScanToys("DELAYED INIT")
+	Rarity.Collections:ScanTransmog("DELAYED INIT")
 	self:UpdateText()
  self:UpdateBar()
 end
@@ -4391,11 +4391,11 @@ function R:ScanExistingItems(reason)
  self:ScanStatistics(reason)
 	self:ProfileStart2() -- Statistics does its own profiling
 
-	self:ScanToys(reason)
+	Rarity.Collections:ScanToys(reason)
 	self:ProfileStop2("Toys took %fms")
 	self:ProfileStart2()
 
-	self:ScanTransmog(reason)
+	Rarity.Collections:ScanTransmog(reason)
 	self:ProfileStop2("Transmog took %fms")
 	self:ProfileStart2()
 
@@ -4407,55 +4407,6 @@ function R:ScanExistingItems(reason)
 	self:ProfileStop2("Instances took %fms")
 
 	self:ProfileStop("ScanExistingItems: Total time %fms")
-end
-
-
-function R:ScanTransmog(reason)
- self:Debug("Scanning transmog ("..(reason or "")..")")
-
-	for k, v in pairs(R.db.profile.groups) do
-		if type(v) == "table" then
-			for kk, vv in pairs(v) do
-				if type(vv) == "table" then
-					if vv.itemId and not vv.repeatable and select(2, C_TransmogCollection.GetItemInfo(vv.itemId)) then -- Don't scan for items that aren't gear that have a transmog collection appearance
-						if C_TransmogCollection.PlayerHasTransmog(vv.itemId) then -- You have the appearance of the item you're tracking
-							vv.known = true
-							vv.enabled = false
-							vv.found = true
-						end
-					end
-				end
-			end
-		end
-	end
-end
-
-
-function R:ScanToys(reason)
- self:Debug("Scanning toys ("..(reason or "")..")")
-
-	-- Load the Collections add-on if needed
-	if not Rarity.toysScanned then
-		if not ToyBox_OnLoad then UIParentLoadAddOn("Blizzard_Collections") end
-	end
-
-	-- Scan all Rarity items to see if we already have a toy
-	Rarity.toysScanned = true
-	for k, v in pairs(R.db.profile.groups) do
-		if type(v) == "table" then
-			for kk, vv in pairs(v) do
-				if type(vv) == "table" then
-					if vv.itemId and not vv.repeatable then
-						if PlayerHasToy(vv.itemId) then
-							vv.known = true
-							vv.enabled = false
-							vv.found = true
-						end
-					end
-				end
-			end
-		end
-	end
 end
 
 

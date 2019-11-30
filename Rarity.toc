@@ -64,6 +64,7 @@ Utils\TradeSkillMaster.lua
 
 # Addon Core
 Core\Caching.lua
+Core\Collections.lua
 Core\Debugging.lua
 Core\EventHandlers.lua
 Core\GUI.lua
