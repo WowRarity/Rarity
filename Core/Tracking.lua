@@ -32,7 +32,12 @@ end
 -- But that's a problem for later... Right now there's always one, and sometimes a second one
 function Tracking:SetTrackedItem(item, index)
 	index = index or 1
-	Rarity:Debug(format("Setting tracked item %d to %s", index, item and item.name or "<unknown>"))
+	if not item then
+		Rarity:Debug(format("Removing tracked item %d (was %s)",
+		index, trackedItems[index] and tostring(trackedItems[index].name)))
+	else
+		Rarity:Debug(format("Setting tracked item %d to %s", index, item and tostring(item.name)))
+	end
 	trackedItems[index] = item
 end
 
