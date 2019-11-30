@@ -1504,13 +1504,7 @@ function R:IsAttemptAllowed(item)
 end
 
 
-function R:IsHorde()
-	if Rarity.isHorde == nil then
-		local englishFaction, localizedFaction = UnitFactionGroup("player")
-		if englishFaction == "Horde" then Rarity.isHorde = true else Rarity.isHorde = false end
-	end
-	return Rarity.isHorde
-end
+
 
 
 
@@ -2625,7 +2619,7 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
  if npcs_to_items[npcid] and type(npcs_to_items[npcid]) == "table" then
   for k, v in pairs(npcs_to_items[npcid]) do
    if R:IsAttemptAllowed(v) then
-    if (v.requiresHorde and R:IsHorde()) or (v.requiresAlliance and not R:IsHorde()) or (not v.requiresHorde and not v.requiresAlliance) then
+    if (v.requiresHorde and R.Caching:IsHorde()) or (v.requiresAlliance and not R.Caching:IsHorde()) or (not v.requiresHorde and not v.requiresAlliance) then
 					local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
 					if itemLink or itemName or v.name then
 						if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
@@ -3542,7 +3536,7 @@ do
 				if v.disableForClass and type(v.disableForClass == "table") and v.disableForClass[playerClass] == true then classGood = false end
 
     -- Item
-    if (v.requiresHorde and R:IsHorde()) or (v.requiresAlliance and not R:IsHorde()) or (not v.requiresHorde and not v.requiresAlliance) then
+    if (v.requiresHorde and R.Caching:IsHorde()) or (v.requiresAlliance and not R.Caching:IsHorde()) or (not v.requiresHorde and not v.requiresAlliance) then
 					if (R.db.profile.cats[v.cat]) or v.cat == nil then
 						if (not (R.db.profile.hideHighChance and (v.chance or 0) < 50)) and classGood then
 
@@ -4115,7 +4109,7 @@ end)
 
 function R:OutputAttempts(item, skipTimeUpdate)
  if not item then return end
- if (item.requiresHorde and R:IsHorde()) or (item.requiresAlliance and not R:IsHorde()) or (not item.requiresHorde and not item.requiresAlliance) then
+ if (item.requiresHorde and R.Caching:IsHorde()) or (item.requiresAlliance and not R.Caching:IsHorde()) or (not item.requiresHorde and not item.requiresAlliance) then
   self:Debug("New attempt found for %s", item.name)
 
   if type(item) == "table" and item.enabled ~= false and (item.found ~= true or item.repeatable == true) and item.itemId ~= nil and item.attempts ~= nil then
@@ -4592,7 +4586,7 @@ function R:ScanStatistics(reason)
 
  for kk, vv in pairs(Rarity.items_with_stats) do
   if type(vv) == "table" then
-   if (vv.requiresHorde and R:IsHorde()) or (vv.requiresAlliance and not R:IsHorde()) or (not vv.requiresHorde and not vv.requiresAlliance) then
+   if (vv.requiresHorde and R.Caching:IsHorde()) or (vv.requiresAlliance and not R.Caching:IsHorde()) or (not vv.requiresHorde and not vv.requiresAlliance) then
     if vv.statisticId and type(vv.statisticId) == "table" then
      local count = 0
 					local totalCrossAccount = 0
