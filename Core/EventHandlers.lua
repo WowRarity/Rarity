@@ -15,6 +15,7 @@ local bit_band = _G.bit.band
 -- WOW APIs
 local GetCurrencyInfo = GetCurrencyInfo
 local CombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo
+local UnitGUID = UnitGUID
 
 function EventHandlers:Register()
 	self = Rarity
@@ -459,6 +460,30 @@ function R:OnCriteriaComplete(event, id)
 				v.attempts = v.attempts + 1
 			end
 			R:OutputAttempts(v)
+		end
+	end
+end
+
+-------------------------------------------------------------------------------------
+-- Mouseover detection, currently used for Mysterious Camel Figurine as a special case
+-------------------------------------------------------------------------------------
+
+function R:OnMouseOver(event)
+	local guid = UnitGUID("mouseover")
+	local npcid = self:GetNPCIDFromGUID(guid)
+	Rarity:Debug("Mouse hovered over NPC with id = " .. tostring(npcid))
+	if npcid == 50409 or npcid == 50410 then
+		if not Rarity.guids[guid] then
+			Rarity.guids[guid] = true
+			local v = self.db.profile.groups.mounts["Reins of the Grey Riding Camel"]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
 		end
 	end
 end
