@@ -53,6 +53,7 @@ local IsControlKeyDown = IsControlKeyDown
 local LoadAddOn = LoadAddOn
 local UnitClass = UnitClass
 local GetBestMapForUnit = C_Map.GetBestMapForUnit
+local GetMapInfo = C_Map.GetMapInfo
 local IsQuestFlaggedCompleted = IsQuestFlaggedCompleted
 local InCombatLockdown = InCombatLockdown
 
@@ -88,7 +89,6 @@ local green = {r = 0.2, g = 1.0, b = 0.2}
 local yellow = {r = 1.0, g = 1.0, b = 0.2}
 local gray = {r = 0.5, g = 0.5, b = 0.5}
 local white = {r = 1.0, g = 1.0, b = 1.0}
-
 
 -- Helper function (to look up map names more easily)
 -- TODO: DRY (not sure where this fits best, move after refactoring the rest and delete any duplicates)
