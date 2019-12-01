@@ -57,6 +57,8 @@ local function timeoutSession()
 end
 
 function Session:End()
+	self = Rarity
+
 	if inSession then
 		local trackedItem = Rarity.Tracking:GetTrackedItem(1)
 		local trackedItem2 = Rarity.Tracking:GetTrackedItem(2)
@@ -128,6 +130,8 @@ function Session:End()
 end
 
 function Session:Start()
+	self = Rarity
+
 	self:Debug("Starting a session")
 	inSession = true
 	sessionStarted = GetTime()
@@ -140,6 +144,7 @@ function Session:Start()
 end
 
 function Session:Update()
+	self = Rarity
 	if inSession then
 		sessionLast = GetTime()
 		--self:Debug("Extending current session")
@@ -148,7 +153,7 @@ function Session:Update()
 		end
 		sessionTimer = self:ScheduleTimer(timeoutSession, SESSION_LENGTH)
 	else
-		self:Start()
+		Rarity.Session:Start()
 	end
 end
 
