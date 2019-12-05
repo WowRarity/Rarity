@@ -46,7 +46,7 @@ function Serialization:CanItemBeExportedImported(item)
 		return false
 	end
 
-	if item.method == CONSTANTS.DETECTION_MODES.COLLECTION then
+	if item.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
 		if not item.collectedItemId or tonumber(item.collectedItemId) == nil or item.collectedItemId <= 0 then
 			return false
 		end
@@ -64,25 +64,25 @@ function Serialization:CanItemBeExportedImported(item)
 		end
 	end
 
-	if item.method == CONSTANTS.DETECTION_MODES.ARCH then
+	if item.method == CONSTANTS.DETECTION_METHODS.ARCH then
 		if not item.raceId or tonumber(item.raceId) == nil or item.raceId <= 0 then
 			return false
 		end
 	end
 
-	if item.method == CONSTANTS.DETECTION_MODES.ZONE or item.method == CONSTANTS.DETECTION_MODES.FISHING then
+	if item.method == CONSTANTS.DETECTION_METHODS.ZONE or item.method == CONSTANTS.DETECTION_METHODS.FISHING then
 		if not item.zones or #item.zones <= 0 then
 			return false
 		end
 	end
 
-	if item.method == CONSTANTS.DETECTION_MODES.USE then
+	if item.method == CONSTANTS.DETECTION_METHODS.USE then
 		if not item.items or #item.items <= 0 then
 			return false
 		end
 	end
 
-	if item.method == CONSTANTS.DETECTION_MODES.NPC or item.method == CONSTANTS.DETECTION_MODES.BOSS then
+	if item.method == CONSTANTS.DETECTION_METHODS.NPC or item.method == CONSTANTS.DETECTION_METHODS.BOSS then
 		if (not item.npcs or #item.npcs <= 0) and (not item.statisticId or #item.statisticId <= 0) then
 			return false
 		end
