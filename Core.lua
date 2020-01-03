@@ -1669,7 +1669,7 @@ function R:SpellStopped(event, unit)
 	prevSpell, curSpell = curSpell, curSpell
 end
 
-function R:SpellFailed(event, unit)
+function R:OnSpellcastFailed(event, unit)
 	if unit ~= "player" then return end
 	prevSpell, curSpell = nil, nil
 end
