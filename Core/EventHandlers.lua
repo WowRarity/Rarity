@@ -32,7 +32,7 @@ function EventHandlers:Register()
 	self:RegisterEvent("MAIL_CLOSED", "OnEvent")
 	self:RegisterEvent("MAIL_SHOW", "OnEvent")
 	self:RegisterEvent("CURSOR_UPDATE", "OnCursorUpdate") -- Fishing detection
-	self:RegisterEvent("UNIT_SPELLCAST_SENT", "SpellStarted") -- Fishing detection
+	self:RegisterEvent("UNIT_SPELLCAST_SENT", "OnSpellcastSent") -- Fishing detection
 	self:RegisterEvent("UNIT_SPELLCAST_STOP", "OnSpellcastStopped") -- Fishing detection
 	self:RegisterEvent("UNIT_SPELLCAST_FAILED", "OnSpellcastFailed") -- Fishing detection
 	self:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED", "OnSpellcastFailed") -- Fishing detection

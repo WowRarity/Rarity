@@ -1682,7 +1682,7 @@ local function cancelFish()
 	opening = false
 end
 
-function R:SpellStarted(event, unit, target, castGUID, spellID)
+function R:OnSpellcastSent(event, unit, target, castGUID, spellID)
 	if unit ~= "player" then return end
 	foundTarget = false
 	ga ="No"
