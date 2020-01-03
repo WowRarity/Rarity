@@ -481,8 +481,8 @@ do
 		self.db = LibStub("AceDB-3.0"):New("RarityDB", self.defaults, true)
 		self:SetSinkStorage(self.db.profile)
 
-		self:RegisterChatCommand("rarity", "ChatCommand")
-		self:RegisterChatCommand("rare", "ChatCommand")
+		self:RegisterChatCommand("rarity", "OnChatCommand")
+		self:RegisterChatCommand("rare", "OnChatCommand")
 
 		Rarity.GUI:RegisterDataBroker()
 
@@ -743,7 +743,7 @@ function R:VerifyItemDB()
 
 end
 
-function R:ChatCommand(input)
+function R:OnChatCommand(input)
 	if strlower(input) == "debug" then
 		if self.db.profile.debugMode then
 			self.db.profile.debugMode = false
