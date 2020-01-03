@@ -488,5 +488,24 @@ function R:OnMouseOver(event)
 	end
 end
 
+function R:OnProfileChanged(event, database, newProfileKey)
+	self:Debug("Profile changed. Reinitializing.")
+	Rarity.Session:Cancel()
+
+	local sessionTimer = Rarity.Session:GetTimer()
+	if sessionTimer then
+		self:CancelTimer(sessionTimer, true)
+	end
+	Rarity.Session:SetTimer(nil)
+	self.db:RegisterDefaults(self.defaults)
+	self:UpdateInterestingThings()
+	self:OnCurrencyUpdate(event)
+	self:ScanAllArch(event)
+	Rarity.Collections:ScanExistingItems(event)
+	self:ScanBags()
+	Rarity.Tracking:FindTrackedItem()
+	Rarity.GUI:UpdateText()
+	self.db.profile.lastRevision = R.MINOR_VERSION
+end
 Rarity.EventHandlers = EventHandlers
 return EventHandlers
