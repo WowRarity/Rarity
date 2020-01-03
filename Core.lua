@@ -1642,7 +1642,7 @@ end
 -- Gathering detection (fishing, mining, etc.)
 -------------------------------------------------------------------------------------
 
-function R:GatherCompleted(event)
+function R:OnLootFrameClosed(event)
 	prevSpell, curSpell = nil, nil
 	foundTarget = false
  self:ScheduleTimer(function()
