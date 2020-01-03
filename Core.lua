@@ -1661,7 +1661,7 @@ function R:CursorChange(event)
 	end
 end
 
-function R:SpellStopped(event, unit)
+function R:OnSpellcastStopped(event, unit)
 	if unit ~= "player" then return end
 	if spells[prevSpell] then
 		self:GetWorldTarget()
