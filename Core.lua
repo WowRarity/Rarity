@@ -855,15 +855,14 @@ end
 		end
 	end
 
-	local function containsOrIs(a, b)
-	if type(a) == "table" then
-		for k, v in pairs(a) do
-			if v == b then return true end
-		end
-	else
-		if a == b then return true end
+local function table_contains(haystack, needle)
+
+	if type(haystack) ~= "table" then return end
+
+	for _, value in pairs(haystack) do
+		if value == needle then return true end
 	end
-	return false
+
 end
 
 -- Location/Distance/Zone
@@ -1579,7 +1578,12 @@ function R:OnBagUpdate()
 
 						-- This item is a collection of a single type of item
 						else
-							if containsOrIs(Rarity.items[k].collectedItemId, vv.collectedItemId) and vv.enabled ~= false then
+							if vv.enabled
+							and	(
+								vv.collectedItemId == Rarity.items[k].collectedItemId
+								or table_contains(Rarity.items[k].collectedItemId, vv.collectedItemId)
+							)
+							then
 								local originalCount = (vv.attempts or 0)
 								local goal = (vv.chance or 100)
 								vv.lastAttempts = 0
