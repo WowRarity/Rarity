@@ -1651,7 +1651,7 @@ function R:OnLootFrameClosed(event)
 	end, 1)
 end
 
-function R:CursorChange(event)
+function R:OnCursorUpdate(event)
 	if foundTarget then return end
 	if (MinimapCluster:IsMouseOver()) then return end
 	local t = tooltipLeftText1:GetText()
