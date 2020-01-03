@@ -743,41 +743,6 @@ function R:VerifyItemDB()
 
 end
 
-function R:OnChatCommand(input)
-	if strlower(input) == "debug" then
-		if self.db.profile.debugMode then
-			self.db.profile.debugMode = false
-			self:Print(L["Debug mode OFF"])
-		else
-			self.db.profile.debugMode = true
-			self:Print(L["Debug mode ON"])
-		end
-	elseif strlower(input) == "dump" then
-		local numMessages = 50 -- Hardcoded is meh, but it should suffice for the time being
-		DebugCache:PrintMessages(numMessages)
-	elseif strlower(input) == "verify" then -- Verify the ItemDB
-
-		self:VerifyItemDB()
-
-	elseif strlower(input) == "profiling" then
-		if self.db.profile.enableProfiling then
-			self.db.profile.enableProfiling = false
-			self:Print(L["Profiling OFF"])
-		else
-			self.db.profile.enableProfiling = true
-			self:Print(L["Profiling ON"])
-		end
-	else
-		LoadAddOn("Rarity_Options")
-		if R.optionsFrame then
-			InterfaceOptionsFrame_OpenToCategory(R.optionsFrame)
-		else
-			self:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
-		end
-	end
-end
-
-
 function R:CheckForceReset(report)
 	-- Require a profile reset after a hardcoded revision
 	if (self.db.profile.lastRevision or 0) < FORCE_PROFILE_RESET_BEFORE_REVISION and not isDebugVersion then

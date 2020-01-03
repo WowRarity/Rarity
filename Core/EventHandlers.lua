@@ -9,13 +9,21 @@ local CONSTANTS = addonTable.constants
 -- Locals
 local coinamounts = {}
 
+-- Externals
+local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
+
 -- Lua APIs
 local bit_band = _G.bit.band
+local strlower = _G.strlower
 
 -- WOW APIs
 local GetCurrencyInfo = GetCurrencyInfo
 local CombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo
 local UnitGUID = UnitGUID
+local LoadAddOn = LoadAddOn
+
+-- Addon APIs
+local DebugCache = Rarity.Utils.DebugCache
 
 function EventHandlers:Register()
 	self = Rarity
@@ -507,5 +515,38 @@ function R:OnProfileChanged(event, database, newProfileKey)
 	Rarity.GUI:UpdateText()
 	self.db.profile.lastRevision = R.MINOR_VERSION
 end
+
+function R:OnChatCommand(input)
+	if strlower(input) == "debug" then
+		if self.db.profile.debugMode then
+			self.db.profile.debugMode = false
+			self:Print(L["Debug mode OFF"])
+		else
+			self.db.profile.debugMode = true
+			self:Print(L["Debug mode ON"])
+		end
+	elseif strlower(input) == "dump" then
+		local numMessages = 50 -- Hardcoded is meh, but it should suffice for the time being
+		DebugCache:PrintMessages(numMessages)
+	elseif strlower(input) == "verify" then -- Verify the ItemDB
+		self:VerifyItemDB()
+	elseif strlower(input) == "profiling" then
+		if self.db.profile.enableProfiling then
+			self.db.profile.enableProfiling = false
+			self:Print(L["Profiling OFF"])
+		else
+			self.db.profile.enableProfiling = true
+			self:Print(L["Profiling ON"])
+		end
+	else
+		LoadAddOn("Rarity_Options")
+		if R.optionsFrame then
+			InterfaceOptionsFrame_OpenToCategory(R.optionsFrame)
+		else
+			self:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
+		end
+	end
+end
+
 Rarity.EventHandlers = EventHandlers
 return EventHandlers
