@@ -28,6 +28,11 @@ C.UIMAPIDS = {
 	NAZJATAR = 1355,
 	MECHAGON_ISLAND = 1462,
 
+	-- TODO: Retrieve the correct mapIDs
+	VOLDUN = 000,
+	ULDUM = 1527,
+	VALE_OF_ETERNAL_BLOSSOMS = 1530,
+
 }
 
 -- Types of items
