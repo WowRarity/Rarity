@@ -31,7 +31,17 @@ end
 -- Note: If there are multiple, empty entries in between might cause weirdness.
 -- But that's a problem for later... Right now there's always one, and sometimes a second one
 function Tracking:SetTrackedItem(item, index)
+	if not item then
+		Rarity:Debug("Usage: SetTrackedItem(item, [index]")
+		return
+	end
+
 	index = index or 1
+
+	local itemID = item.itemId
+	local itemName = item.name
+	Rarity:Debug("Setting tracked item to " .. tostring(itemID) .. " (" .. tostring(itemName) .. ")")
+
 	trackedItems[index] = item
 end
 
@@ -60,7 +70,7 @@ function Tracking:Update(item)
 	Rarity.Tracking:FindTrackedItem()
 	if lastAttemptItem and lastAttemptItem ~= item and GetTime() - (lastAttemptTime or 0) <= DUAL_TRACK_THRESHOLD then
 		Rarity.Tracking:SetTrackedItem(lastAttemptItem, 2)
-		self:Debug("Setting second tracked item to " .. trackedItem2.name)
+		self:Debug("Setting second tracked item to " .. lastAttemptItem.name)
 	else
 		if trackedItem2 then
 			self:Debug("Clearing second tracked item")
@@ -101,6 +111,7 @@ function Tracking:FindTrackedItem()
 				if type(v) == "table" and v.itemId and v.itemId == self.db.profile.trackedItem then
 					Rarity.Tracking:SetTrackedItem(v)
 					if self.db.profile.debugMode then
+						self:Debug("Setting first tracked item to " .. v.name)
 						R.trackedItem = trackedItem -- This seems entirely pointless?
 					end
 					return v
