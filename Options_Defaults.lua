@@ -1414,7 +1414,7 @@ function R:PrepareDefaults()
 			chance = 100,
 			groupSize = 5,
 			equalOdds = true,
-			questId = { 000000000000000000000000000000000000000000000000000000000000000000000000 },
+			questId = { 57273 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ULDUM, x = 68.23, y = 31.97, n = L["Rotfeaster"] },
 			},
@@ -4266,7 +4266,7 @@ function R:PrepareDefaults()
 		spellId = 315339,
 		itemId = 174473,
 		creatureId = 161954,
-		questId = { 00000000000000000000000000000000000000000 },
+		questId = { 57342 },
 		chance = 20,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 51.85, y = 42.19, n = L["The Forgotten"] },
@@ -4314,7 +4314,7 @@ function R:PrepareDefaults()
 		spellId = 315353,
 		itemId = 174474,
 		creatureId = 00000000000000000000000000000000000000000000,
-		questId = { 161992 },
+		questId = { 57341 }, --56303?
 		chance = 20,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 52.51, y =  62.14, n = L["Will of N'zoth"] },
