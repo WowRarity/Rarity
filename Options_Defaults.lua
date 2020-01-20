@@ -1363,7 +1363,7 @@ function R:PrepareDefaults()
 			chance = 100,
 			groupSize = 5,
 			equalOdds = true,
-			questId = { 000000000000000000000000000000000000000000000000000000000000000000000000 },
+			questId = { 58139 }, -- 58139, 58696
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ULDUM, x = 30.85, y = 49.71, n = L["Corpse Eater"] },
 			},
@@ -4298,7 +4298,7 @@ function R:PrepareDefaults()
 		spellId = 315360,
 		itemId = 174476,
 		creatureId = 162004,
-		questId = { 00000000000000000000000000000000000000000 },
+		questId = { 58697 },
 		chance = 20,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.ULDUM, x = 21.23, y = 61.05, n = L["Skikx'traz"] },
@@ -4330,7 +4330,7 @@ function R:PrepareDefaults()
 		spellId = 315355,
 		itemId = 174475,
 		creatureId = 161997,
-		questId = { 00000000000000000000000000000000000000000 },
+		questId = { 56340 },
 		chance = 20,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.ULDUM, x = 36.85, y = 20.93, n = L["Lord Aj'qirai"] },
