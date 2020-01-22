@@ -4313,7 +4313,7 @@ function R:PrepareDefaults()
 		npcs = { 154495 },
 		spellId = 315353,
 		itemId = 174474,
-		creatureId = 00000000000000000000000000000000000000000000,
+		creatureId = 161992,
 		questId = { 57341 }, --56303?
 		chance = 20,
 		coords = {
