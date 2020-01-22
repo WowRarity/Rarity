@@ -1346,7 +1346,7 @@ function R:PrepareDefaults()
 			chance = 100,
 			groupSize = 5,
 			equalOdds = true,
-			questId = { 000000000000000000000000000000000000000000000000000000000000000000000000 },
+			questId = { 57259 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ULDUM, x = 73.96, y = 83.52, n = L["Ishak of the Four Winds"] },
 			},
@@ -1397,7 +1397,7 @@ function R:PrepareDefaults()
 			chance = 100,
 			groupSize = 5,
 			equalOdds = true,
-			questId = { 000000000000000000000000000000000000000000000000000000000000000000000000 },
+			questId = { 57345 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 10, y = 33, n = L["Houndlord Ren"] },
 			},
@@ -5339,7 +5339,7 @@ function R:PrepareDefaults()
 		itemId = 169303,
 		npcs = { 158636 },
 		chance = 20, -- Blind guess (no data)
-		questId = { 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 },
+		questId = { 57688 },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.ULDUM, x = 49.35, y = 82.29, n = L["The Grand Executor"] },
 		},
@@ -5369,7 +5369,7 @@ function R:PrepareDefaults()
 		itemId = 174873,
 		npcs = { 155958 },
 		chance = 20, -- Blind guess (no data)
-		questId = { 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 },
+		questId = { 58507 },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 29.13, y = 22.07, n = L["Tashara"] },
 		},
