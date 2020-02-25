@@ -1,19 +1,4 @@
-  ----------------------------------------------------------------------------------------------------------------------
-    -- This program is free software: you can redistribute it and/or modify
-    -- it under the terms of the GNU General Public License as published by
-    -- the Free Software Foundation, either version 3 of the License, or
-    -- (at your option) any later version.
-
-    -- This program is distributed in the hope that it will be useful,
-    -- but WITHOUT ANY WARRANTY; without even the implied warranty of
-    -- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    -- GNU General Public License for more details.
-
-    -- You should have received a copy of the GNU General Public License
-    -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
-----------------------------------------------------------------------------------------------------------------------
-
-local addonName, addon = ...
+local addonName, addonTable = ...
 
 -- Upvalues
 local print = print
@@ -30,11 +15,53 @@ end
 
 -- Prints a prettier debug message, with source (module, category, etc.) if one was given
 function PP.DebugMsg(msg, timestamp, source, ...)
-
 	source = source or ""
 	timestamp = timestamp or date()
-	print("|c00C2C2C2[" .. format(date("%H:%M:%S", timestamp) .. "] " .. "|c000072CA" .. "%s: " .. "|c00E6CC80%s", addonName .. (source ~= "" and "_" .. source or ""), msg, ...))
-
+	print(
+		"|c00C2C2C2[" ..
+			format(
+				date("%H:%M:%S", timestamp) .. "] " .. "|c000072CA" .. "%s: " .. "|c00E6CC80%s",
+				addonName .. (source ~= "" and "_" .. source or ""),
+				msg,
+				...
+			)
+	)
 end
 
-addon.PrettyPrint = PP
+function PP.Error(message, ...)
+	message = message or ""
+	local reportErrorText =
+		"Oh no! Something went horribly wrong:\n" ..
+		message .. "\nPlease report this error to the addon developer so it can be fixed :)"
+	print(format("|c00CA0A00" .. "%s: " .. "|c00E6CC80%s", addonName, reportErrorText), ...)
+end
+
+--- Prints timestamps in a human-readable fashion?
+-- TODO: LuaDoc
+function PP:FormatTime(t)
+	if not t then
+		return "0:00"
+	end
+	if t == 0 then
+		return "0:00"
+	end
+
+	local h = math.floor(t / (60 * 60))
+	t = t - (60 * 60 * h)
+	local m = math.floor(t / 60)
+	t = t - (60 * m)
+	local s = t
+
+	if h > 0 then
+		return format("%d:%02d:%02d", h, m, s)
+	end
+
+	if m > 0 then
+		return format("%d:%02d", m, s)
+	end
+
+	return format("%d", s) .. "s"
+end
+
+Rarity.Utils.PrettyPrint = PP
+return PP

@@ -195,8 +195,6 @@ function R:PrepareDefaults()
 			showCategoryIcons = true,
 			tooltipScale = GameTooltip:GetScale(),
 			enableProfiling = false,
-			showGroupFinderAutoRefresh = false,
-			enableGroupFinderAlert = false,
 			tooltipHideDelay = 0.6,
 			onlyAnnounceFound = false,
 			onlyShowItemsWithAttempts = false,

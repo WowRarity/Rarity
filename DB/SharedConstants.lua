@@ -84,4 +84,11 @@ C.INSTANCE_DIFFICULTIES = {
 	TIMEWALKING_RAID = 33,
 }
 
+
+-- LDB feed text
+C.LDB_TEXT_STYLES = {
+	FEED_MINIMAL = "FEED_MINIMAL",
+	FEED_VERBOSE = "FEED_VERBOSE",
+}
+
 addonTable.constants = C

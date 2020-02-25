@@ -1,18 +1,3 @@
-  ----------------------------------------------------------------------------------------------------------------------
-    -- This program is free software: you can redistribute it and/or modify
-    -- it under the terms of the GNU General Public License as published by
-    -- the Free Software Foundation, either version 3 of the License, or
-    -- (at your option) any later version.
-
-    -- This program is distributed in the hope that it will be useful,
-    -- but WITHOUT ANY WARRANTY; without even the implied warranty of
-    -- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    -- GNU General Public License for more details.
-
-    -- You should have received a copy of the GNU General Public License
-    -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
-----------------------------------------------------------------------------------------------------------------------
-
 local addonName, addon = ...
 if not addon then return end
 
@@ -81,10 +66,10 @@ function DC:SetCacheSize(newCacheSize)
 		self.print("Failed to set cache size to " .. tostring(newCacheSize))
 		return
 	end
-	
+
 	self.print("Cache size set to " .. tostring(newCacheSize) .. " (was " .. tostring(self.cacheSize) .. ")")
 	self.cacheSize = newCacheSize
-	
+
 end
 
 -- Sets the output handler (print replacement)
@@ -97,7 +82,7 @@ function DC:SetOutputHandler(outputHandler)
 	end
 
 	self.print = outputHandler
-	
+
 end
 
 -- AdDC a new message to the cache
@@ -112,13 +97,13 @@ function DC:AddMessage(text, category)
 		category = category,
 		timestamp = time(),
 	}
-	
+
 	-- Update cache
 	if self.cacheSize == #self.messages then -- Drop first item (FIFO)
 		tremove(self.messages, 1)
 	end
 	tinsert(self.messages, message)
-	
+
 end
 
 -- Prints the last X messages (defaults to one message if the 'numMessages' parameter is omitted)
@@ -128,10 +113,10 @@ function DC:PrintMessages(numMessages)
 		self.print("Failed to print messages: Cache is currently empty")
 		return
 	end
-	
+
 	-- Show at least one message, but no more than are currently cached. Default to one message if no parameter was given
 	numMessages = min(#self.messages, (type(numMessages) == "number" and numMessages > 0) and numMessages or 1)
-	
+
 	-- Show most recent messages first
 	local firstIndex = max(#self.messages - numMessages, 1)
 	local lastIndex	= #self.messages
@@ -141,8 +126,8 @@ function DC:PrintMessages(numMessages)
 		local line = "(" .. tostring(i) .. ") - " .. tostring(msg.text)
 		self.print(line, msg.timestamp, msg.category)
 	end
-	
+
 end
 
 
-addon.DebugCache = DC
+Rarity.Utils.DebugCache = DC
