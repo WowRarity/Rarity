@@ -4354,6 +4354,21 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Snarling Butterfly Crate"] = {
+		cat = BFA,
+		type = PET,
+		method = NPC,
+		name = L["Snarling Butterfly Crate"],
+		spellId = 309522,
+		itemId = 172493,
+		npcs = { 154154 },
+		chance = 20,
+		creatureId =158685,
+		coords = {
+			{ m = 942, x = 61.4, y = 16, n = L["Honey Smasher"] },
+		},
+	},
+
 	-- ["SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"] = {
 	-- 	cat = BFA,
 	-- 	type = PET,
