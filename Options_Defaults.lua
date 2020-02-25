@@ -4331,7 +4331,7 @@ function R:PrepareDefaults()
 		spellId = 315353,
 		itemId = 174474,
 		creatureId = 161992,
-		questId = { 57341 }, --56303?
+		questId = { 56303 },
 		chance = 20,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 52.51, y =  62.14, n = L["Will of N'zoth"] },
