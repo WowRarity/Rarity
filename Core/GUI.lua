@@ -10,6 +10,7 @@ local frame, frame2
 local headers = {}
 local scanTip = CreateFrame("GameTooltip", "__Rarity_ScanTip", nil, "GameTooltipTemplate")
 scanTip:SetOwner(WorldFrame, "ANCHOR_NONE")
+GUI.scanTip = scanTip
 local numHolidayReminders = 0
 local showedHolidayReminderOverflow = false
 

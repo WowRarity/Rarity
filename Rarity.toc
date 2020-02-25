@@ -70,6 +70,7 @@ Utils\TradeSkillMaster.lua
 Core\Caching.lua
 Core\Collections.lua
 Core\Debugging.lua
+Core\Detection.lua
 Core\EventHandlers.lua
 Core\GUI.lua
 Core\Profiling.lua
