@@ -1,3 +1,5 @@
+local addonName, addonTable = ...
+
 -- Upvalues
 local print = print
 local format = format
