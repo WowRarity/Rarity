@@ -1,4 +1,12 @@
 local changes = {
+	["r695"] = {
+		additions = {
+			"Added tracking for missing collectibles dropped from rares in Uldum and Vale of the Eternal Blossoms",
+			"Added defeat detection for collectibles dropped from rares in Uldum and Vale of the Eternal Blossoms",
+			"Added tracking for Crimson Skipper (dropped by Honey Smasher)",
+			"Added tracking for Mollie (dropped by Dunegorger Kraulok)",
+		},
+	},
 	["r694"] = {
 		additions = {
 			"Added tracking for collectibles dropped from rares in Uldum and Vale of the Eternal Blossoms (experimental)",

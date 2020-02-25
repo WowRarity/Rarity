@@ -1,3 +1,12 @@
+**r695:**
+
+> Added tracking for missing collectibles dropped from rares in Uldum and Vale of the Eternal Blossoms
+<br>Added defeat detection for collectibles dropped from rares in Uldum and Vale of the Eternal Blossoms
+<br>Added tracking for Crimson Skipper (dropped by Honey Smasher)
+<br>Added tracking for Mollie (dropped by Dunegorger Kraulok)
+
+-----
+
 **r694:**
 
 > Added tracking for collectibles dropped from rares in Uldum and Vale of the Eternal Blossoms (experimental)
@@ -25,17 +34,3 @@
 <br>Added tracking for Paragon rewards from both Nazjatar factions
 <br>Added tracking for collectibles obtained from bosses in Azshara's Eternal Palace (raid)
 <br>Added tracking for collectibles obtained from bosses in Operation: Mechagon (dungeon)
-
------
-
-**r690:**
-
-> Added missing NPCs for Goldenmane's Reins
-<br>Added support for 8.2 island expedition maps
-<br>Added tracking for 8.2 island expedition pets
-<br>Added setting to automatically verify the database on login (experimental)
-
-> Fixed an error caused by Blizzard now blocking addons from accessing files via relative paths
-
-Developer Notes:
-> The remaining collectibles added in patch 8.2 are not yet supported. While this is being resolved, you may want to try this user-provided import string: https://www.curseforge.com/wow/addons/rarity?comment=1883
