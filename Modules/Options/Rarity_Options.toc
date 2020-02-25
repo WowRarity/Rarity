@@ -1,6 +1,6 @@
 ## Author: Allara
-## Interface: 80205
-## X-Min-Interface: 80205
+## Interface: 80300
+## X-Min-Interface: 80300
 ## Notes: Rarity configuration. Use AddonLoader to load this on demand.
 ## Title: Rarity [|caaedc99fOptions|r]
 ## Dependencies: Rarity

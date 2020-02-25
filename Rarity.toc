@@ -1,6 +1,6 @@
 ## Author: Allara
-## Interface: 80205
-## X-Min-Interface: 80205
+## Interface: 80300
+## X-Min-Interface: 80300
 ## Title: Rarity
 ## Version: 1.0 (@project-version@)
 

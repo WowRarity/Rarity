@@ -1,4 +1,9 @@
 local changes = {
+	["r694"] = {
+		additions = {
+			"Added tracking for collectibles dropped from rares in Uldum and Vale of the Eternal Blossoms (experimental)",
+		},
+	},
 	["r693"] = {
 		fixes = {
 			"Fixed integration with the TradeSkillMaster4 addon (used to display pricing info in Rarity's tooltip)",
