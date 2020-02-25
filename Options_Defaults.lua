@@ -5417,6 +5417,23 @@ function R:PrepareDefaults()
 		},
 	 },
 
+	 -- 8.3
+	["Pristine Cloud Serpent Scale"] = {
+	cat = BFA,
+	type = ITEM,
+	method = NPC,
+	name = L["Pristine Cloud Serpent Scale"],
+	itemId = 174230,
+	npcs = { 157162	},
+	chance = 100,
+	questId = { 57346 },
+	unique = true,
+	coords = {
+		{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 22.09, y = 24.03, n = L["Cave Entrance"] },
+		{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 21.16, y = 14.53, n = L["Rei Lun"] },
+	},
+},
+
 					-- Battle pet-related items
      ["Mr. Pinchy"] =                                    { cat = TBC, type = ITEM, method = FISHING, name = L["Mr. Pinchy"], spellId = 33050, itemId = 27388, zones = { "Lake Jorune", "Lake Ere'Noru", "Skethyl Mountains", "Blackwind Landing", "Blackwind Valley", "Skettis", "Blackwind Lake", "Veil Harr'ik", "Veil Ala'rak", "Terokk's Rest" },
 	 excludedMaps = {
