@@ -610,5 +610,117 @@ function R:OnItemFound(itemId, item)
 	end
 end
 
+function R:OnSpellcastSent(event, unit, target, castGUID, spellID)
+	if unit ~= "player" then
+		return
+	end
+	Rarity.foundTarget = false
+	-- ga = "No" -- WTF is this?
+
+	Rarity:Debug(
+		"Detected UNIT_SPELLCAST_SENT for unit = player, spellID = " ..
+			tostring(spellID) .. ", castGUID = " .. tostring(castGUID) .. ", target = " .. tostring(target)
+	) -- TODO: Remove?
+
+	if Rarity.relevantSpells[spellID] then -- An entry exists for this spell in the LUT -> It's one that needs to be tracked
+		Rarity:Debug("Detected relevant spell: " .. tostring(spellID) .. " ~ " .. tostring(Rarity.relevantSpells[spellID]))
+		Rarity.currentSpell = spellID
+		Rarity.previousSpell = spellID
+		if Rarity.relevantSpells[spellID] == "Fishing" or Rarity.relevantSpells[spellID] == "Opening" then
+			self:Debug("Fishing or opening something")
+			if Rarity.relevantSpells[spellID] == "Opening" then
+				self:Debug("Opening detected")
+				Rarity.isOpening = true
+			else
+				Rarity.isOpening = false
+			end
+			Rarity.isFishing = true
+			if Rarity.fishingTimer then
+				self:CancelTimer(Rarity.fishingTimer, true)
+			end
+			Rarity.fishingTimer = self:ScheduleTimer(Rarity.OnFishingEnded, FISHING_DELAY)
+			self:GetWorldTarget()
+		end
+	else
+		Rarity.previousSpell, Rarity.currentSpell = nil, nil
+	end
+end
+
+function R:OnFishingEnded()
+	R:Debug("You didn't loot anything from that fishing. Giving up.")
+	Rarity.fishingTimer = nil
+	Rarity.isFishing = false
+	Rarity.isPool = false
+	Rarity.isOpening = false
+end
+
+function R:OnLootFrameClosed(event)
+	Rarity.previousSpell, Rarity.currentSpell = nil, nil
+	Rarity.foundTarget = false
+	self:ScheduleTimer(
+		function()
+			R:Debug("Setting lastNode to nil")
+			Rarity.lastNode = nil
+		end,
+		1
+	)
+end
+
+local tooltipLeftText1 = _G["GameTooltipTextLeft1"]
+
+function R:OnCursorUpdate(event)
+	if Rarity.foundTarget then
+		return
+	end
+	if (MinimapCluster:IsMouseOver()) then
+		return
+	end
+	local t = tooltipLeftText1:GetText()
+	if self.miningnodes[t] or self.fishnodes[t] or self.opennodes[t] then
+		Rarity.lastNode = t
+	end
+	if Rarity.relevantSpells[Rarity.previousSpell] then
+		self:GetWorldTarget()
+	end
+end
+
+-- Doesn't really belong here, but no idea where to put it right now. Later...
+function R:GetWorldTarget()
+	if Rarity.foundTarget or not Rarity.relevantSpells[Rarity.currentSpell] then
+		return
+	end
+	if (MinimapCluster:IsMouseOver()) then
+		return
+	end
+	local t = tooltipLeftText1:GetText()
+	if t and Rarity.previousSpell and t ~= Rarity.previousSpell and R.fishnodes[t] then
+		self:Debug("------YOU HAVE STARTED FISHING A NODE ------")
+		Rarity.isFishing = true
+		Rarity.isPool = true
+		if Rarity.fishingTimer then
+			self:CancelTimer(Rarity.fishingTimer, true)
+		end
+		Rarity.fishingTimer = self:ScheduleTimer(Rarity.OnFishingEnded, FISHING_DELAY)
+		Rarity.foundTarget = true
+	end
+end
+
+function R:OnSpellcastStopped(event, unit)
+	if unit ~= "player" then
+		return
+	end
+	if Rarity.relevantSpells[Rarity.previousSpell] then
+		self:GetWorldTarget()
+	end
+	Rarity.previousSpell, Rarity.currentSpell = Rarity.currentSpell, Rarity.currentSpell
+end
+
+function R:OnSpellcastFailed(event, unit)
+	if unit ~= "player" then
+		return
+	end
+	Rarity.previousSpell, Rarity.currentSpell = nil, nil
+end
+
 Rarity.EventHandlers = EventHandlers
 return EventHandlers
