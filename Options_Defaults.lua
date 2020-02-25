@@ -4314,7 +4314,7 @@ function R:PrepareDefaults()
 		spellId = 315370,
 		itemId = 174478,
 		creatureId = 162012,
-		questId = { 0000000000000 },
+		questId = { 58330 },
 		chance = 20,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.ULDUM, x = 60, y = 72, n = L["Amalgamation of Flesh"] },
