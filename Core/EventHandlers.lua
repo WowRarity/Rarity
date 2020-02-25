@@ -722,6 +722,7 @@ function R:OnSpellcastFailed(event, unit)
 	Rarity.previousSpell, Rarity.currentSpell = nil, nil
 end
 
+
 -------------------------------------------------------------------------------------
 -- Something in your bags changed.
 --
@@ -849,6 +850,460 @@ function R:OnBagUpdate()
 					self:OnItemFound(k, Rarity.items[k])
 				end
 			end
+		end
+	end
+end
+
+--[[
+      OBTAIN DETECTION ---------------------------------------------------------------------------------------------------------
+      -- Some easy, some fairly arcane methods to detect when we've obtained something we're looking for
+  ]]
+
+
+local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
+local GetMapInfo = _G.C_Map.GetMapInfo
+local UnitGUID = _G.UnitGUID
+local UnitName = _G.UnitName
+local UnitCanAttack = _G.UnitCanAttack
+local UnitIsPlayer = _G.UnitIsPlayer
+local UnitIsDead = _G.UnitIsDead
+local GetNumLootItems = _G.GetNumLootItems
+local GetLootSlotInfo = _G.GetLootSlotInfo
+local GetLootSlotLink = _G.GetLootSlotLink
+local GetItemInfo_Blizzard = _G.GetItemInfo
+local GetItemInfo = function(id) return R:GetItemInfo(id) end
+local GetRealZoneText = _G.GetRealZoneText
+local GetContainerNumSlots = _G.GetContainerNumSlots
+local GetContainerItemID = _G.GetContainerItemID
+local GetContainerItemInfo = _G.GetContainerItemInfo
+local GetNumArchaeologyRaces = _G.GetNumArchaeologyRaces
+local GetArchaeologyRaceInfo = _G.GetArchaeologyRaceInfo
+local GetStatistic = _G.GetStatistic
+local GetLootSourceInfo = _G.GetLootSourceInfo
+local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
+local GetMapInfo = _G.C_Map.GetMapInfo
+local C_Timer = _G.C_Timer
+local IsSpellKnown = _G.IsSpellKnown
+local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
+
+function R:OnEvent(event, ...)
+	-------------------------------------------------------------------------------------
+	-- You opened a loot window on a corpse or fishing node
+	-------------------------------------------------------------------------------------
+	if event == "LOOT_READY" then
+		-- Detect bank, guild bank, auction house, tradeskill, trade, and mail. This turns off item use detection.
+		self:Debug("LOOT_READY with target: " .. (UnitGUID("target") or "NO TARGET"))
+
+		-- In 8.0.1, two LOOT_READY events fire when the loot window opens. We'll just ignore subsequent events for a short time to prevent double counting
+		if Rarity.Session:IsLocked() then -- One attempt is already being counted and we don't want another one for this loot event -> Ignore this call
+			Rarity:Debug("Session is locked; ignoring this LOOT_READY event")
+			return
+		else
+			Rarity.Session:Lock(1)
+		end
+
+		local zone = GetRealZoneText()
+		local subzone = GetSubZoneText()
+		local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
+		local subzone_t = LibStub("LibBabble-SubZone-3.0"):GetReverseLookupTable()[subzone]
+
+		if Rarity.isFishing and Rarity.isOpening then
+			self:Debug("Opened something")
+		end
+
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode then
+			self:Debug("Opened a node: " .. Rarity.lastNode)
+		end
+
+		-- Handle opening Crane Nest
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Crane Nest"]) then
+			Rarity:Debug("Detected Opening on " .. L["Crane Nest"] .. " (method = SPECIAL)")
+			local v = self.db.profile.groups.pets["Azure Crane Chick"]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+
+		-- Handle opening Timeless Chest
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Timeless Chest"]) then
+			Rarity:Debug("Detected Opening on " .. L["Timeless Chest"] .. " (method = SPECIAL)")
+			local v = self.db.profile.groups.pets["Bonkers"]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+
+		-- Handle opening Snow Mound
+		if
+			Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Snow Mound"]) and
+				GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.FROSTFIRE_RIDGE
+		 then -- Make sure we're in Frostfire Ridge (there are Snow Mounds in other zones, particularly Ulduar in the Hodir room)
+			Rarity:Debug("Detected Opening on " .. L["Snow Mound"] .. " (method = SPECIAL)")
+			local v = self.db.profile.groups.pets["Grumpling"]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+
+		-- Handle opening Curious Wyrmtongue Cache
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Curious Wyrmtongue Cache"]) then
+			local names = {"Scraps", "Pilfered Sweeper"}
+			Rarity:Debug("Detected Opening on " .. L["Curious Wyrmtongue Cache"] .. " (method = SPECIAL)")
+			for _, name in pairs(names) do
+				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+				if v and type(v) == "table" and v.enabled ~= false then
+					if v.attempts == nil then
+						v.attempts = 1
+					else
+						v.attempts = v.attempts + 1
+					end
+					self:OutputAttempts(v)
+				end
+			end
+		end
+
+		-- Handle opening Arcane Chest
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Arcane Chest"]) then
+			local names = {"Eternal Palace Dining Set", "Ocean Simulator"}
+			Rarity:Debug("Detected Opening on " .. L["Arcane Chest"] .. " (method = SPECIAL)")
+			for _, name in pairs(names) do
+				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+				if v and type(v) == "table" and v.enabled ~= false then
+					if v.attempts == nil then
+						v.attempts = 1
+					else
+						v.attempts = v.attempts + 1
+					end
+					self:OutputAttempts(v)
+				end
+			end
+		end
+
+		-- Handle opening Glimmering Chest
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Glimmering Chest"]) then
+			local names = {"Eternal Palace Dining Set", "Sandclaw Nestseeker"}
+			Rarity:Debug("Detected Opening on " .. L["Glimmering Chest"] .. " (method = SPECIAL)")
+			for _, name in pairs(names) do
+				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+				if v and type(v) == "table" and v.enabled ~= false then
+					if v.attempts == nil then
+						v.attempts = 1
+					else
+						v.attempts = v.attempts + 1
+					end
+					self:OutputAttempts(v)
+				end
+			end
+		end
+
+		-- Handle opening Pile of Coins
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Pile of Coins"]) then
+			local names = {"Armored Vaultbot"}
+			Rarity:Debug("Detected Opening on " .. L["Pile of Coins"] .. " (method = SPECIAL)")
+			for _, name in pairs(names) do
+				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+				if v and type(v) == "table" and v.enabled ~= false then
+					if v.attempts == nil then
+						v.attempts = 1
+					else
+						v.attempts = v.attempts + 1
+					end
+					self:OutputAttempts(v)
+				end
+			end
+		end
+
+		-- Handle opening Glimmering Treasure Chest
+		if
+			Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Glimmering Treasure Chest"]) and
+				select(8, GetInstanceInfo()) == 1626
+		 then -- Player is in Withered Army scenario and looted the reward chest
+			local bigChest = false
+			for _, slot in pairs(GetLootInfo()) do
+				if slot.item == L["Ancient Mana"] and slot.quantity == 100 then
+					bigChest = true
+				end
+			end
+
+			if bigChest == true then
+				self:Debug("Detected " .. Rarity.lastNode .. ": Adding toy drop attempts")
+				local names = {
+					"Arcano-Shower",
+					"Displacer Meditation Stone",
+					"Kaldorei Light Globe",
+					"Unstable Powder Box",
+					"Wisp in a Bottle",
+					"Ley Spider Eggs"
+				}
+				for _, name in pairs(names) do
+					local v = self.db.profile.groups.items[name]
+					if v and type(v) == "table" and v.enabled ~= false then
+						if v.attempts == nil then
+							v.attempts = 1
+						else
+							v.attempts = v.attempts + 1
+						end
+						self:OutputAttempts(v)
+					end
+				end
+
+				v = self.db.profile.groups.mounts["Torn Invitation"]
+				if v and type(v) == "table" and v.enabled ~= false then
+					if v.attempts == nil then
+						v.attempts = 1
+					else
+						v.attempts = v.attempts + 1
+					end
+					self:OutputAttempts(v)
+				end
+			end
+		end
+
+		-- HANDLE FISHING
+		if Rarity.isFishing and Rarity.isOpening == false then
+			if Rarity.isPool then
+				self:Debug("Successfully fished from a pool")
+			else
+				self:Debug("Successfully fished")
+			end
+			if
+				fishzones[tostring(GetBestMapForUnit("player"))] or fishzones[zone] or fishzones[subzone] or fishzones[zone_t] or
+					fishzones[subzone_t]
+			 then
+				-- We're interested in fishing in this zone; let's find the item(s) involved
+				Rarity:Debug("We're interested in fishing in this zone; let's find the item(s) involved")
+				for k, v in pairs(self.db.profile.groups) do
+					if type(v) == "table" then
+						for kk, vv in pairs(v) do
+							if type(vv) == "table" then
+								if vv.enabled ~= false then
+									local found = false
+									if vv.method == FISHING and vv.zones ~= nil and type(vv.zones) == "table" then
+										for kkk, vvv in pairs(vv.zones) do
+											if
+												vvv == tostring(GetBestMapForUnit("player")) or vvv == zone or vvv == lbz[zone] or vvv == subzone or
+													vvv == lbsz[subzone] or
+													vvv == zone_t or
+													vvv == subzone_t or
+													vvv == lbz[zone_t] or
+													vvv == subzone or
+													vvv == lbsz[subzone_t]
+											 then
+												if (vv.requiresPool and Rarity.isPool) or not vv.requiresPool then
+													Rarity:Debug("Found interesting item for this zone: " .. tostring(vv.name))
+													found = true
+												end
+											end
+										end
+									end
+
+									if (vv.excludedMaps and type(vv.excludedMaps) == "table" and vv.excludedMaps[GetBestMapForUnit("player")]) then
+										Rarity:Debug(
+											"The current map is excluded for item: " .. tostring(vv.name) .. ". Attempts will not be counted"
+										)
+										found = false
+									end
+
+									if found then
+										if self:IsAttemptAllowed(vv) then
+											if vv.attempts == nil then
+												vv.attempts = 1
+											else
+												vv.attempts = vv.attempts + 1
+											end
+											self:OutputAttempts(vv)
+										end
+									end
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+		if Rarity.fishingTimer then
+			self:CancelTimer(Rarity.fishingTimer, true)
+		end
+		Rarity.fishingTimer = nil
+		Rarity.isFishing = false
+		Rarity.isPool = false
+
+		-- Handle mining Elementium
+		if
+			Rarity.relevantSpells[Rarity.previousSpell] == "Mining" and
+				(Rarity.lastNode == L["Elementium Vein"] or lastNode == L["Rich Elementium Vein"])
+		 then
+			Rarity:Debug("Detected Mining on " .. Rarity.lastNode .. " (method = SPECIAL)")
+			local v = self.db.profile.groups.pets["Elementium Geode"]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+
+		-- Handle skinning on Argus (Fossorial Bile Larva)
+		if
+			(Rarity.relevantSpells[Rarity.previousSpell] == "Skinning" or
+				Rarity.relevantSpells[Rarity.previousSpell] == "Mother's Skinning Knife") and -- Skinned something
+				(GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.KROKUUN or
+					GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.MACAREE or
+					GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.ANTORAN_WASTES)
+		 then -- Player is on Argus -> Can obtain the pet from skinning creatures
+			Rarity:Debug("Detected skinning on Argus - Can obtain " .. L["Fossorial Bile Larva"] .. " (method = SPECIAL)")
+			local v = self.db.profile.groups.pets["Fossorial Bile Larva"]
+			if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt
+				v.attempts = v.attempts ~= nil and v.attempts + 1 or 1 -- Defaults to 1 if this is the first attempt
+				self:OutputAttempts(v)
+			end
+		end
+
+		-- Handle herb gathering on Argus (Fel Lasher)
+		if
+			Rarity.relevantSpells[Rarity.previousSpell] == "Herb Gathering" and -- Gathered a herbalism node
+				(GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.KROKUUN or
+					GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.MACAREE or
+					GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.ANTORAN_WASTES)
+		 then -- Player is on Argus -> Can obtain the pet from gathering herbalism nodes
+			Rarity:Debug("Detected herb gathering on Argus - Can obtain " .. L["Fel Lasher"] .. " (method = SPECIAL)")
+			local v = self.db.profile.groups.pets["Fel Lasher"]
+			if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt
+				v.attempts = v.attempts ~= nil and v.attempts + 1 or 1 -- Defaults to 1 if this is the first attempt
+				self:OutputAttempts(v)
+			end
+		end
+
+		-- HANDLE NORMAL NPC LOOTING
+		local numItems = GetNumLootItems()
+		local slotID
+
+		-- Legacy support for pre-5.0 single-target looting
+		local guid = UnitGUID("target")
+		local name = UnitName("target")
+		if not name or not guid then
+			return
+		end -- No target when looting
+		if not UnitCanAttack("player", "target") then
+			return
+		end -- You targeted something you can't attack
+		if UnitIsPlayer("target") then
+			return
+		end -- You targetted a player
+
+		-- You're looting something that's alive -- this is only done for pickpocketing
+		local requiresPickpocket = false
+		if not UnitIsDead("target") then
+			requiresPickpocket = true
+		end
+
+		-- Disallow "minus" NPCs; nothing good drops from them
+		if UnitClassification(guid) == "minus" then
+			return
+		end -- (This doesn't actually work currently; UnitClassification needs a unit, not a GUID)
+
+		local numChecked = 0
+		self:Debug(numItems .. " slot(s) to loot")
+		for slotID = 1, numItems, 1 do -- Loop through all loot slots (for AoE looting)
+			local guidlist
+			if GetLootSourceInfo then
+				guidlist = {GetLootSourceInfo(slotID)}
+			else
+				guidlist = {guid}
+			end
+			local guidIndex
+			for k, v in pairs(guidlist) do -- Loop through all NPC Rarity.guids being looted (will be 1 for single-target looting pre-5.0)
+				guid = v
+				if guid and type(guid) == "string" then
+					self:Debug("Checking NPC guid (" .. (numChecked + 1) .. "): " .. guid)
+					self:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, Rarity.currentSpell, requiresPickpocket) -- Decide if we should increment an attempt count for this NPC
+					numChecked = numChecked + 1
+				else
+					--self:Debug("Didn't check guid: "..guid or "nil")
+				end -- Loop through all NPC GUIDs being looted (will be 1 for single-target looting pre-5.0)
+			end -- Haven't seen this corpse yet
+		end -- Loop through all loot slots (for AoE looting)
+
+		-- If we failed to scan anything, scan the current target
+		if numChecked <= 0 then
+			self:CheckNpcInterest(UnitGUID("target"), zone, subzone, zone_t, subzone_t, Rarity.currentSpell)
+		end
+
+		-- Scan the loot to see if we found something we're looking for
+		local numItems = GetNumLootItems()
+		local slotID
+		for slotID = 1, numItems, 1 do
+			local _, _, qty = GetLootSlotInfo(slotID)
+			if (qty or 0) > 0 then -- Coins have quantity of 0, so skip those
+				local itemLink = GetLootSlotLink(slotID)
+				if itemLink then
+					local _, itemId = strsplit(":", itemLink)
+					itemId = tonumber(itemId)
+					if Rarity.items[itemId] ~= nil and Rarity.items[itemId].method ~= COLLECTION then
+						self:OnItemFound(itemId, Rarity.items[itemId])
+					end
+				end
+			end
+		end
+	elseif event == "BANKFRAME_OPENED" then
+		Rarity.isBankOpen = true
+	elseif event == "GUILDBANKFRAME_OPENED" then
+		Rarity.isGuildBankOpen = true
+	elseif event == "AUCTION_HOUSE_SHOW" then
+		Rarity.isAuctionHouseOpen = true
+	elseif event == "TRADE_SHOW" then
+		Rarity.isTradeWindowOpen = true
+	elseif event == "TRADE_SKILL_SHOW" then
+		Rarity.isTradeskillOpen = true
+	elseif event == "MAIL_SHOW" then
+		Rarity.isMailboxOpen = true
+	elseif event == "BANKFRAME_CLOSED" then
+		Rarity.isBankOpen = false
+	elseif event == "GUILDBANKFRAME_CLOSED" then
+		Rarity.isGuildBankOpen = false
+	elseif event == "AUCTION_HOUSE_CLOSED" then
+		Rarity.isAuctionHouseOpen = false
+	elseif event == "TRADE_CLOSED" then
+		Rarity.isTradeWindowOpen = false
+	elseif event == "TRADE_SKILL_CLOSE" then
+		Rarity.isTradeskillOpen = false
+	elseif event == "MAIL_CLOSED" then
+		-- Instance lock info updated
+		Rarity.isMailboxOpen = false
+	elseif event == "UPDATE_INSTANCE_INFO" then
+		self:ScanInstanceLocks(event)
+	elseif event == "LFG_UPDATE_RANDOM_INFO" then
+		-- Calendar updated
+		self:ScanInstanceLocks(event)
+	elseif event == "CALENDAR_UPDATE_EVENT_LIST" then
+		-- Toy box updated
+		self:ScanCalendar(event)
+	elseif event == "TOYS_UPDATED" then
+		-- Pets updated
+		Rarity.Collections:ScanExistingItems(event)
+	elseif event == "COMPANION_UPDATE" then
+		-- Logging out; end any open session
+		Rarity.Collections:ScanExistingItems(event)
+	elseif event == "PLAYER_LOGOUT" then
+		if Rarity.Session:IsActive() then
+			Rarity.Session:End()
 		end
 	end
 end
