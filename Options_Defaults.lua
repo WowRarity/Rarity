@@ -5453,6 +5453,37 @@ function R:PrepareDefaults()
 	},
 },
 
+["All-Seeing Right Eye"] = {
+	cat = BFA,
+	type = ITEM,
+	method = NPC,
+	name = L["All-Seeing Right Eye"],
+	npcs = { 158633 },
+	itemId = 175142,
+	questId = { 57680 },
+	chance = 75,
+	coords = {
+		{ m = CONSTANTS.UIMAPIDS.ULDUM, x = 55, y =  51, n = L["Gaze of N'Zoth"] },
+	},
+	sourceText = format(L["Shares a spawn with %s"], L["Foul Observer"]),
+	-- Combine with X to create Y
+	-- Only available during the X assault
+},
+
+["All-Seeing Left Eye"] = {
+	cat = BFA,
+	type = ITEM,
+	method = NPC,
+	name = L["All-Seeing Left Eye"],
+	npcs = { 154495 },
+	itemId = 175141,
+	questId = { 56303 },
+	chance = 75,
+	coords = {
+		{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 52.51, y =  62.14, n = L["Will of N'zoth"] },
+	},
+},
+
 					-- Battle pet-related items
      ["Mr. Pinchy"] =                                    { cat = TBC, type = ITEM, method = FISHING, name = L["Mr. Pinchy"], spellId = 33050, itemId = 27388, zones = { "Lake Jorune", "Lake Ere'Noru", "Skethyl Mountains", "Blackwind Landing", "Blackwind Valley", "Skettis", "Blackwind Lake", "Veil Harr'ik", "Veil Ala'rak", "Terokk's Rest" },
 	 excludedMaps = {
