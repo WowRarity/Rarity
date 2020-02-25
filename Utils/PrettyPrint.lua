@@ -28,6 +28,14 @@ function PP.DebugMsg(msg, timestamp, source, ...)
 	)
 end
 
+function PP.Error(message, ...)
+	message = message or ""
+	local reportErrorText =
+		"Oh no! Something went horribly wrong:\n" ..
+		message .. "\nPlease report this error to the addon developer so it can be fixed :)"
+	print(format("|c00CA0A00" .. "%s: " .. "|c00E6CC80%s", addonName, reportErrorText), ...)
+end
+
 --- Prints timestamps in a human-readable fashion?
 -- TODO: LuaDoc
 function PP:FormatTime(t)
