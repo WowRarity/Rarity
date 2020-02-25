@@ -413,7 +413,7 @@ function R:ScanArchProjects(reason)
 			-- We started a project we were looking for!
 			local id = Rarity.architems[name].itemId
 			if id then
-				self:FoundItem(id, Rarity.items[id])
+				self:OnItemFound(id, Rarity.items[id])
 			end
 		end
 	end

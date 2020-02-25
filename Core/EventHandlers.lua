@@ -548,5 +548,67 @@ function R:OnChatCommand(input)
 	end
 end
 
+function R:OnItemFound(itemId, item)
+	if item.found and not item.repeatable then
+		return
+	end
+
+	self:Debug("FOUND ITEM %d!", itemId)
+	if item.attempts == nil then
+		item.attempts = 1
+	end
+	if item.lastAttempts == nil then
+		item.lastAttempts = 0
+	end
+
+	-- Hacky: If the item is unique and has 0 attempts, don't do this (if you really find a unique item on your first attempt, sorry)
+	if item.unique and item.attempts - item.lastAttempts <= 1 then
+		return
+	end
+
+	self:ShowFoundAlert(itemId, item.attempts - item.lastAttempts, item, item)
+	if Rarity.Session:IsActive() then
+		Rarity.Session:End()
+	end
+	item.realAttempts = item.attempts - item.lastAttempts
+	item.lastAttempts = item.attempts
+	item.enabled = false
+	item.found = true
+	item.totalFinds = (item.totalFinds or 0) + 1
+	if not item.finds then
+		item.finds = {}
+	end
+	local count = 0
+	for k, v in pairs(item.finds) do
+		count = count + 1
+	end
+	table.insert(
+		item.finds,
+		{
+			num = count + 1,
+			totalAttempts = item.attempts,
+			totalTime = item.time,
+			attempts = item.realAttempts,
+			time = (item.time or 0) - (item.lastTime or 0)
+		}
+	)
+	item.lastTime = item.time
+	Rarity.Tracking:Update(item)
+	self:UpdateInterestingThings()
+	if item.repeatable then
+		self:ScheduleTimer(
+			function()
+				-- If this is a repeatable item, turn it back on in a few seconds.
+				-- OnItemFound() gets called repeatedly when we get an item, so we need to lock it out for a few seconds.
+				item.enabled = nil
+				item.found = nil
+				self:UpdateInterestingThings()
+				Rarity.GUI:UpdateText()
+			end,
+			5
+		)
+	end
+end
+
 Rarity.EventHandlers = EventHandlers
 return EventHandlers
