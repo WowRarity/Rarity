@@ -722,5 +722,136 @@ function R:OnSpellcastFailed(event, unit)
 	Rarity.previousSpell, Rarity.currentSpell = nil, nil
 end
 
+-------------------------------------------------------------------------------------
+-- Something in your bags changed.
+--
+-- This is used for a couple things. First, for boss drops that require a group, you may not have obtained the item even if it dropped from the boss.
+-- Therefore, we only say you obtained it when it appears in your inventory. Secondly, this is useful as a second line of defense in case
+-- you somehow obtain an item without us noticing it. This event fires a lot, so we need to be fast.
+--
+-- We also store how many of every item you have on you at the moment. If we notice an item decreasing in quantity, and it's something we care
+-- about, you just used an item or opened a container.
+--
+-- This event is bucketed because it tends to fire tons of times in a row rapidly, leading to innaccurate results.
+-------------------------------------------------------------------------------------
+
+function R:OnBagUpdate()
+	self:Debug("BAG_UPDATE")
+
+	-- Save a copy of your bags before this event
+	table.wipe(Rarity.tempbagitems)
+	for k, v in pairs(Rarity.bagitems) do
+		Rarity.tempbagitems[k] = v
+	end
+
+	-- Get a list of the items you have now, alerting if we find anything we're looking for
+	self:ScanBags()
+
+	if
+		not Rarity.isBankOpen and not Rarity.isGuildBankOpen and not Rarity.isAuctionHouseOpen and
+			not Rarity.isTradeWindowOpen and
+			not Rarity.isTradeskillOpen and
+			not Rarity.isMailboxOpen
+	 then
+		-- Check for a decrease in quantity of any items we're watching for
+		for k, v in pairs(Rarity.tempbagitems) do
+			if (Rarity.bagitems[k] or 0) < (Rarity.tempbagitems[k] or 0) then -- An inventory item went down in count or disappeared
+				if Rarity.used[k] then -- It's an item we care about
+					-- Scan through the whole item database now to find all items that could want this
+					for _k, _v in pairs(self.db.profile.groups) do
+						if type(_v) == "table" then
+							for kk, vv in pairs(_v) do
+								if type(vv) == "table" then
+									if vv.enabled ~= false then
+										if vv.method == CONSTANTS.DETECTION_METHODS.USE and vv.items ~= nil and type(vv.items) == "table" then
+											for kkk, vvv in pairs(vv.items) do
+												if vvv == k then
+													local i = vv
+													if i.attempts == nil then
+														i.attempts = 1
+													else
+														i.attempts = i.attempts + 1
+													end
+													self:OutputAttempts(i)
+												end
+											end
+										end
+									end
+								end
+							end
+						end
+					end
+				-- End scan through all items
+				end
+			end
+		end
+
+		-- Check for an increase in quantity of any items we're watching for
+		for k, v in pairs(Rarity.bagitems) do
+			-- Handle collection items
+			if Rarity.items[k] then
+				if Rarity.items[k].method == CONSTANTS.DETECTION_METHODS.COLLECTION then
+					local bagCount = (Rarity.bagitems[k] or 0)
+
+					-- Our items hashtable only saves one item for this collected item, so we have to scan to find them all now.
+					-- Earlier, we pre-built a list of just the items that are COLLECTION items to save some time here.
+					for kk, vv in pairs(Rarity.collection_items) do
+						-- This item is a collection of several items; add them all up and check for attempts
+						if type(vv.collectedItemId) == "table" then
+							-- This item is a collection of a single type of item
+							if vv.enabled ~= false then
+								local total = 0
+								local originalCount = (vv.attempts or 0)
+								local goal = (vv.chance or 100)
+								for kkk, vvv in pairs(vv.collectedItemId) do
+									if (Rarity.bagitems[vvv] or 0) > 0 then
+										total = total + Rarity.bagitems[vvv]
+									end
+								end
+								if total > originalCount then
+									vv.attempts = total
+									if originalCount < goal and total >= goal then
+										self:OnItemFound(vv.itemId, vv)
+									elseif total > originalCount then
+										self:OutputAttempts(vv)
+									end
+								end
+							end
+						else
+							if
+								vv.enabled and
+									(vv.collectedItemId == Rarity.items[k].collectedItemId or
+										table_contains(Rarity.items[k].collectedItemId, vv.collectedItemId))
+							 then
+								local originalCount = (vv.attempts or 0)
+								local goal = (vv.chance or 100)
+								vv.lastAttempts = 0
+								if vv.attempts ~= bagCount then
+									vv.attempts = bagCount
+								end
+								if originalCount < bagCount and originalCount < goal and bagCount >= goal then
+									self:OnItemFound(vv.itemId, vv)
+								elseif originalCount < bagCount then
+									self:OutputAttempts(vv)
+								end
+							end
+						end
+					end
+				end
+			end
+
+			-- Other items
+			if (Rarity.bagitems[k] or 0) > (Rarity.tempbagitems[k] or 0) then -- An inventory item went up in count
+				if
+					Rarity.items[k] and Rarity.items[k].enabled ~= false and
+						Rarity.items[k].method ~= CONSTANTS.DETECTION_METHODS.COLLECTION
+				 then
+					self:OnItemFound(k, Rarity.items[k])
+				end
+			end
+		end
+	end
+end
+
 Rarity.EventHandlers = EventHandlers
 return EventHandlers

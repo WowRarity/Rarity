@@ -25,10 +25,7 @@ local hbd = LibStub("HereBeDragons-2.0")
 R.modulesEnabled = {}
 
 local npcs = {}
-local items = {}
-local bagitems = {}
-local tempbagitems = {}
-local used = {}
+
 local fishzones = {}
 local rarity_stats = {}
 Rarity.mount_sources = {}
@@ -44,12 +41,12 @@ Rarity.items_with_stats = {}
 Rarity.collection_items = {}
 Rarity.itemInfoCache = {}
 
-local bankOpen = false
-local guildBankOpen = false
-local auctionOpen = false
-local tradeOpen = false
-local tradeSkillOpen = false
-local mailOpen = false
+Rarity.isBankOpen = false
+Rarity.isGuildBankOpen = false
+Rarity.isAuctionHouseOpen = false
+Rarity.isTradeWindowOpen = false
+Rarity.isTradeskillOpen = false
+Rarity.isMailboxOpen = false
 
 
 
@@ -190,9 +187,6 @@ do
 
 		-- Expose private objects
 		R.npcs = npcs
-		R.used = used
-		R.tempbagitems = tempbagitems
-		R.bagitems = bagitems
 		R.fishzones = fishzones
 		R.stats = rarity_stats
 
@@ -555,7 +549,7 @@ function R:UpdateInterestingThings()
  table.wipe(Rarity.guids)
  table.wipe(Rarity.npcs_to_items)
  table.wipe(Rarity.items_to_items)
- table.wipe(used)
+ table.wipe(Rarity.used)
  table.wipe(fishzones)
  table.wipe(Rarity.architems)
 	table.wipe(Rarity.stats_to_scan)
@@ -594,7 +588,7 @@ function R:UpdateInterestingThings()
       end
      elseif vv.method == USE and vv.items ~= nil and type(vv.items) == "table" then
       for kkk, vvv in pairs(vv.items) do
-       used[vvv] = vv
+		Rarity.used[vvv] = vv
        if Rarity.items_to_items[vvv] == nil then Rarity.items_to_items[vvv] = {} end
        table.insert(Rarity.items_to_items[vvv], vv)
       end
@@ -1002,30 +996,30 @@ function R:OnEvent(event, ...)
 
  -- Detect bank, guild bank, auction house, tradeskill, trade, and mail. This turns off item use detection.
  elseif event == "BANKFRAME_OPENED" then
-  bankOpen = true
+  Rarity.isBankOpen = true
  elseif event == "GUILDBANKFRAME_OPENED" then
-  guildBankOpen = true
+  Rarity.isGuildBankOpen = true
  elseif event == "AUCTION_HOUSE_SHOW" then
-  auctionOpen = true
+  Rarity.isAuctionHouseOpen = true
  elseif event == "TRADE_SHOW" then
-  tradeOpen = true
+  Rarity.isTradeWindowOpen = true
  elseif event == "TRADE_SKILL_SHOW" then
-  tradeSkillOpen = true
+  Rarity.isTradeskillOpen = true
  elseif event == "MAIL_SHOW" then
-  mailOpen = true
+  Rarity.isMailboxOpen = true
 
  elseif event == "BANKFRAME_CLOSED" then
-  bankOpen = false
+  Rarity.isBankOpen = false
  elseif event == "GUILDBANKFRAME_CLOSED" then
-  guildBankOpen = false
+  Rarity.isGuildBankOpen = false
  elseif event == "AUCTION_HOUSE_CLOSED" then
-  auctionOpen = false
+  Rarity.isAuctionHouseOpen = false
  elseif event == "TRADE_CLOSED" then
-  tradeOpen = false
+  Rarity.isTradeWindowOpen = false
  elseif event == "TRADE_SKILL_CLOSE" then
-  tradeSkillOpen = false
+  Rarity.isTradeskillOpen = false
  elseif event == "MAIL_CLOSED" then
-  mailOpen = false
+  Rarity.isMailboxOpen = false
 
 
 	-- Instance lock info updated
@@ -1096,7 +1090,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
      -- Don't increment attempts if this NPC also has a statistic defined. This would result in two attempts counting instead of one.
      if not v.statisticId or type(v.statisticId) ~= "table" or #v.statisticId <= 0 then
 						-- Don't increment attempts for unique items if you already have the item in your bags
-						if not (v.unique == true and (bagitems[v.itemId] or 0) > 0) then
+						if not (v.unique == true and (Rarity.bagitems[v.itemId] or 0) > 0) then
 							-- Don't increment attempts for non-pickpocketed items if this item isn't being pickpocketed
 							if (requiresPickpocket and v.pickpocket) or (requiresPickpocket == false and not v.pickpocket) then
 								if v.attempts == nil then v.attempts = 1 else v.attempts = v.attempts + 1 end
@@ -1137,140 +1131,12 @@ end
 
 
 -------------------------------------------------------------------------------------
--- Something in your bags changed.
---
--- This is used for a couple things. First, for boss drops that require a group, you may not have obtained the item even if it dropped from the boss.
--- Therefore, we only say you obtained it when it appears in your inventory. Secondly, this is useful as a second line of defense in case
--- you somehow obtain an item without us noticing it. This event fires a lot, so we need to be fast.
---
--- We also store how many of every item you have on you at the moment. If we notice an item decreasing in quantity, and it's something we care
--- about, you just used an item or opened a container.
---
--- This event is bucketed because it tends to fire tons of times in a row rapidly, leading to innaccurate results.
--------------------------------------------------------------------------------------
-function R:OnBagUpdate()
- self:Debug("BAG_UPDATE")
-
- -- Save a copy of your bags before this event
- table.wipe(tempbagitems)
- for k, v in pairs(bagitems) do
-  tempbagitems[k] = v
- end
-
- -- Get a list of the items you have now, alerting if we find anything we're looking for
- self:ScanBags()
-
- if not bankOpen and not guildBankOpen and not auctionOpen and not tradeOpen and not tradeSkillOpen and not mailOpen then
-
-		-- Check for a decrease in quantity of any items we're watching for
-  for k, v in pairs(tempbagitems) do
-   if (bagitems[k] or 0) < (tempbagitems[k] or 0) then -- An inventory item went down in count or disappeared
-    if used[k] then -- It's an item we care about
-					-- Scan through the whole item database now to find all items that could want this
-					for _k, _v in pairs(self.db.profile.groups) do
-						if type(_v) == "table" then
-							for kk, vv in pairs(_v) do
-								if type(vv) == "table" then
-									if vv.enabled ~= false then
-										if vv.method == USE and vv.items ~= nil and type(vv.items) == "table" then
-											for kkk, vvv in pairs(vv.items) do
-												if vvv == k then
-													local i = vv
-													if i.attempts == nil then i.attempts = 1 else i.attempts = i.attempts + 1 end
-													self:OutputAttempts(i)
-												end
-											end
-										end
-									end
-								end
-							end
-						end
-					end
-     -- End scan through all items
-    end
-   end
-  end
-
-
-		-- Check for an increase in quantity of any items we're watching for
-  for k, v in pairs(bagitems) do
-
-			-- Handle collection items
-			if Rarity.items[k] then
-				if Rarity.items[k].method == COLLECTION then
-					local bagCount = (bagitems[k] or 0)
-
-					-- Our items hashtable only saves one item for this collected item, so we have to scan to find them all now.
-					-- Earlier, we pre-built a list of just the items that are COLLECTION items to save some time here.
-					for kk, vv in pairs(Rarity.collection_items) do
-
-						-- This item is a collection of several items; add them all up and check for attempts
-						if type(vv.collectedItemId) == "table" then
-							if vv.enabled ~= false then
-								local total = 0
-								local originalCount = (vv.attempts or 0)
-								local goal = (vv.chance or 100)
-								for kkk, vvv in pairs(vv.collectedItemId) do
-									if (bagitems[vvv] or 0) > 0 then total = total + bagitems[vvv] end
-								end
-								if total > originalCount then
-									vv.attempts = total
-									if originalCount < goal and total >= goal then
-										self:OnItemFound(vv.itemId, vv)
-									elseif total > originalCount then
-										self:OutputAttempts(vv)
-									end
-								end
-							end
-
-						-- This item is a collection of a single type of item
-						else
-							if vv.enabled
-							and	(
-								vv.collectedItemId == Rarity.items[k].collectedItemId
-								or table_contains(Rarity.items[k].collectedItemId, vv.collectedItemId)
-							)
-							then
-								local originalCount = (vv.attempts or 0)
-								local goal = (vv.chance or 100)
-								vv.lastAttempts = 0
-								if vv.attempts ~= bagCount then
-									vv.attempts = bagCount
-								end
-								if originalCount < bagCount and originalCount < goal and bagCount >= goal then
-									self:OnItemFound(vv.itemId, vv)
-								elseif originalCount < bagCount then
-									self:OutputAttempts(vv)
-								end
-							end
-						end
-
-					end
-
-				end
-			end
-
-			-- Other items
-			if (bagitems[k] or 0) > (tempbagitems[k] or 0) then -- An inventory item went up in count
-				if Rarity.items[k] and Rarity.items[k].enabled ~= false and Rarity.items[k].method ~= COLLECTION then
-					self:OnItemFound(k, Rarity.items[k])
-				end
-			end
-
-  end
-
- end
-
-end
-
-
--------------------------------------------------------------------------------------
 -- Scan your bags to see if you are in possession of any of the items we want. This is used for BOSS and FISHING methods,
 -- and also works as a second line of defense in case other methods fail to notice the item.
 -------------------------------------------------------------------------------------
 function R:ScanBags()
  local i, ii
-	table.wipe(bagitems)
+	table.wipe(Rarity.bagitems)
 	for i = 0, NUM_BAG_SLOTS do
 		local numSlots = GetContainerNumSlots(i)
 		if numSlots then
@@ -1279,8 +1145,8 @@ function R:ScanBags()
 				if id then
 					local qty = select(2, GetContainerItemInfo(i, ii))
      if qty and qty > 0 then
-						if not bagitems[id] then bagitems[id] = 0 end
-						bagitems[id] = bagitems[id] + qty
+						if not Rarity.bagitems[id] then Rarity.bagitems[id] = 0 end
+						Rarity.bagitems[id] = Rarity.bagitems[id] + qty
      end
 				end
 			end
@@ -1293,6 +1159,7 @@ end
       CORE FUNCTIONALITY -------------------------------------------------------------------------------------------------------
   ]]
 
+  -- TODO: Pretty sure this is broken? It SHOULD display a popup on MOP world bosse etc. but I've never seen one (nor in EN at the dragon bosses, which have a bonus-rollable pet)
 hooksecurefunc("BonusRollFrame_StartBonusRoll", function(spellID, text, duration, currencyID)
 	local self = Rarity
 	if self.lastCoinItem and self.lastCoinItem.enableCoin and self.lastCoinItem.enabled ~= false then
@@ -1308,10 +1175,6 @@ hooksecurefunc("BonusRollFrame_StartBonusRoll", function(spellID, text, duration
 		end
 	end
 end)
-
-
-
-
 
 
 function R:ScanCalendar(reason)
@@ -1518,9 +1381,6 @@ function R:ScanStatistics(reason)
 
 	self:ProfileStop2("ScanStatistics: %fms")
 end
-
-
-
 
 
 function R:Update(reason)
