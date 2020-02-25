@@ -53,7 +53,7 @@ local mailOpen = false
 
 -- Maps spells of interest to their respective spell IDs (useful since both info is used by Blizzard APIs and the addon itself) - Only some of these are actually used right now, but who knows what the future will bring?
 -- Note: Spell names are no longer needed, and dealing with them is actually more complicated after the 8.0.1 API changes. They're only used for readability's sake
-local spells = {
+Rarity.relevantSpells = {
 
 	-- Tested (confirmed working in 8.0.1)
 	[921] = "Pick Pocket",
@@ -716,7 +716,7 @@ function R:UpdateInterestingThings()
 							-- Each filter requires separate handling here
 							if vv.showTooltipCondition.filter == IsSpellKnown then -- Filter if a (relevant) spell with the given name is not known
 
-								for spellID, spellName in pairs(spells) do -- Try to find any match for the given spell (a single one will do)
+								for spellID, spellName in pairs(Rarity.relevantSpells) do -- Try to find any match for the given spell (a single one will do)
 
 									if spellName == vv.showTooltipCondition.value then -- The value is a relevant spell -> Check if filter condition is true
 
@@ -990,7 +990,7 @@ function R:OnEvent(event, ...)
   isPool = false
 
   -- Handle mining Elementium
-  if spells[Rarity.previousSpell] == "Mining" and (lastNode == L["Elementium Vein"] or lastNode == L["Rich Elementium Vein"]) then
+  if Rarity.relevantSpells[Rarity.previousSpell] == "Mining" and (lastNode == L["Elementium Vein"] or lastNode == L["Rich Elementium Vein"]) then
 		Rarity:Debug("Detected Mining on " .. lastNode .. " (method = SPECIAL)")
    local v = self.db.profile.groups.pets["Elementium Geode"]
    if v and type(v) == "table" and v.enabled ~= false then
@@ -1000,7 +1000,7 @@ function R:OnEvent(event, ...)
   end
 
   -- Handle skinning on Argus (Fossorial Bile Larva)
-	if (spells[Rarity.previousSpell] == "Skinning" or spells[Rarity.previousSpell] == "Mother's Skinning Knife") -- Skinned something
+	if (Rarity.relevantSpells[Rarity.previousSpell] == "Skinning" or Rarity.relevantSpells[Rarity.previousSpell] == "Mother's Skinning Knife") -- Skinned something
 	and (GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.KROKUUN or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.MACAREE or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.ANTORAN_WASTES) then -- Player is on Argus -> Can obtain the pet from skinning creatures
 		Rarity:Debug("Detected skinning on Argus - Can obtain " .. L["Fossorial Bile Larva"] .. " (method = SPECIAL)")
 		local v = self.db.profile.groups.pets["Fossorial Bile Larva"]
@@ -1011,7 +1011,7 @@ function R:OnEvent(event, ...)
 	end
 
     -- Handle herb gathering on Argus (Fel Lasher)
-	if spells[Rarity.previousSpell] == "Herb Gathering" -- Gathered a herbalism node
+	if Rarity.relevantSpells[Rarity.previousSpell] == "Herb Gathering" -- Gathered a herbalism node
 	and (GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.KROKUUN or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.MACAREE or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.ANTORAN_WASTES) then -- Player is on Argus -> Can obtain the pet from gathering herbalism nodes
 		Rarity:Debug("Detected herb gathering on Argus - Can obtain " .. L["Fel Lasher"] .. " (method = SPECIAL)")
 		local v = self.db.profile.groups.pets["Fel Lasher"]
@@ -1155,7 +1155,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
 	end
 
  -- If the loot is the result of certain spell casts (mining, herbing, opening, pick lock, archaeology, disenchanting, etc), stop here -> This is to avoid multiple attempts, since those methods are handled separately!
- if spells[curSpell] then
+ if Rarity.relevantSpells[curSpell] then
 		self:Debug("Aborting because we were casting a disallowed spell: "..curSpell)
 		return
 	end
@@ -1389,14 +1389,14 @@ function R:OnCursorUpdate(event)
 	if (MinimapCluster:IsMouseOver()) then return end
 	local t = tooltipLeftText1:GetText()
  if self.miningnodes[t] or self.fishnodes[t] or self.opennodes[t] then lastNode = t end
-	if spells[Rarity.previousSpell] then
+	if Rarity.relevantSpells[Rarity.previousSpell] then
 		self:GetWorldTarget()
 	end
 end
 
 function R:OnSpellcastStopped(event, unit)
 	if unit ~= "player" then return end
-	if spells[Rarity.previousSpell] then
+	if Rarity.relevantSpells[Rarity.previousSpell] then
 		self:GetWorldTarget()
 	end
 	Rarity.previousSpell, Rarity.currentSpell = Rarity.currentSpell, Rarity.currentSpell
@@ -1422,13 +1422,13 @@ function R:OnSpellcastSent(event, unit, target, castGUID, spellID)
 
 	Rarity:Debug("Detected UNIT_SPELLCAST_SENT for unit = player, spellID = " .. tostring(spellID) .. ", castGUID = " .. tostring(castGUID) .. ", target = " .. tostring(target)) -- TODO: Remove?
 
-	if spells[spellID] then -- An entry exists for this spell in the LUT -> It's one that needs to be tracked
-		Rarity:Debug("Detected relevant spell: " .. tostring(spellID) .. " ~ " .. tostring(spells[spellID]))
+	if Rarity.relevantSpells[spellID] then -- An entry exists for this spell in the LUT -> It's one that needs to be tracked
+		Rarity:Debug("Detected relevant spell: " .. tostring(spellID) .. " ~ " .. tostring(Rarity.relevantSpells[spellID]))
 		Rarity.currentSpell = spellID
 		Rarity.previousSpell = spellID
-  if spells[spellID] == "Fishing" or spells[spellID] == "Opening" then
+  if Rarity.relevantSpells[spellID] == "Fishing" or Rarity.relevantSpells[spellID] == "Opening" then
    self:Debug("Fishing or opening something")
-			if spells[spellID] == "Opening" then
+			if Rarity.relevantSpells[spellID] == "Opening" then
 				self:Debug("Opening detected")
 				opening = true
 			else
@@ -1445,7 +1445,7 @@ function R:OnSpellcastSent(event, unit, target, castGUID, spellID)
 end
 
 function R:GetWorldTarget()
-	if Rarity.foundTarget or not spells[Rarity.currentSpell] then return end
+	if Rarity.foundTarget or not Rarity.relevantSpells[Rarity.currentSpell] then return end
 	if (MinimapCluster:IsMouseOver()) then return end
 	local t = tooltipLeftText1:GetText()
 	if t and Rarity.previousSpell and t ~= Rarity.previousSpell and R.fishnodes[t] then
