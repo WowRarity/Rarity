@@ -4305,6 +4305,22 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Wicked Lurker"] = {
+		cat = BFA,
+		type = PET,
+		method = NPC,
+		name = L["Wicked Lurker"],
+		npcs = { 157593 },
+		spellId = 315370,
+		itemId = 174478,
+		creatureId = 162012,
+		questId = { 0000000000000 },
+		chance = 20,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.ULDUM, x = 60, y = 72, n = L["Amalgamation of Flesh"] },
+		},
+	},
+
 	["Corrupted Tentacle"] = {
 		cat = BFA,
 		type = PET,
