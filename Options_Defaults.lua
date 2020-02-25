@@ -5370,7 +5370,7 @@ function R:PrepareDefaults()
 		itemId = 174874,
 		npcs = { 157473 },
 		chance = 20, -- Blind guess (no data)
-		questId = { 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 },
+		questId = { 57438 },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.ULDUM, x = 50, y = 88, n = L["Yiphrim the Will Ravager"] },
 			{ m = CONSTANTS.UIMAPIDS.ULDUM, x = 50, y = 88, n = L["Yiphrim the Will Ravager"] },
