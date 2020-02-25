@@ -1420,22 +1420,22 @@ function R:PrepareDefaults()
 			},
 		},
 
-		-- ["NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN"] = {
-		-- 	cat = BFA,
-		-- 	type = MOUNT,
-		-- 	method = NPC,
-		-- 	name = L["NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN"],
-		-- 	itemId = 00000000000000000000000000000000000000000000000,
-		-- 	spellId = 000000000000000000000000000000000000000000000,
-		-- 	npcs = { 000000000000000000000000000 },
-		-- 	chance = 000000000000000000000000000000000000000000,
-		-- 	groupSize = 5,
-		-- 	equalOdds = true,
-		-- 	questId = { 000000000000000000000000000000000000000000000000000000000000000000000000 },
-		-- 	coords = {
-		-- 		{ m = CONSTANTS.UIMAPIDS.AAAAAAAAAAAAAAAAAAAAAAAAAAAA, x = 0000000000000000000, y = 00000000000000000000000000000000000, n = L["NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN"] },
-		-- 	},
-		-- },
+		["Slightly Damp Pile of Fur"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = BOSS,
+			name = L["Slightly Damp Pile of Fur"],
+			itemId = 174842,
+			spellId = 298367,
+			npcs = { 138794 },
+			chance = 100,
+			groupSize = 5,
+			equalOdds = true,
+			questId = { 53000 },
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.VOLDUN, x = 44.6, y = 56.2, n = L["Dunegorger Kraulok"] },
+			},
+		},
 
 
 
