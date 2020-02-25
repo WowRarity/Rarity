@@ -1328,8 +1328,6 @@ function R:PrepareDefaults()
 			spellId = 316723,
 			npcs = { 157466 },
 			chance = 100,
-			groupSize = 5,
-			equalOdds = true,
 			questId = { 57363 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 34.15, y = 68.05, n = L["Anh-De the Loyal"] },
@@ -1345,7 +1343,7 @@ function R:PrepareDefaults()
 			spellId = 315847,
 			npcs = { 157134 },
 			chance = 100,
-			groupSize = 5,
+			groupSize = 3,
 			equalOdds = true,
 			questId = { 57259 },
 			coords = {
@@ -1362,8 +1360,6 @@ function R:PrepareDefaults()
 			spellId = 316337,
 			npcs = { 162147 },
 			chance = 100,
-			groupSize = 5,
-			equalOdds = true,
 			questId = { 58696 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ULDUM, x = 30.85, y = 49.71, n = L["Corpse Eater"] },
@@ -1379,7 +1375,7 @@ function R:PrepareDefaults()
 			spellId = 312751,
 			npcs = { 157153 },
 			chance = 100,
-			groupSize = 5,
+			groupSize = 3,
 			equalOdds = true,
 			questId = { 57344 },
 			coords = {
@@ -1396,8 +1392,6 @@ function R:PrepareDefaults()
 			spellId = 316722,
 			npcs = { 157160 },
 			chance = 100,
-			groupSize = 5,
-			equalOdds = true,
 			questId = { 57345 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 10, y = 33, n = L["Houndlord Ren"] },
@@ -1413,8 +1407,6 @@ function R:PrepareDefaults()
 			spellId = 316275,
 			npcs = { 157146 },
 			chance = 100,
-			groupSize = 5,
-			equalOdds = true,
 			questId = { 57273 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ULDUM, x = 68.23, y = 31.97, n = L["Rotfeaster"] },
@@ -1430,7 +1422,7 @@ function R:PrepareDefaults()
 			spellId = 298367,
 			npcs = { 138794 },
 			chance = 100,
-			groupSize = 5,
+			groupSize = 3,
 			equalOdds = true,
 			questId = { 53000 },
 			coords = {
@@ -4352,6 +4344,8 @@ function R:PrepareDefaults()
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.ULDUM, x = 36.85, y = 20.93, n = L["Lord Aj'qirai"] },
 		},
+		groupSize = 3,
+		equalOdds = true,
 	},
 
 	["Snarling Butterfly Crate"] = {
@@ -5452,7 +5446,7 @@ function R:PrepareDefaults()
 	 },
 
 	 -- 8.3
-	["Pristine Cloud Serpent Scale"] = {
+["Pristine Cloud Serpent Scale"] = {
 	cat = BFA,
 	type = ITEM,
 	method = NPC,
@@ -5466,6 +5460,8 @@ function R:PrepareDefaults()
 		{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 22.09, y = 24.03, n = L["Cave Entrance"] },
 		{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 21.16, y = 14.53, n = L["Rei Lun"] },
 	},
+	groupSize = 3,
+	equalOdds = true,
 },
 
 ["All-Seeing Right Eye"] = {
