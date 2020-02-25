@@ -1380,7 +1380,7 @@ function R:PrepareDefaults()
 			chance = 100,
 			groupSize = 5,
 			equalOdds = true,
-			questId = { 000000000000000000000000000000000000000000000000000000000000000000000000 },
+			questId = { 57344 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 36.6, y = 37.6, n = L["Ha-Li"] },
 			},
