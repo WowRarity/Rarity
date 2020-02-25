@@ -1363,7 +1363,7 @@ function R:PrepareDefaults()
 			chance = 100,
 			groupSize = 5,
 			equalOdds = true,
-			questId = { 58139 }, -- 58139, 58696
+			questId = { 58696 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ULDUM, x = 30.85, y = 49.71, n = L["Corpse Eater"] },
 			},
