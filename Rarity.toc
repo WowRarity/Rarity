@@ -54,6 +54,7 @@ Locales.lua
 Core\Init.lua
 
 # Database
+DB\Nodes.lua
 DB\SharedConstants.lua
 
 # Utility/Helpers
