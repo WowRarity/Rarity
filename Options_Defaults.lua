@@ -1330,6 +1330,7 @@ function R:PrepareDefaults()
 			chance = 100,
 			groupSize = 5,
 			equalOdds = true,
+			questId = { 57363 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 34.15, y = 68.05, n = L["Anh-De the Loyal"] },
 			},
