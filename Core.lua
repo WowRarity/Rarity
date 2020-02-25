@@ -51,8 +51,6 @@ local tradeOpen = false
 local tradeSkillOpen = false
 local mailOpen = false
 
-local prevSpell, curSpell, foundTarget
-
 -- Maps spells of interest to their respective spell IDs (useful since both info is used by Blizzard APIs and the addon itself) - Only some of these are actually used right now, but who knows what the future will bring?
 -- Note: Spell names are no longer needed, and dealing with them is actually more complicated after the 8.0.1 API changes. They're only used for readability's sake
 local spells = {
@@ -992,7 +990,7 @@ function R:OnEvent(event, ...)
   isPool = false
 
   -- Handle mining Elementium
-  if spells[prevSpell] == "Mining" and (lastNode == L["Elementium Vein"] or lastNode == L["Rich Elementium Vein"]) then
+  if spells[Rarity.previousSpell] == "Mining" and (lastNode == L["Elementium Vein"] or lastNode == L["Rich Elementium Vein"]) then
 		Rarity:Debug("Detected Mining on " .. lastNode .. " (method = SPECIAL)")
    local v = self.db.profile.groups.pets["Elementium Geode"]
    if v and type(v) == "table" and v.enabled ~= false then
@@ -1002,7 +1000,7 @@ function R:OnEvent(event, ...)
   end
 
   -- Handle skinning on Argus (Fossorial Bile Larva)
-	if (spells[prevSpell] == "Skinning" or spells[prevSpell] == "Mother's Skinning Knife") -- Skinned something
+	if (spells[Rarity.previousSpell] == "Skinning" or spells[Rarity.previousSpell] == "Mother's Skinning Knife") -- Skinned something
 	and (GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.KROKUUN or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.MACAREE or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.ANTORAN_WASTES) then -- Player is on Argus -> Can obtain the pet from skinning creatures
 		Rarity:Debug("Detected skinning on Argus - Can obtain " .. L["Fossorial Bile Larva"] .. " (method = SPECIAL)")
 		local v = self.db.profile.groups.pets["Fossorial Bile Larva"]
@@ -1013,7 +1011,7 @@ function R:OnEvent(event, ...)
 	end
 
     -- Handle herb gathering on Argus (Fel Lasher)
-	if spells[prevSpell] == "Herb Gathering" -- Gathered a herbalism node
+	if spells[Rarity.previousSpell] == "Herb Gathering" -- Gathered a herbalism node
 	and (GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.KROKUUN or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.MACAREE or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.ANTORAN_WASTES) then -- Player is on Argus -> Can obtain the pet from gathering herbalism nodes
 		Rarity:Debug("Detected herb gathering on Argus - Can obtain " .. L["Fel Lasher"] .. " (method = SPECIAL)")
 		local v = self.db.profile.groups.pets["Fel Lasher"]
@@ -1055,7 +1053,7 @@ function R:OnEvent(event, ...)
     guid = v
     if guid and type(guid) == "string" then
      self:Debug("Checking NPC guid ("..(numChecked + 1).."): "..guid)
-     self:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, requiresPickpocket) -- Decide if we should increment an attempt count for this NPC
+     self:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, Rarity.currentSpell, requiresPickpocket) -- Decide if we should increment an attempt count for this NPC
      numChecked = numChecked + 1
     else
      --self:Debug("Didn't check guid: "..guid or "nil")
@@ -1064,7 +1062,7 @@ function R:OnEvent(event, ...)
   end -- Loop through all loot slots (for AoE looting)
 
   -- If we failed to scan anything, scan the current target
-  if numChecked <= 0 then self:CheckNpcInterest(UnitGUID("target"), zone, subzone, zone_t, subzone_t, curSpell) end
+  if numChecked <= 0 then self:CheckNpcInterest(UnitGUID("target"), zone, subzone, zone_t, subzone_t, Rarity.currentSpell) end
 
   -- Scan the loot to see if we found something we're looking for
 		local numItems = GetNumLootItems()
@@ -1378,8 +1376,8 @@ end
 -------------------------------------------------------------------------------------
 
 function R:OnLootFrameClosed(event)
-	prevSpell, curSpell = nil, nil
-	foundTarget = false
+	Rarity.previousSpell, Rarity.currentSpell = nil, nil
+	Rarity.foundTarget = false
  self:ScheduleTimer(function()
 		R:Debug("Setting lastNode to nil")
 		lastNode = nil
@@ -1387,26 +1385,26 @@ function R:OnLootFrameClosed(event)
 end
 
 function R:OnCursorUpdate(event)
-	if foundTarget then return end
+	if Rarity.foundTarget then return end
 	if (MinimapCluster:IsMouseOver()) then return end
 	local t = tooltipLeftText1:GetText()
  if self.miningnodes[t] or self.fishnodes[t] or self.opennodes[t] then lastNode = t end
-	if spells[prevSpell] then
+	if spells[Rarity.previousSpell] then
 		self:GetWorldTarget()
 	end
 end
 
 function R:OnSpellcastStopped(event, unit)
 	if unit ~= "player" then return end
-	if spells[prevSpell] then
+	if spells[Rarity.previousSpell] then
 		self:GetWorldTarget()
 	end
-	prevSpell, curSpell = curSpell, curSpell
+	Rarity.previousSpell, Rarity.currentSpell = Rarity.currentSpell, Rarity.currentSpell
 end
 
 function R:OnSpellcastFailed(event, unit)
 	if unit ~= "player" then return end
-	prevSpell, curSpell = nil, nil
+	Rarity.previousSpell, Rarity.currentSpell = nil, nil
 end
 
 local function cancelFish()
@@ -1419,15 +1417,15 @@ end
 
 function R:OnSpellcastSent(event, unit, target, castGUID, spellID)
 	if unit ~= "player" then return end
-	foundTarget = false
+	Rarity.foundTarget = false
 	ga ="No"
 
 	Rarity:Debug("Detected UNIT_SPELLCAST_SENT for unit = player, spellID = " .. tostring(spellID) .. ", castGUID = " .. tostring(castGUID) .. ", target = " .. tostring(target)) -- TODO: Remove?
 
 	if spells[spellID] then -- An entry exists for this spell in the LUT -> It's one that needs to be tracked
 		Rarity:Debug("Detected relevant spell: " .. tostring(spellID) .. " ~ " .. tostring(spells[spellID]))
-		curSpell = spellID
-		prevSpell = spellID
+		Rarity.currentSpell = spellID
+		Rarity.previousSpell = spellID
   if spells[spellID] == "Fishing" or spells[spellID] == "Opening" then
    self:Debug("Fishing or opening something")
 			if spells[spellID] == "Opening" then
@@ -1442,21 +1440,21 @@ function R:OnSpellcastSent(event, unit, target, castGUID, spellID)
 		 self:GetWorldTarget()
   end
 	else
-		prevSpell, curSpell = nil, nil
+		Rarity.previousSpell, Rarity.currentSpell = nil, nil
 	end
 end
 
 function R:GetWorldTarget()
-	if foundTarget or not spells[curSpell] then return end
+	if Rarity.foundTarget or not spells[Rarity.currentSpell] then return end
 	if (MinimapCluster:IsMouseOver()) then return end
 	local t = tooltipLeftText1:GetText()
-	if t and prevSpell and t ~= prevSpell and R.fishnodes[t] then
+	if t and Rarity.previousSpell and t ~= Rarity.previousSpell and R.fishnodes[t] then
   self:Debug("------YOU HAVE STARTED FISHING A NODE ------")
 		fishing = true
   isPool = true
   if fishingTimer then self:CancelTimer(fishingTimer, true) end
   fishingTimer = self:ScheduleTimer(cancelFish, FISHING_DELAY)
-		foundTarget = true
+		Rarity.foundTarget = true
 	end
 end
 
