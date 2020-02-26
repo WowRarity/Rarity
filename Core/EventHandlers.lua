@@ -1097,6 +1097,16 @@ function R:OnEvent(event, ...)
 		Rarity:Print("isInHorrificVision", isInHorrificVision)
 		-- todo remove print
 
+		if
+			Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Mailbox"]) and
+				isInHorrificVision
+		 then -- Player is in vision and looted a mailbox, adding an attempt here isn't 100% correct but the best we can do...
+			-- select(8, GetInstanceInfo()) == 2213
+			self:Debug("Detected mailbox in Horrific Vision (last node was " .. Rarity.lastNode .. ")")
+			addAttemptForItem("Mail Muncher", "mounts")
+		end
+
+		if isInHorrificVision then
 			local visionDrops = {
 				[CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND] = {
 					[L["Umbric's Corrupted Chest"]] = {
