@@ -1428,6 +1428,20 @@ function R:PrepareDefaults()
 			},
 		},
 
+		["Mail Muncher"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Mail Muncher"],
+			itemId = 174653,
+			spellId = 315987,
+			npcs = { 160708 },
+			chance = 100,
+			coords = {
+				{ m= CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND },
+				{ m= CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR },
+			},
+		},
 
 
 		-- 8.3 Mounts
