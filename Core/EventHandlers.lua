@@ -230,14 +230,42 @@ end
 -- at this time I'm not sure if that wouldn't cause problems elsewhere... so I won't touch it
 -------------------------------------------------------------------------------------
 local encounterLUT = {
-	[1140] = "Stormforged Rune", -- The Assembly of Iron
-	[1133] = "Blessed Seed", -- Freya
-	[1135] = "Ominous Pile of Snow", -- Hodir
-	[1138] = "Overcomplicated Controller", -- Mimiron
-	[1143] = "Wriggling Darkness", -- Yogg-Saron (mount uses the BOSS method and is tracked separately)
-	[1500] = "Celestial Gift", -- Elegon
-	[1505] = "Azure Cloud Serpent Egg", -- Tsulong
-	[1506] = "Spirit of the Spring" -- Lei Shi
+	[1140] = {
+		"Stormforged Rune"
+	}, -- The Assembly of Iron
+	[1133] = {
+		"Blessed Seed"
+	}, -- Freya
+	[1135] = {
+		"Ominous Pile of Snow"
+	}, -- Hodir
+	[1138] = {
+		"Overcomplicated Controller"
+	}, -- Mimiron
+	[1143] = {
+		"Wriggling Darkness"
+	}, -- Yogg-Saron (mount uses the BOSS method and is tracked separately)
+	[1500] = {
+		"Celestial Gift"
+	}, -- Elegon
+	[1505] = {
+		"Azure Cloud Serpent Egg"
+	}, -- Tsulong
+	[1506] = {
+		"Spirit of the Spring"
+	}, -- Lei Shi
+	-- Horrific Visions
+	[2332] = {
+		"Swirling Black Bottle",
+		"Void-Link Frostwolf Collar"
+	}, -- Thrall the Corrupted
+	[2338] = {
+		"Swirling Black Bottle",
+		"Voidwoven Cat Collar"
+	}, -- Alleria Windrunner
+	[2370] = {}, -- Rexxar
+	[2377] = {} -- Magister Umbric
+	-- others tbd, see https://wow.gamepedia.com/DungeonEncounterID
 }
 
 function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidSize, endStatus)
@@ -246,19 +274,21 @@ function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidS
 			tonumber(encounterID or "0") .. ", name = " .. tostring(encounterName) .. ", endStatus = " .. tostring(endStatus)
 	)
 
-	local item = encounterLUT[encounterID]
-	if item and type(item) == "string" then -- This encounter has an entry in the LUT and needs special handling
-		R:Debug("Found item of interest for this encounter: " .. tostring(item))
-		local v = self.db.profile.groups.pets[item] -- v = value = number of attempts for this item
+	local items = encounterLUT[encounterID]
+	for _, item in ipairs(items) do
+		if item and type(item) == "string" then -- This encounter has an entry in the LUT and needs special handling
+			R:Debug("Found item of interest for this encounter: " .. tostring(item))
+			local v = self.db.profile.groups.pets[item] -- v = value = number of attempts for this item
 
-		if endStatus == 1 then -- Encounter succeeded -> Check if number of attempts should be increased
-			if v and type(v) == "table" and v.enabled ~= false and R:IsAttemptAllowed(v) then -- Add one attempt for this item
-				if v.attempts == nil then
-					v.attempts = 1
-				else
-					v.attempts = v.attempts + 1
+			if endStatus == 1 then -- Encounter succeeded -> Check if number of attempts should be increased
+				if v and type(v) == "table" and v.enabled ~= false and R:IsAttemptAllowed(v) then -- Add one attempt for this item
+					if v.attempts == nil then
+						v.attempts = 1
+					else
+						v.attempts = v.attempts + 1
+					end
+					R:OutputAttempts(v)
 				end
-				R:OutputAttempts(v)
 			end
 		end
 	end
