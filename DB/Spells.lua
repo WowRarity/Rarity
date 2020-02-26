@@ -19,7 +19,8 @@ Rarity.relevantSpells = {
 	[265825] = "Herb Gathering",
 	-- 8.2
 	[6478] = "Opening", -- Pile of Coins (Mechagon Island: Armored Vaultbot)
-
+	-- 8.3
+	[312881] = "Searching Mailbox",
 	-- Not tested (but added just in case)
 	[7731] = "Fishing",
 	[7732] = "Fishing",
