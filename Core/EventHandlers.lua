@@ -722,7 +722,6 @@ function R:OnSpellcastFailed(event, unit)
 	Rarity.previousSpell, Rarity.currentSpell = nil, nil
 end
 
-
 -------------------------------------------------------------------------------------
 -- Something in your bags changed.
 --
@@ -858,8 +857,6 @@ end
       OBTAIN DETECTION ---------------------------------------------------------------------------------------------------------
       -- Some easy, some fairly arcane methods to detect when we've obtained something we're looking for
   ]]
-
-
 local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
 local GetMapInfo = _G.C_Map.GetMapInfo
 local UnitGUID = _G.UnitGUID
@@ -871,7 +868,9 @@ local GetNumLootItems = _G.GetNumLootItems
 local GetLootSlotInfo = _G.GetLootSlotInfo
 local GetLootSlotLink = _G.GetLootSlotLink
 local GetItemInfo_Blizzard = _G.GetItemInfo
-local GetItemInfo = function(id) return R:GetItemInfo(id) end
+local GetItemInfo = function(id)
+	return R:GetItemInfo(id)
+end
 local GetRealZoneText = _G.GetRealZoneText
 local GetContainerNumSlots = _G.GetContainerNumSlots
 local GetContainerItemID = _G.GetContainerItemID
@@ -1070,6 +1069,78 @@ function R:OnEvent(event, ...)
 						v.attempts = v.attempts + 1
 					end
 					self:OutputAttempts(v)
+				end
+			end
+		end
+
+		-- Detection for collectibles from Horrific Visions
+
+		-- TODO: Move elsewhere/refactor
+		local function addAttemptForItem(itemName, categoryName)
+			local self = Rarity
+			v = self.db.profile.groups[categoryName][itemName]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+
+		-- Mail Muncher: if isInHorrificVision and lastNode == Mailbox then
+		-- Chests: if isInHorrificVision and lastNode == bleh
+		local isInHorrificVision =
+			(GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND) or
+			(GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR)
+		Rarity:Print("isInHorrificVision", isInHorrificVision)
+		-- todo remove print
+
+			local visionDrops = {
+				[CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND] = {
+					[L["Umbric's Corrupted Chest"]] = {
+						"Void-Scarred Hare"
+					},
+					[L["Kelsey's Corrupted Chest"]] = {
+						'Box Labeled "Danger: Void Rat Inside"'
+					},
+					[L["Alleria's Corrupted Chest"]] = {
+						"Swirling Black Bottle",
+						"Voidwoven Cat Collar"
+					}
+				},
+				[CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR] = {
+					[L["Zekhan's Corrupted Chest"]] = {
+						"Box With Faintly Glowing 'Air' Holes"
+					},
+					[L["Thrall's Corrupted Chest"]] = {
+						"Swirling Black Bottle",
+						"Void-Link Frostwolf Collar"
+					},
+					[L["Rexxar's Corrupted Chest"]] = {
+						"C'Thuffer"
+					}
+				}
+			}
+
+			for mapID, items in pairs(visionDrops) do
+				if GetBestMapForUnit("player") == mapID then
+					Rarity:Debug("Detected opening of an object while in a Horrific Vision with mapID = " .. mapID)
+					-- An object was opened in a horrific vision, so we check if it's one of the end-of-run chests
+					for chestObjectName, drops in pairs(items) do
+						if Rarity.lastNode == chestObjectName then
+							Rarity:Debug(
+								"Detected opening of an end-of-run chest object " .. chestObjectName .. " while in a Horrific Vision"
+							)
+							-- Add all items that can be obtained from the relevant chest that was just opened
+							for index, itemName in ipairs(drops) do
+								Rarity:Debug("Adding attempt for item " .. itemName)
+								addAttemptForItem(itemName, "pets")
+								-- todo only pets can drop from the chest?
+							end
+						end
+					end
 				end
 			end
 		end
