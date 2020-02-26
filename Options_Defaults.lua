@@ -1436,6 +1436,7 @@ function R:PrepareDefaults()
 			itemId = 174653,
 			spellId = 315987,
 			npcs = { 160708 },
+			tooltipNpcs = { 160708 },
 			chance = 100,
 			coords = {
 				{ m= CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND },
