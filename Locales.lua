@@ -1,6 +1,7 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+-- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
 L["Xinlao"] = true
 L["Anh-De the Loyal"] = true
 L["Reins of the Drake of the Four Winds"] = true
@@ -43,12 +44,7 @@ L["Snarling Butterfly Crate"] = true
 L["Honey Smasher"] = true
 L["Mail Muncher"] = true
 L["Mailbox"] = true
-L["Umbric's Corrupted Chest"] = true
-L["Alleria's Corrupted Chest"] = true
-L["Thrall's Corrupted Chest"] = true
-L["Rexxar's Corrupted Chest"] = true
-L["Kelsey's Corrupted Chest"] = true
-L["Zekhan's Corrupted Chest"] = true
+L["Corrupted Chest"] = true
 L["Box Labeled \"Danger: Void Rat Inside\""] = true
 L["Swirling Black Bottle"] = true
 L["Voidwoven Cat Collar"] = true
@@ -56,7 +52,6 @@ L["Void-Link Frostwolf Collar"] = true
 L["C'Thuffer"] = true
 L["Void-Scarred Hare"] = true
 L["Box With Faintly Glowing 'Air' Holes"] = true
--- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
 L["Pearlescent Glimmershell"] = true
 L["Mechagon Peacekeeper"] = true
 L["Microbot 8D"] = true
