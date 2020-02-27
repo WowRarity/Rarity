@@ -27,6 +27,7 @@ local CATA = "CATA"
 local MOP = "MOP"
 local WOD = "WOD"
 local LEGION = "LEGION"
+local BFA = "BFA"
 local HOLIDAY = "HOLIDAY"
 
 -- Methods of obtaining
@@ -731,6 +732,17 @@ function R:PrepareOptions()
 							  Rarity.GUI:UpdateText()
 						  end,
 					  },
+
+					  vfa = {
+						type = "toggle",
+						order = newOrder(),
+						name = L["Battle for Azeroth"],
+						get = function() return self.db.profile.cats[BFA] end,
+						set = function(info, val)
+							self.db.profile.cats[BFA] = val
+							Rarity.GUI:UpdateText()
+						end,
+					},
 
 						}, -- args
 					}, -- contentCategory
