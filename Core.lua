@@ -1,13 +1,5 @@
 local _, addonTable = ...
 
-local FORCE_PROFILE_RESET_BEFORE_REVISION = 1 -- Set this to one higher than the Revision on the line above this
-
--- Set DEBUG flag to never cause a profile reset while testing, even in the case of errors with the above version calculation. Can also be used for other things later, though I haven't thought of anything in particular just yet...
-local isDebugVersion = false
---@debug@
-isDebugVersion = true
---@end-debug@
-
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local R = Rarity
 local lbz = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
@@ -436,28 +428,6 @@ function R:VerifyItemDB()
 	if numErrors == 0 then self:Print(L["Verification complete! Everything appears to be in order..."])
 	else self:Print(format(L["Verfication failed with %d errors!"], numErrors)) end
 
-end
-
-function R:CheckForceReset(report)
-	-- Require a profile reset after a hardcoded revision
-	if (self.db.profile.lastRevision or 0) < FORCE_PROFILE_RESET_BEFORE_REVISION and not isDebugVersion then
-		self.db:RegisterDefaults(self.defaults)
-
-		-- Save as many settings as we can
-		local minimap = self.db.profile.minimap.hide
-
-		-- Reset the profile
-		self.db:ResetProfile(false, true)
-		self.db.profile.lastRevision = R.MINOR_VERSION
-
-		-- Migrate settings across
-		self.db.profile.minimap.hide = minimap
-
-		Rarity.Collections:ScanExistingItems("FORCED PROFILE RESET")
-		if report or report == nil then
-			self:Print(format(L["Welcome to Rarity r%d. Your settings have been reset."], R.MINOR_VERSION))
-		end
-	end
 end
 
 
