@@ -2,6 +2,8 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Overly Sensitive Void Spectacles"] = true
+L["Void-Touched Souvenir Totem"] = true
 L["Xinlao"] = true
 L["Anh-De the Loyal"] = true
 L["Reins of the Drake of the Four Winds"] = true
