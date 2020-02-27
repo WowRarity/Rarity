@@ -783,6 +783,7 @@ function R:OnCursorUpdate(event)
 	local t = tooltipLeftText1:GetText()
 	if self.miningnodes[t] or self.fishnodes[t] or self.opennodes[t] then
 		Rarity.lastNode = t
+		Rarity:Debug("OnCursorUpdate found lastNode = " .. tostring(t))
 	end
 	if Rarity.relevantSpells[Rarity.previousSpell] then
 		self:GetWorldTarget()
@@ -798,6 +799,7 @@ function R:GetWorldTarget()
 		return
 	end
 	local t = tooltipLeftText1:GetText()
+	Rarity:Debug("Getting world target " .. tostring(t))
 	if t and Rarity.previousSpell and t ~= Rarity.previousSpell and R.fishnodes[t] then
 		self:Debug("------YOU HAVE STARTED FISHING A NODE ------")
 		Rarity.isFishing = true
