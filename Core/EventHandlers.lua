@@ -21,6 +21,32 @@ local GetCurrencyInfo = GetCurrencyInfo
 local CombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo
 local UnitGUID = UnitGUID
 local LoadAddOn = LoadAddOn
+local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
+local GetMapInfo = _G.C_Map.GetMapInfo
+local UnitGUID = _G.UnitGUID
+local UnitName = _G.UnitName
+local UnitCanAttack = _G.UnitCanAttack
+local UnitIsPlayer = _G.UnitIsPlayer
+local UnitIsDead = _G.UnitIsDead
+local GetNumLootItems = _G.GetNumLootItems
+local GetLootSlotInfo = _G.GetLootSlotInfo
+local GetLootSlotLink = _G.GetLootSlotLink
+local GetItemInfo_Blizzard = _G.GetItemInfo
+local GetItemInfo = function(id)
+	return R:GetItemInfo(id)
+end
+local GetRealZoneText = _G.GetRealZoneText
+local GetContainerNumSlots = _G.GetContainerNumSlots
+local GetContainerItemID = _G.GetContainerItemID
+local GetContainerItemInfo = _G.GetContainerItemInfo
+local GetNumArchaeologyRaces = _G.GetNumArchaeologyRaces
+local GetArchaeologyRaceInfo = _G.GetArchaeologyRaceInfo
+local GetStatistic = _G.GetStatistic
+local GetLootSourceInfo = _G.GetLootSourceInfo
+local GetMapInfo = _G.C_Map.GetMapInfo
+local C_Timer = _G.C_Timer
+local IsSpellKnown = _G.IsSpellKnown
+local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
 
 -- Addon APIs
 local DebugCache = Rarity.Utils.DebugCache
@@ -60,11 +86,48 @@ function EventHandlers:Register()
 	self:RegisterEvent("PET_BATTLE_OPENING_START", "OnPetBattleStart")
 	self:RegisterEvent("PET_BATTLE_CLOSE", "OnPetBattleEnd")
 	self:RegisterEvent("ISLAND_COMPLETED", "OnIslandCompleted")
+	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", "OnSpellcastSucceeded")
 	self:RegisterBucketEvent("UPDATE_INSTANCE_INFO", 1, "OnEvent")
 	self:RegisterBucketEvent("LFG_UPDATE_RANDOM_INFO", 1, "OnEvent")
 	self:RegisterBucketEvent("CALENDAR_UPDATE_EVENT_LIST", 1, "OnEvent")
 	self:RegisterBucketEvent("TOYS_UPDATED", 1, "OnEvent")
 	self:RegisterBucketEvent("COMPANION_UPDATE", 1, "OnEvent")
+end
+
+-- TODO: Move elsewhere/refactor
+local function addAttemptForItem(itemName, categoryName)
+	local self = Rarity
+	v = self.db.profile.groups[categoryName][itemName]
+	if v and type(v) == "table" and v.enabled ~= false then
+		if v.attempts == nil then
+			v.attempts = 1
+		else
+			v.attempts = v.attempts + 1
+		end
+		self:OutputAttempts(v)
+	end
+end
+
+local function IsPlayerInHorrificVision()
+	return (GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND) or
+		(GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR)
+end
+
+function R:OnSpellcastSucceeded(event, unitID, castGUID, spellID)
+	if unitID ~= "player" then
+		return
+	end
+
+	if not Rarity.relevantSpells[spellID] then
+		return
+	end
+
+	R:Debug("OnSpellcastSucceeded triggered with relevant spell " .. spellID)
+
+	if IsPlayerInHorrificVision() and spellID == 312881 then
+		self:Debug("Finished searching mailbox in a Horrific Vision")
+		addAttemptForItem("Mail Muncher", "mounts")
+	end
 end
 
 -------------------------------------------------------------------------------------
@@ -167,14 +230,52 @@ end
 -- at this time I'm not sure if that wouldn't cause problems elsewhere... so I won't touch it
 -------------------------------------------------------------------------------------
 local encounterLUT = {
-	[1140] = "Stormforged Rune", -- The Assembly of Iron
-	[1133] = "Blessed Seed", -- Freya
-	[1135] = "Ominous Pile of Snow", -- Hodir
-	[1138] = "Overcomplicated Controller", -- Mimiron
-	[1143] = "Wriggling Darkness", -- Yogg-Saron (mount uses the BOSS method and is tracked separately)
-	[1500] = "Celestial Gift", -- Elegon
-	[1505] = "Azure Cloud Serpent Egg", -- Tsulong
-	[1506] = "Spirit of the Spring" -- Lei Shi
+	[1140] = {
+		"Stormforged Rune"
+	}, -- The Assembly of Iron
+	[1133] = {
+		"Blessed Seed"
+	}, -- Freya
+	[1135] = {
+		"Ominous Pile of Snow"
+	}, -- Hodir
+	[1138] = {
+		"Overcomplicated Controller"
+	}, -- Mimiron
+	[1143] = {
+		"Wriggling Darkness"
+	}, -- Yogg-Saron (mount uses the BOSS method and is tracked separately)
+	[1500] = {
+		"Celestial Gift"
+	}, -- Elegon
+	[1505] = {
+		"Azure Cloud Serpent Egg"
+	}, -- Tsulong
+	[1506] = {
+		"Spirit of the Spring"
+	}, -- Lei Shi
+	-- 8.3: Horrific Visions
+	[2332] = {
+		"Swirling Black Bottle",
+		"Void-Link Frostwolf Collar"
+	}, -- Thrall the Corrupted
+	[2338] = {
+		"Swirling Black Bottle",
+		"Voidwoven Cat Collar"
+	}, -- Alleria Windrunner
+	[2370] = {
+		"C'Thuffer"
+	}, -- Rexxar
+	[2377] = {
+		"Void-Scarred Hare",
+	}, -- Magister Umbric
+	[2372] = {
+		"Void-Touched Souvenir Totem",
+		"Box With Faintly Glowing 'Air' Holes",
+	}, -- Oblivion Elemental (Final objective for Zekhan's area)
+	[2374] = {
+		'Box Labeled "Danger: Void Rat Inside"',
+	}, -- Therum Deepforge (Final objective for Kelsey's area)
 }
 
 function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidSize, endStatus)
@@ -183,19 +284,21 @@ function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidS
 			tonumber(encounterID or "0") .. ", name = " .. tostring(encounterName) .. ", endStatus = " .. tostring(endStatus)
 	)
 
-	local item = encounterLUT[encounterID]
-	if item and type(item) == "string" then -- This encounter has an entry in the LUT and needs special handling
-		R:Debug("Found item of interest for this encounter: " .. tostring(item))
-		local v = self.db.profile.groups.pets[item] -- v = value = number of attempts for this item
+	local items = encounterLUT[encounterID]
+	for _, item in ipairs(items) do
+		if item and type(item) == "string" then -- This encounter has an entry in the LUT and needs special handling
+			R:Debug("Found item of interest for this encounter: " .. tostring(item))
+			local v = self.db.profile.groups.pets[item] -- v = value = number of attempts for this item
 
-		if endStatus == 1 then -- Encounter succeeded -> Check if number of attempts should be increased
-			if v and type(v) == "table" and v.enabled ~= false and R:IsAttemptAllowed(v) then -- Add one attempt for this item
-				if v.attempts == nil then
-					v.attempts = 1
-				else
-					v.attempts = v.attempts + 1
+			if endStatus == 1 then -- Encounter succeeded -> Check if number of attempts should be increased
+				if v and type(v) == "table" and v.enabled ~= false and R:IsAttemptAllowed(v) then -- Add one attempt for this item
+					if v.attempts == nil then
+						v.attempts = 1
+					else
+						v.attempts = v.attempts + 1
+					end
+					R:OutputAttempts(v)
 				end
-				R:OutputAttempts(v)
 			end
 		end
 	end
@@ -722,7 +825,6 @@ function R:OnSpellcastFailed(event, unit)
 	Rarity.previousSpell, Rarity.currentSpell = nil, nil
 end
 
-
 -------------------------------------------------------------------------------------
 -- Something in your bags changed.
 --
@@ -858,33 +960,6 @@ end
       OBTAIN DETECTION ---------------------------------------------------------------------------------------------------------
       -- Some easy, some fairly arcane methods to detect when we've obtained something we're looking for
   ]]
-
-
-local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
-local GetMapInfo = _G.C_Map.GetMapInfo
-local UnitGUID = _G.UnitGUID
-local UnitName = _G.UnitName
-local UnitCanAttack = _G.UnitCanAttack
-local UnitIsPlayer = _G.UnitIsPlayer
-local UnitIsDead = _G.UnitIsDead
-local GetNumLootItems = _G.GetNumLootItems
-local GetLootSlotInfo = _G.GetLootSlotInfo
-local GetLootSlotLink = _G.GetLootSlotLink
-local GetItemInfo_Blizzard = _G.GetItemInfo
-local GetItemInfo = function(id) return R:GetItemInfo(id) end
-local GetRealZoneText = _G.GetRealZoneText
-local GetContainerNumSlots = _G.GetContainerNumSlots
-local GetContainerItemID = _G.GetContainerItemID
-local GetContainerItemInfo = _G.GetContainerItemInfo
-local GetNumArchaeologyRaces = _G.GetNumArchaeologyRaces
-local GetArchaeologyRaceInfo = _G.GetArchaeologyRaceInfo
-local GetStatistic = _G.GetStatistic
-local GetLootSourceInfo = _G.GetLootSourceInfo
-local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
-local GetMapInfo = _G.C_Map.GetMapInfo
-local C_Timer = _G.C_Timer
-local IsSpellKnown = _G.IsSpellKnown
-local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
 
 function R:OnEvent(event, ...)
 	-------------------------------------------------------------------------------------

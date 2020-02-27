@@ -216,4 +216,5 @@ R.opennodes = {
 	[L["Arcane Chest"]] = true,
 	[L["Glimmering Chest"]] = true,
 	[L["Pile of Coins"]] = true,
+	[L["Mailbox"]] = true,
 }

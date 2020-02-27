@@ -1428,6 +1428,21 @@ function R:PrepareDefaults()
 			},
 		},
 
+		["Mail Muncher"] = {
+			cat = BFA,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Mail Muncher"],
+			itemId = 174653,
+			spellId = 315987,
+			npcs = { 160708 },
+			tooltipNpcs = { 160708 },
+			chance = 100,
+			coords = {
+				{ m= CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND },
+				{ m= CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR },
+			},
+		},
 
 
 		-- 8.3 Mounts
@@ -4248,6 +4263,105 @@ function R:PrepareDefaults()
 	},
 
 	-- 8.3 Pets
+	["Box Labeled \"Danger: Void Rat Inside\""] = {
+		cat = BFA,
+		type = PET,
+		method = SPECIAL,
+		name = L["Box Labeled \"Danger: Void Rat Inside\""],
+		spellId = 315301,
+		itemId = 174460,
+		chance = 100,
+		creatureId = 161963,
+		coords = {
+			{ m= CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND },
+		},
+	},
+
+	["Swirling Black Bottle"] = {
+		cat = BFA,
+		type = PET,
+		method = SPECIAL,
+		name = L["Swirling Black Bottle"],
+		spellId = 315302,
+		itemId = 174461,
+		chance = 100,
+		creatureId = 161964,
+		coords = {
+			{ m= CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND },
+			{ m= CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR },
+		},
+	},
+
+	["Voidwoven Cat Collar"] = {
+		cat = BFA,
+		type = PET,
+		method = SPECIAL,
+		name = L["Voidwoven Cat Collar"],
+		spellId = 315298,
+		itemId = 174459,
+		chance = 100,
+		creatureId = 161962,
+		coords = {
+			{ m= CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND },
+		},
+	},
+
+	["Void-Link Frostwolf Collar"] = {
+		cat = BFA,
+		type = PET,
+		method = SPECIAL,
+		name = L["Void-Link Frostwolf Collar"],
+		spellId = 312030,
+		itemId = 174646,
+		chance = 100,
+		creatureId = 160196,
+		coords = {
+			{ m= CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR },
+		},
+	},
+
+	["C'Thuffer"] = {
+		cat = BFA,
+		type = PET,
+		method = SPECIAL,
+		name = L["C'Thuffer"],
+		spellId = 315290,
+		itemId = 174457,
+		chance = 100,
+		creatureId = 161959,
+		coords = {
+			{ m= CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR },
+		},
+	},
+
+	["Void-Scarred Hare"] = {
+		cat = BFA,
+		type = PET,
+		method = SPECIAL,
+		name = L["Void-Scarred Hare"],
+		spellId = 315297,
+		itemId = 174458,
+		chance = 100,
+		creatureId = 161961,
+		coords = {
+			{ m= CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND },
+		},
+	},
+
+	["Box With Faintly Glowing 'Air' Holes"] = {
+		cat = BFA,
+		type = PET,
+		method = SPECIAL,
+		name = L["Box With Faintly Glowing 'Air' Holes"],
+		spellId = 312029,
+		itemId = 173726,
+		chance = 100,
+		creatureId = 160187,
+		coords = {
+			{ m= CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR },
+		},
+	},
+
 	["K'uddly"] = {
 		cat = BFA,
 		type = PET,
@@ -5354,6 +5468,20 @@ function R:PrepareDefaults()
 	},
 
 	-- 8.3 Toys
+	["Overly Sensitive Void Spectacles"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Overly Sensitive Void Spectacles"],
+		itemId = 174926,
+		npcs = { 158284 },
+		chance = 20,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND },
+		},
+	},
+
 	["Hell-Bent Bracers"] = {
 		cat = BFA,
 		type = ITEM,
@@ -5398,6 +5526,20 @@ function R:PrepareDefaults()
 		questId = { 58507 },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 29.13, y = 22.07, n = L["Tashara"] },
+		},
+	},
+
+	--
+	["Void-Touched Souvenir Totem"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Void-Touched Souvenir Totem"],
+		itemId = 174924,
+		chance = 100, -- Blind guess (no data)
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR },
 		},
 	},
 

@@ -1,6 +1,9 @@
 local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
+-- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Overly Sensitive Void Spectacles"] = true
+L["Void-Touched Souvenir Totem"] = true
 L["Xinlao"] = true
 L["Anh-De the Loyal"] = true
 L["Reins of the Drake of the Four Winds"] = true
@@ -41,7 +44,16 @@ L["Shares a spawn with %s"] = true
 L["Foul Observer"] = true
 L["Snarling Butterfly Crate"] = true
 L["Honey Smasher"] = true
--- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Mail Muncher"] = true
+L["Mailbox"] = true
+L["Corrupted Chest"] = true
+L["Box Labeled \"Danger: Void Rat Inside\""] = true
+L["Swirling Black Bottle"] = true
+L["Voidwoven Cat Collar"] = true
+L["Void-Link Frostwolf Collar"] = true
+L["C'Thuffer"] = true
+L["Void-Scarred Hare"] = true
+L["Box With Faintly Glowing 'Air' Holes"] = true
 L["Pearlescent Glimmershell"] = true
 L["Mechagon Peacekeeper"] = true
 L["Microbot 8D"] = true
