@@ -254,7 +254,7 @@ local encounterLUT = {
 	[1506] = {
 		"Spirit of the Spring"
 	}, -- Lei Shi
-	-- Horrific Visions
+	-- 8.3: Horrific Visions
 	[2332] = {
 		"Swirling Black Bottle",
 		"Void-Link Frostwolf Collar"
@@ -263,9 +263,19 @@ local encounterLUT = {
 		"Swirling Black Bottle",
 		"Voidwoven Cat Collar"
 	}, -- Alleria Windrunner
-	[2370] = {}, -- Rexxar
-	[2377] = {} -- Magister Umbric
-	-- others tbd, see https://wow.gamepedia.com/DungeonEncounterID
+	[2370] = {
+		"C'Thuffer"
+	}, -- Rexxar
+	[2377] = {
+		"Void-Scarred Hare",
+	}, -- Magister Umbric
+	[2372] = {
+		"Void-Touched Souvenir Totem",
+		"Box With Faintly Glowing 'Air' Holes",
+	}, -- Oblivion Elemental (Final objective for Zekhan's area)
+	[2374] = {
+		'Box Labeled "Danger: Void Rat Inside"',
+	}, -- Therum Deepforge (Final objective for Kelsey's area)
 }
 
 function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidSize, endStatus)
@@ -1135,57 +1145,6 @@ function R:OnEvent(event, ...)
 						v.attempts = v.attempts + 1
 					end
 					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Detection for collectibles from Horrific Visions
-
-		if isInHorrificVision then
-			local visionDrops = {
-				[CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND] = {
-					[L["Umbric's Corrupted Chest"]] = {
-						"Void-Scarred Hare"
-					},
-					[L["Kelsey's Corrupted Chest"]] = {
-						'Box Labeled "Danger: Void Rat Inside"'
-					},
-					[L["Alleria's Corrupted Chest"]] = {
-						"Swirling Black Bottle",
-						"Voidwoven Cat Collar"
-					}
-				},
-				[CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR] = {
-					[L["Zekhan's Corrupted Chest"]] = {
-						"Box With Faintly Glowing 'Air' Holes"
-					},
-					[L["Thrall's Corrupted Chest"]] = {
-						"Swirling Black Bottle",
-						"Void-Link Frostwolf Collar"
-					},
-					[L["Rexxar's Corrupted Chest"]] = {
-						"C'Thuffer"
-					}
-				}
-			}
-
-			for mapID, items in pairs(visionDrops) do
-				if GetBestMapForUnit("player") == mapID then
-					Rarity:Debug("Detected opening of an object while in a Horrific Vision with mapID = " .. mapID)
-					-- An object was opened in a horrific vision, so we check if it's one of the end-of-run chests
-					for chestObjectName, drops in pairs(items) do
-						if Rarity.lastNode == chestObjectName then
-							Rarity:Debug(
-								"Detected opening of an end-of-run chest object " .. chestObjectName .. " while in a Horrific Vision"
-							)
-							-- Add all items that can be obtained from the relevant chest that was just opened
-							for index, itemName in ipairs(drops) do
-								Rarity:Debug("Adding attempt for item " .. itemName)
-								addAttemptForItem(itemName, "pets")
-								-- todo only pets can drop from the chest?
-							end
-						end
-					end
 				end
 			end
 		end
