@@ -2,6 +2,8 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Cursed Dune Watcher"] = true
+L["Jade Defender"] = true
 L["Can be used to capture the Ivory Cloud Serpent"] = true
 L["Zan-Tien Lasso"] = true
 L["Battle for Azeroth"] = true
@@ -21,7 +23,6 @@ L["Waste Marauder"] = true
 L["Rotfeaster"] = true
 L["K'uddly"] = true
 L["The Forgotten"] = true
--- L["Cursed Dune Watcher"] = true
 L["Black Chitinous Plate"] = true
 L["Skikx'traz"] = true
 L["Corrupted Tentacle"] = true

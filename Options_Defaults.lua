@@ -4378,21 +4378,35 @@ function R:PrepareDefaults()
 		},
 	},
 
-	-- ["Cursed Dune Watcher"] = {
-	-- 	cat = BFA,
-	-- 	type = PET,
-	-- 	method = NPC,
-	-- 	name = L["Cursed Dune Watcher"],
-	-- 	npcs = { 00000000000000000000000000000000000000000 },
-	-- 	spellId = 000000000000000000000000000000000000000000000,
-	-- 	itemId = 174481,
-	-- 	creatureId = 00000000000000000000000000000000000000000000,
-	-- 	questId = { 00000000000000000000000000000000000000000 },
-	-- 	chance = 20,
-	-- 	coords = {
-	-- 		{ m = CONSTANTS.UIMAPIDS.AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, x = 00000000000000000000000000000000000000000000000000000000000, y = 000000000000000000000000000000000000000000000000000000000000000000, n = L["BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"] },
-	-- 	},
-	-- }, -- paragon
+	["Cursed Dune Watcher"] = {
+		cat = BFA,
+		type = PET,
+		method = USE,
+		name = L["Cursed Dune Watcher"],
+		spellId = 315367,
+		itemId = 174481,
+		items = { 174484 }, -- Uldum Accord Supplies
+		chance = 100, -- Blind guess (no data)
+		creatureId = 162007,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.ULDUM },
+		},
+	},
+
+	["Jade Defender"] = {
+		cat = BFA,
+		type = PET,
+		method = USE,
+		name = L["Jade Defender"],
+		spellId = 315371,
+		itemId = 174479,
+		items = { 174483 }, -- Rajani Supplies
+		chance = 100,
+		creatureId = 162013,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS },
+		},
+	},
 
 	["Black Chitinous Plate"] = {
 		cat = BFA,
