@@ -5468,6 +5468,20 @@ function R:PrepareDefaults()
 	},
 
 	-- 8.3 Toys
+	["Overly Sensitive Void Spectacles"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Overly Sensitive Void Spectacles"],
+		itemId = 174926,
+		npcs = { 158284 },
+		chance = 20,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND },
+		},
+	},
+
 	["Hell-Bent Bracers"] = {
 		cat = BFA,
 		type = ITEM,
@@ -5512,6 +5526,20 @@ function R:PrepareDefaults()
 		questId = { 58507 },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 29.13, y = 22.07, n = L["Tashara"] },
+		},
+	},
+
+	--
+	["Void-Touched Souvenir Totem"] = {
+		cat = BFA,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Void-Touched Souvenir Totem"],
+		itemId = 174924,
+		chance = 100, -- Blind guess (no data)
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR },
 		},
 	},
 
