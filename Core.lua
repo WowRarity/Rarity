@@ -52,7 +52,6 @@ Rarity.isMailboxOpen = false
 
 Rarity.isFishing = false
 Rarity.isOpening = false
-local FISHING_DELAY = 22
 
 Rarity.isPool = false
 

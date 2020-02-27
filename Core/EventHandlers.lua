@@ -713,6 +713,8 @@ function R:OnItemFound(itemId, item)
 	end
 end
 
+local FISHING_DELAY = 22
+
 function R:OnSpellcastSent(event, unit, target, castGUID, spellID)
 	if unit ~= "player" then
 		return
@@ -1221,7 +1223,7 @@ function R:OnEvent(event, ...)
 		-- Handle mining Elementium
 		if
 			Rarity.relevantSpells[Rarity.previousSpell] == "Mining" and
-				(Rarity.lastNode == L["Elementium Vein"] or lastNode == L["Rich Elementium Vein"])
+				(Rarity.lastNode == L["Elementium Vein"] or Rarity.lastNode == L["Rich Elementium Vein"])
 		 then
 			Rarity:Debug("Detected Mining on " .. Rarity.lastNode .. " (method = SPECIAL)")
 			local v = self.db.profile.groups.pets["Elementium Geode"]
