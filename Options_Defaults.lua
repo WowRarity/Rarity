@@ -5604,6 +5604,38 @@ function R:PrepareDefaults()
 	equalOdds = true,
 },
 
+["Zan-Tien Lasso"] = {
+	cat = BFA,
+	type = ITEM,
+	method = NPC,
+	name = L["Zan-Tien Lasso"],
+	itemId = 174927,
+	npcs = {
+		157345, -- Zan-Tien Subjugator
+		153095, -- Zan-Tien Caller
+		153099, -- Baruk Protector
+		153094, -- Zan-Tien Raider
+		157101, -- Xigan <Zan-Tien General>
+		157103, -- Tsah'tal <Dokani General>
+		155957, -- Baruk Stoneshaper
+		156675, -- Zan-Tien Scout
+		157097, -- Solux <Baruk General>
+		153106, -- Dokani Bloodshaper
+		153107, -- Dokani Shadewalker
+		157156, -- Torsheg <Zan-Tien Warlord>
+		157443, -- Xiln the Mountain
+		157171, -- Heixi the Stonelord
+		157291, -- Spymaster Hul'ach
+		157160, -- Houndlord Ren
+	},
+	chance = 100,
+	unique = true,
+	coords = {
+		{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS },
+	},
+	sourceText = L["Can be used to capture the Ivory Cloud Serpent"],
+},
+
 ["All-Seeing Right Eye"] = {
 	cat = BFA,
 	type = ITEM,

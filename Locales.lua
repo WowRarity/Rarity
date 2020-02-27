@@ -2,6 +2,8 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Can be used to capture the Ivory Cloud Serpent"] = true
+L["Zan-Tien Lasso"] = true
 L["Battle for Azeroth"] = true
 L["Overly Sensitive Void Spectacles"] = true
 L["Void-Touched Souvenir Totem"] = true
