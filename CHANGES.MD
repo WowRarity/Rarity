@@ -1,3 +1,15 @@
+**r696:**
+
+> Added tracking for collectibles obtained from Horrific Visions (experimental)
+<br>Added tracking for the Zan-Tien Lasso (dropped by mogu in the Vale of Eternal Blossoms)
+<br>Added tracking for pets obtained from 8.3 paragon caches
+<br>Added missing toggle for BFA content in the configuration UI
+
+> Updated group size recommendations for 8.3 collectibles
+
+
+-----
+
 **r695:**
 
 > Added tracking for missing collectibles dropped from rares in Uldum and Vale of the Eternal Blossoms
@@ -25,12 +37,3 @@
 
 > Fixed tracking for the Timewalking version of the Ozumat encounter (Throne of the Tides)
 <br>Fixed waypoint coordinates for Rukhmar and Sha of Anger (courtesy of divinemaiden)
-
------
-
-**r691:**
-
-> Added tracking for collectibles obtained in Nazjatar and Mechagon Island
-<br>Added tracking for Paragon rewards from both Nazjatar factions
-<br>Added tracking for collectibles obtained from bosses in Azshara's Eternal Palace (raid)
-<br>Added tracking for collectibles obtained from bosses in Operation: Mechagon (dungeon)

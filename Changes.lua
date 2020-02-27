@@ -1,4 +1,18 @@
 local changes = {
+	["r696"] = {
+		additions = {
+			"Added tracking for collectibles obtained from Horrific Visions (experimental)",
+			"Added tracking for the Zan-Tien Lasso (dropped by mogu in the Vale of Eternal Blossoms)",
+			"Added tracking for pets obtained from 8.3 paragon caches",
+			"Added missing toggle for BFA content in the configuration UI",
+		},
+		changes = {
+			"Updated group size recommendations for 8.3 collectibles"
+		},
+		fixes = {
+
+		},
+	},
 	["r695"] = {
 		additions = {
 			"Added tracking for missing collectibles dropped from rares in Uldum and Vale of the Eternal Blossoms",
