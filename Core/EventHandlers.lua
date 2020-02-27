@@ -288,7 +288,8 @@ function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidS
 	for _, item in ipairs(items) do
 		if item and type(item) == "string" then -- This encounter has an entry in the LUT and needs special handling
 			R:Debug("Found item of interest for this encounter: " .. tostring(item))
-			local v = self.db.profile.groups.pets[item] -- v = value = number of attempts for this item
+			local v = self.db.profile.groups.pets[item] or self.db.profile.groups.items[item]
+			-- v = value = number of attempts for this item
 
 			if endStatus == 1 then -- Encounter succeeded -> Check if number of attempts should be increased
 				if v and type(v) == "table" and v.enabled ~= false and R:IsAttemptAllowed(v) then -- Add one attempt for this item
