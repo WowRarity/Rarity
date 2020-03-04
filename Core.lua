@@ -18,7 +18,7 @@ R.modulesEnabled = {}
 
 local npcs = {}
 
-local fishzones = {}
+Rarity.fishzones = {}
 local rarity_stats = {}
 Rarity.mount_sources = {}
 Rarity.pet_sources = {}
@@ -181,7 +181,6 @@ do
 
 		-- Expose private objects
 		R.npcs = npcs
-		R.fishzones = fishzones
 		R.stats = rarity_stats
 
 		-- LibSink still tries to call a non-existent Blizzard function sometimes
@@ -522,7 +521,7 @@ function R:UpdateInterestingThings()
  table.wipe(Rarity.npcs_to_items)
  table.wipe(Rarity.items_to_items)
  table.wipe(Rarity.used)
- table.wipe(fishzones)
+ table.wipe(Rarity.fishzones)
  table.wipe(Rarity.architems)
 	table.wipe(Rarity.stats_to_scan)
 	table.wipe(Rarity.items_with_stats)
@@ -566,9 +565,9 @@ function R:UpdateInterestingThings()
       end
      elseif vv.method == FISHING and vv.zones ~= nil and type(vv.zones) == "table" then
       for kkk, vvv in pairs(vv.zones) do
-       if lbz[vvv] then fishzones[lbz[vvv]] = vv end
-       if lbsz[vvv] then fishzones[lbsz[vvv]] = vv end
-       fishzones[vvv] = vv
+       if lbz[vvv] then Rarity.fishzones[lbz[vvv]] = vv end
+       if lbsz[vvv] then Rarity.fishzones[lbsz[vvv]] = vv end
+       Rarity.fishzones[vvv] = vv
       end
      elseif vv.method == ARCH and vv.itemId ~= nil then
       local itemName = GetItemInfo(vv.itemId)

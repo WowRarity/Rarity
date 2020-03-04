@@ -1162,8 +1162,9 @@ function R:OnEvent(event, ...)
 				self:Debug("Successfully fished")
 			end
 			if
-				fishzones[tostring(GetBestMapForUnit("player"))] or fishzones[zone] or fishzones[subzone] or fishzones[zone_t] or
-					fishzones[subzone_t]
+				Rarity.fishzones[tostring(GetBestMapForUnit("player"))] or Rarity.fishzones[zone] or Rarity.fishzones[subzone] or
+					Rarity.fishzones[zone_t] or
+					Rarity.fishzones[subzone_t]
 			 then
 				-- We're interested in fishing in this zone; let's find the item(s) involved
 				Rarity:Debug("We're interested in fishing in this zone; let's find the item(s) involved")
