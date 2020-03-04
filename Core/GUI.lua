@@ -72,7 +72,6 @@ local RequestRaidInfo = RequestRaidInfo
 local RequestLFDPlayerLockInfo = RequestLFDPlayerLockInfo
 
 -- Addon APIs
-local Error = Rarity.Utils.PrettyPrint.Error
 local FormatTime = Rarity.Utils.PrettyPrint.FormatTime
 local sort = Rarity.Utils.Sorting.sort
 local sort2 = Rarity.Utils.Sorting.sort2
