@@ -285,6 +285,10 @@ function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidS
 	)
 
 	local items = encounterLUT[encounterID]
+	if type(items) ~= "table" then
+		-- Not a relevant encounter
+		return
+	end
 	for _, item in ipairs(items) do
 		if item and type(item) == "string" then -- This encounter has an entry in the LUT and needs special handling
 			R:Debug("Found item of interest for this encounter: " .. tostring(item))
