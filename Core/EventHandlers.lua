@@ -15,6 +15,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 -- Lua APIs
 local bit_band = _G.bit.band
 local strlower = _G.strlower
+local format = _G.format
 
 -- WOW APIs
 local GetCurrencyInfo = GetCurrencyInfo
@@ -88,6 +89,7 @@ function EventHandlers:Register()
 	self:RegisterEvent("PET_BATTLE_CLOSE", "OnPetBattleEnd")
 	self:RegisterEvent("ISLAND_COMPLETED", "OnIslandCompleted")
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", "OnSpellcastSucceeded")
+	self:RegisterEvent("QUEST_TURNED_IN", "OnQuestTurnedIn")
 	self:RegisterBucketEvent("UPDATE_INSTANCE_INFO", 1, "OnEvent")
 	self:RegisterBucketEvent("LFG_UPDATE_RANDOM_INFO", 1, "OnEvent")
 	self:RegisterBucketEvent("CALENDAR_UPDATE_EVENT_LIST", 1, "OnEvent")
@@ -434,6 +436,35 @@ function R:OnCombat()
 				end
 			end
 		end
+	end
+end
+
+-- Handle quest turnins: Only used to detect world quests used for outdoor world bosses. It's not ideal, but probably more reliable than the loot lockout quest (which may or may not already be completed when the UNIT_DIED event is fired)
+local worldBossQuests = {
+	[52196] = "Slightly Damp Pile of Fur" -- Dunegorger Kraulok
+}
+
+function R:OnQuestTurnedIn(event, questID, experience, money)
+	self:Debug(
+		"OnQuestTurnedIn triggered with ID = " .. questID .. ", experience = " .. experience .. ", money = " .. money
+	)
+
+	local relevantItem = worldBossQuests[questID]
+	if not relevantItem then
+		return
+	end
+	self:Debug(format("Relevant quest turnin detected for item %s (questID = %d)", questID, relevantItem))
+
+	local v =
+		self.db.profile.groups.items[relevantItem] or self.db.profile.groups.pets[relevantItem] or
+		self.db.profile.groups.mounts[relevantItem]
+	if v and type(v) == "table" and v.enabled ~= false then
+		if v.attempts == nil then
+			v.attempts = 1
+		else
+			v.attempts = v.attempts + 1
+		end
+		self:OutputAttempts(v)
 	end
 end
 

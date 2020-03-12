@@ -655,25 +655,6 @@ function R:IsAttemptAllowed(item)
 	-- No item supplied; assume it's okay
 	if item == nil then return true end
 
-	-- Make sure the item can still be looted
-	if item.questId then
-		-- Only items with exactly one questID are processed correctly, as is the case with all outdoor world bosses
-		-- Dealing with multiple questIDs properly would be too cumbersome and isn't needed right now, so I'll neglect it
-		if type(item.questId) == "table" then
-			for _, questID in ipairs(item.questId) do
-				local numCompletedQuests = 0
-				if IsQuestFlaggedCompleted(questID) then
-					self:Debug(format("Quest %d is flagged as completed)", questID))
-					numCompletedQuests = numCompletedQuests + 1
-				end
-				if numCompletedQuests == #item.questId then
-					self:Debug(format("Ignoring attempt for item %d (all quests are already completed)", item.itemId))
-					return
-				end
-			end
-		end
-	end
-
 	-- Check disabled classes
 	if not Rarity.Caching:GetPlayerClass() then Rarity.Caching:SetPlayerClass(select(2, UnitClass("player"))) end
 	if item.disableForClass and type(item.disableForClass == "table") and item.disableForClass[Rarity.Caching:GetPlayerClass()] == true then return false end

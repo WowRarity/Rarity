@@ -1414,7 +1414,7 @@ function R:PrepareDefaults()
 		["Slightly Damp Pile of Fur"] = {
 			cat = BFA,
 			type = MOUNT,
-			method = BOSS,
+			method = SPECIAL,
 			name = L["Slightly Damp Pile of Fur"],
 			itemId = 174842,
 			spellId = 298367,
