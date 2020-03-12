@@ -47,6 +47,7 @@ local GetMapInfo = _G.C_Map.GetMapInfo
 local C_Timer = _G.C_Timer
 local IsSpellKnown = _G.IsSpellKnown
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
+local UnitAffectingCombat = _G.UnitAffectingCombat
 
 -- Addon APIs
 local DebugCache = Rarity.Utils.DebugCache
@@ -398,6 +399,14 @@ function R:OnCombat()
 		auraType = CombatLogGetCurrentEventInfo()
 
 	if eventType == "UNIT_DIED" then -- A unit died near you
+
+		if not UnitAffectingCombat("player") then
+
+			Rarity:Debug("Ignoring this UNIT_DIED event because the player isn't in combat")
+			return
+
+		end
+
 		local npcid = self:GetNPCIDFromGUID(dstGuid)
 		if Rarity.bosses[npcid] then -- It's a boss we're interested in
 			R:Debug("Detected UNIT_DIED for relevant NPC with ID = " .. tostring(npcid))
