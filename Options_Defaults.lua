@@ -1712,7 +1712,7 @@ function R:PrepareDefaults()
 			itemId = 159842,
 			npcs = 99999, -- 129440 (Heroic)
 			statisticId = { 12752 },
-			chance = 100,
+			chance = 200,
 			equalOdds = true,
 			instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 			groupSize = 5,
@@ -1727,7 +1727,7 @@ function R:PrepareDefaults()
 			itemId = 160829,
 			npcs = 99999, -- 133007
 			statisticId = { 12745 },
-			chance = 100,
+			chance = 200,
 			equalOdds = true,
 			instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 			groupSize = 5,
@@ -1742,7 +1742,7 @@ function R:PrepareDefaults()
 			itemId = 159921,
 			npcs = 99999, -- 136160
 			statisticId = { 12763 },
-			chance = 100,
+			chance = 200,
 			equalOdds = true,
 			instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 			groupSize = 5,
