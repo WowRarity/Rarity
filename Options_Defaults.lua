@@ -1710,7 +1710,8 @@ function R:PrepareDefaults()
 			name = L["Sharkbait's Favorite Crackers"],
 			spellId = 254813,
 			itemId = 159842,
-			npcs = 99999, -- 129440 (Heroic)
+			npcs = { 99999 },
+			tooltipNpcs = { 126983 },
 			statisticId = { 12752 },
 			chance = 200,
 			equalOdds = true,
@@ -1725,7 +1726,8 @@ function R:PrepareDefaults()
 			name = L["Underrot Crawg Harness"],
 			spellId = 273541,
 			itemId = 160829,
-			npcs = 99999, -- 133007
+			npcs = { 99999 },
+			tooltipNpcs = { 133007 },
 			statisticId = { 12745 },
 			chance = 200,
 			equalOdds = true,
@@ -1740,7 +1742,8 @@ function R:PrepareDefaults()
 			name = L["Mummified Raptor Skull"],
 			spellId = 266058,
 			itemId = 159921,
-			npcs = 99999, -- 136160
+			npcs = { 99999 },
+			tooltipNpcs = { 136160 },
 			statisticId = { 12763 },
 			chance = 200,
 			equalOdds = true,
