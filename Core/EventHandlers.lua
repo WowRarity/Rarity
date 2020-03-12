@@ -398,14 +398,8 @@ function R:OnCombat()
 		spellSchool,
 		auraType = CombatLogGetCurrentEventInfo()
 
+
 	if eventType == "UNIT_DIED" then -- A unit died near you
-
-		if not UnitAffectingCombat("player") then
-
-			Rarity:Debug("Ignoring this UNIT_DIED event because the player isn't in combat")
-			return
-
-		end
 
 		local npcid = self:GetNPCIDFromGUID(dstGuid)
 		if Rarity.bosses[npcid] then -- It's a boss we're interested in
@@ -415,6 +409,12 @@ function R:OnCombat()
 					bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_RAID)
 			 then -- You, a party member, or a raid member killed it
 				if not Rarity.guids[dstGuid] then
+
+					if not UnitAffectingCombat("player") and not UnitIsDead("player") then
+						Rarity:Debug("Ignoring this UNIT_DIED event because the player is alive, but not in combat")
+						return
+					end
+
 					-- Increment attempts counter(s). One NPC might drop multiple things we want, so scan for them all.
 					if Rarity.npcs_to_items[npcid] and type(Rarity.npcs_to_items[npcid]) == "table" then
 						for k, v in pairs(Rarity.npcs_to_items[npcid]) do
