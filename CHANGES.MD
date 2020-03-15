@@ -6,7 +6,13 @@
 <br>Added missing toggle for BFA content in the configuration UI
 
 > Updated group size recommendations for 8.3 collectibles
+<br>Updated drop rate estimations for mounts obtained in BFA dungeons
 
+> Fixed an issue that could cause additional attempts to be registered when Dunegorger Kraulok died nearby, but wasn't actually engaged
+<br>Fixed the detection of pets obtained in the Firelands raid (see notes below)
+
+Developer Notes:
+> It appears that Blizzard broke the statistics for the Firelands raid when adding its Timewalking version. Detection for all bosses except Ragnaros and Alysrazor was changed to use NPC looting in order to work around this bug as best as possible, but attempts for items dropped by those two bosses might not always be detected until statistics are being updated correctly again
 
 -----
 
