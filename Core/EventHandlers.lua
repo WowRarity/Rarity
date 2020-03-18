@@ -11,6 +11,9 @@ local coinamounts = {}
 
 -- Externals
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
+local lbz = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
+local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
+local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
 
 -- Lua APIs
 local bit_band = _G.bit.band
@@ -19,13 +22,11 @@ local format = _G.format
 
 -- WOW APIs
 local GetCurrencyInfo = GetCurrencyInfo
-local CombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo
+local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
 local UnitGUID = UnitGUID
 local LoadAddOn = LoadAddOn
 local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
 local GetMapInfo = _G.C_Map.GetMapInfo
-local UnitGUID = _G.UnitGUID
-local UnitName = _G.UnitName
 local UnitCanAttack = _G.UnitCanAttack
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitIsDead = _G.UnitIsDead
@@ -44,11 +45,8 @@ local GetNumArchaeologyRaces = _G.GetNumArchaeologyRaces
 local GetArchaeologyRaceInfo = _G.GetArchaeologyRaceInfo
 local GetStatistic = _G.GetStatistic
 local GetLootSourceInfo = _G.GetLootSourceInfo
-local GetMapInfo = _G.C_Map.GetMapInfo
 local C_Timer = _G.C_Timer
 local IsSpellKnown = _G.IsSpellKnown
-local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
-local UnitAffectingCombat = _G.UnitAffectingCombat
 
 -- Addon APIs
 local DebugCache = Rarity.Utils.DebugCache
@@ -100,7 +98,7 @@ end
 -- TODO: Move elsewhere/refactor
 local function addAttemptForItem(itemName, categoryName)
 	local self = Rarity
-	v = self.db.profile.groups[categoryName][itemName]
+	local v = self.db.profile.groups[categoryName][itemName]
 	if v and type(v) == "table" and v.enabled ~= false then
 		if v.attempts == nil then
 			v.attempts = 1
@@ -108,6 +106,18 @@ local function addAttemptForItem(itemName, categoryName)
 			v.attempts = v.attempts + 1
 		end
 		self:OutputAttempts(v)
+	end
+end
+
+local function table_contains(haystack, needle)
+	if type(haystack) ~= "table" then
+		return
+	end
+
+	for _, value in pairs(haystack) do
+		if value == needle then
+			return true
+		end
 	end
 end
 
@@ -270,15 +280,15 @@ local encounterLUT = {
 		"C'Thuffer"
 	}, -- Rexxar
 	[2377] = {
-		"Void-Scarred Hare",
+		"Void-Scarred Hare"
 	}, -- Magister Umbric
 	[2372] = {
 		"Void-Touched Souvenir Totem",
-		"Box With Faintly Glowing 'Air' Holes",
+		"Box With Faintly Glowing 'Air' Holes"
 	}, -- Oblivion Elemental (Final objective for Zekhan's area)
 	[2374] = {
-		'Box Labeled "Danger: Void Rat Inside"',
-	}, -- Therum Deepforge (Final objective for Kelsey's area)
+		'Box Labeled "Danger: Void Rat Inside"'
+	} -- Therum Deepforge (Final objective for Kelsey's area)
 }
 
 function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidSize, endStatus)
@@ -401,9 +411,7 @@ function R:OnCombat()
 		spellSchool,
 		auraType = CombatLogGetCurrentEventInfo()
 
-
 	if eventType == "UNIT_DIED" then -- A unit died near you
-
 		local npcid = self:GetNPCIDFromGUID(dstGuid)
 		if Rarity.bosses[npcid] then -- It's a boss we're interested in
 			R:Debug("Detected UNIT_DIED for relevant NPC with ID = " .. tostring(npcid))
@@ -412,7 +420,6 @@ function R:OnCombat()
 					bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_RAID)
 			 then -- You, a party member, or a raid member killed it
 				if not Rarity.guids[dstGuid] then
-
 					if not UnitAffectingCombat("player") and not UnitIsDead("player") then
 						Rarity:Debug("Ignoring this UNIT_DIED event because the player is alive, but not in combat")
 						return
@@ -1010,7 +1017,6 @@ end
       OBTAIN DETECTION ---------------------------------------------------------------------------------------------------------
       -- Some easy, some fairly arcane methods to detect when we've obtained something we're looking for
   ]]
-
 function R:OnEvent(event, ...)
 	-------------------------------------------------------------------------------------
 	-- You opened a loot window on a corpse or fishing node
@@ -1187,7 +1193,7 @@ function R:OnEvent(event, ...)
 					end
 				end
 
-				v = self.db.profile.groups.mounts["Torn Invitation"]
+				local v = self.db.profile.groups.mounts["Torn Invitation"]
 				if v and type(v) == "table" and v.enabled ~= false then
 					if v.attempts == nil then
 						v.attempts = 1
@@ -1219,7 +1225,7 @@ function R:OnEvent(event, ...)
 							if type(vv) == "table" then
 								if vv.enabled ~= false then
 									local found = false
-									if vv.method == FISHING and vv.zones ~= nil and type(vv.zones) == "table" then
+									if vv.method == CONSTANTS.DETECTION_METHODS.FISHING and vv.zones ~= nil and type(vv.zones) == "table" then
 										for kkk, vvv in pairs(vv.zones) do
 											if
 												vvv == tostring(GetBestMapForUnit("player")) or vvv == zone or vvv == lbz[zone] or vvv == subzone or
@@ -1319,7 +1325,6 @@ function R:OnEvent(event, ...)
 
 		-- HANDLE NORMAL NPC LOOTING
 		local numItems = GetNumLootItems()
-		local slotID
 
 		-- Legacy support for pre-5.0 single-target looting
 		local guid = UnitGUID("target")
@@ -1361,8 +1366,8 @@ function R:OnEvent(event, ...)
 					self:Debug("Checking NPC guid (" .. (numChecked + 1) .. "): " .. guid)
 					self:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, Rarity.currentSpell, requiresPickpocket) -- Decide if we should increment an attempt count for this NPC
 					numChecked = numChecked + 1
-				else
-					--self:Debug("Didn't check guid: "..guid or "nil")
+				-- else
+				-- 	--self:Debug("Didn't check guid: "..guid or "nil")
 				end -- Loop through all NPC GUIDs being looted (will be 1 for single-target looting pre-5.0)
 			end -- Haven't seen this corpse yet
 		end -- Loop through all loot slots (for AoE looting)
@@ -1373,8 +1378,6 @@ function R:OnEvent(event, ...)
 		end
 
 		-- Scan the loot to see if we found something we're looking for
-		local numItems = GetNumLootItems()
-		local slotID
 		for slotID = 1, numItems, 1 do
 			local _, _, qty = GetLootSlotInfo(slotID)
 			if (qty or 0) > 0 then -- Coins have quantity of 0, so skip those
@@ -1382,7 +1385,7 @@ function R:OnEvent(event, ...)
 				if itemLink then
 					local _, itemId = strsplit(":", itemLink)
 					itemId = tonumber(itemId)
-					if Rarity.items[itemId] ~= nil and Rarity.items[itemId].method ~= COLLECTION then
+					if Rarity.items[itemId] ~= nil and Rarity.items[itemId].method ~= CONSTANTS.DETECTION_METHODS.COLLECTION then
 						self:OnItemFound(itemId, Rarity.items[itemId])
 					end
 				end

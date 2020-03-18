@@ -155,8 +155,8 @@ end
 
 local function sort(t)
  local nt = {}
- local i, j, n, min = 0, 0, 0, 0
- local k, v
+ local n = 0
+ local min
  for k, v in pairs(t) do
   if type(v) == "table" and v.name then
    n = n + 1
@@ -233,7 +233,7 @@ end
 
 local b = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 
-function enc64(data)
+local function enc64(data)
     return ((data:gsub('.', function(x)
         local r,b='',x:byte()
         for i=8,1,-1 do r=r..(b%2^i-b%2^(i-1)>0 and '1' or '0') end
@@ -246,7 +246,7 @@ function enc64(data)
     end)..({ '', '==', '=' })[#data%3+1])
 end
 
-function dec64(data)
+local function dec64(data)
 	if not data then return nil end
     data = string.gsub(data, '[^'..b..'=]', '')
     return (data:gsub('.', function(x)
@@ -1076,7 +1076,7 @@ function R:PrepareOptions()
 							if type(e) == "table" and e.items and type(e.items) == "table" then
 								for k, v in pairs(e.items) do
 									numItems = numItems + 1
-									break
+									break -- Why?
 								end
 							end
 							if type(e) == "table" and e.items and type(e.items) == "table" and numItems > 0 and e.build and tonumber(e.build) > 0 and e.signature and e.signature == IMPORTEXPORT_SIGNATURE then
@@ -1328,7 +1328,7 @@ function R:CreateGroup(options, group, isUser)
 
  options.args = {
 		name = {
-			type = "execute",
+			-- type = "execute", -- Why?
 			type = "input",
 			width = "double",
 			name = L["Create a new item to track"],
@@ -1364,12 +1364,12 @@ function R:CreateGroup(options, group, isUser)
 		 name = function() return select(2, GetItemInfo(item.itemId or 0)) or item.name end,
 		 args = {
 
-			 head = {
-				 type = "description",
-				 order = newOrder(),
-				 name = function() return select(2, GetItemInfo(item.itemId or 0)) or item.name end,
-				 fontSize = "large"
-			 },
+			--  head = { -- Why?
+			-- 	 type = "description",
+			-- 	 order = newOrder(),
+			-- 	 name = function() return select(2, GetItemInfo(item.itemId or 0)) or item.name end,
+			-- 	 fontSize = "large"
+			--  },
 
 			 head = {
 				 type = "description",

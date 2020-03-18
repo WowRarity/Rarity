@@ -337,9 +337,9 @@ function R:PrepareDefaults()
 				-- REP ITEMS
 
 				-- Nagrand
-				[86732] = { itemId = 118654 }, -- Aogexon
+				[86774] = { itemId = 118654 }, -- Aogexon
 				[86732] = { itemId = 118655 }, -- Bergruu
-				[86732] = { itemId = 118656 }, -- Dekorhan
+				[86743] = { itemId = 118656 }, -- Dekorhan
 				[87650] = { itemId = 118657 }, -- Direhoof
 				[86771] = { itemId = 118658 }, -- Gagrog the Brutal
 				[87667] = { itemId = 118659 }, -- Mu'gra
@@ -502,7 +502,7 @@ function R:PrepareDefaults()
 				[84775] = { questId = 36254, itemId = 116852 }, -- Tesska the Broken
 				[82050] = { questId = 35334, itemId = 118207 }, -- Varasha
 				-- Talador
-				[82922] = { questId = 37343, itemId = 119371 }, -- Archmagus Tekar <Sargerei War Council>
+				[88072] = { questId = 37343, itemId = 119371 }, -- Archmagus Tekar <Sargerei War Council>
 				[88043] = { questId = 37338, itemId = 119378 }, -- Avatar of Socrethar
 				[77620] = { questId = 34165, itemId = 116123 }, -- Cro Fleshrender
 				[77561] = { questId = 34142, itemId = 112499 }, -- Dr. Gloom
@@ -1646,7 +1646,10 @@ function R:PrepareDefaults()
 		chance = 4000, groupSize = 5, equalOdds = true, instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.TIMEWALKING_DUNGEON] = true, }, coords = {{m=348,i=true},{m=265,i=true},{m=246,i=true},{m=272,i=true},{m=273,i=true},{m=269,i=true},{m=184,i=true},{m=136,i=true},{m=129,i=true},{m=138,i=true},{m=153,i=true},{m=132,i=true},{m=322,i=true},{m=325,i=true},{m=324,i=true},{m=277,i=true},{m=293,i=true},{m=401,i=true},{m=437,i=true},{m=429,i=true},{m=439,i=true},{m=457,i=true},{m=443,i=true},{m=453,i=true}}, },
 		-- 7.x
 		["Abyss Worm"] =                                    { cat = LEGION, type = MOUNT, method = BOSS, name = L["Abyss Worm"], spellId = 232519, itemId = 143643, npcs = { 99999 }, tooltipNpcs = { 115767 }, chance = 100, groupSize = 3, equalOdds = true, statisticId = { 11893, 11894, 11895, 11896, }, coords = { {m=851, i=true} }, },
-		["Living Infernal Core"] =                          { cat = LEGION, type = MOUNT, method = BOSS, name = L["Living Infernal Core"], sourceText = L["All raid formats except Raid Finder"],spellId = 213134, itemId = 137574, npcs = { 99999 }, tooltipNpcs = { 105503 }, chance = 100, groupSize = 3, equalOdds = true, statisticId = { 10979, 10980, 10978 }, coords = { {m=772, i=true} }, },
+		["Living Infernal Core"] =                          { cat = LEGION, type = MOUNT, method = BOSS, name = L["Living Infernal Core"], sourceText = L["All raid formats except Raid Finder"],spellId = 213134, itemId = 137574, npcs = { 99999 }, tooltipNpcs = {
+			105503,
+			104154, -- Gul'dan (normal)
+	 }, chance = 100, groupSize = 3, equalOdds = true, statisticId = { 10979, 10980, 10978 }, coords = { {m=772, i=true} }, },
 		["Midnight's Eternal Reins"] =                      { cat = LEGION, type = MOUNT, method = BOSS, name = L["Midnight's Eternal Reins"], spellId = 229499, itemId = 142236, npcs = { 114262, }, chance = 100, equalOdds = true, instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true, }, lockDungeonId = 1475, lockBossName = "Attumen the Huntsman", coords = {{m=794,i=true}}, },
 
 		["Fiendish Hellfire Core"] ={
@@ -4263,6 +4266,7 @@ function R:PrepareDefaults()
 		chance = 65,
 		groupSize = 5,
 		equalOdds = true,
+		-- todo tooltip for first two phases? test on heroic
 	},
 
 	-- 8.3 Pets
@@ -4641,6 +4645,7 @@ function R:PrepareDefaults()
 		enableCoin = true,
 		disableForClass = { ["DEATHKNIGHT"] = true, ["DRUID"] = true, ["HUNTER"] = true, ["MAGE"] = true, ["MONK"] = true, ["PALADIN"] = true, ["PRIEST"] = true, ["ROGUE"] = true, ["SHAMAN"] = true, ["WARLOCK"] = true, ["WARRIOR"] = true },
 		statisticId = { 10977, 10979, 10980, 10978 },
+		-- todo is still counting even if disableForClass is set?
 		coords = { {m=772, i=true} },
 	},
 
@@ -4654,7 +4659,11 @@ function R:PrepareDefaults()
 		name = L["Golden Hearthstone Card: Lord Jaraxxus"],
 		itemId = 119211,
 		npcs = { 99999 },
-		tooltipNpcs = { 105503, 111022 }, -- Gul'dan / The Demon Within (Mythic only)
+		tooltipNpcs = { 105503,
+		104154, -- Gul'dan (normal)
+		-- todo test LFR
+		-- todo bonus roll
+		111022 }, -- Gul'dan / The Demon Within (Mythic only)
 		groupSize = 3,
 		equalOdds = true,
 		chance = 275,
@@ -5580,7 +5589,7 @@ function R:PrepareDefaults()
      ["Primal Egg"] =                                    { cat = MOP, type = ITEM, method = NPC, name = L["Primal Egg"], itemId = 94295, npcs = { 69983, 69991, 69992, 69993, 70004, 70005, 70006, 70007, 70008, 70009, 70010, 70011, 70012, 70013, 70014, 70015, 70016, 70017, 70018, 70019, 70020, 70021, }, chance = 100,  unique = true, sourceText = L["Dropped by dinosaurs on Isle of Giants Will hatch into one of three Primal Raptor mounts after three days."], coords = { {m=507} }, },
      ["Skyshard"] =                                      { cat = MOP, type = ITEM, method = ZONE, name = L["Skyshard"], spellId = 90655, itemId = 86547, zones = { "390", "395", "396", "1530" }, chance = 1000,  sourceText = L["Dropped by any mob in Vale of Eternal Blossoms (except minor mobs). 10 of these can be combined to pierce Alani's shield, allowing combat and a guaranteed drop of Reins of the Thundering Ruby Cloud Serpent."], coords = { {m=390}, {m=395}, {m=396}, {m=1530} }, },
 
-	 	 -- Mount-related items (7.3)
+	-- Mount-related items (7.3)
 	 ["Fel-Spotted Egg"] = {
 		cat = LEGION,
 		type = ITEM,

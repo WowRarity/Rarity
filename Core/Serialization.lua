@@ -7,6 +7,7 @@ local R = Rarity
 
 -- Externals
 local compress = LibStub("LibCompress")
+local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 
 -- Lua APIs
 local tonumber = tonumber
@@ -113,7 +114,7 @@ function Serialization:ImportFromBunnyHunter()
 			exclusive = 1,
 			whileDead = 1,
 			OnAccept = function()
-				local self = Rarity
+				self = Rarity
 				-- Do the import
 				if BunnyHunterDB.loots and type(BunnyHunterDB.loots) == "table" then
 					for k, v in pairs(BunnyHunterDB.loots) do

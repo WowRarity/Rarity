@@ -192,7 +192,7 @@ function Collections:ScanExistingItems(reason)
 		C_PetJournal.SetAllPetTypesChecked(true)
 		C_PetJournal.SetAllPetSourcesChecked(true)
 	end
-	local total, owned = C_PetJournal.GetNumPets()
+	local total, numOwnedPets = C_PetJournal.GetNumPets()
 	for i = 1, total do
 		local petID,
 			speciesID,

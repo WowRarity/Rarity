@@ -32,7 +32,6 @@ Rarity.relevantSpells = {
 	[110410] = "Fishing",
 	[2575] = "Mining",
 	[265853] = "Mining",
-	[2575] = "Mining",
 	[158754] = "Mining",
 	[2576] = "Mining",
 	[195122] = "Mining",

@@ -209,7 +209,7 @@ function GUI:UpdateText()
 	end
 
 	self:ProfileStart()
-	local attempts, dropChance, chance = 0, 0, 0
+	local attempts, dropChance, chance
 
 	local trackedItem = Rarity.Tracking:GetTrackedItem(1)
 	if not trackedItem or (trackedItem and not trackedItem.itemId) then
@@ -333,8 +333,8 @@ function GUI:UpdateText()
 		self.bar2 = nil
 	else
 		self.hadBarTwo = true
-		local itemName,
-			itemLink,
+		_, -- itemName,
+			_, -- itemLink,
 			itemRarity,
 			itemLevel,
 			itemMinLevel,
@@ -380,7 +380,7 @@ function GUI:UpdateText()
 		if chance < 0 then
 			chance = 0
 		end
-		local text = format("%s: %d (%.2f%%)", trackedItem2.name or "", attempts, chance)
+		text = format("%s: %d (%.2f%%)", trackedItem2.name or "", attempts, chance)
 		if not self.bar2 then
 			self.bar2 =
 				self.barGroup:NewCounterBar(
@@ -500,6 +500,18 @@ local function showSubTooltip(cell, item)
 	end
 
 	local itemName,
+	itemLink,
+	itemRarity,
+	itemLevel,
+	itemMinLevel,
+	itemType,
+	itemSubType,
+	itemStackCount,
+	itemEquipLoc,
+	itemTexture,
+	itemSellPrice
+
+	_, -- itemName,
 		itemLink,
 		itemRarity,
 		itemLevel,
@@ -583,7 +595,7 @@ local function showSubTooltip(cell, item)
 					zone = lbsz[v]
 				end
 				if not zone then
-					zone = v
+					-- zone = v -- Why?
 				end
 				if not tonumber(v) then
 					tooltip2AddLine(colorize("    " .. v, gray))
@@ -597,7 +609,7 @@ local function showSubTooltip(cell, item)
 	elseif item.method == CONSTANTS.DETECTION_METHODS.USE then
 		if item.items and type(item.items) == "table" then
 			for k, v in pairs(item.items) do
-				local itemName,
+				_, -- itemName,
 					itemLink,
 					itemRarity,
 					itemLevel,
@@ -606,7 +618,7 @@ local function showSubTooltip(cell, item)
 					itemSubType,
 					itemStackCount,
 					itemEquipLoc,
-					itemTexture,
+					_, -- itemTexture,
 					itemSellPrice = GetItemInfo(v)
 				if itemLink then
 					tooltip2AddLine("    " .. itemLink)
@@ -698,7 +710,7 @@ local function showSubTooltip(cell, item)
 	if item.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
 		local collectText = ""
 		if type(item.collectedItemId) ~= "table" then
-			local itemName,
+			itemName,
 				itemLink,
 				itemRarity,
 				itemLevel,
@@ -707,12 +719,12 @@ local function showSubTooltip(cell, item)
 				itemSubType,
 				itemStackCount,
 				itemEquipLoc,
-				itemTexture,
+				_, -- itemTexture,
 				itemSellPrice = GetItemInfo(item.collectedItemId)
 			collectText = itemLink or itemName or ""
 		else
 			for k, v in pairs(item.collectedItemId) do
-				local itemName,
+				itemName,
 					itemLink,
 					itemRarity,
 					itemLevel,
@@ -721,7 +733,7 @@ local function showSubTooltip(cell, item)
 					itemSubType,
 					itemStackCount,
 					itemEquipLoc,
-					itemTexture,
+					_, -- itemTexture,
 					itemSellPrice = GetItemInfo(v)
 				if collectText ~= "" then
 					collectText = collectText .. ", "
@@ -785,7 +797,7 @@ local function showSubTooltip(cell, item)
 	if item.totalFinds and item.method ~= CONSTANTS.DETECTION_METHODS.COLLECTION then
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
 		tooltip2AddLine(colorize(L["Total"], yellow))
-		local attempts = (item.attempts or 0)
+		attempts = (item.attempts or 0)
 		tooltip2AddDoubleLine(L["Attempts"], attempts)
 		if
 			item.method == CONSTANTS.DETECTION_METHODS.NPC or item.method == CONSTANTS.DETECTION_METHODS.ZONE or
@@ -799,7 +811,7 @@ local function showSubTooltip(cell, item)
 			tooltip2:AddSeparator(1, 1, 1, 1, 1)
 			local f = sort2(item.finds)
 			for k, v in pairs(f) do
-				local dropChance = Rarity.Statistics.GetRealDropPercentage(v)
+				dropChance = Rarity.Statistics.GetRealDropPercentage(v)
 				local chance = 100 * (1 - math.pow(1 - dropChance, v.attempts))
 				if v.attempts == 1 then
 					tooltip2AddDoubleLine(
@@ -1217,7 +1229,7 @@ local function addGroup(group, requiresGroup)
 						if trackedItem == v then
 							icon = [[|TInterface\Buttons\UI-CheckBox-Check:0|t]]
 						end
-						local time = 0
+						time = 0
 						if v.time then
 							time = v.time
 						end
@@ -1519,7 +1531,7 @@ local function addGroup(group, requiresGroup)
 		(not headerAdded) and itemsExistInThisGroup and
 			((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true))
 	 then
-		headerAdded = true
+		-- headerAdded = true -- Why?
 		local groupName = group.name
 		if requiresGroup then
 			groupName = groupName .. L[" (Group)"]
@@ -1593,7 +1605,7 @@ function R:ShowTooltip(hidden)
 	local itemsExistInThisGroup
 	numHolidayReminders = 0
 	showedHolidayReminderOverflow = false
-	local delay = 0.6
+	local delay
 	if self.db.profile.tooltipHideDelay <= 0 then
 		delay = 0.01
 	else
@@ -1977,7 +1989,7 @@ _G.GameTooltip:HookScript(
 			end
 		end
 
-		blankAdded = false
+		-- blankAdded = false -- Why?
 
 		-- NPC is required for an achievement
 		if Rarity.ach_npcs_achId[name] then
@@ -2178,7 +2190,7 @@ hooksecurefunc(
 									if type(vv) == "table" then
 										if vv.itemId == y then
 											if R:IsAttemptAllowed(vv) then
-												local itemName,
+												itemName,
 													itemLink,
 													itemRarity,
 													itemLevel,
@@ -2428,7 +2440,7 @@ function R:OutputAttempts(item, skipTimeUpdate)
 			end
 		end
 
-		if item.method == COLLECTION then
+		if item.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
 			s = format(L["%s: %d collected"], itemName or item.name, attempts)
 		end
 		self:Pour(s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
@@ -2507,7 +2519,7 @@ local function RarityAchievementAlertFrame_SetUp(frame, itemId, attempts)
 	if attempts == nil or attempts <= 0 then
 		attempts = 1
 	end
-	if item and item.method and item.method == COLLECTION then
+	if item and item.method and item.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
 		unlocked:SetText(L["Collection Complete"])
 	else
 		if attempts == 1 then
@@ -2538,7 +2550,7 @@ RarityAchievementAlertSystem:SetCanShowMoreConditionFunc(
 
 -- test with: /run Rarity:ShowFoundAlert(32458, 5)
 function R:ShowFoundAlert(itemId, attempts, item)
-	trackedItem = Rarity.Tracking:GetTrackedItem()
+	local trackedItem = Rarity.Tracking:GetTrackedItem()
 	if item == nil then
 		item = trackedItem
 	end
@@ -2564,7 +2576,7 @@ function R:ShowFoundAlert(itemId, attempts, item)
 	-- Output to the sink
 	if self.db.profile.enableAnnouncements ~= false and item.announce ~= false then
 		local s
-		if item.method == COLLECTION then
+		if item.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
 			s = format(L["%s: collection completed!"], itemName)
 		else
 			if attempts <= 1 then

@@ -92,7 +92,7 @@ function Session:End()
 				end
 				i.session.time = (i.session.time or 0) + len
 			end
-			self:Debug("Ending session for %s (%s)", itemLink, FormatTime(trackedItem.time or 0))
+			self:Debug("Ending session for %s (%s)", itemLink or "ITEM_LINK_UNAVAILABLE", FormatTime(trackedItem.time or 0))
 		end
 		if trackedItem2 and trackedItem2.itemId then
 			local itemName,

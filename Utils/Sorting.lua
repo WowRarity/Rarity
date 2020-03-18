@@ -131,8 +131,8 @@ end
 
 function Sorting.sort2(t)
 	local nt = {}
-	local i, j, n, min = 0, 0, 0, 0
-	local k, v
+	local n = 0
+	local min
 	for k, v in pairs(t) do
 		if type(v) == "table" and v.num then
 			n = n + 1
@@ -153,8 +153,8 @@ end
 
 function Sorting.sort(t)
 	local nt = {}
-	local i, j, n, min = 0, 0, 0, 0
-	local k, v
+	local n = 0
+	local min
 	for k, v in pairs(t) do
 		if type(v) == "table" and v.name then
 			n = n + 1
@@ -175,8 +175,8 @@ end
 
 function Sorting.sort_difficulty(t)
 	local nt = {}
-	local i, j, n, min = 0, 0, 0, 0
-	local k, v
+	local n = 0
+	local min
 	for k, v in pairs(t) do
 		if type(v) == "table" and v.name then
 			n = n + 1
@@ -197,8 +197,8 @@ end
 
 function Sorting.sort_progress(t)
 	local nt = {}
-	local i, j, n, min = 0, 0, 0, 0
-	local k, v
+	local n = 0
+	local min
 	for k, v in pairs(t) do
 		if type(v) == "table" and v.name then
 			n = n + 1
@@ -219,8 +219,8 @@ end
 
 function Sorting.sort_category(t)
 	local nt = {}
-	local i, j, n, min = 0, 0, 0, 0
-	local k, v
+	local n = 0
+	local min
 	for k, v in pairs(t) do
 		if type(v) == "table" and v.name then
 			n = n + 1
@@ -241,8 +241,8 @@ end
 
 function Sorting.sort_zone(t)
 	local nt = {}
-	local i, j, n, min = 0, 0, 0, 0
-	local k, v
+	local n = 0
+	local min
 	for k, v in pairs(t) do
 		if type(v) == "table" and v.name then
 			n = n + 1

@@ -25,12 +25,14 @@ local GetAchievementNumCriteria = GetAchievementNumCriteria
 local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
 local BOSS_DEAD = _G.BOSS_DEAD
 
+-- Why is this so inconsistently named? Does it have a special meaning?
+local rarity_stats = {}
+
 -------------------------------------------------------------------------------------
 -- Scan your bags to see if you are in possession of any of the items we want. This is used for BOSS and FISHING methods,
 -- and also works as a second line of defense in case other methods fail to notice the item.
 -------------------------------------------------------------------------------------
 function R:ScanBags()
-	local i, ii
 	table.wipe(Rarity.bagitems)
 	for i = 0, NUM_BAG_SLOTS do
 		local numSlots = GetContainerNumSlots(i)
@@ -88,11 +90,11 @@ function R:ScanInstanceLocks(reason)
 		if instanceReset > 0 then
 			scanTip:ClearLines()
 			scanTip:SetInstanceLockEncountersComplete(i)
-			for i = 2, scanTip:NumLines() do
-				local txtRight = _G["__Rarity_ScanTipTextRight" .. i]:GetText()
+			for line = 2, scanTip:NumLines() do
+				local txtRight = _G["__Rarity_ScanTipTextRight" .. line]:GetText()
 				if txtRight then
 					if txtRight == BOSS_DEAD then
-						self.lockouts[_G["__Rarity_ScanTipTextLeft" .. i]:GetText()] = true
+						self.lockouts[_G["__Rarity_ScanTipTextLeft" .. line]:GetText()] = true
 					end
 				end
 			end
@@ -102,11 +104,11 @@ function R:ScanInstanceLocks(reason)
 		if instanceReset > 0 then -- Lockout isn't expired -> Scan it and store the defeated encounter names
 			scanTip:ClearLines()
 			scanTip:SetInstanceLockEncountersComplete(i)
-			for i = 2, scanTip:NumLines() do
-				local txtRight = _G["__Rarity_ScanTipTextRight" .. i]:GetText()
+			for line = 2, scanTip:NumLines() do
+				local txtRight = _G["__Rarity_ScanTipTextRight" .. line]:GetText()
 				if txtRight then
 					if txtRight == BOSS_DEAD then
-						local encounterName = _G["__Rarity_ScanTipTextLeft" .. i]:GetText()
+						local encounterName = _G["__Rarity_ScanTipTextLeft" .. line]:GetText()
 						self.lockouts[encounterName] = true
 						-- Create containers if this is the first lockout for a given instance
 						self.lockouts_detailed[encounterName] = self.lockouts_detailed[encounterName] or {}

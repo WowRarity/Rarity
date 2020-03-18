@@ -19,7 +19,6 @@ R.modulesEnabled = {}
 local npcs = {}
 
 Rarity.fishzones = {}
-local rarity_stats = {}
 Rarity.mount_sources = {}
 Rarity.pet_sources = {}
 Rarity.lockouts = {}
@@ -182,7 +181,6 @@ do
 
 		-- Expose private objects
 		R.npcs = npcs
-		R.stats = rarity_stats
 
 		-- LibSink still tries to call a non-existent Blizzard function sometimes
 		if not CombatText_StandardScroll then CombatText_StandardScroll = 0 end
@@ -467,16 +465,6 @@ end
 			end
 		end
 	end
-
-local function table_contains(haystack, needle)
-
-	if type(haystack) ~= "table" then return end
-
-	for _, value in pairs(haystack) do
-		if value == needle then return true end
-	end
-
-end
 
 -- Location/Distance/Zone
 function R:GetDistanceToItem(item)

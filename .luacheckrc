@@ -21,21 +21,52 @@ ignore = {
 	--"43.", -- Shadowing an upvalue, an upvalue argument, an upvalue loop variable.
 	--"542", -- An empty if branch
 	"631", -- Line is too long (no, it really isn't... if it was, autoformat would have fixed it already)
+	"312", -- self is overwritten (intentionally, will be fixed in future refactoring passes)
+	"212", -- unused argument (I'd rather see what arguments are passed even if they aren't currently used)
+	"542", -- empty if branch (likely some commented-out code that needs to be reviewed later)
+	"512", -- loop is executed at most once (no idea why, will also have to be reviewed later)
+	"231", -- variable is never accessed (still more readable than replacing everything with underscores... remove later?)
+
 }
 globals = {
+
+	-- Lua environment
 	"_G",
 	"bit",
+	"Round",
 
-	-- misc custom (What even is this?)
+	-- Integration with other addons
+	"AddonLoader",
+	"BunnyHunterDB",
+	"LibStub",
+	"TomTom",
+	"TSM_API",
+
+	-- This addon
+	"Rarity",
+	"RarityDB",
+
+	-- Shared constants (Blizzard interface)
+	"UIERRORS_HOLD_TIME",
+	"SHOW_COMBAT_TEXT",
 	"CUSTOM_CLASS_COLORS",
 	"READY_CHECK_WAITING_TEXTURE",
 
-	-- "LibStub",
-	"Rarity",
-	"RarityDB",
-	"LibStub",
-
-	-- FrameXML misc
+	-- FrameXML (Blizzard interface)
+	"AchievementFrame",
+	"AchievementFrame_LoadUI",
+	"AchievementShield_SetPoints",
+	"GameFontNormal",
+	"GameFontNormalSmall",
+	"ToyBox_OnLoad",
+	"ActionStatus",
+	"AlertFrame",
+	"MinimapCluster",
+	"CalendarFrame",
+	"StorePurchaseAlertFrame",
+	"StorePurchaseAlertFrame_ShowAlert",
+	"CombatText_AddMessage",
+	"CombatText_StandardScroll",
 	"C_Timer",
 	"C_Map",
 	"C_ChatInfo",
