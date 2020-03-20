@@ -1229,34 +1229,34 @@ local function addGroup(group, requiresGroup)
 						if trackedItem == v then
 							icon = [[|TInterface\Buttons\UI-CheckBox-Check:0|t]]
 						end
-						time = 0
+						local duration = 0
 						if v.time then
-							time = v.time
+							duration = v.time
 						end
 						if v.lastTime then
-							time = v.time - v.lastTime
+							duration = v.time - v.lastTime
 						end
 						if Rarity.Session:IsActive() and trackedItem == v then
 							local len = Rarity.Session:GetLastTime() - Rarity.Session:GetStartTime()
-							time = time + len
+							duration = duration + len
 						end
-						time = FormatTime(time)
+						duration = FormatTime(duration)
 						local likelihood = format("%.2f%%", chance)
 						if attempts == 0 then
 							attempts = ""
 							lucky = ""
-							time = ""
+							duration = ""
 							likelihood = ""
 						end
-						if time == "0:00" then
-							time = ""
+						if duration == "0:00" then
+							duration = ""
 						end
 						if
 							v.method ~= CONSTANTS.DETECTION_METHODS.NPC and v.method ~= CONSTANTS.DETECTION_METHODS.ZONE and
 								v.method ~= CONSTANTS.DETECTION_METHODS.FISHING and
 								v.method ~= CONSTANTS.DETECTION_METHODS.USE
 						 then
-							time = ""
+							duration = ""
 						end
 						local status = ""
 						if v.questId and not v.holidayTexture then
@@ -1500,7 +1500,7 @@ local function addGroup(group, requiresGroup)
 												catIcon .. (itemTexture and "|T" .. itemTexture .. ":0|t " or "") .. (itemLink or v.name or L["Unknown"]),
 												attempts,
 												likelihood,
-												Rarity.db.profile.showTimeColumn and time or nil,
+												Rarity.db.profile.showTimeColumn and duration or nil,
 												Rarity.db.profile.showLuckinessColumn and lucky or nil,
 												Rarity.db.profile.showZoneColumn and colorize(zoneText, zoneColor) or nil,
 												status,
