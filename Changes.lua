@@ -1,4 +1,14 @@
 local changes = {
+	["r697"] = {
+		additions = {
+			"Added tracking for pets obtained in the Ny'alotha raid",
+			"Added tracking for Skyshards in the phased 8.3 version of the Vale of Eternal Blossoms"
+		},
+		fixes = {
+			"Fixed an error in the fishing detection that could prevent attempts from being registered correctly",
+			"Fixed a UI issue that could cause the tooltip loading to fail",
+		},
+	},
 	["r696"] = {
 		additions = {
 			"Added tracking for collectibles obtained from Horrific Visions (experimental)",

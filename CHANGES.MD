@@ -1,3 +1,13 @@
+**r697:**
+
+> Added tracking for pets obtained in the Ny'alotha raid
+<br>Added tracking for Skyshards in the phased 8.3 version of the Vale of Eternal Blossoms
+
+> Fixed an error in the fishing detection that could prevent attempts from being registered correctly
+<br>Fixed a UI issue that could cause the tooltip loading to fail
+
+-----
+
 **r696:**
 
 > Added tracking for collectibles obtained from Horrific Visions (experimental)
@@ -34,12 +44,3 @@ Developer Notes:
 **r693:**
 
 > Fixed integration with the TradeSkillMaster4 addon (used to display pricing info in Rarity's tooltip)
-
------
-
-**r692:**
-
-> Added defeat detection for all relevant rares in Nazjatar and Mechagon Island
-
-> Fixed tracking for the Timewalking version of the Ozumat encounter (Throne of the Tides)
-<br>Fixed waypoint coordinates for Rukhmar and Sha of Anger (courtesy of divinemaiden)
