@@ -4258,7 +4258,9 @@ function R:PrepareDefaults()
 		cat = BFA,
 		type = PET,
 		method = NPC,
-		npcs = { 150397, 154817 },
+		npcs = { 99999 },
+		tooltipNpcs = { 150397, 154817 },
+		statisticId = { 14056, 13620 },
 		name = L["Golden Snorf"],
 		spellId = 301049,
 		itemId = 169378,
@@ -4266,7 +4268,6 @@ function R:PrepareDefaults()
 		chance = 65,
 		groupSize = 5,
 		equalOdds = true,
-		-- todo tooltip for first two phases? test on heroic
 	},
 
 	-- 8.3 Pets
