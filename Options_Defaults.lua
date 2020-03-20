@@ -4496,6 +4496,291 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Eye of Corruption"] ={
+		cat = BFA,
+		type = PET,
+		method = BOSS,
+		name = L["Eye of Corruption"],
+		itemId = 174452,
+		spellId = 315270,
+		creatureId = 161946,
+		npcs = { 99999 },
+		tooltipNpcs = { 158041 },
+		statisticId = {
+			14135,
+			14136,
+			14137,
+			14138
+		},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "N'Zoth the Corruptor",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+				},
+			},
+			{
+				encounterName = "N'Zoth the Corruptor",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+				},
+			},
+			{
+				encounterName = "N'Zoth the Corruptor",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+				},
+			},
+			{
+				encounterName = "N'Zoth the Corruptor",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+				},
+			},
+		},
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+		},
+		chance = 10, -- Blind guess (no data)
+		groupSize = 10,
+		equalOdds = true,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.NYALOTHA, i = true },
+		},
+	},
+
+	["Void-Scarred Anubisath"] ={
+		cat = BFA,
+		type = PET,
+		method = BOSS,
+		name = L["Void-Scarred Anubisath"],
+		itemId = 174447	,
+		spellId = 315225,
+		creatureId = 161921,
+		npcs = { 99999 },
+		tooltipNpcs = { 156866 },
+		statisticId = {
+			14127,
+			14128,
+			14129,
+			14130
+		},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Ra-den",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+				},
+			},
+			{
+				encounterName = "Ra-den",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+				},
+			},
+			{
+				encounterName = "Ra-den",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+				},
+			},
+			{
+				encounterName = "Ra-den",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+				},
+			},
+		},
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+		},
+		chance = 8,
+		groupSize = 10,
+		equalOdds = true,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.NYALOTHA, i = true },
+		},
+	},
+
+	["Fractured Obsidian Claw"] ={
+		cat = BFA,
+		type = PET,
+		method = BOSS,
+		name = L["Fractured Obsidian Claw"],
+		itemId = 174446	,
+		spellId = 315221,
+		creatureId = 161919,
+		npcs = { 99999 },
+		tooltipNpcs = { 156523 },
+		statisticId = {
+			14089,
+			14091,
+			14093,
+			14094
+		},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Maut",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+				},
+			},
+			{
+				encounterName = "Maut",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+				},
+			},
+			{
+				encounterName = "Maut",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+				},
+			},
+			{
+				encounterName = "Maut",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+				},
+			},
+		},
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+		},
+		chance = 5,
+		groupSize = 10,
+		equalOdds = true,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.NYALOTHA, i = true },
+		},
+	},
+
+	["Aqir Hivespawn"] ={
+		cat = BFA,
+		type = PET,
+		method = BOSS,
+		name = L["Aqir Hivespawn"],
+		itemId = 174448	,
+		spellId = 315229,
+		creatureId = 161923,
+		npcs = { 99999 },
+		tooltipNpcs = { 157254 },
+		statisticId = {
+			14107,
+			14108,
+			14109,
+			14110,
+		},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "The Hivemind",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+				},
+			},
+			{
+				encounterName = "The Hivemind",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+				},
+			},
+			{
+				encounterName = "The Hivemind",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+				},
+			},
+			{
+				encounterName = "The Hivemind",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+				},
+			},
+		},
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+		},
+		chance = 10,
+		groupSize = 10,
+		equalOdds = true,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.NYALOTHA, i = true },
+		},
+	},
+
+	["Ra'kim"] ={
+		cat = BFA,
+		type = PET,
+		method = BOSS,
+		name = L["Ra'kim"],
+		itemId = 174449	,
+		spellId = 315231,
+		creatureId = 161924,
+		npcs = { 99999 },
+		tooltipNpcs = { 157254 },
+		statisticId = {
+			14107,
+			14108,
+			14109,
+			14110,
+		},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "The Hivemind",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+				},
+			},
+			{
+				encounterName = "The Hivemind",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+				},
+			},
+			{
+				encounterName = "The Hivemind",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+				},
+			},
+			{
+				encounterName = "The Hivemind",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+				},
+			},
+		},
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+		},
+		chance = 10, -- Blind guess (no data)
+		groupSize = 10,
+		equalOdds = true,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.NYALOTHA, i = true },
+		},
+	},
+
 	-- ["SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"] = {
 	-- 	cat = BFA,
 	-- 	type = PET,

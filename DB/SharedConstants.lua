@@ -34,6 +34,8 @@ C.UIMAPIDS = {
 
 	HORRIFIC_VISION_OF_STORMWIND = 1470,
 	HORRIFIC_VISION_OF_ORGRIMMAR = 1469,
+
+	NYALOTHA = 1582, -- Generic (doesn't matter which subzone, as waypoints inside of instances can no longer be set)
 }
 
 -- Types of items
