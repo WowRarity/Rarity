@@ -762,7 +762,7 @@ function R:PrepareOptions()
 						  get = function() return self.db.profile.bar.anchor end,
 						  set = function(info, val)
 							  self.db.profile.bar.anchor = val
-							  self:UpdateBar()
+							  Rarity.GUI:UpdateBar()
 							  Rarity.GUI:UpdateText()
 						  end,
 					  },
@@ -774,7 +774,7 @@ function R:PrepareOptions()
 						  get = function() return self.db.profile.bar.locked end,
 						  set = function(info, val)
 							  self.db.profile.bar.locked = val
-							  self:UpdateBar()
+							  Rarity.GUI:UpdateBar()
 							  Rarity.GUI:UpdateText()
 						  end,
 					  },
@@ -786,7 +786,7 @@ function R:PrepareOptions()
 						  get = function() return self.db.profile.bar.growUp end,
 						  set = function(info, val)
 							  self.db.profile.bar.growUp = val
-									self:UpdateBar()
+							  Rarity.GUI:UpdateBar()
 							  Rarity.GUI:UpdateText()
 						  end,
 					  },
@@ -798,7 +798,7 @@ function R:PrepareOptions()
 						  get = function() return self.db.profile.bar.rightAligned end,
 						  set = function(info, val)
 							  self.db.profile.bar.rightAligned = val
-									self:UpdateBar()
+							  Rarity.GUI:UpdateBar()
 							  Rarity.GUI:UpdateText()
 						  end,
 					  },
@@ -810,7 +810,7 @@ function R:PrepareOptions()
 						  get = function() return self.db.profile.bar.showIcon end,
 						  set = function(info, val)
 							  self.db.profile.bar.showIcon = val
-									self:UpdateBar()
+							  Rarity.GUI:UpdateBar()
 							  Rarity.GUI:UpdateText()
 						  end,
 					  },
@@ -822,7 +822,7 @@ function R:PrepareOptions()
 						  get = function() return self.db.profile.bar.showText end,
 						  set = function(info, val)
 							  self.db.profile.bar.showText = val
-									self:UpdateBar()
+							  Rarity.GUI:UpdateBar()
 							  Rarity.GUI:UpdateText()
 						  end,
 					  },
@@ -838,7 +838,7 @@ function R:PrepareOptions()
 					   get = function() return self.db.profile.bar.width or 150 end,
 					   set = function(_, val)
          self.db.profile.bar.width = val
-							  self:UpdateBar()
+		 Rarity.GUI:UpdateBar()
          Rarity.GUI:UpdateText()
         end,
 				   },
@@ -854,7 +854,7 @@ function R:PrepareOptions()
 					   get = function() return self.db.profile.bar.height or 12 end,
 					   set = function(_, val)
          self.db.profile.bar.height = val
-							  self:UpdateBar()
+		 Rarity.GUI:UpdateBar()
          Rarity.GUI:UpdateText()
         end,
 				   },
@@ -870,7 +870,7 @@ function R:PrepareOptions()
 					   get = function() return self.db.profile.bar.scale or 1 end,
 					   set = function(_, val)
          self.db.profile.bar.scale = val
-							  self:UpdateBar()
+		 Rarity.GUI:UpdateBar()
          Rarity.GUI:UpdateText()
         end,
 				   },
@@ -887,7 +887,7 @@ function R:PrepareOptions()
 								end,
 								set = function(_, key)
 									self.db.profile.bar.font = key
-									self:UpdateBar()
+									Rarity.GUI:UpdateBar()
 									Rarity.GUI:UpdateText()
 								end,
 							},
@@ -903,7 +903,7 @@ function R:PrepareOptions()
 					   get = function() return self.db.profile.bar.fontSize or 8 end,
 					   set = function(_, val)
          self.db.profile.bar.fontSize = val
-									self:UpdateBar()
+		 Rarity.GUI:UpdateBar()
          Rarity.GUI:UpdateText()
         end,
 				   },
@@ -920,7 +920,7 @@ function R:PrepareOptions()
 								end,
 								set = function(_, key)
 									self.db.profile.bar.texture = key
-									self:UpdateBar()
+									Rarity.GUI:UpdateBar()
 									Rarity.GUI:UpdateText()
 								end,
 							},
