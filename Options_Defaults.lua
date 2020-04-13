@@ -3891,7 +3891,7 @@ function R:PrepareDefaults()
 		questId = { 55366 }, -- 55366, 57186; 55404, 57042; 55366, 57187, 57188 ?
 		chance = 12,
 		coords = {
-			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  54.8, y = 42.0, n = L["Carnivourous Lasher"] },
+			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  54.8, y = 42.0, n = L["Carnivorous Lasher"] },
 		},
 	},
 
