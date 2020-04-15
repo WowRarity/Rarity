@@ -213,7 +213,6 @@ R.opennodes = {
 	[L["Snow Mound"]] = true,
 	[L["Glimmering Treasure Chest"]] = true,
 	[L["Curious Wyrmtongue Cache"]] = true,
-	[L["Arcane Chest"]] = true,
 	[L["Glimmering Chest"]] = true,
 	[L["Pile of Coins"]] = true,
 	[L["Mailbox"]] = true,

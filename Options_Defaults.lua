@@ -5759,26 +5759,6 @@ function R:PrepareDefaults()
 		chance = 20,
 	},
 
-	["Eternal Palace Dining Set"] = {
-		cat = BFA,
-		type = ITEM,
-		isToy = true,
-		method = SPECIAL,
-		name = L["Eternal Palace Dining Set"],
-		itemId = 170198,
-		chance = 50,
-	},
-
-	["Ocean Simulator"] = {
-		cat = BFA,
-		type = ITEM,
-		isToy = true,
-		method = SPECIAL,
-		name = L["Ocean Simulator"],
-		itemId = 168824,
-		chance = 50,
-	},
-
 	-- 8.3 Toys
 	["Overly Sensitive Void Spectacles"] = {
 		cat = BFA,
