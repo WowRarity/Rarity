@@ -1,3 +1,9 @@
+**r698:**
+
+> Looting an epic-quality Satchel of Chilled Goods (obtained from Frost Lord Ahune during the Midsummer Fire Festival) will now correctly register attempts for the Frigid Frostling pet
+
+-----
+
 **r697:**
 
 > Added tracking for pets obtained in the Ny'alotha raid
@@ -38,9 +44,3 @@ Developer Notes:
 **r694:**
 
 > Added tracking for collectibles dropped from rares in Uldum and Vale of the Eternal Blossoms (experimental)
-
------
-
-**r693:**
-
-> Fixed integration with the TradeSkillMaster4 addon (used to display pricing info in Rarity's tooltip)

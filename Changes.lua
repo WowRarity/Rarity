@@ -1,4 +1,9 @@
 local changes = {
+	["r698"] = {
+		fixes = {
+			"Looting an epic-quality Satchel of Chilled Goods (obtained from Frost Lord Ahune during the Midsummer Fire Festival) will now correctly register attempts for the Frigid Frostling pet",
+		},
+	},
 	["r697"] = {
 		additions = {
 			"Added tracking for pets obtained in the Ny'alotha raid",
