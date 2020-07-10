@@ -500,16 +500,16 @@ local function showSubTooltip(cell, item)
 	end
 
 	local itemName,
-	itemLink,
-	itemRarity,
-	itemLevel,
-	itemMinLevel,
-	itemType,
-	itemSubType,
-	itemStackCount,
-	itemEquipLoc,
-	itemTexture,
-	itemSellPrice
+		itemLink,
+		itemRarity,
+		itemLevel,
+		itemMinLevel,
+		itemType,
+		itemSubType,
+		itemStackCount,
+		itemEquipLoc,
+		itemTexture,
+		itemSellPrice
 
 	_, -- itemName,
 		itemLink,
@@ -595,7 +595,7 @@ local function showSubTooltip(cell, item)
 					zone = lbsz[v]
 				end
 				if not zone then
-					-- zone = v -- Why?
+				-- zone = v -- Why?
 				end
 				if not tonumber(v) then
 					tooltip2AddLine(colorize("    " .. v, gray))
