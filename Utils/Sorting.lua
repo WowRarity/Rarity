@@ -1,11 +1,13 @@
 --- Sorting.lua
 -- Anything used for sorting (it's a mess...)
+local _, addonTable = ...
 
 -- Locals
 local Sorting = {}
 
 -- Upvalues
 local R = Rarity
+local CONSTANTS = addonTable.constants
 -- Lua APIs
 local type = type
 local pairs = pairs
@@ -149,6 +151,22 @@ function Sorting.sort2(t)
 		nt[i], nt[min] = nt[min], nt[i]
 	end
 	return nt
+end
+
+function Sorting:SortGroup(group, method)
+	if method == CONSTANTS.SORT_METHODS.SORT_NAME then
+		group = self:sort(group)
+	elseif method == CONSTANTS.SORT_METHODS.SORT_DIFFICULTY then
+		group = self:sort_difficulty(group)
+	elseif method == CONSTANTS.SORT_METHODS.SORT_CATEGORY then
+		group = self:sort_category(group)
+	elseif method == CONSTANTS.SORT_METHODS.SORT_ZONE then
+		group = self:sort_zone(group)
+	else
+		group = self:sort_progress(group)
+	end
+
+	return group
 end
 
 function Sorting.sort(t)

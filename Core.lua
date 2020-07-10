@@ -76,6 +76,7 @@ local SORT_PROGRESS = "SORT_PROGRESS"
 local SORT_CATEGORY = "SORT_CATEGORY"
 local SORT_ZONE = "SORT_ZONE"
 
+Rarity.CONSTANTS = addonTable.constants
 
 --[[
       UPVALUES -----------------------------------------------------------------------------------------------------------------

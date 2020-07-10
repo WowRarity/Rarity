@@ -84,11 +84,11 @@ local TSM_Interface = Rarity.Utils.TSM_Interface
 
 -- Constants
 -- Sort parameters
-local SORT_NAME = "SORT_NAME"
-local SORT_DIFFICULTY = "SORT_DIFFICULTY"
-local SORT_PROGRESS = "SORT_PROGRESS"
-local SORT_CATEGORY = "SORT_CATEGORY"
-local SORT_ZONE = "SORT_ZONE"
+local SORT_NAME = CONSTANTS.SORT_METHODS.SORT_NAME
+local SORT_DIFFICULTY = CONSTANTS.SORT_METHODS.SORT_DIFFICULTY
+local SORT_PROGRESS = CONSTANTS.SORT_METHODS.SORT_PROGRESS
+local SORT_CATEGORY = CONSTANTS.SORT_METHODS.SORT_CATEGORY
+local SORT_ZONE = CONSTANTS.SORT_METHODS.SORT_ZONE
 local STATUS_TOOLTIP_MAX_WIDTH = 200
 -- Tooltip formatting
 local TIP_LEFT = "TIP_LEFT"
@@ -1143,21 +1143,10 @@ local function addGroup(group, requiresGroup)
 	local added = false
 	local headerAdded = false
 	local itemsExistInThisGroup = false
-	local g
 
 	local addGroupSortStart = debugprofilestop()
 
-	if R.db.profile.sortMode == SORT_NAME then
-		g = sort(group)
-	elseif R.db.profile.sortMode == SORT_DIFFICULTY then
-		g = sort_difficulty(group)
-	elseif R.db.profile.sortMode == SORT_CATEGORY then
-		g = sort_category(group)
-	elseif R.db.profile.sortMode == SORT_ZONE then
-		g = sort_zone(group)
-	else
-		g = sort_progress(group)
-	end
+	Rarity.Utils.Sorting:SortGroup(group, R.db.profile.sortMode)
 
 	local addGroupSortEnd = debugprofilestop()
 
