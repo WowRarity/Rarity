@@ -1,3 +1,11 @@
+**r699:**
+
+> When items with incomplete or invalid data are detected by the addon, a notification will now be displayed. These messages should help narrow down future issues with custom items; they can be disabled with a newly-added setting that is located in the Advanced/Experimental section of the configuration UI (subject to change)
+
+> Fixed a UI issue that could cause the tooltip to not be shown when custom items were added with invalid data (or Blizzard's server didn't send any data for the given item)
+
+-----
+
 **r698:**
 
 > Looting an epic-quality Satchel of Chilled Goods (obtained from Frost Lord Ahune during the Midsummer Fire Festival) will now correctly register attempts for the Frigid Frostling pet
@@ -38,9 +46,3 @@ Developer Notes:
 <br>Added defeat detection for collectibles dropped from rares in Uldum and Vale of the Eternal Blossoms
 <br>Added tracking for Crimson Skipper (dropped by Honey Smasher)
 <br>Added tracking for Mollie (dropped by Dunegorger Kraulok)
-
------
-
-**r694:**
-
-> Added tracking for collectibles dropped from rares in Uldum and Vale of the Eternal Blossoms (experimental)
