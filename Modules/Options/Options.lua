@@ -1298,16 +1298,27 @@ function R:PrepareOptions()
 				inline = true,
 				args = {
 					verifyDatabaseOnLogin = {
-						  type = "toggle",
-						  order = newOrder(),
-						  name = L["Verify item database on login"],
-						  width = "full",
-						  desc = format(L["Run the verification routine automatically after logging in. It can always be run manually (by typing %s)."], "/rarity verify"),
-						  get = function() return self.db.profile.verifyDatabaseOnLogin end,
-						  set = function(info, val)
-							  self.db.profile.verifyDatabaseOnLogin = val
-						  end,
-					  },
+						type = "toggle",
+						order = newOrder(),
+						name = L["Verify item database on login"],
+						width = "full",
+						desc = format(L["Run the verification routine automatically after logging in. It can always be run manually (by typing %s)."], "/rarity verify"),
+						get = function() return self.db.profile.verifyDatabaseOnLogin end,
+						set = function(info, val)
+							self.db.profile.verifyDatabaseOnLogin = val
+						end,
+					},
+					disableCustomErrors = {
+						type = "toggle",
+						order = newOrder(),
+						name = L["Disable Rarity-specific error messages"],
+						width = "full",
+						desc = L["Disables the detailed (red) error messages that are used by the addon to detect invalid states rather than allowing it to crash. Any detected errors will still be handled, but you won't see the notification."],
+						get = function() return self.db.profile.disableCustomErrors end,
+						set = function(info, val)
+							self.db.profile.disableCustomErrors = val
+						end,
+					},
 				},
 			},
 
