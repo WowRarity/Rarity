@@ -132,6 +132,7 @@ do
 	-- Set up the debug cache (TODO: Move to initialisation routine after the refactoring is complete)
 	Rarity.Utils.DebugCache:SetOutputHandler(Rarity.Utils.PrettyPrint.DebugMsg)
 	function Rarity:Error(message, ...)
+		if R.db.profile.disableCustomErrors then return end
 		Rarity.Utils.PrettyPrint.Error(message, ...)
 	end
 end
