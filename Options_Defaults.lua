@@ -4216,7 +4216,7 @@ function R:PrepareDefaults()
 		itemId = 170072,
 		creatureId = 155829,
 		questId = { 55546 },
-		chance = 20,
+		chance = 50,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x =  53.99, y = 49.31, n = L["Armored Vaultbot"] },
 		},
