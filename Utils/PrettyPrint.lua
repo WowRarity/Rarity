@@ -28,7 +28,13 @@ function PP.DebugMsg(msg, timestamp, source, ...)
 	)
 end
 
+local wasErrorDisplayed = false -- Displaying them more than once per session is sure to be annoying
+
 function PP.Error(message, ...)
+	if wasErrorDisplayed then
+		return
+	end
+
 	message = message or ""
 	local reportErrorText = format("Oh no! Something went horribly wrong. This is what happened:\n%s\n", message)
 	reportErrorText =
@@ -36,6 +42,7 @@ function PP.Error(message, ...)
 		"If you didn't change anything that might've caused this, please report the error to the addon developer so it can be fixed :)"
 
 	print(format("|c00CA0A00" .. "%s: " .. "|c00E6CC80%s", addonName, reportErrorText), ...)
+	wasErrorDisplayed = true
 end
 
 --- Prints timestamps in a human-readable fashion?
