@@ -30,7 +30,7 @@ end
 
 function PP.Error(message, ...)
 	message = message or ""
-	local reportErrorText = format("Oh no! Something went horribly wrong. This is what happened:\n\t%s\n", message)
+	local reportErrorText = format("Oh no! Something went horribly wrong. This is what happened:\n%s\n", message)
 	reportErrorText =
 		reportErrorText ..
 		"If you didn't change anything that might've caused this, please report the error to the addon developer so it can be fixed :)"
