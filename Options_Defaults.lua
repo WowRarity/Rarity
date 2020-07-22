@@ -658,7 +658,7 @@ function R:PrepareDefaults()
 		 ["Reins of the Amber Primordial Direhorn"] =        { cat = MOP, type = MOUNT, method = NPC, name = L["Reins of the Amber Primordial Direhorn"], spellId = 138424, itemId = 94230, npcs = { 69841 }, chance = 20, sourceText = L["The Warbringer will be riding the mount color he has a chance to drop."], coords = { {m=418,x=39.08,y=67.13},{m=422,x=47.47,y=61.32},{m=388,x=36.53,y=85.67},{m=379,x=75.09,y=67.65},{m=371,x=52.73,y=18.99}, }, },
 		 ["Reins of the Astral Cloud Serpent"] =             { cat = MOP, type = MOUNT, method = BOSS, name = L["Reins of the Astral Cloud Serpent"], spellId = 127170, itemId = 87777, npcs = { 99999 }, tooltipNpcs = { 60410 }, instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true, [CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true, [CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true, [CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true, }, chance = 100, statisticId = { 6797, 6798, 7924, 7923, }, sourceText = L["Dropped by Elegon in Mogu'shan Vaults (all raid formats except Raid Finder)"], blackMarket = true, lockBossName = "Elegon", coords = { {m=471,x=21.7,y=51.1,i=true} }, },
 		 ["Reins of the Bone-White Primal Raptor"] =         { cat = MOP, type = MOUNT, method = COLLECTION, name = L["Reins of the Bone-White Primal Raptor"], spellId = 138640, itemId = 94290, collectedItemId = 94288, chance = 9999, obtain = L["Dropped from dinosaurs on Isle of Giants"], tooltipNpcs = { 69992, 70013, 70012, 70015, 70014, 70006, 69925, 69993, 70004, 70005, 70007, 70020, 70016, 69983, 70017, 70019, 70018, 70011, 70009, 69991, 70021, 70010, 70008, }, sourceText = L["Earned by giving 9999 Giant Dinosaur Bones to Ku'ma on Isle of Giants. Giant Dinosaur bones drop from all dinosaurs and Zandalari Dinomancers on Isle of Giants."], coords = { {m=507} }, },
-		 ["Reins of the Cobalt Primordial Direhorn"] =       { cat = MOP, type = MOUNT, method = BOSS, name = L["Reins of the Cobalt Primordial Direhorn"], spellId = 138423, itemId = 94228, npcs = { 99999 }, tooltipNpcs = { 69161 }, questId = 32519, chance = 2000, equalOdds = true, statisticId = { 8147 }, enableCoin = true, worldBossFactionless = true, coords = { {m=507,x=50.6,y=54.4} }, },
+		 ["Reins of the Cobalt Primordial Direhorn"] =       { cat = MOP, type = MOUNT, method = BOSS, name = L["Reins of the Cobalt Primordial Direhorn"], spellId = 138423, itemId = 94228, npcs = { 99999 }, tooltipNpcs = { 69161 }, questId = 32519, chance = 2000, statisticId = { 8147 }, enableCoin = true, worldBossFactionless = true, coords = { {m=507,x=50.6,y=54.4} }, },
 
 		["Reins of the Heavenly Onyx Cloud Serpent"] = {
 			cat = MOP,
@@ -671,7 +671,6 @@ function R:PrepareDefaults()
 			tooltipNpcs = { 60491 },
 			questId = 32099,
 			chance = 2000,
-			equalOdds = true,
 			statisticId = { 6989 },
 			enableCoin = true,
 			worldBossFactionless = true,
@@ -687,9 +686,9 @@ function R:PrepareDefaults()
 
 		 ["Reins of the Jade Primordial Direhorn"] =         { cat = MOP, type = MOUNT, method = NPC, name = L["Reins of the Jade Primordial Direhorn"], spellId = 138426, itemId = 94231, npcs = { 69842 }, chance = 20, sourceText = L["The Warbringer will be riding the mount color he has a chance to drop."], coords = { {m=418,x=39.08,y=67.13},{m=422,x=47.47,y=61.32},{m=388,x=36.53,y=85.67},{m=379,x=75.09,y=67.65},{m=371,x=52.73,y=18.99}, }, },
 		 ["Reins of the Slate Primordial Direhorn"] =        { cat = MOP, type = MOUNT, method = NPC, name = L["Reins of the Slate Primordial Direhorn"], spellId = 138425, itemId = 94229, npcs = { 69769 }, chance = 20, sourceText = L["The Warbringer will be riding the mount color he has a chance to drop."], coords = { {m=418,x=39.08,y=67.13},{m=422,x=47.47,y=61.32},{m=388,x=36.53,y=85.67},{m=379,x=75.09,y=67.65},{m=371,x=52.73,y=18.99}, }, },
-		 ["Reins of the Thundering Cobalt Cloud Serpent"] =  { cat = MOP, type = MOUNT, method = BOSS, name = L["Reins of the Thundering Cobalt Cloud Serpent"], spellId = 139442, itemId = 95057, npcs = { 99999 }, tooltipNpcs = { 69099 }, questId = 32518, chance = 2000, equalOdds = true, statisticId = { 8146 }, enableCoin = true, worldBossFactionless = true, blackMarket = true, coords = { {m=504,x=60.5,y=37.3} }, },
+		 ["Reins of the Thundering Cobalt Cloud Serpent"] =  { cat = MOP, type = MOUNT, method = BOSS, name = L["Reins of the Thundering Cobalt Cloud Serpent"], spellId = 139442, itemId = 95057, npcs = { 99999 }, tooltipNpcs = { 69099 }, questId = 32518, chance = 2000, statisticId = { 8146 }, enableCoin = true, worldBossFactionless = true, blackMarket = true, coords = { {m=504,x=60.5,y=37.3} }, },
 		 ["Reins of the Thundering Onyx Cloud Serpent"] =    { cat = MOP, type = MOUNT, method = NPC, name = L["Reins of the Thundering Onyx Cloud Serpent"], spellId = 148476, itemId = 104269, npcs = { 73167 }, chance = 100, sourceText = L["Players have a personal loot chance to obtain this item."], coords = { {m=554,x=67.8,y=59} }, },
-		 ["Son of Galleon's Saddle"] =                       { cat = MOP, type = MOUNT, method = BOSS, name = L["Son of Galleon's Saddle"], spellId = 130965, itemId = 89783, npcs = { 99999 }, tooltipNpcs = { 62346 }, questId = 32098, chance = 2000, equalOdds = true, statisticId = { 6990 }, enableCoin = true, worldBossFactionless = true, coords = { {m=376,x=71.6,y=64.4} }, },
+		 ["Son of Galleon's Saddle"] =                       { cat = MOP, type = MOUNT, method = BOSS, name = L["Son of Galleon's Saddle"], spellId = 130965, itemId = 89783, npcs = { 99999 }, tooltipNpcs = { 62346 }, questId = 32098, chance = 2000, statisticId = { 6990 }, enableCoin = true, worldBossFactionless = true, coords = { {m=376,x=71.6,y=64.4} }, },
 		 ["Spawn of Horridon"] =                             { cat = MOP, type = MOUNT, method = BOSS, name = L["Spawn of Horridon"], spellId = 136471, itemId = 93666, npcs = { 99999 }, tooltipNpcs = { 68476 }, instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true, [CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true, [CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true, [CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true, }, chance = 66, statisticId = { 8151, 8149, 8152, 8150 }, sourceText = L["All raid formats except Raid Finder"], lockBossName = "Horridon", coords = { {m=508, x=26.8,y=78.7,i=true} }, },
 						-- 6.x
 		 ["Armored Razorback"] =                             { cat = WOD, type = MOUNT, method = NPC, name = L["Armored Razorback"], spellId = 171630, itemId = 116669, npcs = { 95044, 95054, 95053, 95056, }, chance = 30, sourceText = L["Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount \"defeated\" for the day when you kill any of the four."], questId = { 39287, 39288, 39289, 39290, }, defeatAllQuests = true, coords = { {m=534,x=32.6,y=73.8,q=39290,n=L["Vengeance"]}, {m=534,x=47,y=52.6,q=39289,n=L["Doomroller"]}, {m=534,x=23.2,y=40.4,q=39287,n=L["Deathtalon"]}, {m=534,x=14.6,y=63,q=39288,n=L["Terrorfist"]}, }, defeatSteps = { [39290] = L["Vengeance"], [39287] = L["Deathtalon"], [39288] = L["Terrorfist"], [39289] = L["Doomroller"], }, },
@@ -1650,7 +1649,7 @@ function R:PrepareDefaults()
 			105503,
 			104154, -- Gul'dan (normal)
 	 }, chance = 100, groupSize = 3, equalOdds = true, statisticId = { 10979, 10980, 10978 }, coords = { {m=772, i=true} }, },
-		["Midnight's Eternal Reins"] =                      { cat = LEGION, type = MOUNT, method = BOSS, name = L["Midnight's Eternal Reins"], spellId = 229499, itemId = 142236, npcs = { 114262, }, chance = 100, equalOdds = true, instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true, }, lockDungeonId = 1475, lockBossName = "Attumen the Huntsman", coords = {{m=794,i=true}}, },
+		["Midnight's Eternal Reins"] =                      { cat = LEGION, type = MOUNT, method = BOSS, name = L["Midnight's Eternal Reins"], spellId = 229499, itemId = 142236, npcs = { 114262, }, chance = 100, instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true, }, lockDungeonId = 1475, lockBossName = "Attumen the Huntsman", coords = {{m=794,i=true}}, },
 
 		["Fiendish Hellfire Core"] ={
 			cat = LEGION,
@@ -2058,7 +2057,7 @@ function R:PrepareDefaults()
      ["Death Adder Hatchling"] =                         { cat = MOP, type = PET, method = NPC, name = L["Death Adder Hatchling"], spellId = 148052, itemId = 104161, npcs = { 73163 }, chance = 50, creatureId = 73364, coords = {{m=554}}, },
 	 ["Dandelion Frolicker"] =                           { cat = MOP, type = PET, method = NPC, name = L["Dandelion Frolicker"], spellId = 148051, itemId = 104160, npcs = { 71826, 71823 }, chance = 1250, creatureId = 73532, coords = {{m=554,x=45.6,y=74.6}}, },
      ["Droplet of Y'Shaarj"] =                           { cat = MOP, type = PET, method = BOSS, name = L["Droplet of Y'Shaarj"], spellId = 148058, itemId = 104162, npcs = { 99999 }, tooltipNpcs = { 71734 }, instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true, [CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true, [CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_HEROIC] = true, [CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true, [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true, }, chance = 100, statisticId = { 8569, 8571, 8573, 8570, 8568, }, creatureId = 73350, enableCoin = true, sourceText = L["All raid formats except Raid Finder"], lockBossName = "Sha of Pride", coords = {{m=556,x=22.5,y=69.5,i=true}}, }, -- SHA OF PRIDE (flex/normal/heroic)
-     ["Gooey Sha-ling"] =                                { cat = MOP, type = PET, method = BOSS, name = L["Gooey Sha-ling"], spellId = 148059, itemId = 104163, npcs = { 99999 }, tooltipNpcs = { 71734 }, instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true, [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true, }, chance = 100, equalOdds = true, statisticId = { 8568, 8567, }, creatureId = 73351, enableCoin = true, sourceText = L["Raid Finder or Flexible difficulty"], lockBossName = "Sha of Pride", coords = {{m=556,x=22.5,y=69.5,i=true}}, }, -- SHA OF PRIDE (lfr/flex)
+     ["Gooey Sha-ling"] =                                { cat = MOP, type = PET, method = BOSS, name = L["Gooey Sha-ling"], spellId = 148059, itemId = 104163, npcs = { 99999 }, tooltipNpcs = { 71734 }, instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true, [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true, }, chance = 100, statisticId = { 8568, 8567, }, creatureId = 73351, enableCoin = true, sourceText = L["Raid Finder or Flexible difficulty"], lockBossName = "Sha of Pride", coords = {{m=556,x=22.5,y=69.5,i=true}}, }, -- SHA OF PRIDE (lfr/flex)
      ["Gu'chi Swarmling"] =                              { cat = MOP, type = PET, method = NPC, name = L["Gu'chi Swarmling"], spellId = 148527, itemId = 104291, npcs = { 72909 }, chance = 50, creatureId = 73730, coords = {{m=554,x=42.6,y=75.6}}, },
      ["Gulp Froglet"] =                                  { cat = MOP, type = PET, method = NPC, name = L["Gulp Froglet"], spellId = 148067, itemId = 104169, npcs = { 72775 }, chance = 33, creatureId = 73359, coords = {{m=554,x=63.8,y=73}}, },
      ["Jadefire Spirit"] =                               { cat = MOP, type = PET, method = NPC, name = L["Jadefire Spirit"], spellId = 148552, itemId = 104307, npcs = { 72769 }, chance = 50, creatureId = 73738, coords = {{m=554,x=47.8,y=36.8}}, },
@@ -2103,7 +2102,7 @@ function R:PrepareDefaults()
 	 ["Void Collar"] =                                   { cat = WOD, type = PET, method = NPC, name = L["Void Collar"], spellId = 179839, itemId = 122114, npcs = { 25840 }, chance = 10, creatureId = 90213, coords = {{m=335,x=46.7,y=23.8,i=true}}, },
 	 ["Young Talbuk"] =                                  { cat = WOD, type = PET, method = USE, name = L["Young Talbuk"], spellId = 177218, itemId = 122533, items = { 122535 }, chance = 33, creatureId = 91408, questId = { 382994, 38300 }, },
 					-- 6.2
-     ["Corrupted Nest Guardian"] =                       { cat = WOD, type = PET, method = BOSS, name = L["Corrupted Nest Guardian"], spellId = 187532, itemId = 127749, npcs = { 99999 }, tooltipNpcs = { 95067 }, chance = 100, statisticId = { 10228, 10227, 10226, 10225 }, creatureId = 94623, enableCoin = true, lockBossName = "Shadow-Lord Iskar", equalOdds = true, coords = {{m=661,x=40.1,y=76.1,i=true}}, },
+     ["Corrupted Nest Guardian"] =                       { cat = WOD, type = PET, method = BOSS, name = L["Corrupted Nest Guardian"], spellId = 187532, itemId = 127749, npcs = { 99999 }, tooltipNpcs = { 95067 }, chance = 100, statisticId = { 10228, 10227, 10226, 10225 }, creatureId = 94623, enableCoin = true, lockBossName = "Shadow-Lord Iskar", coords = {{m=661,x=40.1,y=76.1,i=true}}, },
 	 ["Glittering Arcane Crystal"] =                     { cat = WOD, type = PET, method = NPC, name = L["Glittering Arcane Crystal"], spellId = 193589, itemId = 129218, npcs = { 98200, }, chance = 10, creatureId = 98238, questId = 40074, coords = { {m=550,x=23.8,y=37.9,n=L["Guk"]} }},
 	 ["Nightmare Bell"] =                                { cat = WOD, type = PET, method = USE, name = L["Nightmare Bell"], spellId = 185055, itemId = 127753, items = { 127751 }, chance = 33, creatureId = 93483, sourceText = L["Can drop from Fel-Touched Pet Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."], questId = { 39157, 39160, 39161, 39162, 39163, 39164, 39165, 39166, 39167, 39168, 39169, 39170, 39171, 39172, 39173, }, defeatAllQuests = true, defeatSteps = { [39168] = L["Bleakclaw"], [39161] = L["Chaos Pup"], [39160] = L["Corrupted Thundertail"], [39162] = L["Cursed Spirit"], [39167] = L["Dark Gazer"], [39173] = L["Defiled Earth"], [39170] = L["Dreadwalker"], [39165] = L["Direflame"], [39163] = L["Felfly"], [39157] = L["Felsworn Sentry"], [39166] = L["Mirecroak"], [39171] = L["Netherfist"], [39172] = L["Skrillix"], [39164] = L["Tainted Maulclaw"], [39169] = L["Vile Blood of Draenor"], }, coords = { {m=534,x=15.8,y=44.6,q=39168,n=L["Bleakclaw"]},{m=534,x=25,y=76.2,q=39161,n=L["Chaos Pup"]},{m=534,x=53,y=65.2,q=39160,n=L["Corrupted Thundertail"]},{m=534,x=31.4,y=38,q=39162,n=L["Cursed Spirit"]},{m=534,x=54,y=29.8,q=39167,n=L["Dark Gazer"]},{m=534,x=75.4,y=37.4,q=39173,n=L["Defiled Earth"]},{m=534,x=47.2,y=52.6,q=39170,n=L["Dreadwalker"]},{m=534,x=57.8,y=37.2,q=39165,n=L["Direflame"]},{m=534,x=55.8,y=80.8,q=39163,n=L["Felfly"]},{m=534,x=26,y=31.6,q=39157,n=L["Felsworn Sentry"]},{m=534,x=42.2,y=71.6,q=39166,n=L["Mirecroak"]},{m=534,x=48.4,y=35.6,q=39171,n=L["Netherfist"]},{m=534,x=48.4,y=31.2,q=39172,n=L["Skrillix"]},{m=534,x=43.4,y=84.6,q=39164,n=L["Tainted Maulclaw"]},{m=534,x=44,y=45.8,q=39169,n=L["Vile Blood of Draenor"]}, }, },
 	 ["Periwinkle Calf"] =                               { cat = WOD, type = PET, method = USE, name = L["Periwinkle Calf"], spellId = 187555, itemId = 127754, items = { 127751 }, chance = 33, creatureId = 93352, sourceText = L["Can drop from Fel-Touched Pet Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."], questId = { 39157, 39160, 39161, 39162, 39163, 39164, 39165, 39166, 39167, 39168, 39169, 39170, 39171, 39172, 39173, }, defeatAllQuests = true, defeatSteps = { [39168] = L["Bleakclaw"], [39161] = L["Chaos Pup"], [39160] = L["Corrupted Thundertail"], [39162] = L["Cursed Spirit"], [39167] = L["Dark Gazer"], [39173] = L["Defiled Earth"], [39170] = L["Dreadwalker"], [39165] = L["Direflame"], [39163] = L["Felfly"], [39157] = L["Felsworn Sentry"], [39166] = L["Mirecroak"], [39171] = L["Netherfist"], [39172] = L["Skrillix"], [39164] = L["Tainted Maulclaw"], [39169] = L["Vile Blood of Draenor"], }, coords = { {m=534,x=15.8,y=44.6,q=39168,n=L["Bleakclaw"]},{m=534,x=25,y=76.2,q=39161,n=L["Chaos Pup"]},{m=534,x=53,y=65.2,q=39160,n=L["Corrupted Thundertail"]},{m=534,x=31.4,y=38,q=39162,n=L["Cursed Spirit"]},{m=534,x=54,y=29.8,q=39167,n=L["Dark Gazer"]},{m=534,x=75.4,y=37.4,q=39173,n=L["Defiled Earth"]},{m=534,x=47.2,y=52.6,q=39170,n=L["Dreadwalker"]},{m=534,x=57.8,y=37.2,q=39165,n=L["Direflame"]},{m=534,x=55.8,y=80.8,q=39163,n=L["Felfly"]},{m=534,x=26,y=31.6,q=39157,n=L["Felsworn Sentry"]},{m=534,x=42.2,y=71.6,q=39166,n=L["Mirecroak"]},{m=534,x=48.4,y=35.6,q=39171,n=L["Netherfist"]},{m=534,x=48.4,y=31.2,q=39172,n=L["Skrillix"]},{m=534,x=43.4,y=84.6,q=39164,n=L["Tainted Maulclaw"]},{m=534,x=44,y=45.8,q=39169,n=L["Vile Blood of Draenor"]}, }, },
@@ -2358,6 +2357,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143794,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Captain Nibs"] = {
@@ -2370,6 +2370,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143795,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Barnaby"] = {
@@ -2382,6 +2383,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143796,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Poro"] = {
@@ -2394,6 +2396,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143797,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Octopode Fry"] = {
@@ -2406,6 +2409,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143798,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Inky"] = {
@@ -2418,6 +2422,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143799,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Sparkleshell Sandcrawler"] = {
@@ -2430,6 +2435,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143801,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Kindleweb Spiderling"] = {
@@ -2442,6 +2448,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143802,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Mischievous Zephyr"] = {
@@ -2454,6 +2461,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143812,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Littlehoof"] = {
@@ -2466,6 +2474,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143813,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Snapper"] = {
@@ -2478,6 +2487,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143814,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Sunscale Hatchling"] = {
@@ -2490,6 +2500,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143815,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Bloodstone Tunneler"] = {
@@ -2502,6 +2513,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143816,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Snort"] = {
@@ -2514,6 +2526,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143817,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Muskflank Calfling"] = {
@@ -2526,6 +2539,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143818,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Juvenile Brineshell"] = {
@@ -2538,6 +2552,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143819,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Kunchong Hatchling"] = {
@@ -2550,6 +2565,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143820,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Coldlight Surfrunner"] = {
@@ -2562,6 +2578,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143821,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Voru'kar Leecher"] = {
@@ -2574,6 +2591,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143822,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Tinder Pup"] = {
@@ -2586,6 +2604,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143805,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Sandshell Chitterer"] = {
@@ -2598,6 +2617,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143806,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Deathsting Scorpid"] = {
@@ -2610,6 +2630,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143807,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Thistlebrush Bud"] = {
@@ -2622,6 +2643,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143808,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Giggling Flame"] = {
@@ -2634,6 +2656,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143809,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Laughing Stonekin"] = {
@@ -2646,6 +2669,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143810,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Playful Frostkin"] = {
@@ -2658,6 +2682,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143811,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["False Knucklebump"] = {
@@ -2670,6 +2695,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143804,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Craghoof Kid"] = {
@@ -2682,6 +2708,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 143803,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Mana-Warped Egg"] = {
@@ -3086,6 +3113,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 148976,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Leatherwing Screecher"] = {
@@ -3098,6 +3126,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 148979,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Rotting Ghoul"] = {
@@ -3110,6 +3139,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 148981,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Thunderscale Whelpling"] = {
@@ -3122,6 +3152,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 148995,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Scritches"] = {
@@ -3134,6 +3165,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 148991,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Tonguelasher"] = {
@@ -3146,6 +3178,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 148990,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Lord Woofington"] = {
@@ -3158,6 +3191,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 148989,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Firesting Buzzer"] = {
@@ -3170,6 +3204,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 148988,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Needleback Pup"] = {
@@ -3182,6 +3217,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 148982,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		["Shadefeather Hatchling"] = {
@@ -3194,6 +3230,7 @@ function R:PrepareDefaults()
 			chance = 1000,
 			creatureId = 148984,
 			groupSize = 3,
+			equalOdds = true,
 		},
 
 		-- 8.1.5 Pets
@@ -5152,6 +5189,7 @@ function R:PrepareDefaults()
 		itemId = 163795,
 		chance = 250,
 		groupSize = 3,
+		equalOdds = true,
 	},
 
 	["Whiskerwax Candle"] = {
@@ -5163,6 +5201,7 @@ function R:PrepareDefaults()
 		itemId = 163924,
 		chance = 250,
 		groupSize = 3,
+		equalOdds = true,
 	},
 
 	-- ["Yaungol Oil Stove"] = { -- NYI as of 18/01/19
@@ -5196,6 +5235,7 @@ function R:PrepareDefaults()
 		itemId = 164373,
 		chance = 250,
 		groupSize = 3,
+		equalOdds = true,
 	},
 
 	["Magic Monkey Banana"] = {
@@ -5207,6 +5247,7 @@ function R:PrepareDefaults()
 		itemId = 164374,
 		chance = 250,
 		groupSize = 3,
+		equalOdds = true,
 	},
 
 	["Bad Mojo Banana"] = {
@@ -5218,6 +5259,7 @@ function R:PrepareDefaults()
 		itemId = 164375,
 		chance = 250,
 		groupSize = 3,
+		equalOdds = true,
 	},
 
 	-- ["Regenerating Banana Bunch"] = { -- NYI as of 18/01/19
