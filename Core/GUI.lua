@@ -1146,7 +1146,7 @@ local function addGroup(group, requiresGroup)
 
 	local addGroupSortStart = debugprofilestop()
 
-	Rarity.Utils.Sorting:SortGroup(group, R.db.profile.sortMode)
+	local sortedGroup = Rarity.Utils.Sorting:SortGroup(group, R.db.profile.sortMode)
 
 	local addGroupSortEnd = debugprofilestop()
 
@@ -1518,7 +1518,7 @@ local function addGroup(group, requiresGroup)
 		end
 	end
 
-	for k, v in pairs(group) do
+	for k, v in ipairs(sortedGroup) do
 		AddItem(k, v)
 	end
 

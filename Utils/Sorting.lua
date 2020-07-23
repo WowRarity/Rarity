@@ -169,7 +169,7 @@ function Sorting:SortGroup(group, method)
 	return group
 end
 
-function Sorting.sort(t)
+function Sorting:sort(t)
 	local nt = {}
 	local n = 0
 	local min
@@ -191,7 +191,7 @@ function Sorting.sort(t)
 	return nt
 end
 
-function Sorting.sort_difficulty(t)
+function Sorting:sort_difficulty(t)
 	local nt = {}
 	local n = 0
 	local min
@@ -213,7 +213,7 @@ function Sorting.sort_difficulty(t)
 	return nt
 end
 
-function Sorting.sort_progress(t)
+function Sorting:sort_progress(t)
 	local nt = {}
 	local n = 0
 	local min
@@ -235,7 +235,7 @@ function Sorting.sort_progress(t)
 	return nt
 end
 
-function Sorting.sort_category(t)
+function Sorting:sort_category(t)
 	local nt = {}
 	local n = 0
 	local min
@@ -257,7 +257,7 @@ function Sorting.sort_category(t)
 	return nt
 end
 
-function Sorting.sort_zone(t)
+function Sorting:sort_zone(t)
 	local nt = {}
 	local n = 0
 	local min
