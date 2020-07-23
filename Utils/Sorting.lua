@@ -154,19 +154,21 @@ function Sorting.sort2(t)
 end
 
 function Sorting:SortGroup(group, method)
+
+	local sortedGroup = group
 	if method == CONSTANTS.SORT_METHODS.SORT_NAME then
-		group = self:sort(group)
+		sortedGroup = self:sort(group)
 	elseif method == CONSTANTS.SORT_METHODS.SORT_DIFFICULTY then
-		group = self:sort_difficulty(group)
+		sortedGroup = self:sort_difficulty(group)
 	elseif method == CONSTANTS.SORT_METHODS.SORT_CATEGORY then
-		group = self:sort_category(group)
+		sortedGroup = self:sort_category(group)
 	elseif method == CONSTANTS.SORT_METHODS.SORT_ZONE then
-		group = self:sort_zone(group)
-	else
-		group = self:sort_progress(group)
+		sortedGroup = self:sort_zone(group)
+	elseif method == CONSTANTS.SORT_METHODS.SORT_PROGRESS then
+		sortedGroup = self:sort_progress(group)
 	end
 
-	return group
+	return sortedGroup
 end
 
 function Sorting:sort(t)
