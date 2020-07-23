@@ -69,6 +69,7 @@ Utils\TradeSkillMaster.lua
 # Addon Core
 Core\Caching.lua
 Core\Collections.lua
+Core\Database.lua
 Core\Debugging.lua
 Core\Detection.lua
 Core\EventHandlers.lua

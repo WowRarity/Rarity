@@ -3,6 +3,8 @@ if not addon then
 	return
 end
 
+-- TODO: Migrate the functionality to Core/Database.lua and then delete this
+
 -- Upvalues
 local pairs = pairs
 local tostring = tostring

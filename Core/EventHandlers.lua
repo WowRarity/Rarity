@@ -686,6 +686,8 @@ function R:OnChatCommand(input)
 		DebugCache:PrintMessages(numMessages)
 	elseif strlower(input) == "verify" then -- Verify the ItemDB
 		self:VerifyItemDB()
+	elseif strlower(input) == "purge" then -- TODO: This should be done automatically, no?
+		self.Database:PurgeObsoleteEntries()
 	elseif strlower(input) == "profiling" then
 		if self.db.profile.enableProfiling then
 			self.db.profile.enableProfiling = false
