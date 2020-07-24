@@ -10,8 +10,14 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 --- These items were at one point officially part of the addon's item database, but subsequently removed (usually because they weren't actually rare drops or Blizzard never added them to the live servers).
 local obsoleteItems = {
 	items = {
+		-- Removed because they aren't actually a rare drop, but guaranteed (no point in tracking them)
 		["Ocean Simulator"] = true,
-		["Eternal Palace Dining Set"] = true
+		["Eternal Palace Dining Set"] = true,
+		-- Removed because they were never available to begin with (Blizzard didn't add them to live servers)
+		["Regenerating Banana Bunch"] = true,
+		["Kojo's Master Matching Set"] = true,
+		["Jinyu Light Globe"] = true,
+		["Words of Akunda"] = true,
 	}
 }
 
