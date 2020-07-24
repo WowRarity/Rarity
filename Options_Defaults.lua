@@ -4819,6 +4819,23 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Strand Crawler"] = {
+		-- Note: Also drops from the Northrend fishing bag (but Rarity can't track items from two different sources...)
+		cat = WOD,
+		type = PET,
+		method = NPC,
+		name = L["Strand Crawler"],
+		npcs = { 85715, 81171 },
+		spellId = 62561,
+		itemId = 44983,
+		creatureId = 33226,
+		chance = 1000,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.LUNARFALL_GARRISON },
+			{ m = CONSTANTS.UIMAPIDS.FROSTWALL_GARRISON },
+		},
+	},
+
 	-- ["SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"] = {
 	-- 	cat = BFA,
 	-- 	type = PET,
