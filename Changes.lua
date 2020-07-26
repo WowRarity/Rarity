@@ -1,7 +1,8 @@
 local changes = {
 	["r699"] = {
 		fixes = {
-			"Fixed a UI issue that could cause the tooltip to not be shown when custom items were added with invalid data (or Blizzard's server didn't send any data for the given item)"
+			"Fixed a UI issue that could cause the tooltip to not be shown when custom items were added with invalid data (or Blizzard's server didn't send any data for the given item)",
+			"The tooltip now always displays an item's estimated base drop rate instead of considering the somewhat arbitrary group size setting in order to provide consistent data to players"
 		},
 		additions = {
 			"When items with incomplete or invalid data are detected by the addon, a notification will now be displayed. These messages should help narrow down future issues with custom items; they can be disabled with a newly-added setting that is located in the Advanced/Experimental section of the configuration UI (subject to change)"
