@@ -1883,8 +1883,7 @@ _G.GameTooltip:HookScript(
 								blankAdded = true
 								GameTooltip:AddLine(" ")
 							end
-							local chance = select(2, Rarity.Statistics.GetRealDropPercentage(v))
-							local attemptText = " " .. colorize(format(L["(%d/%d attempts)"], v.attempts or 0, chance or 0), white)
+							local attemptText = " " .. colorize(format(L["(%d/%d attempts)"], v.attempts or 0, v.chance or 0), white)
 							if v.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
 								attemptText = " " .. colorize(format(L["(%d/%d collected)"], v.attempts or 0, v.chance or 0), white)
 							end
