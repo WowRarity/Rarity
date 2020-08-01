@@ -4898,7 +4898,7 @@ function R:PrepareDefaults()
 					-- Toys (5.x)
      ["Ai-Li's Skymirror"] =                             { cat = MOP, type = ITEM, isToy = true, method = NPC, name = L["Ai-Li's Skymirror"], itemId = 86589, npcs = { 50821, }, chance = 7, coords = { {m=422,x=34.8,y=23.2} }, },
      ["Blackflame Daggers"] =                            { cat = MOP, type = ITEM, isToy = true, method = NPC, name = L["Blackflame Daggers"], itemId = 104302, npcs = { 73171, }, chance = 100, coords = { {m=554,x=63.6,y=43.6} }, },
-     ["Chalice of Secrets"] =                            { cat = MOP, type = ITEM, isToy = true, method = NPC, name = L["Chalice of Secrets"], itemId = 86575, npcs = { 50359, }, chance = 5, coords = { {m=391,x=39.8,y=25} }, },
+     ["Chalice of Secrets"] =                            { cat = MOP, type = ITEM, isToy = true, method = NPC, name = L["Chalice of Secrets"], itemId = 86575, npcs = { 50359, }, chance = 5, coords = { {m=390,x=39.8,y=25} }, },
      ["Eternal Kiln"] =                                  { cat = MOP, type = ITEM, isToy = true, method = NPC, name = L["Eternal Kiln"], itemId = 104309, npcs = { 72896, }, chance = 250, coords = { {m=554,x=68.6,y=35.2} }, },
      ["Farwater Conch"] =                                { cat = MOP, type = ITEM, isToy = true, method = NPC, name = L["Farwater Conch"], itemId = 86581, npcs = { 50769, }, chance = 7, coords = { {m=379,x=74.4,y=79.2} }, },
      ["Gastropod Shell"] =                               { cat = MOP, type = ITEM, isToy = true, method = NPC, name = L["Gastropod Shell"], itemId = 98136, npcs = { 68220, }, chance = 150, coords = { {m=510, x=44.4,y=80.4,i=true} }, },
