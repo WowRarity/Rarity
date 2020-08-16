@@ -699,6 +699,8 @@ function R:OnChatCommand(input)
 	else
 		LoadAddOn("Rarity_Options")
 		if R.optionsFrame then
+			-- Thanks, Blizzard (https://www.wowinterface.com/forums/showthread.php?t=54599)
+			InterfaceOptionsFrame_OpenToCategory(R.optionsFrame)
 			InterfaceOptionsFrame_OpenToCategory(R.optionsFrame)
 		else
 			self:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
