@@ -1321,6 +1321,26 @@ function R:PrepareOptions()
 					},
 				},
 			},
+			cacheManagement = {
+				name = L["Cached Data"],
+				type = "group",
+				order = newOrder(),
+				inline = true,
+				args = {
+					clearAccountwideStatistics = {
+						type = "execute",
+						order = newOrder(),
+						width = "full",
+						name = L["Clear accountwide statistics"],
+						desc = L["Clears the accountwide statistics saved for all characters. You can use this to remove the attempts stored for characters that no longer exist in their original form, e.g., after a server transfer, realm merge, or name change. After clearing this cached data, you will have to log into each character once so attempts can be updated from their statistics again."],
+						func = function(info, value) -- What are these parameters?
+							Rarity.db.profile.accountWideStatisticsBackup = Rarity.db.profile.accountWideStatistics -- There's no way to restore it automatically, for now, but it's still better to be safe rather than sorry
+							Rarity.db.profile.accountWideStatistics = {}
+							Rarity:Print(L["Cleared accountwide statistics"])
+						end
+					}
+				}
+			},
 
 		},
 	}
