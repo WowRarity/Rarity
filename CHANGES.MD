@@ -4,6 +4,7 @@
 <br>Added a button to remove accountwide statistics for players affected by realm merges, transfers and name changes, to be used if the old character's attempts are still saved and the attempts counts are wrong as a result of the unique ID (name-realm) being different. It can be found in the 'Advanced' section of the options, for now.
 
 > Black Tabby Cat is now considered a zonewide drop, obtainable in all of Hillsbrad Foothills
+<br>Attempts for Knockoff Blingtron are now added when opening Blingtron 7000 Gift Packages
 
 > Fixed a UI issue that could cause the tooltip to not be shown when custom items were added with invalid data (or Blizzard's server didn't send any data for the given item)
 <br>The tooltip now always displays an item's estimated base drop rate instead of considering the somewhat arbitrary group size setting in order to provide consistent data to players
