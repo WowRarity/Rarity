@@ -10,7 +10,8 @@ local changes = {
 			"Added a button to remove accountwide statistics for players affected by realm merges, transfers and name changes, to be used if the old character's attempts are still saved and the attempts counts are wrong as a result of the unique ID (name-realm) being different. It can be found in the 'Advanced' section of the options, for now."
 		},
 		changes = {
-			"Black Tabby Cat is now considered a zonewide drop, obtainable in all of Hillsbrad Foothills"
+			"Black Tabby Cat is now considered a zonewide drop, obtainable in all of Hillsbrad Foothills",
+			"Attempts for Knockoff Blingtron are now added when opening Blingtron 7000 Gift Packages"
 		}
 	},
 	["r698"] = {
