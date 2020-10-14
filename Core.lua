@@ -293,14 +293,14 @@ do
 		-- Delayed calendar init a few times
 		self:ScheduleTimer(function()
 			if type(CalendarFrame) ~= "table" or not CalendarFrame:IsShown() then
-				local CalendarTime = C_Calendar.GetDate()
+				local CalendarTime = C_DateAndTime.GetCurrentCalendarTime()
 				local month, year = CalendarTime.month, CalendarTime.year
 				C_Calendar.SetAbsMonth(month, year)
 			end
 		end, 7)
 		self:ScheduleTimer(function()
 			if type(CalendarFrame) ~= "table" or not CalendarFrame:IsShown() then
-				local CalendarTime = C_Calendar.GetDate()
+				local CalendarTime = C_DateAndTime.GetCurrentCalendarTime()
 				local month, year = CalendarTime.month, CalendarTime.year
 				C_Calendar.SetAbsMonth(month, year)
 			end
