@@ -57,7 +57,7 @@ function R:ScanCalendar(reason)
 	self:Debug("Scanning calendar (" .. reason .. ")")
 
 	table.wipe(Rarity.holiday_textures)
-	local dateInfo = C_Calendar.GetDate() -- This is the CURRENT date (always "today")
+	local dateInfo = C_DateAndTime.GetCurrentCalendarTime() -- This is the CURRENT date (always "today")
 	local month, day, year = dateInfo.month, dateInfo.monthDay, dateInfo.year
 	local monthInfo = C_Calendar.GetMonthInfo() -- This is the CALENDAR date (as selected)
 	local curMonth, curYear = monthInfo.month, monthInfo.year -- It should be noted that this is the calendar's "current" month... the name may be misleading, but I'll keep it as it was

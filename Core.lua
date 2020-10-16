@@ -293,14 +293,14 @@ do
 		-- Delayed calendar init a few times
 		self:ScheduleTimer(function()
 			if type(CalendarFrame) ~= "table" or not CalendarFrame:IsShown() then
-				local CalendarTime = C_Calendar.GetDate()
+				local CalendarTime = C_DateAndTime.GetCurrentCalendarTime()
 				local month, year = CalendarTime.month, CalendarTime.year
 				C_Calendar.SetAbsMonth(month, year)
 			end
 		end, 7)
 		self:ScheduleTimer(function()
 			if type(CalendarFrame) ~= "table" or not CalendarFrame:IsShown() then
-				local CalendarTime = C_Calendar.GetDate()
+				local CalendarTime = C_DateAndTime.GetCurrentCalendarTime()
 				local month, year = CalendarTime.month, CalendarTime.year
 				C_Calendar.SetAbsMonth(month, year)
 			end
@@ -755,7 +755,8 @@ hooksecurefunc("BonusRollFrame_StartBonusRoll", function(spellID, text, duration
 	if self.lastCoinItem and self.lastCoinItem.enableCoin and self.lastCoinItem.enabled ~= false then
 		if self.lastCoinItem.itemId then
 			if not currencyID then currencyID = BONUS_ROLL_REQUIRED_CURRENCY end
-			local _, count, icon = GetCurrencyInfo(currencyID)
+			local currency = C_CurrencyInfo.GetCurrencyInfo(currencyID)
+			local count, icon = currency.quantity, currency.iconFileID
 			if count == 0 then return end
 			local name, link, quality, iLevel, reqLevel, class, subclass, maxStack, equipSlot, texture, vendorPrice = GetItemInfo(self.lastCoinItem.itemId)
 			local _, _, _, fontString = StorePurchaseAlertFrame:GetRegions()

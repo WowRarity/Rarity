@@ -27,7 +27,7 @@ local GetAchievementInfo = GetAchievementInfo
 local GetNumArchaeologyRaces = GetNumArchaeologyRaces
 local GetNumArtifactsByRace = GetNumArtifactsByRace
 local GetArtifactInfoByRace = GetArtifactInfoByRace
-local IsQuestComplete = IsQuestComplete
+local IsQuestComplete = C_QuestLog.IsComplete
 local GetArchaeologyRaceInfo = GetArchaeologyRaceInfo
 local GetActiveArtifactByRace = GetActiveArtifactByRace
 
