@@ -1,3 +1,12 @@
+**r700:**
+
+> Fixed errors caused by API changes in the Shadowlands prepatch (there may be more errors still)
+
+Developer Notes:
+> Thanks to Daniel Bowden (dbowden713)
+
+-----
+
 **r699:**
 
 > When items with incomplete or invalid data are detected by the addon, a notification will now be displayed. These messages should help narrow down future issues with custom items; they can be disabled with a newly-added setting that is located in the Advanced/Experimental section of the configuration UI (subject to change)
@@ -43,12 +52,3 @@
 
 Developer Notes:
 > It appears that Blizzard broke the statistics for the Firelands raid when adding its Timewalking version. Detection for all bosses except Ragnaros and Alysrazor was changed to use NPC looting in order to work around this bug as best as possible, but attempts for items dropped by those two bosses might not always be detected until statistics are being updated correctly again
-
------
-
-**r695:**
-
-> Added tracking for missing collectibles dropped from rares in Uldum and Vale of the Eternal Blossoms
-<br>Added defeat detection for collectibles dropped from rares in Uldum and Vale of the Eternal Blossoms
-<br>Added tracking for Crimson Skipper (dropped by Honey Smasher)
-<br>Added tracking for Mollie (dropped by Dunegorger Kraulok)

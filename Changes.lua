@@ -1,4 +1,12 @@
 local changes = {
+	["r700"] = {
+		fixes = {
+			"Fixed errors caused by API changes in the Shadowlands prepatch (there may be more errors still)"
+		},
+		notes = {
+			"Thanks to Daniel Bowden (dbowden713)"
+		}
+	},
 	["r699"] = {
 		fixes = {
 			"Fixed a UI issue that could cause the tooltip to not be shown when custom items were added with invalid data (or Blizzard's server didn't send any data for the given item)",
