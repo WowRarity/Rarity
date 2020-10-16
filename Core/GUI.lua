@@ -2588,10 +2588,7 @@ function R:ShowFoundAlert(itemId, attempts, item)
 	end
 
 	-- The following code is adapted from Blizzard's AlertFrameMixin:OnEvent function found in FrameXML\AlertFrames.lua [heavily updated in 7.0]
-
-	if (IsKioskModeEnabled()) then
-		return
-	end
+	-- Presumably, this is now outdated (as of 9.0) so maybe copy/pasting it wasn't the best idea? :P
 
 	if (not AchievementFrame) then
 		AchievementFrame_LoadUI()
