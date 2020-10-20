@@ -629,6 +629,19 @@ function R:PrepareOptions()
 								end,
 							},
 
+							hideKnownItemsInTooltip = {
+								type = "toggle",
+								order = newOrder(),
+								width = "double",
+								name = L["Hide obtained items in tooltips"],
+								desc = L["When enabled, Rarity will not add tooltip information for items you've already obtained."],
+								get = function() return self.db.profile.hideKnownItemsInTooltip end,
+								set = function(info, val)
+									self.db.profile.hideKnownItemsInTooltip = val
+									Rarity.GUI:UpdateText()
+								end,
+							},
+
 						}, -- args
 					}, -- worldTooltips
 
