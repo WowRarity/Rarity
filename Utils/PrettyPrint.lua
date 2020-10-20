@@ -16,7 +16,7 @@ end
 -- Prints a prettier debug message, with source (module, category, etc.) if one was given
 function PP.DebugMsg(msg, timestamp, source, ...)
 	source = source or ""
-	timestamp = timestamp or date()
+	timestamp = timestamp or time()
 	print(
 		"|c00C2C2C2[" ..
 			format(
