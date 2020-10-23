@@ -1836,6 +1836,7 @@ function R:PrepareDefaults()
 				"875", -- Zandalar
 				"876", -- Kul'tiras
 				"974", -- Tol'Dagor
+				"1161", -- Boralus
 				"1364", -- Battle for Dazar'alor (Raid)
 				"1462" -- Mechagon Island
 			},
