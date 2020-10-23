@@ -1,3 +1,11 @@
+**r701:**
+
+> Added an option to hide items that are already known from the mouseover tooltip (courtesy of Daniel Bowden) 
+
+> Attempts for the Great Sea Ray should now be correctly tracked while fishing on Mechagon Island and in Boralus
+
+-----
+
 **r700:**
 
 > Fixed errors caused by API changes in the Shadowlands prepatch (there may be more errors still)
@@ -34,21 +42,3 @@ Developer Notes:
 
 > Fixed an error in the fishing detection that could prevent attempts from being registered correctly
 <br>Fixed a UI issue that could cause the tooltip loading to fail
-
------
-
-**r696:**
-
-> Added tracking for collectibles obtained from Horrific Visions (experimental)
-<br>Added tracking for the Zan-Tien Lasso (dropped by mogu in the Vale of Eternal Blossoms)
-<br>Added tracking for pets obtained from 8.3 paragon caches
-<br>Added missing toggle for BFA content in the configuration UI
-
-> Updated group size recommendations for 8.3 collectibles
-<br>Updated drop rate estimations for mounts obtained in BFA dungeons
-
-> Fixed an issue that could cause additional attempts to be registered when Dunegorger Kraulok died nearby, but wasn't actually engaged
-<br>Fixed the detection of pets obtained in the Firelands raid (see notes below)
-
-Developer Notes:
-> It appears that Blizzard broke the statistics for the Firelands raid when adding its Timewalking version. Detection for all bosses except Ragnaros and Alysrazor was changed to use NPC looting in order to work around this bug as best as possible, but attempts for items dropped by those two bosses might not always be detected until statistics are being updated correctly again

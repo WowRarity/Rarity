@@ -1,4 +1,12 @@
 local changes = {
+	["r701"] = {
+		additions = {
+			"Added an option to hide items that are already known from the mouseover tooltip (courtesy of Daniel Bowden) "
+		},
+		fixes = {
+			"Attempts for the Great Sea Ray should now be correctly tracked while fishing on Mechagon Island and in Boralus"
+		},
+	},
 	["r700"] = {
 		fixes = {
 			"Fixed errors caused by API changes in the Shadowlands prepatch (there may be more errors still)"
