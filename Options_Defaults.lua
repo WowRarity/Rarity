@@ -1044,6 +1044,9 @@ function R:PrepareDefaults()
 				123863,
 			},
 			chance = 3000,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.VOLDUN },
+			},
 		 },
 
 		 ["Chewed-On Reins of the Terrified Pack Mule"] = {
@@ -1065,6 +1068,9 @@ function R:PrepareDefaults()
 				131529
 			},
 			chance = 4000,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.DRUSTVAR },
+			},
 		 },
 
 		 ["Reins of a Tamed Bloodfeaster"] = {
@@ -1093,6 +1099,9 @@ function R:PrepareDefaults()
 				124688,
 			},
 			chance = 3000,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.NAZMIR },
+			},
 		 },
 
 		 ["Goldenmane's Reins"] = {
@@ -1130,6 +1139,9 @@ function R:PrepareDefaults()
 				130531,
 			},
 			chance = 3000,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.STORMSONG_VALLEY },
+			},
 		 },
 
 		-- 8.1
