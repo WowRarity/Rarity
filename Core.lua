@@ -646,8 +646,12 @@ function R:IsAttemptAllowed(item)
 	if item == nil then return true end
 
 	-- Check disabled classes
-	if not Rarity.Caching:GetPlayerClass() then Rarity.Caching:SetPlayerClass(select(2, UnitClass("player"))) end
-	if item.disableForClass and type(item.disableForClass == "table") and item.disableForClass[Rarity.Caching:GetPlayerClass()] == true then return false end
+	local playerClass = Rarity.Caching:GetPlayerClass() -- Why is this cached in the first place?
+	if not playerClass then Rarity.Caching:SetPlayerClass(select(2, UnitClass("player"))) end
+	if item.disableForClass and type(item.disableForClass) == "table" and item.disableForClass[playerClass] == true then
+		Rarity:Debug(format("Attempts for item %s are disallowed (disabled for class %s)", item.name, playerClass))
+		return false
+	end
 
 	-- No valid instance difficulty configuration; allow (this needs to be the second-to-last check)
 	if item.instanceDifficulties == nil or type(item.instanceDifficulties) ~= "table" or next(item.instanceDifficulties) == nil then return true end

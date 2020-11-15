@@ -5000,7 +5000,6 @@ function R:PrepareDefaults()
 		enableCoin = true,
 		disableForClass = { ["DEATHKNIGHT"] = true, ["DRUID"] = true, ["HUNTER"] = true, ["MAGE"] = true, ["MONK"] = true, ["PALADIN"] = true, ["PRIEST"] = true, ["ROGUE"] = true, ["SHAMAN"] = true, ["WARLOCK"] = true, ["WARRIOR"] = true },
 		statisticId = { 10977, 10979, 10980, 10978 },
-		-- todo is still counting even if disableForClass is set?
 		coords = { {m=772, i=true} },
 	},
 
