@@ -4545,7 +4545,7 @@ function R:PrepareDefaults()
 		chance = 20,
 		creatureId =158685,
 		coords = {
-			{ m = 942, x = 61.4, y = 16, n = L["Honey Smasher"] },
+			{ m = CONSTANTS.UIMAPIDS.STORMSONG_VALLEY, x = 61.4, y = 16, n = L["Honey Smasher"] },
 		},
 	},
 
