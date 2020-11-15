@@ -4,7 +4,9 @@ local changes = {
 			"Added an option to hide items that are already known from the mouseover tooltip (courtesy of Daniel Bowden) "
 		},
 		fixes = {
-			"Attempts for the Great Sea Ray should now be correctly tracked while fishing on Mechagon Island and in Boralus"
+			"Attempts for the Great Sea Ray should now be correctly tracked while fishing on Mechagon Island and in Boralus",
+			"Fixed an error that would occur when Blizzard's bonus roll window was displayed after obtaining a tracked item",
+			"Attempts should no longer be added if tracking is disabled for the player's class"
 		},
 	},
 	["r700"] = {
