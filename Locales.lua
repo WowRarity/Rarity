@@ -2,6 +2,13 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Note: Your existing settings will be overwritten."] = true
+L["Set all battle pets to be tracked repeatedly."] = true
+L["Set all battle pets to NOT be tracked repeatedly."] = true
+L["Untrack pets repeatedly"] = true
+L["Track pets repeatedly"] = true
+L["Track pets repeatedly"] = true
+L["Tracking Overrides"] = true
 L["Cleared accountwide statistics"] = true
 L["Clear accountwide statistics"] = true
 L["Clears the accountwide statistics saved for all characters. You can use this to remove the attempts stored for characters that no longer exist in their original form, e.g., after a server transfer, realm merge, or name change. After clearing this cached data, you will have to log into each character once so attempts can be updated from their statistics again."] = true

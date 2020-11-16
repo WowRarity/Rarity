@@ -1354,6 +1354,44 @@ function R:PrepareOptions()
 					}
 				}
 			},
+			trackingOverrides = {
+				name = L["Tracking Overrides"],
+				type = "group",
+				order = newOrder(),
+				inline = true,
+				args = {
+					trackPetsRepeatedly = {
+						type = "execute",
+						order = newOrder(),
+						-- width = "full",
+						name = L["Track pets repeatedly"],
+						desc = L["Set all battle pets to be tracked repeatedly."] .. " " .. L["Note: Your existing settings will be overwritten."],
+						func = function(info, val)
+							for index, item in pairs(self.db.profile.groups.pets) do
+								if type(item) == "table" then -- For some reason, there's a bunch of other properties, too...
+									item.repeatable = true
+									Rarity:Debug(format("Setting repeatable = %s for item %s", tostring(item.repeatable), item.name))
+								end
+							end
+						end,
+					},
+					untrackPetsRepeatedly = {
+						type = "execute",
+						order = newOrder(),
+						-- width = "full",
+						name = L["Untrack pets repeatedly"],
+						desc = L["Set all battle pets to NOT be tracked repeatedly."] .. " " .. L["Note: Your existing settings will be overwritten."],
+						func = function(info, val)
+							for index, item in pairs(self.db.profile.groups.pets) do
+								if type(item) == "table" then -- For some reason, there's a bunch of other properties, too...
+									item.repeatable = false
+									Rarity:Debug(format("Setting repeatable = %s for item %s", tostring(item.repeatable), item.name))
+								end
+							end
+						end,
+					}
+				}
+			}
 
 		},
 	}
