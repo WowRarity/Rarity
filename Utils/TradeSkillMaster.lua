@@ -97,18 +97,6 @@ function TSM_Interface:GetMarketPrice(itemID, priceSource, formatAsString)
 	end
 
 	local marketPrice, errorMessage = TSM_API.GetCustomPriceValue(priceSource, itemString)
-	if errorMessage then
-		Rarity:Debug(
-			format(
-				"Error while retrieving price for item %d (%s) from price source %s via TSM_API: %s",
-				itemID,
-				itemLink,
-				priceSource,
-				errorMessage
-			)
-		)
-	end
-
 	if marketPrice and formatAsString then
 		marketPrice = TSM_API.FormatMoneyString(marketPrice)
 	end
