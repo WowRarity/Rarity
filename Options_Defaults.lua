@@ -1851,7 +1851,8 @@ function R:PrepareDefaults()
 				"974", -- Tol'Dagor
 				"1161", -- Boralus
 				"1364", -- Battle for Dazar'alor (Raid)
-				"1462" -- Mechagon Island
+				"1462", -- Mechagon Island
+				"1165", -- Dazar'alor
 			},
 		},
 
