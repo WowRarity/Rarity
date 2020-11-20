@@ -1171,7 +1171,7 @@ local function addGroup(group, requiresGroup)
 			end
 
 			if not v.itemId then
-				Rarity:Error(format("Failed to add tooltip line for item %s (invalid ID or the server didn't return any data)", k))
+				Rarity:Error(format("Failed to add tooltip line for item %s (%s) in group %s (invalid ID or the server didn't return any data)", k, v.name or "nil", group.name))
 				return
 			end
 			-- Item
