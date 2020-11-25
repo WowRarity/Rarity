@@ -28,6 +28,7 @@ local MOP = "MOP"
 local WOD = "WOD"
 local LEGION = "LEGION"
 local BFA = "BFA"
+local SHADOWLANDS = "SHADOWLANDS"
 local HOLIDAY = "HOLIDAY"
 
 -- Methods of obtaining
@@ -753,6 +754,16 @@ function R:PrepareOptions()
 						get = function() return self.db.profile.cats[BFA] end,
 						set = function(info, val)
 							self.db.profile.cats[BFA] = val
+							Rarity.GUI:UpdateText()
+						end,
+					},
+					shadowlands = {
+						type = "toggle",
+						order = newOrder(),
+						name = L["Shadowlands"],
+						get = function() return self.db.profile.cats[SHADOWLANDS] end,
+						set = function(info, val)
+							self.db.profile.cats[SHADOWLANDS] = val
 							Rarity.GUI:UpdateText()
 						end,
 					},

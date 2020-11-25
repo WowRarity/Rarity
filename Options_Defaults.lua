@@ -31,6 +31,7 @@ local MOP = CONSTANTS.ITEM_CATEGORIES.MOP
 local WOD = CONSTANTS.ITEM_CATEGORIES.WOD
 local LEGION = CONSTANTS.ITEM_CATEGORIES.LEGION
 local BFA = CONSTANTS.ITEM_CATEGORIES.BFA
+local SHADOWLANDS = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS
 local HOLIDAY = CONSTANTS.ITEM_CATEGORIES.HOLIDAY
 
 -- Holiday calendar textures
@@ -124,6 +125,7 @@ R.catIcons = {
  [WOD] = "wod",
  [LEGION] = "legion",
  [BFA] = "bfa",
+ [SHADOWLANDS] = "shadowlands",
 }
 R.catOrder = {
  [HOLIDAY] = 0,
@@ -135,6 +137,7 @@ R.catOrder = {
  [WOD] = 6,
  [LEGION] = 7,
  [BFA] = 8,
+ [SHADOWLANDS] = 9,
 }
 
 -- Tooltip Filters (Note: Currently, this system is merely a stub. but more (and custom) filters may be added in the future)
