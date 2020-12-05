@@ -89,5 +89,6 @@ move-folders:
 
 ignore:
  - README.MD
+ - CONTRIBUTING.MD
  - Changes.lua
  - .luacheckrc
