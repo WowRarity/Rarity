@@ -66,3 +66,10 @@ Outline:
 This is weird and I don't even know if it works correctly. The system probably needs an overhaul.
 
 **TODO: Explain how it works regardless?**
+### Localization
+
+Rarity uses the [WowAce localization system](https://www.wowace.com/projects/rarity/localization). Any string that is to be displayed in multiple languages must be added to the localization table found in ``Locales.lua``.
+
+In the code, this will usually take the form ``L["English Phrase"]"``, and an entry ``L["English Phrase"] = "Translated Phrase"``, which is automatically applied by the ``AceLocale`` library at runtime.
+
+Phrases must be added manually for the time being, and updates to WowAce require importing the (English) localization table [here](https://www.wowace.com/projects/rarity/localization/import-lua).
