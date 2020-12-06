@@ -1505,6 +1505,8 @@ L["Warbringer Mal'Korak"] = true
 L["Armored Bonehoof Tauralus"] = true
 L["Bonecleaver's Skullboar"] = true
 L["Sabriel the Bonecleaver"] = true
+L["Mawsworn Soulhunter"] = true
+L["Gorged Shadehound"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

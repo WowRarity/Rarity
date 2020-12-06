@@ -2116,6 +2116,22 @@ function R:PrepareDefaults()
 			},
 		},
 
+		["Mawsworn Soulhunter"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = NPC,
+			name = L["Mawsworn Soulhunter"],
+			itemId = 184167,
+			spellId = 312762,
+			npcs = { 174827 },
+			chance = 100,	-- Estimate
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.THE_MAW, x = 53.5, y = 79.5, n = L["Gorged Shadehound"] },
+			},
+		},
+
     },
 
 
