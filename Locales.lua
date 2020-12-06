@@ -1502,6 +1502,9 @@ L["Gorespine"] = true
 L["Nerissa Heartless"] = true
 L["Blisterback Bloodtusk"] = true
 L["Warbringer Mal'Korak"] = true
+L["Armored Bonehoof Tauralus"] = true
+L["Bonecleaver's Skullboar"] = true
+L["Sabriel the Bonecleaver"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
