@@ -2031,6 +2031,22 @@ function R:PrepareDefaults()
 			},
 		},
 
+		["Slime-Covered Reins of the Hulking Deathroc"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = NPC,
+			name = L["Slime-Covered Reins of the Hulking Deathroc"],
+			itemId = 182079,
+			spellId = 336042,
+			npcs = { 157309 },
+			chance = 33,
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 58.6, y = 74.2, n = L["Violet Mistake"] },
+			},
+		},
+
     },
 
 

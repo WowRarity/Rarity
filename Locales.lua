@@ -1496,6 +1496,8 @@ L["Wild Glimmerfur Prowler"] = true
 L["Valfir the Unrelenting"] = true
 L["Predatory Plagueroc"] = true
 L["Gieger"] = true
+L["Slime-Covered Reins of the Hulking Deathroc"] = true
+L["Violet Mistake"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
