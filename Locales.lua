@@ -1492,6 +1492,8 @@ L["Horrid Dredwing"] = true
 L["Harika the Horrid"] = true
 L["Endmire Flyer Tether"] = true
 L["Famu the Infinite"] = true
+L["Wild Glimmerfur Prowler"] = true
+L["Valfir the Unrelenting"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

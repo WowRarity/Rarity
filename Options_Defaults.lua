@@ -1999,6 +1999,22 @@ function R:PrepareDefaults()
 			},
 		},
 
+		["Wild Glimmerfur Prowler"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = NPC,
+			name = L["Wild Glimmerfur Prowler"],
+			itemId = 180730,
+			spellId = 334366,
+			npcs = { 168647 },
+			chance = 100,
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.ARDENWEALD, x = 30.4, y = 55.2, n = L["Valfir the Unrelenting"] },
+			},
+		},
+
     },
 
 
