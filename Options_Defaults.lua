@@ -1460,7 +1460,20 @@ function R:PrepareDefaults()
 		},
 
 
-		-- 8.3 Mounts
+		-- 9.0 Mounts
+		["Horrid Dredwing"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = NPC,
+			name = L["Horrid Dredwing"],
+			itemId = 180461,
+			spellId = 332882,
+			npcs = { 165290 },
+			chance = 100,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 46.0, y = 78.5, n = L["Harika the Horrid"] },
+			},
+		},
 
 
 	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

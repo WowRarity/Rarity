@@ -1487,6 +1487,10 @@ L["Region Avg Daily Sold"] = true
 L["Show TSM column"] = true
 L["When on, the TSM Market Price will be shown in the main tooltip."] = true
 
+L["Shadowlands"] = true
+L["Horrid Dredwing"] = true
+L["Harika the Horrid"] = true
+
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
 					Please go to http://www.wowace.com/projects/rarity/localization/ to update translations.
