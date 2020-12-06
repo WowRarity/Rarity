@@ -2008,6 +2008,7 @@ function R:PrepareDefaults()
 			spellId = 334366,
 			npcs = { 168647 },
 			chance = 100,
+			questId = { 61632 },
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
