@@ -238,6 +238,7 @@ function R:PrepareDefaults()
 				[LEGION] = true,
 				[HOLIDAY] = true,
 				[BFA] = true,
+				[SHADOWLANDS] = true,
 			},
 
 			-- These are achievements with the names of rare NPCs as criteria to kill
