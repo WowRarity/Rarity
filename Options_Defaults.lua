@@ -1471,6 +1471,7 @@ function R:PrepareDefaults()
 			spellId = 332882,
 			npcs = { 165290 },
 			chance = 100,
+			questId = { 59612 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 46.0, y = 78.5, n = L["Harika the Horrid"] },
 			},
