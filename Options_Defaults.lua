@@ -2056,10 +2056,11 @@ function R:PrepareDefaults()
 			spellId = 332480,
 			npcs = { 162690 },
 			chance = 50,
+			questId = { 58851 },
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
-				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 67.0, y = 37.6, n = L["Nerissa Heartless"] },
+				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 65.8, y = 35.3, n = L["Nerissa Heartless"] },
 			},
 		},
 
