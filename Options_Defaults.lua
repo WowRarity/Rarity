@@ -2073,12 +2073,13 @@ function R:PrepareDefaults()
 			name = L["Blisterback Bloodtusk"],
 			itemId = 182085,
 			spellId = 332478,
-			npcs = { 162818 },
+			npcs = { 162819 },
 			chance = 33,
+			questId = { 58889 },
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
-				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 33.6, y = 80.6, n = L["Wartusk"] },
+				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 33.6, y = 80.6, n = L["Warbringer Mal'Korak"] },
 			},
 		},
 
