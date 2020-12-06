@@ -1490,6 +1490,8 @@ L["When on, the TSM Market Price will be shown in the main tooltip."] = true
 L["Shadowlands"] = true
 L["Horrid Dredwing"] = true
 L["Harika the Horrid"] = true
+L["Endmire Flyer Tether"] = true
+L["Famu the Infinite"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

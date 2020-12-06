@@ -1980,6 +1980,24 @@ function R:PrepareDefaults()
 			groupSize = 3,
 		},
 
+		-- 9.0 Mounts
+
+		["Endmire Flyer Tether"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = NPC,
+			name = L["Endmire Flyer Tether"],
+			itemId = 180582,
+			spellId = 332905,
+			npcs = { 166521 },
+			chance = 100,
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 62.0, y = 47.0, n = L["Famu the Infinite"] },
+			},
+		},
+
     },
 
 
