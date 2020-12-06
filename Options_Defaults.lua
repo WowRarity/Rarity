@@ -2063,6 +2063,22 @@ function R:PrepareDefaults()
 			},
 		},
 
+		["Blisterback Bloodtusk"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = NPC,
+			name = L["Blisterback Bloodtusk"],
+			itemId = 182085,
+			spellId = 332478,
+			npcs = { 162818 },
+			chance = 33,
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 33.6, y = 80.6, n = L["Wartusk"] },
+			},
+		},
+
     },
 
 

@@ -1500,6 +1500,8 @@ L["Slime-Covered Reins of the Hulking Deathroc"] = true
 L["Violet Mistake"] = true
 L["Gorespine"] = true
 L["Nerissa Heartless"] = true
+L["Blisterback Bloodtusk"] = true
+L["Wartusk"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
