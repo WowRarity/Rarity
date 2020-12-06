@@ -2047,6 +2047,22 @@ function R:PrepareDefaults()
 			},
 		},
 
+		["Gorespine"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = NPC,
+			name = L["Gorespine"],
+			itemId = 182084,
+			spellId = 332480,
+			npcs = { 162690 },
+			chance = 50,
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 67.0, y = 37.6, n = L["Nerissa Heartless"] },
+			},
+		},
+
     },
 
 
