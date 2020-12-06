@@ -2015,6 +2015,22 @@ function R:PrepareDefaults()
 			},
 		},
 
+		["Predatory Plagueroc"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = NPC,
+			name = L["Predatory Plagueroc"],
+			itemId = 182080,
+			spellId = 336045,
+			npcs = { 162741 },
+			chance = 33,
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 31.4, y = 35.6, n = L["Gieger"] },
+			},
+		},
+
     },
 
 

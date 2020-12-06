@@ -1494,6 +1494,8 @@ L["Endmire Flyer Tether"] = true
 L["Famu the Infinite"] = true
 L["Wild Glimmerfur Prowler"] = true
 L["Valfir the Unrelenting"] = true
+L["Predatory Plagueroc"] = true
+L["Gieger"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
