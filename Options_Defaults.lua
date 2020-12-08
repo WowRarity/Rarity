@@ -6174,6 +6174,22 @@ function R:PrepareDefaults()
 		},
 	},
 
+	-- 9.0 Toys
+	["Borr-Geth's Fiery Brimstone"] = {
+		cat = SHADOWLANDS,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Borr-Geth's Fiery Brimstone"],
+		itemId = 184312,
+		npcs = { 157833 },
+		chance = 4,
+		questId = { 57469 },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.THE_MAW, x = 39.6, y = 40.8, n = L["Borr-Geth"] },
+		},
+	},
+
 	-- ["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = {
 	-- 	cat = BFA,
 	-- 	type = ITEM,

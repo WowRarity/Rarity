@@ -1516,6 +1516,8 @@ L["Tahonta"] = true
 L["Marrowfang's Reins"] = true
 L["Reins of the Colossal Slaughterclaw"] = true
 L["Amber Ardenmoth"] = true
+L["Borr-Geth's Fiery Brimstone"] = true
+L["Borr-Geth"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
