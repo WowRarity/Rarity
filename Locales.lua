@@ -1518,6 +1518,7 @@ L["Reins of the Colossal Slaughterclaw"] = true
 L["Amber Ardenmoth"] = true
 L["Borr-Geth's Fiery Brimstone"] = true
 L["Borr-Geth"] = true
+L["Malfunctioning Goliath Gauntlet"] = true
 L["Mark of Purity"] = true
 L["Infested Arachnid Casing"] = true
 

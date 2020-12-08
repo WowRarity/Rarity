@@ -6190,6 +6190,18 @@ function R:PrepareDefaults()
 		},
 	},
 
+
+	["Malfunctioning Goliath Gauntlet"] = {
+		cat = SHADOWLANDS,
+		type = ITEM,
+		isToy = true,
+		method = USE,
+		name = L["Malfunctioning Goliath Gauntlet"],
+		itemId = 184396,
+		items = { 180647 },
+		chance = 20,	-- Estimate
+	},
+
 	["Mark of Purity"] = {
 		cat = SHADOWLANDS,
 		type = ITEM,
