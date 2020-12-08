@@ -1515,6 +1515,7 @@ L["Bonehoof Tauralus"] = true
 L["Tahonta"] = true
 L["Marrowfang's Reins"] = true
 L["Reins of the Colossal Slaughterclaw"] = true
+L["Amber Ardenmoth"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

@@ -1525,6 +1525,17 @@ function R:PrepareDefaults()
 			items = { 180646, },
 			chance = 20,	-- Estimate
 		},
+
+		["Amber Ardenmoth"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = USE,
+			name = L["Amber Ardenmoth"],
+			spellId = 342666,
+			itemId = 183800,
+			items = { 180649, },
+			chance = 20,	-- Estimate
+		},
      
 
 
