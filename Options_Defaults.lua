@@ -1509,7 +1509,7 @@ function R:PrepareDefaults()
 			spellId = 332457,
 			npcs = { 162586 },
 			chance = 100,
-			sourceText = L["This mount only drop for Necrolords"],
+			sourceText = L["This mount can only drop for Necrolords"],
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 44.2, y = 51.2, n = L["Tahonta"] },
 			},
