@@ -1507,6 +1507,8 @@ L["Bonecleaver's Skullboar"] = true
 L["Sabriel the Bonecleaver"] = true
 L["Mawsworn Soulhunter"] = true
 L["Gorged Shadehound"] = true
+L["Blight-Touched Egg"] = true
+LL["Dropped by various flying creatures in Maldraxxus. Will hatch into Callow Flayedwing after five days."] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
