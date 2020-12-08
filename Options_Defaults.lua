@@ -6190,6 +6190,18 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Infested Arachnid Casing"] = {
+		cat = SHADOWLANDS,
+		type = ITEM,
+		isToy = true,
+		method = USE,
+		name = L["Infested Arachnid Casing"],
+		itemId = 184495,
+		items = { 180646 },
+		chance = 20,	-- Estimate
+	},
+
+
 	-- ["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = {
 	-- 	cat = BFA,
 	-- 	type = ITEM,
