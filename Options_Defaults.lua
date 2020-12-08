@@ -2188,6 +2188,22 @@ function R:PrepareDefaults()
 			},
 		},
 
+		["Marrowfang's Reins"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = BOSS,
+			name = L["Marrowfang's Reins"],
+			spellId = 336036,
+			itemId = 181819,
+			npcs = { 99999 },
+			tooltipNpcs = { 162693 },
+			statisticId = { 14404 },
+			chance = 100,
+			equalOdds = true,
+			instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
+			groupSize = 5,
+		},
+
     },
 
 

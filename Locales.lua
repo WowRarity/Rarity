@@ -1513,6 +1513,7 @@ L["Blight-Touched Egg"] = true
 L["Dropped by various flying creatures in Maldraxxus. Will hatch into Callow Flayedwing after five days."] = true
 L["Bonehoof Tauralus"] = true
 L["Tahonta"] = true
+L["Marrowfang's Reins"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
