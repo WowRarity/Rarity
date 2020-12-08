@@ -1499,6 +1499,21 @@ function R:PrepareDefaults()
 				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS }
 			},
 		},
+
+		["Bonehoof Tauralus"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Bonehoof Tauralus"],
+			itemId = 182075,
+			spellId = 332457,
+			npcs = { 162586 },
+			chance = 100,
+			sourceText = L["This mount only drop for Necrolords"],
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 44.2, y = 51.2, n = L["Tahonta"] },
+			},
+		},
      
 
 

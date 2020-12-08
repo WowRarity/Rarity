@@ -1510,7 +1510,9 @@ L["Gorged Shadehound"] = true
 L["Gnawed Reins of the Battle-Bound Warhound"] = true
 L["Theatre of Pain"] = true
 L["Blight-Touched Egg"] = true
-LL["Dropped by various flying creatures in Maldraxxus. Will hatch into Callow Flayedwing after five days."] = true
+L["Dropped by various flying creatures in Maldraxxus. Will hatch into Callow Flayedwing after five days."] = true
+L["Bonehoof Tauralus"] = true
+L["Tahonta"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
