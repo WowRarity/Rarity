@@ -1991,7 +1991,7 @@ function R:PrepareDefaults()
 			spellId = 332905,
 			npcs = { 166521 },
 			chance = 100,
-			questId = { 59869 }, -- Either this or 60853. Needs validation
+			questId = { 59869 },
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
