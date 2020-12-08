@@ -6206,6 +6206,20 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Regenerating Slime Vial"] = {
+		cat = SHADOWLANDS,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Regenerating Slime Vial"],
+		itemId = 184476,
+		npcs = { 162727 },
+		chance = 10,
+		questId = { 58870 },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 52.75, y = 35.28, n = L["Bubbleblood"] },
+		},
+	},
 
 	["Malfunctioning Goliath Gauntlet"] = {
 		cat = SHADOWLANDS,
