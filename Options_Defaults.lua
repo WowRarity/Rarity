@@ -6190,6 +6190,17 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Mark of Purity"] = {
+		cat = SHADOWLANDS,
+		type = ITEM,
+		isToy = true,
+		method = USE,
+		name = L["Mark of Purity"],
+		itemId = 184435,
+		items = { 180647 },
+		chance = 20,	-- Estimate
+	},
+
 	["Infested Arachnid Casing"] = {
 		cat = SHADOWLANDS,
 		type = ITEM,
