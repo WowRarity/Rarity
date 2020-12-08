@@ -6191,6 +6191,22 @@ function R:PrepareDefaults()
 	},
 
 
+	["Smolderheart"] = {
+		cat = SHADOWLANDS,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Smolderheart"],
+		itemId = 180873,
+		npcs = { 160857 },
+		chance = 25,
+		questId = { 58263 },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 34.08, y = 55.47, n = L["Sire Ladinas"] },
+		},
+	},
+
+
 	["Malfunctioning Goliath Gauntlet"] = {
 		cat = SHADOWLANDS,
 		type = ITEM,
