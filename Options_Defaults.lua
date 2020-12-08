@@ -2138,6 +2138,7 @@ function R:PrepareDefaults()
 			npcs = { 162819 },
 			chance = 33,
 			questId = { 58889 },
+			tooltipNpcs = { 162818 },
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
