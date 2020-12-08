@@ -2156,6 +2156,23 @@ function R:PrepareDefaults()
 			},
 		},
 
+		["Gnawed Reins of the Battle-Bound Warhound"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Gnawed Reins of the Battle-Bound Warhound"],
+			itemId = 184062,
+			spellId = 344228,
+			npcs = { 162873, 162880, 162875, 162853, 162874, 162872 },
+			chance = 100,	-- Estimate
+			questId = { 62786 },
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 50.67, y = 47.37, n = L["Theatre of Pain"] },
+			},
+		},
+
     },
 
 
