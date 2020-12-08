@@ -1514,6 +1514,17 @@ function R:PrepareDefaults()
 				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 44.2, y = 51.2, n = L["Tahonta"] },
 			},
 		},
+
+		["Reins of the Colossal Slaughterclaw"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = USE,
+			name = L["Reins of the Colossal Slaughterclaw"],
+			spellId = 327405,
+			itemId = 182081,
+			items = { 180646, },
+			chance = 20,	-- Estimate
+		},
      
 
 
