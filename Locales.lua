@@ -1525,6 +1525,8 @@ L["Bubbleblood"] = true
 L["Malfunctioning Goliath Gauntlet"] = true
 L["Mark of Purity"] = true
 L["Infested Arachnid Casing"] = true
+L["Ever-Abundant Hearth"] = true
+L["Enforcer Aegeon"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

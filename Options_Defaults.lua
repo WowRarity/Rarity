@@ -6255,6 +6255,21 @@ function R:PrepareDefaults()
 	},
 
 
+	["Ever-Abundant Hearth"] = {
+		cat = SHADOWLANDS,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Ever-Abundant Hearth"],
+		itemId = 184404,
+		npcs = { 171009 },
+		chance = 8,
+		questId = { 60998 },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.BASTION, x = 51.4, y = 19.0, n = L["Enforcer Aegeon"] },
+		},
+	},
+
 	-- ["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = {
 	-- 	cat = BFA,
 	-- 	type = ITEM,
