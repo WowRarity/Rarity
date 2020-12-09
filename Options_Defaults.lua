@@ -6270,6 +6270,23 @@ function R:PrepareDefaults()
 		},
 	},
 
+
+	["Mnemonic Attunement Pane"] = {
+		cat = SHADOWLANDS,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Mnemonic Attunement Pane"],
+		itemId = 184413,
+		npcs = { 171008 },
+		chance = 10,
+		questId = { 60997 },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.BASTION, x = 43.6, y = 25.6, n = L["Unstable Memory"] },
+		},
+	},
+
+
 	-- ["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = {
 	-- 	cat = BFA,
 	-- 	type = ITEM,

@@ -1527,6 +1527,8 @@ L["Mark of Purity"] = true
 L["Infested Arachnid Casing"] = true
 L["Ever-Abundant Hearth"] = true
 L["Enforcer Aegeon"] = true
+L["Mnemonic Attunement Pane"] = true
+L["Unstable Memory"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
