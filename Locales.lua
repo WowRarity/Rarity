@@ -1529,6 +1529,9 @@ L["Ever-Abundant Hearth"] = true
 L["Enforcer Aegeon"] = true
 L["Mnemonic Attunement Pane"] = true
 L["Unstable Memory"] = true
+L["Bulbous Necroray"] = true
+L["Pestilent Necroray"] = true
+L["Infested Necroray"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

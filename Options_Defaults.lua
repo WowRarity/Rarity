@@ -1536,6 +1536,39 @@ function R:PrepareDefaults()
 			items = { 180649, },
 			chance = 20,	-- Estimate
 		},
+
+		["Bulbous Necroray"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = USE,
+			name = L["Bulbous Necroray"],
+			spellId = 344574,
+			itemId = 184160,
+			items = { 184158 },
+			chance = 10,	-- Estimate
+		},
+
+		["Pestilent Necroray"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = USE,
+			name = L["Pestilent Necroray"],
+			spellId = 344575,
+			itemId = 184162,
+			items = { 184158 },
+			chance = 10,	-- Estimate
+		},
+
+		["Infested Necroray"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = USE,
+			name = L["Infested Necroray"],
+			spellId = 344576,
+			itemId = 184161,
+			items = { 184158 },
+			chance = 10,	-- Estimate
+		},
      
 
 
