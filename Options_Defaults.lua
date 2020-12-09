@@ -6223,6 +6223,21 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Ancient Elethium Coin"] = {
+		cat = SHADOWLANDS,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Ancient Elethium Coin"],
+		itemId = 184292,
+		npcs = { 162849 },
+		chance = 8,
+		questId = { 60987 },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.THE_MAW, x = 16.4, y = 50.6, n = L["Morguliax"] },
+		},
+	},
+
 
 	["Smolderheart"] = {
 		cat = SHADOWLANDS,
