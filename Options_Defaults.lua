@@ -6238,6 +6238,20 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Orophea's Lyre"] = {
+		cat = SHADOWLANDS,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Orophea's Lyre"],
+		itemId = 181794,
+		npcs = { 172577 },
+		chance = 2,
+		--questId = {  }, -- TODO
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.THE_MAW, x = 23.6, y = 21.6, n = L["Orophea"] },
+		},
+	},
 
 	["Smolderheart"] = {
 		cat = SHADOWLANDS,
