@@ -1522,7 +1522,7 @@ function R:PrepareDefaults()
 			name = L["Reins of the Colossal Slaughterclaw"],
 			spellId = 327405,
 			itemId = 182081,
-			items = { 180646, },
+			items = { 180646 },
 			chance = 20,	-- Estimate
 		},
 
@@ -1533,7 +1533,7 @@ function R:PrepareDefaults()
 			name = L["Amber Ardenmoth"],
 			spellId = 342666,
 			itemId = 183800,
-			items = { 180649, },
+			items = { 180649 },
 			chance = 20,	-- Estimate
 		},
 
