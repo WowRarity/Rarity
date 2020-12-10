@@ -6247,7 +6247,7 @@ function R:PrepareDefaults()
 		itemId = 181794,
 		npcs = { 172577 },
 		chance = 2,
-		--questId = {  }, -- TODO
+		questId = { 61519 },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.THE_MAW, x = 23.6, y = 21.6, n = L["Orophea"] },
 		},
