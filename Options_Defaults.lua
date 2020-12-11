@@ -6348,6 +6348,20 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Soothing Vesper"] = {
+		cat = SHADOWLANDS,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Soothing Vesper"],
+		itemId = 184415,
+		items = { 
+			353687,
+			353691,
+			353867
+		},
+		chance = 12, -- Average
+	},
 
 	["Mnemonic Attunement Pane"] = {
 		cat = SHADOWLANDS,
