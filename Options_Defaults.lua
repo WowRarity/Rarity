@@ -5199,6 +5199,22 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Foulwing Buzzer"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Foulwing Buzzer"],
+		npcs = { 159753 },
+		spellId = 336031,
+		itemId = 181283,
+		chance = 20,
+		creatureId = 172155,
+		questId = 58004,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 54.0, y = 18.4, n = L["Ravenomous"] },
+		},
+	},
+
 	-- ["SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"] = {
 	-- 	cat = BFA,
 	-- 	type = PET,

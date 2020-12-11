@@ -1549,6 +1549,8 @@ L["Feasting Larva"] = true
 L["Smorgas the Feaster"] = true
 L["Writhing Spine"] = true
 L["Scunner"] = true
+L["Foulwing Buzzer"] = true
+L["Ravenomous"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
