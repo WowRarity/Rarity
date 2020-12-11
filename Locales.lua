@@ -1547,6 +1547,8 @@ L["Pestilent Necroray"] = true
 L["Infested Necroray"] = true
 L["Feasting Larva"] = true
 L["Smorgas the Feaster"] = true
+L["Writhing Spine"] = true
+L["Scunner"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

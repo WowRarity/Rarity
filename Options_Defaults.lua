@@ -5183,6 +5183,22 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Writhing Spine"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Writhing Spine"],
+		npcs = { 158406 },
+		spellId = 335979,
+		itemId = 181267,
+		chance = 33,
+		creatureId = 172139,
+		questId = 58006,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 61.6, y = 76.4, n = L["Scunner"] },
+		},
+	},
+
 	-- ["SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"] = {
 	-- 	cat = BFA,
 	-- 	type = PET,
