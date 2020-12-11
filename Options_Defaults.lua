@@ -5166,6 +5166,23 @@ function R:PrepareDefaults()
 		},
 	},
 
+	-- 9.0 Pets
+	["Feasting Larva"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Feasting Larva"],
+		npcs = { 162528 },
+		spellId = 335977,
+		itemId = 181266,
+		chance = 25,
+		creatureId = 172137,
+		questId = 58768,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 42.27, y = 53.90, n = L["Smorgas the Feaster"] },
+		},
+	},
+
 	-- ["SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"] = {
 	-- 	cat = BFA,
 	-- 	type = PET,

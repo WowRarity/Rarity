@@ -1545,6 +1545,8 @@ L["Unstable Memory"] = true
 L["Bulbous Necroray"] = true
 L["Pestilent Necroray"] = true
 L["Infested Necroray"] = true
+L["Feasting Larva"] = true
+L["Smorgas the Feaster"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
