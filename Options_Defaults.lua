@@ -5215,6 +5215,22 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Boneweave Hatchling"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Boneweave Hatchling"],
+		npcs = { 159886 },
+		spellId = 335764,
+		itemId = 181172,
+		chance = 33,
+		creatureId = 171986,
+		questId = 58003,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 55.5, y = 23.6, n = L["Sister Chelicerae"] },
+		},
+	},
+
 	-- ["SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"] = {
 	-- 	cat = BFA,
 	-- 	type = PET,

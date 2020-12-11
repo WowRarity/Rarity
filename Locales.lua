@@ -1551,6 +1551,8 @@ L["Writhing Spine"] = true
 L["Scunner"] = true
 L["Foulwing Buzzer"] = true
 L["Ravenomous"] = true
+L["Boneweave Hatchling"] = true
+L["Sister Chelicerae"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
