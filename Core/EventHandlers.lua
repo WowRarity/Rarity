@@ -1147,7 +1147,6 @@ function R:OnEvent(event, ...)
 			end
 		end
 
-
 		-- Handle opening Silver Strongbox & Gilded Chest (Shadowlands, Bastion nodes for Acrobatic Steward toy)
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Silver Strongbox"] or Rarity.lastNode == L["Gilded Chest"]) then
 			local names = {"Acrobatic Steward"}

@@ -6352,6 +6352,9 @@ function R:PrepareDefaults()
 				353643
 			},
 			chance = 20, -- Average
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.BASTION },
+			},
 		},
 
 	["Ever-Abundant Hearth"] = {
@@ -6382,6 +6385,9 @@ function R:PrepareDefaults()
 			353867
 		},
 		chance = 12, -- Average
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.BASTION },
+		},
 	},
 
 	["Mnemonic Attunement Pane"] = {
