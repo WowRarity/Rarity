@@ -217,6 +217,8 @@ R.opennodes = {
 	[L["Pile of Coins"]] = true,
 	[L["Mailbox"]] = true,
 	[L["Penitence of Purity"]] = true,
+	[L["Silver Strongbox"]] = true,
+	[L["Gilded Chest"]] = true,
 	[L["Broken Bell"]] = true,
 	[L["Skyward Bell"]] = true,
 }
