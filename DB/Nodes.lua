@@ -216,4 +216,5 @@ R.opennodes = {
 	[L["Glimmering Chest"]] = true,
 	[L["Pile of Coins"]] = true,
 	[L["Mailbox"]] = true,
+	[L["Penitence of Purity"]] = true,
 }

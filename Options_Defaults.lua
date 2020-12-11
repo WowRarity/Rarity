@@ -1537,6 +1537,22 @@ function R:PrepareDefaults()
 			chance = 20,	-- Estimate
 		},
 
+		["Phalynx of Humility"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Phalynx of Humility"],
+			spellId = 334386,
+			itemId = 180762,
+			items = { 356818 },
+			chance = 50,
+			questId = { 61688 },
+			sourceText = L["This mount can only drop for Kyrians. Requires channeling anima to Temple of Purity."],
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.BASTION, x = 60.23, y = 78.11, n = L["Penitence of Purity"] },
+			},
+		},
+
 		["Bulbous Necroray"] = {
 			cat = SHADOWLANDS,
 			type = MOUNT,
