@@ -5248,6 +5248,22 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Animated Tome"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Animated Tome"],
+		npcs = { 160675 },
+		spellId = 333797,
+		itemId = 180587,
+		chance = 20,
+		creatureId = 171120,
+		questId = 58213,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 37.6, y = 68.7, n = L["Scrivener Lenua"] },
+		},
+	},
+
 	["Invertebrate Oil"] = {
 		cat = SHADOWLANDS,
 		type = PET,

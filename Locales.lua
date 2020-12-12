@@ -1555,6 +1555,8 @@ L["Blushing Spiderling"] = true
 L["Tomb Burster"] = true
 L["Boneweave Hatchling"] = true
 L["Sister Chelicerae"] = true
+L["Animated Tome"] = true
+L["Scrivener Lenua"] = true
 L["Invertebrate Oil"] = true
 L["Oily Invertebrate"] = true
 
