@@ -1559,6 +1559,8 @@ L["Animated Tome"] = true
 L["Scrivener Lenua"] = true
 L["Invertebrate Oil"] = true
 L["Oily Invertebrate"] = true
+L["Shy Melvin"] = true
+L["Deadly Dapperling"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

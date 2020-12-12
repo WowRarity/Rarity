@@ -5280,6 +5280,22 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Shy Melvin"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Shy Melvin"],
+		npcs = { 162711 },
+		spellId = 335969,
+		itemId = 181263,
+		chance = 3,
+		creatureId = 172134,
+		questId = 58868,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 76.8, y = 57.0, n = L["Deadly Dapperling"] },
+		},
+	},
+
 	-- ["SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"] = {
 	-- 	cat = BFA,
 	-- 	type = PET,
