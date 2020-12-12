@@ -5231,6 +5231,22 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Invertebrate Oil"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Invertebrate Oil"],
+		npcs = { 157312 },
+		spellId = 336021,
+		itemId = 181270,
+		chance = 40,
+		creatureId = 172149,
+		--questId = ,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 58.6, y = 74.2, n = L["Oily Invertebrate"] },
+		},
+	},
+
 	-- ["SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"] = {
 	-- 	cat = BFA,
 	-- 	type = PET,

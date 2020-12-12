@@ -1553,6 +1553,8 @@ L["Foulwing Buzzer"] = true
 L["Ravenomous"] = true
 L["Boneweave Hatchling"] = true
 L["Sister Chelicerae"] = true
+L["Invertebrate Oil"] = true
+L["Oily Invertebrate"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
