@@ -5215,6 +5215,23 @@ function R:PrepareDefaults()
 		},
 	},
 
+
+	["Blushing Spiderling"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Blushing Spiderling"],
+		npcs = { 155779 },
+		spellId = 333794,
+		itemId = 180584,
+		chance = 50,
+		creatureId = 171117,
+		questId = 56877,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 42.8, y = 79.2, n = L["Tomb Burster"] },
+		},
+	},
+
 	["Boneweave Hatchling"] = {
 		cat = SHADOWLANDS,
 		type = PET,
