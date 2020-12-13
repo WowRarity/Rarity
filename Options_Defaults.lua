@@ -728,7 +728,7 @@ function R:PrepareDefaults()
 			chance = 30,
 			questId = 48705,
 			coords = {
-				{ m = 882,	x = 34.01, y = 47.83, n = L["Venomtail Skyfin"] },
+				{ m = CONSTANTS.UIMAPIDS.MACAREE,	x = 34.01, y = 47.83, n = L["Venomtail Skyfin"] },
 			},
 		 },
 		 ["Maddened Chaosrunner"] =	{
@@ -742,7 +742,7 @@ function R:PrepareDefaults()
 			chance = 30,
 			questId = 48695,
 			coords = {
-				{ m = 882, x = 55.65, y = 59.95, n = L["Wrangler Kravos"] },
+				{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 55.65, y = 59.95, n = L["Wrangler Kravos"] },
 			},
 		 },
 		 ["Vile Fiend"] = {
@@ -756,7 +756,7 @@ function R:PrepareDefaults()
 			chance = 30,
 			questId = 48821,
 			coords = {
-				{ m = 885, x = 62.96, y = 24.86, n = L["Houndmaster Kerrax"] },
+				{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 62.96, y = 24.86, n = L["Houndmaster Kerrax"] },
 			},
 		 },
 		 ["Crimson Slavermaw"] = {
@@ -770,7 +770,7 @@ function R:PrepareDefaults()
 			chance = 30,
 			questId = 49183,
 			coords = {
-				{ m = 885, x = 61.78, y = 36.97, n = L["Blistermaw"] },
+				{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 61.78, y = 36.97, n = L["Blistermaw"] },
 			},
 		 },
 		 ["Biletooth Gnasher"] = {
@@ -790,8 +790,8 @@ function R:PrepareDefaults()
 			},
 			sourceText = format(L["Has a chance to drop from either %s or %s on Argus. Each can be looted once per day."], L["Puscilla"], L["Vrax'thul"]),
 			coords = {
-				{ m=885, x = 64.42, y = 20.35, q=48809, n=L["Puscilla"]},
-				{ m=885, x = 53.06, y = 36.12, q=48810, n=L["Vrax'thul"]},
+				{ m=CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 64.42, y = 20.35, q=48809, n=L["Puscilla"]},
+				{ m=CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 53.06, y = 36.12, q=48810, n=L["Vrax'thul"]},
 			},
 		 },
 		 ["Acid Belcher "] = {
@@ -805,7 +805,7 @@ function R:PrepareDefaults()
 			chance = 30,
 			questId = 48721,
 			coords = {
-				{ m = 882, x = 49.79, y = 9.40, n = L["Skreeg the Devourer"] },
+				{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 49.79, y = 9.40, n = L["Skreeg the Devourer"] },
 			},
 		 },
 		 ["Scintillating Mana Ray"] = {
@@ -819,9 +819,9 @@ function R:PrepareDefaults()
 			chance = 16,
 			sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
 			coords = {
-				{ m = 885, x = 64.32, y = 48.62, n = L["Varga"] },
-				{ m = 830, x = 70.21, y = 34.38, n = L["Naroua"] },
-				{ m = 882, x = 43.55, y = 49.19, n = L["Sabuul"] },
+				{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 64.32, y = 48.62, n = L["Varga"] },
+				{ m = CONSTANTS.UIMAPIDS.KROKUUN, x = 70.21, y = 34.38, n = L["Naroua"] },
+				{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 43.55, y = 49.19, n = L["Sabuul"] },
 			},
 		 },
 		 ["Felglow Mana Ray"] = {
@@ -835,9 +835,9 @@ function R:PrepareDefaults()
 			chance = 16,
 			sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
 			coords = {
-				{ m = 885, x = 64.32, y = 48.62, n = L["Varga"] },
-				{ m = 830, x = 70.21, y = 34.38, n = L["Naroua"] },
-				{ m = 882, x = 43.55, y = 49.19, n = L["Sabuul"] },
+				{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 64.32, y = 48.62, n = L["Varga"] },
+				{ m = CONSTANTS.UIMAPIDS.KROKUUN, x = 70.21, y = 34.38, n = L["Naroua"] },
+				{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 43.55, y = 49.19, n = L["Sabuul"] },
 			},
 		 },
 		 ["Darkspore Mana Ray"] = {
@@ -851,9 +851,9 @@ function R:PrepareDefaults()
 			chance = 16,
 			sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
 			coords = {
-				{ m = 885, x = 64.32, y = 48.62, n = L["Varga"] },
-				{ m = 830, x = 70.21, y = 34.38, n = L["Naroua"] },
-				{ m = 882, x = 43.55, y = 49.19, n = L["Sabuul"] },
+				{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 64.32, y = 48.62, n = L["Varga"] },
+				{ m = CONSTANTS.UIMAPIDS.KROKUUN, x = 70.21, y = 34.38, n = L["Naroua"] },
+				{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 43.55, y = 49.19, n = L["Sabuul"] },
 			},
 		 },
 		 ["Vibrant Mana Ray"] = {
@@ -867,9 +867,9 @@ function R:PrepareDefaults()
 			chance = 16,
 			sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
 			coords = {
-				{ m = 885, x = 64.32, y = 48.62, n = L["Varga"] },
-				{ m = 830, x = 70.21, y = 34.38, n = L["Naroua"] },
-				{ m = 882, x = 43.55, y = 49.19, n = L["Sabuul"] },
+				{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 64.32, y = 48.62, n = L["Varga"] },
+				{ m = CONSTANTS.UIMAPIDS.KROKUUN, x = 70.21, y = 34.38, n = L["Naroua"] },
+				{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 43.55, y = 49.19, n = L["Sabuul"] },
 			},
 		 },
 		["Pond Nettle"] = {
@@ -2498,9 +2498,9 @@ function R:PrepareDefaults()
 			creatureId = 128157,
 			sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
 			coords = {
-				{ m = 885, x = 64.32, y = 48.62, n = L["Varga"] },
-				{ m = 830, x = 70.21, y = 34.38, n = L["Naroua"] },
-				{ m = 882, x = 43.55, y = 49.19, n = L["Sabuul"] },
+				{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 64.32, y = 48.62, n = L["Varga"] },
+				{ m = CONSTANTS.UIMAPIDS.KROKUUN, x = 70.21, y = 34.38, n = L["Naroua"] },
+				{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 43.55, y = 49.19, n = L["Sabuul"] },
 			},
 		},
 
@@ -2516,9 +2516,9 @@ function R:PrepareDefaults()
 			creatureId = 128158,
 			sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
 			coords = {
-				{ m = 885, x = 64.32, y = 48.62, n = L["Varga"] },
-				{ m = 830, x = 70.21, y = 34.38, n = L["Naroua"] },
-				{ m = 882, x = 43.55, y = 49.19, n = L["Sabuul"] },
+				{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 64.32, y = 48.62, n = L["Varga"] },
+				{ m = CONSTANTS.UIMAPIDS.KROKUUN, x = 70.21, y = 34.38, n = L["Naroua"] },
+				{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 43.55, y = 49.19, n = L["Sabuul"] },
 			},
 		},
 
@@ -2534,7 +2534,7 @@ function R:PrepareDefaults()
 			creatureId = 128388,
 			questId = 48970,
 			coords = {
-				{ m = 885,  x = 66.72, y = 18.12, n = L["Mother Rosula"] },
+				{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES,  x = 66.72, y = 18.12, n = L["Mother Rosula"] },
 			},
 		},
 
@@ -2550,7 +2550,7 @@ function R:PrepareDefaults()
 			creatureId = 128159,
 			questId = 48709,
 			coords = {
-				{ m = 882, x = 30.12, y = 40.18, n = L["Ataxon"] },
+				{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 30.12, y = 40.18, n = L["Ataxon"] },
 			},
 		},
 
@@ -2566,7 +2566,7 @@ function R:PrepareDefaults()
 			creatureId = 128396,
 			questId = 48966,
 			coords = {
-				{ m = 885, x = 54.83, y = 39.15, n = L["The Many-Faced Devourer"] },
+				{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 54.83, y = 39.15, n = L["The Many-Faced Devourer"] },
 			},
 		},
 
@@ -5906,7 +5906,7 @@ function R:PrepareDefaults()
 		chance = 3,
 		questId = 48700,
 		coords = {
-			{ m = 882, x = 43.65, y = 60.72, n = L["Baarut the Bloodthirsty"] },
+			{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 43.65, y = 60.72, n = L["Baarut the Bloodthirsty"] },
 		},
 	},
 
@@ -5921,7 +5921,7 @@ function R:PrepareDefaults()
 		chance = 10,
 		questId = 48968,
 		coords = {
-			{ m = 885, x = 58.49, y = 11.80, n = L["Doomcaster Suprax"] },
+			{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 58.49, y = 11.80, n = L["Doomcaster Suprax"] },
 		},
 	},
 
@@ -5936,7 +5936,7 @@ function R:PrepareDefaults()
 		chance = 9,
 		questId = 48718,
 		coords = {
-			{ m = 882, x = 61.72, y = 50.31, n = L["Instructor Tarahna"] },
+			{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 61.72, y = 50.31, n = L["Instructor Tarahna"] },
 		},
 	},
 
@@ -5951,7 +5951,7 @@ function R:PrepareDefaults()
 		chance = 9,
 		questId = 48718,
 		coords = {
-			{ m = 882, x = 61.72, y = 50.31, n = L["Instructor Tarahna"] },
+			{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 61.72, y = 50.31, n = L["Instructor Tarahna"] },
 		},
 	},
 
@@ -5966,7 +5966,7 @@ function R:PrepareDefaults()
 		chance = 9,
 		questId = 48718,
 		coords = {
-			{ m = 882, x = 61.72, y = 50.31, n = L["Instructor Tarahna"] },
+			{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 61.72, y = 50.31, n = L["Instructor Tarahna"] },
 		},
 	},
 
@@ -5981,7 +5981,7 @@ function R:PrepareDefaults()
 		chance = 12,
 		questId = 48565,
 		coords = {
-			{ m = 830, x = 53.94, y = 31.39, n = L["Sister Subversia"] },
+			{ m = CONSTANTS.UIMAPIDS.KROKUUN, x = 53.94, y = 31.39, n = L["Sister Subversia"] },
 		},
 	},
 
@@ -5996,7 +5996,7 @@ function R:PrepareDefaults()
 		chance = 7,
 		questId = 48967,
 		coords = {
-			{ m = 885, x = 83.72, y = 81.14, n = L["Squadron Commander Vishax"] },
+			{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 83.72, y = 81.14, n = L["Squadron Commander Vishax"] },
 		},
 	},
 
@@ -6011,7 +6011,7 @@ function R:PrepareDefaults()
 		chance = 5,
 		questId = 48814,
 		coords = {
-			{ m = 885, x = 61.77, y = 64.53, n = L["Wrath-Lord Yarez"] },
+			{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 61.77, y = 64.53, n = L["Wrath-Lord Yarez"] },
 		},
 	},
 
@@ -6026,7 +6026,7 @@ function R:PrepareDefaults()
 		chance = 10,
 		questId = 48971,
 		coords = {
-			{ m = 885, x = 65.03, y = 82.31, n = L["Rezira the Seer"] },
+			{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 65.03, y = 82.31, n = L["Rezira the Seer"] },
 		},
 	},
 
@@ -6058,8 +6058,8 @@ function R:PrepareDefaults()
 		},
 		sourceText = format(L["Has a chance to drop from either %s or %s on Argus. Each can be looted once per day."], L["Vigilant Thanos"], L["Vigilant Kuro"]),
 		coords = {
-			{ m = 882, x = 63.88, y = 64.25, n = L["Vigilant Kuro"] },
-			{ m = 882, x = 36.32, y = 23.71, n = L["Vigilant Thanos"] },
+			{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 63.88, y = 64.25, n = L["Vigilant Kuro"] },
+			{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 36.32, y = 23.71, n = L["Vigilant Thanos"] },
 		},
 	 },
 
@@ -6995,9 +6995,9 @@ function R:PrepareDefaults()
 		unique = false,
 		sourceText = L["Dropped by the panthara rares on Argus. Has a chance to hatch into one of four Mana Ray mounts as well as one of two Skyfin pets after five days."],
 		coords = {
-			{ m = 885, x = 64.32, y = 48.62, n = L["Varga"] },
-			{ m = 830, x = 70.21, y = 34.38, n = L["Naroua"] },
-			{ m = 882, x = 43.55, y = 49.19, n = L["Sabuul"] },
+			{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 64.32, y = 48.62, n = L["Varga"] },
+			{ m = CONSTANTS.UIMAPIDS.KROKUUN, x = 70.21, y = 34.38, n = L["Naroua"] },
+			{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 43.55, y = 49.19, n = L["Sabuul"] },
 		},
 	 },
 
