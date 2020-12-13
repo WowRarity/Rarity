@@ -940,8 +940,6 @@ function R:PrepareDefaults()
 			spellId = 279608,
 			npcs = { 142423 },
 			chance = 33,
-			groupSize = 5,
-			equalOdds = true,
 			questId = { 53014, 53518},
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 27.46, y = 55.89, n = L["Overseer Krix"] .. " - " .. L["Horde controls Stromgarde"] },
@@ -959,8 +957,6 @@ function R:PrepareDefaults()
 			spellId = 279611,
 			npcs = { 142437 },
 			chance = 33,
-			groupSize = 5,
-			equalOdds = true,
 			questId = { 53022, 53526 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 57.15, y = 45.75, n = L["Skullripper"] },
@@ -991,8 +987,6 @@ function R:PrepareDefaults()
 			spellId = 279456,
 			npcs = { 142741 },
 			chance = 33,
-			groupSize = 3,
-			equalOdds = true,
 			questId = 53085,
 			requiresAlliance = true,
 			coords = {
@@ -1009,8 +1003,6 @@ function R:PrepareDefaults()
 			spellId = 279457,
 			npcs = { 142739 },
 			chance = 33,
-			groupSize = 3,
-			equalOdds = true,
 			questId = 53088,
 			requiresHorde = true,
 			coords = {
@@ -1160,8 +1152,6 @@ function R:PrepareDefaults()
 			npcs = { 148787 },
 			chance = 20,
 			questId = { 54695, 54696},
-			groupSize = 5,
-			equalOdds = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 56.4, y = 30.8, n = L["Alash'anir"] },
 			},
@@ -1300,8 +1290,6 @@ function R:PrepareDefaults()
 			npcs = { 154342, 151934 },
 			chance = 500,
 			questId = { 55512 },
-			groupSize = 3,
-			equalOdds = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x = 52.0, y = 41.4, n = L["Arachnoid Harvester"] },
 			},
@@ -1328,8 +1316,6 @@ function R:PrepareDefaults()
 			spellId = 299158,
 			npcs = { 150190, 155157 },
 			chance = 300,
-			groupSize = 5,
-			equalOdds = true,
 		},
 
 		-- 8.3 Mounts
@@ -1357,8 +1343,6 @@ function R:PrepareDefaults()
 			spellId = 315847,
 			npcs = { 157134 },
 			chance = 100,
-			groupSize = 3,
-			equalOdds = true,
 			questId = { 57259 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ULDUM, x = 73.96, y = 83.52, n = L["Ishak of the Four Winds"] },
@@ -1389,8 +1373,6 @@ function R:PrepareDefaults()
 			spellId = 312751,
 			npcs = { 157153 },
 			chance = 100,
-			groupSize = 3,
-			equalOdds = true,
 			questId = { 57344 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 36.6, y = 37.6, n = L["Ha-Li"] },
@@ -2026,7 +2008,7 @@ function R:PrepareDefaults()
 			tooltipNpcs = { 144796 },
 			tooltipModifier = { condition = TOOLTIP_FILTERS.IS_PLAYER_IN_LFR, action = TOOLTIP_ACTIONS.OVERRIDE_TOOLTIP_NPCS, value = 146409 },
 			chance = 100,
-			groupSize = 10,
+			groupSize = 5,
 			equalOdds = true,
 			statisticId = { 13372, 13373, 13374, 13379 },
 			lockoutDetails = {
@@ -3106,8 +3088,6 @@ function R:PrepareDefaults()
 			creatureId = 143499,
 			questId = { 53024, 53528 },
 			chance = 20,
-			groupSize = 5,
-			equalOdds = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  56.7, y = 54.1, n = L["Venomarus"] },
 			},
@@ -3124,8 +3104,6 @@ function R:PrepareDefaults()
 			creatureId = 143503,
 			questId = { 53013, 53505 },
 			chance = 20,
-			groupSize = 5,
-			equalOdds = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  22.9, y = 22.2, n = L["Branchlord Aldrus"] },
 			},
@@ -3159,8 +3137,6 @@ function R:PrepareDefaults()
 			creatureId = 143533,
 			questId = { 53015, 53529 },
 			chance = 20,
-			groupSize = 5,
-			equalOdds = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  14, y = 36.9, n = L["Yogursa"] },
 			},
@@ -3177,8 +3153,6 @@ function R:PrepareDefaults()
 			creatureId = 143515,
 			questId = { 53059, 53508 },
 			chance = 20,
-			groupSize = 5,
-			equalOdds = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  56.6, y = 36.0, n = L["Echo of Myzrael"] },
 			},
@@ -3195,8 +3169,6 @@ function R:PrepareDefaults()
 			creatureId = 143627,
 			questId = { 53019, 53510 },
 			chance = 20,
-			groupSize = 5,
-			equalOdds = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  51, y = 53.2, n = L["Fozruk"] },
 			},
@@ -3213,8 +3185,6 @@ function R:PrepareDefaults()
 			creatureId = 143563,
 			questId = { 53016, 53522 },
 			chance = 20,
-			groupSize = 5,
-			equalOdds = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  18.4, y = 27.9, n = L["Ragebeak"] .. " - " .. L["Alliance controls Stromgarde"] },
 				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  11.9, y = 52.1, n = L["Ragebeak"] .. " - " .. L["Horde controls Stromgarde"] },
@@ -3232,8 +3202,6 @@ function R:PrepareDefaults()
 			creatureId = 143564,
 			questId = { 53020, 53519 },
 			chance = 20,
-			groupSize = 5,
-			equalOdds = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x =  36.9, y = 66, n = L["Plaguefeather"] },
 			},
@@ -3317,8 +3285,6 @@ function R:PrepareDefaults()
 			chance = 7,
 			creatureId = 148825,
 			questId = { 54232, 54233 },
-			groupSize = 5,
-			equalOdds = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 39.2, y = 62, n = L["Conflagros"] },
 			},
@@ -3335,8 +3301,6 @@ function R:PrepareDefaults()
 			chance = 7,
 			creatureId = 148843,
 			questId = { 54274, 54291 },
-			groupSize = 5,
-			equalOdds = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 62.5, y = 9.4, n = L["Zim'kaga"] .. " - " .. L["Alliance only"] },
 				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 45.2, y = 75.1, n = L["Onu"] .. " - " .. L["Horde only"] },
@@ -3354,8 +3318,6 @@ function R:PrepareDefaults()
 			chance = 7,
 			creatureId = 148784,
 			questId = { 54229, 54230 },
-			groupSize = 5,
-			equalOdds = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 43.8, y = 53.6, n = L["Cyclarus"] },
 			},
@@ -3388,8 +3350,6 @@ function R:PrepareDefaults()
 			chance = 7,
 			creatureId = 148844,
 			questId = { 54320, 54321 },
-			groupSize = 5,
-			equalOdds = true,
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 40.7, y = 84.6, n = L["Soggoth the Slitherer"] },
 			},
@@ -3424,7 +3384,7 @@ function R:PrepareDefaults()
 			lockBossName = "Conclave of the Chosen",
 			chance = 20,
 			statisticId = { 13366 },
-			groupSize = 10,
+			groupSize = 5,
 			equalOdds = true,
 			coords = {
 				{ m = 1364, i = true },
@@ -3444,7 +3404,7 @@ function R:PrepareDefaults()
 			lockBossName = "Conclave of the Chosen",
 			chance = 20,
 			statisticId = { 13364, 13365, 13366 },
-			groupSize = 10,
+			groupSize = 5,
 			equalOdds = true,
 			coords = {
 				{ m = 1364, i = true },
@@ -3464,7 +3424,7 @@ function R:PrepareDefaults()
 			lockBossName = "Conclave of the Chosen",
 			chance = 50,
 			statisticId = { 13364, 13365, 13366 },
-			groupSize = 10,
+			groupSize = 5,
 			equalOdds = true,
 			coords = {
 				{ m = 1364, i = true },
@@ -4051,6 +4011,8 @@ function R:PrepareDefaults()
 			creatureId = 154833,
 			npcs = { 99999 },
 			tooltipNpcs = { 154986, 150653 },
+			groupSize = 5,
+			equalOdds = true,
 			statisticId = {
 				13591,
 				13592,
@@ -4104,6 +4066,8 @@ function R:PrepareDefaults()
 		creatureId = 154831,
 		npcs = { 99999 },
 		tooltipNpcs = { 153142, 152236 },
+		groupSize = 5,
+		equalOdds = true,
 		statisticId = {
 			13600,
 			13601,
@@ -4157,6 +4121,8 @@ function R:PrepareDefaults()
 		creatureId = 154819,
 		npcs = { 99999 },
 		tooltipNpcs = { 155126 },
+		groupSize = 5,
+		equalOdds = true,
 		statisticId = {
 			13616,
 			13617,
@@ -4420,8 +4386,6 @@ function R:PrepareDefaults()
 		creatureId = 154840,
 		questId = { 56289 },
 		chance = 14,
-		groupSize = 3,
-		equalOdds = true,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  43.1, y = 87.22, n = L["Prince Typhonus"] },
 		},
@@ -4531,8 +4495,6 @@ function R:PrepareDefaults()
 		creatureId = 154854,
 		questId = { 55544 },
 		chance = 20,
-		groupSize = 3,
-		equalOdds = true,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x =  60.65, y = 42.22, n = L["Malfunctioning Beastbot"] },
 		},
@@ -4577,6 +4539,8 @@ function R:PrepareDefaults()
 		creatureId = 154835,
 		npcs = { 99999 },
 		tooltipNpcs = { 150859 },
+		groupSize = 5,
+		equalOdds = true,
 		statisticId = {
 			13612,
 			13613,
@@ -4658,8 +4622,6 @@ function R:PrepareDefaults()
 		creatureId = 154904,
 		questId = { 55847 }, -- Not sure which is correct: 55847, 57134, 57132, 56079 ? // 55847, 57132,
 		chance = 20, -- Blind guess (no data)
-		groupSize = 3,
-		equalOdds = true,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x =  70.12, y = 61.99, n = L["Reclamation Rig"] },
 		},
@@ -4903,8 +4865,6 @@ function R:PrepareDefaults()
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.ULDUM, x = 36.85, y = 20.93, n = L["Lord Aj'qirai"] },
 		},
-		groupSize = 3,
-		equalOdds = true,
 	},
 
 	["Snarling Butterfly Crate"] = {
@@ -4972,7 +4932,7 @@ function R:PrepareDefaults()
 			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
 		},
 		chance = 10, -- Blind guess (no data)
-		groupSize = 10,
+		groupSize = 5,
 		equalOdds = true,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NYALOTHA, i = true },
@@ -5029,7 +4989,7 @@ function R:PrepareDefaults()
 			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
 		},
 		chance = 8,
-		groupSize = 10,
+		groupSize = 5,
 		equalOdds = true,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NYALOTHA, i = true },
@@ -5086,7 +5046,7 @@ function R:PrepareDefaults()
 			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
 		},
 		chance = 5,
-		groupSize = 10,
+		groupSize = 5,
 		equalOdds = true,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NYALOTHA, i = true },
@@ -5143,7 +5103,7 @@ function R:PrepareDefaults()
 			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
 		},
 		chance = 10,
-		groupSize = 10,
+		groupSize = 5,
 		equalOdds = true,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NYALOTHA, i = true },
@@ -5200,7 +5160,7 @@ function R:PrepareDefaults()
 			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
 		},
 		chance = 10, -- Blind guess (no data)
-		groupSize = 10,
+		groupSize = 5,
 		equalOdds = true,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NYALOTHA, i = true },
@@ -6242,8 +6202,6 @@ function R:PrepareDefaults()
 		npcs = { 141942 },
 		questId = { 53057, 53516},
 		chance = 30,
-		groupSize = 5,
-		equalOdds = true,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 47.6, y = 77.9, n = L["Molok the Crusher"] },
 		},
@@ -6369,7 +6327,7 @@ function R:PrepareDefaults()
 		npcs = { 138122 },
 		questId = { 53001, 53002 }, -- Loot lockout
 		chance = 100, -- Need more data. Until then, this is a blind guess...
-		groupSize = 25,
+		groupSize = 3,
 		equalOdds = true,
 		requiresAlliance = true,
 		coords = {
@@ -6388,7 +6346,7 @@ function R:PrepareDefaults()
 		npcs = { 137374 },
 		questId = { 53001, 53002 }, -- Loot Lockout
 		chance = 100, -- Blind guess :|
-		groupSize = 25,
+		groupSize = 3,
 		equalOdds = true,
 		requiresHorde = true,
 		coords = {
@@ -6588,8 +6546,6 @@ function R:PrepareDefaults()
 		npcs = { 147708 },
 		chance = 10,
 		questId = { 54278, 54279 },
-		groupSize = 5,
-		equalOdds = true,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 58.3, y = 24.9, n = L["Athrikus Narassin"] },
 		},
@@ -7096,8 +7052,6 @@ function R:PrepareDefaults()
 		{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 22.09, y = 24.03, n = L["Cave Entrance"] },
 		{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 21.16, y = 14.53, n = L["Rei Lun"] },
 	},
-	groupSize = 3,
-	equalOdds = true,
 },
 
 ["Zan-Tien Lasso"] = {
