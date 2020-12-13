@@ -6500,6 +6500,20 @@ function R:PrepareDefaults()
 	},
 },
 
+["Necroray Egg"] = {
+	cat = SHADOWLANDS,
+	type = ITEM,
+	method = USE,
+	name = L["Necroray Egg"],
+	itemId = 184159,
+	items = { 181732, 181733 },
+	chance = 100,
+	sourceText = L["Sometimes contained in the caches awarded for completing any covenant's Calling in Maldraxxus. Will hatch into one of three Necroray mounts after three days."],
+	coords = {
+		{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS }
+	},
+},
+
 ["All-Seeing Right Eye"] = {
 	cat = BFA,
 	type = ITEM,
