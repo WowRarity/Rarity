@@ -4155,6 +4155,26 @@ function R:PrepareDefaults()
 
 	},
 
+	["Pommel Jewel of Remornia"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = BOSS,
+		name = L["Pommel Jewel of Remornia"],
+		itemId = 183395,
+		spellId = 341302,
+		creatureId = 173994,
+		npcs = { 99999 },
+		tooltipNpcs = { 168938 },
+		lockBossName = "Sire Denathrius",
+		chance = 33,
+		statisticId = { 14455 }, -- So far there's data for normal only. The others are therefore TBD
+		groupSize = 10,
+		equalOdds = true,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.CASTLE_NATHRIA, i = true },
+		},
+	},
+
 	["Amethyst Softshell"] = {
 		cat = BFA,
 		type = PET,
@@ -5382,6 +5402,338 @@ function R:PrepareDefaults()
 	-- 		{ m = CONSTANTS.UIMAPIDS.AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, x = 00000000000000000000000000000000000000000000000000000000000, y = 000000000000000000000000000000000000000000000000000000000000000000, n = L["BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"] },
 	-- 	},
 	-- },
+	["Devoured Wader"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Devoured Wader"],
+		itemId = 180869,
+		spellId = 335083,
+		creatureId = 171714,
+		npcs = { 171041, 171013, 171040 },
+		chance = 20,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.BASTION },
+		},
+	},
+
+	["Lost Featherling"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Lost Featherling"],
+		itemId = 184397,
+		spellId = 345741,
+		creatureId = 175560,
+		npcs = { 157054, 156559, 156560, 157212 },
+		chance = 150,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.BASTION },
+		},
+		requiresCovenant = true,
+		requiredCovenantID = CONSTANTS.COVENANT_IDS.KYRIAN
+	},
+
+	["Bottled Up Rage"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Bottled Up Rage"],
+		itemId = 180585,
+		spellId = 333795,
+		creatureId = 171118,
+		npcs = { 170048, 165175 },
+		chance = 20,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 49.84, y = 35.02, n = L["Manifestation of Wrath"] },
+			{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 67.8, y = 82, n = L["Prideful Hulk"] },
+		},
+	},
+
+	["Undying Deathroach"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = USE,
+		name = L["Undying Deathroach"],
+		itemId = 183408,
+		items = { 184395 },
+		spellId = 341493,
+		creatureId = 174082,
+		chance = 20,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.THE_MAW },
+		},
+	},
+
+	["Decaying Mawrat"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = USE,
+		name = L["Decaying Mawrat"],
+		itemId = 183409,
+		items = { 184395 },
+		spellId = 341494,
+		creatureId = 174083,
+		chance = 20,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.THE_MAW },
+		},
+	},
+
+	["Frenzied Mawrat"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Frenzied Mawrat"],
+		itemId = 183192,
+		spellId = 341293,
+		creatureId = 173990,
+		npcs = { 151329, 153165, 151331 },
+		chance = 100,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.TORGHAST },
+		},
+	},
+
+	["Maw Stalker"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Maw Stalker"],
+		itemId = 183194,
+		spellId = 341295,
+		creatureId = 173991,
+		npcs = { 159755, 151331, 169859, 171422 },
+		chance = 200,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.TORGHAST },
+		},
+	},
+
+	["Hissing Deathroach"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Hissing Deathroach"],
+		itemId = 183116,
+		spellId = 340722,
+		creatureId = 173850,
+		npcs = { 155251, 156239, 155250 },
+		chance = 33,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.TORGHAST },
+		},
+	},
+
+	["Severs"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Severs"],
+		itemId = 183117,
+		spellId = 340723,
+		creatureId = 173851,
+		npcs = { 159190, 157122, 171422, 155945 },
+		chance = 400,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.TORGHAST },
+		},
+	},
+
+	["Lightbinders"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Lightbinders"],
+		itemId = 180586,
+		spellId = 333796,
+		creatureId = 171119,
+		npcs = { 164388, 164388 },
+		chance = 1000, -- It's about 5% from the rare, but two sources with different drop rates aren't currently supported
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 25.8, y = 48.4, n = L["Amalgamation of Light"] },
+		},
+	},
+
+	["Crimson Dredwing Pup"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Crimson Dredwing Pup"],
+		itemId = 180602,
+		spellId = 333865,
+		creatureId = 171150,
+		npcs = {161206, 169154, 163893, 156077, 156395, 165290 },
+		chance = 2000,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.REVENDRETH },
+		},
+	},
+
+	["Jar of Ashes"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Jar of Ashes"],
+		itemId = 183193,
+		spellId = 341292,
+		creatureId = 173989,
+		npcs = { 153165, 151329, 151331 },
+		chance = 100,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.TORGHAST },
+		},
+	},
+
+
+	["Maw Crawler"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Maw Crawler"],
+		itemId = 183191,
+		spellId = 341289,
+		creatureId = 173988,
+		npcs = { 153451, 156015, 155945, 153165, 169859 },
+		chance = 200,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.TORGHAST },
+		},
+	},
+
+	["Torghast Lurker"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Torghast Lurker"],
+		itemId = 183195,
+		spellId = 341298,
+		creatureId = 173992,
+		npcs = { 152995, 170418, 153174, 153011, 153382 },
+		chance = 100,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.TORGHAST },
+		},
+	},
+
+	["Stonewing Dredwing Pup"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = USE,
+		name = L["Stonewing Dredwing Pup"],
+		itemId = 180601,
+		items = { 180648 },
+		spellId = 339590,
+		creatureId = 173502,
+		chance = 100, -- Blind guess
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.REVENDRETH },
+		},
+	},
+
+	["Hungry Burrower"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = USE,
+		name = L["Hungry Burrower"],
+		itemId = 180635,
+		items = { 180649 },
+		spellId = 334149,
+		creatureId = 171242,
+		chance = 100, -- Blind guess
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.ARDENWEALD },
+		},
+	},
+
+	["Larion Cub"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = USE,
+		name = L["Larion Cub Dredwing Pup"],
+		itemId = 184399,
+		items = { 180647 },
+		spellId = 345744,
+		creatureId = 175564,
+		chance = 100, -- Blind guess
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.BASTION },
+		},
+	},
+
+	["Micromancer's Mystical Cowl"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = USE,
+		name = L["Micromancer's Mystical Cowl"],
+		itemId = 181269,
+		items = { 180646 },
+		spellId = 336020,
+		creatureId = 172148,
+		chance = 100, -- Blind guess
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS },
+		},
+	},
+
+	["Sludge Feeler"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = BOSS,
+		name = L["Sludge Feeler"],
+		itemId = 181271,
+		spellId = 336022,
+		creatureId = 172150,
+		npcs = { 99999 },
+		tooltipNpcs = { 164267 },
+		statisticId = { 14398 },
+		chance = 100,
+		equalOdds = true,
+		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
+		groupSize = 5,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.PLAGUEFALL },
+		},
+	},
+
+	["Vial of Roiling Emotions"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC, -- Is this actually correct? Can't use statistics to reliably detect this, because there aren't any
+		name = L["Vial of Roiling Emotions"],
+		itemId = 180591,
+		spellId = 333802,
+		creatureId = 171124,
+		npcs = { 162102 },
+		-- tooltipNpcs = { 162102 }, -- Not needed if using NPC instead of BOSS
+		chance = 100,
+		equalOdds = true,
+		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
+		groupSize = 5,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.SANGUINE_DEPTHS },
+		},
+	},
+
+	["Spinemaw Gormling"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = BOSS,
+		name = L["Spinemaw Gormling"],
+		itemId = 183623,
+		spellId = 341519,
+		creatureId = 174089,
+		npcs = { 99999 },
+		tooltipNpcs = { 164517 },
+		statisticId = { 14395 },
+		chance = 100,
+		equalOdds = true,
+		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
+		groupSize = 5,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MISTS_OF_TIRNA_SCITHE },
+		},
+	},
 
 },
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
