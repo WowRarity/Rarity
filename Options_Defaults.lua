@@ -1482,7 +1482,7 @@ function R:PrepareDefaults()
 		["Bonehoof Tauralus"] = {
 			cat = SHADOWLANDS,
 			type = MOUNT,
-			method = SPECIAL,
+			method = NPC,
 			name = L["Bonehoof Tauralus"],
 			itemId = 182075,
 			spellId = 332457,
