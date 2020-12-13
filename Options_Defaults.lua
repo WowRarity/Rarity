@@ -5159,6 +5159,214 @@ function R:PrepareDefaults()
 		},
 	},
 
+	-- 9.0 Pets
+	["Feasting Larva"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Feasting Larva"],
+		npcs = { 162528 },
+		spellId = 335977,
+		itemId = 181266,
+		chance = 25,
+		creatureId = 172137,
+		questId = 58768,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 42.27, y = 53.90, n = L["Smorgas the Feaster"] },
+		},
+	},
+
+	["Writhing Spine"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Writhing Spine"],
+		npcs = { 158406 },
+		spellId = 335979,
+		itemId = 181267,
+		chance = 33,
+		creatureId = 172139,
+		questId = 58006,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 61.6, y = 76.4, n = L["Scunner"] },
+		},
+	},
+
+	["Foulwing Buzzer"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Foulwing Buzzer"],
+		npcs = { 159753 },
+		spellId = 336031,
+		itemId = 181283,
+		chance = 20,
+		creatureId = 172155,
+		questId = 58004,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 54.0, y = 18.4, n = L["Ravenomous"] },
+		},
+	},
+
+	["Sharpclaw"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Sharpclaw"],
+		npcs = { 172521 },
+		spellId = 341495,
+		itemId = 183410,
+		chance = 20,
+		creatureId = 174084,
+		questId = 62210,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.THE_MAW, x = 55.8, y = 67.5, n = L["Sanngror the Torturer"] },
+		},
+	},
+
+	["Blushing Spiderling"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Blushing Spiderling"],
+		npcs = { 155779 },
+		spellId = 333794,
+		itemId = 180584,
+		chance = 50,
+		creatureId = 171117,
+		questId = 56877,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 42.8, y = 79.2, n = L["Tomb Burster"] },
+		},
+	},
+
+	["Boneweave Hatchling"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Boneweave Hatchling"],
+		npcs = { 159886 },
+		spellId = 335764,
+		itemId = 181172,
+		chance = 33,
+		creatureId = 171986,
+		questId = 58003,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 55.5, y = 23.6, n = L["Sister Chelicerae"] },
+		},
+	},
+
+	["Bucket of Primordial Sludge"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Bucket of Primordial Sludge"],
+		npcs = { 166292 },
+		spellId = 333799,
+		itemId = 180588,
+		chance = 11,
+		creatureId = 171121,
+		questId = 59823,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 35.8, y = 32.6, n = L["Bog Beast"] },
+		},
+	},
+
+	["Animated Tome"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Animated Tome"],
+		npcs = { 160675 },
+		spellId = 333797,
+		itemId = 180587,
+		chance = 20,
+		creatureId = 171120,
+		questId = 58213,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 37.6, y = 68.7, n = L["Scrivener Lenua"] },
+		},
+	},
+
+	["Invertebrate Oil"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Invertebrate Oil"],
+		npcs = { 157312 },
+		spellId = 336021,
+		itemId = 181270,
+		chance = 40,
+		creatureId = 172149,
+		--questId = ,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 58.6, y = 74.2, n = L["Oily Invertebrate"] },
+		},
+	},
+
+	["Shy Melvin"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Shy Melvin"],
+		npcs = { 162711 },
+		spellId = 335969,
+		itemId = 181263,
+		chance = 3,
+		creatureId = 172134,
+		questId = 58868,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 76.8, y = 57.0, n = L["Deadly Dapperling"] },
+		},
+	},
+
+	["Corpselouse Larva"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Corpselouse Larva"],
+		npcs = { 162528 },
+		spellId = 335974,
+		itemId = 181265,
+		chance = 100,
+		creatureId = 172136,
+		questId = 58768,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 42.27, y = 53.90, n = L["Smorgas the Feaster"] },
+		},
+	},
+
+	["Contained Essence of Dread"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Contained Essence of Dread"],
+		npcs = { 154330 },
+		spellId = 341492,
+		itemId = 183407,
+		chance = 8,
+		creatureId = 174081,
+		questId = 57509,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.THE_MAW, x = 19.8, y = 46.0, n = L["Eternas the Tormentor"] },
+		},
+	},
+
+	["Tower Deathroach"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Tower Deathroach"],
+		npcs = { 155250 },
+		spellId = 340721,
+		itemId = 183115,
+		chance = 12,
+		creatureId = 173849,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.TORGHAST, n = L["Decayspeaker"] },
+		},
+	},
+
 	-- ["SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"] = {
 	-- 	cat = BFA,
 	-- 	type = PET,

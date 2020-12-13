@@ -1549,6 +1549,31 @@ L["Unstable Memory"] = true
 L["Bulbous Necroray"] = true
 L["Pestilent Necroray"] = true
 L["Infested Necroray"] = true
+L["Feasting Larva"] = true
+L["Smorgas the Feaster"] = true
+L["Writhing Spine"] = true
+L["Scunner"] = true
+L["Foulwing Buzzer"] = true
+L["Ravenomous"] = true
+L["Sharpclaw"] = true
+L["Sanngror the Torturer"] = true
+L["Blushing Spiderling"] = true
+L["Tomb Burster"] = true
+L["Boneweave Hatchling"] = true
+L["Sister Chelicerae"] = true
+L["Bucket of Primordial Sludge"] = true
+L["Bog Beast"] = true
+L["Animated Tome"] = true
+L["Scrivener Lenua"] = true
+L["Invertebrate Oil"] = true
+L["Oily Invertebrate"] = true
+L["Shy Melvin"] = true
+L["Deadly Dapperling"] = true
+L["Corpselouse Larva"] = true
+L["Contained Essence of Dread"] = true
+L["Eternas the Tormentor"] = true
+L["Tower Deathroach"] = true
+L["Decayspeaker"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
