@@ -1477,29 +1477,6 @@ function R:PrepareDefaults()
 			},
 		},
 
-		["Blight-Touched Egg"] = {
-			cat = SHADOWLANDS,
-			type = ITEM,
-			method = NPC,
-			name = L["Blight-Touched Egg"],
-			itemId = 184104,
-			npcs = {
-				162258,
-				162588,
-				172390,
-				162259,
-				170456,
-				162589,
-				170893,
-				164587
-			},
-			chance = 500,
-			sourceText = L["Dropped by various flying creatures in Maldraxxus. Will hatch into Callow Flayedwing after five days."],
-			coords = { 
-				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS }
-			},
-		},
-
 		["Bonehoof Tauralus"] = {
 			cat = SHADOWLANDS,
 			type = MOUNT,
@@ -6497,6 +6474,30 @@ function R:PrepareDefaults()
 		{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS },
 	},
 	sourceText = L["Can be used to capture the Ivory Cloud Serpent"],
+},
+
+-- 9.0
+["Blight-Touched Egg"] = {
+	cat = SHADOWLANDS,
+	type = ITEM,
+	method = NPC,
+	name = L["Blight-Touched Egg"],
+	itemId = 184104,
+	npcs = {
+		162258,
+		162588,
+		172390,
+		162259,
+		170456,
+		162589,
+		170893,
+		164587
+	},
+	chance = 500,
+	sourceText = L["Dropped by various flying creatures in Maldraxxus. Will hatch into Callow Flayedwing after five days."],
+	coords = {
+		{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS }
+	},
 },
 
 ["All-Seeing Right Eye"] = {
