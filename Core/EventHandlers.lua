@@ -1130,6 +1130,65 @@ function R:OnEvent(event, ...)
 			end
 		end
 
+		-- Handle opening Penitence of Purity (Shadowlands Kyrian only chest)
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Penitence of Purity"]) then
+			local names = {"Phalynx of Humility"}
+			Rarity:Debug("Detected Opening on " .. L["Penitence of Purity"] .. " (method = SPECIAL)")
+			for _, name in pairs(names) do
+				local v = self.db.profile.groups.items[name] or self.db.profile.groups.mounts[name]
+				if v and type(v) == "table" and v.enabled ~= false then
+					if v.attempts == nil then
+						v.attempts = 1
+					else
+						v.attempts = v.attempts + 1
+					end
+					self:OutputAttempts(v)
+				end
+			end
+		end
+
+		-- Handle opening Silver Strongbox & Gilded Chest (Shadowlands, Bastion nodes for Acrobatic Steward toy)
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Silver Strongbox"] or Rarity.lastNode == L["Gilded Chest"]) then
+			local names = {"Acrobatic Steward"}
+			if (Rarity.lastNode == L["Silver Strongbox"]) then
+				Rarity:Debug("Detected Opening on " .. L["Silver Strongbox"] .. " (method = SPECIAL)")
+			elseif (Rarity.lastNode == L["Gilded Chest"]) then
+				Rarity:Debug("Detected Opening on " .. L["Gilded Chest"] .. " (method = SPECIAL)")
+			end
+			for _, name in pairs(names) do
+				local v = self.db.profile.groups.items[name] or self.db.profile.groups.mounts[name]
+				if v and type(v) == "table" and v.enabled ~= false then
+					if v.attempts == nil then
+						v.attempts = 1
+					else
+						v.attempts = v.attempts + 1
+					end
+					self:OutputAttempts(v)
+				end
+			end
+		end
+
+		-- Handle opening Broken Bell & Skyward Bell (Shadowlands, Bastion nodes for Soothing Vesper toy)
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Broken Bell"] or Rarity.lastNode == L["Skyward Bell"]) then
+			local names = {"Soothing Vesper"}
+			if (Rarity.lastNode == L["Broken Bell"]) then
+				Rarity:Debug("Detected Opening on " .. L["Broken Bell"] .. " (method = SPECIAL)")
+			elseif (Rarity.lastNode == L["Skyward Bell"]) then
+				Rarity:Debug("Detected Opening on " .. L["Skyward Bell"] .. " (method = SPECIAL)")
+			end
+			for _, name in pairs(names) do
+				local v = self.db.profile.groups.items[name] or self.db.profile.groups.mounts[name]
+				if v and type(v) == "table" and v.enabled ~= false then
+					if v.attempts == nil then
+						v.attempts = 1
+					else
+						v.attempts = v.attempts + 1
+					end
+					self:OutputAttempts(v)
+				end
+			end
+		end
+
 		-- Handle opening Pile of Coins
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Pile of Coins"]) then
 			local names = {"Armored Vaultbot"}

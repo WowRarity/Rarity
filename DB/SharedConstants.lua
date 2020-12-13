@@ -43,6 +43,21 @@ C.UIMAPIDS = {
 	HORRIFIC_VISION_OF_ORGRIMMAR = 1469,
 
 	NYALOTHA = 1582, -- Generic (doesn't matter which subzone, as waypoints inside of instances can no longer be set)
+
+	BASTION = 1533,
+	REVENDRETH = 1525,
+	MALDRAXXUS = 1536,
+	ARDENWEALD = 1565,
+
+	THE_MAW = 1543,
+	TORGHAST = 1751,
+
+	THE_NECROTIC_WAKE = 1666,
+	MISTS_OF_TIRNA_SCITHE = 1669,
+	PLAGUEFALL = 1674,
+	SANGUINE_DEPTHS = 1675,
+
+	CASTLE_NATHRIA = 1735,
 }
 
 -- Types of items
@@ -75,6 +90,7 @@ C.ITEM_CATEGORIES = {
 	WOD = "WOD",
 	LEGION = "LEGION",
 	BFA = "BFA",
+	SHADOWLANDS = "SHADOWLANDS",
 	HOLIDAY = "HOLIDAY",
 }
 
