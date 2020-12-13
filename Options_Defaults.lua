@@ -5296,6 +5296,22 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Corpselouse Larva"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Corpselouse Larva"],
+		npcs = { 162528 },
+		spellId = 335974,
+		itemId = 181265,
+		chance = 100,
+		creatureId = 172136,
+		questId = 58768,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 42.27, y = 53.90, n = L["Smorgas the Feaster"] },
+		},
+	},
+
 	-- ["SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"] = {
 	-- 	cat = BFA,
 	-- 	type = PET,
