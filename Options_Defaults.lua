@@ -5215,6 +5215,21 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Sharpclaw"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Sharpclaw"],
+		npcs = { 172521 },
+		spellId = 341495,
+		itemId = 183410,
+		chance = 20,
+		creatureId = 174084,
+		questId = 62210,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.THE_MAW, x = 55.8, y = 67.5, n = L["Sanngror the Torturer"] },
+		},
+	},
 
 	["Blushing Spiderling"] = {
 		cat = SHADOWLANDS,
