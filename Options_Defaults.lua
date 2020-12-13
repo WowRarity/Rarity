@@ -5328,6 +5328,22 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Contained Essence of Dread"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Contained Essence of Dread"],
+		npcs = { 154330 },
+		spellId = 341492,
+		itemId = 183407,
+		chance = 8,
+		creatureId = 174081,
+		questId = 57509,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.THE_MAW, x = 19.8, y = 46.0, n = L["Eternas the Tormentor"] },
+		},
+	},
+
 	-- ["SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"] = {
 	-- 	cat = BFA,
 	-- 	type = PET,

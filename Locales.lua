@@ -1564,6 +1564,8 @@ L["Oily Invertebrate"] = true
 L["Shy Melvin"] = true
 L["Deadly Dapperling"] = true
 L["Corpselouse Larva"] = true
+L["Contained Essence of Dread"] = true
+L["Eternas the Tormentor"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
