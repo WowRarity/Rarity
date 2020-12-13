@@ -2,6 +2,8 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Hopecrusher Gargon"] = true
+L["Hopecrusher"] = true
 L["Sometimes contained in the caches awarded for completing any covenant's Calling in Maldraxxus. Will hatch into one of three Necroray mounts after three days."] = true
 L["Necroray Egg"] = true
 L["Note: Your existing settings will be overwritten."] = true
