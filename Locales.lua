@@ -36,7 +36,6 @@ L["Set all battle pets to be tracked repeatedly."] = true
 L["Set all battle pets to NOT be tracked repeatedly."] = true
 L["Untrack pets repeatedly"] = true
 L["Track pets repeatedly"] = true
-L["Track pets repeatedly"] = true
 L["Tracking Overrides"] = true
 L["Cleared accountwide statistics"] = true
 L["Clear accountwide statistics"] = true
