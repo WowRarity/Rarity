@@ -1517,6 +1517,9 @@ function R:PrepareDefaults()
 			itemId = 182081,
 			items = { 180646 },
 			chance = 20,	-- Estimate
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS }
+			},
 		},
 
 		["Amber Ardenmoth"] = {
@@ -1528,6 +1531,9 @@ function R:PrepareDefaults()
 			itemId = 183800,
 			items = { 180649 },
 			chance = 20,	-- Estimate
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.ARDENWEALD }
+			},
 		},
 
 		["Phalynx of Humility"] = {
@@ -1555,6 +1561,9 @@ function R:PrepareDefaults()
 			itemId = 184160,
 			items = { 184158 },
 			chance = 10,	-- Estimate
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS }
+			},
 		},
 
 		["Pestilent Necroray"] = {
@@ -1566,6 +1575,9 @@ function R:PrepareDefaults()
 			itemId = 184162,
 			items = { 184158 },
 			chance = 10,	-- Estimate
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS }
+			},
 		},
 
 		["Infested Necroray"] = {
@@ -1577,6 +1589,9 @@ function R:PrepareDefaults()
 			itemId = 184161,
 			items = { 184158 },
 			chance = 10,	-- Estimate
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS }
+			},
 		},
      
 
@@ -1975,6 +1990,22 @@ function R:PrepareDefaults()
 				"1462", -- Mechagon Island
 				"1165", -- Dazar'alor
 			},
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.DRUSTVAR },
+				{ m = CONSTANTS.UIMAPIDS.TIRAGARDE_SOUND },
+				{ m = CONSTANTS.UIMAPIDS.STORMSONG_VALLEY },
+				{ m = CONSTANTS.UIMAPIDS.ZULDAZAR },
+				{ m = CONSTANTS.UIMAPIDS.NAZMIR },
+				{ m = CONSTANTS.UIMAPIDS.VOLDUN },
+				{ m = CONSTANTS.UIMAPIDS.ZANDALAR },
+				{ m = CONSTANTS.UIMAPIDS.KULTIRAS },
+				{ m = CONSTANTS.UIMAPIDS.TORDAGOR },
+				{ m = CONSTANTS.UIMAPIDS.BORALUS },
+				{ m = CONSTANTS.UIMAPIDS.BATTLE_FOR_DAZARALOR_RAID },
+				{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND },
+				{ m = CONSTANTS.UIMAPIDS.DAZARALOR }
+
+			},
 		},
 
 		-- 8.1 Mounts
@@ -2267,6 +2298,9 @@ function R:PrepareDefaults()
 			equalOdds = true,
 			instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 			groupSize = 5,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.THE_NECROTIC_WAKE },
+			},
 		},
 
     },
@@ -6374,6 +6408,10 @@ function R:PrepareDefaults()
 		itemId = 166704,
 		items = { 166245 },
 		chance = 10,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.STORMSONG_VALLEY },
+			{ m = CONSTANTS.UIMAPIDS.ZULDAZAR }
+		},
 	},
 
 
@@ -6397,6 +6435,9 @@ function R:PrepareDefaults()
 		itemId = 166701,
 		items = { 166292 },
 		chance = 10,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.ZULDAZAR }
+		},
 	},
 
 	["For da Blood God!"] = {
@@ -6408,6 +6449,9 @@ function R:PrepareDefaults()
 		itemId = 166308,
 		items = { 166282 },
 		chance = 10,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.NAZMIR }
+		},
 	},
 
 	["Goldtusk Inn Breakfast Buffet"] = {
@@ -6419,6 +6463,9 @@ function R:PrepareDefaults()
 		itemId = 166703,
 		items = { 166290 },
 		chance = 10,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.VOLDUN }
+		},
 	},
 
 	-- ["Words of Akunda"] = { -- Note: NYI as of 19/04/2019
@@ -6441,6 +6488,9 @@ function R:PrepareDefaults()
 		itemId = 166880,
 		items = { 166290 },
 		chance = 10,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.VOLDUN }
+		},
 	},
 
 	["Rallying War Banner"] = {
@@ -6452,6 +6502,10 @@ function R:PrepareDefaults()
 		itemId = 166879,
 		items = { 166299, 166300 },
 		chance = 10,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.BORALUS },
+			{ m = CONSTANTS.UIMAPIDS.DAZARALOR }
+		},
 	},
 
 	["Bewitching Tea Set"] = {
@@ -6463,6 +6517,9 @@ function R:PrepareDefaults()
 		itemId = 166808,
 		items = { 166297 },
 		chance = 10,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.DRUSTVAR }
+		},
 	},
 
 	["Proudmoore Music Box"] = {
@@ -6474,6 +6531,9 @@ function R:PrepareDefaults()
 		itemId = 166702,
 		items = { 166295 },
 		chance = 10,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.TIRAGARDE_SOUND }
+		},
 	},
 
 	["Detoxified Blight Grenade"] = {
@@ -6861,6 +6921,9 @@ function R:PrepareDefaults()
 		itemId = 184396,
 		items = { 180647 },
 		chance = 20,	-- Estimate
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.BASTION }
+		},
 	},
 
 	["Mark of Purity"] = {
@@ -6872,6 +6935,9 @@ function R:PrepareDefaults()
 		itemId = 184435,
 		items = { 180647 },
 		chance = 20,	-- Estimate
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.BASTION }
+		},
 	},
 
 	["Infested Arachnid Casing"] = {
@@ -6883,6 +6949,9 @@ function R:PrepareDefaults()
 		itemId = 184495,
 		items = { 180646 },
 		chance = 20,	-- Estimate
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS }
+		},
 	},
 
 	["Acrobatic Steward"] = {
