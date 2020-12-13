@@ -1475,6 +1475,8 @@ function R:PrepareDefaults()
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 46.0, y = 78.5, n = L["Harika the Horrid"] },
 			},
+			requiresCovenant = true,
+			requiredCovenantID = CONSTANTS.COVENANT_IDS.VENTYHR
 		},
 
 		["Bonehoof Tauralus"] = {
@@ -1490,6 +1492,8 @@ function R:PrepareDefaults()
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 44.2, y = 51.2, n = L["Tahonta"] },
 			},
+			requiresCovenant = true,
+			requiredCovenantID = CONSTANTS.COVENANT_IDS.NECROLORD
 		},
 
 		["Hopecrusher Gargon"] = {
@@ -1506,6 +1510,8 @@ function R:PrepareDefaults()
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 51.98, y = 51.80, n = L["Hopecrusher"] },
 			},
+			requiresCovenant = true,
+			requiredCovenantID = CONSTANTS.COVENANT_IDS.NECROLORD
 		},
 
 		["Reins of the Colossal Slaughterclaw"] = {
@@ -2148,6 +2154,8 @@ function R:PrepareDefaults()
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.ARDENWEALD, x = 30.4, y = 55.2, n = L["Valfir the Unrelenting"] },
 			},
+			requiresCovenant = true,
+			requiredCovenantID = CONSTANTS.COVENANT_IDS.NIGHT_FAE
 		},
 
 		["Predatory Plagueroc"] = {
@@ -2165,6 +2173,8 @@ function R:PrepareDefaults()
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 31.4, y = 35.6, n = L["Gieger"] },
 			},
+			requiresCovenant = true,
+			requiredCovenantID = CONSTANTS.COVENANT_IDS.NECROLORD
 		},
 
 		["Slime-Covered Reins of the Hulking Deathroc"] = {
@@ -2233,6 +2243,8 @@ function R:PrepareDefaults()
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 50.67, y = 47.37, n = L["Sabriel the Bonecleaver"] },
 			},
+			requiresCovenant = true,
+			requiredCovenantID = CONSTANTS.COVENANT_IDS.NECROLORD
 		},
 
 		["Bonecleaver's Skullboar"] = {
