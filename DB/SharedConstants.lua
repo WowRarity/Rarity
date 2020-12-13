@@ -44,12 +44,20 @@ C.UIMAPIDS = {
 
 	NYALOTHA = 1582, -- Generic (doesn't matter which subzone, as waypoints inside of instances can no longer be set)
 
-	THE_MAW = 1543,
 	BASTION = 1533,
 	REVENDRETH = 1525,
 	MALDRAXXUS = 1536,
-	ARDENWEALD = 1565, -- Unused?
-	TORGHAST = 1751, -- Unused?
+	ARDENWEALD = 1565,
+
+	THE_MAW = 1543,
+	TORGHAST = 1751,
+
+	THE_NECROTIC_WAKE = 1666,
+	MISTS_OF_TIRNA_SCITHE = 1669,
+	PLAGUEFALL = 1674,
+	SANGUINE_DEPTHS = 1675,
+
+	CASTLE_NATHRIA = 1735,
 }
 
 -- Types of items
