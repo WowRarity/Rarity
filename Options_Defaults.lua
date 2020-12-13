@@ -5248,6 +5248,22 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Bucket of Primordial Sludge"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Bucket of Primordial Sludge"],
+		npcs = { 166292 },
+		spellId = 333799,
+		itemId = 180588,
+		chance = 11,
+		creatureId = 171121,
+		questId = 59823,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 35.8, y = 32.6, n = L["Bog Beast"] },
+		},
+	},
+
 	["Animated Tome"] = {
 		cat = SHADOWLANDS,
 		type = PET,
