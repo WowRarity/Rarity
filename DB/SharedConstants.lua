@@ -44,7 +44,7 @@ C.UIMAPIDS = {
 
 	NYALOTHA = 1582, -- Generic (doesn't matter which subzone, as waypoints inside of instances can no longer be set)
 
-	THE_MAW = 1648,
+	THE_MAW = 1543,
 	BASTION = 1533,
 	REVENDRETH = 1525,
 	MALDRAXXUS = 1536,
