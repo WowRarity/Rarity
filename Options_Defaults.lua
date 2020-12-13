@@ -5655,7 +5655,7 @@ function R:PrepareDefaults()
 		cat = SHADOWLANDS,
 		type = PET,
 		method = USE,
-		name = L["Larion Cub Dredwing Pup"],
+		name = L["Larion Cub"],
 		itemId = 184399,
 		items = { 180647 },
 		spellId = 345744,
