@@ -653,6 +653,12 @@ function R:IsAttemptAllowed(item)
 		return false
 	end
 
+	if type(item.questId) == "number" and C_QuestLog.IsQuestFlaggedCompleted(item.questId) then
+		-- This is only used for the Theater of Pain rares, so multiple questIDs don't need to be supported
+		Rarity:Debug(format("Attempts for item %s are disallowed (Quest %s is already completed)", item.name, item.questId))
+		return false
+	end
+
 	-- No valid instance difficulty configuration; allow (this needs to be the second-to-last check)
 	if item.instanceDifficulties == nil or type(item.instanceDifficulties) ~= "table" or next(item.instanceDifficulties) == nil then return true end
 
