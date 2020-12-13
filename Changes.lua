@@ -1,4 +1,13 @@
 local changes = {
+	["r702"] = {
+		additions = {
+			"Added most rare collectibles available in the Shadowlands expansion (many thanks to Tommy Godejord for helping with this task)",
+			"Added a button to always track battle pets repeatedly. Note: This will overwrite all individual settings for the 'repeatable' flag, so beware and/or make a backup of your saved variables first if you're at all unsure"
+		},
+		changes = {
+			"Many collectibles from the Battle for Azeroth expansion are no longer considered group content and have been moved to the 'solo-able' category"
+		}
+	},
 	["r701"] = {
 		additions = {
 			"Added an option to hide items that are already known from the mouseover tooltip (courtesy of Daniel Bowden) "

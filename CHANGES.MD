@@ -1,3 +1,12 @@
+**r702:**
+
+> Added most rare collectibles available in the Shadowlands expansion (many thanks to Tommy Godejord for helping with this task)
+<br>Added a button to always track battle pets repeatedly. Note: This will overwrite all individual settings for the 'repeatable' flag, so beware and/or make a backup of your saved variables first if you're at all unsure
+
+> Many collectibles from the Battle for Azeroth expansion are no longer considered group content and have been moved to the 'solo-able' category
+
+-----
+
 **r701:**
 
 > Added an option to hide items that are already known from the mouseover tooltip (courtesy of Daniel Bowden) 
@@ -34,13 +43,3 @@ Developer Notes:
 **r698:**
 
 > Looting an epic-quality Satchel of Chilled Goods (obtained from Frost Lord Ahune during the Midsummer Fire Festival) will now correctly register attempts for the Frigid Frostling pet
-
------
-
-**r697:**
-
-> Added tracking for pets obtained in the Ny'alotha raid
-<br>Added tracking for Skyshards in the phased 8.3 version of the Vale of Eternal Blossoms
-
-> Fixed an error in the fishing detection that could prevent attempts from being registered correctly
-<br>Fixed a UI issue that could cause the tooltip loading to fail
