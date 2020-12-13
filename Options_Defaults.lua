@@ -2281,7 +2281,7 @@ function R:PrepareDefaults()
 		["Gnawed Reins of the Battle-Bound Warhound"] = {
 			cat = SHADOWLANDS,
 			type = MOUNT,
-			method = SPECIAL,
+			method = NPC,
 			name = L["Gnawed Reins of the Battle-Bound Warhound"],
 			itemId = 184062,
 			spellId = 344228,
