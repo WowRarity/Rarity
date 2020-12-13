@@ -127,4 +127,11 @@ C.SORT_METHODS = {
 	SORT_ZONE = "SORT_ZONE",
 }
 
+C.COVENANT_IDS = {
+	KYRIAN = 1,
+	VENTHYR = 2,
+	NIGHT_FAE = 3,
+	NECROLORD = 4,
+}
+
 addonTable.constants = C

@@ -115,7 +115,7 @@ local C_Timer = _G.C_Timer
 local IsSpellKnown = _G.IsSpellKnown
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
 local IsQuestFlaggedCompleted = _G.IsQuestFlaggedCompleted
-
+local C_Covenants = C_Covenants
 
 local COMBATLOG_OBJECT_AFFILIATION_MINE = _G.COMBATLOG_OBJECT_AFFILIATION_MINE
 local COMBATLOG_OBJECT_AFFILIATION_PARTY = _G.COMBATLOG_OBJECT_AFFILIATION_PARTY
@@ -650,6 +650,14 @@ function R:IsAttemptAllowed(item)
 	if not playerClass then Rarity.Caching:SetPlayerClass(select(2, UnitClass("player"))) end
 	if item.disableForClass and type(item.disableForClass) == "table" and item.disableForClass[playerClass] == true then
 		Rarity:Debug(format("Attempts for item %s are disallowed (disabled for class %s)", item.name, playerClass))
+		return false
+	end
+
+	local activeCovenantID = C_Covenants.GetActiveCovenantID()
+	if item.requiresCovenant and item.requiredCovenantID and activeCovenantID ~= item.requiredCovenantID  then
+		local activeCovenantData = C_Covenants.GetCovenantData(activeCovenantID)
+		local requiredCovenantData = C_Covenants.GetCovenantData(item.requiredCovenantID)
+		Rarity:Debug(format("Attempts for item %s are disallowed (Covenant %d/%s is required, but active covenant is %d/%s)", item.name, item.requiredCovenantID, requiredCovenantData.name, activeCovenantID, activeCovenantData.name))
 		return false
 	end
 
