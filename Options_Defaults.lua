@@ -5344,6 +5344,21 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Tower Deathroach"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Tower Deathroach"],
+		npcs = { 155250 },
+		spellId = 340721,
+		itemId = 183115,
+		chance = 12,
+		creatureId = 173849,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.TORGHAST, n = L["Decayspeaker"] },
+		},
+	},
+
 	-- ["SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"] = {
 	-- 	cat = BFA,
 	-- 	type = PET,
