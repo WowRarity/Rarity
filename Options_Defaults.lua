@@ -1480,7 +1480,7 @@ function R:PrepareDefaults()
 		["Hopecrusher Gargon"] = {
 			cat = SHADOWLANDS,
 			type = MOUNT,
-			method = SPECIAL,
+			method = NPC,
 			name = L["Hopecrusher Gargon"],
 			itemId = 180581,
 			spellId = 312753,
