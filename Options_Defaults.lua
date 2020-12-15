@@ -1492,7 +1492,7 @@ function R:PrepareDefaults()
 				{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 51.98, y = 51.80, n = L["Hopecrusher"] },
 			},
 			requiresCovenant = true,
-			requiredCovenantID = CONSTANTS.COVENANT_IDS.NECROLORD
+			requiredCovenantID = CONSTANTS.COVENANT_IDS.VENTHYR
 		},
 
 		["Reins of the Colossal Slaughterclaw"] = {
@@ -1580,7 +1580,7 @@ function R:PrepareDefaults()
 				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS }
 			},
 		},
-     
+
 
 
 	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -6928,7 +6928,7 @@ function R:PrepareDefaults()
 			method = SPECIAL,
 			name = L["Acrobatic Steward"],
 			itemId = 184418,
-			items = { 
+			items = {
 				353234,
 				353019,
 				353503,
@@ -6968,7 +6968,7 @@ function R:PrepareDefaults()
 		method = SPECIAL,
 		name = L["Soothing Vesper"],
 		itemId = 184415,
-		items = { 
+		items = {
 			353687,
 			353691,
 			353867
