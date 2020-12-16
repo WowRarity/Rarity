@@ -1458,7 +1458,7 @@ function R:PrepareDefaults()
 				{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 46.0, y = 78.5, n = L["Harika the Horrid"] },
 			},
 			requiresCovenant = true,
-			requiredCovenantID = CONSTANTS.COVENANT_IDS.VENTYHR
+			requiredCovenantID = CONSTANTS.COVENANT_IDS.VENTHYR
 		},
 
 		["Bonehoof Tauralus"] = {
