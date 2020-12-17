@@ -2253,6 +2253,7 @@ function R:PrepareDefaults()
 			spellId = 312762,
 			npcs = { 174861 },
 			chance = 100,	-- Estimate
+			questId = 63433,
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
