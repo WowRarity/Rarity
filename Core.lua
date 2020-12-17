@@ -661,7 +661,7 @@ function R:IsAttemptAllowed(item)
 		return false
 	end
 
-	if type(item.questId) == "number" and C_QuestLog.IsQuestFlaggedCompleted(item.questId) then
+	if item.questCompletesAfterLooting and type(item.questId) == "number" and C_QuestLog.IsQuestFlaggedCompleted(item.questId) then
 		-- This is only used for the Theater of Pain rares, so multiple questIDs don't need to be supported
 		Rarity:Debug(format("Attempts for item %s are disallowed (Quest %s is already completed)", item.name, item.questId))
 		return false
