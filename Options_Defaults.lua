@@ -2251,7 +2251,7 @@ function R:PrepareDefaults()
 			name = L["Mawsworn Soulhunter"],
 			itemId = 184167,
 			spellId = 312762,
-			npcs = { 174827 },
+			npcs = { 174861 },
 			chance = 100,	-- Estimate
 			groupSize = 5,
 			equalOdds = true,
