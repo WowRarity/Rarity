@@ -123,7 +123,7 @@ function Session:End()
 				end
 				i.session.time = (i.session.time or 0) + len
 			end
-			self:Debug("Also ending session for %s (%s)", itemLink, FormatTime(trackedItem2.time or 0))
+			self:Debug("Also ending session for %s (%s)", itemLink or "ITEM_LINK_UNAVAILABLE", FormatTime(trackedItem2.time or 0))
 		end
 	end
 	inSession = false
