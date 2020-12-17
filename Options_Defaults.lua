@@ -6994,6 +6994,34 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Vixx's Chest of Tricks"] = {
+		cat = LEGION,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Vixx's Chest of Tricks"],
+		itemId = 152982,
+		npcs = { 127882 },
+		chance = 4,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.SEAT_OF_THE_TRIUMVIRATE },
+		},
+	},
+
+	["Unstable Portal Emitter"] = {
+		cat = LEGION,
+		type = ITEM,
+		isToy = true,
+		method = NPC,
+		name = L["Unstable Portal Emitter"],
+		itemId = 153004,
+		npcs = { 127882 },
+		chance = 7,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.SEAT_OF_THE_TRIUMVIRATE },
+		},
+	},
+
 
 	-- ["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = {
 	-- 	cat = BFA,
