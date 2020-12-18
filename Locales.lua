@@ -652,6 +652,10 @@ L["Adjusts the scale of the primary tooltip. This will take effect the next time
 L["Rarity Tooltip Options"] = true
 L["World Tooltip Options"] = true
 L["General Options"] = true
+L["Tooltip activation"] = true
+L["On hover"] = true
+L["On click"] = true
+L["If \"On click\" is selected, activating the tracker is done via CTRL + SHIFT + Click, otherwise it's activated with a simple click."] = true
 L["Secondary tooltip display"] = true
 L["Requires Pickpocketing"] = true
 L["When enabled, the item can only be obtained by pickpocketing. The item will be marked Unavailable for non-rogues."] = true

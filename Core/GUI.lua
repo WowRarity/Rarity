@@ -401,14 +401,23 @@ end
 
 function dataobj.OnEnter(self)
 	frame = self
-	Rarity:ShowTooltip()
+	if Rarity.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_HOVER then
+		Rarity:ShowTooltip()
+	end
 end
 
 function dataobj.OnLeave(self)
 end
 
 function dataobj:OnClick(button)
-	if IsShiftKeyDown() then
+	self = Rarity
+
+	if self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_HOVER and IsShiftKeyDown() and IsControlKeyDown() then
+		-- Toggle progress bar visibility
+		R.db.profile.bar.visible = not R.db.profile.bar.visible
+		Rarity.GUI:UpdateBar()
+		Rarity.GUI:UpdateText()
+	elseif IsShiftKeyDown() then
 		-- Show options
 		Rarity:Debug("Loading Rarity_Options addon")
 		LoadAddOn("Rarity_Options")
@@ -438,6 +447,8 @@ function dataobj:OnClick(button)
 		if qtip:IsAcquired("RarityTooltip") then
 			qtip:Release("RarityTooltip")
 		end
+		Rarity:ShowTooltip()
+	elseif self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_CLICK then
 		Rarity:ShowTooltip()
 	else
 		-- Toggle progress bar visibility

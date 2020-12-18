@@ -114,6 +114,10 @@ local TIP_LEFT = "TIP_LEFT"
 local TIP_RIGHT = "TIP_RIGHT"
 local TIP_HIDDEN = "TIP_HIDDEN"
 
+-- Tooltip activation
+local TIP_ACTIVATION_HOVER = "TIP_ACTIVATION_HOVER"
+local TIP_ACTIVATION_CLICK = "TIP_ACTIVATION_CLICK"
+
 -- Categories
 R.catIcons = {
  [HOLIDAY] = "holiday",
@@ -182,6 +186,7 @@ function R:PrepareDefaults()
    enableAnnouncements = true,
    feedText = FEED_NORMAL,
    statusTip = TIP_LEFT,
+   tooltipActivation = TIP_ACTIVATION_HOVER,
    sortMode = SORT_CATEGORY,
 			hideHighChance = false,
 			enableTooltipAdditions = true,
