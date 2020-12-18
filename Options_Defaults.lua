@@ -2298,10 +2298,24 @@ function R:PrepareDefaults()
 			},
 		},
 
-    },
+		["Impressionable Gorger Spawn"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = NPC,
+			name = L["Impressionable Gorger Spawn"],
+			itemId = 180583,
+			spellId = 333027,
+			npcs = { 160821 },
+			chance = 100, -- Estimate,
+			questId = 58259,
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 38.60, y = 72.00, n = L["Worldedge Gorger"] },
+			},
+		},
 
-
-
+		},
 
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- BATTLE PETS

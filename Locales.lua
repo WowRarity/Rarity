@@ -1601,6 +1601,8 @@ L["Contained Essence of Dread"] = true
 L["Eternas the Tormentor"] = true
 L["Tower Deathroach"] = true
 L["Decayspeaker"] = true
+L["Impressionable Gorger Spawn"] = true
+L["Worldedge Gorger"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
