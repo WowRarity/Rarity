@@ -5433,6 +5433,7 @@ function R:PrepareDefaults()
 		creatureId = 171714,
 		npcs = { 171041, 171013, 171040 },
 		chance = 20,
+		questId = 61001,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.BASTION },
 		},
