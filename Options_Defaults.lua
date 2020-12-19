@@ -5449,6 +5449,7 @@ function R:PrepareDefaults()
 		spellId = 333795,
 		creatureId = 171118,
 		npcs = { 170048, 165175 },
+		questId = { 60729 },
 		chance = 20,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 49.84, y = 35.02, n = L["Manifestation of Wrath"] },
