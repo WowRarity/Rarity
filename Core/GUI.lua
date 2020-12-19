@@ -416,12 +416,7 @@ function dataobj:OnClick(button)
 	local isRightButton = button == "RightButton"
 	local isLeftButton = button == "LeftButton"
 
-	if self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_HOVER and isLeftButton then
-		-- Toggle progress bar visibility
-		R.db.profile.bar.visible = not R.db.profile.bar.visible
-		Rarity.GUI:UpdateBar()
-		Rarity.GUI:UpdateText()
-	elseif IsShiftKeyDown() and isLeftButton then
+	if IsShiftKeyDown() and isLeftButton then
 		-- Show options
 		Rarity:Debug("Loading Rarity_Options addon")
 		LoadAddOn("Rarity_Options")
@@ -452,6 +447,14 @@ function dataobj:OnClick(button)
 			qtip:Release("RarityTooltip")
 		end
 		Rarity:ShowTooltip()
+	elseif (
+		(self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_CLICK and isRightButton)
+		or (self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_HOVER and isLeftButton)
+	) then
+		-- Toggle progress bar visibility
+		R.db.profile.bar.visible = not R.db.profile.bar.visible
+		Rarity.GUI:UpdateBar()
+		Rarity.GUI:UpdateText()
 	elseif self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_CLICK and isLeftButton then
 		if qtip:IsAcquired("RarityTooltip") then
 			Rarity:HideTooltip()
@@ -459,11 +462,6 @@ function dataobj:OnClick(button)
 			Rarity:HideQuicktip()
 			Rarity:ShowTooltip()
 		end
-	elseif isRightButton then
-		-- Toggle progress bar visibility
-		R.db.profile.bar.visible = not R.db.profile.bar.visible
-		Rarity.GUI:UpdateBar()
-		Rarity.GUI:UpdateText()
 	end
 end
 
