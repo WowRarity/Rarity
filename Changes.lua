@@ -1,4 +1,9 @@
 local changes = {
+	["r703"] = {
+		additions = {
+			"Added tracking for Impressionable Gorger Spawn (Loyal Gorger)",
+		},
+	},
 	["r702"] = {
 		additions = {
 			"Added most rare collectibles available in the Shadowlands expansion (many thanks to Tommy Godejord for helping with this task)",
