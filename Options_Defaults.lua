@@ -2315,6 +2315,24 @@ function R:PrepareDefaults()
 			},
 		},
 
+		["Ascended Skymane"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Ascended Skymane"],
+			spellId = 342335,
+			itemId = 183741,
+			items = { 354175 },
+			chance = 20,
+			tooltipNpcs = { 170834, 170835, 170833, 170832, 170836 },
+			questId = { 60933 },
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.BASTION, x = 53.50, y = 88.37, n = L["Cache of the Ascended"] },
+			},
+		},
+
 		},
 
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
