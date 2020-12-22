@@ -5433,6 +5433,7 @@ function R:PrepareDefaults()
 		creatureId = 171714,
 		npcs = { 171041, 171013, 171040 },
 		chance = 20,
+		questId = 61001,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.BASTION },
 		},
@@ -5465,6 +5466,7 @@ function R:PrepareDefaults()
 		creatureId = 171118,
 		npcs = { 170048, 165175 },
 		chance = 20,
+		questId = { 60729 },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 49.84, y = 35.02, n = L["Manifestation of Wrath"] },
 			{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 67.8, y = 82, n = L["Prideful Hulk"] },
