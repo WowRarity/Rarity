@@ -221,4 +221,5 @@ R.opennodes = {
 	[L["Gilded Chest"]] = true,
 	[L["Broken Bell"]] = true,
 	[L["Skyward Bell"]] = true,
+	[L["Cache of the Ascended"]] = true
 }
