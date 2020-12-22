@@ -2271,7 +2271,6 @@ function R:PrepareDefaults()
 			npcs = { 162873, 162880, 162875, 162853, 162874, 162872 },
 			chance = 100,	-- Estimate
 			questId =  62786 ,
-			questCompletesAfterLooting = true,
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
