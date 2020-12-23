@@ -2,6 +2,7 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Ascended Skymane"] = true
 L["Unstable Portal Emitter"] = true
 L["Vixx's Chest of Tricks"] = true
 L["Jar of Ashes"] = true
