@@ -401,7 +401,7 @@ end
 
 function dataobj.OnEnter(self)
 	frame = self
-	if Rarity.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_HOVER then
+	if Rarity.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_HOVER then
 		Rarity:ShowTooltip()
 	else
 		Rarity:ShowQuicktip()
@@ -448,14 +448,14 @@ function dataobj:OnClick(button)
 		end
 		Rarity:ShowTooltip()
 	elseif (
-		(self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_CLICK and isRightButton)
-		or (self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_HOVER and isLeftButton)
+		(self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_CLICK and isRightButton)
+		or (self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_HOVER and isLeftButton)
 	) then
 		-- Toggle progress bar visibility
 		R.db.profile.bar.visible = not R.db.profile.bar.visible
 		Rarity.GUI:UpdateBar()
 		Rarity.GUI:UpdateText()
-	elseif self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_CLICK and isLeftButton then
+	elseif self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_CLICK and isLeftButton then
 		if qtip:IsAcquired("RarityTooltip") then
 			Rarity:HideTooltip()
 		else
@@ -1623,12 +1623,12 @@ function R:ShowQuicktip(hidden)
 		quicktip:SetScale(self.db.profile.tooltipScale or 1)
 	end
 
-	quicktip:AddHeader('Rarity')
+	quicktip:AddHeader(L["Rarity"])
 	quicktip:AddSeparator(1, 1, 1, 1, 1)
-	quicktip:AddLine('Left click', 'Open Rarity window')
-	quicktip:AddLine('Right click', 'Toggle tracker')
-	quicktip:AddLine('Shift + Left click', 'Open settings')
-	quicktip:AddLine('Ctrl + Left click', 'Change sorting')
+	quicktip:AddLine(L["Left click"], L["Open Rarity window"])
+	quicktip:AddLine(L["Right click"], L["Toggle tracker"])
+	quicktip:AddLine(L["Shift + Left click"], L["Open settings"])
+	quicktip:AddLine(L["Ctrl + Left click"], L["Change sorting"])
 
 	quicktip:SetAutoHideDelay(
 		0.1,

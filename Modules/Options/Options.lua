@@ -13,6 +13,7 @@ local GetItemInfo = function(id)
 	return R:GetItemInfo(id)
 end
 
+local C = R.CONSTANTS
 
 -- Types of items
 local MOUNT = "MOUNT"
@@ -46,10 +47,6 @@ local COLLECTION = "COLLECTION"
 local FEED_MINIMAL = "FEED_MINIMAL"
 local FEED_NORMAL = "FEED_NORMAL"
 local FEED_VERBOSE = "FEED_VERBOSE"
-
--- Tooltip activation
-local TIP_ACTIVATION_HOVER = "TIP_ACTIVATION_HOVER"
-local TIP_ACTIVATION_CLICK = "TIP_ACTIVATION_CLICK"
 
 -- Tooltip position
 local TIP_LEFT = "TIP_LEFT"
@@ -394,8 +391,8 @@ function R:PrepareOptions()
 								name = L["Tooltip activation"],
 								desc = L["If \"On click\" is selected, activating the tracker is done via CTRL + SHIFT + Click, otherwise it's activated with a simple click."],
 								values = {
-									[TIP_ACTIVATION_HOVER] = L["On hover"],
-									[TIP_ACTIVATION_CLICK] = L["On click"],
+									[C.TOOLTIP.ACTIVATION_METHOD_HOVER] = L["On hover"],
+									[C.TOOLTIP.ACTIVATION_METHOD_CLICK] = L["On click"],
 								},
 								get = function() return self.db.profile.tooltipActivation end,
 								set = function(info, val)
@@ -403,7 +400,7 @@ function R:PrepareOptions()
 									self:Update("OPTIONS")
 								end,
 								order = newOrder(),
-							}, -- feedText
+							}, -- tooltipActivation
 						}, -- args
 					}, -- general
 
