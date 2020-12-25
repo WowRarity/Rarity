@@ -2254,6 +2254,7 @@ function R:PrepareDefaults()
 			spellId = 312762,
 			npcs = { 174861 },
 			chance = 100,	-- Estimate
+			questId = 63433,
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
@@ -2297,10 +2298,42 @@ function R:PrepareDefaults()
 			},
 		},
 
-    },
+		["Impressionable Gorger Spawn"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = NPC,
+			name = L["Impressionable Gorger Spawn"],
+			itemId = 180583,
+			spellId = 333027,
+			npcs = { 160821 },
+			chance = 100, -- Estimate,
+			questId = 58259,
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 38.60, y = 72.00, n = L["Worldedge Gorger"] },
+			},
+		},
 
+		["Ascended Skymane"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Ascended Skymane"],
+			spellId = 342335,
+			itemId = 183741,
+			items = { 354175 },
+			chance = 20,
+			tooltipNpcs = { 170834, 170835, 170833, 170832, 170836 },
+			questId = { 60933 },
+			groupSize = 5,
+			equalOdds = true,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.BASTION, x = 53.50, y = 88.37, n = L["Cache of the Ascended"] },
+			},
+		},
 
-
+		},
 
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- BATTLE PETS
@@ -5418,6 +5451,7 @@ function R:PrepareDefaults()
 		creatureId = 171714,
 		npcs = { 171041, 171013, 171040 },
 		chance = 20,
+		questId = 61001,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.BASTION },
 		},
@@ -5450,6 +5484,7 @@ function R:PrepareDefaults()
 		creatureId = 171118,
 		npcs = { 170048, 165175 },
 		chance = 20,
+		questId = { 60729 },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 49.84, y = 35.02, n = L["Manifestation of Wrath"] },
 			{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 67.8, y = 82, n = L["Prideful Hulk"] },

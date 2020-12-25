@@ -3,6 +3,7 @@ L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
 L["Rarity"] = true
+L["Ascended Skymane"] = true
 L["Unstable Portal Emitter"] = true
 L["Vixx's Chest of Tricks"] = true
 L["Jar of Ashes"] = true
@@ -1614,6 +1615,9 @@ L["Contained Essence of Dread"] = true
 L["Eternas the Tormentor"] = true
 L["Tower Deathroach"] = true
 L["Decayspeaker"] = true
+L["Impressionable Gorger Spawn"] = true
+L["Worldedge Gorger"] = true
+L["Cache of the Ascended"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

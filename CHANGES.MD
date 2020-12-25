@@ -1,3 +1,9 @@
+**r703:**
+
+> Added tracking for Impressionable Gorger Spawn (Loyal Gorger)
+
+-----
+
 **r702:**
 
 > Added most rare collectibles available in the Shadowlands expansion (many thanks to Tommy Godejord for helping with this task)
@@ -37,9 +43,3 @@ Developer Notes:
 > Fixed a UI issue that could cause the tooltip to not be shown when custom items were added with invalid data (or Blizzard's server didn't send any data for the given item)
 <br>The tooltip now always displays an item's estimated base drop rate instead of considering the somewhat arbitrary group size setting in order to provide consistent data to players
 <br>Added a workaround for some display issues in Blizzard's addon menu that can cause the options window to not open correctly (sigh)
-
------
-
-**r698:**
-
-> Looting an epic-quality Satchel of Chilled Goods (obtained from Frost Lord Ahune during the Midsummer Fire Festival) will now correctly register attempts for the Frigid Frostling pet
