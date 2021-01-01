@@ -13,6 +13,7 @@ local GetItemInfo = function(id)
 	return R:GetItemInfo(id)
 end
 
+local C = R.CONSTANTS
 
 -- Types of items
 local MOUNT = "MOUNT"
@@ -385,6 +386,21 @@ function R:PrepareOptions()
 						  end,
 					  }, -- enableProfiling
 
+							tooltipActivation = {
+								type = "select",
+								name = L["Tooltip activation"],
+								desc = L["If \"On click\" is selected, activating the tracker is done via CTRL + SHIFT + Click, otherwise it's activated with a simple click."],
+								values = {
+									[C.TOOLTIP.ACTIVATION_METHOD_HOVER] = L["On hover"],
+									[C.TOOLTIP.ACTIVATION_METHOD_CLICK] = L["On click"],
+								},
+								get = function() return self.db.profile.tooltipActivation end,
+								set = function(info, val)
+									self.db.profile.tooltipActivation = val
+									self:Update("OPTIONS")
+								end,
+								order = newOrder(),
+							}, -- tooltipActivation
 						}, -- args
 					}, -- general
 

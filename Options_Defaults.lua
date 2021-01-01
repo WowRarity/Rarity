@@ -182,6 +182,7 @@ function R:PrepareDefaults()
    enableAnnouncements = true,
    feedText = FEED_NORMAL,
    statusTip = TIP_LEFT,
+   tooltipActivation = CONSTANTS.TOOLTIP.ACTIVATION_METHOD_HOVER,
    sortMode = SORT_CATEGORY,
 			hideHighChance = false,
 			enableTooltipAdditions = true,

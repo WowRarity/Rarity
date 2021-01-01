@@ -5,7 +5,7 @@ local _, addonTable = ...
 local GUI = {}
 
 -- Locals
-local tooltip, tooltip2
+local tooltip, tooltip2, quicktip
 local frame, frame2
 local headers = {}
 local scanTip = CreateFrame("GameTooltip", "__Rarity_ScanTip", nil, "GameTooltipTemplate")
@@ -401,14 +401,22 @@ end
 
 function dataobj.OnEnter(self)
 	frame = self
-	Rarity:ShowTooltip()
+	if Rarity.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_HOVER then
+		Rarity:ShowTooltip()
+	else
+		Rarity:ShowQuicktip()
+	end
 end
 
 function dataobj.OnLeave(self)
 end
 
 function dataobj:OnClick(button)
-	if IsShiftKeyDown() then
+	self = Rarity
+	local isRightButton = button == "RightButton"
+	local isLeftButton = button == "LeftButton"
+
+	if IsShiftKeyDown() and isLeftButton then
 		-- Show options
 		Rarity:Debug("Loading Rarity_Options addon")
 		LoadAddOn("Rarity_Options")
@@ -419,7 +427,7 @@ function dataobj:OnClick(button)
 		else
 			R:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
 		end
-	elseif IsControlKeyDown() then
+	elseif IsControlKeyDown() and isLeftButton then
 		-- Change sort order
 		if R.db.profile.sortMode == SORT_NAME then
 			R.db.profile.sortMode = SORT_CATEGORY
@@ -439,11 +447,21 @@ function dataobj:OnClick(button)
 			qtip:Release("RarityTooltip")
 		end
 		Rarity:ShowTooltip()
-	else
+	elseif (
+		(self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_CLICK and isRightButton)
+		or (self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_HOVER and isLeftButton)
+	) then
 		-- Toggle progress bar visibility
 		R.db.profile.bar.visible = not R.db.profile.bar.visible
 		Rarity.GUI:UpdateBar()
 		Rarity.GUI:UpdateText()
+	elseif self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_CLICK and isLeftButton then
+		if qtip:IsAcquired("RarityTooltip") then
+			Rarity:HideTooltip()
+		else
+			Rarity:HideQuicktip()
+			Rarity:ShowTooltip()
+		end
 	end
 end
 
@@ -1578,7 +1596,63 @@ local function addGroup(group, requiresGroup)
 	return added, itemsExistInThisGroup
 end
 
+local renderingQuicktip = false;
+
+function R:HideQuicktip()
+	if quicktip and quicktip:IsVisible() then
+		quicktip:Release()
+	end
+end
+
+function R:ShowQuicktip(hidden)
+	if renderingQuicktip then
+		return
+	end
+	renderingQuicktip = true
+
+	if qtip:IsAcquired("RarityQuicktip") and quicktip then
+		-- Don't show the tooltip if it's already showing
+		if quicktip:IsVisible() then
+			renderingQuicktip = false
+			return
+		end
+		quicktip:Clear()
+	else
+		quicktip = qtip:Acquire("RarityQuicktip", 3, "LEFT", "LEFT")
+		-- intentionally one column more than we need to avoid text clipping
+		quicktip:SetScale(self.db.profile.tooltipScale or 1)
+	end
+
+	quicktip:AddHeader(L["Rarity"])
+	quicktip:AddSeparator(1, 1, 1, 1, 1)
+	quicktip:AddLine(L["Left click"], L["Open Rarity window"])
+	quicktip:AddLine(L["Right click"], L["Toggle tracker"])
+	quicktip:AddLine(L["Shift + Left click"], L["Open settings"])
+	quicktip:AddLine(L["Ctrl + Left click"], L["Change sorting"])
+
+	quicktip:SetAutoHideDelay(
+		0.1,
+		frame,
+		function()
+			quicktip = nil
+			qtip:Release("RarityQuicktip")
+		end
+	)
+
+	quicktip:SmartAnchorTo(frame)
+	quicktip:UpdateScrolling()
+	quicktip:Show()
+
+	renderingQuicktip = false
+end
+
 local renderingTip = false
+
+function R:HideTooltip()
+	if tooltip:IsVisible() then
+		tooltip:Release()
+	end
+end
 
 function R:ShowTooltip(hidden)
 	-- This function needs to be non-reentrant

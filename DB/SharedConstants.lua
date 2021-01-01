@@ -7,6 +7,12 @@ addonTable.constants = addonTable.constants or {}
 
 local C = addonTable.constants
 
+-- Types of items
+C.TOOLTIP = {
+	ACTIVATION_METHOD_HOVER = "ACTIVATION_METHOD_HOVER",
+	ACTIVATION_METHOD_CLICK = "ACTIVATION_METHOD_CLICK",
+}
+
 -- Misc. stuff for the detailed lockout storage / defeat detection
 C.DEFEAT_DETECTION = {
 	MODE_OR = 1,
