@@ -5357,7 +5357,7 @@ function R:PrepareDefaults()
 		itemId = 181270,
 		chance = 40,
 		creatureId = 172149,
-		--questId = ,
+		questId = 61724,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 58.6, y = 74.2, n = L["Oily Invertebrate"] },
 		},
