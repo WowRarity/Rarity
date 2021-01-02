@@ -657,6 +657,12 @@ function R:IsAttemptAllowed(item)
 	if item.requiresCovenant and item.requiredCovenantID and activeCovenantID ~= item.requiredCovenantID  then
 		local activeCovenantData = C_Covenants.GetCovenantData(activeCovenantID)
 		local requiredCovenantData = C_Covenants.GetCovenantData(item.requiredCovenantID)
+
+		if not activeCovenantData then
+			Rarity:Debug(format("Attempts for item %s are disallowed (Covenant %d/%s is required, but none is currently active)", item.name, item.requiredCovenantID, requiredCovenantData.name))
+			return false
+		end
+
 		Rarity:Debug(format("Attempts for item %s are disallowed (Covenant %d/%s is required, but active covenant is %d/%s)", item.name, item.requiredCovenantID, requiredCovenantData.name, activeCovenantID, activeCovenantData.name))
 		return false
 	end
