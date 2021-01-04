@@ -3253,7 +3253,7 @@ function R:PrepareDefaults()
 			chance = 10,
 			instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 			coords = {
-				{ m = CONSTANTS.UIMAPIDS.TOLDAGOR },
+				{ m = CONSTANTS.UIMAPIDS.TOLDAGOR, n = L["Gol'than the Malodorous"] },
 			},
 		},
 
