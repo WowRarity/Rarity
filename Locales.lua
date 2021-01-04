@@ -1618,6 +1618,7 @@ L["Decayspeaker"] = true
 L["Impressionable Gorger Spawn"] = true
 L["Worldedge Gorger"] = true
 L["Cache of the Ascended"] = true
+L["Filthy Bucket"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
