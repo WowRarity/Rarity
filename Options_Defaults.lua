@@ -2220,6 +2220,8 @@ function R:PrepareDefaults()
 			spellId = 332466,
 			npcs = { 168147 },
 			chance = 100,	-- Estimate
+			questId = { 58784 },
+			tooltipNpcs = { 168148 },
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
@@ -2238,6 +2240,8 @@ function R:PrepareDefaults()
 			spellId = 332482,
 			npcs = { 168147 },
 			chance = 100,	-- Estimate
+			questId = { 58784 },
+			tooltipNpcs = { 168148 },
 			groupSize = 5,
 			equalOdds = true,
 			coords = {
