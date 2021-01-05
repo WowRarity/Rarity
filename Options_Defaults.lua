@@ -3241,6 +3241,22 @@ function R:PrepareDefaults()
 			},
 		},
 
+		["Filthy Bucket"] = {
+			cat = BFA,
+			type = PET,
+			method = NPC,
+			name = L["Filthy Bucket"],
+			itemId = 160704,
+			spellId = 273184,
+			creatureId = 139049,
+			npcs = { 135448 },
+			chance = 10,
+			instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.TOLDAGOR, n = L["Gol'than the Malodorous"] },
+			},
+		},
+
 		-- 8.1 Pets
 
 		["Albatross Feather"] = {
