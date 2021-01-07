@@ -1620,6 +1620,8 @@ L["Worldedge Gorger"] = true
 L["Cache of the Ascended"] = true
 L["Filthy Bucket"] = true
 L["Gol'than the Malodorous"] = true
+L["Slime-Coated Crate"] = true
+L["Kevin's Party Supplies"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

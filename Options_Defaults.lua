@@ -7078,6 +7078,20 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Kevin's Party Supplies"] = {
+		cat = SHADOWLANDS,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Kevin's Party Supplies"],
+		itemId = 184447,
+		items = { 354856, },
+		chance = 11,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS },
+		},
+	},
+
 
 	-- ["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = {
 	-- 	cat = BFA,
