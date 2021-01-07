@@ -6978,29 +6978,29 @@ function R:PrepareDefaults()
 	},
 
 	["Acrobatic Steward"] = {
-			cat = SHADOWLANDS,
-			type = ITEM,
-			isToy = true,
-			method = SPECIAL,
-			name = L["Acrobatic Steward"],
-			itemId = 184418,
-			items = {
-				353234,
-				353019,
-				353503,
-				352754,
-				353325,
-				353516,
-				353205,
-				363825,
-				353500,
-				353643
-			},
-			chance = 20, -- Average
-			coords = {
-				{ m = CONSTANTS.UIMAPIDS.BASTION },
-			},
+		cat = SHADOWLANDS,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Acrobatic Steward"],
+		itemId = 184418,
+		items = {
+			353234,
+			353019,
+			353503,
+			352754,
+			353325,
+			353516,
+			353205,
+			363825,
+			353500,
+			353643
 		},
+		chance = 20, -- Average
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.BASTION },
+		},
+	},
 
 	["Ever-Abundant Hearth"] = {
 		cat = SHADOWLANDS,
