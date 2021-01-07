@@ -2231,23 +2231,24 @@ function R:PrepareDefaults()
 			requiredCovenantID = CONSTANTS.COVENANT_IDS.NECROLORD
 		},
 
-		["Bonecleaver's Skullboar"] = {
-			cat = SHADOWLANDS,
-			type = MOUNT,
-			method = NPC,
-			name = L["Bonecleaver's Skullboar"],
-			itemId = 182083,
-			spellId = 332482,
-			npcs = { 168147 },
-			chance = 100,	-- Estimate
-			questId = { 58784 },
-			tooltipNpcs = { 168148 },
-			groupSize = 5,
-			equalOdds = true,
-			coords = {
-				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 50.67, y = 47.37, n = L["Sabriel the Bonecleaver"] },
-			},
-		},
+		-- Note: This appears to not have made it to live, so I'm disabling it until further notice
+		-- ["Bonecleaver's Skullboar"] = {
+		-- 	cat = SHADOWLANDS,
+		-- 	type = MOUNT,
+		-- 	method = NPC,
+		-- 	name = L["Bonecleaver's Skullboar"],
+		-- 	itemId = 182083,
+		-- 	spellId = 332482,
+		-- 	npcs = { 168147 },
+		-- 	chance = 100,	-- Estimate
+		-- 	questId = { 58784 },
+		-- 	tooltipNpcs = { 168148 },
+		-- 	groupSize = 5,
+		-- 	equalOdds = true,
+		-- 	coords = {
+		-- 		{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 50.67, y = 47.37, n = L["Sabriel the Bonecleaver"] },
+		-- 	},
+		-- },
 
 		["Mawsworn Soulhunter"] = {
 			cat = SHADOWLANDS,
