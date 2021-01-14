@@ -222,5 +222,6 @@ R.opennodes = {
 	[L["Broken Bell"]] = true,
 	[L["Skyward Bell"]] = true,
 	[L["Cache of the Ascended"]] = true,
-	[L["Slime-Coated Crate"]] = true
+	[L["Slime-Coated Crate"]] = true,
+	[L["Sprouting Growth"]] = true
 }
