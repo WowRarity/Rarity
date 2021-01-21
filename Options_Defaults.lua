@@ -5610,7 +5610,7 @@ function R:PrepareDefaults()
 		itemId = 180586,
 		spellId = 333796,
 		creatureId = 171119,
-		npcs = { 164388, 164388 },
+		npcs = { 164388, 160604, 165687 },
 		chance = 1000, -- It's about 5% from the rare, but two sources with different drop rates aren't currently supported
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 25.8, y = 48.4, n = L["Amalgamation of Light"] },
