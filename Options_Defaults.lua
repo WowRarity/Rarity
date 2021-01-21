@@ -5811,6 +5811,20 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Bubbling Pustule"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = SPECIAL,
+		name = L["Bubbling Pustule"],
+		itemId = 181262,
+		spellId = 335966,
+		creatureId = 172132,
+		chance = 33,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS },
+		},
+	},
+
 },
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
