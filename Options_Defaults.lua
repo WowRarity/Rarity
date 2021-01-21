@@ -5797,6 +5797,20 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Skittering Venomspitter"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = SPECIAL,
+		name = L["Skittering Venomspitter"],
+		itemId = 181173,
+		spellId = 335765,
+		creatureId = 171987,
+		chance = 75,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS },
+		},
+	},
+
 },
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
