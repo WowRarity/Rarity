@@ -1462,21 +1462,21 @@ function R:PrepareDefaults()
 			requiredCovenantID = CONSTANTS.COVENANT_IDS.VENTHYR
 		},
 
-		["Bonehoof Tauralus"] = {
-			cat = SHADOWLANDS,
-			type = MOUNT,
-			method = NPC,
-			name = L["Bonehoof Tauralus"],
-			itemId = 182075,
-			spellId = 332457,
-			npcs = { 162586 },
-			chance = 100,
-			coords = {
-				{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 44.2, y = 51.2, n = L["Tahonta"] },
-			},
-			requiresCovenant = true,
-			requiredCovenantID = CONSTANTS.COVENANT_IDS.NECROLORD
-		},
+		-- ["Bonehoof Tauralus"] = { -- NYI as of 21/01/2021 ?
+		-- 	cat = SHADOWLANDS,
+		-- 	type = MOUNT,
+		-- 	method = NPC,
+		-- 	name = L["Bonehoof Tauralus"],
+		-- 	itemId = 182075,
+		-- 	spellId = 332457,
+		-- 	npcs = { 162586 },
+		-- 	chance = 100,
+		-- 	coords = {
+		-- 		{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 44.2, y = 51.2, n = L["Tahonta"] },
+		-- 	},
+		-- 	requiresCovenant = true,
+		-- 	requiredCovenantID = CONSTANTS.COVENANT_IDS.NECROLORD
+		-- },
 
 		["Hopecrusher Gargon"] = {
 			cat = SHADOWLANDS,
