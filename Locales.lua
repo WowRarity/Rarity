@@ -1625,6 +1625,9 @@ L["Kevin's Party Supplies"] = true
 L["Sprouting Growth"] = true
 L["Skittering Venomspitter"] = true
 L["Bubbling Pustule"] = true
+L["Silvershell Snapper"] = true
+L["This can be looted after killing Dionae."] = true
+L["Stewart's Stewpendous Stew"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

@@ -5825,6 +5825,23 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Silvershell Snapper"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = SPECIAL,
+		name = L["Silvershell Snapper"],
+		itemId = 180856,
+		spellId = 335050,
+		creatureId = 171693,
+		chance = 20,
+		tooltipNpcs = { 163460 },
+		questId = { 62650 },
+		sourceText = L["This can be looted after killing Dionae."],
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.BASTION, x = 41.5, y = 49.1, n = L["Stewart's Stewpendous Stew"] },
+		},
+	},
+
 },
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
