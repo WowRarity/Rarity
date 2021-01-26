@@ -1,8 +1,22 @@
 local changes = {
 	["r703"] = {
 		additions = {
-			"Added tracking for Impressionable Gorger Spawn (Loyal Gorger)",
+			"Added tracking for various Shadowlands pets and toys that were previously missing",
+			"Added a setting to show the addon's tooltip on click instead of hover"
 		},
+		changes = {
+			"Removed tracking for various items that appear to have never made it to live servers"
+		},
+		fixes = {
+			"Removed restrictions placed on the tracking for Theater of Pain rares (to account for Blizzard's stealth hotfix)",
+			"Fixed an issue where killing covenant-restricted rares on characters that haven't selected a covenant yet would cause an error",
+			"Fixed tracking for Lightbinders (pet)"
+		},
+		contributors = {
+			"Nick Bayley (https://github.com/nickbayley)",
+			"Tommy Godejord (https://github.com/godejord)",
+			"Mikael Jelveby (https://github.com/jelveby)"
+		}
 	},
 	["r702"] = {
 		additions = {
