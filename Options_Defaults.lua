@@ -5842,6 +5842,20 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Trapped Stonefiend"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = SPECIAL,
+		name = L["Trapped Stonefiend"],
+		itemId = 180592,
+		spellId = 333803,
+		creatureId = 171125,
+		chance = 10,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.REVENDRETH },
+		},
+	},
+
 },
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS

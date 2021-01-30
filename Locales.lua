@@ -1628,6 +1628,8 @@ L["Bubbling Pustule"] = true
 L["Silvershell Snapper"] = true
 L["This can be looted after killing Dionae."] = true
 L["Stewart's Stewpendous Stew"] = true
+L["Bleakwood Chest"] = true
+L["Trapped Stonefiend"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
