@@ -1630,6 +1630,8 @@ L["This can be looted after killing Dionae."] = true
 L["Stewart's Stewpendous Stew"] = true
 L["Bleakwood Chest"] = true
 L["Trapped Stonefiend"] = true
+L["Collectable Type Filter"] = true
+L["These toggles filter which items appear in the main Rarity tooltip. Items are categorized by their type (eg. Mounts, Battle Pets...). Turning off these checkboxes does not turn off tracking for any items within the category; it simply hides the item from the tooltip in order to help reduce the number of items in it."] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

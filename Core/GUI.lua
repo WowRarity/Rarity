@@ -104,6 +104,11 @@ local yellow = {r = 1.0, g = 1.0, b = 0.2}
 local gray = {r = 0.5, g = 0.5, b = 0.5}
 local white = {r = 1.0, g = 1.0, b = 1.0}
 
+-- Types of items
+local MOUNT = "MOUNT"
+local PET = "PET"
+local ITEM = "ITEM"
+
 -- Helper function (to look up map names more easily)
 -- TODO: DRY (not sure where this fits best, move after refactoring the rest and delete any duplicates)
 -- Returns the localized map name, or nil if the uiMapID is invalid
@@ -1745,34 +1750,41 @@ function R:ShowTooltip(hidden)
 	local somethingAdded = false
 
 	local group1start = debugprofilestop()
-	addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.mounts)
+	if(R.db.profile.collectionType[MOUNT]) then		
+		addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.mounts)
+		
+		if addedLast then
+			tooltip:AddSeparator(1, 1, 1, 1, 1.0)
+		end
+		if itemsExistInThisGroup then
+			somethingAdded = true
+		end
+	end
 	local group1end = debugprofilestop()
-	if addedLast then
-		tooltip:AddSeparator(1, 1, 1, 1, 1.0)
-	end
-	if itemsExistInThisGroup then
-		somethingAdded = true
-	end
 
 	local group2start = debugprofilestop()
-	addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.pets)
+	if(R.db.profile.collectionType[PET]) then		
+		addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.pets)
+		if addedLast then
+			tooltip:AddSeparator(1, 1, 1, 1, 1.0)
+		end
+		if itemsExistInThisGroup then
+			somethingAdded = true
+		end
+	end
 	local group2end = debugprofilestop()
-	if addedLast then
-		tooltip:AddSeparator(1, 1, 1, 1, 1.0)
-	end
-	if itemsExistInThisGroup then
-		somethingAdded = true
-	end
 
 	local group3start = debugprofilestop()
-	addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.items)
+	if(R.db.profile.collectionType[ITEM]) then
+		addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.items)		
+		if addedLast then
+			tooltip:AddSeparator(1, 1, 1, 1, 1.0)
+		end
+		if itemsExistInThisGroup then
+			somethingAdded = true
+		end
+	end
 	local group3end = debugprofilestop()
-	if addedLast then
-		tooltip:AddSeparator(1, 1, 1, 1, 1.0)
-	end
-	if itemsExistInThisGroup then
-		somethingAdded = true
-	end
 
 	local group4start = debugprofilestop()
 	addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.user)
@@ -1785,34 +1797,40 @@ function R:ShowTooltip(hidden)
 	end
 
 	local group5start = debugprofilestop()
-	addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.mounts, true)
+	if(R.db.profile.collectionType[MOUNT]) then
+		addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.mounts, true)
+		if addedLast then
+			tooltip:AddSeparator(1, 1, 1, 1, 1.0)
+		end
+		if itemsExistInThisGroup then
+			somethingAdded = true
+		end
+	end
 	local group5end = debugprofilestop()
-	if addedLast then
-		tooltip:AddSeparator(1, 1, 1, 1, 1.0)
-	end
-	if itemsExistInThisGroup then
-		somethingAdded = true
-	end
 
 	local group6start = debugprofilestop()
-	addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.pets, true)
+	if(R.db.profile.collectionType[PET]) then
+		addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.pets, true)
+		if addedLast then
+			tooltip:AddSeparator(1, 1, 1, 1, 1.0)
+		end
+		if itemsExistInThisGroup then
+			somethingAdded = true
+		end
+	end
 	local group6end = debugprofilestop()
-	if addedLast then
-		tooltip:AddSeparator(1, 1, 1, 1, 1.0)
-	end
-	if itemsExistInThisGroup then
-		somethingAdded = true
-	end
 
 	local group7start = debugprofilestop()
-	addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.items, true)
+	if(R.db.profile.collectionType[ITEM]) then
+		addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.items, true)
+		if addedLast then
+			tooltip:AddSeparator(1, 1, 1, 1, 1.0)
+		end
+		if itemsExistInThisGroup then
+			somethingAdded = true
+		end
+	end
 	local group7end = debugprofilestop()
-	if addedLast then
-		tooltip:AddSeparator(1, 1, 1, 1, 1.0)
-	end
-	if itemsExistInThisGroup then
-		somethingAdded = true
-	end
 
 	local group8start = debugprofilestop()
 	addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.user, true)
