@@ -242,6 +242,12 @@ function R:PrepareDefaults()
 				[SHADOWLANDS] = true,
 			},
 
+			collectionType = {
+				[MOUNT] = true,
+				[PET] = true,
+				[ITEM] = true,
+			},
+
 			-- These are achievements with the names of rare NPCs as criteria to kill
 			achNpcs = {
 				-- Burning Crusade
