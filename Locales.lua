@@ -1614,7 +1614,6 @@ L["Corpselouse Larva"] = true
 L["Contained Essence of Dread"] = true
 L["Eternas the Tormentor"] = true
 L["Tower Deathroach"] = true
-L["Decayspeaker"] = true
 L["Impressionable Gorger Spawn"] = true
 L["Worldedge Gorger"] = true
 L["Cache of the Ascended"] = true
