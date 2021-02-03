@@ -1317,6 +1317,8 @@ function R:PrepareDefaults()
 			spellId = 299158,
 			npcs = { 150190, 155157 },
 			chance = 300,
+			groupSize = 5,
+			equalOdds = true,
 		},
 
 		-- 8.3 Mounts
