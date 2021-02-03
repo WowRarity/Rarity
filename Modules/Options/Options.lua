@@ -787,6 +787,51 @@ function R:PrepareOptions()
 						}, -- args
 					}, -- contentCategory
 
+					collectionType = {
+						type = "group",
+						name = L["Collectable Type Filter"],
+						order = newOrder(),
+						inline = true,
+						args = {
+
+						desc = {
+							type = "description",
+							name = L["These toggles filter which items appear in the main Rarity tooltip. Items are categorized by their type (eg. Mounts, Battle Pets...). Turning off these checkboxes does not turn off tracking for any items within the category; it simply hides the item from the tooltip in order to help reduce the number of items in it."],
+							order = newOrder(),
+						},
+					  mounts = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Mounts"],
+						  get = function() return self.db.profile.collectionType[MOUNT] end,
+						  set = function(info, val)
+							  self.db.profile.collectionType[MOUNT] = val
+							  Rarity.GUI:UpdateText()
+						  end,
+					  },
+					  pets = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Battle Pets"],
+						  get = function() return self.db.profile.collectionType[PET] end,
+						  set = function(info, val)
+							  self.db.profile.collectionType[PET] = val
+							  Rarity.GUI:UpdateText()
+						  end,
+					  },
+					  items = {
+						  type = "toggle",
+						  order = newOrder(),
+						  name = L["Toys & Items"],
+						  get = function() return self.db.profile.collectionType[ITEM] end,
+						  set = function(info, val)
+							  self.db.profile.collectionType[ITEM] = val
+							  Rarity.GUI:UpdateText()
+						  end,
+					  },
+
+						}, --args
+					}, -- collectionType
 
 					bar = {
 						type = "group",

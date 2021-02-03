@@ -1,3 +1,6 @@
 # Embedded libraries that are used for local testing only
 Libs/
 *.CMD
+*.suo
+*.json
+*.sqlite
