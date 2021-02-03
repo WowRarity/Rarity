@@ -5445,13 +5445,13 @@ function R:PrepareDefaults()
 		type = PET,
 		method = NPC,
 		name = L["Tower Deathroach"],
-		npcs = { 155250 },
+		npcs = { 155250, 155251, 156239 },
 		spellId = 340721,
 		itemId = 183115,
-		chance = 12,
+		chance = 25,
 		creatureId = 173849,
 		coords = {
-			{ m = CONSTANTS.UIMAPIDS.TORGHAST, n = L["Decayspeaker"] },
+			{ m = CONSTANTS.UIMAPIDS.TORGHAST },
 		},
 	},
 
