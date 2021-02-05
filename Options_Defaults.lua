@@ -3270,6 +3270,18 @@ function R:PrepareDefaults()
 			},
 		},
 
+		["Wind-Up Frog"] = {
+			cat = BFA,
+			type = PET,
+			method = USE,
+			name = L["Wind-Up Frog"],
+			spellId = 280617,
+			itemId = 163860,
+			creatureId = 143957,
+			items = { 160324 },
+			chance = 50,
+		},
+
 		-- 8.1 Pets
 
 		["Albatross Feather"] = {
