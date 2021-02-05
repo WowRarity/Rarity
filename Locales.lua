@@ -1634,6 +1634,7 @@ L["These toggles filter which items appear in the main Rarity tooltip. Items are
 L["Wind-Up Frog"] = true
 L["Undulating Blue Sac"] = true
 L["Baby Crawg"] = true
+L["Ball of Tentacles"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

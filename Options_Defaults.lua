@@ -3306,6 +3306,18 @@ function R:PrepareDefaults()
 			chance = 50,
 		},
 
+		["Ball of Tentacles"] = {
+			cat = BFA,
+			type = PET,
+			method = USE,
+			name = L["Ball of Tentacles"],
+			spellId = 280619,
+			itemId = 163858,
+			creatureId = 143959,
+			items = { 160324 },
+			chance = 50,
+		},
+
 		-- 8.1 Pets
 
 		["Albatross Feather"] = {
