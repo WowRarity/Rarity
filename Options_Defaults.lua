@@ -3294,6 +3294,18 @@ function R:PrepareDefaults()
 			chance = 50,
 		},
 
+		["Baby Crawg"] = {
+			cat = BFA,
+			type = PET,
+			method = USE,
+			name = L["Baby Crawg"],
+			spellId = 279435,
+			itemId = 163859,
+			creatureId = 143374,
+			items = { 160324 },
+			chance = 50,
+		},
+
 		-- 8.1 Pets
 
 		["Albatross Feather"] = {
