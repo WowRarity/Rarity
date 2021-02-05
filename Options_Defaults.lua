@@ -2536,6 +2536,18 @@ function R:PrepareDefaults()
 			chance = 10,
 	 },
 
+	 ["Transmutant"] = {
+			cat = LEGION,
+			type = PET,
+			method = USE,
+			name = L["Transmutant"],
+			spellId = 221906,
+			itemId = 139789,
+			creatureId = 111425,
+			items = { 137608 },
+			chance = 10,
+	 },
+
      --["Sting Ray Pup"] =                                 { cat = LEGION, type = PET, method = COLLECTION, name = L["Sting Ray Pup"], spellId = 217218, itemId = 138810, creatureId = 109216, collectedItemId = { 138777 }, chance = 50, },
 					-- 7.1
 	 ["Blessed Seed"] =									 { cat = LEGION, type = PET, method = NPC, name = L["Blessed Seed"], itemId = 142091, spellId = 229098, creatureId = 115143, npcs = { 32906 }, chance = 10, statisticId = {2864, 3258}, doNotUpdateToHighestStat = true,  coords = {{m=148,x=53.2,y=22.3,i=true}},},
