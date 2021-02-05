@@ -3282,6 +3282,18 @@ function R:PrepareDefaults()
 			chance = 50,
 		},
 
+		["Undulating Blue Sac"] = {
+			cat = BFA,
+			type = PET,
+			method = USE,
+			name = L["Undulating Blue Sac"],
+			spellId = 280618,
+			itemId = 163861,
+			creatureId = 143958,
+			items = { 160324 },
+			chance = 50,
+		},
+
 		-- 8.1 Pets
 
 		["Albatross Feather"] = {
