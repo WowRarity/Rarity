@@ -2511,6 +2511,43 @@ function R:PrepareDefaults()
 					-- 7.0
 	 ["Eye of Inquisition"] =                            { cat = LEGION, type = PET, method = NPC, name = L["Eye of Inquisition"], spellId = 210673, itemId = 136901, npcs = { 101878, }, chance = 100, creatureId = 97179, coords = { {m=680,x=27.8,y=85.2} }},
      ["Knockoff Blingtron"] =                            { cat = LEGION, type = PET, method = USE, name = L["Knockoff Blingtron"], spellId = 210683, itemId = 136911, items = { 132892, 168740 }, chance = 200, creatureId = 99505, },
+
+	 ["Ridgeback Piglet"] = {
+			cat = LEGION,
+			type = PET,
+			method = USE,
+			name = L["Ridgeback Piglet"],
+			spellId = 210678,
+			itemId = 136905,
+			creatureId = 98172,
+			items = { 137608 },
+			chance = 10,
+	 },
+
+	 ["Thaumaturgical Piglet"] = {
+			cat = LEGION,
+			type = PET,
+			method = USE,
+			name = L["Thaumaturgical Piglet"],
+			spellId = 210681,
+			itemId = 136908,
+			creatureId = 98183,
+			items = { 137608 },
+			chance = 10,
+	 },
+
+	 ["Transmutant"] = {
+			cat = LEGION,
+			type = PET,
+			method = USE,
+			name = L["Transmutant"],
+			spellId = 221906,
+			itemId = 139789,
+			creatureId = 111425,
+			items = { 137608 },
+			chance = 10,
+	 },
+
      --["Sting Ray Pup"] =                                 { cat = LEGION, type = PET, method = COLLECTION, name = L["Sting Ray Pup"], spellId = 217218, itemId = 138810, creatureId = 109216, collectedItemId = { 138777 }, chance = 50, },
 					-- 7.1
 	 ["Blessed Seed"] =									 { cat = LEGION, type = PET, method = NPC, name = L["Blessed Seed"], itemId = 142091, spellId = 229098, creatureId = 115143, npcs = { 32906 }, chance = 10, statisticId = {2864, 3258}, doNotUpdateToHighestStat = true,  coords = {{m=148,x=53.2,y=22.3,i=true}},},
@@ -3268,6 +3305,54 @@ function R:PrepareDefaults()
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.TOLDAGOR, n = L["Gol'than the Malodorous"] },
 			},
+		},
+
+		["Wind-Up Frog"] = {
+			cat = BFA,
+			type = PET,
+			method = USE,
+			name = L["Wind-Up Frog"],
+			spellId = 280617,
+			itemId = 163860,
+			creatureId = 143957,
+			items = { 160324 },
+			chance = 50,
+		},
+
+		["Undulating Blue Sac"] = {
+			cat = BFA,
+			type = PET,
+			method = USE,
+			name = L["Undulating Blue Sac"],
+			spellId = 280618,
+			itemId = 163861,
+			creatureId = 143958,
+			items = { 160324 },
+			chance = 50,
+		},
+
+		["Baby Crawg"] = {
+			cat = BFA,
+			type = PET,
+			method = USE,
+			name = L["Baby Crawg"],
+			spellId = 279435,
+			itemId = 163859,
+			creatureId = 143374,
+			items = { 160324 },
+			chance = 50,
+		},
+
+		["Ball of Tentacles"] = {
+			cat = BFA,
+			type = PET,
+			method = USE,
+			name = L["Ball of Tentacles"],
+			spellId = 280619,
+			itemId = 163858,
+			creatureId = 143959,
+			items = { 160324 },
+			chance = 50,
 		},
 
 		-- 8.1 Pets
