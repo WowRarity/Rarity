@@ -7245,6 +7245,21 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Battlecry of Krexus"] = {
+		cat = SHADOWLANDS,
+		type = ITEM,
+		isToy = true,
+		method = SPECIAL,
+		name = L["Battlecry of Krexus"],
+		itemId = 184318,
+		items = { 352086, },
+		chance = 25,
+		sourceText = L["Only members of the Necrolord covenant will be able to reach this cache."],
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 44.1, y = 40.0, n = L["Blackhound Cache"] },
+		},
+	},
+
 
 	-- ["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = {
 	-- 	cat = BFA,
