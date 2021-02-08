@@ -1638,6 +1638,8 @@ L["Ball of Tentacles"] = true
 L["Ridgeback Piglet"] = true
 L["Thaumaturgical Piglet"] = true
 L["Transmutant"] = true
+L["Battlecry of Krexus"] = true
+L["Blackhound Cache"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
