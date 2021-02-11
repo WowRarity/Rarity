@@ -1640,6 +1640,8 @@ L["Thaumaturgical Piglet"] = true
 L["Transmutant"] = true
 L["Battlecry of Krexus"] = true
 L["Blackhound Cache"] = true
+L["Larion Pouncer"] = true
+L["Larionrider Orstus"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
