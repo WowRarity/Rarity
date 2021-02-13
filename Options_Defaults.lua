@@ -5949,6 +5949,22 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Larion Pouncer"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = NPC,
+		name = L["Larion Pouncer"],
+		itemId = 184401,
+		spellId = 345742,
+		creatureId = 175562,
+		npcs = { 156340 },
+		questId = 61634,
+		chance = 25,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.BASTION, x = 22.6, y = 22.8, n = L["Larionrider Orstus"] },
+		},
+	},
+
 },
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
