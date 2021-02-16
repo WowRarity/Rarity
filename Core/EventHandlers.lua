@@ -1291,6 +1291,23 @@ function R:OnEvent(event, ...)
 			end
 		end
 
+		-- Handle opening Secret Treasure (Shadowlands, Revendreth chest for Soullocked Sinstone pet)
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Secret Treasure"]) then
+			local names = {"Soullocked Sinstone"}
+			Rarity:Debug("Detected Opening on " .. L["Secret Treasure"] .. " (method = SPECIAL)")
+			for _, name in pairs(names) do
+				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+				if v and type(v) == "table" and v.enabled ~= false then
+					if v.attempts == nil then
+						v.attempts = 1
+					else
+						v.attempts = v.attempts + 1
+					end
+					self:OutputAttempts(v)
+				end
+			end
+		end
+
 		-- Handle opening Pile of Coins
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Pile of Coins"]) then
 			local names = {"Armored Vaultbot"}

@@ -226,5 +226,6 @@ R.opennodes = {
 	[L["Sprouting Growth"]] = true,
 	[L["Stewart's Stewpendous Stew"]] = true,
 	[L["Bleakwood Chest"]] = true,
-	[L["Blackhound Cache"]] = true
+	[L["Blackhound Cache"]] = true,
+	[L["Secret Treasure"]] = true
 }
