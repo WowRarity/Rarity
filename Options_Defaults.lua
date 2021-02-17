@@ -5965,6 +5965,20 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Soullocked Sinstone"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = SPECIAL,
+		name = L["Soullocked Sinstone"],
+		itemId = 180589,
+		spellId = 333800,
+		creatureId = 171122,
+		chance = 20,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.REVENDRETH },
+		},
+	},
+
 },
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS

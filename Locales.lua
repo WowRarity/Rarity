@@ -1642,6 +1642,8 @@ L["Battlecry of Krexus"] = true
 L["Blackhound Cache"] = true
 L["Larion Pouncer"] = true
 L["Larionrider Orstus"] = true
+L["Soullocked Sinstone"] = true
+L["Secret Treasure"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
