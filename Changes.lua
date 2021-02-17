@@ -1,4 +1,16 @@
 local changes = {
+	["r704"] = {
+		additions = {
+			"Added tracking for various Shadowlands pets and toys that were previously missing"
+		},
+		fixes = {
+			"Mechagon Peacekeeper should now correctly be displayed in the Group category",
+			"Attempts for Gahz'rooki's Summoning Stone should now be tracked correctly when looting relevant Kor'kron NPCs in The Barrens"
+		},
+		contributors = {
+			"Tommy Godejord (https://github.com/godejord)",
+		},
+	},
 	["r703"] = {
 		additions = {
 			"Added tracking for various Shadowlands pets and toys that were previously missing",
