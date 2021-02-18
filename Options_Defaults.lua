@@ -1590,6 +1590,19 @@ function R:PrepareDefaults()
 			},
 		},
 
+		["Silessa's Battle Harness"] = {
+			cat = SHADOWLANDS,
+			type = MOUNT,
+			method = SPECIAL,
+			name = L["Silessa's Battle Harness"],
+			spellId = 333023,
+			itemId = 183798,
+			chance = 100,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.REVENDRETH }
+			},
+		},
+
 
 
 	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
