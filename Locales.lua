@@ -1647,6 +1647,8 @@ L["Soullocked Sinstone"] = true
 L["Secret Treasure"] = true
 L["Silessa's Battle Harness"] = true
 L["Forgotten Chest"] = true
+L["Luminous Webspinner"] = true
+L["Cache of Eyes"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

@@ -228,5 +228,6 @@ R.opennodes = {
 	[L["Bleakwood Chest"]] = true,
 	[L["Blackhound Cache"]] = true,
 	[L["Secret Treasure"]] = true,
-	[L["Forgotten Chest"]] = true
+	[L["Forgotten Chest"]] = true,
+	[L["Cache of Eyes"]] = true
 }
