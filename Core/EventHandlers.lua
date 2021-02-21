@@ -604,9 +604,7 @@ end
 local timewalkingCriteriaLUT = {
 	[24801] = "Ozumat", -- Legacy (seems to no longer work? Perhaps the criterion ID was changed...)
 	[34414] = "Ozumat", -- Timewalking difficulty only? (need to test)
-	[24803] = "Murozond",
 	[24784] = "Trial of the King", -- [126952] = "Trial of the King", -- Object: Legacy of the Clan Leaders
-	[19256] = "Gekkan", -- Object: Ancient Mogu Treasure
 	[19244] = "Master Snowdrift", -- [123096] = "Master Snowdrift", -- Object: Snowdrift's Possessions
 	[34410] = "Taran Zhu" --[123095] = "Taran Zhu", -- Object: Taran Zhu's Personal Stash
 }
