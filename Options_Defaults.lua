@@ -5992,6 +5992,20 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Luminous Webspinner"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = SPECIAL,
+		name = L["Luminous Webspinner"],
+		itemId = 181171,
+		spellId = 335762,
+		creatureId = 171985,
+		chance = 25, -- Blind guess
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS },
+		},
+	},
+
 },
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
