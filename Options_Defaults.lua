@@ -6006,6 +6006,20 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Stony's Infused Ruby"] = {
+		cat = SHADOWLANDS,
+		type = PET,
+		method = SPECIAL,
+		name = L["Stony's Infused Ruby"],
+		itemId = 183855,
+		spellId = 339674,
+		creatureId = 173536,
+		chance = 100, -- Estimate
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.REVENDRETH },
+		},
+	},
+
 },
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				-- TOYS AND ITEMS
