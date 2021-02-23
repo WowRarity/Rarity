@@ -139,6 +139,17 @@ R.fishnodes = {
 	[L["Slimy Mackerel School"]] = true,
 	[L["Tiragarde Perch School"]] = true,
 	[L["U'taka School"]] = true,
+	[L["Mauve Stinger School"]] = true,
+	[L["Viper Fish School"]] = true,
+	[L["Ionized Minnows"]] = true,
+	[L["Sentry Fish School"]] = true,
+	-- Shadowlands pools
+	[L["Iridescent Amberjack School"]] = true,
+	[L["Pocked Bonefish School"]] = true,
+	[L["Silvergill Pike School"]] = true,
+	[L["Elysian Thade School"]] = true,
+	[L["Lost Sole School"]] = true,
+	[L["Spinefin Piranha School"]] = true,
 
 }
 

@@ -992,6 +992,16 @@ L["Runescale Koi School"] = true
 L["Fever of Stormrays"] = true
 L["Highmountain Salmon School"] = true
 L["Mossgill Perch School"] = true
+L["Mauve Stinger School"] = true
+L["Viper Fish School"] = true
+L["Ionized Minnows"] = true
+L["Sentry Fish School"] = true
+L["Iridescent Amberjack School"] = true
+L["Pocked Bonefish School"] = true
+L["Silvergill Pike School"] = true
+L["Elysian Thade School"] = true
+L["Lost Sole School"] = true
+L["Spinefin Piranha School"] = true
 
 -- Mining nodes
 L["Copper Vein"] = true
