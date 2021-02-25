@@ -1661,6 +1661,7 @@ L["Luminous Webspinner"] = true
 L["Cache of Eyes"] = true
 L["Stony's Infused Ruby"] = true
 L["Forgotten Chest"] = true
+L["Smoldering Ember Wyrm"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

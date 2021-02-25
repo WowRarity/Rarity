@@ -723,6 +723,25 @@ function R:PrepareDefaults()
 		 ["Valarjar Stormwing"] =                            { cat = LEGION, type = MOUNT, method = USE, name = L["Valarjar Stormwing"], spellId = 242882, itemId = 147805, items = { 152106, }, chance = 20, },
 		 ["Wild Dreamrunner"] =                              { cat = LEGION, type = MOUNT, method = USE, name = L["Wild Dreamrunner"], spellId = 242875, itemId = 147804, items = { 152103, }, chance = 20, },
 
+		 -- 7.1
+		 ["Smoldering Ember Wyrm"] = {
+			 cat = LEGION,
+			 type = MOUNT,
+			 method = BOSS,
+			 name = L["Smoldering Ember Wyrm"],
+			 spellId = 231428,
+			 itemId = 142552,
+			 npcs = { 114895 },
+			 chance = 5,
+			 instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
+			 lockDungeonId = 1475,
+			 lockBossName = "Nightbane",
+			 coords = {
+				 { m=814, i=true }
+				},
+			},
+
+
 		 -- 7.3
 		 ["Lambent Mana Ray"] =	{
 			cat = LEGION,
