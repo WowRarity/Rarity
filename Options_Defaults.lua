@@ -1338,12 +1338,25 @@ function R:PrepareDefaults()
 			type = MOUNT,
 			method = NPC,
 			name = L["Mechagon Peacekeeper"],
-			itemId = 168826,
 			spellId = 299158,
-			npcs = { 150190, 155157 },
-			chance = 300,
+			itemId = 168826,
+			npcs = { 150190 },
+			chance = 200,
 			groupSize = 5,
 			equalOdds = true,
+			instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
+			lockoutDetails = {
+				mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+				{
+					encounterName = "HK-8 Aerial Oppression Unit",
+					instanceDifficulties = {
+						[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true,
+					},
+				},
+			},
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND_DUNGEON, i = true}
+			},
 		},
 
 		-- 8.3 Mounts
