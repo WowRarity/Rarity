@@ -1909,6 +1909,9 @@ function R:PrepareDefaults()
 			equalOdds = true,
 			instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 			groupSize = 5,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.FREEHOLD, i = true }
+			},
 		},
 
 		["Underrot Crawg Harness"] = {
