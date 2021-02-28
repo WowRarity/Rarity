@@ -7543,6 +7543,9 @@ function R:PrepareDefaults()
 			instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 			groupSize = 5,
 			sourceText = L["Dropped by Merektha in Temple of Sethraliss. Will hatch into Spawn of Merektha pet after three days."],
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.TEMPLE_OF_SETHRALISS, i = true }
+			},
 		},
 		["Nightwreathed Egg"] = {
 			cat = BFA,
