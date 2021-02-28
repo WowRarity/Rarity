@@ -278,6 +278,8 @@ function R:PrepareDefaults()
 				12942, -- Adventurer of Nazmir
 				12943, -- Adventurer of Vol'dun
 				12944, -- Adventurer of Zuldazar
+				13691, -- I Thought You Said They'd Be Rare? (Nazjatar)
+				13470, -- Rest In Pistons (Mechagon)
 
 			},
 
