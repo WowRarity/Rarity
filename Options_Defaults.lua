@@ -1928,6 +1928,9 @@ function R:PrepareDefaults()
 			equalOdds = true,
 			instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 			groupSize = 5,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.THE_UNDERROT, i = true }
+			},
 		},
 
 		["Mummified Raptor Skull"] = {
