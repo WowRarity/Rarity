@@ -4368,12 +4368,30 @@ function R:PrepareDefaults()
 		spellId = 341302,
 		creatureId = 173994,
 		npcs = { 99999 },
-		tooltipNpcs = { 168938 },
-		lockBossName = "Sire Denathrius",
+		tooltipNpcs = { 168938, 167406 },
 		chance = 33,
-		statisticId = { 14455 }, -- So far there's data for normal only. The others are therefore TBD
+		statisticId = { 14455, 14458 }, -- Normal and LFR are the only two confirmed sources.
 		groupSize = 10,
 		equalOdds = true,
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true
+		},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Sire Denathrius",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+				},
+			},
+			{
+				encounterName = "Sire Denathrius",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+				},
+			},
+		},
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.CASTLE_NATHRIA, i = true },
 		},
