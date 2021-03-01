@@ -4824,7 +4824,7 @@ function R:PrepareDefaults()
 		cat = BFA,
 		type = PET,
 		method = NPC,
-		npcs = { 150190, 155157 },
+		npcs = { 150190 },
 		name = L["Microbot 8D"],
 		spellId = 301056,
 		itemId = 169385,
@@ -4832,6 +4832,19 @@ function R:PrepareDefaults()
 		chance = 55,
 		groupSize = 5,
 		equalOdds = true,
+		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "HK-8 Aerial Oppression Unit",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true,
+				},
+			},
+		},
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND_DUNGEON, i = true}
+		},
 	},
 
 	["Golden Snorf"] = {
