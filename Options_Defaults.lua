@@ -1911,6 +1911,9 @@ function R:PrepareDefaults()
 			equalOdds = true,
 			instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 			groupSize = 5,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.FREEHOLD, i = true }
+			},
 		},
 
 		["Underrot Crawg Harness"] = {
@@ -1927,6 +1930,9 @@ function R:PrepareDefaults()
 			equalOdds = true,
 			instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 			groupSize = 5,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.THE_UNDERROT, i = true }
+			},
 		},
 
 		["Mummified Raptor Skull"] = {
@@ -1943,6 +1949,9 @@ function R:PrepareDefaults()
 			equalOdds = true,
 			instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 			groupSize = 5,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.KINGS_REST, i = true }
+			},
 		},
 
 		["Twilight Avenger"] = {
@@ -7563,6 +7572,9 @@ function R:PrepareDefaults()
 			instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 			groupSize = 5,
 			sourceText = L["Dropped by Merektha in Temple of Sethraliss. Will hatch into Spawn of Merektha pet after three days."],
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.TEMPLE_OF_SETHRALISS, i = true }
+			},
 		},
 		["Nightwreathed Egg"] = {
 			cat = BFA,
