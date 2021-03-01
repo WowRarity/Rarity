@@ -4851,9 +4851,9 @@ function R:PrepareDefaults()
 		cat = BFA,
 		type = PET,
 		method = NPC,
-		npcs = { 99999 },
-		tooltipNpcs = { 150397, 154817 },
-		statisticId = { 14056, 13620 },
+		npcs = { 150397 },
+		tooltipNpcs = { 150396, 144249 },
+		statisticId = { 13620 },
 		name = L["Golden Snorf"],
 		spellId = 301049,
 		itemId = 169378,
@@ -4861,6 +4861,19 @@ function R:PrepareDefaults()
 		chance = 65,
 		groupSize = 5,
 		equalOdds = true,
+		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "King Mechagon",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true,
+				},
+			},
+		},
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND_DUNGEON, i = true}
+		},
 	},
 
 	-- 8.3 Pets
