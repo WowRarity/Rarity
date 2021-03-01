@@ -281,6 +281,13 @@ function R:PrepareDefaults()
 				13691, -- I Thought You Said They'd Be Rare? (Nazjatar)
 				13470, -- Rest In Pistons (Mechagon)
 
+				-- Shadowlands
+				14307, -- Adventurer of Bastion
+				14308, -- Adventurer of Maldraxxus
+				14309, -- Adventurer of Ardenweald
+				14310, -- Adventurer of Revendreth
+				14744, -- Better to Be Lucky Than Dead (The Maw)
+
 			},
 
 			-- These are inventory items that may result in another item that Rarity would like to make you aware of
