@@ -143,6 +143,8 @@ R.fishnodes = {
 	[L["Viper Fish School"]] = true,
 	[L["Ionized Minnows"]] = true,
 	[L["Sentry Fish School"]] = true,
+	[L["Aberrant Voidfin School"]] = true,
+	[L["Malformed Gnasher School"]] = true,
 	-- Shadowlands pools
 	[L["Iridescent Amberjack School"]] = true,
 	[L["Pocked Bonefish School"]] = true,

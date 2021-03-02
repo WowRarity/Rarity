@@ -1002,6 +1002,8 @@ L["Silvergill Pike School"] = true
 L["Elysian Thade School"] = true
 L["Lost Sole School"] = true
 L["Spinefin Piranha School"] = true
+L["Aberrant Voidfin School"] = true
+L["Malformed Gnasher School"] = true
 
 -- Mining nodes
 L["Copper Vein"] = true
