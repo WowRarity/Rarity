@@ -4263,7 +4263,7 @@ function R:PrepareDefaults()
 				[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
 				[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
 			},
-			chance = 10, -- Blind guess (no data)
+			chance = 8,
 
 	},
 
@@ -4318,7 +4318,7 @@ function R:PrepareDefaults()
 			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
 			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
 		},
-		chance = 10, -- Blind guess (no data)
+		chance = 8,
 
 	},
 
@@ -4451,7 +4451,7 @@ function R:PrepareDefaults()
 		itemId = 169373,
 		creatureId = 154845,
 		questId = { 55584 },
-		chance = 20,
+		chance = 18,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  36.9, y = 11.2, n = L["Avarius"] },
 		},
@@ -4480,7 +4480,7 @@ function R:PrepareDefaults()
 		itemId = 169356,
 		creatureId = 154829,
 		questId = { 56283 },
-		chance = 20,
+		chance = 25,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  42.29, y = 13.29, n = L["Caverndark Terror"] },
 		},
@@ -4538,7 +4538,7 @@ function R:PrepareDefaults()
 		itemId = 169350,
 		creatureId = 154823,
 		questId = { 56277 },
-		chance = 6,
+		chance = 8,
 	},
 
 	["Murgle"] = {
@@ -4739,7 +4739,7 @@ function R:PrepareDefaults()
 		itemId = 169379,
 		creatureId = 154851,
 		questId = { 55367 },
-		chance = 20,
+		chance = 5,
 	},
 
 	["Spraybot 0D"] = {
@@ -4809,7 +4809,7 @@ function R:PrepareDefaults()
 			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
 			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
 		},
-		chance = 10, -- Blind guess (no data)
+		chance = 8,
 
 	},
 
@@ -4821,7 +4821,7 @@ function R:PrepareDefaults()
 		spellId = 301022,
 		itemId = 169351,
 		creatureId = 154824,
-		chance = 200,
+		chance = 250,
 	},
 
 	["Armored Vaultbot"] = {
@@ -4834,7 +4834,7 @@ function R:PrepareDefaults()
 		itemId = 170072,
 		creatureId = 155829,
 		questId = { 55546 },
-		chance = 50,
+		chance = 75,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x =  53.99, y = 49.31, n = L["Armored Vaultbot"] },
 		},
@@ -4865,7 +4865,7 @@ function R:PrepareDefaults()
 		spellId = 301056,
 		itemId = 169385,
 		creatureId = 154857,
-		chance = 55,
+		chance = 50,
 		groupSize = 5,
 		equalOdds = true,
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
