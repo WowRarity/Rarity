@@ -1297,7 +1297,7 @@ function R:PrepareDefaults()
 			spellId = 294038,
 			itemId = 169198,
 			items = { 169940, 169939 },
-			chance = 100, -- Blind guess (no data). Possibly a lot higher?
+			chance = 19,
 		},
 
 		["Rusted Keys to the Junkheap Drifter"] = {
@@ -1323,7 +1323,7 @@ function R:PrepareDefaults()
 			itemId = 168823,
 			spellId = 291492,
 			npcs = { 154342, 151934 },
-			chance = 500,
+			chance = 333,
 			questId = { 55512 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x = 52.0, y = 41.4, n = L["Arachnoid Harvester"] },
@@ -4263,7 +4263,7 @@ function R:PrepareDefaults()
 				[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
 				[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
 			},
-			chance = 10, -- Blind guess (no data)
+			chance = 8,
 
 	},
 
@@ -4318,7 +4318,7 @@ function R:PrepareDefaults()
 			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
 			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
 		},
-		chance = 10, -- Blind guess (no data)
+		chance = 8,
 
 	},
 
@@ -4451,7 +4451,7 @@ function R:PrepareDefaults()
 		itemId = 169373,
 		creatureId = 154845,
 		questId = { 55584 },
-		chance = 20,
+		chance = 18,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  36.9, y = 11.2, n = L["Avarius"] },
 		},
@@ -4480,7 +4480,7 @@ function R:PrepareDefaults()
 		itemId = 169356,
 		creatureId = 154829,
 		questId = { 56283 },
-		chance = 20,
+		chance = 25,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x =  42.29, y = 13.29, n = L["Caverndark Terror"] },
 		},
@@ -4538,7 +4538,7 @@ function R:PrepareDefaults()
 		itemId = 169350,
 		creatureId = 154823,
 		questId = { 56277 },
-		chance = 6,
+		chance = 8,
 	},
 
 	["Murgle"] = {
@@ -4739,7 +4739,7 @@ function R:PrepareDefaults()
 		itemId = 169379,
 		creatureId = 154851,
 		questId = { 55367 },
-		chance = 20,
+		chance = 5,
 	},
 
 	["Spraybot 0D"] = {
@@ -4809,7 +4809,7 @@ function R:PrepareDefaults()
 			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
 			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
 		},
-		chance = 10, -- Blind guess (no data)
+		chance = 8,
 
 	},
 
@@ -4821,7 +4821,7 @@ function R:PrepareDefaults()
 		spellId = 301022,
 		itemId = 169351,
 		creatureId = 154824,
-		chance = 200,
+		chance = 250,
 	},
 
 	["Armored Vaultbot"] = {
@@ -4834,7 +4834,7 @@ function R:PrepareDefaults()
 		itemId = 170072,
 		creatureId = 155829,
 		questId = { 55546 },
-		chance = 50,
+		chance = 75,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x =  53.99, y = 49.31, n = L["Armored Vaultbot"] },
 		},
@@ -4865,7 +4865,7 @@ function R:PrepareDefaults()
 		spellId = 301056,
 		itemId = 169385,
 		creatureId = 154857,
-		chance = 55,
+		chance = 50,
 		groupSize = 5,
 		equalOdds = true,
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
@@ -6966,7 +6966,7 @@ function R:PrepareDefaults()
 		name = L["Mechagonian Sawblades"],
 		itemId = 167931,
 		npcs = { 152007 },
-		chance = 5, -- Blind guess (no data)
+		chance = 20,
 		questId = { 55369 },
 	},
 
@@ -6978,7 +6978,7 @@ function R:PrepareDefaults()
 		name = L["Shadescale"],
 		itemId = 170187,
 		npcs = { 152552 },
-		chance = 20, -- Blind guess (no data)
+		chance = 10,
 		questId = { 56295 },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x = 62.74, y = 8.09, n = L["Shassera"] },
@@ -6993,7 +6993,7 @@ function R:PrepareDefaults()
 		name = L["Shirakess Warning Sign"],
 		itemId = 170196,
 		npcs = { 154148 },
-		chance = 20, -- Blind guess (no data)
+		chance = 7,
 		questId = { 56106 },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x = 66, y = 23, n = L["Tidemistress Leth'sindra"] },
@@ -7023,7 +7023,7 @@ function R:PrepareDefaults()
 		name = L["Flopping Fish"],
 		itemId = 170203,
 		items = { 169940, 169939 },
-		chance = 20, -- Blind guess (no data)
+		chance = 8,
 	},
 
 	["Memento of the Deeps"] = {
@@ -7034,7 +7034,7 @@ function R:PrepareDefaults()
 		name = L["Memento of the Deeps"],
 		itemId = 170469,
 		items = { 169940, 169939 },
-		chance = 20, -- Blind guess (no data)
+		chance = 10,
 	},
 
 	["Zanj'ir Weapon Rack"] = {
@@ -7081,7 +7081,7 @@ function R:PrepareDefaults()
 		},
 		name = L["Zanj'ir Weapon Rack"],
 		itemId = 170199,
-		chance = 3333,
+		chance = 400,
 	},
 
 	["Underlight Sealamp"] = {
@@ -7098,7 +7098,7 @@ function R:PrepareDefaults()
 		},
 		name = L["Underlight Sealamp"],
 		itemId = 170476,
-		chance = 20,
+		chance = 10,
 	},
 
 	-- 8.3 Toys
