@@ -5422,6 +5422,23 @@ function R:PrepareDefaults()
 		},
 	},
 
+	["Bottle of Gloop"] = {
+		cat = BFA,
+		type = PET,
+		method = FISHING,
+		name = L["Bottle of Gloop"],
+		zones = { tostring(CONSTANTS.UIMAPIDS.ULDUM), tostring(CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS) },
+		spellId = 315285,
+		itemId = 174456,
+		creatureId = 161951,
+		chance = 500,
+		requiresPool = true,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.ULDUM },
+			{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS },
+		},
+	},
+
 	["Strand Crawler"] = {
 		-- Note: Also drops from the Northrend fishing bag (but Rarity can't track items from two different sources...)
 		cat = WOD,

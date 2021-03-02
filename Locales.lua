@@ -1002,6 +1002,8 @@ L["Silvergill Pike School"] = true
 L["Elysian Thade School"] = true
 L["Lost Sole School"] = true
 L["Spinefin Piranha School"] = true
+L["Aberrant Voidfin School"] = true
+L["Malformed Gnasher School"] = true
 
 -- Mining nodes
 L["Copper Vein"] = true
@@ -1662,6 +1664,7 @@ L["Cache of Eyes"] = true
 L["Stony's Infused Ruby"] = true
 L["Forgotten Chest"] = true
 L["Smoldering Ember Wyrm"] = true
+L["Bottle of Gloop"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
