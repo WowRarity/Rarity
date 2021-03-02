@@ -1297,7 +1297,7 @@ function R:PrepareDefaults()
 			spellId = 294038,
 			itemId = 169198,
 			items = { 169940, 169939 },
-			chance = 100, -- Blind guess (no data). Possibly a lot higher?
+			chance = 19,
 		},
 
 		["Rusted Keys to the Junkheap Drifter"] = {
@@ -1323,7 +1323,7 @@ function R:PrepareDefaults()
 			itemId = 168823,
 			spellId = 291492,
 			npcs = { 154342, 151934 },
-			chance = 500,
+			chance = 333,
 			questId = { 55512 },
 			coords = {
 				{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x = 52.0, y = 41.4, n = L["Arachnoid Harvester"] },
