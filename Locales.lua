@@ -1664,6 +1664,7 @@ L["Cache of Eyes"] = true
 L["Stony's Infused Ruby"] = true
 L["Forgotten Chest"] = true
 L["Smoldering Ember Wyrm"] = true
+L["Bottle of Gloop"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
