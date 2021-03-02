@@ -6966,7 +6966,7 @@ function R:PrepareDefaults()
 		name = L["Mechagonian Sawblades"],
 		itemId = 167931,
 		npcs = { 152007 },
-		chance = 5, -- Blind guess (no data)
+		chance = 20,
 		questId = { 55369 },
 	},
 
@@ -6978,7 +6978,7 @@ function R:PrepareDefaults()
 		name = L["Shadescale"],
 		itemId = 170187,
 		npcs = { 152552 },
-		chance = 20, -- Blind guess (no data)
+		chance = 10,
 		questId = { 56295 },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x = 62.74, y = 8.09, n = L["Shassera"] },
@@ -6993,7 +6993,7 @@ function R:PrepareDefaults()
 		name = L["Shirakess Warning Sign"],
 		itemId = 170196,
 		npcs = { 154148 },
-		chance = 20, -- Blind guess (no data)
+		chance = 7,
 		questId = { 56106 },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.NAZJATAR, x = 66, y = 23, n = L["Tidemistress Leth'sindra"] },
@@ -7023,7 +7023,7 @@ function R:PrepareDefaults()
 		name = L["Flopping Fish"],
 		itemId = 170203,
 		items = { 169940, 169939 },
-		chance = 20, -- Blind guess (no data)
+		chance = 8,
 	},
 
 	["Memento of the Deeps"] = {
@@ -7034,7 +7034,7 @@ function R:PrepareDefaults()
 		name = L["Memento of the Deeps"],
 		itemId = 170469,
 		items = { 169940, 169939 },
-		chance = 20, -- Blind guess (no data)
+		chance = 10,
 	},
 
 	["Zanj'ir Weapon Rack"] = {
@@ -7081,7 +7081,7 @@ function R:PrepareDefaults()
 		},
 		name = L["Zanj'ir Weapon Rack"],
 		itemId = 170199,
-		chance = 3333,
+		chance = 400,
 	},
 
 	["Underlight Sealamp"] = {
@@ -7098,7 +7098,7 @@ function R:PrepareDefaults()
 		},
 		name = L["Underlight Sealamp"],
 		itemId = 170476,
-		chance = 20,
+		chance = 10,
 	},
 
 	-- 8.3 Toys
