@@ -774,6 +774,8 @@ L["Sorting by zone"] = true
 L["Hide items not in your zone"] = true
 L["When on, only items that can be obtained in your current zone will be shown in the tooltip. When this is on and you're in an instance, the instance difficulty is also checked to make sure it matches what the item supports."] = true
 L["No items to display! Either you've obtained every item, or you have\none or more options turned on which hide things from the tooltip."] = true
+L["When on, Rarity will generate an achievement alert pop-up indicating that you obtained an item."] = true
+L["Show achievement"] = true
 
 -- Sources
 -- L[""] = true -> This seems pointless and breaks the import feature on WowAce, therefore I disabled it. I left it here because I really don't understand why it has been added and kept around for almost 4 years, so...eh ¯\_(ツ)_/¯
