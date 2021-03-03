@@ -2697,7 +2697,10 @@ function R:ShowFoundAlert(itemId, attempts, item)
 		AchievementFrame_LoadUI()
 	end
 
-	RarityAchievementAlertSystem:AddAlert(itemId, attempts)
+	-- If option to generate achievement toast on item found is enabled, then generate the toast.
+	if Rarity.db.profile.showAchievementToast then
+		RarityAchievementAlertSystem:AddAlert(itemId, attempts)
+	end
 
 	self:ScheduleTimer(
 		function()
