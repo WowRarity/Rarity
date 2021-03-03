@@ -205,6 +205,7 @@ function R:PrepareDefaults()
 			onlyShowItemsWithAttempts = false,
 			blankLineAfterRarity = false,
 			hideOutsideZone = false,
+			showAchievementToast = true,
 
    trackedGroup = "pets",
    trackedItem = 8494,
