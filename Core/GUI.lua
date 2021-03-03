@@ -433,25 +433,7 @@ function dataobj:OnClick(button)
 			R:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
 		end
 	elseif IsControlKeyDown() and isLeftButton then
-		-- Change sort order
-		if R.db.profile.sortMode == SORT_NAME then
-			R.db.profile.sortMode = SORT_CATEGORY
-		elseif R.db.profile.sortMode == SORT_CATEGORY then
-			R.db.profile.sortMode = SORT_DIFFICULTY
-		elseif R.db.profile.sortMode == SORT_DIFFICULTY then
-			R.db.profile.sortMode = SORT_PROGRESS
-		elseif R.db.profile.sortMode == SORT_PROGRESS then
-			R.db.profile.sortMode = SORT_ZONE
-		else
-			R.db.profile.sortMode = SORT_NAME
-		end
-		if tooltip then
-			tooltip:Hide()
-		end
-		if qtip:IsAcquired("RarityTooltip") then
-			qtip:Release("RarityTooltip")
-		end
-		Rarity:ShowTooltip()
+		Rarity.GUI:SelectNextSortOrder()
 	elseif (
 		(self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_CLICK and isRightButton)
 		or (self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_HOVER and isLeftButton)
@@ -1744,6 +1726,13 @@ function R:ShowTooltip(hidden)
 	local line = tooltip:AddLine()
 	tooltip:SetCell(line, 1, colorize(sortDesc, green), nil, nil, 3)
 
+	local function OnHeaderClicked()
+		if not IsControlKeyDown() then return end -- Unlike the LDB icon, this also works with right-click...
+		-- I have no idea how to get the button from LDB. The tooltip says "click" and not "left-click", so both should be fine
+		Rarity.GUI:SelectNextSortOrder()
+	end
+	tooltip:SetLineScript(line, "OnMouseUp", OnHeaderClicked)
+
 	-- Item groups
 	R:ProfileStart()
 
@@ -2724,6 +2713,30 @@ function R:ShowFoundAlert(itemId, attempts, item)
 	)
 
 	PlaySound(12891) -- UI_Alert_AchievementGained
+end
+
+-- Change sort order based on the current one (awkward, but alas... this should probably be improved later)
+function GUI:SelectNextSortOrder()
+
+	if R.db.profile.sortMode == SORT_NAME then
+		R.db.profile.sortMode = SORT_CATEGORY
+	elseif R.db.profile.sortMode == SORT_CATEGORY then
+		R.db.profile.sortMode = SORT_DIFFICULTY
+	elseif R.db.profile.sortMode == SORT_DIFFICULTY then
+		R.db.profile.sortMode = SORT_PROGRESS
+	elseif R.db.profile.sortMode == SORT_PROGRESS then
+		R.db.profile.sortMode = SORT_ZONE
+	else
+		R.db.profile.sortMode = SORT_NAME
+	end
+	if tooltip then
+		tooltip:Hide()
+	end
+	if qtip:IsAcquired("RarityTooltip") then
+		qtip:Release("RarityTooltip")
+	end
+	Rarity:ShowTooltip()
+
 end
 
 Rarity.GUI = GUI
