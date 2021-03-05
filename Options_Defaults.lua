@@ -920,6 +920,11 @@ function R:PrepareDefaults()
 			itemId = 152912,
 			chance = 2000,
 			requiresPool = false,
+			coords = {
+				{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES },
+				{ m = CONSTANTS.UIMAPIDS.KROKUUN },
+				{ m = CONSTANTS.UIMAPIDS.MACAREE },
+			},
 		},
 		["Avenging Felcrusher"] = {
 			cat = LEGION,
