@@ -6765,6 +6765,9 @@ function R:PrepareDefaults()
 		itemId = 166877,
 		items = { 166298 },
 		chance = 8,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.SILITHUS, x = 42.19, y = 44.26, n = L["Magni Bronzebeard"] },
+		},
 	},
 
 	["Bowl of Glowing Pufferfish"] = {
