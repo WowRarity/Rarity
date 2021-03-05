@@ -1,4 +1,24 @@
 local changes = {
+	["r705"] = {
+		additions = {
+			"Added tracking for various Shadowlands pets and toys that were previously missing",
+			"Added tracking for Smoldering Ember Wyrm (Return to Karazhan)",
+			"Added tracking for Gloop (Corrupted Vale of Eternal Blossoms/Uldum)",
+			"Added tooltips for achievement-related rares in Nazjatar, Mechagon Island, as well as Shadowlands zones"
+		},
+		changes = {
+			"The main tooltip's sort order can now also be changed by CTRL-clicking on the tooltip header (in addition to clicking on the LDB icon/minimap button)"
+		},
+		fixes = {
+			"Fixed an issue where duplicate attempts would be detected when defeating certain Timewalking encounters",
+			"Fixed waypoint data (including the displayed zone) for certain legacy collectibles",
+			"Fixed tracking for Mechagon Peacekeeper, Golden Snorf, and Microbot 8D (Operation: Mechagon)",
+			"Mining Elementium veins should now add attempts for Elementium Geode in all Cataclysm zones"
+		},
+		contributors = {
+			"Tommy Godejord (https://github.com/godejord)"
+		}
+	},
 	["r704"] = {
 		additions = {
 			"Added tracking for various Shadowlands pets and toys that were previously missing"
