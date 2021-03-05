@@ -1905,6 +1905,11 @@ end
 _G.GameTooltip:HookScript(
 	"OnTooltipSetUnit",
 	function(self)
+		-- If debug mode is on, find NPCID from mouseover target and append it to the tooltip
+		if R.db.profile.debugMode then
+			GameTooltip:AddLine("NPCID: " .. R:GetNPCIDFromGUID(UnitGUID("mouseover")), 255, 255, 255)
+		end
+
 		if not R.db or R.db.profile.enableTooltipAdditions == false then
 			return
 		end
