@@ -338,7 +338,7 @@ function R:PrepareOptions()
 								type = "toggle",
 								order = newOrder(),
 								name = L["Take screenshots"],
-								desc = L["When on, Rarity will take a screenshot when the achievement alert pops up indicating that you obtained an item."],
+								desc = L["When on, Rarity will take a screenshot when an item is found."],
 								get = function() return self.db.profile.takeScreenshot end,
 								set = function(info, val)
 									self.db.profile.takeScreenshot = val
