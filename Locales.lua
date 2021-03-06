@@ -632,7 +632,7 @@ L["You entered a achievement ID that is already being used by another item."] = 
 L["Instance Difficulty"] = true
 L["Determines which instance difficulties this item may be obtained in. Leave everything unchecked if the instance difficulty doesn't matter.\n\nIf you specified a Statistic ID for this item, the Instance Difficulty is probably meaningless, because all modern statistics already incorporate the difficulty.\n\nYou can check multiple items in this list at once."] = true
 L["Take screenshots"] = true
-L["When on, Rarity will take a screenshot when the achievement alert pops up indicating that you obtained an item."] = true
+L["When on, Rarity will take a screenshot when an item is found."] = true
 L["Already known"] = true
 L["(%d/%d attempts)"] = true
 L["(%d/%d collected)"] = true
@@ -775,6 +775,8 @@ L["Sorting by zone"] = true
 L["Hide items not in your zone"] = true
 L["When on, only items that can be obtained in your current zone will be shown in the tooltip. When this is on and you're in an instance, the instance difficulty is also checked to make sure it matches what the item supports."] = true
 L["No items to display! Either you've obtained every item, or you have\none or more options turned on which hide things from the tooltip."] = true
+L["When on, Rarity will generate an achievement alert pop-up indicating that you obtained an item."] = true
+L["Show achievement"] = true
 
 -- Sources
 -- L[""] = true -> This seems pointless and breaks the import feature on WowAce, therefore I disabled it. I left it here because I really don't understand why it has been added and kept around for almost 4 years, so...eh ¯\_(ツ)_/¯

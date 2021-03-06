@@ -2702,7 +2702,11 @@ function R:ShowFoundAlert(itemId, attempts, item)
 		AchievementFrame_LoadUI()
 	end
 
-	RarityAchievementAlertSystem:AddAlert(itemId, attempts)
+	-- If option to generate achievement toast on item found is enabled, then generate the toast.
+	if Rarity.db.profile.showAchievementToast then
+		RarityAchievementAlertSystem:AddAlert(itemId, attempts)
+		PlaySound(12891) -- UI_Alert_AchievementGained
+	end
 
 	self:ScheduleTimer(
 		function()
@@ -2716,8 +2720,7 @@ function R:ShowFoundAlert(itemId, attempts, item)
 		end,
 		2
 	)
-
-	PlaySound(12891) -- UI_Alert_AchievementGained
+		
 end
 
 -- Change sort order based on the current one (awkward, but alas... this should probably be improved later)

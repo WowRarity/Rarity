@@ -338,7 +338,7 @@ function R:PrepareOptions()
 								type = "toggle",
 								order = newOrder(),
 								name = L["Take screenshots"],
-								desc = L["When on, Rarity will take a screenshot when the achievement alert pops up indicating that you obtained an item."],
+								desc = L["When on, Rarity will take a screenshot when an item is found."],
 								get = function() return self.db.profile.takeScreenshot end,
 								set = function(info, val)
 									self.db.profile.takeScreenshot = val
@@ -362,6 +362,18 @@ function R:PrepareOptions()
 								end,
 								order = newOrder(),
 							}, -- feedText
+
+							showAchievementToast = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Show achievement"],
+								desc = L["When on, Rarity will generate an achievement alert pop-up indicating that you obtained an item."],
+								get = function() return self.db.profile.showAchievementToast end,
+								set = function(info, val)
+									self.db.profile.showAchievementToast = val
+									Rarity.GUI:UpdateText()
+								end,
+							},
 
 					  debug = {
 						  type = "toggle",
