@@ -6,11 +6,6 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 
 local CONSTANTS = addonTable.constants
 
-local GetItemInfo = function(id) return nil end
-
--- Upvalues
-local GetInstanceInfo = GetInstanceInfo
-
 R.string_types = {
  [CONSTANTS.ITEM_TYPES.MOUNT] = L["CONSTANTS.ITEM_TYPES.MOUNT"],
  [CONSTANTS.ITEM_TYPES.PET] = L["Battle CONSTANTS.ITEM_TYPES.PET"],
@@ -77,37 +72,6 @@ R.catOrder = {
  [CONSTANTS.ITEM_CATEGORIES.LEGION] = 7,
  [CONSTANTS.ITEM_CATEGORIES.BFA] = 8,
  [CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS] = 9,
-}
-
--- Tooltip Filters (Note: Currently, this system is merely a stub. but more (and custom) filters may be added in the future)
--- These are used to decide whether the tooltip should be extended to display information about an CONSTANTS.ITEM_TYPES.ITEM for the NPCs listed in its tooltipNpcs table. Useful if we want to draw attention to an CONSTANTS.ITEM_TYPES.ITEM, but not every player can obtain it
-local TOOLTIP_FILTERS = {
-	IS_SPELL_KNOWN = IsSpellKnown,
-
-	IS_PLAYER_IN_LFR = function() -- Returns true if the player is in a LFR instance
-
-		local name, type, difficulty, difficultyName, maxPlayers, playerDifficulty, isDynamicInstance, mapID, instanceGroupSize = GetInstanceInfo()
-		return (difficulty == 7 or difficulty == 17) -- Legacy or regular LFR
-
-	end,
-}
-
--- Tooltip actions (used for modifiers)
--- Building on the previous system, this extension can be used to adjust tooltips dynamically without adding separate logic to the addon's core
-local TOOLTIP_ACTIONS = {
-	OVERRIDE_TOOLTIP_NPCS = function(entry, newTooltipNpcs) -- Overwrites all tooltip NPCs
-
-		-- Sanity checks
-		if not (entry and type(entry) == "table" and newTooltipNpcs and type(newTooltipNpcs) == "number" or type(newTooltipNpcs) == "table") then
-			R:Debug("Action OVERRIDE_TOOLTIP_NPCS failed! Required parameters: entry, newTooltipNpcs")
-			return
-		end
-
-		-- The tooltipNpcs field needs to be a table (for backwards compatibiliy) even if it's only one CONSTANTS.DETECTION_METHODS.NPC
-		entry.tooltipNpcs = (type(newTooltipNpcs) == "table") and newTooltipNpcs or { newTooltipNpcs }
-		return entry
-
-	end,
 }
 
 local mounts = {
@@ -2782,8 +2746,8 @@ local mounts = {
 		npcs = {99999},
 		tooltipNpcs = {144796},
 		tooltipModifier = {
-			condition = TOOLTIP_FILTERS.IS_PLAYER_IN_LFR,
-			action = TOOLTIP_ACTIONS.OVERRIDE_TOOLTIP_NPCS,
+			condition = CONSTANTS.TOOLTIP_FILTERS.IS_PLAYER_IN_LFR,
+			action = CONSTANTS.TOOLTIP_ACTIONS.OVERRIDE_TOOLTIP_NPCS,
 			value = 146409
 		},
 		chance = 100,
@@ -3512,7 +3476,7 @@ local battlePets = {
 		124439,
 		124486,
 	},
-	showTooltipCondition = { filter = TOOLTIP_FILTERS.IS_SPELL_KNOWN, value = "Skinning" }, -- Display only if player can actually skin them
+	showTooltipCondition = { filter = CONSTANTS.TOOLTIP_FILTERS.IS_SPELL_KNOWN, value = "Skinning" }, -- Display only if player can actually skin them
 	},
 
 	["Fel Lasher"] = {
