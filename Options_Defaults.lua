@@ -7499,7 +7499,43 @@ function R:PrepareDefaults()
 		},
 	 },
 
-	 -- 8.3
+	-- 8.0
+	["Pterrordax Egg"] = {
+		cat = BFA,
+		type = ITEM,
+		method = NPC,
+		name = L["Pterrordax Egg"],
+		itemId = 157782,
+		npcs = {
+			128658,
+			122114,
+			126618,
+			126702,
+			128653,
+			122113,
+			135853,
+			120593,
+			128647,
+			128343,
+			125207,
+			135852,
+			128434,
+			131718,
+		},
+		chance = 2500,
+		unique = true,
+		requiresHorde = true,
+		sourceText = L["Starts a series of quests that ultimately award Kua'fon's Harness (Pterrordax mount)"],
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.NAZMIR },
+			{ m = CONSTANTS.UIMAPIDS.ZULDAZAR },
+			{ m = CONSTANTS.UIMAPIDS.DAZARALOR },
+			{ m = CONSTANTS.UIMAPIDS.VOLDUN },
+			{ m = CONSTANTS.UIMAPIDS.ATALDAZAR }
+		},
+	},
+
+		 -- 8.3
 ["Pristine Cloud Serpent Scale"] = {
 	cat = BFA,
 	type = ITEM,
