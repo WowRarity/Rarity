@@ -135,6 +135,12 @@ C.LDB_TEXT_STYLES = {
 	FEED_VERBOSE = "FEED_VERBOSE"
 }
 
+C.TOOLTIP_POSITIONS = {
+	TIP_LEFT = "TIP_LEFT",
+	TIP_RIGHT = "TIP_RIGHT",
+	TIP_HIDDEN = "TIP_HIDDEN"
+}
+
 C.SORT_METHODS = {
 	SORT_NAME = "SORT_NAME",
 	SORT_DIFFICULTY = "SORT_DIFFICULTY",
@@ -148,6 +154,23 @@ C.COVENANT_IDS = {
 	VENTHYR = 2,
 	NIGHT_FAE = 3,
 	NECROLORD = 4
+}
+
+C.HOLIDAY_TEXTURES = {
+	WINTERS_VEIL = "Calendar_WinterVeil",
+	DARKMOON_FAIRE = "calendar_darkmoonfaireterokkar",
+	DAY_OF_THE_DEAD = "Calendar_DayOfTheDead",
+	BREWFEST = "Calendar_Brewfest",
+	HALLOWS_END = "Calendar_HallowsEnd",
+	PILGRIMS_BOUNTY = "Calendar_HarvestFestival",
+	WOW_ANNIVERSARY = "calendar_anniversary",
+	LOVE_IS_IN_THE_AIR = "Calendar_LoveInTheAir",
+	LUNAR_FESTIVAL = "Calendar_LunarFestival",
+	NOBLEGARDEN = "Calendar_Noblegarden",
+	CHILDRENS_WEEK = "Calendar_ChildrensWeek",
+	MIDSUMMER_FESTIVAL = "Calendar_Midsummer",
+	FIREWORKS = "calendar_fireworks", -- What is this used for?
+	PIRATES_DAY = "Calendar_PiratesDay"
 }
 
 addonTable.constants = C
