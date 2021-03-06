@@ -434,10 +434,10 @@ function dataobj:OnClick(button)
 		end
 	elseif IsControlKeyDown() and isLeftButton then
 		Rarity.GUI:SelectNextSortOrder()
-	elseif (
-		(self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_CLICK and isRightButton)
-		or (self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_HOVER and isLeftButton)
-	) then
+	elseif
+		((self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_CLICK and isRightButton) or
+			(self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_HOVER and isLeftButton))
+	 then
 		-- Toggle progress bar visibility
 		R.db.profile.bar.visible = not R.db.profile.bar.visible
 		Rarity.GUI:UpdateBar()
@@ -1176,7 +1176,14 @@ local function addGroup(group, requiresGroup)
 			end
 
 			if not v.itemId then
-				Rarity:Error(format("Failed to add tooltip line for item %s (%s) in group %s (invalid ID or the server didn't return any data)", k, v.name or "nil", group.name))
+				Rarity:Error(
+					format(
+						"Failed to add tooltip line for item %s (%s) in group %s (invalid ID or the server didn't return any data)",
+						k,
+						v.name or "nil",
+						group.name
+					)
+				)
 				return
 			end
 			-- Item
@@ -1583,7 +1590,7 @@ local function addGroup(group, requiresGroup)
 	return added, itemsExistInThisGroup
 end
 
-local renderingQuicktip = false;
+local renderingQuicktip = false
 
 function R:HideQuicktip()
 	if quicktip and quicktip:IsVisible() then
@@ -1727,7 +1734,9 @@ function R:ShowTooltip(hidden)
 	tooltip:SetCell(line, 1, colorize(sortDesc, green), nil, nil, 3)
 
 	local function OnHeaderClicked()
-		if not IsControlKeyDown() then return end -- Unlike the LDB icon, this also works with right-click...
+		if not IsControlKeyDown() then
+			return
+		end -- Unlike the LDB icon, this also works with right-click...
 		-- I have no idea how to get the button from LDB. The tooltip says "click" and not "left-click", so both should be fine
 		Rarity.GUI:SelectNextSortOrder()
 	end
@@ -1739,9 +1748,9 @@ function R:ShowTooltip(hidden)
 	local somethingAdded = false
 
 	local group1start = debugprofilestop()
-	if(R.db.profile.collectionType[MOUNT]) then		
+	if (R.db.profile.collectionType[MOUNT]) then
 		addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.mounts)
-		
+
 		if addedLast then
 			tooltip:AddSeparator(1, 1, 1, 1, 1.0)
 		end
@@ -1752,7 +1761,7 @@ function R:ShowTooltip(hidden)
 	local group1end = debugprofilestop()
 
 	local group2start = debugprofilestop()
-	if(R.db.profile.collectionType[PET]) then		
+	if (R.db.profile.collectionType[PET]) then
 		addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.pets)
 		if addedLast then
 			tooltip:AddSeparator(1, 1, 1, 1, 1.0)
@@ -1764,8 +1773,8 @@ function R:ShowTooltip(hidden)
 	local group2end = debugprofilestop()
 
 	local group3start = debugprofilestop()
-	if(R.db.profile.collectionType[ITEM]) then
-		addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.items)		
+	if (R.db.profile.collectionType[ITEM]) then
+		addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.items)
 		if addedLast then
 			tooltip:AddSeparator(1, 1, 1, 1, 1.0)
 		end
@@ -1786,7 +1795,7 @@ function R:ShowTooltip(hidden)
 	end
 
 	local group5start = debugprofilestop()
-	if(R.db.profile.collectionType[MOUNT]) then
+	if (R.db.profile.collectionType[MOUNT]) then
 		addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.mounts, true)
 		if addedLast then
 			tooltip:AddSeparator(1, 1, 1, 1, 1.0)
@@ -1798,7 +1807,7 @@ function R:ShowTooltip(hidden)
 	local group5end = debugprofilestop()
 
 	local group6start = debugprofilestop()
-	if(R.db.profile.collectionType[PET]) then
+	if (R.db.profile.collectionType[PET]) then
 		addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.pets, true)
 		if addedLast then
 			tooltip:AddSeparator(1, 1, 1, 1, 1.0)
@@ -1810,7 +1819,7 @@ function R:ShowTooltip(hidden)
 	local group6end = debugprofilestop()
 
 	local group7start = debugprofilestop()
-	if(R.db.profile.collectionType[ITEM]) then
+	if (R.db.profile.collectionType[ITEM]) then
 		addedLast, itemsExistInThisGroup = addGroup(self.db.profile.groups.items, true)
 		if addedLast then
 			tooltip:AddSeparator(1, 1, 1, 1, 1.0)
@@ -2720,12 +2729,10 @@ function R:ShowFoundAlert(itemId, attempts, item)
 		end,
 		2
 	)
-		
 end
 
 -- Change sort order based on the current one (awkward, but alas... this should probably be improved later)
 function GUI:SelectNextSortOrder()
-
 	if R.db.profile.sortMode == SORT_NAME then
 		R.db.profile.sortMode = SORT_CATEGORY
 	elseif R.db.profile.sortMode == SORT_CATEGORY then
@@ -2744,7 +2751,6 @@ function GUI:SelectNextSortOrder()
 		qtip:Release("RarityTooltip")
 	end
 	Rarity:ShowTooltip()
-
 end
 
 Rarity.GUI = GUI

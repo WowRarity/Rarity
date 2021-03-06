@@ -1,7 +1,6 @@
 -- Maps spells of interest to their respective spell IDs (useful since both info is used by Blizzard APIs and the addon itself) - Only some of these are actually used right now, but who knows what the future will bring?
 -- Note: Spell names are no longer needed, and dealing with them is actually more complicated after the 8.0.1 API changes. They're only used for readability's sake
 Rarity.relevantSpells = {
-
 	-- Tested (confirmed working in 8.0.1)
 	[921] = "Pick Pocket",
 	[3365] = "Opening",
@@ -73,7 +72,7 @@ Rarity.relevantSpells = {
 	[50305] = "Skinning",
 	[74522] = "Skinning",
 	[102216] = "Skinning",
-	[158756] = "Skinning",
+	[158756] = "Skinning"
 
 	-- Not tested (and disabled until they are needed)
 	-- [1804] = "Pick Lock",

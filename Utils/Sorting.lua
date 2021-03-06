@@ -154,7 +154,6 @@ function Sorting.sort2(t)
 end
 
 function Sorting:SortGroup(group, method)
-
 	local sortedGroup = group
 	if method == CONSTANTS.SORT_METHODS.SORT_NAME then
 		sortedGroup = self:sort(group)

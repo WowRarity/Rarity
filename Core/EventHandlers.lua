@@ -1146,7 +1146,10 @@ function R:OnEvent(event, ...)
 		end
 
 		-- Handle opening Silver Strongbox & Gilded Chest (Shadowlands, Bastion nodes for Acrobatic Steward toy)
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Silver Strongbox"] or Rarity.lastNode == L["Gilded Chest"]) then
+		if
+			Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and
+				(Rarity.lastNode == L["Silver Strongbox"] or Rarity.lastNode == L["Gilded Chest"])
+		 then
 			local names = {"Acrobatic Steward"}
 			if (Rarity.lastNode == L["Silver Strongbox"]) then
 				Rarity:Debug("Detected Opening on " .. L["Silver Strongbox"] .. " (method = SPECIAL)")
@@ -1167,7 +1170,10 @@ function R:OnEvent(event, ...)
 		end
 
 		-- Handle opening Broken Bell & Skyward Bell (Shadowlands, Bastion nodes for Soothing Vesper toy)
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Broken Bell"] or Rarity.lastNode == L["Skyward Bell"]) then
+		if
+			Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and
+				(Rarity.lastNode == L["Broken Bell"] or Rarity.lastNode == L["Skyward Bell"])
+		 then
 			local names = {"Soothing Vesper"}
 			if (Rarity.lastNode == L["Broken Bell"]) then
 				Rarity:Debug("Detected Opening on " .. L["Broken Bell"] .. " (method = SPECIAL)")
