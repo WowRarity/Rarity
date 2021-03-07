@@ -60,6 +60,8 @@ DB\Spells.lua
 
 # Collectibles Database (makes use of the shared constants, so load those first)
 DB\ItemDB.lua
+
+## Mounts
 DB\Items\Mounts\HolidayEvents.lua
 DB\Items\Mounts\Classic.lua
 DB\Items\Mounts\TheBurningCrusade.lua
@@ -70,6 +72,30 @@ DB\Items\Mounts\WarlordsOfDraenor.lua
 DB\Items\Mounts\Legion.lua
 DB\Items\Mounts\BattleForAzeroth.lua
 DB\Items\Mounts\Shadowlands.lua
+
+## Pets
+DB\Items\Pets\HolidayEvents.lua
+DB\Items\Pets\Classic.lua
+DB\Items\Pets\TheBurningCrusade.lua
+DB\Items\Pets\WrathOfTheLichKing.lua
+DB\Items\Pets\Cataclysm.lua
+DB\Items\Pets\MistsOfPandaria.lua
+DB\Items\Pets\WarlordsOfDraenor.lua
+DB\Items\Pets\Legion.lua
+DB\Items\Pets\BattleForAzeroth.lua
+DB\Items\Pets\Shadowlands.lua
+
+## Toys (and other items, for now...)
+DB\Items\Toys\HolidayEvents.lua
+DB\Items\Toys\Classic.lua
+DB\Items\Toys\TheBurningCrusade.lua
+DB\Items\Toys\WrathOfTheLichKing.lua
+DB\Items\Toys\Cataclysm.lua
+DB\Items\Toys\MistsOfPandaria.lua
+DB\Items\Toys\WarlordsOfDraenor.lua
+DB\Items\Toys\Legion.lua
+DB\Items\Toys\BattleForAzeroth.lua
+DB\Items\Toys\Shadowlands.lua
 
 # Utility/Helpers
 Utils\DatabaseMaintenanceHelper.lua

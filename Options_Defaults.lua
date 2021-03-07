@@ -486,8 +486,8 @@ function R:PrepareDefaults()
 			-- For instanceDifficulties, see: http://wowprogramming.com/docs/api/GetInstanceInfo
 			groups = {
 				mounts = Rarity.ItemDB.mounts,
-				pets = Rarity.ItemDB.battlePets,
-				items = Rarity.ItemDB.toysAndItems,
+				pets = Rarity.ItemDB.pets,
+				items = Rarity.ItemDB.toys,
 				user = {
 					name = L["Custom"],
 						--["Test 1"] =      { type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = "Test 1", spellId = 10682, itemId = 25467, npcs = { 16520, 16516 }, chance = 100,  },
