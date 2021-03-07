@@ -58,8 +58,17 @@ DB\Nodes.lua
 DB\SharedConstants.lua
 DB\Spells.lua
 
-# Collectibles Database (makes use of the shared constantst)
+# Collectibles Database (makes use of the shared constants, so load those first)
 DB\ItemDB.lua
+DB\Items\Mounts\Classic.lua
+DB\Items\Mounts\TBC.lua
+DB\Items\Mounts\WOTLK.lua
+DB\Items\Mounts\CATA.lua
+DB\Items\Mounts\MOP.lua
+DB\Items\Mounts\WOD.lua
+DB\Items\Mounts\LE.lua
+DB\Items\Mounts\BFA.lua
+DB\Items\Mounts\SL.lua
 
 # Utility/Helpers
 Utils\DatabaseMaintenanceHelper.lua
