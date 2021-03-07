@@ -13,6 +13,19 @@ local type = type
 local pairs = pairs
 local Round = Round
 
+local catOrder = {
+	[CONSTANTS.ITEM_CATEGORIES.HOLIDAY] = 0,
+	[CONSTANTS.ITEM_CATEGORIES.CLASSIC] = 1,
+	[CONSTANTS.ITEM_CATEGORIES.TBC] = 2,
+	[CONSTANTS.ITEM_CATEGORIES.WOTLK] = 3,
+	[CONSTANTS.ITEM_CATEGORIES.CATA] = 4,
+	[CONSTANTS.ITEM_CATEGORIES.MOP] = 5,
+	[CONSTANTS.ITEM_CATEGORIES.WOD] = 6,
+	[CONSTANTS.ITEM_CATEGORIES.LEGION] = 7,
+	[CONSTANTS.ITEM_CATEGORIES.BFA] = 8,
+	[CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS] = 9
+}
+
 local function compareCategory(a, b)
 	if not a or not b then
 		return 0
@@ -23,7 +36,7 @@ local function compareCategory(a, b)
 	if (a.cat or "") == (b.cat or "") then
 		return (a.name or "") < (b.name or "")
 	end
-	return (R.catOrder[a.cat or 0] or 0) < (R.catOrder[b.cat or 0] or 0)
+	return (catOrder[a.cat or 0] or 0) < (catOrder[b.cat or 0] or 0)
 end
 
 local function compareDifficulty(a, b)
