@@ -203,7 +203,7 @@ C.TOOLTIP_ACTIONS = {
 			not (entry and type(entry) == "table" and newTooltipNpcs and type(newTooltipNpcs) == "number" or
 				type(newTooltipNpcs) == "table")
 		 then
-			R:Debug("Action OVERRIDE_TOOLTIP_NPCS failed! Required parameters: entry, newTooltipNpcs")
+			Rarity:Debug("Action OVERRIDE_TOOLTIP_NPCS failed! Required parameters: entry, newTooltipNpcs")
 			return
 		end
 
