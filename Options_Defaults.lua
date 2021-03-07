@@ -7,20 +7,20 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
 R.string_types = {
- [CONSTANTS.ITEM_TYPES.MOUNT] = L["CONSTANTS.ITEM_TYPES.MOUNT"],
- [CONSTANTS.ITEM_TYPES.PET] = L["Battle CONSTANTS.ITEM_TYPES.PET"],
- [CONSTANTS.ITEM_TYPES.ITEM] = L["Toy or CONSTANTS.ITEM_TYPES.ITEM"],
+ [CONSTANTS.ITEM_TYPES.MOUNT] = L["Mount"],
+ [CONSTANTS.ITEM_TYPES.PET] = L["Battle Pet"],
+ [CONSTANTS.ITEM_TYPES.ITEM] = L["Toy or Item"],
 }
 
 R.string_methods = {
- [CONSTANTS.DETECTION_METHODS.NPC] = L["Drops from CONSTANTS.DETECTION_METHODS.NPC(s)"],
- [CONSTANTS.DETECTION_METHODS.BOSS] = L["Drops from a CONSTANTS.DETECTION_METHODS.BOSS requiring a group"],
- [CONSTANTS.DETECTION_METHODS.ZONE] = L["Drops from any mob in a CONSTANTS.DETECTION_METHODS.ZONE"],
- [CONSTANTS.DETECTION_METHODS.USE] = L["Obtained by using an CONSTANTS.ITEM_TYPES.ITEM or opening a container"],
- [CONSTANTS.DETECTION_METHODS.FISHING] = L["Obtained by CONSTANTS.DETECTION_METHODS.FISHING"],
+ [CONSTANTS.DETECTION_METHODS.NPC] = L["Drops from NPC(s)"],
+ [CONSTANTS.DETECTION_METHODS.BOSS] = L["Drops from a boss requiring a group"],
+ [CONSTANTS.DETECTION_METHODS.ZONE] = L["Drops from any mob in a zone"],
+ [CONSTANTS.DETECTION_METHODS.USE] = L["Obtained by using an item or opening a container"],
+ [CONSTANTS.DETECTION_METHODS.FISHING] = L["Obtained by fishing"],
  [CONSTANTS.DETECTION_METHODS.ARCH] = L["Obtained as an archaeology project"],
- [CONSTANTS.DETECTION_METHODS.SPECIAL] = L["CONSTANTS.DETECTION_METHODS.SPECIAL case"],
- [CONSTANTS.DETECTION_METHODS.MINING] = L["Obtained by CONSTANTS.DETECTION_METHODS.MINING"],
+ [CONSTANTS.DETECTION_METHODS.SPECIAL] = L["Special case"],
+ [CONSTANTS.DETECTION_METHODS.MINING] = L["Obtained by mining"],
 	[CONSTANTS.DETECTION_METHODS.COLLECTION] = L["Obtained by collecting a number of items"],
 }
 
@@ -331,7 +331,7 @@ local mounts = {
 		items = {39883},
 		chance = 20,
 		sourceText = L[
-			"Contained in Cracked Egg, which is obtained by becoming Revered with The Oracles, purchasing a Mysterious Egg from their reputation vendor, and waiting three days. The CONSTANTS.ITEM_TYPES.MOUNT has a 5% chance to appear in the Cracked Egg."
+			"Contained in Cracked Egg, which is obtained by becoming Revered with The Oracles, purchasing a Mysterious Egg from their reputation vendor, and waiting three days. The mount has a 5% chance to appear in the Cracked Egg."
 		],
 		bonusSatchel = true,
 		blackMarket = true,
@@ -363,7 +363,7 @@ local mounts = {
 		items = {44751, 69903},
 		chance = 33,
 		sourceText = L[
-			"Contained in Hyldnir Spoils, which is rewarded for completing daily quests given by Gretta the Arbiter in Brunnhildar Village, Storm Peaks. The CONSTANTS.ITEM_TYPES.MOUNT has a 3% chance to appear in Hyldnir Spoils."
+			"Contained in Hyldnir Spoils, which is rewarded for completing daily quests given by Gretta the Arbiter in Brunnhildar Village, Storm Peaks. The mount has a 3% chance to appear in Hyldnir Spoils."
 		],
 		bonusSatchel = true,
 		blackMarket = true,
@@ -403,7 +403,7 @@ local mounts = {
 		},
 		chance = 10000,
 		requiresPool = true,
-		sourceText = L["Obtained very rarely by CONSTANTS.DETECTION_METHODS.FISHING in pools located in any expansion CONSTANTS.DETECTION_METHODS.ZONE (not Classic zones)"],
+		sourceText = L["Obtained very rarely by fishing in pools located in any expansion zone (not Classic zones)"],
 		coords = {
 			{m = 116},
 			{m = 127},
@@ -751,7 +751,7 @@ local mounts = {
 		itemId = 94230,
 		npcs = {69841},
 		chance = 20,
-		sourceText = L["The Warbringer will be riding the CONSTANTS.ITEM_TYPES.MOUNT color he has a chance to drop."],
+		sourceText = L["The Warbringer will be riding the mount color he has a chance to drop."],
 		coords = {
 			{m = 418, x = 39.08, y = 67.13},
 			{m = 422, x = 47.47, y = 61.32},
@@ -870,7 +870,7 @@ local mounts = {
 		itemId = 94231,
 		npcs = {69842},
 		chance = 20,
-		sourceText = L["The Warbringer will be riding the CONSTANTS.ITEM_TYPES.MOUNT color he has a chance to drop."],
+		sourceText = L["The Warbringer will be riding the mount color he has a chance to drop."],
 		coords = {
 			{m = 418, x = 39.08, y = 67.13},
 			{m = 422, x = 47.47, y = 61.32},
@@ -888,7 +888,7 @@ local mounts = {
 		itemId = 94229,
 		npcs = {69769},
 		chance = 20,
-		sourceText = L["The Warbringer will be riding the CONSTANTS.ITEM_TYPES.MOUNT color he has a chance to drop."],
+		sourceText = L["The Warbringer will be riding the mount color he has a chance to drop."],
 		coords = {
 			{m = 418, x = 39.08, y = 67.13},
 			{m = 422, x = 47.47, y = 61.32},
@@ -923,7 +923,7 @@ local mounts = {
 		itemId = 104269,
 		npcs = {73167},
 		chance = 100,
-		sourceText = L["Players have a personal loot chance to obtain this CONSTANTS.ITEM_TYPES.ITEM."],
+		sourceText = L["Players have a personal loot chance to obtain this item."],
 		coords = {{m = 554, x = 67.8, y = 59}}
 	},
 	["Son of Galleon's Saddle"] = {
@@ -974,7 +974,7 @@ local mounts = {
 		npcs = {95044, 95054, 95053, 95056},
 		chance = 30,
 		sourceText = L[
-			'Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this CONSTANTS.ITEM_TYPES.MOUNT "defeated" for the day when you kill any of the four.'
+			'Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount "defeated" for the day when you kill any of the four.'
 		],
 		questId = {39287, 39288, 39289, 39290},
 		defeatAllQuests = true,
@@ -1048,7 +1048,7 @@ local mounts = {
 		chance = 100,
 		obtain = L["Fished anywhere in Draenor (except your garrison) with the help of Nat Pagle"],
 		sourceText = L[
-			"Lunkers can be fished anywhere in Draenor (except in your garrison) after you've obtained a level 3 CONSTANTS.DETECTION_METHODS.FISHING Shack and acquired Nat Pagle as a follower."
+			"Lunkers can be fished anywhere in Draenor (except in your garrison) after you've obtained a level 3 Fishing Shack and acquired Nat Pagle as a follower."
 		],
 		coords = {
 			{m = 572},
@@ -1074,7 +1074,7 @@ local mounts = {
 		npcs = {81171, 85715},
 		chance = 200,
 		sourceText = L[
-			"After upgrading your garrison's CONSTANTS.DETECTION_METHODS.FISHING Shack to level 3, fish up 5 minnows to summon a Cavedweller which can drop this CONSTANTS.ITEM_TYPES.MOUNT."
+			"After upgrading your garrison's Fishing Shack to level 3, fish up 5 minnows to summon a Cavedweller which can drop this mount."
 		],
 		coords = {zoneOverride = L["Draenor Garrison"], {m = 579}, {m = 585}}
 	},
@@ -1118,7 +1118,7 @@ local mounts = {
 		npcs = {95044, 95054, 95053, 95056},
 		chance = 30,
 		sourceText = L[
-			'Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this CONSTANTS.ITEM_TYPES.MOUNT "defeated" for the day when you kill any of the four.'
+			'Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount "defeated" for the day when you kill any of the four.'
 		],
 		questId = {39287, 39288, 39289, 39290},
 		defeatAllQuests = true,
@@ -1145,7 +1145,7 @@ local mounts = {
 		npcs = {95044, 95054, 95053, 95056},
 		chance = 30,
 		sourceText = L[
-			'Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this CONSTANTS.ITEM_TYPES.MOUNT "defeated" for the day when you kill any of the four.'
+			'Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount "defeated" for the day when you kill any of the four.'
 		],
 		questId = {39287, 39288, 39289, 39290},
 		defeatAllQuests = true,
@@ -1219,7 +1219,7 @@ local mounts = {
 		itemId = 140495,
 		chance = 200,
 		questId = 43943,
-		sourceText = L["The quest starter CONSTANTS.ITEM_TYPES.ITEM for Reins of the Llothien Prowler"],
+		sourceText = L["The quest starter item for Reins of the Llothien Prowler"],
 		coords = {{m = 680}}
 	},
 	["Valarjar Stormwing"] = {
@@ -1365,7 +1365,7 @@ local mounts = {
 		items = {153191},
 		chance = 16,
 		sourceText = L[
-			"Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each CONSTANTS.ITEM_TYPES.MOUNT has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each CONSTANTS.ITEM_TYPES.PET has a 20% chance to appear in it."
+			"Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."
 		],
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 64.32, y = 48.62, n = L["Varga"]},
@@ -1383,7 +1383,7 @@ local mounts = {
 		items = {153191},
 		chance = 16,
 		sourceText = L[
-			"Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each CONSTANTS.ITEM_TYPES.MOUNT has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each CONSTANTS.ITEM_TYPES.PET has a 20% chance to appear in it."
+			"Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."
 		],
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 64.32, y = 48.62, n = L["Varga"]},
@@ -1401,7 +1401,7 @@ local mounts = {
 		items = {153191},
 		chance = 16,
 		sourceText = L[
-			"Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each CONSTANTS.ITEM_TYPES.MOUNT has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each CONSTANTS.ITEM_TYPES.PET has a 20% chance to appear in it."
+			"Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."
 		],
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 64.32, y = 48.62, n = L["Varga"]},
@@ -1419,7 +1419,7 @@ local mounts = {
 		items = {153191},
 		chance = 16,
 		sourceText = L[
-			"Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each CONSTANTS.ITEM_TYPES.MOUNT has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each CONSTANTS.ITEM_TYPES.PET has a 20% chance to appear in it."
+			"Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."
 		],
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 64.32, y = 48.62, n = L["Varga"]},
@@ -2092,7 +2092,7 @@ local mounts = {
 		items = {356818},
 		chance = 50,
 		questId = {61688},
-		sourceText = L["This CONSTANTS.ITEM_TYPES.MOUNT can only drop for Kyrians. Requires channeling anima to Temple of Purity."],
+		sourceText = L["This mount can only drop for Kyrians. Requires channeling anima to Temple of Purity."],
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.BASTION, x = 60.23, y = 78.11, n = L["Penitence of Purity"]}
 		}
@@ -3070,7 +3070,7 @@ local battlePets = {
 
 		-- Holiday
 	["Clockwork Rocket Bot"] =                          { cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Clockwork Rocket Bot"], spellId = 54187, itemId = 34425, items = { 116762 }, chance = 50, creatureId = 24968, holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL, questId = { 6983, 7043 }, coords = { {m=87,x=33.2,y=67.8}, {m=25,x=42.4,y=41}, {m=86,x=54.4,y=77} }, },
-	["Darkmoon Eye"] =                                  { cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Darkmoon Eye"], spellId = 132789, itemId = 91040, items = { 91086 }, chance = 50, creatureId = 67332, sourceText = L["This bag is rewarded for completing the CONSTANTS.ITEM_TYPES.PET battle daily offered by Jeremy Feasel at the Darkmoon Faire."], holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.DARKMOON_FAIRE, questId = 32175, coords = {{m=407,x=47.8,y=62.6,n=L["Jeremy Feasel"]}}, },
+	["Darkmoon Eye"] =                                  { cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Darkmoon Eye"], spellId = 132789, itemId = 91040, items = { 91086 }, chance = 50, creatureId = 67332, sourceText = L["This bag is rewarded for completing the pet battle daily offered by Jeremy Feasel at the Darkmoon Faire."], holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.DARKMOON_FAIRE, questId = 32175, coords = {{m=407,x=47.8,y=62.6,n=L["Jeremy Feasel"]}}, },
 	["Frightened Bush Chicken"] =                       { cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Frightened Bush Chicken"], spellId = 171500, itemId = 116403, items = { 116404 }, chance = 33, creatureId = 85846, holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.PILGRIMS_BOUNTY, coords = { {m=523,x=60,y=34.2},{m=1,x=46.4,y=13.8},{m=89,x=61.8,y=46.4},{m=88,x=31,y=69.6},{m=37,x=33.8,y=50.8},{m=998,x=65.2,y=13.8},{m=37,x=33.6,y=50.6},{m=998,x=63.4,y=9}, }, },
 	["Green Helper Box"] =                              { cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Green Helper Box"], spellId = 26533, itemId = 21301, items = { 21310 }, chance = 4, creatureId = 15698, sourceText = L["Available starting December 25th"], holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL, questId = { 8768 }, coords = { zoneOverride = L["Greatfather Winter's Tree"], {m=87,x=33.5,y=66},{m=86,x=49.3,y=78.4}}, christmasOnly = true, },
 	["Grumpling"] =                                     { cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.SPECIAL, name = L["Grumpling"], spellId = 191967, itemId = 128770, obtain = L["Obtained by opening Snow Mound in Frostfire Ridge"], chance = 20, creatureId = 97229, holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL, coords = {{m=525,x=45.8,y=26.6,n=L["Snow Mound"]}}, },
@@ -3082,7 +3082,7 @@ local battlePets = {
 	["Red Helper Box"] =                                { cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Red Helper Box"], spellId = 26541, itemId = 21305, items = { 21310 }, chance = 4, creatureId = 15705, sourceText = L["Available starting December 25th"], holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL, questId = { 8768 }, coords = { zoneOverride = L["Greatfather Winter's Tree"], {m=87,x=33.5,y=66},{m=86,x=49.3,y=78.4}}, christmasOnly = true, },
 	["Sea Pony"] =                                      { cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.FISHING, name = L["Sea Pony"], spellId = 103588, itemId = 73953, zones = { "407" }, chance = 1000, requiresPool = false, creatureId = 55386, holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.DARKMOON_FAIRE, coords = {{m=407}}, },
 	["Snowman Kit"] =                                   { cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Snowman Kit"], spellId = 26045, itemId = 21309, items = { 21310 }, chance = 4, creatureId = 15710, sourceText = L["Available starting December 25th"], holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL, questId = { 8768 }, coords = { zoneOverride = L["Greatfather Winter's Tree"], {m=87,x=33.5,y=66},{m=86,x=49.3,y=78.4}}, christmasOnly = true, },
-	["Syd the Squid"] =                                 { cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Syd the Squid"], spellId = 170774, itemId = 116064, items = { 116062 }, chance = 50, creatureId = 85527, sourceText = L["This bag is rewarded for completing the CONSTANTS.ITEM_TYPES.PET battle daily offered by Christoph VonFeasel at the Darkmoon Faire."], holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.DARKMOON_FAIRE, questId = 36471, coords = {{m=407,x=47.4,y=62.2,n=L["Christoph VonFeasel"]}}, },
+	["Syd the Squid"] =                                 { cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Syd the Squid"], spellId = 170774, itemId = 116064, items = { 116062 }, chance = 50, creatureId = 85527, sourceText = L["This bag is rewarded for completing the pet battle daily offered by Christoph VonFeasel at the Darkmoon Faire."], holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.DARKMOON_FAIRE, questId = 36471, coords = {{m=407,x=47.4,y=62.2,n=L["Christoph VonFeasel"]}}, },
 	["Toxic Wasteling"] =                               { cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Toxic Wasteling"], spellId = 71840, itemId = 50446, items = { 54537 }, chance = 14, groupSize = 5, equalOdds = true, creatureId = 38374, lockDungeonId = 288, coords = {{m=310,x=40.8,y=52.6, i=true}}, },
 			-- 1.x
 	["Cat Carrier (Black Tabby)"] =                     { cat = CONSTANTS.ITEM_CATEGORIES.CLASSIC, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.ZONE, name = L["Cat Carrier (Black Tabby)"], spellId = 10675, itemId = 8491, zones = { "25" }, chance = 10000, creatureId = 7383, coords = {{m=25}}, },
@@ -3108,7 +3108,7 @@ local battlePets = {
 	["Gundrak Hatchling"] =                             { cat = CONSTANTS.ITEM_CATEGORIES.WOTLK, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Gundrak Hatchling"], spellId = 67415, itemId = 48116, npcs = { 29334 }, chance = 1000,  creatureId = 35400, coords = {{m=121}}, },
 	["Razzashi Hatchling"] =                            { cat = CONSTANTS.ITEM_CATEGORIES.WOTLK, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.ZONE, name = L["Razzashi Hatchling"], spellId = 67420, itemId = 48126, zones = { "224", "50", "210" }, chance = 5000,  creatureId = 35394, coords = {{m=224},{m=50},{m=210}}, },
 			-- 4.x
-	["Elementium Geode"] =                              { cat = CONSTANTS.ITEM_CATEGORIES.CATA, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.SPECIAL, name = L["Elementium Geode"], spellId = 93838, itemId = 67282, obtain = L["Obtained by CONSTANTS.DETECTION_METHODS.MINING Elementium Vein"], chance = 2000, creatureId = 50722, coords = {{m=CONSTANTS.UIMAPIDS.DEEPHOLM},{m=CONSTANTS.UIMAPIDS.TWILIGHT_HIGHLANDS},{m=CONSTANTS.UIMAPIDS.ULDUM_CATACLYSM},{m=CONSTANTS.UIMAPIDS.TOL_BARAD_PENINSULA},{m=CONSTANTS.UIMAPIDS.TOL_BARAD}}, },
+	["Elementium Geode"] =                              { cat = CONSTANTS.ITEM_CATEGORIES.CATA, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.SPECIAL, name = L["Elementium Geode"], spellId = 93838, itemId = 67282, obtain = L["Obtained by mining Elementium Vein"], chance = 2000, creatureId = 50722, coords = {{m=CONSTANTS.UIMAPIDS.DEEPHOLM},{m=CONSTANTS.UIMAPIDS.TWILIGHT_HIGHLANDS},{m=CONSTANTS.UIMAPIDS.ULDUM_CATACLYSM},{m=CONSTANTS.UIMAPIDS.TOL_BARAD_PENINSULA},{m=CONSTANTS.UIMAPIDS.TOL_BARAD}}, },
 	["Fox Kit"] =                                       { cat = CONSTANTS.ITEM_CATEGORIES.CATA, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Fox Kit"], spellId = 90637, itemId = 64403, npcs = { 47676 }, chance = 1000, creatureId = 48641, coords = {{m=245}}, },
 	["Mr. Grubbs"] =                                    { cat = CONSTANTS.ITEM_CATEGORIES.CATA, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Mr. Grubbs"], spellId = 93739, itemId = 66076, items = { 61387 }, chance = 50, creatureId = 50586, coords = {{m=23}}, },
 	["Scorched Stone"] =                                { cat = CONSTANTS.ITEM_CATEGORIES.CATA, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Scorched Stone"], spellId = 45890, itemId = 34955, items = { 71631 }, chance = 20, creatureId = 25706, coords = {{m=338,x=47,y=90.6}}, },
@@ -3180,13 +3180,13 @@ local battlePets = {
 	["Spineclaw Crab"] =                                { cat = CONSTANTS.ITEM_CATEGORIES.MOP, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Spineclaw Crab"], spellId = 148066, itemId = 104168, npcs = { 73166 }, chance = 60, creatureId = 73366, coords = {{m=554}}, },
 			-- 6.0
 	["Albino Chimaeraling"] =                           { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Albino Chimaeraling"], spellId = 177212, itemId = 119434, items = { 118697 }, chance = 15, creatureId = 77021, questId = { 37644, 37645 }, },
-	["Eye of Observation"] =                                { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Eye of Observation"], spellId = 170275, itemId = 119170, creatureId = 88490, npcs = { 87668 }, chance = 8, groupSize = 5, equalOdds = true, coords = { {m=535,x=31.2,y=47} }, sourceText = L["Five players are needed to activate the runes on the floor. The CONSTANTS.DETECTION_METHODS.BOSS can be attacked only after all runes have been activated."], questId = { 37344 }, },
+	["Eye of Observation"] =                                { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Eye of Observation"], spellId = 170275, itemId = 119170, creatureId = 88490, npcs = { 87668 }, chance = 8, groupSize = 5, equalOdds = true, coords = { {m=535,x=31.2,y=47} }, sourceText = L["Five players are needed to activate the runes on the floor. The boss can be attacked only after all runes have been activated."], questId = { 37344 }, },
 	["Firewing"] =                                      { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Firewing"], spellId = 170291, itemId = 118578, items = { 118697 }, chance = 15, creatureId = 87704, questId = { 37644, 37645 }, },
-	["Land Shark"] =                                    { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.COLLECTION, name = L["Land Shark"], spellId = 172695, itemId = 117404, creatureId = 86445, collectedItemId = { 117397, 127994, 116820, 116818, 116819, 116821, 122696, 116817, 116822, }, chance = 50, obtain = L["Fished anywhere in Draenor (except your garrison) with the help of Nat Pagle"], sourceText = L["Lunkers can be fished anywhere in Draenor (except in your garrison) after you've obtained a level 3 CONSTANTS.DETECTION_METHODS.FISHING Shack and acquired Nat Pagle as a follower."], coords = { {m=572},{m=588},{m=525},{m=543},{m=550},{m=539},{m=542},{m=622},{m=535},{m=534},{m=624}, }, },
+	["Land Shark"] =                                    { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.COLLECTION, name = L["Land Shark"], spellId = 172695, itemId = 117404, creatureId = 86445, collectedItemId = { 117397, 127994, 116820, 116818, 116819, 116821, 122696, 116817, 116822, }, chance = 50, obtain = L["Fished anywhere in Draenor (except your garrison) with the help of Nat Pagle"], sourceText = L["Lunkers can be fished anywhere in Draenor (except in your garrison) after you've obtained a level 3 Fishing Shack and acquired Nat Pagle as a follower."], coords = { {m=572},{m=588},{m=525},{m=543},{m=550},{m=539},{m=542},{m=622},{m=535},{m=534},{m=624}, }, },
 	["Nightshade Sproutling"] =                         { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Nightshade Sproutling"], spellId = 167394, itemId = 118595, npcs = { 85407, 85408, 85409, 85410, 85411, 85412, 95132, }, chance = 1000, creatureId = 83594, sourceText = L["Dropped by Disturbed Podling, which has a chance to spawn when picking herbs in Draenor."], coords = {{m=572}}, },
 	["Puddle Terror"] =                                 { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Puddle Terror"], spellId = 119467, itemId = 119467, items = { 118697 }, chance = 15, creatureId = 88300, questId = { 37644, 37645 }, },
-	["Red Goren Egg"] =                                 { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Red Goren Egg"], spellId = 170280, itemId = 118919, npcs = { 85294 }, chance = 1000, creatureId = 85667, sourceText = L["Dropped by Goren Protector, which has a chance to spawn when CONSTANTS.DETECTION_METHODS.MINING ore in Draenor."], coords = {{m=572}}, },
-	["Sea Calf"] =                                      { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.COLLECTION, name = L["Sea Calf"], spellId = 168977, itemId = 114919, creatureId = 84441, collectedItemId = { 117397, 127994, 116820, 116818, 116819, 116821, 122696, 116817, 116822, }, chance = 50, obtain = L["Fished anywhere in Draenor (except your garrison) with the help of Nat Pagle"], sourceText = L["Lunkers can be fished anywhere in Draenor (except in your garrison) after you've obtained a level 3 CONSTANTS.DETECTION_METHODS.FISHING Shack and acquired Nat Pagle as a follower."], coords = { {m=572},{m=588},{m=525},{m=543},{m=550},{m=539},{m=542},{m=622},{m=535},{m=534},{m=624}, }, },
+	["Red Goren Egg"] =                                 { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Red Goren Egg"], spellId = 170280, itemId = 118919, npcs = { 85294 }, chance = 1000, creatureId = 85667, sourceText = L["Dropped by Goren Protector, which has a chance to spawn when mining ore in Draenor."], coords = {{m=572}}, },
+	["Sea Calf"] =                                      { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.COLLECTION, name = L["Sea Calf"], spellId = 168977, itemId = 114919, creatureId = 84441, collectedItemId = { 117397, 127994, 116820, 116818, 116819, 116821, 122696, 116817, 116822, }, chance = 50, obtain = L["Fished anywhere in Draenor (except your garrison) with the help of Nat Pagle"], sourceText = L["Lunkers can be fished anywhere in Draenor (except in your garrison) after you've obtained a level 3 Fishing Shack and acquired Nat Pagle as a follower."], coords = { {m=572},{m=588},{m=525},{m=543},{m=550},{m=539},{m=542},{m=622},{m=535},{m=534},{m=624}, }, },
 	["Servant of Demidos"] =                            { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Servant of Demidos"], spellId = 170278, itemId = 119431, npcs = { 84911, }, chance = 7, creatureId = 88692, coords = {{m=104,x=46,y=71.8}}, },
 	["Sky-Bo"] =                                        { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Sky-Bo"], spellId = 170292, itemId = 115483, items = { 86623, 113258, }, chance = 200, creatureId = 85284, questId = { 31752, 34774 }, tooltipNpcs = { 77789, }, },
 	["Spectral Bell"] =                                 { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Spectral Bell"], spellId = 167731, itemId = 113623, items = { 118697 }, chance = 15, creatureId = 83817, questId = { 37644, 37645 }, },
@@ -3214,13 +3214,13 @@ local battlePets = {
 			-- 6.2
 	["Corrupted Nest Guardian"] =                       { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.BOSS, name = L["Corrupted Nest Guardian"], spellId = 187532, itemId = 127749, npcs = { 99999 }, tooltipNpcs = { 95067 }, chance = 100, statisticId = { 10228, 10227, 10226, 10225 }, creatureId = 94623, enableCoin = true, lockBossName = "Shadow-Lord Iskar", coords = {{m=661,x=40.1,y=76.1,i=true}}, },
 	["Glittering Arcane Crystal"] =                     { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Glittering Arcane Crystal"], spellId = 193589, itemId = 129218, npcs = { 98200, }, chance = 10, creatureId = 98238, questId = 40074, coords = { {m=550,x=23.8,y=37.9,n=L["Guk"]} }},
-	["Nightmare Bell"] =                                { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Nightmare Bell"], spellId = 185055, itemId = 127753, items = { 127751 }, chance = 33, creatureId = 93483, sourceText = L["Can drop from Fel-Touched CONSTANTS.ITEM_TYPES.PET Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."], questId = { 39157, 39160, 39161, 39162, 39163, 39164, 39165, 39166, 39167, 39168, 39169, 39170, 39171, 39172, 39173, }, defeatAllQuests = true, defeatSteps = { [39168] = L["Bleakclaw"], [39161] = L["Chaos Pup"], [39160] = L["Corrupted Thundertail"], [39162] = L["Cursed Spirit"], [39167] = L["Dark Gazer"], [39173] = L["Defiled Earth"], [39170] = L["Dreadwalker"], [39165] = L["Direflame"], [39163] = L["Felfly"], [39157] = L["Felsworn Sentry"], [39166] = L["Mirecroak"], [39171] = L["Netherfist"], [39172] = L["Skrillix"], [39164] = L["Tainted Maulclaw"], [39169] = L["Vile Blood of Draenor"], }, coords = { {m=534,x=15.8,y=44.6,q=39168,n=L["Bleakclaw"]},{m=534,x=25,y=76.2,q=39161,n=L["Chaos Pup"]},{m=534,x=53,y=65.2,q=39160,n=L["Corrupted Thundertail"]},{m=534,x=31.4,y=38,q=39162,n=L["Cursed Spirit"]},{m=534,x=54,y=29.8,q=39167,n=L["Dark Gazer"]},{m=534,x=75.4,y=37.4,q=39173,n=L["Defiled Earth"]},{m=534,x=47.2,y=52.6,q=39170,n=L["Dreadwalker"]},{m=534,x=57.8,y=37.2,q=39165,n=L["Direflame"]},{m=534,x=55.8,y=80.8,q=39163,n=L["Felfly"]},{m=534,x=26,y=31.6,q=39157,n=L["Felsworn Sentry"]},{m=534,x=42.2,y=71.6,q=39166,n=L["Mirecroak"]},{m=534,x=48.4,y=35.6,q=39171,n=L["Netherfist"]},{m=534,x=48.4,y=31.2,q=39172,n=L["Skrillix"]},{m=534,x=43.4,y=84.6,q=39164,n=L["Tainted Maulclaw"]},{m=534,x=44,y=45.8,q=39169,n=L["Vile Blood of Draenor"]}, }, },
-	["Periwinkle Calf"] =                               { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Periwinkle Calf"], spellId = 187555, itemId = 127754, items = { 127751 }, chance = 33, creatureId = 93352, sourceText = L["Can drop from Fel-Touched CONSTANTS.ITEM_TYPES.PET Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."], questId = { 39157, 39160, 39161, 39162, 39163, 39164, 39165, 39166, 39167, 39168, 39169, 39170, 39171, 39172, 39173, }, defeatAllQuests = true, defeatSteps = { [39168] = L["Bleakclaw"], [39161] = L["Chaos Pup"], [39160] = L["Corrupted Thundertail"], [39162] = L["Cursed Spirit"], [39167] = L["Dark Gazer"], [39173] = L["Defiled Earth"], [39170] = L["Dreadwalker"], [39165] = L["Direflame"], [39163] = L["Felfly"], [39157] = L["Felsworn Sentry"], [39166] = L["Mirecroak"], [39171] = L["Netherfist"], [39172] = L["Skrillix"], [39164] = L["Tainted Maulclaw"], [39169] = L["Vile Blood of Draenor"], }, coords = { {m=534,x=15.8,y=44.6,q=39168,n=L["Bleakclaw"]},{m=534,x=25,y=76.2,q=39161,n=L["Chaos Pup"]},{m=534,x=53,y=65.2,q=39160,n=L["Corrupted Thundertail"]},{m=534,x=31.4,y=38,q=39162,n=L["Cursed Spirit"]},{m=534,x=54,y=29.8,q=39167,n=L["Dark Gazer"]},{m=534,x=75.4,y=37.4,q=39173,n=L["Defiled Earth"]},{m=534,x=47.2,y=52.6,q=39170,n=L["Dreadwalker"]},{m=534,x=57.8,y=37.2,q=39165,n=L["Direflame"]},{m=534,x=55.8,y=80.8,q=39163,n=L["Felfly"]},{m=534,x=26,y=31.6,q=39157,n=L["Felsworn Sentry"]},{m=534,x=42.2,y=71.6,q=39166,n=L["Mirecroak"]},{m=534,x=48.4,y=35.6,q=39171,n=L["Netherfist"]},{m=534,x=48.4,y=31.2,q=39172,n=L["Skrillix"]},{m=534,x=43.4,y=84.6,q=39164,n=L["Tainted Maulclaw"]},{m=534,x=44,y=45.8,q=39169,n=L["Vile Blood of Draenor"]}, }, },
+	["Nightmare Bell"] =                                { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Nightmare Bell"], spellId = 185055, itemId = 127753, items = { 127751 }, chance = 33, creatureId = 93483, sourceText = L["Can drop from Fel-Touched Pet Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."], questId = { 39157, 39160, 39161, 39162, 39163, 39164, 39165, 39166, 39167, 39168, 39169, 39170, 39171, 39172, 39173, }, defeatAllQuests = true, defeatSteps = { [39168] = L["Bleakclaw"], [39161] = L["Chaos Pup"], [39160] = L["Corrupted Thundertail"], [39162] = L["Cursed Spirit"], [39167] = L["Dark Gazer"], [39173] = L["Defiled Earth"], [39170] = L["Dreadwalker"], [39165] = L["Direflame"], [39163] = L["Felfly"], [39157] = L["Felsworn Sentry"], [39166] = L["Mirecroak"], [39171] = L["Netherfist"], [39172] = L["Skrillix"], [39164] = L["Tainted Maulclaw"], [39169] = L["Vile Blood of Draenor"], }, coords = { {m=534,x=15.8,y=44.6,q=39168,n=L["Bleakclaw"]},{m=534,x=25,y=76.2,q=39161,n=L["Chaos Pup"]},{m=534,x=53,y=65.2,q=39160,n=L["Corrupted Thundertail"]},{m=534,x=31.4,y=38,q=39162,n=L["Cursed Spirit"]},{m=534,x=54,y=29.8,q=39167,n=L["Dark Gazer"]},{m=534,x=75.4,y=37.4,q=39173,n=L["Defiled Earth"]},{m=534,x=47.2,y=52.6,q=39170,n=L["Dreadwalker"]},{m=534,x=57.8,y=37.2,q=39165,n=L["Direflame"]},{m=534,x=55.8,y=80.8,q=39163,n=L["Felfly"]},{m=534,x=26,y=31.6,q=39157,n=L["Felsworn Sentry"]},{m=534,x=42.2,y=71.6,q=39166,n=L["Mirecroak"]},{m=534,x=48.4,y=35.6,q=39171,n=L["Netherfist"]},{m=534,x=48.4,y=31.2,q=39172,n=L["Skrillix"]},{m=534,x=43.4,y=84.6,q=39164,n=L["Tainted Maulclaw"]},{m=534,x=44,y=45.8,q=39169,n=L["Vile Blood of Draenor"]}, }, },
+	["Periwinkle Calf"] =                               { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Periwinkle Calf"], spellId = 187555, itemId = 127754, items = { 127751 }, chance = 33, creatureId = 93352, sourceText = L["Can drop from Fel-Touched Pet Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."], questId = { 39157, 39160, 39161, 39162, 39163, 39164, 39165, 39166, 39167, 39168, 39169, 39170, 39171, 39172, 39173, }, defeatAllQuests = true, defeatSteps = { [39168] = L["Bleakclaw"], [39161] = L["Chaos Pup"], [39160] = L["Corrupted Thundertail"], [39162] = L["Cursed Spirit"], [39167] = L["Dark Gazer"], [39173] = L["Defiled Earth"], [39170] = L["Dreadwalker"], [39165] = L["Direflame"], [39163] = L["Felfly"], [39157] = L["Felsworn Sentry"], [39166] = L["Mirecroak"], [39171] = L["Netherfist"], [39172] = L["Skrillix"], [39164] = L["Tainted Maulclaw"], [39169] = L["Vile Blood of Draenor"], }, coords = { {m=534,x=15.8,y=44.6,q=39168,n=L["Bleakclaw"]},{m=534,x=25,y=76.2,q=39161,n=L["Chaos Pup"]},{m=534,x=53,y=65.2,q=39160,n=L["Corrupted Thundertail"]},{m=534,x=31.4,y=38,q=39162,n=L["Cursed Spirit"]},{m=534,x=54,y=29.8,q=39167,n=L["Dark Gazer"]},{m=534,x=75.4,y=37.4,q=39173,n=L["Defiled Earth"]},{m=534,x=47.2,y=52.6,q=39170,n=L["Dreadwalker"]},{m=534,x=57.8,y=37.2,q=39165,n=L["Direflame"]},{m=534,x=55.8,y=80.8,q=39163,n=L["Felfly"]},{m=534,x=26,y=31.6,q=39157,n=L["Felsworn Sentry"]},{m=534,x=42.2,y=71.6,q=39166,n=L["Mirecroak"]},{m=534,x=48.4,y=35.6,q=39171,n=L["Netherfist"]},{m=534,x=48.4,y=31.2,q=39172,n=L["Skrillix"]},{m=534,x=43.4,y=84.6,q=39164,n=L["Tainted Maulclaw"]},{m=534,x=44,y=45.8,q=39169,n=L["Vile Blood of Draenor"]}, }, },
 	["Savage Cub"] =                                    { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.COLLECTION, name = L["Savage Cub"], spellId = 190682, itemId = 128477, collectedItemId = 124099, chance = 1500, creatureId = 96126, obtain = L["Dropped from monsters in Fang'rila"], tooltipNpcs = { 92922, 92466, 89747, 89695, 89746, 92481, }, sourceText = L["Purchased from Z'tenga the Walker <Saberstalker Quartermaster> in Fang'rila in Tanaan Jungle. Blackfang Claws drop from all monsters in Fang'rila."], coords = { {m=534,x=55.2,y=74.8} }, },
-	["Seaborne Spore"] =                                { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Seaborne Spore"], spellId = 173544, itemId = 118105, items = { 127751 }, chance = 33, creatureId = 86718, sourceText = L["Can drop from Fel-Touched CONSTANTS.ITEM_TYPES.PET Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."], questId = { 39157, 39160, 39161, 39162, 39163, 39164, 39165, 39166, 39167, 39168, 39169, 39170, 39171, 39172, 39173, }, defeatAllQuests = true, defeatSteps = { [39168] = L["Bleakclaw"], [39161] = L["Chaos Pup"], [39160] = L["Corrupted Thundertail"], [39162] = L["Cursed Spirit"], [39167] = L["Dark Gazer"], [39173] = L["Defiled Earth"], [39170] = L["Dreadwalker"], [39165] = L["Direflame"], [39163] = L["Felfly"], [39157] = L["Felsworn Sentry"], [39166] = L["Mirecroak"], [39171] = L["Netherfist"], [39172] = L["Skrillix"], [39164] = L["Tainted Maulclaw"], [39169] = L["Vile Blood of Draenor"], }, coords = { {m=534,x=15.8,y=44.6,q=39168,n=L["Bleakclaw"]},{m=534,x=25,y=76.2,q=39161,n=L["Chaos Pup"]},{m=534,x=53,y=65.2,q=39160,n=L["Corrupted Thundertail"]},{m=534,x=31.4,y=38,q=39162,n=L["Cursed Spirit"]},{m=534,x=54,y=29.8,q=39167,n=L["Dark Gazer"]},{m=534,x=75.4,y=37.4,q=39173,n=L["Defiled Earth"]},{m=534,x=47.2,y=52.6,q=39170,n=L["Dreadwalker"]},{m=534,x=57.8,y=37.2,q=39165,n=L["Direflame"]},{m=534,x=55.8,y=80.8,q=39163,n=L["Felfly"]},{m=534,x=26,y=31.6,q=39157,n=L["Felsworn Sentry"]},{m=534,x=42.2,y=71.6,q=39166,n=L["Mirecroak"]},{m=534,x=48.4,y=35.6,q=39171,n=L["Netherfist"]},{m=534,x=48.4,y=31.2,q=39172,n=L["Skrillix"]},{m=534,x=43.4,y=84.6,q=39164,n=L["Tainted Maulclaw"]},{m=534,x=44,y=45.8,q=39169,n=L["Vile Blood of Draenor"]}, }, },
+	["Seaborne Spore"] =                                { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Seaborne Spore"], spellId = 173544, itemId = 118105, items = { 127751 }, chance = 33, creatureId = 86718, sourceText = L["Can drop from Fel-Touched Pet Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."], questId = { 39157, 39160, 39161, 39162, 39163, 39164, 39165, 39166, 39167, 39168, 39169, 39170, 39171, 39172, 39173, }, defeatAllQuests = true, defeatSteps = { [39168] = L["Bleakclaw"], [39161] = L["Chaos Pup"], [39160] = L["Corrupted Thundertail"], [39162] = L["Cursed Spirit"], [39167] = L["Dark Gazer"], [39173] = L["Defiled Earth"], [39170] = L["Dreadwalker"], [39165] = L["Direflame"], [39163] = L["Felfly"], [39157] = L["Felsworn Sentry"], [39166] = L["Mirecroak"], [39171] = L["Netherfist"], [39172] = L["Skrillix"], [39164] = L["Tainted Maulclaw"], [39169] = L["Vile Blood of Draenor"], }, coords = { {m=534,x=15.8,y=44.6,q=39168,n=L["Bleakclaw"]},{m=534,x=25,y=76.2,q=39161,n=L["Chaos Pup"]},{m=534,x=53,y=65.2,q=39160,n=L["Corrupted Thundertail"]},{m=534,x=31.4,y=38,q=39162,n=L["Cursed Spirit"]},{m=534,x=54,y=29.8,q=39167,n=L["Dark Gazer"]},{m=534,x=75.4,y=37.4,q=39173,n=L["Defiled Earth"]},{m=534,x=47.2,y=52.6,q=39170,n=L["Dreadwalker"]},{m=534,x=57.8,y=37.2,q=39165,n=L["Direflame"]},{m=534,x=55.8,y=80.8,q=39163,n=L["Felfly"]},{m=534,x=26,y=31.6,q=39157,n=L["Felsworn Sentry"]},{m=534,x=42.2,y=71.6,q=39166,n=L["Mirecroak"]},{m=534,x=48.4,y=35.6,q=39171,n=L["Netherfist"]},{m=534,x=48.4,y=31.2,q=39172,n=L["Skrillix"]},{m=534,x=43.4,y=84.6,q=39164,n=L["Tainted Maulclaw"]},{m=534,x=44,y=45.8,q=39169,n=L["Vile Blood of Draenor"]}, }, },
 	["Vibrating Arcane Crystal"] =                      { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Vibrating Arcane Crystal"], spellId = 193572, itemId = 129216, npcs = { 98198, }, chance = 10, creatureId = 98236, questId = 40075, coords = { {m=550,x=26.2,y=34.2,n=L["Rukdug"]} }},
 	["Warm Arcane Crystal"] =                           { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Warm Arcane Crystal"], spellId = 193588, itemId = 129217, npcs = { 98199, }, chance = 10, creatureId = 98237, questId = 40073, coords = { {m=550,x=28.5,y=30.3,n=L["Pugg"]} }},
-	["Zangar Spore"] =                                  { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Zangar Spore"], spellId = 173532, itemId = 118101, items = { 127751 }, chance = 33, creatureId = 86715, sourceText = L["Can drop from Fel-Touched CONSTANTS.ITEM_TYPES.PET Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."], questId = { 39157, 39160, 39161, 39162, 39163, 39164, 39165, 39166, 39167, 39168, 39169, 39170, 39171, 39172, 39173, }, defeatAllQuests = true, defeatSteps = { [39168] = L["Bleakclaw"], [39161] = L["Chaos Pup"], [39160] = L["Corrupted Thundertail"], [39162] = L["Cursed Spirit"], [39167] = L["Dark Gazer"], [39173] = L["Defiled Earth"], [39170] = L["Dreadwalker"], [39165] = L["Direflame"], [39163] = L["Felfly"], [39157] = L["Felsworn Sentry"], [39166] = L["Mirecroak"], [39171] = L["Netherfist"], [39172] = L["Skrillix"], [39164] = L["Tainted Maulclaw"], [39169] = L["Vile Blood of Draenor"], }, coords = { {m=534,x=15.8,y=44.6,q=39168,n=L["Bleakclaw"]},{m=534,x=25,y=76.2,q=39161,n=L["Chaos Pup"]},{m=534,x=53,y=65.2,q=39160,n=L["Corrupted Thundertail"]},{m=534,x=31.4,y=38,q=39162,n=L["Cursed Spirit"]},{m=534,x=54,y=29.8,q=39167,n=L["Dark Gazer"]},{m=534,x=75.4,y=37.4,q=39173,n=L["Defiled Earth"]},{m=534,x=47.2,y=52.6,q=39170,n=L["Dreadwalker"]},{m=534,x=57.8,y=37.2,q=39165,n=L["Direflame"]},{m=534,x=55.8,y=80.8,q=39163,n=L["Felfly"]},{m=534,x=26,y=31.6,q=39157,n=L["Felsworn Sentry"]},{m=534,x=42.2,y=71.6,q=39166,n=L["Mirecroak"]},{m=534,x=48.4,y=35.6,q=39171,n=L["Netherfist"]},{m=534,x=48.4,y=31.2,q=39172,n=L["Skrillix"]},{m=534,x=43.4,y=84.6,q=39164,n=L["Tainted Maulclaw"]},{m=534,x=44,y=45.8,q=39169,n=L["Vile Blood of Draenor"]}, }, },
+	["Zangar Spore"] =                                  { cat = CONSTANTS.ITEM_CATEGORIES.WOD, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Zangar Spore"], spellId = 173532, itemId = 118101, items = { 127751 }, chance = 33, creatureId = 86715, sourceText = L["Can drop from Fel-Touched Pet Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."], questId = { 39157, 39160, 39161, 39162, 39163, 39164, 39165, 39166, 39167, 39168, 39169, 39170, 39171, 39172, 39173, }, defeatAllQuests = true, defeatSteps = { [39168] = L["Bleakclaw"], [39161] = L["Chaos Pup"], [39160] = L["Corrupted Thundertail"], [39162] = L["Cursed Spirit"], [39167] = L["Dark Gazer"], [39173] = L["Defiled Earth"], [39170] = L["Dreadwalker"], [39165] = L["Direflame"], [39163] = L["Felfly"], [39157] = L["Felsworn Sentry"], [39166] = L["Mirecroak"], [39171] = L["Netherfist"], [39172] = L["Skrillix"], [39164] = L["Tainted Maulclaw"], [39169] = L["Vile Blood of Draenor"], }, coords = { {m=534,x=15.8,y=44.6,q=39168,n=L["Bleakclaw"]},{m=534,x=25,y=76.2,q=39161,n=L["Chaos Pup"]},{m=534,x=53,y=65.2,q=39160,n=L["Corrupted Thundertail"]},{m=534,x=31.4,y=38,q=39162,n=L["Cursed Spirit"]},{m=534,x=54,y=29.8,q=39167,n=L["Dark Gazer"]},{m=534,x=75.4,y=37.4,q=39173,n=L["Defiled Earth"]},{m=534,x=47.2,y=52.6,q=39170,n=L["Dreadwalker"]},{m=534,x=57.8,y=37.2,q=39165,n=L["Direflame"]},{m=534,x=55.8,y=80.8,q=39163,n=L["Felfly"]},{m=534,x=26,y=31.6,q=39157,n=L["Felsworn Sentry"]},{m=534,x=42.2,y=71.6,q=39166,n=L["Mirecroak"]},{m=534,x=48.4,y=35.6,q=39171,n=L["Netherfist"]},{m=534,x=48.4,y=31.2,q=39172,n=L["Skrillix"]},{m=534,x=43.4,y=84.6,q=39164,n=L["Tainted Maulclaw"]},{m=534,x=44,y=45.8,q=39169,n=L["Vile Blood of Draenor"]}, }, },
 			-- 7.0
 	["Eye of Inquisition"] =                            { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Eye of Inquisition"], spellId = 210673, itemId = 136901, npcs = { 101878, }, chance = 100, creatureId = 97179, coords = { {m=680,x=27.8,y=85.2} }},
 	["Knockoff Blingtron"] =                            { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Knockoff Blingtron"], spellId = 210683, itemId = 136911, items = { 132892, 168740 }, chance = 200, creatureId = 99505, },
@@ -3295,7 +3295,7 @@ local battlePets = {
 	["Cinderweb Egg"] =                                 { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Cinderweb Egg"], itemId = 152976, spellId = 253918, creatureId = 127948, npcs = { 52498 }, lockBossName = "Beth'tilac", chance = 10, coords = {{m=367,x=21,y=32.7, i=true}},},
 	["Elementium Back Plate"] =                         { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.BOSS, name = L["Elementium Back Plate"], itemId = 152980, spellId = 253927, creatureId = 127953, npcs = { 99999 }, tooltipNpcs = { 53879 }, lockBossName = "Spine of Deathwing", chance = 10, statisticId = { 6165, 6166 }, doNotUpdateToHighestStat = true, coords = {{m=409,x=33.2,y=85.2, i=true}},},
 	["Experiment-In-A-Jar"] =                           { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.BOSS, name = L["Experiment-In-A-Jar"], itemId = 152967, spellId = 253790, creatureId = 127852, npcs = { 99999 }, tooltipNpcs = { 41378 }, lockBossName = "Maloriak", chance = 10, statisticId = { 5559, 5560 }, doNotUpdateToHighestStat = true, coords = {{m=285,x=71.4,y=70.2, i=true}},},
-	["Fandral's CONSTANTS.ITEM_TYPES.PET Carrier"] =                         { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Fandral's CONSTANTS.ITEM_TYPES.PET Carrier"], itemId = 152978, spellId = 253925, creatureId = 127951, npcs = { 52571 },lockBossName = "Majordomo Staghelm", chance = 10, coords = {{m=367,x=50.9,y=72.4, i=true}},},
+	["Fandral's Pet Carrier"] =                         { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Fandral's Pet Carrier"], itemId = 152978, spellId = 253925, creatureId = 127951, npcs = { 52571 },lockBossName = "Majordomo Staghelm", chance = 10, coords = {{m=367,x=50.9,y=72.4, i=true}},},
 	["Lesser Circle of Binding"] =                      { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.BOSS, name = L["Lesser Circle of Binding"], itemId = 152970, spellId = 253809, creatureId = 127858, npcs = { 99999 }, tooltipNpcs = { 43687, 43686, 43688, 43689, 43735 }, lockBossName = "Terrastra", chance = 10, statisticId = { 5569, 5570 }, doNotUpdateToHighestStat = true, coords = {{m=294,x=42.5,45.5, i=true}},},
 	["Model D1-BB-L3R"] =                               { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Model D1-BB-L3R"], spellId = 233647, itemId = 151645, items = { 151638 }, chance = 100, creatureId = 117340, questId = 47895, coords = {{m=27,x=26.8,y=36.3,n=L["Environeer Bert"]}}, },
 	["Odd Twilight Egg"] =                              { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.BOSS, name = L["Odd Twilight Egg"], itemId = 152969, spellId = 253805, creatureId = 127857, npcs = { 99999 }, tooltipNpcs = { 45993, 45992 }, lockBossName = "Theralion and Valiona", chance = 10, statisticId = { 5567, 5568 }, doNotUpdateToHighestStat = true, coords = {{m=294, i=true}},},
@@ -3304,7 +3304,7 @@ local battlePets = {
 	["Severed Tentacle"] =                              { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.BOSS, name = L["Severed Tentacle"], itemId = 152981, spellId = 253928, creatureId = 127954, npcs = { 99999 }, tooltipNpcs = { 56173 }, lockBossName = "Madness of Deathwing", chance = 10,  statisticId = { 6167, 6168 }, doNotUpdateToHighestStat = true, coords = {{m=409, i=true}},},
 	["Smoldering Treat"] =                              { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Smoldering Treat"], itemId = 152975, spellId = 253916, creatureId = 127947, npcs = { 53691 }, lockBossName = "Shannox", chance = 10, coords = {{m=367,x=49.3,y=44.3, i=true}},},
 	["Shadowy Pile of Bones"] =                         { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.BOSS, name = L["Shadowy Pile of Bones"], itemId = 152968, spellId = 253799, creatureId = 127853, npcs = { 99999 }, tooltipNpcs = { 41376, 41270 }, lockBossName = "Nefarian's End", chance = 10, statisticId = { 5565, 5566 }, doNotUpdateToHighestStat = true, coords = {{m=285,x=48,y=70.2, i=true}},},
-	["Strange Humming Crystal"] =                       { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Strange Humming Crystal"], spellId = 226682, itemId = 141349, items = { 157828 }, chance = 100, creatureId = 113827, sourceText = L["The quest starter CONSTANTS.ITEM_TYPES.ITEM for Wondrous Wisdomball"], coords = {{m=625,x=33.6,y=48,n=L["Warmage Silva"]}}, },
+	["Strange Humming Crystal"] =                       { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Strange Humming Crystal"], spellId = 226682, itemId = 141349, items = { 157828 }, chance = 100, creatureId = 113827, sourceText = L["The quest starter item for Wondrous Wisdomball"], coords = {{m=625,x=33.6,y=48,n=L["Warmage Silva"]}}, },
 	["Thistleleaf Adventurer"] =                        { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Thistleleaf Adventurer"], spellId = 195369, itemId = 130167, items = { 157822 }, chance = 100, creatureId = 99389, coords = {{m=641,x=54.6,y=73.2,n=L["Sylvia Hartshorn"]}}, },
 	["Twilight Summoning Portal"] =                     { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.BOSS, name = L["Twilight Summoning Portal"], itemId = 152972, spellId = 253813, creatureId = 127859, npcs = { 99999 }, tooltipNpcs = { 43324 }, lockBossName = "Cho'gall", chance = 10, statisticId = { 5572, 5571 }, doNotUpdateToHighestStat = true, coords = {{m=294,x=73.4,75.4, i=true}},},
 	["Vibrating Stone"] =                               { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Vibrating Stone"], itemId = 152977, spellId = 253924, creatureId = 127950, npcs = { 53494 }, lockBossName = "Baleroc", chance = 10, coords = {{m=367,x=49.5,y=30.9, i=true}},},
@@ -3320,7 +3320,7 @@ local battlePets = {
 	items = { 153191 },
 	chance = 5,
 	creatureId = 128157,
-	sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each CONSTANTS.ITEM_TYPES.MOUNT has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each CONSTANTS.ITEM_TYPES.PET has a 20% chance to appear in it."],
+	sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
 	coords = {
 		{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 64.32, y = 48.62, n = L["Varga"] },
 		{ m = CONSTANTS.UIMAPIDS.KROKUUN, x = 70.21, y = 34.38, n = L["Naroua"] },
@@ -3338,7 +3338,7 @@ local battlePets = {
 	items = { 153191 },
 	chance = 5,
 	creatureId = 128158,
-	sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each CONSTANTS.ITEM_TYPES.MOUNT has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each CONSTANTS.ITEM_TYPES.PET has a 20% chance to appear in it."],
+	sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
 	coords = {
 		{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 64.32, y = 48.62, n = L["Varga"] },
 		{ m = CONSTANTS.UIMAPIDS.KROKUUN, x = 70.21, y = 34.38, n = L["Naroua"] },
@@ -6830,7 +6830,7 @@ local toysAndItems = {
 	["Hozen Beach Ball"] =                              { cat = CONSTANTS.ITEM_CATEGORIES.MOP, type = CONSTANTS.ITEM_TYPES.ITEM, isToy = true, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Hozen Beach Ball"], itemId = 86593, npcs = { 50836, }, chance = 7, coords = { {m=422,x=55.4,y=63.4} }, },
 	["Kang's Bindstone"] =                              { cat = CONSTANTS.ITEM_CATEGORIES.MOP, type = CONSTANTS.ITEM_TYPES.ITEM, isToy = true, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Kang's Bindstone"], itemId = 86571, npcs = { 50349, }, chance = 5, coords = { {m=390,x=15,y=35.6} }, },
 	["Mr. Smite's Brass Compass"] =                     { cat = CONSTANTS.ITEM_CATEGORIES.MOP, type = CONSTANTS.ITEM_TYPES.ITEM, isToy = true, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Mr. Smite's Brass Compass"], itemId = 86568, npcs = { 50336, }, chance = 10, coords = { {m=390,x=87.8,y=44.6} }, },
-	["Odd Polished Stone"] =                            { cat = CONSTANTS.ITEM_CATEGORIES.MOP, type = CONSTANTS.ITEM_TYPES.ITEM, isToy = true, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Odd Polished Stone"], itemId = 104262, npcs = { 72970, 72809, }, chance = 250, sourceText = L["This CONSTANTS.ITEM_TYPES.ITEM has a 1 in 4 chance to drop from Golganarr, a rare spawn on Timeless Isle. It has a 1 in 250 chance to drop from Eroded Cliffdweller on Timeless Isle."], coords = { {m=554,x=63.4,y=60.6} }, },
+	["Odd Polished Stone"] =                            { cat = CONSTANTS.ITEM_CATEGORIES.MOP, type = CONSTANTS.ITEM_TYPES.ITEM, isToy = true, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Odd Polished Stone"], itemId = 104262, npcs = { 72970, 72809, }, chance = 250, sourceText = L["This item has a 1 in 4 chance to drop from Golganarr, a rare spawn on Timeless Isle. It has a 1 in 250 chance to drop from Eroded Cliffdweller on Timeless Isle."], coords = { {m=554,x=63.4,y=60.6} }, },
 	["Pandaren Firework Launcher"] =                    { cat = CONSTANTS.ITEM_CATEGORIES.MOP, type = CONSTANTS.ITEM_TYPES.ITEM, isToy = true, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Pandaren Firework Launcher"], itemId = 86588, npcs = { 50817, }, chance = 10, coords = { {m=379,x=40.8,y=42.4} }, },
 	["Panflute of Pandaria"] =                          { cat = CONSTANTS.ITEM_CATEGORIES.MOP, type = CONSTANTS.ITEM_TYPES.ITEM, isToy = true, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Panflute of Pandaria"], itemId = 86586, npcs = { 50806, }, chance = 7, coords = { {m=390,x=39.4,y=53.6} }, },
 	["Rime of the Time-Lost Mariner"] =                 { cat = CONSTANTS.ITEM_CATEGORIES.MOP, type = CONSTANTS.ITEM_TYPES.ITEM, isToy = true, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Rime of the Time-Lost Mariner"], itemId = 104294, npcs = { 73281, }, chance = 7, coords = { {m=554,x=25.8,y=23.2} }, },
@@ -6864,7 +6864,7 @@ local toysAndItems = {
 	["Battle Horn"] =                                   { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.ITEM, isToy = true, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Battle Horn"], itemId = 86565, npcs = { 51059, }, chance = 5, coords = { {m=376,x=32.8,y=62.8,n=L["Blackhoof"]},{m=376,x=34.6,y=59.6,n=L["Blackhoof"]},{m=376,x=37.8,y=60.6,n=L["Blackhoof"]},{m=376,x=39.6,y=57.6,n=L["Blackhoof"]} }}, -- Ordon Candlekeeper drops the Battle Horn too with a 0.5% chance
 	["Bottled Tornado"] =                               { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.ITEM, isToy = true, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Bottled Tornado"], itemId = 134023, npcs = { 50749, }, chance = 5, coords = { {m=390,x=14,y=58.6,n=L["Kal'tik the Blight"]} }},
 	["Burgy Blackheart's Handsome Hat"] =               { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.ITEM, isToy = true, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Burgy Blackheart's Handsome Hat"], itemId = 134022, npcs = { 50052, }, chance = 100, coords = { {m=205,x=57.6,y=69.8} }},
-	["Chain CONSTANTS.ITEM_TYPES.PET Leash"] =                               { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.ITEM, isToy = true, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Chain CONSTANTS.ITEM_TYPES.PET Leash"], itemId = 89139, items = { 89125, 93148, 93147, 93146, 93149, 94207, 91086, 116062, 98095 }, chance = 2, },
+	["Chain Pet Leash"] =                               { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.ITEM, isToy = true, method = CONSTANTS.DETECTION_METHODS.USE, name = L["Chain Pet Leash"], itemId = 89139, items = { 89125, 93148, 93147, 93146, 93149, 94207, 91086, 116062, 98095 }, chance = 2, },
 	["Displacer Meditation Stone"] =                    { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.ITEM, isToy = true, method = CONSTANTS.DETECTION_METHODS.SPECIAL, name = L["Displacer Meditation Stone"], itemId = 141298, chance = 33, questId = 43943, coords = {{m=680}} },
 	["Don Carlos' Famous Hat"] =                        { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.ITEM, isToy = true, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Don Carlos' Famous Hat"], itemId = 134019, npcs = { 28132, }, chance = 10, coords = { {m=274,x=45.4,y=55.6} }},
 	["Essence of the Breeze"] =                         { cat = CONSTANTS.ITEM_CATEGORIES.MOP, type = CONSTANTS.ITEM_TYPES.ITEM, isToy = true, method = CONSTANTS.DETECTION_METHODS.NPC, name = L["Essence of the Breeze"], itemId = 86590, npcs = { 50822, }, chance = 5, coords = { {m=390,x=42.6,y=69.0,n=L["Ai-Ran the Shifting Cloud"]} }},
@@ -8162,7 +8162,7 @@ local toysAndItems = {
 	   chance = 2500,
 	   unique = true,
 	   requiresHorde = true,
-	   sourceText = L["Starts a series of quests that ultimately award Kua'fon's Harness (Pterrordax CONSTANTS.ITEM_TYPES.MOUNT)"],
+	   sourceText = L["Starts a series of quests that ultimately award Kua'fon's Harness (Pterrordax mount)"],
 	   coords = {
 		   { m = CONSTANTS.UIMAPIDS.NAZMIR },
 		   { m = CONSTANTS.UIMAPIDS.ZULDAZAR },
@@ -8295,7 +8295,7 @@ local toysAndItems = {
 	excludedMaps = {
 	   [542] = true, -- Spires of Arak (Skettis exists in both Draenor and Outland)
 	},
-	chance = 500, requiresPool = true, creatureId = 18839, sourceText = L["Obtained by CONSTANTS.DETECTION_METHODS.FISHING in pools located in Terrokar Forest"], coords = { {m=108} }, },
+	chance = 500, requiresPool = true, creatureId = 18839, sourceText = L["Obtained by fishing in pools located in Terrokar Forest"], coords = { {m=108} }, },
 
 	["Viable Cobra Egg"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -8308,7 +8308,7 @@ local toysAndItems = {
 		equalOdds = true,
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 		groupSize = 5,
-		sourceText = L["Dropped by Merektha in Temple of Sethraliss. Will hatch into Spawn of Merektha CONSTANTS.ITEM_TYPES.PET after three days."],
+		sourceText = L["Dropped by Merektha in Temple of Sethraliss. Will hatch into Spawn of Merektha pet after three days."],
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.TEMPLE_OF_SETHRALISS, i = true }
 		},
@@ -8326,12 +8326,12 @@ local toysAndItems = {
 				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 39.5, y = 34.4, n = L["Orwell Stevenson"] .. " - " .. L["Alliance only"] },
 				{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 50.6, y = 32.6, n = L["Grimhorn"] .. " - " .. L["Horde only"] },
 			},
-		sourceText = L["Will hatch into Nightwreathed Watcher CONSTANTS.ITEM_TYPES.PET after five days."],
+		sourceText = L["Will hatch into Nightwreathed Watcher pet after five days."],
 	},
 
 	-- Achievements
-	["Old Crafty"] =                                    { cat = CONSTANTS.ITEM_CATEGORIES.TBC, type = CONSTANTS.ITEM_TYPES.ITEM, method = CONSTANTS.DETECTION_METHODS.FISHING, name = L["Old Crafty"], itemId = 34486, zones = { "Orgrimmar" }, chance = 10000, requiresPool = false, achievementId = 1836, sourceText = L["Obtained by CONSTANTS.DETECTION_METHODS.FISHING in any water in Orgrimmar"], coords = { {m=85} }, },
-	["Old Ironjaw"] =                                   { cat = CONSTANTS.ITEM_CATEGORIES.TBC, type = CONSTANTS.ITEM_TYPES.ITEM, method = CONSTANTS.DETECTION_METHODS.FISHING, name = L["Old Ironjaw"], itemId = 34484, zones = { "Ironforge", "The Forlorn Cavern" }, chance = 10000, requiresPool = false, achievementId = 1837, sourceText = L["Obtained by CONSTANTS.DETECTION_METHODS.FISHING in any water in Ironforge"], coords = { {m=87} }, },
+	["Old Crafty"] =                                    { cat = CONSTANTS.ITEM_CATEGORIES.TBC, type = CONSTANTS.ITEM_TYPES.ITEM, method = CONSTANTS.DETECTION_METHODS.FISHING, name = L["Old Crafty"], itemId = 34486, zones = { "Orgrimmar" }, chance = 10000, requiresPool = false, achievementId = 1836, sourceText = L["Obtained by fishing in any water in Orgrimmar"], coords = { {m=85} }, },
+	["Old Ironjaw"] =                                   { cat = CONSTANTS.ITEM_CATEGORIES.TBC, type = CONSTANTS.ITEM_TYPES.ITEM, method = CONSTANTS.DETECTION_METHODS.FISHING, name = L["Old Ironjaw"], itemId = 34484, zones = { "Ironforge", "The Forlorn Cavern" }, chance = 10000, requiresPool = false, achievementId = 1837, sourceText = L["Obtained by fishing in any water in Ironforge"], coords = { {m=87} }, },
 	--["Stat Test"] = { type = CONSTANTS.ITEM_TYPES.MOUNT, method = CONSTANTS.DETECTION_METHODS.BOSS, name = "Stat Test", spellId = -1, itemId = -1, npcs = { 99999 }, chance = 100, groupSize = 40, equalOdds = true, statisticId = { 107 } },    }, -- Killing any creature
 }
 
