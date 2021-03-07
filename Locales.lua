@@ -1789,6 +1789,7 @@ L["Stony's Infused Ruby"] = true
 L["Forgotten Chest"] = true
 L["Smoldering Ember Wyrm"] = true
 L["Bottle of Gloop"] = true
+L["Piccolo of the Flaming Fire"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
