@@ -58,6 +58,9 @@ DB\Nodes.lua
 DB\SharedConstants.lua
 DB\Spells.lua
 
+# Collectibles Database (makes use of the shared constantst)
+DB\ItemDB.lua
+
 # Utility/Helpers
 Utils\DatabaseMaintenanceHelper.lua
 Utils\DebugCache.lua
