@@ -60,6 +60,7 @@ DB\Spells.lua
 
 # Collectibles Database (makes use of the shared constants, so load those first)
 DB\ItemDB.lua
+DB\Items\Mounts\Event.lua
 DB\Items\Mounts\Classic.lua
 DB\Items\Mounts\TBC.lua
 DB\Items\Mounts\WOTLK.lua
