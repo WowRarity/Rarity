@@ -60,16 +60,16 @@ DB\Spells.lua
 
 # Collectibles Database (makes use of the shared constants, so load those first)
 DB\ItemDB.lua
-DB\Items\Mounts\Event.lua
+DB\Items\Mounts\HolidayEvents.lua
 DB\Items\Mounts\Classic.lua
-DB\Items\Mounts\TBC.lua
-DB\Items\Mounts\WOTLK.lua
-DB\Items\Mounts\CATA.lua
-DB\Items\Mounts\MOP.lua
-DB\Items\Mounts\WOD.lua
-DB\Items\Mounts\LE.lua
-DB\Items\Mounts\BFA.lua
-DB\Items\Mounts\SL.lua
+DB\Items\Mounts\TheBurningCrusade.lua
+DB\Items\Mounts\WrathOfTheLichKing.lua
+DB\Items\Mounts\Cataclysm.lua
+DB\Items\Mounts\MistsOfPandaria.lua
+DB\Items\Mounts\WarlordsOfDraenor.lua
+DB\Items\Mounts\Legion.lua
+DB\Items\Mounts\BattleForAzeroth.lua
+DB\Items\Mounts\Shadowlands.lua
 
 # Utility/Helpers
 Utils\DatabaseMaintenanceHelper.lua
