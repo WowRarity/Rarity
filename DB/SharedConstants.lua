@@ -135,6 +135,12 @@ C.LDB_TEXT_STYLES = {
 	FEED_VERBOSE = "FEED_VERBOSE"
 }
 
+C.TOOLTIP_POSITIONS = {
+	TIP_LEFT = "TIP_LEFT",
+	TIP_RIGHT = "TIP_RIGHT",
+	TIP_HIDDEN = "TIP_HIDDEN"
+}
+
 C.SORT_METHODS = {
 	SORT_NAME = "SORT_NAME",
 	SORT_DIFFICULTY = "SORT_DIFFICULTY",
@@ -148,6 +154,63 @@ C.COVENANT_IDS = {
 	VENTHYR = 2,
 	NIGHT_FAE = 3,
 	NECROLORD = 4
+}
+
+C.HOLIDAY_TEXTURES = {
+	WINTERS_VEIL = "Calendar_WinterVeil",
+	DARKMOON_FAIRE = "calendar_darkmoonfaireterokkar",
+	DAY_OF_THE_DEAD = "Calendar_DayOfTheDead",
+	BREWFEST = "Calendar_Brewfest",
+	HALLOWS_END = "Calendar_HallowsEnd",
+	PILGRIMS_BOUNTY = "Calendar_HarvestFestival",
+	WOW_ANNIVERSARY = "calendar_anniversary",
+	LOVE_IS_IN_THE_AIR = "Calendar_LoveInTheAir",
+	LUNAR_FESTIVAL = "Calendar_LunarFestival",
+	NOBLEGARDEN = "Calendar_Noblegarden",
+	CHILDRENS_WEEK = "Calendar_ChildrensWeek",
+	MIDSUMMER_FESTIVAL = "Calendar_Midsummer",
+	FIREWORKS = "calendar_fireworks", -- What is this used for?
+	PIRATES_DAY = "Calendar_PiratesDay"
+}
+
+-- This doesn't really belong here and needs streamlining anyway, but for now this is the best place.
+-- Tooltip Filters (Note: Currently, this system is merely a stub. but more (and custom) filters may be added in the future)
+-- These are used to decide whether the tooltip should be extended to display information about an CONSTANTS.ITEM_TYPES.ITEM for the NPCs listed in its tooltipNpcs table. Useful if we want to draw attention to an CONSTANTS.ITEM_TYPES.ITEM, but not every player can obtain it
+local GetInstanceInfo = GetInstanceInfo
+C.TOOLTIP_FILTERS = {
+	IS_SPELL_KNOWN = IsSpellKnown,
+	IS_PLAYER_IN_LFR = function()
+		-- Returns true if the player is in a LFR instance
+		local name,
+			type,
+			difficulty,
+			difficultyName,
+			maxPlayers,
+			playerDifficulty,
+			isDynamicInstance,
+			mapID,
+			instanceGroupSize = GetInstanceInfo()
+		return (difficulty == 7 or difficulty == 17) -- Legacy or regular LFR
+	end
+}
+
+-- Tooltip actions (used for modifiers)
+-- Building on the previous system, this extension can be used to adjust tooltips dynamically without adding separate logic to the addon's core
+C.TOOLTIP_ACTIONS = {
+	OVERRIDE_TOOLTIP_NPCS = function(entry, newTooltipNpcs) -- Overwrites all tooltip NPCs
+		-- Sanity checks
+		if
+			not (entry and type(entry) == "table" and newTooltipNpcs and type(newTooltipNpcs) == "number" or
+				type(newTooltipNpcs) == "table")
+		 then
+			Rarity:Debug("Action OVERRIDE_TOOLTIP_NPCS failed! Required parameters: entry, newTooltipNpcs")
+			return
+		end
+
+		-- The tooltipNpcs field needs to be a table (for backwards compatibiliy) even if it's only one CONSTANTS.DETECTION_METHODS.NPC
+		entry.tooltipNpcs = (type(newTooltipNpcs) == "table") and newTooltipNpcs or {newTooltipNpcs}
+		return entry
+	end
 }
 
 addonTable.constants = C
