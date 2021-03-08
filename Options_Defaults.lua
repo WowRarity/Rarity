@@ -94,6 +94,7 @@ function R:PrepareDefaults()
 			blankLineAfterRarity = false,
 			hideOutsideZone = false,
 			showAchievementToast = true,
+			tooltipShowDelay = 0.1,
 
 			trackedGroup = "pets",
 			trackedItem = 8494,
