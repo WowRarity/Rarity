@@ -13,6 +13,7 @@ scanTip:SetOwner(WorldFrame, "ANCHOR_NONE")
 GUI.scanTip = scanTip
 local numHolidayReminders = 0
 local showedHolidayReminderOverflow = false
+local tooltipOpenDelay = false
 
 -- Externals
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
@@ -407,13 +408,21 @@ end
 function dataobj.OnEnter(self)
 	frame = self
 	if Rarity.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_HOVER then
-		Rarity:ShowTooltip()
+		tooltipOpenDelay = true
+		-- The following will queue opening of the tooltip based on a user set delay that triggers on mouseover.
+		C_Timer.After(
+			Rarity.db.profile.tooltipShowDelay or 0.1, -- Delay in seconds
+			function()
+				Rarity:ShowDelayedTooltip()
+			end
+		)
 	else
 		Rarity:ShowQuicktip()
 	end
 end
 
 function dataobj.OnLeave(self)
+	tooltipOpenDelay = false	-- Set false to abort any pending Tooltip openings that is called in ShowDelayedTooltip()
 end
 
 function dataobj:OnClick(button)
@@ -1591,6 +1600,13 @@ local function addGroup(group, requiresGroup)
 end
 
 local renderingQuicktip = false
+
+-- Helper function to open the Tooltip GUI unless the delayed opening has been aborted meanwhile.
+function R:ShowDelayedTooltip()
+	if tooltipOpenDelay == true then
+		Rarity:ShowTooltip()
+	end
+end
 
 function R:HideQuicktip()
 	if quicktip and quicktip:IsVisible() then
