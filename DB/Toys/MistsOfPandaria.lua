@@ -251,7 +251,7 @@ local mopToys = {
 		name = L["Skyshard"],
 		spellId = 90655,
 		itemId = 86547,
-		zones = {"390", "395", "396", "1530"},
+		zones = {"390", "395", "396", "1530", "1570"},
 		chance = 1000,
 		sourceText = L[
 			"Dropped by any mob in Vale of Eternal Blossoms (except minor mobs). 10 of these can be combined to pierce Alani's shield, allowing combat and a guaranteed drop of Reins of the Thundering Ruby Cloud Serpent."
