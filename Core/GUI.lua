@@ -2631,6 +2631,7 @@ local function RarityAchievementAlertFrame_SetUp(frame, itemId, attempts)
 	shieldIcon:SetTexture([[Interface\AchievementFrame\UI-Achievement-Shields-NoPoints]])
 
 	frame.Icon.Texture:SetTexture(itemTexture)
+	frame:EnableMouse(false)	-- Make achievement toast unclickable
 
 	if attempts == nil or attempts <= 0 then
 		attempts = 1
@@ -2648,6 +2649,7 @@ local function RarityAchievementAlertFrame_SetUp(frame, itemId, attempts)
 		function()
 			-- Put the achievement frame back to normal when we're done
 			unlocked:SetText(ACHIEVEMENT_UNLOCKED)
+			frame:EnableMouse(true)
 		end,
 		10
 	)
