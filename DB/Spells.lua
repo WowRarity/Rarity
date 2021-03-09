@@ -20,6 +20,8 @@ Rarity.relevantSpells = {
 	[6478] = "Opening", -- Pile of Coins (Mechagon Island: Armored Vaultbot)
 	-- 8.3
 	[312881] = "Searching Mailbox",
+	-- 9.0
+	[345071] = "Looting", -- Dirty Glinting Object (Shadowlands zones for Lucy's Lost Collar pet)
 	-- Not tested (but added just in case)
 	[7731] = "Fishing",
 	[7732] = "Fishing",

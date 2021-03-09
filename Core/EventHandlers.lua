@@ -141,6 +141,12 @@ function R:OnSpellcastSucceeded(event, unitID, castGUID, spellID)
 		self:Debug("Finished searching mailbox in a Horrific Vision")
 		addAttemptForItem("Mail Muncher", "mounts")
 	end
+
+	-- Detects opening on Dirty Glinting Object which may contain Lucy's Lost Collar
+	if spellID == 345071 and Rarity.lastNode and Rarity.lastNode == L["Dirty Glinting Object"] then
+		Rarity:Debug("Detected Opening on " .. L["Dirty Glinting Object"] .. " (method = SPECIAL)")
+		addAttemptForItem("Lucy's Lost Collar", "pets")
+	end
 end
 
 -------------------------------------------------------------------------------------
