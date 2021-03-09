@@ -620,6 +620,23 @@ local shadowlandsPets = {
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.REVENDRETH}
 		}
+	},
+	["Lucy's Lost Collar"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Lucy's Lost Collar"],
+		itemId = 184507,
+		spellId = 346192,
+		creatureId = 175715,
+		npcs = {175390},
+		chance = 100, -- Estimate
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BASTION},
+			{m = CONSTANTS.UIMAPIDS.ARDENWEALD},
+			{m = CONSTANTS.UIMAPIDS.REVENDRETH},
+			{m = CONSTANTS.UIMAPIDS.MALDRAXXUS}
+		}
 	}
 }
 
