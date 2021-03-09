@@ -1790,6 +1790,8 @@ L["Forgotten Chest"] = true
 L["Smoldering Ember Wyrm"] = true
 L["Bottle of Gloop"] = true
 L["Piccolo of the Flaming Fire"] = true
+L["Lucy's Lost Collar"] = true
+L["Dirty Glinting Object"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
