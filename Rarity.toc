@@ -62,40 +62,40 @@ DB\Spells.lua
 DB\ItemDB.lua
 
 ## Mounts
-DB\Items\Mounts\HolidayEvents.lua
-DB\Items\Mounts\Classic.lua
-DB\Items\Mounts\TheBurningCrusade.lua
-DB\Items\Mounts\WrathOfTheLichKing.lua
-DB\Items\Mounts\Cataclysm.lua
-DB\Items\Mounts\MistsOfPandaria.lua
-DB\Items\Mounts\WarlordsOfDraenor.lua
-DB\Items\Mounts\Legion.lua
-DB\Items\Mounts\BattleForAzeroth.lua
-DB\Items\Mounts\Shadowlands.lua
+DB\Mounts\HolidayEvents.lua
+DB\Mounts\Classic.lua
+DB\Mounts\TheBurningCrusade.lua
+DB\Mounts\WrathOfTheLichKing.lua
+DB\Mounts\Cataclysm.lua
+DB\Mounts\MistsOfPandaria.lua
+DB\Mounts\WarlordsOfDraenor.lua
+DB\Mounts\Legion.lua
+DB\Mounts\BattleForAzeroth.lua
+DB\Mounts\Shadowlands.lua
 
 ## Pets
-DB\Items\Pets\HolidayEvents.lua
-DB\Items\Pets\Classic.lua
-DB\Items\Pets\TheBurningCrusade.lua
-DB\Items\Pets\WrathOfTheLichKing.lua
-DB\Items\Pets\Cataclysm.lua
-DB\Items\Pets\MistsOfPandaria.lua
-DB\Items\Pets\WarlordsOfDraenor.lua
-DB\Items\Pets\Legion.lua
-DB\Items\Pets\BattleForAzeroth.lua
-DB\Items\Pets\Shadowlands.lua
+DB\Pets\HolidayEvents.lua
+DB\Pets\Classic.lua
+DB\Pets\TheBurningCrusade.lua
+DB\Pets\WrathOfTheLichKing.lua
+DB\Pets\Cataclysm.lua
+DB\Pets\MistsOfPandaria.lua
+DB\Pets\WarlordsOfDraenor.lua
+DB\Pets\Legion.lua
+DB\Pets\BattleForAzeroth.lua
+DB\Pets\Shadowlands.lua
 
 ## Toys (and other items, for now...)
-DB\Items\Toys\HolidayEvents.lua
-DB\Items\Toys\Classic.lua
-DB\Items\Toys\TheBurningCrusade.lua
-DB\Items\Toys\WrathOfTheLichKing.lua
-DB\Items\Toys\Cataclysm.lua
-DB\Items\Toys\MistsOfPandaria.lua
-DB\Items\Toys\WarlordsOfDraenor.lua
-DB\Items\Toys\Legion.lua
-DB\Items\Toys\BattleForAzeroth.lua
-DB\Items\Toys\Shadowlands.lua
+DB\Toys\HolidayEvents.lua
+DB\Toys\Classic.lua
+DB\Toys\TheBurningCrusade.lua
+DB\Toys\WrathOfTheLichKing.lua
+DB\Toys\Cataclysm.lua
+DB\Toys\MistsOfPandaria.lua
+DB\Toys\WarlordsOfDraenor.lua
+DB\Toys\Legion.lua
+DB\Toys\BattleForAzeroth.lua
+DB\Toys\Shadowlands.lua
 
 # Utility/Helpers
 Utils\DatabaseMaintenanceHelper.lua
