@@ -242,5 +242,6 @@ R.opennodes = {
 	[L["Secret Treasure"]] = true,
 	[L["Forgotten Chest"]] = true,
 	[L["Cache of Eyes"]] = true,
-	[L["Forgotten Chest"]] = true
+	[L["Forgotten Chest"]] = true,
+	[L["Dirty Glinting Object"]] = true
 }
