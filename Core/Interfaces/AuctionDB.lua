@@ -4,7 +4,7 @@ if not addonTable then
 end
 
 -- Upvalues
-local TradeSkillMasterInterface = {}
+local AuctionDB = {}
 
 -- Lua APIs
 local format = string.format
@@ -14,7 +14,7 @@ local GetItemInfo = GetItemInfo
 
 --- Attempts to determine whether or not the TSM_API can safely be used (it's probably not perfect)
 -- @return True if the required functionality appears to be loaded; false (nil) otherwise
-function TradeSkillMasterInterface:IsLoaded()
+function AuctionDB:IsLoaded()
 	-- JIT access to allow lazy loading of TSM without breaking the feature
 	if not TSM_API then
 		return
@@ -39,7 +39,7 @@ end
 --- Checks whether or not a given price source is recognized by the TSM_API
 -- @param priceSource A string representing the price source
 -- @return True if TSM recognized the price source; false (nil) otherwise
-function TradeSkillMasterInterface:IsValidPriceSource(priceSource)
+function AuctionDB:IsValidPriceSource(priceSource)
 	if not type(priceSource) == "string" then
 		return
 	end
@@ -67,7 +67,7 @@ end
 -- @param priceSource A string representing a TSM_API price source
 -- @param[opt] formatAsString A boolean value indicating whether or not the retrieved price should be formatted in a human-readable way
 -- @return A string representing the item's DBMarket price; nil if TSM didn't have one for this item
-function TradeSkillMasterInterface:GetMarketPrice(itemID, priceSource, formatAsString)
+function AuctionDB:GetMarketPrice(itemID, priceSource, formatAsString)
 	if not (type(itemID) == "number" and type("priceSource") == "string") then
 		Rarity:Debug("Usage: GetMarketPrice(itemID, priceSource)")
 		return
@@ -104,5 +104,5 @@ function TradeSkillMasterInterface:GetMarketPrice(itemID, priceSource, formatAsS
 	return marketPrice
 end
 
-Rarity.TradeSkillMasterInterface = TradeSkillMasterInterface
-return TradeSkillMasterInterface
+Rarity.AuctionDB = AuctionDB
+return AuctionDB

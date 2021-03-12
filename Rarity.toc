@@ -105,7 +105,7 @@ Utils\Sorting.lua
 Utils\Time.lua
 
 # Wrappers for external libraries (to provide a consistent API)
-Core\Interfaces\TradeSkillMaster.lua
+Core\Interfaces\AuctionDB.lua
 
 # Addon Core
 Core\Caching.lua
