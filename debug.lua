@@ -72,4 +72,4 @@ dofile("testNEW.lua")
 
 writeFile("mounts_refactored.txt", databaseAfterRefactoringAndMerging.mounts)
 writeFile("pets_refactored.txt", databaseAfterRefactoringAndMerging.pets)
-writeFile("items_refactored.txt", databaseAfterRefactoringAndMerging.items)
+writeFile("items_refactored.txt", databaseAfterRefactoringAndMerging.toys)
