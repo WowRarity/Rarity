@@ -99,6 +99,7 @@ local holidayEventPets = {
 		equalOdds = true,
 		creatureId = 40198,
 		lockDungeonId = 286,
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.MIDSUMMER_FESTIVAL,
 		coords = {{m = 265, x = 31.2, y = 50.8, i = true, n = L["Ahune"]}}
 	},
 	["Jingling Bell"] = {
@@ -234,6 +235,7 @@ local holidayEventPets = {
 		equalOdds = true,
 		creatureId = 38374,
 		lockDungeonId = 288,
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.LOVE_IS_IN_THE_AIR,
 		coords = {{m = 310, x = 40.8, y = 52.6, i = true}}
 	}
 }
