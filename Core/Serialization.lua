@@ -13,7 +13,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local tonumber = tonumber
 local pairs = pairs
 local type = type
-local CONSTANTS = addonTable.constants
+local CONSTANTS = Rarity.constants
 local FormatTime = Rarity.Utils.PrettyPrint.FormatTime -- Utils are loaded before Core modules, so this should be fine
 
 --- Sets some default values for items (used before importing them)?

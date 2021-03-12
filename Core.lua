@@ -52,7 +52,7 @@ local numPrimeAttempts = 0
 --[[
       CONSTANTS ----------------------------------------------------------------------------------------------------------------
   ]]
-local CONSTANTS = addonTable.constants
+local CONSTANTS = Rarity.constants
 
 -- Methods of obtaining
 local NPC = "NPC"
@@ -71,7 +71,7 @@ local SORT_PROGRESS = "SORT_PROGRESS"
 local SORT_CATEGORY = "SORT_CATEGORY"
 local SORT_ZONE = "SORT_ZONE"
 
-Rarity.CONSTANTS = addonTable.constants
+Rarity.CONSTANTS = Rarity.constants
 
 --[[
       UPVALUES -----------------------------------------------------------------------------------------------------------------

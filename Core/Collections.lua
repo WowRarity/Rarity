@@ -7,7 +7,7 @@ local archfragments = {}
 
 -- Upvalues
 local R = Rarity
-local CONSTANTS = addonTable.constants
+local CONSTANTS = Rarity.constants
 
 -- Lua APIs
 local pairs = pairs

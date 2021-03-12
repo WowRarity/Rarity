@@ -4,7 +4,7 @@ local EventHandlers = {}
 
 -- Upvalues
 local R = Rarity
-local CONSTANTS = addonTable.constants
+local CONSTANTS = Rarity.constants
 
 -- Locals
 local coinamounts = {}

@@ -40,7 +40,7 @@ local lbct = LibStub("LibBabble-CreatureType-3.0"):GetUnstrictLookupTable()
 -- Upvalues
 local R = Rarity
 local UIParent = UIParent
-local CONSTANTS = addonTable.constants
+local CONSTANTS = Rarity.constants
 
 -- LUA APIs
 local format = format

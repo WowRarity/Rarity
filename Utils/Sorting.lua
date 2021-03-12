@@ -7,7 +7,7 @@ local Sorting = {}
 
 -- Upvalues
 local R = Rarity
-local CONSTANTS = addonTable.constants
+local CONSTANTS = Rarity.constants
 -- Lua APIs
 local type = type
 local pairs = pairs

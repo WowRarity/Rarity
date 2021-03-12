@@ -4,7 +4,7 @@ if not Rarity then return end
 local R = Rarity
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 
-local CONSTANTS = addonTable.constants
+local CONSTANTS = Rarity.constants
 
 R.string_types = {
  [CONSTANTS.ITEM_TYPES.MOUNT] = L["Mount"],
