@@ -1,3 +1,5 @@
+Rarity = {}
+
 -- Mocking AceLocale without any translations applied since they don't matter
 L = {}
 local metatable = {
@@ -65,3 +67,9 @@ end
 writeFile("mounts.txt", databaseBeforeRefactoring.mounts)
 writeFile("pets.txt", databaseBeforeRefactoring.pets)
 writeFile("items.txt", databaseBeforeRefactoring.items)
+
+dofile("testNEW.lua")
+
+writeFile("mounts_refactored.txt", databaseAfterRefactoringAndMerging.mounts)
+writeFile("pets_refactored.txt", databaseAfterRefactoringAndMerging.pets)
+writeFile("items_refactored.txt", databaseAfterRefactoringAndMerging.items)
