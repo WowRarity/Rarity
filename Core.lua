@@ -118,7 +118,6 @@ local COMBATLOG_OBJECT_AFFILIATION_PARTY = _G.COMBATLOG_OBJECT_AFFILIATION_PARTY
 local COMBATLOG_OBJECT_AFFILIATION_RAID = _G.COMBATLOG_OBJECT_AFFILIATION_RAID
 
 -- Addon APIs
-local TSM_Interface = Rarity.Utils.TSM_Interface
 local DebugCache = Rarity.Utils.DebugCache
 local GetRealDropPercentage = Rarity.Statistics.GetRealDropPercentage
 local FormatTime = Rarity.Utils.PrettyPrint.FormatTime
