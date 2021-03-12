@@ -30,6 +30,7 @@ local holidayEventMounts = {
 			"Can be contained in Keg-Shaped Treasure Chest, rewarded for defeating the World Event Dungeon during Brewfest."
 		],
 		lockDungeonId = 287,
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.BREWFEST,
 		coords = {{m = 243, x = 46.6, y = 60, i = true}}
 	},
 	["Swift Brewfest Ram"] = {
@@ -47,6 +48,7 @@ local holidayEventMounts = {
 			"Can be contained in Keg-Shaped Treasure Chest, rewarded for defeating the World Event Dungeon during Brewfest."
 		],
 		lockDungeonId = 287,
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.BREWFEST,
 		coords = {{m = 242, x = 46.6, y = 60, i = true}}
 	},
 	["The Horseman's Reins"] = {
@@ -64,6 +66,7 @@ local holidayEventMounts = {
 			"Can be contained in Loot-Filled Pumpkin, rewarded for defeating the World Event Dungeon during Hallow's End."
 		],
 		lockDungeonId = 285,
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.HALLOWS_END,
 		coords = {{m = 435, i = true}}
 	}
 }
