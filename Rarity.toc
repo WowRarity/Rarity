@@ -103,7 +103,9 @@ Utils\DebugCache.lua
 Utils\PrettyPrint.lua
 Utils\Sorting.lua
 Utils\Time.lua
-Utils\TradeSkillMaster.lua
+
+# Wrappers for external libraries (to provide a consistent API)
+Core\Interfaces\TradeSkillMaster.lua
 
 # Addon Core
 Core\Caching.lua

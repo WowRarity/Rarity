@@ -81,7 +81,7 @@ local sort_category = Rarity.Utils.Sorting.sort_category
 local sort_zone = Rarity.Utils.Sorting.sort_zone
 local sort_progress = Rarity.Utils.Sorting.sort_progress
 local GetDate = Rarity.Utils.Time.GetDate
-local TSM_Interface = Rarity.Utils.TSM_Interface
+local TradeSkillMasterInterface = Rarity.TradeSkillMasterInterface
 
 -- Constants
 -- Sort parameters
@@ -903,7 +903,7 @@ local function showSubTooltip(cell, item)
 	tooltip2:AddSeparator(1, 1, 1, 1, 1)
 
 	-- Add TSM pricing information to the tooltip
-	if TSM_Interface:IsLoaded() and Rarity.db.profile.showTSMColumn then
+	if TradeSkillMasterInterface:IsLoaded() and Rarity.db.profile.showTSMColumn then
 		local tooltipLines = {
 			{priceSource = "DBMinBuyout", isMonetaryValue = true, localisedDisplayText = L["Min Buyout"]},
 			{priceSource = "DBMarket", isMonetaryValue = true, localisedDisplayText = L["Market Price"]},
@@ -915,7 +915,7 @@ local function showSubTooltip(cell, item)
 
 		local hasPrice = false
 		for _, lineInfo in pairs(tooltipLines) do -- Add text to tooltip if TSM4 has pricing data for this source
-			if not TSM_Interface:IsValidPriceSource(lineInfo.priceSource) then
+			if not TradeSkillMasterInterface:IsValidPriceSource(lineInfo.priceSource) then
 				Rarity:Print(
 					format(
 						"Attempting to use invalid price source %s to retrieve a price for item %d via TSM_API." ..
@@ -927,7 +927,7 @@ local function showSubTooltip(cell, item)
 				break
 			end
 
-			local formattedPrice = TSM_Interface:GetMarketPrice(item.itemId, lineInfo.priceSource, true)
+			local formattedPrice = TradeSkillMasterInterface:GetMarketPrice(item.itemId, lineInfo.priceSource, true)
 			if (formattedPrice ~= nil) then
 				hasPrice = true
 				tooltip2AddDoubleLine(
@@ -1504,7 +1504,7 @@ local function addGroup(group, requiresGroup)
 
 											-- Retrieve the DBMarket price provided by the TSM_API (if loaded)
 											local marketPrice =
-												Rarity.db.profile.showTSMColumn and TSM_Interface:GetMarketPrice(v.itemId, "DBMarket", true)
+												Rarity.db.profile.showTSMColumn and TradeSkillMasterInterface:GetMarketPrice(v.itemId, "DBMarket", true)
 
 											-- Add the item to the tooltip
 											local catIcon = ""
