@@ -1,4 +1,21 @@
 local changes = {
+	["r706"] = {
+		additions = {
+			"Added an option to disable the achievement toast (popup) and sound effect triggered whenever a tracked item is found",
+			"Added tracking for Pterrordax Egg (Zandalar)",
+			"Added tracking for Piccolo of the Flaming FIre (Stratholme)",
+			"Added an option to delay the tooltip (i.e., how long the icon should be hovered over before it is shown)",
+			"Added tracking for Lucy's Lost Collar (Shadowlands)"
+		},
+		changes = {
+			"Skyshards are now tracked repeatedly by default"
+		},
+		fixes = {
+			"Clicking the achievement toast (popup) displayed when a tracked item is found should no longer cause a script error",
+			"Skyshards should now also be tracked in the corrupted (instanced) version of the Shrine of Seven Stars",
+			"Calendar-based notifications should now be triggered correctly for all holiday event items that Rarity tracks by default"
+		}
+	},
 	["r705"] = {
 		additions = {
 			"Added tracking for various Shadowlands pets and toys that were previously missing",
