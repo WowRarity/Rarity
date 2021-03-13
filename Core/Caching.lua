@@ -22,6 +22,18 @@ function Caching:IsHorde()
 	return Rarity.isHorde
 end
 
+function Caching:IsAlliance()
+	if Rarity.isAlliance == nil then
+		local englishFaction, localizedFaction = UnitFactionGroup("player")
+		if englishFaction == "Alliance" then
+			Rarity.isAlliance = true
+		else
+			Rarity.isAlliance = false
+		end
+	end
+	return Rarity.isAlliance
+end
+
 function Caching:IsReady()
 	return not IsInitializing
 end
