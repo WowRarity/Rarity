@@ -1825,13 +1825,13 @@ function R:CreateGroup(options, group, isUser)
 				requiresAllianceT = {
 					type = "description",
 					order = newOrder(),
-					name = colorize(L["This mount is only obtainable by Alliance players"], red),
+					name = colorize(L["This mount is only obtainable by Alliance players"], R.Caching:IsAlliance() and green or red),
 					hidden = item.requiresAlliance == false or item.requiresAlliance == nil
 				},
 				requiresHordeT = {
 					type = "description",
 					order = newOrder(),
-					name = colorize(L["This mount is only obtainable by Horde players"], red),
+					name = colorize(L["This mount is only obtainable by Horde players"], R.Caching:IsHorde() and green or red),
 					hidden = item.requiresHorde == false or item.requiresHorde == nil
 				},
 				blankLine = {

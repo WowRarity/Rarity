@@ -679,10 +679,10 @@ local function showSubTooltip(cell, item)
 		tooltip2AddLine(colorize(L["Can be obtained with a bonus roll"], yellow))
 	end
 	if item.requiresAlliance then
-		tooltip2AddLine(colorize(L["This mount is only obtainable by Alliance players"], red))
+		tooltip2AddLine(colorize(L["This mount is only obtainable by Alliance players"], R.Caching:IsAlliance() and green or red))
 	end
 	if item.requiresHorde then
-		tooltip2AddLine(colorize(L["This mount is only obtainable by Horde players"], red))
+		tooltip2AddLine(colorize(L["This mount is only obtainable by Horde players"], R.Caching:IsHorde() and green or red))
 	end
 	if
 		hadSource or item.bonusSatchel or item.blackMarket or item.wasGuaranteed or item.worldBossFactionless or
