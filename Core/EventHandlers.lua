@@ -835,6 +835,13 @@ end
 
 local tooltipLeftText1 = _G["GameTooltipTextLeft1"]
 
+local function stripColorCode(input)
+	local output = input or ""
+	output = gsub(output, "|c%x%x%x%x%x%x%x%x", "")
+	output = gsub(output, "|r", "")
+	return output
+end
+
 function R:OnCursorUpdate(event)
 	if Rarity.foundTarget then
 		return
@@ -842,7 +849,7 @@ function R:OnCursorUpdate(event)
 	if (MinimapCluster:IsMouseOver()) then
 		return
 	end
-	local t = tooltipLeftText1:GetText()
+	local t = stripColorCode(tooltipLeftText1:GetText())
 	if self.miningnodes[t] or self.fishnodes[t] or self.opennodes[t] then
 		Rarity.lastNode = t
 		Rarity:Debug("OnCursorUpdate found lastNode = " .. tostring(t))
