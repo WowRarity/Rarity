@@ -1788,7 +1788,6 @@ L["Forgotten Chest"] = true
 L["Luminous Webspinner"] = true
 L["Cache of Eyes"] = true
 L["Stony's Infused Ruby"] = true
-L["Forgotten Chest"] = true
 L["Smoldering Ember Wyrm"] = true
 L["Bottle of Gloop"] = true
 L["Piccolo of the Flaming Fire"] = true
