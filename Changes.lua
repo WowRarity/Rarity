@@ -1,4 +1,16 @@
 local changes = {
+	["r707"] = {
+		changes = {
+			"The tooltip text for faction-restricted items is now dynamically colored based on whether it's available to the logged-in character"
+		},
+		fixes = {
+			"Fixed an issue where looting Forgotten Chests in Stormsong Valley would cause attempts to be added for Silessa's Battle Harness and Stony's Infused Ruby"
+		},
+		contributors = {
+			"Nick Bayley",
+			"Tommy Godejord"
+		}
+	},
 	["r706"] = {
 		additions = {
 			"Added an option to disable the achievement toast (popup) and sound effect triggered whenever a tracked item is found",
