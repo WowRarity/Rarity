@@ -1325,12 +1325,14 @@ function R:OnEvent(event, ...)
 			end
 		end
 
-		-- Handle opening Forgotten Chest (Venthyr only chest for Silessa's Battle Harness in Revendreth, Shadowlands)
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Forgotten Chest"]) then
-			local names = {"Silessa's Battle Harness"}
+		-- Handle opening Forgotten Chest (Shadowlands, Revendreth chest for Stony's Infused Ruby pet and Silessa's Battle Harness mount)
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Forgotten Chest"])
+			and GetBestMapForUnit("player") ~= CONSTANTS.UIMAPIDS.STORMSONG_VALLEY -- Chest with the same name in Stormsong Valley
+		then
+			local names = {"Stony's Infused Ruby", "Silessa's Battle Harness"}
 			Rarity:Debug("Detected Opening on " .. L["Forgotten Chest"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name] or self.db.profile.groups.mounts[name]
+				local v = self.db.profile.groups.pets[name] or self.db.profile.groups.mounts[name]
 				if v and type(v) == "table" and v.enabled ~= false then
 					if v.attempts == nil then
 						v.attempts = 1
@@ -1346,23 +1348,6 @@ function R:OnEvent(event, ...)
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Cache of Eyes"]) then
 			local names = {"Luminous Webspinner"}
 			Rarity:Debug("Detected Opening on " .. L["Cache of Eyes"] .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening Forgotten Chest (Venthyr only chest for Stony's Infused Ruby pet in Revendreth, Shadowlands)
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Forgotten Chest"]) then
-			local names = {"Stony's Infused Ruby"}
-			Rarity:Debug("Detected Opening on " .. L["Forgotten Chest"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
 				if v and type(v) == "table" and v.enabled ~= false then
