@@ -1326,7 +1326,9 @@ function R:OnEvent(event, ...)
 		end
 
 		-- Handle opening Forgotten Chest (Shadowlands, Revendreth chest for Stony's Infused Ruby pet and Silessa's Battle Harness mount)
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Forgotten Chest"]) then
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Forgotten Chest"])
+			and GetBestMapForUnit("player") ~= CONSTANTS.UIMAPIDS.STORMSONG_VALLEY -- Chest with the same name in Stormsong Valley
+		then
 			local names = {"Stony's Infused Ruby", "Silessa's Battle Harness"}
 			Rarity:Debug("Detected Opening on " .. L["Forgotten Chest"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
