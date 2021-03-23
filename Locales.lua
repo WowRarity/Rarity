@@ -1794,6 +1794,7 @@ L["Bottle of Gloop"] = true
 L["Piccolo of the Flaming Fire"] = true
 L["Lucy's Lost Collar"] = true
 L["Dirty Glinting Object"] = true
+L["A world event is currently available for %s! Go get it!"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

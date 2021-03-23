@@ -1433,14 +1433,18 @@ local function addGroup(group, requiresGroup)
 								-- Holiday reminder
 								if
 									Rarity.db.profile.holidayReminder and Rarity.allRemindersDone == nil and v.holidayReminder ~= false and
-										v.cat == HOLIDAY and
+										(v.cat == HOLIDAY or v.worldQuestId) and
 										status == colorize(L["Undefeated"], green)
 								 then
 									Rarity.anyReminderDone = true
 									numHolidayReminders = numHolidayReminders + 1
 									if numHolidayReminders <= 2 then
-										local text =
-											format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or v.name)
+										local text
+										if IsWorldQuestActive(v.worldQuestId) then
+											text = format(L["A world event is currently available for %s! Go get it!"], itemLink or itemName or v.name)
+										else
+											text = format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or v.name)
+										end
 										Rarity:Print(text)
 										if tostring(SHOW_COMBAT_TEXT) ~= "0" then
 											if type(CombatText_AddMessage) == "nil" then
