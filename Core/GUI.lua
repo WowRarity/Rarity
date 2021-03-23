@@ -71,6 +71,7 @@ local GetSubZoneText = GetSubZoneText
 local GetContainerItemID = GetContainerItemID
 local RequestRaidInfo = RequestRaidInfo
 local RequestLFDPlayerLockInfo = RequestLFDPlayerLockInfo
+local IsWorldQuestActive = C_TaskQuest.IsActive
 
 -- Addon APIs
 local FormatTime = Rarity.Utils.PrettyPrint.FormatTime
