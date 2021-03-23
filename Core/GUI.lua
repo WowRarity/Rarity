@@ -1292,6 +1292,12 @@ local function addGroup(group, requiresGroup)
 									status = colorize(L["Undefeated"], green)
 								end
 							end
+							-- If item is linked to a World Quest, flag as unavailable if WQ isn't up.
+							if v.worldQuestId then
+								if IsWorldQuestActive(v.worldQuestId) == false then
+									status = colorize(L["Unavailable"], gray)
+								end
+							end
 						elseif v.questId and v.holidayTexture then
 							if Rarity.holiday_textures[v.holidayTexture] == nil then
 								status = colorize(L["Unavailable"], gray)
