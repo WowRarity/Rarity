@@ -517,6 +517,7 @@ local bfaMounts = {
 		groupSize = 3,
 		equalOdds = true,
 		questId = {53000},
+		worldQuestId = 52196,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.VOLDUN, x = 44.6, y = 56.2, n = L["Dunegorger Kraulok"]}
 		}
