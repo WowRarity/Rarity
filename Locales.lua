@@ -21,7 +21,6 @@ L["Hungry Burrower"] = true
 L["Stonewing Dredwing Pup"] = true
 L["Torghast Lurker"] = true
 L["Maw Crawler"] = true
-L["Jar of Ashes	"] = true
 L["Crimson Dredwing Pup"] = true
 L["Lightbinders"] = true
 L["Amalgamation of Light"] = true
