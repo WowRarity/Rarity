@@ -315,7 +315,7 @@ local shadowlandsMounts = {
 		groupSize = 5,
 		equalOdds = true,
 		coords = {
-			{m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 50.67, y = 47.37, n = L["Theatre of Pain"]}
+			{m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 50.67, y = 47.37, n = L["Theater of Pain"]}
 		}
 	},
 	["Marrowfang's Reins"] = {
