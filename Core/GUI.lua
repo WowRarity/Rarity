@@ -1440,8 +1440,10 @@ local function addGroup(group, requiresGroup)
 									numHolidayReminders = numHolidayReminders + 1
 									if numHolidayReminders <= 2 then
 										local text
-										if IsWorldQuestActive(v.worldQuestId) then
-											text = format(L["A world event is currently available for %s! Go get it!"], itemLink or itemName or v.name)
+										if v.worldQuestId then
+											if IsWorldQuestActive(v.worldQuestId) then
+												text = format(L["A world event is currently available for %s! Go get it!"], itemLink or itemName or v.name)
+											end
 										else
 											text = format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or v.name)
 										end
