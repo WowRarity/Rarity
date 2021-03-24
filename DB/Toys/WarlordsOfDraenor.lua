@@ -79,6 +79,20 @@ local wodToys = {
 		coords = {
 			{m = 543, x = 69.2, y = 44.8, n = L["Basten"]}
 		}
+	},
+	["Outrider's Bridle Chain"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Outrider's Bridle Chain"],
+		itemId = 120276,
+		questId = 37546,
+		npcs = {81330},
+		chance = 8,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NAGRAND_DRAENOR}
+		}
 	}
 }
 
