@@ -121,18 +121,6 @@ local shadowlandsToys = {
 		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
 		name = L["Acrobatic Steward"],
 		itemId = 184418,
-		items = {
-			353234,
-			353019,
-			353503,
-			352754,
-			353325,
-			353516,
-			353205,
-			363825,
-			353500,
-			353643
-		},
 		chance = 20, -- Average
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.BASTION}
@@ -159,11 +147,6 @@ local shadowlandsToys = {
 		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
 		name = L["Soothing Vesper"],
 		itemId = 184415,
-		items = {
-			353687,
-			353691,
-			353867
-		},
 		chance = 12, -- Average
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.BASTION}
@@ -216,7 +199,6 @@ local shadowlandsToys = {
 		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
 		name = L["Kevin's Party Supplies"],
 		itemId = 184447,
-		items = {354856},
 		chance = 11,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.MALDRAXXUS}
@@ -229,7 +211,6 @@ local shadowlandsToys = {
 		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
 		name = L["Battlecry of Krexus"],
 		itemId = 184318,
-		items = {352086},
 		chance = 25,
 		sourceText = L["Only members of the Necrolord covenant will be able to reach this cache."],
 		coords = {
