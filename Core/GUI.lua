@@ -71,6 +71,7 @@ local GetSubZoneText = GetSubZoneText
 local GetContainerItemID = GetContainerItemID
 local RequestRaidInfo = RequestRaidInfo
 local RequestLFDPlayerLockInfo = RequestLFDPlayerLockInfo
+local IsWorldQuestActive = C_TaskQuest.IsActive
 
 -- Addon APIs
 local FormatTime = Rarity.Utils.PrettyPrint.FormatTime
@@ -1291,6 +1292,12 @@ local function addGroup(group, requiresGroup)
 									status = colorize(L["Undefeated"], green)
 								end
 							end
+							-- If item is linked to a World Quest, flag as unavailable if WQ isn't up.
+							if v.worldQuestId then
+								if IsWorldQuestActive(v.worldQuestId) == false then
+									status = colorize(L["Unavailable"], gray)
+								end
+							end
 						elseif v.questId and v.holidayTexture then
 							if Rarity.holiday_textures[v.holidayTexture] == nil then
 								status = colorize(L["Unavailable"], gray)
@@ -1426,14 +1433,20 @@ local function addGroup(group, requiresGroup)
 								-- Holiday reminder
 								if
 									Rarity.db.profile.holidayReminder and Rarity.allRemindersDone == nil and v.holidayReminder ~= false and
-										v.cat == HOLIDAY and
+										(v.cat == HOLIDAY or v.worldQuestId) and
 										status == colorize(L["Undefeated"], green)
 								 then
 									Rarity.anyReminderDone = true
 									numHolidayReminders = numHolidayReminders + 1
 									if numHolidayReminders <= 2 then
-										local text =
-											format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or v.name)
+										local text
+										if v.worldQuestId then
+											if IsWorldQuestActive(v.worldQuestId) then
+												text = format(L["A world event is currently available for %s! Go get it!"], itemLink or itemName or v.name)
+											end
+										else
+											text = format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or v.name)
+										end
 										Rarity:Print(text)
 										if tostring(SHOW_COMBAT_TEXT) ~= "0" then
 											if type(CombatText_AddMessage) == "nil" then

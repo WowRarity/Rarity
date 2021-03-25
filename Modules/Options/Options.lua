@@ -2526,7 +2526,7 @@ function R:CreateGroup(options, group, isUser)
 						self:Update("OPTIONS")
 					end,
 					hidden = function()
-						return item.cat ~= HOLIDAY or (item.questId == nil and item.lockDungeonId == nil and item.holidayTexture == nil)
+						return (item.cat ~= HOLIDAY and item.worldQuestId == nil) or (item.questId == nil and item.lockDungeonId == nil and item.holidayTexture == nil)
 					end
 				},
 				spacer3 = {type = "header", name = L["Defeat Detection"], order = newOrder()},

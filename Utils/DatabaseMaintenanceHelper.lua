@@ -51,6 +51,7 @@ local DBH = {
 			lockoutDetails = false,
 			instanceDifficulties = false,
 			unique = false,
+			worldQuestId = false,
 			-- Populated fields (SavedVariables)
 			attempts = false,
 			lastAttempts = false,
