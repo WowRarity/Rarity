@@ -40,6 +40,7 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		christmasOnly = true,
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
 	},
@@ -53,6 +54,7 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		christmasOnly = true,
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
 	},
@@ -66,6 +68,7 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		christmasOnly = true,
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
 	},
@@ -79,6 +82,7 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		christmasOnly = true,
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
 	},
@@ -95,7 +99,7 @@ local holidayEventToys = {
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
 	},
-	["Foot Ball"] = {
+	["Foot Ball"] = {		-- WHY is this item here? It can be purchased from vendor
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
 		isToy = true,
@@ -105,6 +109,7 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		christmasOnly = true,
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
 	},
@@ -185,6 +190,7 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		christmasOnly = true,
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
 	},
@@ -267,6 +273,7 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		christmasOnly = true,
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
 	},
