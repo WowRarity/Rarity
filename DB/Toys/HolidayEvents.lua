@@ -271,6 +271,19 @@ local holidayEventToys = {
 			{m = 998, x = 63.4, y = 9, q = 14059, h = true}
 		}
 	},
+	["Special Edition Foot Ball"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Special Edition Foot Ball"],
+		itemId = 90888,
+		items = {93626, 116762},
+		chance = 75,
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		christmasOnly = true,
+		questId = {6983, 7043}
+	},
 	["The Heartbreaker"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
