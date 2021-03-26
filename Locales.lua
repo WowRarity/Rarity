@@ -872,8 +872,8 @@ L["All players can participate in killing this world boss once per week, regardl
 L["Contained in bonus satchels"] = true
 L["Appears in the Black Market"] = true
 L["Can be obtained with a bonus roll"] = true
-L["This mount is only obtainable by Alliance players"] = true
-L["This mount is only obtainable by Horde players"] = true
+L["This item is only obtainable by Alliance players"] = true
+L["This item is only obtainable by Horde players"] = true
 L["All raid formats except Raid Finder"] = true
 L["Any raid size or difficulty"] = true
 L["25-player heroic"] = true
