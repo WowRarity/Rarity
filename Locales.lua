@@ -1798,6 +1798,7 @@ L["Ny'alotha Allseer"] = true
 L["Endothermic Blaster"] = true
 L["Scroll of Storytelling"] = true
 L["Special Edition Foot Ball"] = true
+L["Toy Weapon Set"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
