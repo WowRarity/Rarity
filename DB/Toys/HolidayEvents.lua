@@ -235,6 +235,19 @@ local holidayEventToys = {
 		christmasOnly = true,
 		coords = {{m = 86, x = 49.1, y = 78.2, h = true}, {m = 87, x = 33.4, y = 65.9, a = true}}
 	},
+	["Scroll of Storytelling"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Scroll of Storytelling"],
+		itemId = 116456,
+		items = {116762},
+		chance = 8,
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		christmasOnly = true,
+		questId = {6983, 7043}
+	},
 	["Silver-Plated Turkey Shooter"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
