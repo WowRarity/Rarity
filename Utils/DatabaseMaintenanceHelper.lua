@@ -1,5 +1,5 @@
-local addonName, addon = ...
-if not addon then
+local addonName, addonTable = ...
+if not addonTable then
 	return
 end
 
@@ -11,6 +11,8 @@ local tostring = tostring
 local assert = assert
 
 -- Locals
+local CONSTANTS = addonTable.constants
+
 -- Format: fieldName = isRequiredField (optional if set to FALSE)
 local DBH = {
 	itemTypes = {
@@ -138,6 +140,28 @@ function DBH:VerifyEntry(entry)
 
 	if entry.equalOdds and not entry.groupSize then
 		print("Warning: Found setting for equalOdds but groupSize is not set")
+		return false
+	end
+
+	--[[
+      HOLIDAY VALUES ------------------------------------------------------------------------------------------------------------
+  	]]
+
+	-- All holiday items should have holidayTexture set to represent which holiday it belongs to.
+	if entry.cat == CONSTANTS.ITEM_CATEGORIES.HOLIDAY and not entry.holidayTexture then
+		print("Warning: Found holiday item without a 'holidayTexture'.")
+		return false
+	end
+
+	-- There is no reason why items should have holidayTexture unless they are in the Holiday category.
+	if entry.holidayTexture and not (entry.cat == CONSTANTS.ITEM_CATEGORIES.HOLIDAY) then
+		print("Warning: Found item with holidayTexture, but it's not a holiday item.")
+		return false
+	end
+
+	-- There is no reason why items should have christmasOnly unless they are in the Holiday category.
+	if entry.christmasOnly and not (entry.cat == CONSTANTS.ITEM_CATEGORIES.HOLIDAY) then
+		print("Warning: Found item with christmasOnly, but it's not a holiday item.")
 		return false
 	end
 
