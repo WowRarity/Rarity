@@ -99,6 +99,19 @@ local holidayEventToys = {
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
 	},
+	["Endothermic Blaster"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Endothermic Blaster"],
+		itemId = 128636,
+		items = {116762},
+		chance = 200,  -- Guess
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		christmasOnly = true,
+		questId = {6983, 7043}
+	},
 	["Foot Ball"] = {		-- WHY is this item here? It can be purchased from vendor
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
