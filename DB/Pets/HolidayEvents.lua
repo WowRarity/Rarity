@@ -15,7 +15,6 @@ local holidayEventPets = {
 		chance = 50,
 		creatureId = 24968,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		christmasOnly = true,
 		questId = {6983, 7043},
 		coords = {{m = 87, x = 33.2, y = 67.8}, {m = 25, x = 42.4, y = 41}, {m = 86, x = 54.4, y = 77}}
 	},
@@ -130,7 +129,6 @@ local holidayEventPets = {
 		chance = 50,
 		creatureId = 55215,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		christmasOnly = true,
 		questId = {6983, 7043},
 		coords = {{m = 87, x = 33.2, y = 67.8}, {m = 25, x = 42.4, y = 41}, {m = 86, x = 54.4, y = 77}}
 	},
@@ -145,7 +143,6 @@ local holidayEventPets = {
 		chance = 100,
 		creatureId = 73741,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		christmasOnly = true,
 		questId = {6983, 7043},
 		coords = {{m = 87, x = 33.2, y = 67.8}, {m = 25, x = 42.4, y = 41}, {m = 86, x = 54.4, y = 77}}
 	},

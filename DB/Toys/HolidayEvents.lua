@@ -40,7 +40,6 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		christmasOnly = true,
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
 	},
@@ -54,7 +53,6 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		christmasOnly = true,
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
 	},
@@ -68,7 +66,6 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		christmasOnly = true,
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
 	},
@@ -82,7 +79,6 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		christmasOnly = true,
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
 	},
@@ -109,7 +105,6 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 200,  -- Guess
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		christmasOnly = true,
 		questId = {6983, 7043}
 	},
 	["Foot Ball"] = {		-- WHY is this item here? It can be purchased from vendor
@@ -122,7 +117,6 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		christmasOnly = true,
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
 	},
@@ -138,7 +132,6 @@ local holidayEventToys = {
 		sourceText = L["Available starting December 25th"],
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {8788, 8767},
-		christmasOnly = true,
 		coords = {{m = 86, x = 49.1, y = 78.2, h = true}, {m = 87, x = 33.4, y = 65.9, a = true}}
 	},
 	["MiniZep Controller"] = {
@@ -190,7 +183,6 @@ local holidayEventToys = {
 		sourceText = L["Available starting December 25th"],
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {8788, 8767},
-		christmasOnly = true,
 		coords = {{m = 86, x = 49.1, y = 78.2, h = true}, {m = 87, x = 33.4, y = 65.9, a = true}}
 	},
 	["Red Wooden Sled"] = {
@@ -203,7 +195,6 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		christmasOnly = true,
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
 	},
@@ -232,7 +223,6 @@ local holidayEventToys = {
 		sourceText = L["Available starting December 25th"],
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {8788, 8767},
-		christmasOnly = true,
 		coords = {{m = 86, x = 49.1, y = 78.2, h = true}, {m = 87, x = 33.4, y = 65.9, a = true}}
 	},
 	["Scroll of Storytelling"] = {
@@ -245,7 +235,6 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 8,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		christmasOnly = true,
 		questId = {6983, 7043}
 	},
 	["Silver-Plated Turkey Shooter"] = {
@@ -281,7 +270,6 @@ local holidayEventToys = {
 		items = {93626, 116762},
 		chance = 75,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		christmasOnly = true,
 		questId = {6983, 7043}
 	},
 	["The Heartbreaker"] = {
@@ -312,7 +300,6 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		christmasOnly = true,
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
 	},
@@ -326,7 +313,6 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 200, -- Guess
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		christmasOnly = true,
 		questId = {6983, 7043},
 		requiresHorde = true
 	},
@@ -340,7 +326,6 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 200, -- Guess
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		christmasOnly = true,
 		questId = {6983, 7043},
 		requiresAlliance = true
 	},
@@ -356,7 +341,6 @@ local holidayEventToys = {
 		sourceText = L["Available starting December 25th"],
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {8788, 8767},
-		christmasOnly = true,
 		coords = {{m = 86, x = 49.1, y = 78.2, h = true}, {m = 87, x = 33.4, y = 65.9, a = true}}
 	}
 }
