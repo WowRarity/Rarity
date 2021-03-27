@@ -30,6 +30,19 @@ local holidayEventToys = {
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.HALLOWS_END,
 		coords = {{m = 104, x = 40.6, y = 79.4}}
 	},
+	["Crashin' Thrashin' Battleship)"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Crashin' Thrashin' Battleship"],
+		itemId = 172223,
+		items = {116762},
+		chance = 100, -- Blind guess
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		questId = {6983, 7043},
+		requiresAlliance = true
+	},
 	["Crashin' Thrashin' Flamer Controller"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
