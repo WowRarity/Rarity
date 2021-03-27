@@ -405,6 +405,18 @@ local holidayEventToys = {
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {6983, 7043}
 	},
+	["Wreath-A-Rang"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Wreath-A-Rang"],
+		itemId = 178530,
+		items = {116762},
+		chance = 100, -- Blind guess
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		questId = {6983, 7043}
+	},
 	["Zhevra Lounge Cushion"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
