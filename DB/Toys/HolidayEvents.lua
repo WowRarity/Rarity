@@ -134,6 +134,18 @@ local holidayEventToys = {
 		questId = {8788, 8767},
 		coords = {{m = 86, x = 49.1, y = 78.2, h = true}, {m = 87, x = 33.4, y = 65.9, a = true}}
 	},
+	["Greatfather Winter's Hearthstone"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Greatfather Winter's Hearthstone"],
+		itemId = 162973,
+		items = {116762},
+		chance = 100, -- Blind guess
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		questId = {6983, 7043}
+	},
 	["MiniZep Controller"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
 		type = CONSTANTS.ITEM_TYPES.ITEM,

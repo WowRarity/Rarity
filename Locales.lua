@@ -1799,6 +1799,7 @@ L["Endothermic Blaster"] = true
 L["Scroll of Storytelling"] = true
 L["Special Edition Foot Ball"] = true
 L["Toy Weapon Set"] = true
+L["Greatfather Winter's Hearthstone"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
