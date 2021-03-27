@@ -69,6 +69,19 @@ local holidayEventToys = {
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
 	},
+	["Crashin' Thrashin' Juggernaught"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Crashin' Thrashin' Juggernaught"],
+		itemId = 172222,
+		items = {116762},
+		chance = 100, -- Blind guess
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		questId = {6983, 7043},
+		requiresHorde = true
+	},
 	["Crashin' Thrashin' Racer Controller"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
