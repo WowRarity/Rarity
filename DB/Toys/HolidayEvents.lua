@@ -30,6 +30,19 @@ local holidayEventToys = {
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.HALLOWS_END,
 		coords = {{m = 104, x = 40.6, y = 79.4}}
 	},
+	["Crashin' Thrashin' Battleship)"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Crashin' Thrashin' Battleship"],
+		itemId = 172223,
+		items = {116762},
+		chance = 100, -- Blind guess
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		questId = {6983, 7043},
+		requiresAlliance = true
+	},
 	["Crashin' Thrashin' Flamer Controller"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
@@ -55,6 +68,19 @@ local holidayEventToys = {
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
+	},
+	["Crashin' Thrashin' Juggernaught"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Crashin' Thrashin' Juggernaught"],
+		itemId = 172222,
+		items = {116762},
+		chance = 100, -- Blind guess
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		questId = {6983, 7043},
+		requiresHorde = true
 	},
 	["Crashin' Thrashin' Racer Controller"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -95,7 +121,19 @@ local holidayEventToys = {
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
 	},
-	["Foot Ball"] = {
+	["Endothermic Blaster"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Endothermic Blaster"],
+		itemId = 128636,
+		items = {116762},
+		chance = 200,  -- Guess
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		questId = {6983, 7043}
+	},
+	["Foot Ball"] = {		-- WHY is this item here? It can be purchased from vendor
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
 		isToy = true,
@@ -120,8 +158,45 @@ local holidayEventToys = {
 		sourceText = L["Available starting December 25th"],
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {8788, 8767},
-		christmasOnly = true,
 		coords = {{m = 86, x = 49.1, y = 78.2, h = true}, {m = 87, x = 33.4, y = 65.9, a = true}}
+	},
+	["Greatfather Winter's Hearthstone"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Greatfather Winter's Hearthstone"],
+		itemId = 162973,
+		items = {116762},
+		chance = 100, -- Blind guess
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		questId = {6983, 7043}
+	},
+	["Hearthstation (Horde)"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Hearthstation"],
+		itemId = 151344,
+		items = {116762},
+		chance = 100, -- Blind guess
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		questId = {6983, 7043},
+		requiresHorde = true
+	},
+	["Hearthstation (Alliance)"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Hearthstation"],
+		itemId = 151343,
+		items = {116762},
+		chance = 100, -- Blind guess
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		questId = {6983, 7043},
+		requiresAlliance = true
 	},
 	["MiniZep Controller"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -172,7 +247,6 @@ local holidayEventToys = {
 		sourceText = L["Available starting December 25th"],
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {8788, 8767},
-		christmasOnly = true,
 		coords = {{m = 86, x = 49.1, y = 78.2, h = true}, {m = 87, x = 33.4, y = 65.9, a = true}}
 	},
 	["Red Wooden Sled"] = {
@@ -213,8 +287,19 @@ local holidayEventToys = {
 		sourceText = L["Available starting December 25th"],
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {8788, 8767},
-		christmasOnly = true,
 		coords = {{m = 86, x = 49.1, y = 78.2, h = true}, {m = 87, x = 33.4, y = 65.9, a = true}}
+	},
+	["Scroll of Storytelling"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Scroll of Storytelling"],
+		itemId = 116456,
+		items = {116762},
+		chance = 8,
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		questId = {6983, 7043}
 	},
 	["Silver-Plated Turkey Shooter"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -238,6 +323,18 @@ local holidayEventToys = {
 			{m = 998, x = 65.2, y = 13.8, q = 14058, h = true},
 			{m = 998, x = 63.4, y = 9, q = 14059, h = true}
 		}
+	},
+	["Special Edition Foot Ball"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Special Edition Foot Ball"],
+		itemId = 90888,
+		items = {93626, 116762},
+		chance = 75,
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		questId = {6983, 7043}
 	},
 	["The Heartbreaker"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -270,6 +367,56 @@ local holidayEventToys = {
 		questId = {6983, 7043},
 		coords = {{m = 25, x = 43.6, y = 39.6}}
 	},
+	["Toy Weapon Set (Horde)"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Toy Weapon Set"],
+		itemId = 151348,
+		items = {116762},
+		chance = 200, -- Guess
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		questId = {6983, 7043},
+		requiresHorde = true
+	},
+	["Toy Weapon Set (Alliance)"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Toy Weapon Set"],
+		itemId = 151349,
+		items = {116762},
+		chance = 200, -- Guess
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		questId = {6983, 7043},
+		requiresAlliance = true
+	},
+	["Wild Holly"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Wild Holly"],
+		itemId = 172219,
+		items = {116762},
+		chance = 100, -- Blind guess
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		questId = {6983, 7043}
+	},
+	["Wreath-A-Rang"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Wreath-A-Rang"],
+		itemId = 178530,
+		items = {116762},
+		chance = 100, -- Blind guess
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		questId = {6983, 7043}
+	},
 	["Zhevra Lounge Cushion"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
@@ -282,7 +429,6 @@ local holidayEventToys = {
 		sourceText = L["Available starting December 25th"],
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {8788, 8767},
-		christmasOnly = true,
 		coords = {{m = 86, x = 49.1, y = 78.2, h = true}, {m = 87, x = 33.4, y = 65.9, a = true}}
 	}
 }
