@@ -795,6 +795,24 @@ local bfaMounts = {
 		chance = 100,
 		equalOdds = true,
 		groupSize = 3
+	},
+	-- 8.3
+	["Ny'alotha Allseer"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		name = L["Ny'alotha Allseer"],
+		spellId = 308814,
+		itemId = 174872,
+		npcs = {99999},
+		tooltipNpcs = {158041}, -- N'Zoth the Corruptor
+		instanceDifficulties = {[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true},
+		chance = 100,
+		wasGuaranteed = true,
+		groupSize = 10,
+		equalOdds = true,
+		statisticId = {14138},
+		coords = {{m = CONSTANTS.UIMAPIDS.NYALOTHA, i = true}}
 	}
 }
 
