@@ -345,6 +345,23 @@ local bfaMounts = {
 			{m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 63.7, y = 20.9, n = L["Moxo the Beheader"] .. " - " .. L["Alliance only"]}
 		}
 	},
+	["Glacial Tidestorm"] = {
+        cat = CONSTANTS.ITEM_CATEGORIES.BFA,
+        type = CONSTANTS.ITEM_TYPES.MOUNT,
+        method = CONSTANTS.DETECTION_METHODS.BOSS,
+        name = L["Glacial Tidestorm"],
+        spellId = 289555,
+        itemId = 166705,
+        npcs = {99999},
+        tooltipNpcs = {165396}, -- Lady Jaina Proudmoore
+        instanceDifficulties = {[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true},
+        chance = 100,
+        wasGuaranteed = true,
+        groupSize = 10,
+        equalOdds = true,
+        statisticId = {13382},
+        coords = {{m = CONSTANTS.UIMAPIDS.BATTLE_FOR_DAZARALOR_RAID, i = true}}
+	},
 	-- 8.2 Mounts
 	["Royal Snapdragon"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,

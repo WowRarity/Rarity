@@ -1805,6 +1805,7 @@ L["Hearthstation"] = true
 L["Crashin' Thrashin' Battleship"] = true
 L["Crashin' Thrashin' Juggernaught"] = true
 L["Wreath-A-Rang"] = true
+L["Glacial Tidestorm"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
