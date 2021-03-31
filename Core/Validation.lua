@@ -2,7 +2,9 @@ local _, addonTable = ...
 
 local Validation = {}
 
+-- Upvalues
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
+local CONSTANTS = addonTable.constants
 
 function Validation:ValidateItemDB()
 	local ItemDB = Rarity.db.profile.groups.items
@@ -40,8 +42,6 @@ local pairs = pairs
 local tostring = tostring
 local assert = assert
 
--- Locals
-local CONSTANTS = addonTable.constants
 -- TODO Rename
 function Validation:VerifyEntry(entry)
 	-- print("Verifying entry for item: " .. tostring(entry and entry.name))
