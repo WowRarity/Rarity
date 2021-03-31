@@ -21,7 +21,7 @@ function Validation:ValidateItemDB()
 		for item, fields in pairs(entry) do
 			if type(fields) == "table" then
 				Rarity:Debug(format(L["Verifying entry: %s ..."], item))
-				local isEntryValid = Rarity.Validation:VerifyEntry(fields)
+				local isEntryValid = Rarity.Validation:ValidateEntry(fields)
 				if not isEntryValid then -- Skip pseudo-groups... Another artifact that has to be worked around, I guess
 					Rarity:Print(format(L["Verification failed for entry: %s"], item))
 					numErrors = numErrors + 1
@@ -42,8 +42,7 @@ local pairs = pairs
 local tostring = tostring
 local assert = assert
 
--- TODO Rename
-function Validation:VerifyEntry(entry)
+function Validation:ValidateEntry(entry)
 	-- print("Verifying entry for item: " .. tostring(entry and entry.name))
 
 	local schema = Rarity.DatabaseSchema
