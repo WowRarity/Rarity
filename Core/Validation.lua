@@ -42,10 +42,6 @@ local assert = assert
 
 -- Locals
 local CONSTANTS = addonTable.constants
-
--- Format: fieldName = isRequiredField (optional if set to FALSE)
-local DBH = {}
-
 -- TODO Rename
 function Validation:VerifyEntry(entry)
 	-- print("Verifying entry for item: " .. tostring(entry and entry.name))
