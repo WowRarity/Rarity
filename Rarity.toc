@@ -98,7 +98,6 @@ DB\Toys\BattleForAzeroth.lua
 DB\Toys\Shadowlands.lua
 
 # Utility/Helpers
-Utils\DatabaseMaintenanceHelper.lua
 Utils\DebugCache.lua
 Utils\PrettyPrint.lua
 Utils\Sorting.lua
