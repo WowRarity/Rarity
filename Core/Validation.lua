@@ -2,7 +2,7 @@ local _, addonTable = ...
 
 local Validation = {}
 
-local L = addonTable.L
+local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 
 function Validation:ValidateItemDB()
 	local ItemDB = Rarity.db.profile.groups.items
