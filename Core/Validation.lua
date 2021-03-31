@@ -4,8 +4,7 @@ local Validation = {}
 
 local L = addonTable.L
 
--- TODO Rename
-function Validation:VerifyItemDB()
+function Validation:ValidateItemDB()
 	local DBH = Rarity.Utils.DatabaseMaintenanceHelper
 	local ItemDB = self.db.profile.groups.items
 	local PetDB = self.db.profile.groups.pets

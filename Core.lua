@@ -378,7 +378,7 @@ do
 		self:Debug(L["Loaded (running in debug mode)"])
 
 		if self.db.profile.verifyDatabaseOnLogin then
-			self.Validation:VerifyItemDB()
+			self.Validation:ValidateItemDB()
 		end
 	end
 end
