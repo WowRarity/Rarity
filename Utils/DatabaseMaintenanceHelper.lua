@@ -168,19 +168,4 @@ function DBH:VerifyEntry(entry)
 	return true
 end
 
-function DBH:GetExportString(entry)
-	local isValidEntry = self:VerifyEntry(entry)
-	assert(isValidEntry, "Cannot export an invalid entry")
-
-	local exportString = '["' .. entry.name .. '"] = {/n'
-
-	for key, value in pairs(entry) do -- Assemble the string
-		exportString = exportString .. key .. " = " .. value .. ","
-	end
-
-	exportString = exportString .. "},\n"
-
-	return exportString
-end
-
 Rarity.Utils.DatabaseMaintenanceHelper = DBH
