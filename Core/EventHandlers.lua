@@ -690,7 +690,7 @@ function R:OnChatCommand(input)
 		local numMessages = 50 -- Hardcoded is meh, but it should suffice for the time being
 		DebugCache:PrintMessages(numMessages)
 	elseif strlower(input) == "verify" then -- Verify the ItemDB
-		self:VerifyItemDB()
+		self.Validation:VerifyItemDB()
 	elseif strlower(input) == "purge" then -- TODO: This should be done automatically, no?
 		self.Database:PurgeObsoleteEntries()
 	elseif strlower(input) == "profiling" then
