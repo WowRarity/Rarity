@@ -11,29 +11,45 @@ function Validation:ValidateItemDB()
 	local PetDB = Rarity.db.profile.groups.pets
 	local MountDB = Rarity.db.profile.groups.mounts
 	local UserDB = Rarity.db.profile.groups.user
-	local DB = {ItemDB, PetDB, MountDB}
+	local DB = {
+		ItemDB,
+		PetDB,
+		MountDB
+		-- UserDB -- todo
+	}
 
-	Rarity:Print(L["Verifying item database..."])
+	Rarity:Print(L["Validating item database... this shouldn't take long!"])
 
 	local numErrors = 0
+	local numEntriesChecked = 0
 
-	for category, entry in pairs(DB) do
-		for item, fields in pairs(entry) do
+	for categoryName, entries in pairs(DB) do
+		for itemName, fields in pairs(entries) do
 			if type(fields) == "table" then
-				Rarity:Debug(format(L["Verifying entry: %s ..."], item))
-				local isEntryValid = Rarity.Validation:ValidateEntry(fields)
+				numEntriesChecked = numEntriesChecked + 1
+				-- Rarity:Debug(format("Validating item: %s ...", itemName))
+				local isEntryValid = Rarity.Validation:ValidateEntry(itemName, fields)
 				if not isEntryValid then -- Skip pseudo-groups... Another artifact that has to be worked around, I guess
-					Rarity:Print(format(L["Verification failed for entry: %s"], item))
+					Rarity:Print(format(L["Validation failed for item: %s"], itemName))
 					numErrors = numErrors + 1
 				end
 			end
 		end
 	end
 
+	Rarity:Debug(format("Finished validating %d items", numEntriesChecked))
+
 	if numErrors == 0 then
-		Rarity:Print(L["Verification complete! Everything appears to be in order..."])
+		Rarity:Print(L["We didn't find any errors in your database. Yay!"])
 	else
-		Rarity:Print(format(L["Verfication failed with %d errors!"], numErrors))
+		Rarity:Print(
+			format(
+				L[
+					"We found %d invalid items in your database! If you added them yourself, you should probably fix them to make sure the addon works as expected :)"
+				],
+				numErrors
+			)
+		)
 	end
 end
 
@@ -42,72 +58,44 @@ local pairs = pairs
 local tostring = tostring
 local assert = assert
 
-function Validation:ValidateEntry(entry)
-	-- print("Verifying entry for item: " .. tostring(entry and entry.name))
+function Validation:ValidateEntry(itemName, entry)
+	-- Rarity:Debug(format("Verifying item %s", itemName))
+
+	-- if L[itemName] ~= entry.name then -- Keys are never localized, but names always are
+	-- 	Rarity:Debug(format("Failed to validate item %s (base name must match DB key)", itemName))
+	-- 	return false
+	-- end
+
+	local itemType = entry.type -- todo use group name to determine the validator instead
+	if itemType == nil then -- Also covers entry.name being nil
+		Rarity:Debug(format("Failed to validate item %s (undefined item type)", itemName))
+		return false
+	end
 
 	local schema = Rarity.DatabaseSchema
-
-	local itemType = entry.type
 	if schema[itemType] == nil then
-		print(tostring(itemType) .. " is not a valid item type")
+		Rarity:Debug(format("Failed to validate item %s (unknown item type %s)", itemName, itemType))
 		return false
 	end
 
-	-- The most basic check: Make sure all required fields are set
-	for type, fields in pairs(schema) do
-		for key, isRequiredField in pairs(fields) do -- Check if required fields are actually set
-			if isRequiredField and (type == itemType or type == "ANY") then -- This field is required for the given item type
-				if not entry[key] then -- ..	. but it isn't set
-					print(tostring(key) .. " is a required field and must be set")
-					-- dump(entry)
-					return false
-				end
-			end
-		end
-	end
+	-- Rarity:Debug(format("Validating entry of type %s", itemType))
 
-	-- Additional check: Allow only valid fields (result: Alert if something was entered incorrectly while updating the DB...)
-	for key, value in pairs(entry) do
-		if (schema.ANY[key] == nil) and (schema[itemType][key] == nil) then
-			print(tostring(key) .. " is an invalid field and cannot be set")
-			return false
-		end
-		-- TODO: Type checking, validation etc. here (if ever implemented)
-	end
+	local validator = schema[itemType]
 
-	-- equalOdds and groupSize usually go together since everything is Personal Loot nowadays
-	if entry.groupSize and not entry.equalOdds then
-		print("Warning: Found setting for groupSize but equalOdds is not set")
+	if validator == nil then
+		Rarity:Debug(format("Failed to validate item %s (no schema exists for item type %s)", itemName, itemType))
 		return false
 	end
 
-	if entry.equalOdds and not entry.groupSize then
-		print("Warning: Found setting for equalOdds but groupSize is not set")
-		return false
-	end
-
-	--[[
-      HOLIDAY VALUES ------------------------------------------------------------------------------------------------------------
-  	]]
-	-- All holiday items should have holidayTexture set to represent which holiday it belongs to.
-	if entry.cat == CONSTANTS.ITEM_CATEGORIES.HOLIDAY and not entry.holidayTexture then
-		print("Warning: Found holiday item without a 'holidayTexture'.")
-		return false
-	end
-
-	-- There is no reason why items should have holidayTexture unless they are in the Holiday category.
-	if entry.holidayTexture and not (entry.cat == CONSTANTS.ITEM_CATEGORIES.HOLIDAY) then
-		print("Warning: Found item with holidayTexture, but it's not a holiday item.")
-		return false
-	end
-
-	-- There is no reason why items should have christmasOnly unless they are in the Holiday category.
-	if entry.christmasOnly and not (entry.cat == CONSTANTS.ITEM_CATEGORIES.HOLIDAY) then
-		print("Warning: Found item with christmasOnly, but it's not a holiday item.")
+	local isValidEntry = validator:Validate(entry)
+	if not isValidEntry then
+		Rarity:Debug(format("Failed to validate item %s of type %s (doesn't match expected schema)", itemName, itemType))
 		return false
 	end
 
 	return true
+
+	-- return true
 end
 
 Rarity.Validation = Validation
