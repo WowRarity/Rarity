@@ -149,19 +149,19 @@ function Item:Validate(entry)
 	-- ]]
 	-- All holiday items should have holidayTexture set to represent which holiday it belongs to.
 	if entry.cat == CONSTANTS.ITEM_CATEGORIES.HOLIDAY and not entry.holidayTexture then
-		Rarity:Debug("Found holiday item without a 'holidayTexture'.")
+		Rarity:Debug("Found holiday item without a holidayTexture property")
 		return false
 	end
 
 	-- There is no reason why items should have holidayTexture unless they are in the Holiday category.
 	if entry.holidayTexture and not (entry.cat == CONSTANTS.ITEM_CATEGORIES.HOLIDAY) then
-		Rarity:Debug("Found item with holidayTexture, but it's not a holiday item.")
+		Rarity:Debug("Found item with holidayTexture property, but it's not a holiday item")
 		return false
 	end
 
 	-- There is no reason why items should have christmasOnly unless they are in the Holiday category.
 	if entry.christmasOnly and not (entry.cat == CONSTANTS.ITEM_CATEGORIES.HOLIDAY) then
-		Rarity:Debug("Found item with christmasOnly, but it's not a holiday item.")
+		Rarity:Debug("Found item with christmasOnly property, but it's not a holiday item")
 		return false
 	end
 
