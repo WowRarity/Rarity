@@ -102,7 +102,7 @@ local shadowlandsMounts = {
 		spellId = 344574,
 		itemId = 184160,
 		items = {184158},
-		chance = 10, -- Estimate
+		chance = 3,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.MALDRAXXUS}
 		}
@@ -115,7 +115,7 @@ local shadowlandsMounts = {
 		spellId = 344575,
 		itemId = 184162,
 		items = {184158},
-		chance = 10, -- Estimate
+		chance = 3,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.MALDRAXXUS}
 		}
@@ -128,7 +128,7 @@ local shadowlandsMounts = {
 		spellId = 344576,
 		itemId = 184161,
 		items = {184158},
-		chance = 10, -- Estimate
+		chance = 3,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.MALDRAXXUS}
 		}
