@@ -123,10 +123,6 @@ function Toy:Validate(entry)
 	return true -- todo
 end
 
-function Item:IsHolidayItem(entry)
-	return entry.cat == CONSTANTS.ITEM_CATEGORIES.HOLIDAY
-end
-
 local DatabaseSchema = {
 	PET = Pet,
 	MOUNT = Mount,
@@ -135,61 +131,6 @@ local DatabaseSchema = {
 	-- Fields that are valid for all types of items
 	ANY = {}
 }
-
-function Item:IsValidHolidayItem(entry)
-	-- All holiday items should have holidayTexture set to represent which holiday it belongs to.
-	if not entry.holidayTexture then
-		Rarity:Debug("Found holiday item without a holidayTexture property")
-		return false
-	end
-
-	return true
-end
-
-function Item:HasOnlyValidFields(entry)
-	for key, value in pairs(entry) do
-		if self.expectedFields[key] == nil then
-			Rarity:Debug(format("%s is an invalid field and should'nt be set", key))
-			return false
-		end
-
-		-- TODO: Type checking, validation etc. here (if ever implemented)
-	end
-
-	return true
-end
-
-function Item:IsPersonalLoot(entry)
-	-- equalOdds and groupSize usually go together since everything is Personal Loot nowadays
-	if entry.groupSize and not entry.equalOdds then
-		Rarity:Debug("Found setting for groupSize but equalOdds is not set")
-		return false
-	end
-
-	if entry.equalOdds and not entry.groupSize then
-		Rarity:Debug("Found setting for equalOdds but groupSize is not set")
-		return false
-	end
-
-	-- Solo-able items don't need either setting
-	return true
-end
-
-function Item:HasAllRequiredFields(entry)
-	-- The most basic check: Make sure all required fields are set
-	for key, isRequiredField in pairs(self.expectedFields) do
-		if isRequiredField and not entry[key] then
-			Rarity:Debug(format("%s is a required field and must be set", key))
-			return false
-		end
-	end
-
-	return true
-end
-
-function Item:IsUsingHolidayProperties(entry)
-	return entry.holidayTexture ~= nil or entry.christmasOnly ~= nil
-end
 
 function DatabaseSchema:IsValidItem(entry)
 	if not Item:HasAllRequiredFields(entry) then
@@ -218,6 +159,65 @@ function DatabaseSchema:IsValidItem(entry)
 	end
 
 	return true
+end
+
+function Item:HasAllRequiredFields(entry)
+	-- The most basic check: Make sure all required fields are set
+	for key, isRequiredField in pairs(self.expectedFields) do
+		if isRequiredField and not entry[key] then
+			Rarity:Debug(format("%s is a required field and must be set", key))
+			return false
+		end
+	end
+
+	return true
+end
+
+function Item:IsPersonalLoot(entry)
+	-- equalOdds and groupSize usually go together since everything is Personal Loot nowadays
+	if entry.groupSize and not entry.equalOdds then
+		Rarity:Debug("Found setting for groupSize but equalOdds is not set")
+		return false
+	end
+
+	if entry.equalOdds and not entry.groupSize then
+		Rarity:Debug("Found setting for equalOdds but groupSize is not set")
+		return false
+	end
+
+	-- Solo-able items don't need either setting
+	return true
+end
+
+function Item:HasOnlyValidFields(entry)
+	for key, value in pairs(entry) do
+		if self.expectedFields[key] == nil then
+			Rarity:Debug(format("%s is an invalid field and should'nt be set", key))
+			return false
+		end
+
+		-- TODO: Type checking, validation etc. here (if ever implemented)
+	end
+
+	return true
+end
+
+function Item:IsHolidayItem(entry)
+	return entry.cat == CONSTANTS.ITEM_CATEGORIES.HOLIDAY
+end
+
+function Item:IsValidHolidayItem(entry)
+	-- All holiday items should have holidayTexture set to represent which holiday it belongs to.
+	if not entry.holidayTexture then
+		Rarity:Debug("Found holiday item without a holidayTexture property")
+		return false
+	end
+
+	return true
+end
+
+function Item:IsUsingHolidayProperties(entry)
+	return entry.holidayTexture ~= nil or entry.christmasOnly ~= nil
 end
 
 function DatabaseSchema:IsValidPet(entry)
