@@ -123,5 +123,12 @@ Core\Settings.lua
 Core\Statistics.lua
 Core\Tracking.lua
 Core\Validation.lua
+
+# UI
+Core\DataBrokerDisplay.lua
+
+# Addon loader
 Core.lua
+
+# Initialization for the config UI
 Options_Defaults.lua
