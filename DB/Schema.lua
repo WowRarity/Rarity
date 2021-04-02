@@ -188,18 +188,22 @@ end
 
 function DatabaseSchema:IsValidItem(entry)
 	if not Item:HasAllRequiredFields(entry) then
+		Rarity:Debug("Required fields are missing")
 		return false
 	end
 
 	if not Item:IsPersonalLoot(entry) then
+		Rarity:Debug("Personal loot settings are inconsistent")
 		return false
 	end
 
 	if not Item:HasOnlyValidFields(entry) then
+		Rarity:Debug("Unsupported fields are set")
 		return false
 	end
 
 	if Item:IsHolidayItem(entry) and not Item:IsValidHolidayItem(entry) then
+		Rarity:Debug("Holiday event settings are inconsistent")
 		return false
 	end
 
@@ -213,6 +217,7 @@ end
 
 function DatabaseSchema:IsValidPet(entry)
 	if not Item:IsPet(entry) then
+		Rarity:Debug("Item is not of type PET")
 		return false
 	end
 
@@ -235,6 +240,7 @@ end
 
 function DatabaseSchema:IsValidMount(entry)
 	if not Item:IsMount(entry) then
+		Rarity:Debug("Item is not of type MOUNT")
 		return false
 	end
 
