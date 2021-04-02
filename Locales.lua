@@ -199,7 +199,7 @@ L["Ghostly Whelpling"] = true
 L["Validating item database... this shouldn't take long!"] = true
 L["We didn't find any errors in your database. Yay!"] = true
 L["Validation failed for item: %s"] = true
-L["We found %d invalid items in your database! If you added them yourself, you should probably fix them to make sure the addon works as expected :)"] = true
+L["We found %d invalid items in your database!"] = true
 
 L["Stoneclaw"] = true
 L["Wayward Spirit"] = true
