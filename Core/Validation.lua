@@ -5,6 +5,7 @@ local Validation = {}
 -- Upvalues
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
+local pairs = pairs
 
 function Validation:ValidateItemDB()
 	Rarity:Print(L["Validating item database... this shouldn't take long!"]) -- It better be true :P
@@ -34,11 +35,26 @@ function Validation:ValidateItemsAndToys()
 	return self:ValidateGroup(Rarity.db.profile.groups.items)
 end
 
+function Validation:ValidatePets()
+	Rarity:Debug("Validating pets")
+	return self:ValidateGroup(Rarity.db.profile.groups.pets)
+end
+
+function Validation:ValidateMounts()
+	Rarity:Debug("Validating mounts")
+	return self:ValidateGroup(Rarity.db.profile.groups.mounts)
+end
+
+function Validation:ValidateCustomItems()
+	Rarity:Debug("Validating custom items")
+	return self:ValidateGroup(Rarity.db.profile.groups.user)
+end
+
 function Validation:ValidateGroup(group)
 	local numErrors = 0
 
 	for key, entry in pairs(group) do
-		if key ~= "collapsedGroup" and key ~= "collapsed" and key ~= "name" then -- Why is this stored in the item database!?
+		if not self:IsMetaKey(key) then
 			local isValid = self:IsValidItem(entry)
 			if not isValid then
 				Rarity:Print(format(L["Validation failed for item: %s"], key))
@@ -48,6 +64,11 @@ function Validation:ValidateGroup(group)
 	end
 
 	return numErrors
+end
+
+function Validation:IsMetaKey(key)
+	-- Why is this stored in the item database!? IDK, but we can't change it easily now without proper schema migrations
+	return key ~= "collapsedGroup" and key ~= "collapsed" and key ~= "name"
 end
 
 function Validation:IsValidItem(entry)
