@@ -22,7 +22,7 @@ local Item = {
 		isToy = false,
 		-- Required ItemDB fields
 		name = true,
-		cat = true,
+		cat = false, -- This should be true, but the property doesn't exist for custom items?
 		type = true,
 		method = true,
 		chance = true,
