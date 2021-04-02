@@ -74,10 +74,6 @@ function Validation:IsValidPet(entry)
 end
 
 function Validation:IsValidMount(entry)
-end
-
-function Validation:IsValidToy(entry)
-	Rarity.DatabaseSchema:IsValidToy(entry)
 	return Rarity.DatabaseSchema:IsValidMount(entry)
 end
 
