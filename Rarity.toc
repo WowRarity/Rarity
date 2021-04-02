@@ -125,7 +125,7 @@ Core\Tracking.lua
 Core\Validation.lua
 
 # UI
-Core\DataBrokerDisplay.lua
+Core\GUI\DataBrokerDisplay.lua
 
 # Addon loader
 Core.lua
