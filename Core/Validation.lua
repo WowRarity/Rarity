@@ -70,15 +70,15 @@ function Validation:IsValidItem(entry)
 end
 
 function Validation:IsValidPet(entry)
-	Rarity.DatabaseSchema:IsValidPet(entry)
+	return Rarity.DatabaseSchema:IsValidPet(entry)
 end
 
 function Validation:IsValidMount(entry)
-	Rarity.DatabaseSchema:IsValidMount(entry)
 end
 
 function Validation:IsValidToy(entry)
 	Rarity.DatabaseSchema:IsValidToy(entry)
+	return Rarity.DatabaseSchema:IsValidMount(entry)
 end
 
 function Validation:ValidatePets()
