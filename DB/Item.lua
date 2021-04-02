@@ -81,13 +81,13 @@ local Item = {
 		enableAnnouncements = false, -- This is actually wrong, but since the import is bugged it'll exist in all imports (I think)... Doesn't do anything though :/
 		announce = false -- This should be used instead
 	}
-}	
+}
 
 function Item:HasAllRequiredFields(entry)
 	-- The most basic check: Make sure all required fields are set
 	for key, isRequiredField in pairs(self.expectedFields) do
 		if isRequiredField and not entry[key] then
-			Rarity:Debug(format("%s is a required field and must be set", key))
+			Rarity:Print(format("%s is a required field and must be set", key))
 			return false
 		end
 	end
@@ -98,12 +98,12 @@ end
 function Item:IsPersonalLoot(entry)
 	-- equalOdds and groupSize usually go together since everything is Personal Loot nowadays
 	if entry.groupSize and not entry.equalOdds then
-		Rarity:Debug("Found setting for groupSize but equalOdds is not set")
+		Rarity:Print("Found setting for groupSize but equalOdds is not set")
 		return false
 	end
 
 	if entry.equalOdds and not entry.groupSize then
-		Rarity:Debug("Found setting for equalOdds but groupSize is not set")
+		Rarity:Print("Found setting for equalOdds but groupSize is not set")
 		return false
 	end
 
@@ -114,7 +114,7 @@ end
 function Item:HasOnlyValidFields(entry)
 	for key, value in pairs(entry) do
 		if self.expectedFields[key] == nil then
-			Rarity:Debug(format("%s is an invalid field and should'nt be set", key))
+			Rarity:Print(format("%s is an invalid field and should'nt be set", key))
 			return false
 		end
 
@@ -131,7 +131,7 @@ end
 function Item:IsValidHolidayItem(entry)
 	-- All holiday items should have holidayTexture set to represent which holiday it belongs to.
 	if not entry.holidayTexture then
-		Rarity:Debug("Found holiday item without a holidayTexture property")
+		Rarity:Print("Found holiday item without a holidayTexture property")
 		return false
 	end
 
