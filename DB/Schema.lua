@@ -150,6 +150,8 @@ function Item:HasOnlyValidFields(entry)
 
 		-- TODO: Type checking, validation etc. here (if ever implemented)
 	end
+
+	return true
 end
 
 function Item:IsPersonalLoot(entry)
@@ -176,6 +178,8 @@ function Item:HasAllRequiredFields(entry)
 			return false
 		end
 	end
+
+	return true
 end
 
 function Item:IsUsingHolidayProperties(entry)
@@ -203,11 +207,13 @@ function DatabaseSchema:IsValidItem(entry)
 		Rarity:Debug("Found item using holiday properties, but it's not a holiday item")
 		return false
 	end
+
+	return true
 end
 
 function DatabaseSchema:IsValidPet(entry)
 	if not Item:IsPet(entry) then
-		return
+		return false
 	end
 
 	if not entry.spellId then
@@ -219,6 +225,8 @@ function DatabaseSchema:IsValidPet(entry)
 		Rarity:Debug("Expected field creatureId is missing")
 		return false
 	end
+
+	return true
 end
 
 function Item:IsPet(entry)
@@ -227,13 +235,15 @@ end
 
 function DatabaseSchema:IsValidMount(entry)
 	if not Item:IsMount(entry) then
-		return
+		return false
 	end
 
 	if not entry.spellId then
 		Rarity:Debug("Expected field spellId is missing")
 		return false
 	end
+
+	return true
 end
 
 function Item:IsMount(entry)
