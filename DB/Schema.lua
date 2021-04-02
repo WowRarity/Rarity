@@ -80,14 +80,19 @@ local Item = {
 		obtain = false,
 		raceId = false,
 		defeatAllQuests = false,
-		announce = false,
 		enableCoin = false,
 		collectedItemId = false,
 		doNotUpdateToHighestStat = false,
 		disableForClass = false,
 		holidayReminder = false,
 		achievementId = false,
-		showTooltipCondition = false
+		showTooltipCondition = false,
+		-- These are only set sometimes, via the Options UI. Super inconsistent?
+		import = false,
+		export = false,
+		obtainedQuestId = false,
+		enableAnnouncements = false, -- This is actually wrong, but since the import is bugged it'll exist in all imports (I think)... Doesn't do anything though :/
+		announce = false -- This should be used instead
 	}
 }
 
