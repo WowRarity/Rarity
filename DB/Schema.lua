@@ -4,18 +4,9 @@ local _, addonTable = ...
 local pairs = pairs
 local CONSTANTS = addonTable.constants
 
-local Pet = {
-	spellId = true,
-	creatureId = true
-}
+local Pet = {}
 
-local Mount = {
-	spellId = true
-}
-
-local Toy = {
-	isToy = true
-}
+local Mount = {}
 
 local Item = {
 	expectedFields = {
@@ -96,41 +87,7 @@ local Item = {
 	}
 }
 
-function Pet:Validate(entry)
-	local isValidItem = Item:Validate(entry)
-	if not isValidItem then
-		return false
-	end
-
-	-- but is it a valid pet?
-
-	return true -- todo
-end
-
-function Mount:Validate(entry)
-	local isValidItem = Item:Validate(entry)
-	if not isValidItem then
-		return false
-	end
-	return true -- todo
-end
-
-function Toy:Validate(entry)
-	local isValidItem = Item:Validate(entry)
-	if not isValidItem then
-		return false
-	end
-	return true -- todo
-end
-
-local DatabaseSchema = {
-	PET = Pet,
-	MOUNT = Mount,
-	ITEM = Item,
-	-- todo TOY?
-	-- Fields that are valid for all types of items
-	ANY = {}
-}
+local DatabaseSchema = {}
 
 function DatabaseSchema:IsValidItem(entry)
 	if not Item:HasAllRequiredFields(entry) then
