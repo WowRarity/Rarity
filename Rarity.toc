@@ -127,6 +127,7 @@ Core\Validation.lua
 # UI
 Core\GUI\AnchoredTrackingBar.lua
 Core\GUI\DataBrokerDisplay.lua
+Core\GUI\FakeAchievementPopup.lua
 Core\GUI\GameTooltipHooks.lua
 Core\GUI\MainWindow.lua
 
