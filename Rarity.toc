@@ -59,6 +59,7 @@ DB\SharedConstants.lua
 DB\Spells.lua
 
 # Collectibles Database (makes use of the shared constants, so load those first)
+DB\Item.lua
 DB\Schema.lua
 DB\ItemDB.lua
 
