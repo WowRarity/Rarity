@@ -38,8 +38,7 @@ function Validation:ValidateGroup(group)
 	local numErrors = 0
 
 	for key, entry in pairs(group) do
-		if key ~= "collapsedGroup" and key ~= "collapsed" then -- Why is this stored in the item database!?
-
+		if key ~= "collapsedGroup" and key ~= "collapsed" and key ~= "name" then -- Why is this stored in the item database!?
 			local isValid = self:IsValidItem(entry)
 			if not isValid then
 				Rarity:Print(format(L["Validation failed for item: %s"], key))
