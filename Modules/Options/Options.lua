@@ -1572,7 +1572,7 @@ function R:PrepareOptions()
 						width = "full",
 						desc = format(
 							L["Run the verification routine automatically after logging in. It can always be run manually (by typing %s)."],
-							"/rarity verify"
+							"/rarity validate"
 						),
 						get = function()
 							return self.db.profile.verifyDatabaseOnLogin

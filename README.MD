@@ -36,7 +36,7 @@
 
 <ul><li><strong>/rarity dump</strong> prints the most recent debug log entries (even if the debug mode is disabled)
 </li>
-<li><strong>/rarity verify</strong> attempts to verify the validity of your item database, including custom-added items (experimental)
+<li><strong>/rarity validate</strong> checks the consistency of your item database, including custom items (experimental)
 </li></ul>
 
 </p>
