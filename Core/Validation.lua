@@ -39,7 +39,6 @@ function Validation:ValidateGroup(group)
 
 	for key, entry in pairs(group) do
 		if key ~= "collapsedGroup" and key ~= "collapsed" then -- Why is this stored in the item database!?
-			Rarity:Debug(format("Validating item %s", key))
 
 			local isValid = self:IsValidItem(entry)
 			if not isValid then
