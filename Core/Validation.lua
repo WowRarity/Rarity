@@ -1,6 +1,13 @@
 local _, addonTable = ...
 
-local Validation = {}
+local Validation = {
+	metaKeys = {
+		-- Why is this stored in the item database!? IDK, but we can't change it easily now without proper schema migrations
+		["collapsedGroup"] = true,
+		["collapsed"] = true,
+		["name"] = true
+	}
+}
 
 -- Upvalues
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
@@ -67,8 +74,7 @@ function Validation:ValidateGroup(group)
 end
 
 function Validation:IsMetaKey(key)
-	-- Why is this stored in the item database!? IDK, but we can't change it easily now without proper schema migrations
-	return key ~= "collapsedGroup" and key ~= "collapsed" and key ~= "name"
+	return self.metaKeys[key] == true
 end
 
 function Validation:IsValidItem(entry)
