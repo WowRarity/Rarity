@@ -1509,7 +1509,10 @@ local bfaPets = {
 		itemId = 169363,
 		creatureId = 154836,
 		questId = {56268}, -- 56615 ?
-		chance = 8
+		chance = 8,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NAZJATAR}
+		}
 	},
 	["Pearlescent Glimmershell"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1521,7 +1524,10 @@ local bfaPets = {
 		itemId = 169352,
 		creatureId = 154825,
 		questId = {56286}, -- 57260, 56597?
-		chance = 100
+		chance = 100,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NAZJATAR}
+		}
 	},
 	["Brinestone Algan"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1548,7 +1554,10 @@ local bfaPets = {
 		itemId = 169374,
 		creatureId = 154846,
 		questId = {56291, 56917}, -- Which one is it?
-		chance = 4
+		chance = 4,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NAZJATAR}
+		}
 	},
 	["Caverndark Nightmare"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1576,7 +1585,10 @@ local bfaPets = {
 		creatureId = 154828,
 		questId = {56608, 56275},
 		-- Which one is it? Both completed upon killing it...
-		chance = 8
+		chance = 8,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NAZJATAR}
+		}
 	},
 	["Coral Lashling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1603,7 +1615,10 @@ local bfaPets = {
 		itemId = 169361,
 		creatureId = 154834,
 		questId = {56271},
-		chance = 6
+		chance = 6,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NAZJATAR}
+		}
 	},
 	["Glittering Diamondshell"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1615,7 +1630,10 @@ local bfaPets = {
 		itemId = 169350,
 		creatureId = 154823,
 		questId = {56277},
-		chance = 8
+		chance = 8,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NAZJATAR}
+		}
 	},
 	["Murgle"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1657,7 +1675,10 @@ local bfaPets = {
 		itemId = 169369,
 		creatureId = 154842,
 		questId = {56276},
-		chance = 20
+		chance = 20,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NAZJATAR}
+		}
 	},
 	["Scalebrood Hydra"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1746,7 +1767,10 @@ local bfaPets = {
 		itemId = 169366,
 		creatureId = 154839,
 		questId = {56274},
-		chance = 9
+		chance = 9,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NAZJATAR}
+		}
 	},
 	["Arachnoid Skitterbot"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1803,7 +1827,10 @@ local bfaPets = {
 		itemId = 169379,
 		creatureId = 154851,
 		questId = {55367},
-		chance = 5
+		chance = 5,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND}
+		}
 	},
 	["Spraybot 0D"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1881,7 +1908,10 @@ local bfaPets = {
 		spellId = 301022,
 		itemId = 169351,
 		creatureId = 154824,
-		chance = 250
+		chance = 250,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NAZJATAR}
+		}
 	},
 	["Armored Vaultbot"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
