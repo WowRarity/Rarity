@@ -150,4 +150,17 @@ function Item:IsMount(entry)
 	return entry.type == CONSTANTS.ITEM_TYPES.MOUNT
 end
 
+function Item:HasZone(entry)
+	if entry.coords then
+		for _, value in pairs(entry.coords) do
+			if type(value) == "table" and value.m ~= nil then
+				if tonumber(value.m) then
+					return true
+				end
+			end
+		end
+	end
+	return false
+end
+
 Rarity.Item = Item
