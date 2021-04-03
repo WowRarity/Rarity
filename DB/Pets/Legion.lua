@@ -15,7 +15,7 @@ local legionPets = {
 		npcs = {101878},
 		chance = 100,
 		creatureId = 97179,
-		coords = {{m = 680, x = 27.8, y = 85.2}}
+		coords = {{m = CONSTANTS.UIMAPIDS.SURAMAR, x = 27.8, y = 85.2}}
 	},
 	["Knockoff Blingtron"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -372,7 +372,12 @@ local legionPets = {
 		itemId = 147841,
 		items = {152108},
 		chance = 20,
-		creatureId = 121715
+		creatureId = 121715,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES},
+			{m = CONSTANTS.UIMAPIDS.KROKUUN},
+			{m = CONSTANTS.UIMAPIDS.MACAREE}
+		}
 	},
 	["Scraps"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -831,7 +836,12 @@ local legionPets = {
 			124439,
 			124486
 		},
-		showTooltipCondition = {filter = CONSTANTS.TOOLTIP_FILTERS.IS_SPELL_KNOWN, value = "Skinning"} -- Display only if player can actually skin them
+		showTooltipCondition = {filter = CONSTANTS.TOOLTIP_FILTERS.IS_SPELL_KNOWN, value = "Skinning"}, -- Display only if player can actually skin them
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES},
+			{m = CONSTANTS.UIMAPIDS.KROKUUN},
+			{m = CONSTANTS.UIMAPIDS.MACAREE}
+		}
 	},
 	["Fel Lasher"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -843,7 +853,12 @@ local legionPets = {
 		chance = 4000,
 		creatureId = 128137,
 		obtain = L["Obtained by gathering herbs on Argus"],
-		sourceText = L["Obtained by gathering herbs on Argus"]
+		sourceText = L["Obtained by gathering herbs on Argus"],
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES},
+			{m = CONSTANTS.UIMAPIDS.KROKUUN},
+			{m = CONSTANTS.UIMAPIDS.MACAREE}
+		}
 	}
 }
 
