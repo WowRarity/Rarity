@@ -15,7 +15,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143794,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Captain Nibs"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -27,7 +31,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143795,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Barnaby"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -39,7 +47,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143796,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Poro"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -51,7 +63,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143797,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Octopode Fry"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -63,7 +79,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143798,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Inky"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -75,7 +95,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143799,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Sparkleshell Sandcrawler"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -87,7 +111,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143801,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Kindleweb Spiderling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -99,7 +127,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143802,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Mischievous Zephyr"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -111,7 +143,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143812,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Littlehoof"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -123,7 +159,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143813,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Snapper"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -135,7 +175,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143814,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Sunscale Hatchling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -147,7 +191,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143815,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Bloodstone Tunneler"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -159,7 +207,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143816,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Snort"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -171,7 +223,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143817,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Muskflank Calfling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -183,7 +239,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143818,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Juvenile Brineshell"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -195,7 +255,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143819,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Kunchong Hatchling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -207,7 +271,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143820,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Coldlight Surfrunner"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -219,7 +287,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143821,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Voru'kar Leecher"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -231,7 +303,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143822,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Tinder Pup"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -243,7 +319,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143805,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Sandshell Chitterer"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -255,7 +335,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143806,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Deathsting Scorpid"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -267,7 +351,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143807,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Thistlebrush Bud"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -279,7 +367,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143808,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Giggling Flame"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -291,7 +383,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143809,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Laughing Stonekin"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -303,7 +399,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143810,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Playful Frostkin"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -315,7 +415,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143811,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["False Knucklebump"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -327,7 +431,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143804,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Craghoof Kid"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -339,7 +447,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 143803,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Mana-Warped Egg"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -777,7 +889,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 148976,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Leatherwing Screecher"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -789,7 +905,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 148979,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Rotting Ghoul"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -801,7 +921,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 148981,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Thunderscale Whelpling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -813,7 +937,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 148995,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Scritches"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -825,7 +953,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 148991,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Tonguelasher"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -837,7 +969,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 148990,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Lord Woofington"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -849,7 +985,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 148989,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Firesting Buzzer"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -861,7 +1001,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 148988,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Needleback Pup"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -873,7 +1017,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 148982,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Shadefeather Hatchling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -885,7 +1033,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 148984,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	-- 8.1.5 Pets
 
