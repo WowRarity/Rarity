@@ -1441,7 +1441,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 154693,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Ghostly Whelpling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1453,7 +1457,11 @@ local bfaPets = {
 		chance = 1000,
 		creatureId = 154165,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Mindlost Bloodfrenzy"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
