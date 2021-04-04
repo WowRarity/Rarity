@@ -680,7 +680,10 @@ local bfaPets = {
 		itemId = 166714,
 		items = {166295},
 		chance = 10,
-		creatureId = 149363
+		creatureId = 149363,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS}
+		}
 	},
 	["Cobalt Raven Hatchling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -691,7 +694,10 @@ local bfaPets = {
 		itemId = 166718,
 		items = {166297},
 		chance = 10,
-		creatureId = 149375
+		creatureId = 149375,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.DRUSTVAR}
+		}
 	},
 	["Violet Abyssal Eel"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -702,7 +708,10 @@ local bfaPets = {
 		itemId = 166719,
 		items = {166294},
 		chance = 10,
-		creatureId = 149376
+		creatureId = 149376,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.STORMSONG_VALLEY}
+		}
 	},
 	["Pair of Tiny Bat Wings"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -713,7 +722,10 @@ local bfaPets = {
 		itemId = 166716,
 		items = {166282},
 		chance = 10,
-		creatureId = 149372
+		creatureId = 149372,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NAZMIR}
+		}
 	},
 	["Darkshore Sentinel"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1514,7 +1526,10 @@ local bfaPets = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
 			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true
 		},
-		chance = 8
+		chance = 8,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_ETERNAL_PALACE}
+		}
 	},
 	["Lightless Ambusher"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1567,7 +1582,10 @@ local bfaPets = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
 			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true
 		},
-		chance = 8
+		chance = 8,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_ETERNAL_PALACE}
+		}
 	},
 	["Zanj'ir Poker"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1620,7 +1638,10 @@ local bfaPets = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
 			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true
 		},
-		chance = 10 -- Blind guess (no data)
+		chance = 10, -- Blind guess (no data)
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_ETERNAL_PALACE}
+		}
 	},
 	["Pommel Jewel of Remornia"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
@@ -2058,7 +2079,10 @@ local bfaPets = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
 			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true
 		},
-		chance = 8
+		chance = 8,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_ETERNAL_PALACE}
+		}
 	},
 	["Sandclaw Nestseeker"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
