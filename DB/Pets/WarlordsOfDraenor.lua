@@ -15,7 +15,11 @@ local wodPets = {
 		items = {118697},
 		chance = 15,
 		creatureId = 77021,
-		questId = {37644, 37645}
+		questId = {37644, 37645},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.LUNARFALL_GARRISON},
+			{m = CONSTANTS.UIMAPIDS.FROSTWALL_GARRISON}
+		}
 	},
 	["Eye of Observation"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
@@ -45,7 +49,11 @@ local wodPets = {
 		items = {118697},
 		chance = 15,
 		creatureId = 87704,
-		questId = {37644, 37645}
+		questId = {37644, 37645},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.LUNARFALL_GARRISON},
+			{m = CONSTANTS.UIMAPIDS.FROSTWALL_GARRISON}
+		}
 	},
 	["Land Shark"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
@@ -98,7 +106,11 @@ local wodPets = {
 		items = {118697},
 		chance = 15,
 		creatureId = 88300,
-		questId = {37644, 37645}
+		questId = {37644, 37645},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.LUNARFALL_GARRISON},
+			{m = CONSTANTS.UIMAPIDS.FROSTWALL_GARRISON}
+		}
 	},
 	["Red Goren Egg"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
@@ -176,7 +188,11 @@ local wodPets = {
 		items = {118697},
 		chance = 15,
 		creatureId = 83817,
-		questId = {37644, 37645}
+		questId = {37644, 37645},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.LUNARFALL_GARRISON},
+			{m = CONSTANTS.UIMAPIDS.FROSTWALL_GARRISON}
+		}
 	},
 	["Sun Sproutling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
@@ -188,7 +204,11 @@ local wodPets = {
 		items = {118697},
 		chance = 15,
 		creatureId = 83588,
-		questId = {37644, 37645}
+		questId = {37644, 37645},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.LUNARFALL_GARRISON},
+			{m = CONSTANTS.UIMAPIDS.FROSTWALL_GARRISON}
+		}
 	},
 	["Sunfire Kaliri"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
@@ -200,7 +220,11 @@ local wodPets = {
 		items = {118697},
 		chance = 15,
 		creatureId = 88367,
-		questId = {37644, 37645}
+		questId = {37644, 37645},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.LUNARFALL_GARRISON},
+			{m = CONSTANTS.UIMAPIDS.FROSTWALL_GARRISON}
+		}
 	},
 	["Time-Locked Box"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
@@ -260,7 +284,11 @@ local wodPets = {
 		items = {118697},
 		chance = 15,
 		creatureId = 78421,
-		questId = {37644, 37645}
+		questId = {37644, 37645},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.LUNARFALL_GARRISON},
+			{m = CONSTANTS.UIMAPIDS.FROSTWALL_GARRISON}
+		}
 	},
 	["Zomstrok"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
@@ -285,7 +313,11 @@ local wodPets = {
 		items = {122535},
 		chance = 33,
 		creatureId = 88577,
-		questId = {382994, 38300}
+		questId = {382994, 38300},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.LUNARFALL_GARRISON},
+			{m = CONSTANTS.UIMAPIDS.FROSTWALL_GARRISON}
+		}
 	},
 	["Fragment of Anger"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
@@ -393,7 +425,11 @@ local wodPets = {
 		items = {122535},
 		chance = 33,
 		creatureId = 91407,
-		questId = {382994, 38300}
+		questId = {382994, 38300},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.LUNARFALL_GARRISON},
+			{m = CONSTANTS.UIMAPIDS.FROSTWALL_GARRISON}
+		}
 	},
 	["Smelly Gravestone"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
@@ -453,7 +489,11 @@ local wodPets = {
 		items = {122535},
 		chance = 33,
 		creatureId = 91408,
-		questId = {382994, 38300}
+		questId = {382994, 38300},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.LUNARFALL_GARRISON},
+			{m = CONSTANTS.UIMAPIDS.FROSTWALL_GARRISON}
+		}
 	},
 	-- 6.2
 	["Corrupted Nest Guardian"] = {
