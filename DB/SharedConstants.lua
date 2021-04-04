@@ -21,9 +21,12 @@ C.DEFEAT_DETECTION = {
 
 -- Embedded mapIDs: It's best to avoid hardcoding these in case of yet another re-mapping on Blizzard's end...
 C.UIMAPIDS = {
+	-- Classic Zones
 	ARATHI_HIGHLANDS = 14,
+	HILLSBRAD_FOOTHILLS = 25,
 	DARKSHORE = 62,
 	SILITHUS = 81,
+	--
 	ICECROWN = 118,
 	DEEPHOLM = 207,
 	TWILIGHT_HIGHLANDS = 241,
@@ -42,6 +45,7 @@ C.UIMAPIDS = {
 	VALSHARAH = 641,
 	HIGHMOUNTAIN = 650,
 	SURAMAR = 680,
+	SKYHOLD = 695,
 	KROKUUN = 830,
 	MACAREE = 882,
 	ANTORAN_WASTES = 885,
