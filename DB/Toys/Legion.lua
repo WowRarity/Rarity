@@ -220,7 +220,8 @@ local legionToys = {
 		name = L["Sira's Extra Cloak"],
 		itemId = 147843,
 		items = {152107},
-		chance = 20
+		chance = 20,
+		coords = {{m = CONSTANTS.UIMAPIDS.AZSUNA}}
 	},
 	["Unstable Powder Box"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -262,7 +263,10 @@ local legionToys = {
 		name = L["Stormforged Vrykul Horn"],
 		itemId = 140160,
 		items = {141069},
-		chance = 33
+		chance = 33,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.SKYHOLD}
+		}
 	},
 	["Skull of Corruption"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -452,7 +456,12 @@ local legionToys = {
 		name = L["Holy Lightsphere"],
 		itemId = 153182,
 		items = {152923},
-		chance = 8
+		chance = 8,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES},
+			{m = CONSTANTS.UIMAPIDS.KROKUUN},
+			{m = CONSTANTS.UIMAPIDS.MACAREE}
+		}
 	},
 	["Barrier Generator"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
