@@ -21,6 +21,8 @@ C.DEFEAT_DETECTION = {
 
 -- Embedded mapIDs: It's best to avoid hardcoding these in case of yet another re-mapping on Blizzard's end...
 C.UIMAPIDS = {
+	-- Dummy Zone (For items that can be obtained anywhere.)
+	NONE = 0,
 	-- Classic Zones
 	ARATHI_HIGHLANDS = 14,
 	HILLSBRAD_FOOTHILLS = 25,

@@ -26,7 +26,10 @@ local legionPets = {
 		itemId = 136911,
 		items = {132892, 168740},
 		chance = 200,
-		creatureId = 99505
+		creatureId = 99505,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NONE}
+		}
 	},
 	["Ridgeback Piglet"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -37,7 +40,10 @@ local legionPets = {
 		itemId = 136905,
 		creatureId = 98172,
 		items = {137608},
-		chance = 10
+		chance = 10,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NONE}
+		}
 	},
 	["Thaumaturgical Piglet"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -48,7 +54,10 @@ local legionPets = {
 		itemId = 136908,
 		creatureId = 98183,
 		items = {137608},
-		chance = 10
+		chance = 10,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NONE}
+		}
 	},
 	["Transmutant"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -59,7 +68,10 @@ local legionPets = {
 		itemId = 139789,
 		creatureId = 111425,
 		items = {137608},
-		chance = 10
+		chance = 10,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NONE}
+		}
 	},
 	--["Sting Ray Pup"] =                                 { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.COLLECTION, name = L["Sting Ray Pup"], spellId = 217218, itemId = 138810, creatureId = 109216, collectedItemId = { 138777 }, chance = 50, },
 	-- 7.1

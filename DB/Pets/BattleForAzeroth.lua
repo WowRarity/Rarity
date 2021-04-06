@@ -634,7 +634,10 @@ local bfaPets = {
 		itemId = 163860,
 		creatureId = 143957,
 		items = {160324},
-		chance = 50
+		chance = 50,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NONE}
+		}
 	},
 	["Undulating Blue Sac"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -645,7 +648,10 @@ local bfaPets = {
 		itemId = 163861,
 		creatureId = 143958,
 		items = {160324},
-		chance = 50
+		chance = 50,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NONE}
+		}
 	},
 	["Baby Crawg"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -656,7 +662,10 @@ local bfaPets = {
 		itemId = 163859,
 		creatureId = 143374,
 		items = {160324},
-		chance = 50
+		chance = 50,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NONE}
+		}
 	},
 	["Ball of Tentacles"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -667,7 +676,10 @@ local bfaPets = {
 		itemId = 163858,
 		creatureId = 143959,
 		items = {160324},
-		chance = 50
+		chance = 50,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NONE}
+		}
 	},
 	-- 8.1 Pets
 

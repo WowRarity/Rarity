@@ -79,7 +79,10 @@ local legionToys = {
 		name = L["Chain Pet Leash"],
 		itemId = 89139,
 		items = {89125, 93148, 93147, 93146, 93149, 94207, 91086, 116062, 98095},
-		chance = 2
+		chance = 2,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NONE}
+		}
 	},
 	["Displacer Meditation Stone"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,

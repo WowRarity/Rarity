@@ -176,7 +176,10 @@ local wodPets = {
 		chance = 200,
 		creatureId = 85284,
 		questId = {31752, 34774},
-		tooltipNpcs = {77789}
+		tooltipNpcs = {77789},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NONE}
+		}
 	},
 	["Spectral Bell"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
