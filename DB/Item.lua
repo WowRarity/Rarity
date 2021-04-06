@@ -155,11 +155,10 @@ function Item:HasZone(entry)
 		return false
 	end
 
+	-- It has value in 'coords', make sure it contains a mapID.
 	for _, waypointData in pairs(entry.coords) do
-		if type(waypointData) == "table" and waypointData.m ~= nil then
-			if waypointData.m then
-				return true
-			end
+		if waypointData.m then
+			return true
 		end
 	end
 
