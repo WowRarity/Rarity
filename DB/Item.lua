@@ -154,7 +154,7 @@ function Item:HasZone(entry)
 	if entry.coords then
 		for _, value in pairs(entry.coords) do
 			if type(value) == "table" and value.m ~= nil then
-				if tonumber(value.m) then
+				if value.m then
 					return true
 				end
 			end
