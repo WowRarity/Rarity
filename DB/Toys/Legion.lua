@@ -79,7 +79,10 @@ local legionToys = {
 		name = L["Chain Pet Leash"],
 		itemId = 89139,
 		items = {89125, 93148, 93147, 93146, 93149, 94207, 91086, 116062, 98095},
-		chance = 2
+		chance = 2,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NONE}
+		}
 	},
 	["Displacer Meditation Stone"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -220,7 +223,8 @@ local legionToys = {
 		name = L["Sira's Extra Cloak"],
 		itemId = 147843,
 		items = {152107},
-		chance = 20
+		chance = 20,
+		coords = {{m = CONSTANTS.UIMAPIDS.AZSUNA}}
 	},
 	["Unstable Powder Box"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -262,7 +266,10 @@ local legionToys = {
 		name = L["Stormforged Vrykul Horn"],
 		itemId = 140160,
 		items = {141069},
-		chance = 33
+		chance = 33,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.SKYHOLD}
+		}
 	},
 	["Skull of Corruption"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -452,7 +459,12 @@ local legionToys = {
 		name = L["Holy Lightsphere"],
 		itemId = 153182,
 		items = {152923},
-		chance = 8
+		chance = 8,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES},
+			{m = CONSTANTS.UIMAPIDS.KROKUUN},
+			{m = CONSTANTS.UIMAPIDS.MACAREE}
+		}
 	},
 	["Barrier Generator"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,

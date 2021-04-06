@@ -150,4 +150,19 @@ function Item:IsMount(entry)
 	return entry.type == CONSTANTS.ITEM_TYPES.MOUNT
 end
 
+function Item:HasZone(entry)
+	if not entry.coords then
+		return false
+	end
+
+	-- It has value in 'coords', make sure it contains a mapID.
+	for _, waypointData in pairs(entry.coords) do
+		if waypointData.m then
+			return true
+		end
+	end
+
+	return false
+end
+
 Rarity.Item = Item

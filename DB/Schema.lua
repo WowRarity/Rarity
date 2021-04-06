@@ -28,6 +28,11 @@ function DatabaseSchema:IsValidItem(entry)
 		return false
 	end
 
+	if not Item:HasZone(entry) then
+		Rarity:Print("Zone is missing")
+		return false
+	end
+
 	return true
 end
 

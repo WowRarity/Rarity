@@ -38,7 +38,10 @@ local mopPets = {
 		itemId = 89587,
 		items = {89125},
 		chance = 250,
-		creatureId = 61086
+		creatureId = 61086,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NONE}
+		}
 	},
 	-- 5.1
 	["Anubisath Idol"] = {
@@ -134,7 +137,10 @@ local mopPets = {
 		itemId = 90900,
 		items = {92960},
 		chance = 50,
-		creatureId = 67230
+		creatureId = 67230,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NONE}
+		}
 	},
 	["Imperial Silkworm"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
@@ -145,7 +151,10 @@ local mopPets = {
 		itemId = 90902,
 		items = {92960},
 		chance = 10,
-		creatureId = 67233
+		creatureId = 67233,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NONE}
+		}
 	},
 	["Jewel of Maddening Whispers"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
@@ -248,7 +257,16 @@ local mopPets = {
 		itemId = 94210,
 		items = {94207},
 		chance = 7,
-		creatureId = 69892
+		creatureId = 69892,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.JADE_FOREST},
+			{m = CONSTANTS.UIMAPIDS.VALLEY_OF_THE_FOUR_WINDS},
+			{m = CONSTANTS.UIMAPIDS.KUNLAI_SUMMIT},
+			{m = CONSTANTS.UIMAPIDS.TOWNLONG_STEPPES},
+			{m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS_MOP},
+			{m = CONSTANTS.UIMAPIDS.KRASARANG_WILDS},
+			{m = CONSTANTS.UIMAPIDS.DREAD_WASTES}
+		}
 	},
 	["Snowy Panda"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
@@ -259,7 +277,16 @@ local mopPets = {
 		itemId = 94209,
 		items = {94207},
 		chance = 7,
-		creatureId = 69893
+		creatureId = 69893,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.JADE_FOREST},
+			{m = CONSTANTS.UIMAPIDS.VALLEY_OF_THE_FOUR_WINDS},
+			{m = CONSTANTS.UIMAPIDS.KUNLAI_SUMMIT},
+			{m = CONSTANTS.UIMAPIDS.TOWNLONG_STEPPES},
+			{m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS_MOP},
+			{m = CONSTANTS.UIMAPIDS.KRASARANG_WILDS},
+			{m = CONSTANTS.UIMAPIDS.DREAD_WASTES}
+		}
 	},
 	["Son of Animus"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
@@ -286,7 +313,16 @@ local mopPets = {
 		itemId = 94208,
 		items = {94207},
 		chance = 7,
-		creatureId = 69891
+		creatureId = 69891,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.JADE_FOREST},
+			{m = CONSTANTS.UIMAPIDS.VALLEY_OF_THE_FOUR_WINDS},
+			{m = CONSTANTS.UIMAPIDS.KUNLAI_SUMMIT},
+			{m = CONSTANTS.UIMAPIDS.TOWNLONG_STEPPES},
+			{m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS_MOP},
+			{m = CONSTANTS.UIMAPIDS.KRASARANG_WILDS},
+			{m = CONSTANTS.UIMAPIDS.DREAD_WASTES}
+		}
 	},
 	["Direhorn Runt"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
@@ -746,7 +782,10 @@ local mopPets = {
 		chance = 200,
 		creatureId = 73011,
 		questId = {31752, 34774},
-		tooltipNpcs = {77789, 43929}
+		tooltipNpcs = {77789, 43929},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NONE}
+		}
 	},
 	["Ominous Flame"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,

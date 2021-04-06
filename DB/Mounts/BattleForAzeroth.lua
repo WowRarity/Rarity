@@ -371,7 +371,10 @@ local bfaMounts = {
 		spellId = 294038,
 		itemId = 169198,
 		items = {169940, 169939},
-		chance = 19
+		chance = 19,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NAZJATAR}
+		}
 	},
 	["Rusted Keys to the Junkheap Drifter"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -410,7 +413,10 @@ local bfaMounts = {
 		spellId = 300149,
 		npcs = {152290},
 		chance = 200,
-		questId = {56298}
+		questId = {56298},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NAZJATAR}
+		}
 	},
 	["Mechagon Peacekeeper"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -619,7 +625,11 @@ local bfaMounts = {
 		npcs = 99999,
 		chance = 100,
 		equalOdds = true,
-		groupSize = 3
+		groupSize = 3,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Craghorn Chasm-Leaper"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -631,7 +641,11 @@ local bfaMounts = {
 		npcs = 99999,
 		chance = 100,
 		equalOdds = true,
-		groupSize = 3
+		groupSize = 3,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Qinsho's Eternal Hound"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -643,7 +657,11 @@ local bfaMounts = {
 		npcs = 99999,
 		chance = 100,
 		equalOdds = true,
-		groupSize = 3
+		groupSize = 3,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Squawks"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -655,7 +673,11 @@ local bfaMounts = {
 		npcs = 99999,
 		chance = 100,
 		equalOdds = true,
-		groupSize = 3
+		groupSize = 3,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Surf Jelly"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -667,7 +689,11 @@ local bfaMounts = {
 		npcs = 99999,
 		chance = 100,
 		equalOdds = true,
-		groupSize = 3
+		groupSize = 3,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Great Sea Ray"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -775,7 +801,11 @@ local bfaMounts = {
 		npcs = 99999,
 		chance = 100,
 		equalOdds = true,
-		groupSize = 3
+		groupSize = 3,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Island Thunderscale"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -787,7 +817,11 @@ local bfaMounts = {
 		npcs = 99999,
 		chance = 100,
 		equalOdds = true,
-		groupSize = 3
+		groupSize = 3,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Bloodgorged Hunter"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -799,7 +833,11 @@ local bfaMounts = {
 		npcs = 99999,
 		chance = 100,
 		equalOdds = true,
-		groupSize = 3
+		groupSize = 3,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Stonehide Elderhorn"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -811,7 +849,11 @@ local bfaMounts = {
 		npcs = 99999,
 		chance = 100,
 		equalOdds = true,
-		groupSize = 3
+		groupSize = 3,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	-- 8.3
 	["Ny'alotha Allseer"] = {

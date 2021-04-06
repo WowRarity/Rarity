@@ -14,7 +14,11 @@ local bfaToys = {
 		itemId = 163795,
 		chance = 250,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Whiskerwax Candle"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -25,7 +29,11 @@ local bfaToys = {
 		itemId = 163924,
 		chance = 250,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	-- ["Yaungol Oil Stove"] = { -- NYI as of 18/01/19
 	-- cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -58,7 +66,11 @@ local bfaToys = {
 		itemId = 164373,
 		chance = 250,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Magic Monkey Banana"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -69,7 +81,11 @@ local bfaToys = {
 		itemId = 164374,
 		chance = 250,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	["Bad Mojo Banana"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -80,7 +96,11 @@ local bfaToys = {
 		itemId = 164375,
 		chance = 250,
 		groupSize = 3,
-		equalOdds = true
+		equalOdds = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BORALUS},
+			{m = CONSTANTS.UIMAPIDS.DAZARALOR}
+		}
 	},
 	-- ["Regenerating Banana Bunch"] = { -- NYI as of 18/01/19
 	-- cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -505,7 +525,10 @@ local bfaToys = {
 		itemId = 167931,
 		npcs = {152007},
 		chance = 20,
-		questId = {55369}
+		questId = {55369},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND}
+		}
 	},
 	["Shadescale"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -557,7 +580,10 @@ local bfaToys = {
 		name = L["Flopping Fish"],
 		itemId = 170203,
 		items = {169940, 169939},
-		chance = 8
+		chance = 8,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NAZJATAR}
+		}
 	},
 	["Memento of the Deeps"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -567,7 +593,10 @@ local bfaToys = {
 		name = L["Memento of the Deeps"],
 		itemId = 170469,
 		items = {169940, 169939},
-		chance = 10
+		chance = 10,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NAZJATAR}
+		}
 	},
 	["Zanj'ir Weapon Rack"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -613,7 +642,10 @@ local bfaToys = {
 		},
 		name = L["Zanj'ir Weapon Rack"],
 		itemId = 170199,
-		chance = 400
+		chance = 400,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NAZJATAR}
+		}
 	},
 	["Underlight Sealamp"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -629,7 +661,10 @@ local bfaToys = {
 		},
 		name = L["Underlight Sealamp"],
 		itemId = 170476,
-		chance = 10
+		chance = 10,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.NAZJATAR}
+		}
 	},
 	-- 8.3 Toys
 	["Overly Sensitive Void Spectacles"] = {

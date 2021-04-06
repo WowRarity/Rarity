@@ -31,7 +31,11 @@ local holidayEventMounts = {
 		itemId = 128671,
 		items = {128670},
 		chance = 100,
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.LUNARFALL_GARRISON},
+			{m = CONSTANTS.UIMAPIDS.FROSTWALL_GARRISON}
+		}
 	},
 	["Great Brewfest Kodo"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,

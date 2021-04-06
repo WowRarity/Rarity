@@ -41,7 +41,8 @@ local holidayEventToys = {
 		chance = 100, -- Blind guess
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {6983, 7043},
-		requiresAlliance = true
+		requiresAlliance = true,
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["Crashin' Thrashin' Flamer Controller"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -54,7 +55,7 @@ local holidayEventToys = {
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {6983, 7043},
-		coords = {{m = 25, x = 43.6, y = 39.6}}
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["Crashin' Thrashin' Flyer Controller"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -67,7 +68,7 @@ local holidayEventToys = {
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {6983, 7043},
-		coords = {{m = 25, x = 43.6, y = 39.6}}
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["Crashin' Thrashin' Juggernaught"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -80,7 +81,8 @@ local holidayEventToys = {
 		chance = 100, -- Blind guess
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {6983, 7043},
-		requiresHorde = true
+		requiresHorde = true,
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["Crashin' Thrashin' Racer Controller"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -93,7 +95,7 @@ local holidayEventToys = {
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {6983, 7043},
-		coords = {{m = 25, x = 43.6, y = 39.6}}
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["Crashin' Thrashin' Shredder Controller"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -106,7 +108,7 @@ local holidayEventToys = {
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {6983, 7043},
-		coords = {{m = 25, x = 43.6, y = 39.6}}
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["Disposable Winter Veil Suits"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -119,7 +121,7 @@ local holidayEventToys = {
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {6983, 7043},
-		coords = {{m = 25, x = 43.6, y = 39.6}}
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["Endothermic Blaster"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -131,7 +133,8 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 200,  -- Guess
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		questId = {6983, 7043}
+		questId = {6983, 7043},
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["Foot Ball"] = {		-- WHY is this item here? It can be purchased from vendor
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -144,7 +147,7 @@ local holidayEventToys = {
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {6983, 7043},
-		coords = {{m = 25, x = 43.6, y = 39.6}}
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["Fuzzy Green Lounge Cushion"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -170,7 +173,8 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 100, -- Blind guess
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		questId = {6983, 7043}
+		questId = {6983, 7043},
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["Hearthstation (Horde)"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -183,7 +187,8 @@ local holidayEventToys = {
 		chance = 100, -- Blind guess
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {6983, 7043},
-		requiresHorde = true
+		requiresHorde = true,
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["Hearthstation (Alliance)"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -196,7 +201,8 @@ local holidayEventToys = {
 		chance = 100, -- Blind guess
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {6983, 7043},
-		requiresAlliance = true
+		requiresAlliance = true,
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["MiniZep Controller"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -209,7 +215,7 @@ local holidayEventToys = {
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {6983, 7043},
-		coords = {{m = 25, x = 43.6, y = 39.6}}
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["Moonfang Shroud"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -260,7 +266,7 @@ local holidayEventToys = {
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {6983, 7043},
-		coords = {{m = 25, x = 43.6, y = 39.6}}
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["Sack of Spectral Spiders"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -299,7 +305,8 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 8,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		questId = {6983, 7043}
+		questId = {6983, 7043},
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["Silver-Plated Turkey Shooter"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -334,7 +341,8 @@ local holidayEventToys = {
 		items = {93626, 116762},
 		chance = 75,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		questId = {6983, 7043}
+		questId = {6983, 7043},
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["The Heartbreaker"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -365,7 +373,7 @@ local holidayEventToys = {
 		chance = 50,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {6983, 7043},
-		coords = {{m = 25, x = 43.6, y = 39.6}}
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["Toy Weapon Set (Horde)"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -378,7 +386,8 @@ local holidayEventToys = {
 		chance = 200, -- Guess
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {6983, 7043},
-		requiresHorde = true
+		requiresHorde = true,
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["Toy Weapon Set (Alliance)"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -391,7 +400,8 @@ local holidayEventToys = {
 		chance = 200, -- Guess
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {6983, 7043},
-		requiresAlliance = true
+		requiresAlliance = true,
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["Wild Holly"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -403,7 +413,8 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 100, -- Blind guess
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		questId = {6983, 7043}
+		questId = {6983, 7043},
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["Wreath-A-Rang"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -415,7 +426,8 @@ local holidayEventToys = {
 		items = {116762},
 		chance = 100, -- Blind guess
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		questId = {6983, 7043}
+		questId = {6983, 7043},
+		coords = {{m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6}}
 	},
 	["Zhevra Lounge Cushion"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
