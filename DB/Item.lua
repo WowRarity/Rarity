@@ -151,15 +151,18 @@ function Item:IsMount(entry)
 end
 
 function Item:HasZone(entry)
-	if entry.coords then
-		for _, value in pairs(entry.coords) do
-			if type(value) == "table" and value.m ~= nil then
-				if value.m then
-					return true
-				end
+	if not entry.coords then
+		return false
+	end
+
+	for _, waypointData in pairs(entry.coords) do
+		if type(waypointData) == "table" and waypointData.m ~= nil then
+			if waypointData.m then
+				return true
 			end
 		end
 	end
+
 	return false
 end
 
