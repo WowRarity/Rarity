@@ -229,4 +229,19 @@ function Item:HasSpecialMethod(entry)
 	return entry.method == CONSTANTS.DETECTION_METHODS.SPECIAL
 end
 
+function Item:IsUsingCoordsProperties(entry)
+	return entry.coords ~= nil
+end
+
+function Item:HasBothXYCoordinates(entry)
+	for _, waypoint in pairs(entry.coords) do
+		if type(waypoint) == "table" then
+			if (waypoint.y and not waypoint.x) or (waypoint.x and not waypoint.y) then
+				return false
+			end
+		end
+	end
+	return true
+end
+
 Rarity.Item = Item

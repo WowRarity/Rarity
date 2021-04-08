@@ -108,6 +108,13 @@ function DatabaseSchema:IsValidItem(entry)
 		return false
 	end
 
+	if Item:IsUsingCoordsProperties(entry) then
+		if not Item:HasBothXYCoordinates(entry) then
+			Rarity:Print("X/Y coordinates are inconsistent")
+			return false
+		end
+	end
+
 	return true
 end
 
