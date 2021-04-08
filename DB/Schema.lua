@@ -78,7 +78,7 @@ function DatabaseSchema:IsValidItem(entry)
 		return false
 	end
 
-	if Item:IsFishingItem(entry) and not Item:IsUsingFishingProperties(entry) then
+	if Item:IsFishingItem(entry) and not Item:IsUsingFishingProperties(entry) and not Item:IsUsingZoneProperties(entry) then
 		Rarity:Print("Fishing settings are inconsistent")
 		return false
 	end
