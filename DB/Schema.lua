@@ -53,6 +53,15 @@ function DatabaseSchema:IsValidItem(entry)
 		return false
 	end
 
+	if Item:HasUseMethod(entry) and not Item:HasUseMethodProperties(entry) then
+		Rarity:Print("Found item with use method, but it isn't assigned any items to use.")
+		return false
+	end
+
+	if not Item:HasUseMethod(entry) and Item:HasUseMethodProperties(entry) then
+		Rarity:Print("Found item with properties belonging to the use method, but it's not right method.")
+		return false
+	end
 	return true
 end
 

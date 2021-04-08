@@ -181,4 +181,11 @@ function Item:IsUsingArchaeologyProperties(entry)
 	return entry.raceId ~= nil
 end
 
+function Item:HasUseMethod(entry)
+	return entry.method == CONSTANTS.DETECTION_METHODS.USE
+end
+
+function Item:HasUseMethodProperties(entry)
+	return entry.items ~= nil
+end
 Rarity.Item = Item
