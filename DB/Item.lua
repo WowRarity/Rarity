@@ -165,4 +165,12 @@ function Item:HasZone(entry)
 	return false
 end
 
+function Item:IsCollectionItem(entry)
+	return entry.method == CONSTANTS.DETECTION_METHODS.COLLECTION
+end
+
+function Item:IsUsingCollectionProperties(entry)
+	return entry.collectedItemId ~= nil
+end
+
 Rarity.Item = Item

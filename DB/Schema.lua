@@ -33,6 +33,15 @@ function DatabaseSchema:IsValidItem(entry)
 		return false
 	end
 
+	if Item:IsCollectionItem(entry) and not Item:IsUsingCollectionProperties(entry) then
+		Rarity:Print("Collection settings are inconsistent")
+		return false
+	end
+
+	if not Item:IsCollectionItem(entry) and Item:IsUsingCollectionProperties(entry) then
+		Rarity:Print("Found item using collection properties, but it's not a collection item")
+		return false
+	end
 	return true
 end
 
