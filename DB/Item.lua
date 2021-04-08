@@ -188,4 +188,12 @@ end
 function Item:HasUseMethodProperties(entry)
 	return entry.items ~= nil
 end
+
+function Item:IsCovenantSpecificItem(entry)
+	return entry.requiresCovenant ~= nil
+end
+
+function Item:IsUsingCovenantProperties(entry)
+	return entry.requiredCovenantID ~= nil
+end
 Rarity.Item = Item
