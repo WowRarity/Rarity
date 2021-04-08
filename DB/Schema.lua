@@ -87,6 +87,22 @@ function DatabaseSchema:IsValidItem(entry)
 		Rarity:Print("Found item using zone properties, but it's not a zone or fishing item")
 		return false
 	end
+
+	if Item:HasNPCMethod(entry) and not Item:IsUsingNPCProperties(entry) then
+		Rarity:Print("NPC settings are inconsistent")
+		return false
+	end
+
+	if Item:HasBossMethod(entry) and not Item:IsUsingNPCProperties(entry) then
+		Rarity:Print("BOSS settings are inconsistent")
+		return false
+	end
+
+	if Item:IsUsingNPCProperties(entry) and not (Item:HasNPCMethod(entry) or Item:HasBossMethod(entry) or Item:HasSpecialMethod(entry)) then
+		Rarity:Print("Found item using NPC properties, but it's not a BOSS or NPC item")
+		return false
+	end
+
 	return true
 end
 

@@ -208,4 +208,21 @@ end
 function Item:IsFishingItem(entry)
 	return entry.method == CONSTANTS.DETECTION_METHODS.FISHING
 end
+
+function Item:HasNPCMethod(entry)
+	return entry.method == CONSTANTS.DETECTION_METHODS.NPC
+end
+
+function Item:HasBossMethod(entry)
+	return entry.method == CONSTANTS.DETECTION_METHODS.BOSS
+end
+
+function Item:IsUsingNPCProperties(entry)
+	return entry.npcs ~= nil
+end
+
+function Item:HasSpecialMethod(entry)
+	return entry.method == CONSTANTS.DETECTION_METHODS.SPECIAL
+end
+
 Rarity.Item = Item
