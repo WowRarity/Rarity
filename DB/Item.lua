@@ -196,4 +196,16 @@ end
 function Item:IsUsingCovenantProperties(entry)
 	return entry.requiredCovenantID ~= nil
 end
+
+function Item:IsZoneItem(entry)
+	return entry.method == CONSTANTS.DETECTION_METHODS.ZONE
+end
+
+function Item:IsUsingZoneProperties(entry)
+	return entry.zones ~= nil
+end
+
+function Item:IsFishingItem(entry)
+	return entry.method == CONSTANTS.DETECTION_METHODS.FISHING
+end
 Rarity.Item = Item

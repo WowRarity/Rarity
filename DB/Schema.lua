@@ -72,6 +72,21 @@ function DatabaseSchema:IsValidItem(entry)
 		Rarity:Print("Found item using Covenant properties, but it's not a Covenant specific item")
 		return false
 	end
+
+	if Item:IsZoneItem(entry) and not Item:IsUsingZoneProperties(entry) then
+		Rarity:Print("Zone settings are inconsistent")
+		return false
+	end
+
+	if Item:IsFishingItem(entry) and not Item:IsUsingZoneProperties(entry) then
+		Rarity:Print("Fishing settings are inconsistent")
+		return false
+	end
+
+	if Item:IsUsingZoneProperties(entry) and not (Item:IsZoneItem(entry) or Item:IsFishingItem(entry)) then
+		Rarity:Print("Found item using zone properties, but it's not a zone or fishing item")
+		return false
+	end
 	return true
 end
 
