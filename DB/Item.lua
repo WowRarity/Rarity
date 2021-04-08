@@ -173,4 +173,12 @@ function Item:IsUsingCollectionProperties(entry)
 	return entry.collectedItemId ~= nil
 end
 
+function Item:IsArchaeologyItem(entry)
+	return entry.method == CONSTANTS.DETECTION_METHODS.ARCH
+end
+
+function Item:IsUsingArchaeologyProperties(entry)
+	return entry.raceId ~= nil
+end
+
 Rarity.Item = Item

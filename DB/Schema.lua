@@ -42,6 +42,17 @@ function DatabaseSchema:IsValidItem(entry)
 		Rarity:Print("Found item using collection properties, but it's not a collection item")
 		return false
 	end
+
+	if Item:IsArchaeologyItem(entry) and not Item:IsUsingArchaeologyProperties(entry) then
+		Rarity:Print("Archaeology settings are inconsistent")
+		return false
+	end
+
+	if not Item:IsArchaeologyItem(entry) and Item:IsUsingArchaeologyProperties(entry) then
+		Rarity:Print("Found item using Archaeology properties, but it's not a Archaeology item")
+		return false
+	end
+
 	return true
 end
 
