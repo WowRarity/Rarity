@@ -205,6 +205,10 @@ function Item:IsUsingZoneProperties(entry)
 	return entry.zones ~= nil
 end
 
+function Item:IsUsingFishingProperties(entry)
+	return entry.requiresPool ~= nil
+end
+
 function Item:IsFishingItem(entry)
 	return entry.method == CONSTANTS.DETECTION_METHODS.FISHING
 end
