@@ -1361,6 +1361,35 @@ function R:OnEvent(event, ...)
 			end
 		end
 
+		-- Handle opening lots of various chests for Gilded Wader (pet).
+		if
+			Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and
+				(Rarity.lastNode == L["Gift of Thenios"] or Rarity.lastNode == L["Hidden Hoard"]
+				or Rarity.lastNode == L["Memorial Offerings"] or Rarity.lastNode == L["Treasure of Courage"])
+		 then
+			local names = {"Gilded Wader"}
+			if (Rarity.lastNode == L["Gift of Thenios"]) then
+				Rarity:Debug("Detected Opening on " .. L["Gift of Thenios"] .. " (method = SPECIAL)")
+			elseif (Rarity.lastNode == L["Hidden Hoard"]) then
+				Rarity:Debug("Detected Opening on " .. L["Hidden Hoard"] .. " (method = SPECIAL)")
+			elseif (Rarity.lastNode == L["Memorial Offerings"]) then
+				Rarity:Debug("Detected Opening on " .. L["Memorial Offerings"] .. " (method = SPECIAL)")
+			elseif (Rarity.lastNode == L["Treasure of Courage"]) then
+				Rarity:Debug("Detected Opening on " .. L["Treasure of Courage"] .. " (method = SPECIAL)")
+			end
+			for _, name in pairs(names) do
+				local v = self.db.profile.groups.pets[name]
+				if v and type(v) == "table" and v.enabled ~= false then
+					if v.attempts == nil then
+						v.attempts = 1
+					else
+						v.attempts = v.attempts + 1
+					end
+					self:OutputAttempts(v)
+				end
+			end
+		end
+
 		-- Handle opening Pile of Coins
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Pile of Coins"]) then
 			local names = {"Armored Vaultbot"}

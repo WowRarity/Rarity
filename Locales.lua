@@ -1806,6 +1806,10 @@ L["Crashin' Thrashin' Juggernaught"] = true
 L["Wreath-A-Rang"] = true
 L["Glacial Tidestorm"] = true
 L["Gilded Wader"] = true
+L["Gift of Thenios"] = true
+L["Hidden Hoard"] = true
+L["Memorial Offerings"] = true
+L["Treasure of Courage"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

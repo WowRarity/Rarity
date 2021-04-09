@@ -242,5 +242,9 @@ R.opennodes = {
 	[L["Secret Treasure"]] = true,
 	[L["Forgotten Chest"]] = true,
 	[L["Cache of Eyes"]] = true,
-	[L["Dirty Glinting Object"]] = true
+	[L["Dirty Glinting Object"]] = true,
+	[L["Gift of Thenios"]] = true,
+	[L["Hidden Hoard"]] = true,
+	[L["Memorial Offerings"]] = true,
+	[L["Treasure of Courage"]] = true
 }
