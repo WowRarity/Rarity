@@ -1164,11 +1164,7 @@ function R:OnEvent(event, ...)
 				(Rarity.lastNode == L["Silver Strongbox"] or Rarity.lastNode == L["Gilded Chest"])
 		 then
 			local names = {"Acrobatic Steward", "Gilded Wader"}
-			if (Rarity.lastNode == L["Silver Strongbox"]) then
-				Rarity:Debug("Detected Opening on " .. L["Silver Strongbox"] .. " (method = SPECIAL)")
-			elseif (Rarity.lastNode == L["Gilded Chest"]) then
-				Rarity:Debug("Detected Opening on " .. L["Gilded Chest"] .. " (method = SPECIAL)")
-			end
+			Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
 				if v and type(v) == "table" and v.enabled ~= false then
@@ -1188,11 +1184,7 @@ function R:OnEvent(event, ...)
 				(Rarity.lastNode == L["Broken Bell"] or Rarity.lastNode == L["Skyward Bell"])
 		 then
 			local names = {"Soothing Vesper", "Gilded Wader"}
-			if (Rarity.lastNode == L["Broken Bell"]) then
-				Rarity:Debug("Detected Opening on " .. L["Broken Bell"] .. " (method = SPECIAL)")
-			elseif (Rarity.lastNode == L["Skyward Bell"]) then
-				Rarity:Debug("Detected Opening on " .. L["Skyward Bell"] .. " (method = SPECIAL)")
-			end
+			Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
 				if v and type(v) == "table" and v.enabled ~= false then
@@ -1368,15 +1360,7 @@ function R:OnEvent(event, ...)
 				or Rarity.lastNode == L["Memorial Offerings"] or Rarity.lastNode == L["Treasure of Courage"])
 		 then
 			local names = {"Gilded Wader"}
-			if (Rarity.lastNode == L["Gift of Thenios"]) then
-				Rarity:Debug("Detected Opening on " .. L["Gift of Thenios"] .. " (method = SPECIAL)")
-			elseif (Rarity.lastNode == L["Hidden Hoard"]) then
-				Rarity:Debug("Detected Opening on " .. L["Hidden Hoard"] .. " (method = SPECIAL)")
-			elseif (Rarity.lastNode == L["Memorial Offerings"]) then
-				Rarity:Debug("Detected Opening on " .. L["Memorial Offerings"] .. " (method = SPECIAL)")
-			elseif (Rarity.lastNode == L["Treasure of Courage"]) then
-				Rarity:Debug("Detected Opening on " .. L["Treasure of Courage"] .. " (method = SPECIAL)")
-			end
+			Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.pets[name]
 				if v and type(v) == "table" and v.enabled ~= false then
