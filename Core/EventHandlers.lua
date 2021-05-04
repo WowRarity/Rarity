@@ -1158,7 +1158,7 @@ function R:OnEvent(event, ...)
 			end
 		end
 
-		-- Handle opening Silver Strongbox & Gilded Chest (Bastiom, Shadowlands nodes for Acrobatic Steward (toy) and Gilded Wader (pet))
+		-- Handle opening Silver Strongbox & Gilded Chest (Bastion, Shadowlands nodes for Acrobatic Steward (toy) and Gilded Wader (pet))
 		if
 			Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and
 				(Rarity.lastNode == L["Silver Strongbox"] or Rarity.lastNode == L["Gilded Chest"])
