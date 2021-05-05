@@ -1354,10 +1354,18 @@ function R:OnEvent(event, ...)
 		end
 
 		-- Handle opening lots of various chests for Gilded Wader (pet).
+		local nodesGildedWader = {
+			[L["Gift of Thenios"]] = true,
+			[L["Hidden Hoard"]] = true,
+			[L["Memorial Offerings"]] = true,
+			[L["Treasure of Courage"]] = true,
+		}
+		local isRelevantNode = false
+		if Rarity.lastNode then
+			isRelevantNode = nodesGildedWader[Rarity.lastNode]
+		end
 		if
-			Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and
-				(Rarity.lastNode == L["Gift of Thenios"] or Rarity.lastNode == L["Hidden Hoard"]
-				or Rarity.lastNode == L["Memorial Offerings"] or Rarity.lastNode == L["Treasure of Courage"])
+			Rarity.isFishing and Rarity.isOpening and isRelevantNode
 		 then
 			local names = {"Gilded Wader"}
 			Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
