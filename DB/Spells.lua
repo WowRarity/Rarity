@@ -21,6 +21,7 @@ Rarity.relevantSpells = {
 	-- 8.3
 	[312881] = "Searching Mailbox",
 	-- 9.0
+	[329997] = "Opening", -- Silver Strongbox (Bastion, Shadowlands)
 	[345071] = "Looting", -- Dirty Glinting Object (Shadowlands zones for Lucy's Lost Collar pet)
 	-- Not tested (but added just in case)
 	[7731] = "Fishing",

@@ -675,6 +675,19 @@ local shadowlandsPets = {
 			{m = CONSTANTS.UIMAPIDS.CASTLE_NATHRIA, i = true}
 		}
 	},
+	["Gilded Wader"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Gilded Wader"],
+		itemId = 180866,
+		spellId = 335076,
+		creatureId = 171710,
+		chance = 300, -- Estimate
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BASTION}
+		}
+	}
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)

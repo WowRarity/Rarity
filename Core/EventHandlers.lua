@@ -1158,19 +1158,15 @@ function R:OnEvent(event, ...)
 			end
 		end
 
-		-- Handle opening Silver Strongbox & Gilded Chest (Shadowlands, Bastion nodes for Acrobatic Steward toy)
+		-- Handle opening Silver Strongbox & Gilded Chest (Bastion, Shadowlands nodes for Acrobatic Steward (toy) and Gilded Wader (pet))
 		if
 			Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and
 				(Rarity.lastNode == L["Silver Strongbox"] or Rarity.lastNode == L["Gilded Chest"])
 		 then
-			local names = {"Acrobatic Steward"}
-			if (Rarity.lastNode == L["Silver Strongbox"]) then
-				Rarity:Debug("Detected Opening on " .. L["Silver Strongbox"] .. " (method = SPECIAL)")
-			elseif (Rarity.lastNode == L["Gilded Chest"]) then
-				Rarity:Debug("Detected Opening on " .. L["Gilded Chest"] .. " (method = SPECIAL)")
-			end
+			local names = {"Acrobatic Steward", "Gilded Wader"}
+			Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name] or self.db.profile.groups.mounts[name]
+				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
 				if v and type(v) == "table" and v.enabled ~= false then
 					if v.attempts == nil then
 						v.attempts = 1
@@ -1182,19 +1178,15 @@ function R:OnEvent(event, ...)
 			end
 		end
 
-		-- Handle opening Broken Bell & Skyward Bell (Shadowlands, Bastion nodes for Soothing Vesper toy)
+		-- Handle opening Broken Bell & Skyward Bell (Shadowlands, Bastion nodes for Soothing Vesper (toy) & Gilded Wader (pet))
 		if
 			Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and
 				(Rarity.lastNode == L["Broken Bell"] or Rarity.lastNode == L["Skyward Bell"])
 		 then
-			local names = {"Soothing Vesper"}
-			if (Rarity.lastNode == L["Broken Bell"]) then
-				Rarity:Debug("Detected Opening on " .. L["Broken Bell"] .. " (method = SPECIAL)")
-			elseif (Rarity.lastNode == L["Skyward Bell"]) then
-				Rarity:Debug("Detected Opening on " .. L["Skyward Bell"] .. " (method = SPECIAL)")
-			end
+			local names = {"Soothing Vesper", "Gilded Wader"}
+			Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name] or self.db.profile.groups.mounts[name]
+				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
 				if v and type(v) == "table" and v.enabled ~= false then
 					if v.attempts == nil then
 						v.attempts = 1
@@ -1350,6 +1342,35 @@ function R:OnEvent(event, ...)
 			Rarity:Debug("Detected Opening on " .. L["Cache of Eyes"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+				if v and type(v) == "table" and v.enabled ~= false then
+					if v.attempts == nil then
+						v.attempts = 1
+					else
+						v.attempts = v.attempts + 1
+					end
+					self:OutputAttempts(v)
+				end
+			end
+		end
+
+		-- Handle opening lots of various chests for Gilded Wader (pet).
+		local nodesGildedWader = {
+			[L["Gift of Thenios"]] = true,
+			[L["Hidden Hoard"]] = true,
+			[L["Memorial Offerings"]] = true,
+			[L["Treasure of Courage"]] = true,
+		}
+		local isRelevantNode = false
+		if Rarity.lastNode then
+			isRelevantNode = nodesGildedWader[Rarity.lastNode]
+		end
+		if
+			Rarity.isFishing and Rarity.isOpening and isRelevantNode
+		 then
+			local names = {"Gilded Wader"}
+			Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
+			for _, name in pairs(names) do
+				local v = self.db.profile.groups.pets[name]
 				if v and type(v) == "table" and v.enabled ~= false then
 					if v.attempts == nil then
 						v.attempts = 1
