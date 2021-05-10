@@ -59,13 +59,8 @@ function DatabaseSchema:IsValidItem(entry)
 		return false
 	end
 
-	if Item:IsCovenantSpecificItem(entry) and not Item:IsUsingCovenantProperties(entry) then
+	if Item:IsCovenantSpecificItem(entry) and not Item:IsValidCovenantItem(entry) then
 		Rarity:Print("Covenant settings are inconsistent")
-		return false
-	end
-
-	if not Item:IsCovenantSpecificItem(entry) and Item:IsUsingCovenantProperties(entry) then
-		Rarity:Print("Found item using Covenant properties, but it's not a Covenant specific item")
 		return false
 	end
 

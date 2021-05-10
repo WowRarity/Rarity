@@ -202,11 +202,23 @@ function Item:HasUseMethodProperties(entry)
 end
 
 function Item:IsCovenantSpecificItem(entry)
-	return entry.requiresCovenant ~= nil
+	return entry.requiresCovenant == true
 end
 
-function Item:IsUsingCovenantProperties(entry)
-	return entry.requiredCovenantID ~= nil
+function Item:IsValidCovenantItem(entry)
+	if not entry.requiredCovenantID then
+		Rarity:Print("Found covenant item without a covenantID property")
+		return false
+	else
+		for _, constantIDs in pairs(CONSTANTS.COVENANT_IDS) do
+			if constantIDs == entry.requiredCovenantID then
+				return true
+			end
+		end
+
+		Rarity:Print("Found covenant item with faulty covenantID")
+		return false
+	end
 end
 
 function Item:IsZoneItem(entry)
