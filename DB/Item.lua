@@ -169,7 +169,7 @@ function Item:IsCollectionItem(entry)
 	return entry.method == CONSTANTS.DETECTION_METHODS.COLLECTION
 end
 
-function Item:IsUsingCollectionProperties(entry)
+function Item:IsValidCollectionItem(entry)
 	return entry.collectedItemId ~= nil
 end
 
@@ -197,7 +197,7 @@ function Item:HasUseMethod(entry)
 	return entry.method == CONSTANTS.DETECTION_METHODS.USE
 end
 
-function Item:HasUseMethodProperties(entry)
+function Item:IsValidUseMethodItem(entry)
 	return entry.items ~= nil
 end
 
@@ -225,16 +225,20 @@ function Item:IsZoneItem(entry)
 	return entry.method == CONSTANTS.DETECTION_METHODS.ZONE
 end
 
-function Item:IsUsingZoneProperties(entry)
+function Item:IsValidZoneItem(entry)
 	return entry.zones ~= nil
-end
-
-function Item:IsUsingFishingProperties(entry)
-	return entry.requiresPool ~= nil
 end
 
 function Item:IsFishingItem(entry)
 	return entry.method == CONSTANTS.DETECTION_METHODS.FISHING
+end
+
+function Item:IsValidFishingItem(entry)
+	if not Item:IsValidZoneItem(entry) then
+		return false
+	else
+		return entry.requiresPool ~= nil
+	end
 end
 
 function Item:HasNPCMethod(entry)
@@ -245,12 +249,8 @@ function Item:HasBossMethod(entry)
 	return entry.method == CONSTANTS.DETECTION_METHODS.BOSS
 end
 
-function Item:IsUsingNPCProperties(entry)
+function Item:IsValidNPCItem(entry)
 	return entry.npcs ~= nil
-end
-
-function Item:HasSpecialMethod(entry)
-	return entry.method == CONSTANTS.DETECTION_METHODS.SPECIAL
 end
 
 function Item:IsUsingCoordsProperties(entry)

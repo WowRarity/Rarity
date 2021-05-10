@@ -38,24 +38,13 @@ function DatabaseSchema:IsValidItem(entry)
 		return false
 	end
 
-	if not Item:IsCollectionItem(entry) and Item:IsUsingCollectionProperties(entry) then
-		Rarity:Print("Found item using collection properties, but it's not a collection item")
-		return false
-	end
-
 	if Item:IsArchaeologyItem(entry) and not Item:IsValidArchaeologyItem(entry) then
 		Rarity:Print("Archaeology settings are inconsistent")
 		return false
 	end
 
-
-	if Item:HasUseMethod(entry) and not Item:HasUseMethodProperties(entry) then
-		Rarity:Print("Found item with use method, but it isn't assigned any items to use.")
-		return false
-	end
-
-	if not Item:HasUseMethod(entry) and Item:HasUseMethodProperties(entry) then
-		Rarity:Print("Found item with properties belonging to the use method, but it's not right method.")
+	if Item:HasUseMethod(entry) and not Item:IsValidUseMethodItem(entry) then
+		Rarity:Print("Found item with use method, but it's items are not valid.")
 		return false
 	end
 
@@ -64,38 +53,28 @@ function DatabaseSchema:IsValidItem(entry)
 		return false
 	end
 
-	if Item:IsZoneItem(entry) and not Item:IsUsingZoneProperties(entry) then
+	if Item:IsZoneItem(entry) and not Item:IsValidZoneItem(entry) then
 		Rarity:Print("Zone settings are inconsistent")
 		return false
 	end
 
-	if Item:IsFishingItem(entry) and not Item:IsUsingFishingProperties(entry) and not Item:IsUsingZoneProperties(entry) then
+	if Item:IsFishingItem(entry) and not Item:IsValidFishingItem(entry) then
 		Rarity:Print("Fishing settings are inconsistent")
 		return false
 	end
 
-	if not Item:IsFishingItem(entry) and Item:IsUsingFishingProperties(entry) then
-		Rarity:Print("Found item using fishing properties, but it's not a fishing item")
-		return false
-	end
-
-	if Item:IsUsingZoneProperties(entry) and not (Item:IsZoneItem(entry) or Item:IsFishingItem(entry)) then
-		Rarity:Print("Found item using zone properties, but it's not a zone or fishing item")
-		return false
-	end
-
-	if Item:HasNPCMethod(entry) and not Item:IsUsingNPCProperties(entry) then
+	if Item:HasNPCMethod(entry) and not Item:IsValidNPCItem(entry) then
 		Rarity:Print("NPC settings are inconsistent")
 		return false
 	end
 
-	if Item:HasBossMethod(entry) and not Item:IsUsingNPCProperties(entry) then
+	if Item:HasBossMethod(entry) and not Item:IsValidNPCItem(entry) then
 		Rarity:Print("BOSS settings are inconsistent")
 		return false
 	end
 
-	if Item:IsUsingNPCProperties(entry) and not (Item:HasNPCMethod(entry) or Item:HasBossMethod(entry) or Item:HasSpecialMethod(entry)) then
-		Rarity:Print("Found item using NPC properties, but it's not a BOSS or NPC item")
+	if Item:HasWaypointData(entry) and not Item:HasValidWaypoints(entry) then
+		Rarity:Print("Waypoint data is inconsistent")
 		return false
 	end
 
