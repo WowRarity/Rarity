@@ -198,6 +198,29 @@ C.HOLIDAY_TEXTURES = {
 	PIRATES_DAY = "Calendar_PiratesDay"
 }
 
+C.ARCHAEOLOGY_RACES = {
+	DRUST = 1,
+	ZANDALARI = 2,
+	DEMONIC = 3,
+	HIGHMOUNTAIN_TAUREN = 4,
+	HIGHBORNE = 5,
+	OGRE = 6,
+	DRAENOR_CLANS = 7,
+	ARAKKOA = 8,
+	MOGU = 9,
+	PANDAREN = 10,
+	MANTID = 11,
+	VRYKUL = 12,
+	TROLL = 13,
+	TOL_VIR = 14,
+	ORC = 15,
+	NERUBIAN = 16,
+	NIGHT_ELF = 17,
+	FOSSIL = 18,
+	DRAENEI = 19,
+	DWARF = 20
+}
+
 -- This doesn't really belong here and needs streamlining anyway, but for now this is the best place.
 -- Tooltip Filters (Note: Currently, this system is merely a stub. but more (and custom) filters may be added in the future)
 -- These are used to decide whether the tooltip should be extended to display information about an CONSTANTS.ITEM_TYPES.ITEM for the NPCs listed in its tooltipNpcs table. Useful if we want to draw attention to an CONSTANTS.ITEM_TYPES.ITEM, but not every player can obtain it
