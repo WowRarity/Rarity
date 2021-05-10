@@ -164,18 +164,17 @@ end
 
 function Item:IsValidArchaeologyItem(entry)
 	if not entry.raceId then
-		Rarity:Print("Found archaeology item without raceId property")
-		return false
-	else
-		for _, constantRaceIDs in pairs(CONSTANTS.ARCHAEOLOGY_RACES) do
-			if constantRaceIDs == entry.raceId then
-				return true
-			end
-		end
-
-		Rarity:Print("Found archaeology item with faulty raceId")
+		Rarity:Print("Found archaeology item without raceID property")
 		return false
 	end
+
+	for _, raceID in pairs(CONSTANTS.ARCHAEOLOGY_RACES) do
+		if raceID == entry.raceId then
+			return true
+		end
+	end
+	Rarity:Print("Found archaeology item with invalid raceID")
+	return false
 end
 
 function Item:HasUseMethod(entry)
@@ -194,16 +193,15 @@ function Item:IsValidCovenantItem(entry)
 	if not entry.requiredCovenantID then
 		Rarity:Print("Found covenant item without a covenantID property")
 		return false
-	else
-		for _, constantIDs in pairs(CONSTANTS.COVENANT_IDS) do
-			if constantIDs == entry.requiredCovenantID then
-				return true
-			end
-		end
-
-		Rarity:Print("Found covenant item with faulty covenantID")
-		return false
 	end
+
+	for _, covenantID in pairs(CONSTANTS.COVENANT_IDS) do
+		if covenantID == entry.requiredCovenantID then
+			return true
+		end
+	end
+	Rarity:Print("Found covenant item with invalid covenantID")
+	return false
 end
 
 function Item:IsZoneItem(entry)
@@ -221,9 +219,9 @@ end
 function Item:IsValidFishingItem(entry)
 	if not Item:IsValidZoneItem(entry) then
 		return false
-	else
-		return entry.requiresPool ~= nil
 	end
+	
+	return entry.requiresPool ~= nil
 end
 
 function Item:HasNPCMethod(entry)
@@ -254,10 +252,10 @@ end
 function IsValidWaypoint(waypointData)
 	if type(waypointData) == "table" then
 		if not waypointData.m then
-			Rarity:Print("Missing mapID")
+			Rarity:Print("Waypoint data is missing a mapID")
 			return false
 		elseif (waypointData.y and not waypointData.x) or (waypointData.x and not waypointData.y) then
-			Rarity:Print("X/Y-Coordinates are inconsistent")
+			Rarity:Print("Waypoint data has incomplete map coordinates")
 			return false
 		end
 	end

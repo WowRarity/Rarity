@@ -29,7 +29,7 @@ function DatabaseSchema:IsValidItem(entry)
 	end
 
 	if Item:IsCollectionItem(entry) and not Item:IsValidCollectionItem(entry) then
-		Rarity:Print("Collection settings are inconsistent")
+		Rarity:Print("Item is using Collection method, but the collectedItemId is not set correctly")
 		return false
 	end
 
@@ -39,7 +39,7 @@ function DatabaseSchema:IsValidItem(entry)
 	end
 
 	if Item:HasUseMethod(entry) and not Item:IsValidUseMethodItem(entry) then
-		Rarity:Print("Found item with use method, but it's items are not valid.")
+		Rarity:Print("Found item with use method, but the containers (field:items) are not set or are invalid.")
 		return false
 	end
 
@@ -49,22 +49,22 @@ function DatabaseSchema:IsValidItem(entry)
 	end
 
 	if Item:IsZoneItem(entry) and not Item:IsValidZoneItem(entry) then
-		Rarity:Print("Zone settings are inconsistent")
+		Rarity:Print("Item is using method for 'any mob in a zone' detection, but the Zones are not set correctly")
 		return false
 	end
 
 	if Item:IsFishingItem(entry) and not Item:IsValidFishingItem(entry) then
-		Rarity:Print("Fishing settings are inconsistent")
+		Rarity:Print("Found Fishing item, but the Zones to track in are not set correctly")
 		return false
 	end
 
 	if Item:HasNPCMethod(entry) and not Item:IsValidNPCItem(entry) then
-		Rarity:Print("NPC settings are inconsistent")
+		Rarity:Print("Found item using NPC method, but the list of NPCs to track is invalid")
 		return false
 	end
 
 	if Item:HasBossMethod(entry) and not Item:IsValidNPCItem(entry) then
-		Rarity:Print("BOSS settings are inconsistent")
+		Rarity:Print("Found item using BOSS method, but the list of NPCs to track is invalid")
 		return false
 	end
 
