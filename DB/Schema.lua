@@ -43,15 +43,11 @@ function DatabaseSchema:IsValidItem(entry)
 		return false
 	end
 
-	if Item:IsArchaeologyItem(entry) and not Item:IsUsingArchaeologyProperties(entry) then
+	if Item:IsArchaeologyItem(entry) and not Item:IsValidArchaeologyItem(entry) then
 		Rarity:Print("Archaeology settings are inconsistent")
 		return false
 	end
 
-	if not Item:IsArchaeologyItem(entry) and Item:IsUsingArchaeologyProperties(entry) then
-		Rarity:Print("Found item using Archaeology properties, but it's not a Archaeology item")
-		return false
-	end
 
 	if Item:HasUseMethod(entry) and not Item:HasUseMethodProperties(entry) then
 		Rarity:Print("Found item with use method, but it isn't assigned any items to use.")

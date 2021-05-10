@@ -177,8 +177,20 @@ function Item:IsArchaeologyItem(entry)
 	return entry.method == CONSTANTS.DETECTION_METHODS.ARCH
 end
 
-function Item:IsUsingArchaeologyProperties(entry)
-	return entry.raceId ~= nil
+function Item:IsValidArchaeologyItem(entry)
+	if not entry.raceId then
+		Rarity:Print("Found archaeology item without raceId property")
+		return false
+	else
+		for _, constantRaceIDs in pairs(CONSTANTS.ARCHAEOLOGY_RACES) do
+			if constantRaceIDs == entry.raceId then
+				return true
+			end
+		end
+
+		Rarity:Print("Found archaeology item with faulty raceId")
+		return false
+	end
 end
 
 function Item:HasUseMethod(entry)
