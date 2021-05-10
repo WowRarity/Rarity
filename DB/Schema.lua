@@ -28,7 +28,7 @@ function DatabaseSchema:IsValidItem(entry)
 		return false
 	end
 
-	if Item:IsCollectionItem(entry) and not Item:IsUsingCollectionProperties(entry) then
+	if Item:IsCollectionItem(entry) and not Item:IsValidCollectionItem(entry) then
 		Rarity:Print("Collection settings are inconsistent")
 		return false
 	end
