@@ -78,11 +78,9 @@ function DatabaseSchema:IsValidItem(entry)
 		return false
 	end
 
-	if Item:IsUsingCoordsProperties(entry) then
-		if not Item:HasBothXYCoordinates(entry) then
-			Rarity:Print("X/Y coordinates are inconsistent")
-			return false
-		end
+	if not Item:HasWaypointData(entry) then
+		Rarity:Print("Waypoint (zone) data is missing")
+		return false
 	end
 
 	return true

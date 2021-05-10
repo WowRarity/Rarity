@@ -150,21 +150,6 @@ function Item:IsMount(entry)
 	return entry.type == CONSTANTS.ITEM_TYPES.MOUNT
 end
 
-function Item:HasZone(entry)
-	if not entry.coords then
-		return false
-	end
-
-	-- It has value in 'coords', make sure it contains a mapID.
-	for _, waypointData in pairs(entry.coords) do
-		if waypointData.m then
-			return true
-		end
-	end
-
-	return false
-end
-
 function Item:IsCollectionItem(entry)
 	return entry.method == CONSTANTS.DETECTION_METHODS.COLLECTION
 end
@@ -253,16 +238,27 @@ function Item:IsValidNPCItem(entry)
 	return entry.npcs ~= nil
 end
 
-function Item:IsUsingCoordsProperties(entry)
+function Item:HasWaypointData(entry)
 	return entry.coords ~= nil
 end
 
-function Item:HasBothXYCoordinates(entry)
+function Item:HasValidWaypoints(entry)
 	for _, waypoint in pairs(entry.coords) do
-		if type(waypoint) == "table" then
-			if (waypoint.y and not waypoint.x) or (waypoint.x and not waypoint.y) then
-				return false
-			end
+		if not IsValidWaypoint(waypoint) then
+			return false
+		end
+	end
+	return true
+end
+
+function IsValidWaypoint(waypointData)
+	if type(waypointData) == "table" then
+		if not waypointData.m then
+			Rarity:Print("Missing mapID")
+			return false
+		elseif (waypointData.y and not waypointData.x) or (waypointData.x and not waypointData.y) then
+			Rarity:Print("X/Y-Coordinates are inconsistent")
+			return false
 		end
 	end
 	return true
