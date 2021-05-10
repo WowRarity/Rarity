@@ -56,7 +56,7 @@ local cataclysmMounts = {
 		name = L["Fossilized Raptor"],
 		spellId = 84751,
 		itemId = 60954,
-		raceId = 18,
+		raceId = CONSTANTS.ARCHAEOLOGY_RACES.FOSSIL,
 		chance = 30,
 		sourceText = L["Obtained as a rare project for the Fossil branch of archaeology"],
 		coords = {
@@ -238,7 +238,7 @@ local cataclysmMounts = {
 		name = L["Scepter of Azj'Aqir"],
 		spellId = 92155,
 		itemId = 64883,
-		raceId = 14,
+		raceId = CONSTANTS.ARCHAEOLOGY_RACES.TOL_VIR,
 		chance = 500,
 		sourceText = L["Obtained as a very rare project for the Tol'vir branch of archaeology"],
 		coords = {{m = 249}}
