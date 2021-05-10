@@ -28,11 +28,6 @@ function DatabaseSchema:IsValidItem(entry)
 		return false
 	end
 
-	if not Item:HasZone(entry) then
-		Rarity:Print("Zone is missing")
-		return false
-	end
-
 	if Item:IsCollectionItem(entry) and not Item:IsUsingCollectionProperties(entry) then
 		Rarity:Print("Collection settings are inconsistent")
 		return false
