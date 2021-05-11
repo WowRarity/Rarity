@@ -230,6 +230,7 @@ local mopMounts = {
 		itemId = 104269,
 		npcs = {73167},
 		chance = 100,
+		blackMarket = true,
 		sourceText = L["Players have a personal loot chance to obtain this item."],
 		coords = {{m = 554, x = 67.8, y = 59}}
 	},
