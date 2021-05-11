@@ -114,6 +114,7 @@ local wodMounts = {
 		itemId = 23720,
 		npcs = {81171, 85715},
 		chance = 200,
+		blackMarket = true,
 		sourceText = L[
 			"After upgrading your garrison's Fishing Shack to level 3, fish up 5 minnows to summon a Cavedweller which can drop this mount."
 		],
