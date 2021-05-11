@@ -332,6 +332,7 @@ local legionMounts = {
 		chance = 100,
 		groupSize = 3,
 		equalOdds = true,
+		blackMarket = true,
 		statisticId = {11893, 11894, 11895, 11896},
 		coords = {{m = 851, i = true}}
 	},
@@ -351,6 +352,7 @@ local legionMounts = {
 		chance = 100,
 		groupSize = 3,
 		equalOdds = true,
+		blackMarket = true,
 		statisticId = {10979, 10980, 10978},
 		coords = {{m = 772, i = true}}
 	},
@@ -414,6 +416,7 @@ local legionMounts = {
 		wasGuaranteed = true,
 		groupSize = 3,
 		equalOdds = true,
+		blackMarket = true,
 		statisticId = {11986},
 		coords = {{m = 910, i = true}}
 	}
