@@ -15,6 +15,7 @@ local wotlkPets = {
 		npcs = {3636, 3637},
 		chance = 500,
 		creatureId = 35395,
+		blackMarket = true,
 		coords = {{m = 279}}
 	},
 	["Giant Sewer Rat"] = {
@@ -27,6 +28,7 @@ local wotlkPets = {
 		zones = {"Cantrips & Crows", "Circle of Wills", "The Underbelly", "The Black Market"},
 		chance = 1000,
 		requiresPool = false,
+		blackMarket = true,
 		creatureId = 31575,
 		coords = {{m = 125}}
 	},
@@ -40,6 +42,7 @@ local wotlkPets = {
 		npcs = {29334},
 		chance = 1000,
 		creatureId = 35400,
+		blackMarket = true,
 		coords = {{m = 121}}
 	},
 	["Razzashi Hatchling"] = {
@@ -52,6 +55,7 @@ local wotlkPets = {
 		zones = {"224", "50", "210"},
 		chance = 5000,
 		creatureId = 35394,
+		blackMarket = true,
 		coords = {{m = 224}, {m = 50}, {m = 210}}
 	}
 }

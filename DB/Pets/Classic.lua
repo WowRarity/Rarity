@@ -15,6 +15,7 @@ local classicPets = {
 		zones = {"25"},
 		chance = 10000,
 		creatureId = 7383,
+		blackMarket = true,
 		coords = {{m = 25}}
 	},
 	["Dark Whelpling"] = {
@@ -27,6 +28,7 @@ local classicPets = {
 		npcs = {4324, 42042, 2725, 46916, 7049, 4323, 46914},
 		chance = 1000,
 		creatureId = 7543,
+		blackMarket = true,
 		coords = {
 			{m = 15, x = 29.6, y = 44.2},
 			{m = 15, x = 71.8, y = 47.6},
@@ -47,6 +49,7 @@ local classicPets = {
 		items = {20768},
 		chance = 85,
 		creatureId = 15429,
+		blackMarket = true,
 		tooltipNpcs = {
 			1806,
 			1808,
@@ -122,6 +125,7 @@ local classicPets = {
 		npcs = {48522},
 		chance = 33,
 		creatureId = 7387,
+		blackMarket = true,
 		coords = {{m = 291, x = 55, y = 39.6, i = true}}
 	},
 	["Parrot Cage (Hyacinth Macaw)"] = {
@@ -134,6 +138,7 @@ local classicPets = {
 		zones = {"224", "50", "210"},
 		chance = 10000,
 		creatureId = 7391,
+		blackMarket = true,
 		coords = {{m = 50}, {m = 210}}
 	},
 	["Sprite Darter Egg"] = {
@@ -158,6 +163,7 @@ local classicPets = {
 		zones = {"56"},
 		chance = 10000,
 		creatureId = 7544,
+		blackMarket = true,
 		coords = {{m = 56}}
 	},
 	["Emerald Whelpling"] = {
@@ -170,6 +176,7 @@ local classicPets = {
 		npcs = {740, 741, 39384},
 		chance = 1000,
 		creatureId = 7545,
+		blackMarket = true,
 		coords = {{m = 69, x = 49.6, y = 8.6}}
 	}
 }

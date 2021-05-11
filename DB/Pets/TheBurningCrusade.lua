@@ -15,6 +15,7 @@ local tbcPets = {
 		zones = {"83"},
 		chance = 10000,
 		creatureId = 7547,
+		blackMarket = true,
 		coords = {{m = 83}}
 	},
 	["Captured Firefly"] = {
@@ -27,6 +28,7 @@ local tbcPets = {
 		npcs = {20197},
 		chance = 1000,
 		creatureId = 21076,
+		blackMarket = true,
 		coords = {{m = 102, x = 47.6, y = 32.6}}
 	},
 	["Mojo"] = {
@@ -51,6 +53,7 @@ local tbcPets = {
 		npcs = {24664},
 		chance = 11,
 		creatureId = 26119,
+		blackMarket = true,
 		coords = {{m = 348, x = 8.6, y = 50.2, i = true, n = L["Kael'thas Sunstrider"]}}
 	},
 	["Chuck's Bucket"] = {
