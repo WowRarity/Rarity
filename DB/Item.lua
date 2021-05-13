@@ -150,19 +150,116 @@ function Item:IsMount(entry)
 	return entry.type == CONSTANTS.ITEM_TYPES.MOUNT
 end
 
-function Item:HasZone(entry)
-	if not entry.coords then
+function Item:IsCollectionItem(entry)
+	return entry.method == CONSTANTS.DETECTION_METHODS.COLLECTION
+end
+
+function Item:IsValidCollectionItem(entry)
+	return entry.collectedItemId ~= nil
+end
+
+function Item:IsArchaeologyItem(entry)
+	return entry.method == CONSTANTS.DETECTION_METHODS.ARCH
+end
+
+function Item:IsValidArchaeologyItem(entry)
+	if not entry.raceId then
+		Rarity:Print("Found archaeology item without raceID property")
 		return false
 	end
 
-	-- It has value in 'coords', make sure it contains a mapID.
-	for _, waypointData in pairs(entry.coords) do
-		if waypointData.m then
+	for _, raceID in pairs(CONSTANTS.ARCHAEOLOGY_RACES) do
+		if raceID == entry.raceId then
 			return true
 		end
 	end
-
+	Rarity:Print("Found archaeology item with invalid raceID")
 	return false
+end
+
+function Item:HasUseMethod(entry)
+	return entry.method == CONSTANTS.DETECTION_METHODS.USE
+end
+
+function Item:IsValidUseMethodItem(entry)
+	return entry.items ~= nil
+end
+
+function Item:IsCovenantSpecificItem(entry)
+	return entry.requiresCovenant == true
+end
+
+function Item:IsValidCovenantItem(entry)
+	if not entry.requiredCovenantID then
+		Rarity:Print("Found covenant item without a covenantID property")
+		return false
+	end
+
+	for _, covenantID in pairs(CONSTANTS.COVENANT_IDS) do
+		if covenantID == entry.requiredCovenantID then
+			return true
+		end
+	end
+	Rarity:Print("Found covenant item with invalid covenantID")
+	return false
+end
+
+function Item:IsZoneItem(entry)
+	return entry.method == CONSTANTS.DETECTION_METHODS.ZONE
+end
+
+function Item:IsValidZoneItem(entry)
+	return entry.zones ~= nil
+end
+
+function Item:IsFishingItem(entry)
+	return entry.method == CONSTANTS.DETECTION_METHODS.FISHING
+end
+
+function Item:IsValidFishingItem(entry)
+	if not Item:IsValidZoneItem(entry) then
+		return false
+	end
+	
+	return entry.requiresPool ~= nil
+end
+
+function Item:HasNPCMethod(entry)
+	return entry.method == CONSTANTS.DETECTION_METHODS.NPC
+end
+
+function Item:HasBossMethod(entry)
+	return entry.method == CONSTANTS.DETECTION_METHODS.BOSS
+end
+
+function Item:IsValidNPCItem(entry)
+	return entry.npcs ~= nil
+end
+
+function Item:HasWaypointData(entry)
+	return entry.coords ~= nil
+end
+
+function Item:HasValidWaypoints(entry)
+	for _, waypoint in pairs(entry.coords) do
+		if not IsValidWaypoint(waypoint) then
+			return false
+		end
+	end
+	return true
+end
+
+function IsValidWaypoint(waypointData)
+	if type(waypointData) == "table" then
+		if not waypointData.m then
+			Rarity:Print("Waypoint data is missing a mapID")
+			return false
+		elseif (waypointData.y and not waypointData.x) or (waypointData.x and not waypointData.y) then
+			Rarity:Print("Waypoint data has incomplete map coordinates")
+			return false
+		end
+	end
+	return true
 end
 
 Rarity.Item = Item
