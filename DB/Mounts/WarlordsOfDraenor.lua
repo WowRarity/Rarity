@@ -114,6 +114,7 @@ local wodMounts = {
 		itemId = 23720,
 		npcs = {81171, 85715},
 		chance = 200,
+		blackMarket = true,
 		sourceText = L[
 			"After upgrading your garrison's Fishing Shack to level 3, fish up 5 minnows to summon a Cavedweller which can drop this mount."
 		],
@@ -231,6 +232,7 @@ local wodMounts = {
 		tooltipNpcs = {91331},
 		chance = 100,
 		wasGuaranteed = true,
+		blackMarket = true,
 		statisticId = {10252},
 		lockBossName = "Archimonde",
 		coords = {{m = 670, x = 58.4, y = 53.3, i = true}}
@@ -257,6 +259,7 @@ local wodMounts = {
 		tooltipNpcs = {77325},
 		chance = 100,
 		wasGuaranteed = true,
+		blackMarket = true,
 		statisticId = {9365},
 		lockBossName = "Blackhand",
 		coords = {{m = 600, x = 48.4, y = 34.5, i = true}}
@@ -273,6 +276,7 @@ local wodMounts = {
 		chance = 500,
 		statisticId = {9279},
 		worldBossFactionless = true,
+		blackMarket = true,
 		questId = 37464,
 		coords = {
 			{

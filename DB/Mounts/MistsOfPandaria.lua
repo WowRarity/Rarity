@@ -24,6 +24,7 @@ local mopMounts = {
 		statisticId = {8171, 8169, 8172, 8170},
 		sourceText = L["All raid formats except Raid Finder"],
 		lockBossName = "Ji-Kun",
+		blackMarket = true,
 		coords = {{m = 510, x = 49.7, y = 41.6, i = true}}
 	},
 	["Kor'kron Juggernaut"] = {
@@ -40,6 +41,7 @@ local mopMounts = {
 		statisticId = {8638, 8637},
 		sourceText = L["Mythic difficulty"],
 		wasGuaranteed = true,
+		blackMarket = true,
 		lockBossName = "Garrosh Hellscream",
 		coords = {{m = 567, x = 49.4, y = 71.3, i = true}}
 	},
@@ -52,6 +54,7 @@ local mopMounts = {
 		itemId = 94230,
 		npcs = {69841},
 		chance = 20,
+		blackMarket = true,
 		sourceText = L["The Warbringer will be riding the mount color he has a chance to drop."],
 		coords = {
 			{m = 418, x = 39.08, y = 67.13},
@@ -137,6 +140,7 @@ local mopMounts = {
 		statisticId = {8147},
 		enableCoin = true,
 		worldBossFactionless = true,
+		blackMarket = true,
 		coords = {{m = 507, x = 50.6, y = 54.4}}
 	},
 	["Reins of the Heavenly Onyx Cloud Serpent"] = {
@@ -171,6 +175,7 @@ local mopMounts = {
 		itemId = 94231,
 		npcs = {69842},
 		chance = 20,
+		blackMarket = true,
 		sourceText = L["The Warbringer will be riding the mount color he has a chance to drop."],
 		coords = {
 			{m = 418, x = 39.08, y = 67.13},
@@ -189,6 +194,7 @@ local mopMounts = {
 		itemId = 94229,
 		npcs = {69769},
 		chance = 20,
+		blackMarket = true,
 		sourceText = L["The Warbringer will be riding the mount color he has a chance to drop."],
 		coords = {
 			{m = 418, x = 39.08, y = 67.13},
@@ -224,6 +230,7 @@ local mopMounts = {
 		itemId = 104269,
 		npcs = {73167},
 		chance = 100,
+		blackMarket = true,
 		sourceText = L["Players have a personal loot chance to obtain this item."],
 		coords = {{m = 554, x = 67.8, y = 59}}
 	},
@@ -241,6 +248,7 @@ local mopMounts = {
 		statisticId = {6990},
 		enableCoin = true,
 		worldBossFactionless = true,
+		blackMarket = true,
 		coords = {{m = 376, x = 71.6, y = 64.4}}
 	},
 	["Spawn of Horridon"] = {
@@ -262,6 +270,7 @@ local mopMounts = {
 		statisticId = {8151, 8149, 8152, 8150},
 		sourceText = L["All raid formats except Raid Finder"],
 		lockBossName = "Horridon",
+		blackMarket = true,
 		coords = {{m = 508, x = 26.8, y = 78.7, i = true}}
 	}
 }

@@ -104,6 +104,7 @@ local wotlkMounts = {
 		tooltipNpcs = {35013, 33993, 31125, 38433},
 		chance = 100,
 		requiresAlliance = true,
+		blackMarket = true,
 		statisticId = {1753, 1754, 2870, 3236, 4074, 4075, 4657, 4658},
 		sourceText = L[
 			"Dropped by Koralon the Flame Watcher, Emalon the Storm Watcher, Archavon the Stone Watcher, and Toravon the Ice Watcher in Vault of Archavon (any raid size)."
@@ -127,6 +128,7 @@ local wotlkMounts = {
 		tooltipNpcs = {35013, 33993, 31125, 38433},
 		chance = 100,
 		requiresHorde = true,
+		blackMarket = true,
 		statisticId = {1753, 1754, 2870, 3236, 4074, 4075, 4657, 4658},
 		sourceText = L[
 			"Dropped by Koralon the Flame Watcher, Emalon the Storm Watcher, Archavon the Stone Watcher, and Toravon the Ice Watcher in Vault of Archavon (any raid size)."

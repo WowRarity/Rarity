@@ -37,6 +37,7 @@ local legionMounts = {
 		itemId = 143764,
 		items = {152105},
 		chance = 20,
+		blackMarket = true,
 		coords = {{m = CONSTANTS.UIMAPIDS.SURAMAR}}
 	},
 	["Torn Invitation"] = {
@@ -60,6 +61,7 @@ local legionMounts = {
 		itemId = 147805,
 		items = {152106},
 		chance = 20,
+		blackMarket = true,
 		coords = {{m = CONSTANTS.UIMAPIDS.STORMHEIM}}
 	},
 	["Wild Dreamrunner"] = {
@@ -129,6 +131,7 @@ local legionMounts = {
 		npcs = {127288},
 		chance = 30,
 		questId = 48821,
+		blackMarket = true,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 62.96, y = 24.86, n = L["Houndmaster Kerrax"]}
 		}
@@ -332,6 +335,7 @@ local legionMounts = {
 		chance = 100,
 		groupSize = 3,
 		equalOdds = true,
+		blackMarket = true,
 		statisticId = {11893, 11894, 11895, 11896},
 		coords = {{m = 851, i = true}}
 	},
@@ -351,6 +355,7 @@ local legionMounts = {
 		chance = 100,
 		groupSize = 3,
 		equalOdds = true,
+		blackMarket = true,
 		statisticId = {10979, 10980, 10978},
 		coords = {{m = 772, i = true}}
 	},
@@ -414,6 +419,7 @@ local legionMounts = {
 		wasGuaranteed = true,
 		groupSize = 3,
 		equalOdds = true,
+		blackMarket = true,
 		statisticId = {11986},
 		coords = {{m = 910, i = true}}
 	}
