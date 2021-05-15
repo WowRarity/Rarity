@@ -80,15 +80,15 @@ local colorize = Rarity.Utils.String.Colorize
 local green = Rarity.Enum.Colors.Green
 local gray = Rarity.Enum.Colors.Gray
 
-function R:GetZoneInfo(v)
+function R:GetZoneInfo(item)
 	local zoneText = ""
 	local inMyZone = false
 	local zoneColor = gray
 	local numZones = 0
 	local currentZone = GetBestMapForUnit("player")
-	if v.coords ~= nil and type(v.coords) == "table" then
+	if item.coords ~= nil and type(item.coords) == "table" then
 		local zoneList = {}
-		for _, zoneValue in pairs(v.coords) do
+		for _, zoneValue in pairs(item.coords) do
 			if type(zoneValue) == "table" and zoneValue.m ~= nil then
 				if zoneList[zoneValue.m] == nil then
 					numZones = numZones + 1
@@ -103,8 +103,8 @@ function R:GetZoneInfo(v)
 		if numZones > 1 then
 			zoneText = format(L["%d |4zone:zones;"], numZones)
 		end
-		if v.coords.zoneOverride ~= nil then
-			zoneText = v.coords.zoneOverride
+		if item.coords.zoneOverride ~= nil then
+			zoneText = item.coords.zoneOverride
 		end
 		if inMyZone then
 			zoneColor = green
