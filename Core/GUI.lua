@@ -97,7 +97,7 @@ local white = {r = 1.0, g = 1.0, b = 1.0}
 -- local red = Rarity.GUI.COLOR_RED
 -- local gray = Rarity.GUI.COLOR_GRAY
 
-function R:GetZone(v)
+function R:GetZoneInfo(v)
 	local zoneText = ""
 	local inMyZone = false
 	local zoneColor = gray
