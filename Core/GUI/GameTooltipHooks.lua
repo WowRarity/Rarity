@@ -13,7 +13,7 @@ local lbz = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
 local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
 --- Addon API
 local CONSTANTS = addonTable.constants
-local colorize = Rarity.GUI.colorize
+local colorize = Rarity.Utils.String.Colorize
 local scanTip = Rarity.GUI.scanTip
 --- Constants
 local red = Rarity.Enum.Colors.Red

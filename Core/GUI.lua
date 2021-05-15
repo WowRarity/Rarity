@@ -76,14 +76,7 @@ local GetMapNameByID = Rarity.GetMapNameByID
   ]]
 -- TOOLTIP: NPCS
 
-function GUI.colorize(s, color)
-	if color and s then
-		return format("|cff%02x%02x%02x%s|r", (color.r or 1) * 255, (color.g or 1) * 255, (color.b or 1) * 255, s)
-	else
-		return s
-	end
-end
-local colorize = GUI.colorize
+local colorize = Rarity.Utils.String.Colorize
 local green = Rarity.Enum.Colors.Green
 local gray = Rarity.Enum.Colors.Gray
 

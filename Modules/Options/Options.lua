@@ -146,13 +146,7 @@ local function formatItem(item)
 	return s
 end
 
-local function colorize(s, color)
-	if color and s then
-		return string.format("|cff%02x%02x%02x%s|r", (color.r or 1) * 255, (color.g or 1) * 255, (color.b or 1) * 255, s)
-	else
-		return s
-	end
-end
+local colorize = Rarity.Utils.String.Colorize
 
 local function compareName(a, b)
 	if not a or not b then

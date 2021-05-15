@@ -103,6 +103,7 @@ DB\Toys\Shadowlands.lua
 Utils\DebugCache.lua
 Utils\PrettyPrint.lua
 Utils\Sorting.lua
+Utils\String.lua
 Utils\Time.lua
 
 # Wrappers for external libraries (to provide a consistent API)
