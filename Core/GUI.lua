@@ -71,13 +71,6 @@ end
 
 local GetMapNameByID = Rarity.GetMapNameByID
 
--- Helper function to open the Tooltip GUI unless the delayed opening has been aborted meanwhile.
-function R:ShowDelayedTooltip()
-	if Rarity.tooltipOpenDelay == true then
-		Rarity:ShowTooltip()
-	end
-end
-
 --[[
       GAME TOOLTIPS ------------------------------------------------------------------------------------------------------------
   ]]

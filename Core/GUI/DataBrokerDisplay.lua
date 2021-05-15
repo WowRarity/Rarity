@@ -36,11 +36,18 @@ function dataobj.OnEnter(self)
 		C_Timer.After(
 			Rarity.db.profile.tooltipShowDelay or 0.1, -- Delay in seconds
 			function()
-				Rarity:ShowDelayedTooltip()
+				Rarity.GUI:ShowDelayedTooltip()
 			end
 		)
 	else
 		Rarity:ShowQuicktip()
+	end
+end
+
+-- Helper function to open the Tooltip GUI unless the delayed opening has been aborted meanwhile.
+function GUI:ShowDelayedTooltip()
+	if Rarity.tooltipOpenDelay == true then
+		Rarity:ShowTooltip()
 	end
 end
 
