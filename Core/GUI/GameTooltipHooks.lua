@@ -15,14 +15,12 @@ local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
 local CONSTANTS = addonTable.constants
 local colorize = Rarity.GUI.colorize
 local scanTip = Rarity.GUI.scanTip
-
--- TODO DRY
-local red = {r = 1.0, g = 0.2, b = 0.2}
-local blue = {r = 0.4, g = 0.4, b = 1.0}
-local green = {r = 0.2, g = 1.0, b = 0.2}
-local yellow = {r = 1.0, g = 1.0, b = 0.2}
-local gray = {r = 0.5, g = 0.5, b = 0.5}
-local white = {r = 1.0, g = 1.0, b = 1.0}
+--- Constants
+local red = Rarity.Enum.Colors.Red
+local green = Rarity.Enum.Colors.Green
+local yellow = Rarity.Enum.Colors.Yellow
+local gray = Rarity.Enum.Colors.Gray
+local white = Rarity.Enum.Colors.White
 
 -- Game Tooltip hijacking stuff
 _G.GameTooltip:HookScript(

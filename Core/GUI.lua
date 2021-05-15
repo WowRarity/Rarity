@@ -84,18 +84,8 @@ function GUI.colorize(s, color)
 	end
 end
 local colorize = GUI.colorize
-local red = {r = 1.0, g = 0.2, b = 0.2}
-local blue = {r = 0.4, g = 0.4, b = 1.0}
-local green = {r = 0.2, g = 1.0, b = 0.2}
-local yellow = {r = 1.0, g = 1.0, b = 0.2}
-local gray = {r = 0.5, g = 0.5, b = 0.5}
-local white = {r = 1.0, g = 1.0, b = 1.0}
--- TODO DRY
--- local white = Rarity.GUI.COLOR_WHITE
--- local yellow = Rarity.GUI.COLOR_YELLOW
--- local green = Rarity.GUI.COLOR_GREEN
--- local red = Rarity.GUI.COLOR_RED
--- local gray = Rarity.GUI.COLOR_GRAY
+local green = Rarity.Enum.Colors.Green
+local gray = Rarity.Enum.Colors.Gray
 
 function R:GetZoneInfo(v)
 	local zoneText = ""

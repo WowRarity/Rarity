@@ -55,18 +55,12 @@ local MOUNT = "MOUNT"
 local PET = "PET"
 local ITEM = "ITEM"
 -- Color codes
--- TODO DRY
-local red = {r = 1.0, g = 0.2, b = 0.2}
-local blue = {r = 0.4, g = 0.4, b = 1.0}
-local green = {r = 0.2, g = 1.0, b = 0.2}
-local yellow = {r = 1.0, g = 1.0, b = 0.2}
-local gray = {r = 0.5, g = 0.5, b = 0.5}
-local white = {r = 1.0, g = 1.0, b = 1.0}
--- GUI.COLOR_WHITE = white
--- GUI.COLOR_YELLOW = yellow
--- GUI.COLOR_GREEN = green
--- GUI.COLOR_RED = red
--- GUI.COLOR_GRAY = gray
+local red = Rarity.Enum.Colors.Red
+local blue = Rarity.Enum.Colors.Blue
+local green = Rarity.Enum.Colors.Green
+local yellow = Rarity.Enum.Colors.Yellow
+local gray = Rarity.Enum.Colors.Gray
+local white = Rarity.Enum.Colors.White
 
 -- Addon-scoped functions
 function R:InTooltip()

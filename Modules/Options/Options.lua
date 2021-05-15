@@ -72,13 +72,10 @@ local classes = {
 	["WARRIOR"] = "|c" .. RAID_CLASS_COLORS["WARRIOR"]["colorStr"] .. L["Warrior"] .. "|r"
 }
 
-local red = {r = 1.0, g = 0.2, b = 0.2}
-local blue = {r = 0.4, g = 0.4, b = 1.0}
-local green = {r = 0.2, g = 1.0, b = 0.2}
-local yellow = {r = 1.0, g = 1.0, b = 0.2}
-local gray = {r = 0.5, g = 0.5, b = 0.5}
-local black = {r = 0.0, g = 0.0, b = 0.0}
-local white = {r = 1.0, g = 1.0, b = 1.0}
+local red = Rarity.Enum.Colors.Red
+local blue = Rarity.Enum.Colors.Blue
+local green = Rarity.Enum.Colors.Green
+local yellow = Rarity.Enum.Colors.Yellow
 
 local IMPORTEXPORT_SIGNATURE = "RFI2PD4jOjJ0NntgInc/ZA=="
 
