@@ -121,8 +121,10 @@ local function compareZone(a, b)
 	if type(a) ~= "table" or type(b) ~= "table" then
 		return 0
 	end
-	local zoneTextA, inMyZoneA, zoneColorA, numZonesA = R:GetZoneInfo(a)
-	local zoneTextB, inMyZoneB, zoneColorB, numZonesB = R:GetZoneInfo(b)
+	local zoneInfoA = R:GetZoneInfo(a)
+	local zoneInfoB = R:GetZoneInfo(b)
+	local zoneTextA, inMyZoneA, zoneColorA, numZonesA = zoneInfoA.zoneText, zoneInfoA.inMyZone, zoneInfoA.zoneColor, zoneInfoA.numZones
+	local zoneTextB, inMyZoneB, zoneColorB, numZonesB = zoneInfoB.zoneText, zoneInfoB.inMyZone, zoneInfoB.zoneColor, zoneInfoB.numZones
 	if numZonesA > 1 and inMyZoneA ~= true then
 		zoneTextA = "ZZZZZZZZZZZZZZ"
 	end

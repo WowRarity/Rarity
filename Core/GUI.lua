@@ -113,7 +113,13 @@ function R:GetZoneInfo(item)
 			end
 		end
 	end
-	return zoneText, inMyZone, zoneColor, numZones
+	local zoneInfo = {
+		zoneText = zoneText,
+		inMyZone = inMyZone,
+		zoneColor = zoneColor,
+		numZones = numZones,
+	}
+	return zoneInfo
 end
 
 function R:OutputAttempts(item, skipTimeUpdate)
