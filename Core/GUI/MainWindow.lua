@@ -1126,7 +1126,7 @@ local function addGroup(group, requiresGroup)
 								 then
 									if
 										not Rarity.db.profile.hideOutsideZone or
-											(Rarity.db.profile.hideOutsideZone and R:GetZoneInfo(v).inMyZone and R:IsAttemptAllowed(v))
+											(Rarity.db.profile.hideOutsideZone and R:IsItemInCurrentZone(v) and R:IsAttemptAllowed(v))
 									 then
 										itemsExistInThisGroup = true
 										if
@@ -1164,7 +1164,7 @@ local function addGroup(group, requiresGroup)
 											end
 
 											-- Zone
-											local zoneInfo = R:GetZoneInfo(v)
+											local zoneInfo = R.Waypoints:GetZoneInfoForItem(v)
 											local zoneText, inMyZone, zoneColor, numZones = zoneInfo.zoneText, zoneInfo.inMyZone, zoneInfo.zoneColor, zoneInfo.numZones
 
 											-- Retrieve the DBMarket price provided by the TSM_API (if loaded)

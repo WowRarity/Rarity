@@ -11,8 +11,6 @@ GUI.scanTip = scanTip
 
 Rarity.tooltipOpenDelay = false
 
--- Externals
-local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 
 local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
 
@@ -34,7 +32,6 @@ local IsShiftKeyDown = IsShiftKeyDown
 local IsControlKeyDown = IsControlKeyDown
 local LoadAddOn = LoadAddOn
 local UnitClass = UnitClass
-local GetBestMapForUnit = C_Map.GetBestMapForUnit
 local GetMapInfo = C_Map.GetMapInfo
 local GetTime = GetTime
 local IsQuestFlaggedCompleted = _G.C_QuestLog.IsQuestFlaggedCompleted
@@ -61,66 +58,11 @@ local sort_progress = Rarity.Utils.Sorting.sort_progress
 local GetDate = Rarity.Utils.Time.GetDate
 local AuctionDB = Rarity.AuctionDB
 
--- Helper function (to look up map names more easily)
--- TODO: DRY (not sure where this fits best, move after refactoring the rest and delete any duplicates)
--- Returns the localized map name, or nil if the uiMapID is invalid
-function Rarity.GetMapNameByID(uiMapID) -- TODO doesn't really belong here
-	local UiMapDetails = GetMapInfo(uiMapID)
-	return UiMapDetails and UiMapDetails.name or nil
-end
-
-local GetMapNameByID = Rarity.GetMapNameByID
 
 --[[
       GAME TOOLTIPS ------------------------------------------------------------------------------------------------------------
   ]]
 -- TOOLTIP: NPCS
-
-local colorize = Rarity.Utils.String.Colorize
-local green = Rarity.Enum.Colors.Green
-local gray = Rarity.Enum.Colors.Gray
-
-function R:GetZoneInfo(item)
-	local zoneText = ""
-	local inMyZone = false
-	local zoneColor = gray
-	local numZones = 0
-	local currentZone = GetBestMapForUnit("player")
-	if item.coords ~= nil and type(item.coords) == "table" then
-		local zoneList = {}
-		for _, zoneValue in pairs(item.coords) do
-			if type(zoneValue) == "table" and zoneValue.m ~= nil then
-				if zoneList[zoneValue.m] == nil then
-					numZones = numZones + 1
-					zoneList[zoneValue.m] = true
-				end
-				zoneText = GetMapNameByID(zoneValue.m)
-				if currentZone == zoneValue.m then
-					inMyZone = true
-				end
-			end
-		end
-		if numZones > 1 then
-			zoneText = format(L["%d |4zone:zones;"], numZones)
-		end
-		if item.coords.zoneOverride ~= nil then
-			zoneText = item.coords.zoneOverride
-		end
-		if inMyZone then
-			zoneColor = green
-			if numZones > 1 then
-				zoneText = GetMapNameByID(currentZone) .. " " .. colorize(format("+%d", numZones - 1), gray)
-			end
-		end
-	end
-	local zoneInfo = {
-		zoneText = zoneText,
-		inMyZone = inMyZone,
-		zoneColor = zoneColor,
-		numZones = numZones,
-	}
-	return zoneInfo
-end
 
 function R:OutputAttempts(item, skipTimeUpdate)
 	local trackedItem = Rarity.Tracking:GetTrackedItem()

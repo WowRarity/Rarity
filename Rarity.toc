@@ -104,6 +104,7 @@ Utils\DebugCache.lua
 Utils\PrettyPrint.lua
 Utils\Sorting.lua
 Utils\String.lua
+Utils\Table.lua
 Utils\Time.lua
 
 # Wrappers for external libraries (to provide a consistent API)
@@ -124,6 +125,7 @@ Core\Settings.lua
 Core\Statistics.lua
 Core\Tracking.lua
 Core\Validation.lua
+Core\Waypoints.lua
 
 # UI
 Core\GUI\AnchoredTrackingBar.lua
