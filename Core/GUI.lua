@@ -11,7 +11,8 @@ GUI.scanTip = scanTip
 
 Rarity.tooltipOpenDelay = false
 
-
+-- Externals
+local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
 
 -- Upvalues
