@@ -1,4 +1,22 @@
 local changes = {
+	["r708"] = {
+		additions = {
+			"Added tracking for Gilded Water (pet)",
+			"Added tracking for Outrider's Bridle Chain (toy)",
+			"Added a holiday-style reminder for when Dunegorger Kraulok is available (experimental)"
+		},
+		changes = {
+			"The /rarity verify slash command used for validating the item database is now available as /rarity validate"
+		},
+		fixes = {
+			"Items obtainable from the Black Market auction house are now flagged as such",
+			"All items should now be assigned a zone, so that filtering by the current zone no longer incorrectly excludes them",
+			"Tracking for the Ascended Skymane mount should now be working on non-English client locales"
+		},
+		contributors = {
+			"Tommy Godejord"
+		}
+	},
 	["r707"] = {
 		changes = {
 			"The tooltip text for faction-restricted items is now dynamically colored based on whether it's available to the logged-in character"

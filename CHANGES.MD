@@ -1,3 +1,23 @@
+**r708:**
+
+Additions:
+> Added tracking for Gilded Water (pet)
+> Added tracking for Outrider's Bridle Chain (toy)
+> Added a holiday-style reminder for when Dunegorger Kraulok is available (experimental)
+
+Changes:
+> The /rarity verify slash command used for validating the item database is now available as /rarity validate
+
+Fixes:
+> Items obtainable from the Black Market auction house are now flagged as such
+> All items should now be assigned a zone, so that filtering by the current zone no longer incorrectly excludes them
+> Tracking for the Ascended Skymane mount should now be working on non-English client locales
+
+Contributors (in alphabetical order):
+> Tommy Godejord
+
+-----
+
 **r707:**
 
 Changes:
@@ -68,24 +88,3 @@ Fixes:
 
 Contributors (in alphabetical order):
 > Tommy Godejord (https://github.com/godejord)
-
------
-
-**r703:**
-
-Additions:
-> Added tracking for various Shadowlands pets and toys that were previously missing
-> Added a setting to show the addon's tooltip on click instead of hover
-
-Changes:
-> Removed tracking for various items that appear to have never made it to live servers
-
-Fixes:
-> Removed restrictions placed on the tracking for Theater of Pain rares (to account for Blizzard's stealth hotfix)
-> Fixed an issue where killing covenant-restricted rares on characters that haven't selected a covenant yet would cause an error
-> Fixed tracking for Lightbinders (pet)
-
-Contributors (in alphabetical order):
-> Nick Bayley (https://github.com/nickbayley)
-> Tommy Godejord (https://github.com/godejord)
-> Mikael Jelveby (https://github.com/jelveby)
