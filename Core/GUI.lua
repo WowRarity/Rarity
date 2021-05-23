@@ -64,11 +64,7 @@ local AuctionDB = Rarity.AuctionDB
       GAME TOOLTIPS ------------------------------------------------------------------------------------------------------------
   ]]
 -- TOOLTIP: NPCS
-
 function R:OutputAttempts(item, skipTimeUpdate)
-	local trackedItem = Rarity.Tracking:GetTrackedItem()
-	local trackedItem2 = Rarity.Tracking:GetTrackedItem(2)
-
 	-- TODO: Check if item entry is valid (reuse DB helper), just to be safe
 	if type(item) ~= "table" then
 		self:Error("Usage: OutputAttempts(item[, skipTimeUpdate]")
@@ -99,43 +95,9 @@ function R:OutputAttempts(item, skipTimeUpdate)
 	end
 
 	if not skipTimeUpdate then
-		-- Increment attempt counter for today
-		local dt = GetDate()
-		if not item.dates then
-			item.dates = {}
-		end
-		if not item.dates[dt] then
-			item.dates[dt] = {}
-		end
-		if not item.dates[dt].attempts then
-			item.dates[dt].attempts = 0
-		end
-		item.dates[dt].attempts = item.dates[dt].attempts + 1
-		if not item.session then
-			item.session = {}
-		end
-		if not item.session.attempts then
-			item.session.attempts = 0
-		end
-		item.session.attempts = item.session.attempts + 1
-
-		-- Handle time tracking
-		local lastAttemptItem = Rarity.Tracking:GetLastAttemptItem()
-		-- TODO: Clean this up once I know what it's actually used for
-		local DUAL_TRACK_THRESHOLD = Rarity.Tracking.DUAL_TRACK_THRESHOLD
-		if
-			lastAttemptItem and lastAttemptItem ~= item and
-				GetTime() - (Rarity.Tracking:GetLastAttemptTime() or 0) <= DUAL_TRACK_THRESHOLD
-		 then -- Beginning to track two things at once
-			Rarity.Session:Update()
-		else
-			if trackedItem == item or trackedItem2 == item then
-				Rarity.Session:Update()
-			else
-				Rarity.Session:End()
-				Rarity.Session:Start()
-			end
-		end
+		self:AddDailyAttempt(item)
+		self:AddSessionAttempt(item)
+		self:UpdateSessionAttempts(item)
 	end
 
 	-- Update LDB text
@@ -148,6 +110,76 @@ function R:OutputAttempts(item, skipTimeUpdate)
 	Rarity.Tracking:SetLastAttemptTime(GetTime())
 	Rarity.Tracking:SetLastAttemptItem(item)
 	-- If this item supports lockout detection, request updated instance info from the server now and in 10 seconds
+	self:ProcessLockoutDetection(item)
+
+	-- Save this item for coin tracking, but only for 90 seconds
+	self:StartBonusRollTrackingTimer(item)
+
+	-- Don't go any further if we don't want to announce this
+	if self.db.profile.enableAnnouncements == false then
+		return
+	end
+	if item.announce == false then
+		return
+	end
+	if self.db.profile.onlyAnnounceFound == true then
+		return
+	end
+
+	-- Output the attempt count
+	self:AnnounceAttemptForItem(item)
+end
+
+-- Increment attempt counter for today
+function Rarity:AddDailyAttempt(item)
+	local dt = GetDate()
+	if not item.dates then
+		item.dates = {}
+	end
+	if not item.dates[dt] then
+		item.dates[dt] = {}
+	end
+	if not item.dates[dt].attempts then
+		item.dates[dt].attempts = 0
+	end
+	item.dates[dt].attempts = item.dates[dt].attempts + 1
+end
+
+function Rarity:AddSessionAttempt(item)
+	if not item.session then
+		item.session = {}
+	end
+	if not item.session.attempts then
+		item.session.attempts = 0
+	end
+	item.session.attempts = item.session.attempts + 1
+end
+
+-- Handle time tracking (No idea what this does TBH)
+function Rarity:UpdateSessionAttempts(item)
+	local lastAttemptItem = Rarity.Tracking:GetLastAttemptItem()
+	-- TODO: Clean this up once I know what it's actually used for
+	local DUAL_TRACK_THRESHOLD = Rarity.Tracking.DUAL_TRACK_THRESHOLD
+
+	local trackedItem = Rarity.Tracking:GetTrackedItem()
+	local trackedItem2 = Rarity.Tracking:GetTrackedItem(2)
+
+	if
+		lastAttemptItem and lastAttemptItem ~= item and
+			GetTime() - (Rarity.Tracking:GetLastAttemptTime() or 0) <= DUAL_TRACK_THRESHOLD
+	 then -- Beginning to track two things at once
+		Rarity.Session:Update()
+	else
+		if trackedItem == item or trackedItem2 == item then
+			Rarity.Session:Update()
+		else
+			Rarity.Session:End()
+			Rarity.Session:Start()
+		end
+	end
+end
+
+function Rarity:ProcessLockoutDetection(item)
 	if item.lockBossName or item.lockDungeonId then
 		RequestRaidInfo()
 		RequestLFDPlayerLockInfo()
@@ -166,8 +198,9 @@ function R:OutputAttempts(item, skipTimeUpdate)
 			5
 		)
 	end
+end
 
-	-- Save this item for coin tracking, but only for 90 seconds
+function Rarity:StartBonusRollTrackingTimer(item)
 	if item.enableCoin then
 		self:Debug("Allowing this item to be counted again if a coin is used in the next 90 seconds")
 		self.lastCoinItem = item
@@ -181,19 +214,9 @@ function R:OutputAttempts(item, skipTimeUpdate)
 	else
 		self.lastCoinItem = nil
 	end
+end
 
-	-- Don't go any further if we don't want to announce this
-	if self.db.profile.enableAnnouncements == false then
-		return
-	end
-	if item.announce == false then
-		return
-	end
-	if self.db.profile.onlyAnnounceFound == true then
-		return
-	end
-
-	-- Output the attempt count
+function Rarity:AnnounceAttemptForItem(item)
 	local itemName,
 		itemLink,
 		itemRarity,
