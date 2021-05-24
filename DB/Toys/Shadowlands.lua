@@ -213,6 +213,7 @@ local shadowlandsToys = {
 		itemId = 184318,
 		chance = 25,
 		sourceText = L["Only members of the Necrolord covenant will be able to reach this cache."],
+		questId = {60368},
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 44.1, y = 40.0, n = L["Blackhound Cache"]}
 		}
