@@ -564,16 +564,24 @@ local bfaMounts = {
 	["Sharkbait's Favorite Crackers"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
 		name = L["Sharkbait's Favorite Crackers"],
 		spellId = 254813,
 		itemId = 159842,
-		npcs = {99999},
-		tooltipNpcs = {126983},
+		npcs = {126983},
 		statisticId = {12752},
 		chance = 200,
 		equalOdds = true,
 		instanceDifficulties = {[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Lord Harlan Sweete",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true
+				}
+			}
+		},
 		groupSize = 5,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.FREEHOLD, i = true}
