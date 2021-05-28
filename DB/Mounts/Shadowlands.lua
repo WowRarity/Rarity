@@ -48,6 +48,7 @@ local shadowlandsMounts = {
 		chance = 100,
 		groupSize = 5,
 		equalOdds = true,
+		questId = {59900},
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 51.98, y = 51.80, n = L["Hopecrusher"]}
 		},
