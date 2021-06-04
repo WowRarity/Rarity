@@ -1,5 +1,5 @@
 <p><strong><em><span style="font-size: 24px;"><span style="color: #ff0000;">NEW:</span> Rarity now has a </span><a href="https://discord.gg/sQ3UqtSh6m"><span style="font-size: 24px;">Discord server!</span></a></em></strong></p>
-<p>If you're interested in following the development process or contributing, you should also check out the official <a href="https://github.com/WowRarity/Rarity">GitHub repository</a>. We're always in need of help to help us make the addon better!</p>
+<p>If you're interested in following the development process or contributing, you should also check out the official <a href="https://github.com/WowRarity/Rarity">GitHub repository</a>. We're always in need of more hands to help us make the addon better!</p>
 <hr />
 <p>Rarity tracks how many times you've tried to obtain various rare items like mounts, battle pets, and toys. It will tell you how likely you are to obtain the item, track how long you've been farming for it, and tell you how lucky you've been so far. Although it's mostly used for mounts, battle pets, and toys, it supports pretty much any item, including profession patterns, archaeology projects, and more.</p>
 <h3 id="w-looking-for-rarity-item-packs-scroll-down"><strong>Looking for Rarity Item Packs? Click <a href="https://www.wowace.com/projects/rarity/pages/item-packs">here</a>.</strong></h3>
