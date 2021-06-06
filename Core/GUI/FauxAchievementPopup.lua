@@ -108,6 +108,8 @@ RarityAchievementAlertSystem:SetCanShowMoreConditionFunc(
 	end
 )
 
+local Output = Rarity.Output
+
 -- test with: /run Rarity:ShowFoundAlert(32458, 5)
 function R:ShowFoundAlert(itemId, attempts, item)
 	local trackedItem = Rarity.Tracking:GetTrackedItem()
@@ -145,7 +147,7 @@ function R:ShowFoundAlert(itemId, attempts, item)
 				s = format(L["%s: Found after %d attempts!"], itemName, attempts)
 			end
 		end
-		self:Pour(s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
+		Output:DisplayText(s, itemTexture)
 	end
 
 	-- The following code is adapted from Blizzard's AlertFrameMixin:OnEvent function found in FrameXML\AlertFrames.lua [heavily updated in 7.0]

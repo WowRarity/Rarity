@@ -316,6 +316,9 @@ end
 -- PRIMARY OPTIONS TABLE
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+-- Rarity API
+local Output = Rarity.Output
+
 function R:PrepareOptions()
 	self.options = {
 		name = function()
@@ -1167,7 +1170,7 @@ function R:PrepareOptions()
 									self.db.profile.onlyAnnounceFound = val
 								end
 							},
-							output = self:GetSinkAce3OptionsDataTable()
+							output = Output:GetOptionsTable()
 						} -- args
 					} -- announcements
 				} -- args

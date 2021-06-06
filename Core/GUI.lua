@@ -216,6 +216,8 @@ function Rarity:StartBonusRollTrackingTimer(item)
 	end
 end
 
+local Output = Rarity.Output
+
 function Rarity:AnnounceAttemptForItem(item)
 	local itemName,
 		itemLink,
@@ -254,8 +256,7 @@ function Rarity:AnnounceAttemptForItem(item)
 		if item.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
 			displayedText = format(L["%s: %d collected"], itemName or item.name, attempts)
 		end
-		self:Pour(displayedText, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture) -- LibSink: textOrAddon, r, g, b, 5x unused, icon
-		-- This is relevant only for the "chat" sink (default), others discard the arguments after the text?
+		Output:DisplayText(displayedText, itemTexture)
 	end
 end
 
