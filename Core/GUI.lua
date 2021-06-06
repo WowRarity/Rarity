@@ -229,7 +229,7 @@ function Rarity:AnnounceAttemptForItem(item)
 		itemTexture,
 		itemSellPrice = GetItemInfo(item.itemId)
 	if itemName or item.name then
-		local s
+		local displayedText
 		local attempts = item.attempts or 1
 		local total = item.attempts or 1
 
@@ -239,22 +239,23 @@ function Rarity:AnnounceAttemptForItem(item)
 
 		if total <= attempts then
 			if attempts == 1 then
-				s = format(L["%s: %d attempt"], itemName or item.name, attempts)
+				displayedText = format(L["%s: %d attempt"], itemName or item.name, attempts)
 			else
-				s = format(L["%s: %d attempts"], itemName or item.name, attempts)
+				displayedText = format(L["%s: %d attempts"], itemName or item.name, attempts)
 			end
 		else
 			if attempts == 1 then
-				s = format(L["%s: %d attempt (%d total)"], itemName or item.name, attempts, total)
+				displayedText = format(L["%s: %d attempt (%d total)"], itemName or item.name, attempts, total)
 			else
-				s = format(L["%s: %d attempts (%d total)"], itemName or item.name, attempts, total)
+				displayedText = format(L["%s: %d attempts (%d total)"], itemName or item.name, attempts, total)
 			end
 		end
 
 		if item.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
-			s = format(L["%s: %d collected"], itemName or item.name, attempts)
+			displayedText = format(L["%s: %d collected"], itemName or item.name, attempts)
 		end
-		self:Pour(s, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture)
+		self:Pour(displayedText, nil, nil, nil, nil, nil, nil, nil, nil, itemTexture) -- LibSink: textOrAddon, r, g, b, 5x unused, icon
+		-- This is relevant only for the "chat" sink (default), others discard the arguments after the text?
 	end
 end
 
