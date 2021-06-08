@@ -108,11 +108,11 @@ Utils\Table.lua
 Utils\Time.lua
 
 # Wrappers for external libraries (to provide a consistent API)
-Core\Wrappers\LibSink\Output.lua
-Core\Wrappers\TradeSkillMaster\AuctionDB.lua
+Core\Interoperability\LibSink\Output.lua
+Core\Interoperability\TradeSkillMaster\AuctionDB.lua
 
 # Wrappers for the WOW API (to provide a consistent API)
-Core\Wrappers\Blizzard\MapInfo.lua
+Core\Interoperability\Blizzard\MapInfo.lua
 
 # Addon Core
 Core\Caching.lua
