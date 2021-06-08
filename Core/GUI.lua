@@ -64,6 +64,9 @@ local AuctionDB = Rarity.AuctionDB
       GAME TOOLTIPS ------------------------------------------------------------------------------------------------------------
   ]]
 -- TOOLTIP: NPCS
+
+local Announcements = Rarity.Announcements
+
 function R:OutputAttempts(item, isForcedUpdate)
 	-- TODO: Check if item entry is valid (reuse DB helper), just to be safe
 	if type(item) ~= "table" then
@@ -127,7 +130,7 @@ function R:OutputAttempts(item, isForcedUpdate)
 	end
 
 	-- Output the attempt count
-	self:AnnounceAttemptForItem(item)
+	Announcements:AnnounceAttemptForItem(item)
 end
 
 -- Increment attempt counter for today
@@ -216,49 +219,6 @@ function Rarity:StartBonusRollTrackingTimer(item)
 	end
 end
 
-local Output = Rarity.Output
-
-function Rarity:AnnounceAttemptForItem(item)
-	local itemName,
-		itemLink,
-		itemRarity,
-		itemLevel,
-		itemMinLevel,
-		itemType,
-		itemSubType,
-		itemStackCount,
-		itemEquipLoc,
-		itemTexture,
-		itemSellPrice = GetItemInfo(item.itemId)
-	if itemName or item.name then
-		local displayedText
-		local attempts = item.attempts or 1
-		local total = item.attempts or 1
-
-		if item.lastAttempts then
-			attempts = attempts - item.lastAttempts
-		end
-
-		if total <= attempts then
-			if attempts == 1 then
-				displayedText = format(L["%s: %d attempt"], itemName or item.name, attempts)
-			else
-				displayedText = format(L["%s: %d attempts"], itemName or item.name, attempts)
-			end
-		else
-			if attempts == 1 then
-				displayedText = format(L["%s: %d attempt (%d total)"], itemName or item.name, attempts, total)
-			else
-				displayedText = format(L["%s: %d attempts (%d total)"], itemName or item.name, attempts, total)
-			end
-		end
-
-		if item.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
-			displayedText = format(L["%s: %d collected"], itemName or item.name, attempts)
-		end
-		Output:DisplayText(displayedText, itemTexture)
-	end
-end
 
 Rarity.GUI = GUI
 return GUI

@@ -115,6 +115,7 @@ Core\Interoperability\TradeSkillMaster\AuctionDB.lua
 Core\Interoperability\Blizzard\MapInfo.lua
 
 # Addon Core
+Core\Announcements.lua
 Core\Caching.lua
 Core\Collections.lua
 Core\Database.lua
