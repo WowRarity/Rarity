@@ -63,6 +63,25 @@ local wodToys = {
 			["WARLOCK"] = true,
 			["WARRIOR"] = true
 		},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Majordomo Staghelm",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true
+				}
+			},
+			{
+				encounterName = "Majordomo Staghelm",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true
+				}
+			},
+		},
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+		},
 		sourceText = L["Will only drop for druids."],
 		coords = {{m = 369, x = 50.9, y = 72.4, i = true}}
 	},
