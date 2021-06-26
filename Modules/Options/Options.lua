@@ -2410,6 +2410,17 @@ function R:CreateGroup(options, group, isUser)
 					end
 				},
 				spacer4 = {type = "header", name = L["Attempts"], order = newOrder()},
+				lastAttemptsDesc = {
+					type = "description", 
+					name = function()
+						if (item.lastAttempts or 0) > 0 then
+							return L["Last Obtained In"] .. ": " .. tostring(item.lastAttempts or 0)
+						else
+							return L["Not Obtained"]
+						end
+					end,
+					order = newOrder()
+				},
 				attempts = {
 					type = "input",
 					order = newOrder(),
