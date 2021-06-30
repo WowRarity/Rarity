@@ -1827,6 +1827,7 @@ L["Foresworn Aquilon"] = true
 L["Wild Worldcracker"] = true
 L["Summer Wilderling Harness"] = true
 L["Escaped Wilderling"] = true
+L["Cartel Master's Gearglider"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

@@ -516,6 +516,32 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 33.49, y = 39.54, n = L["Escaped Wilderling"]}
 		}
 	},
+	["Cartel Master's Gearglider"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Cartel Master's Gearglider"],
+		spellId = 353263,
+		itemId = 186638,
+		npcs = {180863},
+		chance = 100,
+		groupSize = 5,
+		equalOdds = true,
+		statisticId = {15168},
+		instanceDifficulties = {[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "So'leah",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true
+				}
+			}
+		},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.TAZAVESH_THE_VEILED_MARKET, i = true}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)
