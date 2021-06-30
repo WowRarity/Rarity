@@ -377,7 +377,7 @@ local shadowlandsMounts = {
 		spellId = 354359,
 		itemId = 186649,
 		items = {186650},
-		chance = 20, -- Blind guess
+		chance = 100, -- Blind guess
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
@@ -390,12 +390,12 @@ local shadowlandsMounts = {
 		spellId = 347810,
 		itemId = 186644,
 		items = {186650},
-		chance = 20, -- Blind guess
+		chance = 100, -- Blind guess
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
 	},
-	["Soulbound Gloomcharger's Reins"] = {
+	["Soulbound Gloomcharger's Reins"] = {	
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.USE,
@@ -403,7 +403,7 @@ local shadowlandsMounts = {
 		spellId = 354352,
 		itemId = 186657,
 		items = {187029},
-		chance = 20, -- Blind guess
+		chance = 100, -- Blind guess
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
