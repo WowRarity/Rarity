@@ -395,6 +395,19 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
 	},
+	["Soulbound Gloomcharger's Reins"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Soulbound Gloomcharger's Reins"],
+		spellId = 354352,
+		itemId = 186657,
+		items = {187029},
+		chance = 20, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)
