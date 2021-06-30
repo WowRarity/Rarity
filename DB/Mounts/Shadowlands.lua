@@ -421,6 +421,19 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA}
 		}
 	},
+	["Chain of Bahmethra"] = {	
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Chain of Bahmethra"],
+		spellId = 352309,
+		itemId = 185973,
+		items = {185972},
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)
