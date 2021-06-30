@@ -382,6 +382,19 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
 	},
+	["Beryl Shardhide"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Beryl Shardhide"],
+		spellId = 347810,
+		itemId = 186644,
+		items = {186650},
+		chance = 20, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)
