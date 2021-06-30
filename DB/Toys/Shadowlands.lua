@@ -271,6 +271,21 @@ local shadowlandsToys = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 45.8, y = 80.6, n = L["Stygian Stonecrusher"]},
 		}
 	},
+	["Small Corpsefly Egg"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Small Corpsefly Egg"],
+		itemId = 187181,
+		npcs = {180042},
+		chance = 100,
+		unique = true,
+		requiresCovenant = true,
+		requiredCovenantID = CONSTANTS.COVENANT_IDS.NECROLORD,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 59.7, y = 43.3, n = L["Fleshwing "]},
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)

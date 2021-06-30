@@ -1834,6 +1834,8 @@ L["Legsplitter War Harness"] = true
 L["Harvester's Dredwing Saddle"] = true
 L["Gravewing Crystal"] = true
 L["Stygian Stonecrusher"] = true
+L["Small Corpsefly Egg"] = true
+L["Fleshwing "] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
