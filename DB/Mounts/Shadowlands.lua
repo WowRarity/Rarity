@@ -542,6 +542,56 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.TAZAVESH_THE_VEILED_MARKET, i = true}
 		}
 	},
+	["Sanctum Gloomcharger's Reins"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		name = L["Sanctum Gloomcharger's Reins"],
+		spellId = 354351,
+		itemId = 186656,
+		npcs = {99999},
+		tooltipNpcs = {178738},
+		chance = 100,
+		groupSize = 10,
+		equalOdds = true,
+		statisticId = {15145, 15144, 15147, 15146},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "The Nine",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true
+				}
+			},
+			{
+				encounterName = "The Nine",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true
+				}
+			},
+			{
+				encounterName = "The Nine",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true
+				}
+			},
+			{
+				encounterName = "The Nine",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true
+				}
+			}
+		},
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true, -- Normal (Raids)
+			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true, -- Heroic (Raids)
+			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true, -- Mythic (Raids)
+			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true -- LFR
+		},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.SANCTUM_OF_DOMINATION, i = true}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)
