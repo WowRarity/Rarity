@@ -1829,6 +1829,7 @@ L["Summer Wilderling Harness"] = true
 L["Escaped Wilderling"] = true
 L["Cartel Master's Gearglider"] = true
 L["Sanctum Gloomcharger's Reins"] = true
+L["Undying Darkhound's Harness"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

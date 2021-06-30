@@ -592,6 +592,19 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.SANCTUM_OF_DOMINATION, i = true}
 		}
 	},
+	["Undying Darkhound's Harness"] = {	
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Undying Darkhound's Harness"],
+		spellId = 352742,
+		itemId = 186103,
+		items = {185992},
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)
