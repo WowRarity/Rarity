@@ -283,7 +283,7 @@ local shadowlandsToys = {
 		requiresCovenant = true,
 		requiredCovenantID = CONSTANTS.COVENANT_IDS.NECROLORD,
 		coords = {
-			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 59.7, y = 43.3, n = L["Fleshwing "]},
+			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 59.7, y = 43.3, n = L["Fleshwing"]},
 		}
 	},
 }
