@@ -367,7 +367,21 @@ local shadowlandsMounts = {
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.BASTION, x = 53.50, y = 88.37, n = L["Cache of the Ascended"]}
 		}
-	}
+	},
+	-- 9.1 Mounts
+	["Fierce Razorwing"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Fierce Razorwing"],
+		spellId = 354359,
+		itemId = 186649,
+		items = {186650},
+		chance = 20, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)
