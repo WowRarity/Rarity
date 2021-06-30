@@ -460,6 +460,19 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 56.3, y = 66.3, n = L["Reliwik the Defiant"]}
 		}
 	},
+	["Crimson Shardhide"] = {	
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Crimson Shardhide"],
+		itemId = 186645,
+		spellId = 354357,
+		npcs = {179684},
+		chance = 100, -- Estimate,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 45.35, y = 30.34, n = L["Malbog"]}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)

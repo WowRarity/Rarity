@@ -1819,6 +1819,8 @@ L["Rampaging Mauler"] = true
 L["Konthrogz the Obliterator"] = true
 L["Garnet Razorwing"] = true
 L["Reliwik the Defiant"] = true
+L["Crimson Shardhide"] = true
+L["Malbog"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
