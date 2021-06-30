@@ -434,6 +434,19 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
 	},
+	["Rampaging Mauler"] = {	
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Rampaging Mauler"],
+		itemId = 187183,
+		spellId = 356501,
+		npcs = {179472},
+		chance = 50, -- Estimate,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.KORTHIA, n = L["Konthrogz the Obliterator"]}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)
