@@ -1813,6 +1813,7 @@ L["Treasure of Courage"] = true
 L["Fierce Razorwing"] = true
 L["Beryl Shardhide"] = true
 L["Soulbound Gloomcharger's Reins"] = true
+L["Tamed Mauler Harness"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
