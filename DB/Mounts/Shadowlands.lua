@@ -618,6 +618,19 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
 	},
+	["Harvester's Dredwing Saddle"] = {	
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Harvester's Dredwing Saddle"],
+		spellId = 332904,
+		itemId = 185996,
+		items = {185990},
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)
