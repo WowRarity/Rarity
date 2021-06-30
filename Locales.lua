@@ -1823,6 +1823,8 @@ L["Crimson Shardhide"] = true
 L["Malbog"] = true
 L["Fallen Charger's Reins"] = true
 L["Fallen Charger"] = true
+L["Foresworn Aquilon"] = true
+L["Wild Worldcracker"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
