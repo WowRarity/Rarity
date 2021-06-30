@@ -1817,6 +1817,8 @@ L["Tamed Mauler Harness"] = true
 L["Chain of Bahmethra"] = true
 L["Rampaging Mauler"] = true
 L["Konthrogz the Obliterator"] = true
+L["Garnet Razorwing"] = true
+L["Reliwik the Defiant"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
