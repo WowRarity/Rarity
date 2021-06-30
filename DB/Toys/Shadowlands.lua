@@ -254,7 +254,23 @@ local shadowlandsToys = {
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.MALDRAXXUS}
 		}
-	}
+	},
+	-- 9.1
+	["Gravewing Crystal"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Gravewing Crystal"],
+		itemId = 187283,
+		npcs = {179985},
+		chance = 100,
+		unique = true,
+		requiresCovenant = true,
+		requiredCovenantID = CONSTANTS.COVENANT_IDS.VENTHYR,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 45.8, y = 80.6, n = L["Stygian Stonecrusher"]},
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)

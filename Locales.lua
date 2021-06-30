@@ -1832,6 +1832,8 @@ L["Sanctum Gloomcharger's Reins"] = true
 L["Undying Darkhound's Harness"] = true
 L["Legsplitter War Harness"] = true
 L["Harvester's Dredwing Saddle"] = true
+L["Gravewing Crystal"] = true
+L["Stygian Stonecrusher"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
