@@ -473,6 +473,19 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 45.35, y = 30.34, n = L["Malbog"]}
 		}
 	},
+	["Fallen Charger's Reins"] = {	
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Fallen Charger's Reins"],
+		itemId = 186659,
+		spellId = 354353,
+		npcs = {179460},
+		chance = 100, -- Estimate,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW, n = L["Fallen Charger"]}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)

@@ -1821,6 +1821,8 @@ L["Garnet Razorwing"] = true
 L["Reliwik the Defiant"] = true
 L["Crimson Shardhide"] = true
 L["Malbog"] = true
+L["Fallen Charger's Reins"] = true
+L["Fallen Charger"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
