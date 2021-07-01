@@ -1,6 +1,6 @@
 ## Author: Allara
-## Interface: 90005
-## X-Min-Interface: 90005
+## Interface: 90100
+## X-Min-Interface: 90100
 ## Title: Rarity
 ## Version: 1.0 (@project-version@)
 
