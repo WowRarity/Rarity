@@ -442,6 +442,7 @@ local shadowlandsMounts = {
 		itemId = 187183,
 		spellId = 356501,
 		npcs = {179472},
+		questId = {64246},
 		chance = 50, -- Estimate,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, n = L["Konthrogz the Obliterator"]}
