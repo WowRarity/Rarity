@@ -1,4 +1,15 @@
 local changes = {
+	["r709"] = {
+		additions = {
+			"Added tracking for mounts introduced in Chains of Domination (experimental)",
+		},
+		notes = {
+			"Work is currently in progress to add the remaining collectibles. Please let us know if there's an issue with any the items that are already being tracked!"
+		},
+		contributors = {
+			"Tommy Godejord"
+		}
+	},
 	["r708"] = {
 		additions = {
 			"Added tracking for Gilded Water (pet)",

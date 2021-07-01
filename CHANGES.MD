@@ -1,3 +1,16 @@
+**r709:**
+
+Additions:
+> Added tracking for mounts introduced in Chains of Domination (experimental)
+
+Developer Notes:
+> Work is currently in progress to add the remaining collectibles. Please let us know if there's an issue with any the items that are already being tracked!
+
+Contributors (in alphabetical order):
+> Tommy Godejord
+
+-----
+
 **r708:**
 
 Additions:
@@ -71,20 +84,6 @@ Fixes:
 > Fixed waypoint data (including the displayed zone) for certain legacy collectibles
 > Fixed tracking for Mechagon Peacekeeper, Golden Snorf, and Microbot 8D (Operation: Mechagon)
 > Mining Elementium veins should now add attempts for Elementium Geode in all Cataclysm zones
-
-Contributors (in alphabetical order):
-> Tommy Godejord (https://github.com/godejord)
-
------
-
-**r704:**
-
-Additions:
-> Added tracking for various Shadowlands pets and toys that were previously missing
-
-Fixes:
-> Mechagon Peacekeeper should now correctly be displayed in the Group category
-> Attempts for Gahz'rooki's Summoning Stone should now be tracked correctly when looting relevant Kor'kron NPCs in The Barrens
 
 Contributors (in alphabetical order):
 > Tommy Godejord (https://github.com/godejord)
