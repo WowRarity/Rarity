@@ -1810,6 +1810,32 @@ L["Gift of Thenios"] = true
 L["Hidden Hoard"] = true
 L["Memorial Offerings"] = true
 L["Treasure of Courage"] = true
+L["Fierce Razorwing"] = true
+L["Beryl Shardhide"] = true
+L["Soulbound Gloomcharger's Reins"] = true
+L["Tamed Mauler Harness"] = true
+L["Chain of Bahmethra"] = true
+L["Rampaging Mauler"] = true
+L["Konthrogz the Obliterator"] = true
+L["Garnet Razorwing"] = true
+L["Reliwik the Defiant"] = true
+L["Crimson Shardhide"] = true
+L["Malbog"] = true
+L["Fallen Charger's Reins"] = true
+L["Fallen Charger"] = true
+L["Foresworn Aquilon"] = true
+L["Wild Worldcracker"] = true
+L["Summer Wilderling Harness"] = true
+L["Escaped Wilderling"] = true
+L["Cartel Master's Gearglider"] = true
+L["Sanctum Gloomcharger's Reins"] = true
+L["Undying Darkhound's Harness"] = true
+L["Legsplitter War Harness"] = true
+L["Harvester's Dredwing Saddle"] = true
+L["Gravewing Crystal"] = true
+L["Stygian Stonecrusher"] = true
+L["Small Corpsefly Egg"] = true
+L["Fleshwing"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
