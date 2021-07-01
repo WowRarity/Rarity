@@ -314,6 +314,19 @@ local shadowlandsToys = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW, x = 48.8, y = 81.4, n = L["Darklord Taraxis"]}
 		}
 	},
+	["Vesper of Faith"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Vesper of Faith"],
+		itemId = 187185,
+		items = {185993},
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)
