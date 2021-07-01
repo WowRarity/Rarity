@@ -341,6 +341,20 @@ local shadowlandsToys = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW, x = 28.5, y = 24.9, n = L["Torglluun"]}
 		}
 	},
+	["Maw-Ocular Viewfinder"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Maw-Ocular Viewfinder"],
+		isToy = true,
+		itemId = 187420,
+		npcs = {179914},
+		chance = 100, -- Blind guess
+		unique = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 50.2, y = 75.4, n = L["Observer Yorik"]}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)
