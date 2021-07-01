@@ -263,7 +263,7 @@ local shadowlandsToys = {
 		name = L["Gravewing Crystal"],
 		itemId = 187283,
 		npcs = {179985},
-		chance = 100,
+		chance = 100, -- Blind guess
 		unique = true,
 		requiresCovenant = true,
 		requiredCovenantID = CONSTANTS.COVENANT_IDS.VENTHYR,
@@ -278,12 +278,26 @@ local shadowlandsToys = {
 		name = L["Small Corpsefly Egg"],
 		itemId = 187181,
 		npcs = {180042},
-		chance = 100,
+		chance = 100, -- Blind guess
 		unique = true,
 		requiresCovenant = true,
 		requiredCovenantID = CONSTANTS.COVENANT_IDS.NECROLORD,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 59.7, y = 43.3, n = L["Fleshwing"]},
+		}
+	},
+	["Vesper of Harmony"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Vesper of Harmony"],
+		isToy = true,
+		itemId = 187176,
+		npcs = {180032},
+		chance = 100, -- Blind guess
+		unique = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 47.0, y = 35.5, n = L["Wild Worldcracker"]}
 		}
 	},
 }
