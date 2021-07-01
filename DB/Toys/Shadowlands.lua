@@ -300,6 +300,20 @@ local shadowlandsToys = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 47.0, y = 35.5, n = L["Wild Worldcracker"]}
 		}
 	},
+	["Bonestorm Top"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Bonestorm Top"],
+		isToy = true,
+		itemId = 183901,
+		npcs = {158025},
+		chance = 100, -- Blind guess
+		unique = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW, x = 48.8, y = 81.4, n = L["Darklord Taraxis"]}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)

@@ -1837,6 +1837,8 @@ L["Stygian Stonecrusher"] = true
 L["Small Corpsefly Egg"] = true
 L["Fleshwing"] = true
 L["Vesper of Harmony"] = true
+L["Bonestorm Top"] = true
+L["Darklord Taraxis"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
