@@ -1836,6 +1836,14 @@ L["Gravewing Crystal"] = true
 L["Stygian Stonecrusher"] = true
 L["Small Corpsefly Egg"] = true
 L["Fleshwing"] = true
+L["Vesper of Harmony"] = true
+L["Bonestorm Top"] = true
+L["Darklord Taraxis"] = true
+L["Vesper of Faith"] = true
+L["Bottled Shade Heart"] = true
+L["Torglluun"] = true
+L["Maw-Ocular Viewfinder"] = true
+L["Observer Yorik"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

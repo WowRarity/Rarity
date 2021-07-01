@@ -263,7 +263,7 @@ local shadowlandsToys = {
 		name = L["Gravewing Crystal"],
 		itemId = 187283,
 		npcs = {179985},
-		chance = 100,
+		chance = 100, -- Blind guess
 		unique = true,
 		requiresCovenant = true,
 		requiredCovenantID = CONSTANTS.COVENANT_IDS.VENTHYR,
@@ -278,12 +278,81 @@ local shadowlandsToys = {
 		name = L["Small Corpsefly Egg"],
 		itemId = 187181,
 		npcs = {180042},
-		chance = 100,
+		chance = 100, -- Blind guess
 		unique = true,
 		requiresCovenant = true,
 		requiredCovenantID = CONSTANTS.COVENANT_IDS.NECROLORD,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 59.7, y = 43.3, n = L["Fleshwing"]},
+		}
+	},
+	["Vesper of Harmony"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Vesper of Harmony"],
+		isToy = true,
+		itemId = 187176,
+		npcs = {180032},
+		chance = 100, -- Blind guess
+		unique = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 47.0, y = 35.5, n = L["Wild Worldcracker"]}
+		}
+	},
+	["Bonestorm Top"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Bonestorm Top"],
+		isToy = true,
+		itemId = 183901,
+		npcs = {158025},
+		chance = 100, -- Blind guess
+		unique = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW, x = 48.8, y = 81.4, n = L["Darklord Taraxis"]}
+		}
+	},
+	["Vesper of Faith"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Vesper of Faith"],
+		itemId = 187185,
+		items = {185993},
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW}
+		}
+	},
+	["Bottled Shade Heart"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Bottled Shade Heart"],
+		isToy = true,
+		itemId = 187139,
+		npcs = {179735},
+		chance = 100, -- Blind guess
+		unique = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW, x = 28.5, y = 24.9, n = L["Torglluun"]}
+		}
+	},
+	["Maw-Ocular Viewfinder"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Maw-Ocular Viewfinder"],
+		isToy = true,
+		itemId = 187420,
+		npcs = {179914},
+		chance = 100, -- Blind guess
+		unique = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 50.2, y = 75.4, n = L["Observer Yorik"]}
 		}
 	},
 }
