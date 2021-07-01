@@ -1840,6 +1840,8 @@ L["Vesper of Harmony"] = true
 L["Bonestorm Top"] = true
 L["Darklord Taraxis"] = true
 L["Vesper of Faith"] = true
+L["Bottled Shade Heart"] = true
+L["Torglluun"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

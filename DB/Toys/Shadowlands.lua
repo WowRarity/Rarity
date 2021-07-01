@@ -327,6 +327,20 @@ local shadowlandsToys = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
 	},
+	["Bottled Shade Heart"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Bottled Shade Heart"],
+		isToy = true,
+		itemId = 187139,
+		npcs = {179735},
+		chance = 100, -- Blind guess
+		unique = true,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW, x = 28.5, y = 24.9, n = L["Torglluun"]}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)
