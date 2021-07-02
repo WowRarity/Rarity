@@ -470,6 +470,7 @@ local shadowlandsMounts = {
 		itemId = 186645,
 		spellId = 354357,
 		npcs = {179684},
+		questId = {64233},
 		chance = 100, -- Estimate,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 45.35, y = 30.34, n = L["Malbog"]}
