@@ -1,6 +1,11 @@
 local _, addonTable = ...
 local CONSTANTS = addonTable.constants
 
+-- WOW API
+local TextureKitConstants = _G.TextureKitConstants
+local GetAchievementInfo = _G.GetAchievementInfo
+
+-- Rarity API
 local R = Rarity
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 
