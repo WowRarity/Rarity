@@ -1847,6 +1847,7 @@ L["Observer Yorik"] = true
 L["Eye of Extermination"] = true
 L["Eye of Allseeing"] = true
 L["Irongrasp"] = true
+L["Mawsworn Minion"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
