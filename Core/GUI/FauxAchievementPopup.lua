@@ -91,7 +91,7 @@ local function RarityAchievementAlertFrame_SetUp(frame, itemId, attempts)
 			unlocked:SetText(ACHIEVEMENT_UNLOCKED)
 			frame:EnableMouse(true)
 		end,
-		10
+		10000 -- Give it enough time to fade out properly
 	)
 
 	frame.id = itemId
