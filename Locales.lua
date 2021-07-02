@@ -1844,6 +1844,7 @@ L["Bottled Shade Heart"] = true
 L["Torglluun"] = true
 L["Maw-Ocular Viewfinder"] = true
 L["Observer Yorik"] = true
+L["Eye of Extermination"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

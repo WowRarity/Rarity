@@ -687,7 +687,38 @@ local shadowlandsPets = {
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.BASTION}
 		}
-	}
+	},
+	-- 9.1 pets
+	["Eye of Extermination"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		name = L["Eye of Extermination"],
+		itemId = 186555,
+		spellId = 353649,
+		creatureId = 179233,
+		npcs = {99999},
+		tooltipNpcs = {180018},
+		chance = 100, -- Blind guess
+		statisticId = {15143}, -- Mythic is only confirmed source.
+		groupSize = 25,
+		equalOdds = true,
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+		},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Eye of the Jailer",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true
+				}
+			},
+		},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.SANCTUM_OF_DOMINATION, i = true}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)
