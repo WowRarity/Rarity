@@ -985,6 +985,20 @@ local shadowlandsPets = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW, n = L["Gralebboih"]}
 		}
 	},
+	["Golden Eye"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Golden Eye"],
+		itemId = 186564,
+		spellId = 353644,
+		creatureId = 179228,
+		npcs = {177132},
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW, n = L["Helsworn Soulseeker"]}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)

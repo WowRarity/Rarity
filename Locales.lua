@@ -1858,6 +1858,8 @@ L["Copperback Etherwyrm"] = true
 L["Gnashtooth"] = true
 L["Amaranthine Stinger"] = true
 L["Gralebboih"] = true
+L["Golden Eye"] = true
+L["Helsworn Soulseeker"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
