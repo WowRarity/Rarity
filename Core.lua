@@ -134,15 +134,7 @@ do
 	end
 end
 
---[[
-      HELPERS ----------------------------------------------------------------------------------------------------------------
-  ]]
--- Helper function (to look up map names more easily)
--- Returns the localized map name, or nil if the uiMapID is invalid
-local function GetMapNameByID(uiMapID)
-	local UiMapDetails = GetMapInfo(uiMapID)
-	return UiMapDetails and UiMapDetails.name or nil
-end
+local GetMapNameByID = Rarity.MapInfo.GetMapNameByID
 
 --[[
       LIFECYCLE ----------------------------------------------------------------------------------------------------------------

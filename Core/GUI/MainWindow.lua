@@ -14,7 +14,7 @@ local sort2 = Rarity.Utils.Sorting.sort2
 local GetDate = Rarity.Utils.Time.GetDate
 local AuctionDB = Rarity.AuctionDB
 local scanTip = Rarity.GUI.scanTip
-local GetMapNameByID = Rarity.GetMapNameByID
+local GetMapNameByID = Rarity.MapInfo.GetMapNameByID
 
 -- Main window
 -- LibQTip stuff
