@@ -1849,6 +1849,7 @@ L["Eye of Allseeing"] = true
 L["Irongrasp"] = true
 L["Mawsworn Minion"] = true
 L["Mosscoated Hopper"] = true
+L["Rook"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

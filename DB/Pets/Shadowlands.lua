@@ -886,6 +886,20 @@ local shadowlandsPets = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA}
 		}
 	},
+	["Rook"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Rook"],
+		itemId = 186552,
+		items = {186658},
+		spellId = 353661,
+		creatureId = 179242,
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)
