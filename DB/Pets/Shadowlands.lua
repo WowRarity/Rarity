@@ -999,6 +999,21 @@ local shadowlandsPets = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW, n = L["Helsworn Soulseeker"]}
 		}
 	},
+	["Korthian Specimen"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Korthian Specimen"],
+		itemId = 186542,
+		spellId = 353663,
+		creatureId = 179251,
+		npcs = {177336},
+		chance = 50, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 30.3, y = 54.9, n = L["Cave Entrance"]},
+			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 44.3, y = 67.1, n = L["Zelnithop"]}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)
