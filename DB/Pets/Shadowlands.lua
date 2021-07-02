@@ -929,6 +929,20 @@ local shadowlandsPets = {
 			{m = CONSTANTS.UIMAPIDS.TAZAVESH_THE_VEILED_MARKET, n = L["P.O.S.T. Master"]}
 		}
 	},
+	["Invasive Buzzer"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Invasive Buzzer"],
+		itemId = 186547,
+		items = {185991},
+		spellId = 353569,
+		creatureId = 179180,
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)
