@@ -456,6 +456,7 @@ local shadowlandsMounts = {
 		itemId = 186652,
 		spellId = 354360,
 		npcs = {180160},
+		questId = {64455},
 		chance = 100, -- Estimate,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 56.3, y = 66.3, n = L["Reliwik the Defiant"]}
