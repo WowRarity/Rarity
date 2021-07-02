@@ -719,6 +719,57 @@ local shadowlandsPets = {
 			{m = CONSTANTS.UIMAPIDS.SANCTUM_OF_DOMINATION, i = true}
 		}
 	},
+	["Eye of Allseeing"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		name = L["Eye of Allseeing"],
+		itemId = 186554,
+		spellId = 353648,
+		creatureId = 179232,
+		npcs = {99999},
+		tooltipNpcs = {180018},
+		chance = 100, -- Blind guess
+		statisticId = {15140, 15143, 15142, 15141}, -- All difficulties.
+		groupSize = 10,
+		equalOdds = true,
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true
+		},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Eye of the Jailer",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true
+				}
+			},
+			{
+				encounterName = "Eye of the Jailer",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true
+				}
+			},
+			{
+				encounterName = "Eye of the Jailer",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true
+				}
+			},
+			{
+				encounterName = "Eye of the Jailer",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true
+				}
+			},
+		},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.SANCTUM_OF_DOMINATION, i = true}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)
