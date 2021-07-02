@@ -1844,6 +1844,25 @@ L["Bottled Shade Heart"] = true
 L["Torglluun"] = true
 L["Maw-Ocular Viewfinder"] = true
 L["Observer Yorik"] = true
+L["Eye of Extermination"] = true
+L["Eye of Allseeing"] = true
+L["Irongrasp"] = true
+L["Mawsworn Minion"] = true
+L["Mosscoated Hopper"] = true
+L["Rook"] = true
+L["Fodder"] = true
+L["Gizmo"] = true
+L["P.O.S.T. Master"] = true
+L["Invasive Buzzer"] = true
+L["Copperback Etherwyrm"] = true
+L["Gnashtooth"] = true
+L["Amaranthine Stinger"] = true
+L["Gralebboih"] = true
+L["Golden Eye"] = true
+L["Helsworn Soulseeker"] = true
+L["Korthian Specimen"] = true
+L["Zelnithop"] = true
+L["Grappling Gauntlet"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

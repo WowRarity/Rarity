@@ -687,7 +687,377 @@ local shadowlandsPets = {
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.BASTION}
 		}
-	}
+	},
+	-- 9.1 pets
+	["Eye of Extermination"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		name = L["Eye of Extermination"],
+		itemId = 186555,
+		spellId = 353649,
+		creatureId = 179233,
+		npcs = {99999},
+		tooltipNpcs = {180018},
+		chance = 100, -- Blind guess
+		statisticId = {15143}, -- Mythic is only confirmed source.
+		groupSize = 25,
+		equalOdds = true,
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+		},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Eye of the Jailer",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true
+				}
+			},
+		},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.SANCTUM_OF_DOMINATION, i = true}
+		}
+	},
+	["Eye of Allseeing"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		name = L["Eye of Allseeing"],
+		itemId = 186554,
+		spellId = 353648,
+		creatureId = 179232,
+		npcs = {99999},
+		tooltipNpcs = {180018},
+		chance = 100, -- Blind guess
+		statisticId = {15140, 15143, 15142, 15141}, -- All difficulties.
+		groupSize = 10,
+		equalOdds = true,
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true
+		},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Eye of the Jailer",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true
+				}
+			},
+			{
+				encounterName = "Eye of the Jailer",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true
+				}
+			},
+			{
+				encounterName = "Eye of the Jailer",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true
+				}
+			},
+			{
+				encounterName = "Eye of the Jailer",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true
+				}
+			},
+		},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.SANCTUM_OF_DOMINATION, i = true}
+		}
+	},
+	["Irongrasp"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		name = L["Irongrasp"],
+		itemId = 186558,
+		spellId = 353639,
+		creatureId = 179222,
+		npcs = {99999},
+		tooltipNpcs = {175727},
+		chance = 100, -- Blind guess
+		statisticId = {15155, 15153, 15154, 15152}, -- All difficulties.
+		groupSize = 10,
+		equalOdds = true,
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true
+		},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Soulrender Dormazain",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true
+				}
+			},
+			{
+				encounterName = "Soulrender Dormazain",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true
+				}
+			},
+			{
+				encounterName = "Soulrender Dormazain",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true
+				}
+			},
+			{
+				encounterName = "Soulrender Dormazain",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true
+				}
+			},
+		},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.SANCTUM_OF_DOMINATION, i = true}
+		}
+	},
+	["Mawsworn Minion"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		name = L["Mawsworn Minion"],
+		itemId = 186550,
+		spellId = 353658,
+		creatureId = 179240,
+		npcs = {99999},
+		tooltipNpcs = {15990},
+		chance = 100, -- Blind guess
+		statisticId = {15169, 15171, 15172, 15170}, -- All difficulties.
+		groupSize = 10,
+		equalOdds = true,
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true
+		},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Kel'Thuzad",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true
+				}
+			},
+			{
+				encounterName = "Kel'Thuzad",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true
+				}
+			},
+			{
+				encounterName = "Kel'Thuzad",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true
+				}
+			},
+			{
+				encounterName = "Kel'Thuzad",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true
+				}
+			},
+		},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.SANCTUM_OF_DOMINATION, i = true}
+		}
+	},
+	["Mosscoated Hopper"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Mosscoated Hopper"],
+		itemId = 186541,
+		items = {186650},
+		spellId = 353664,
+		creatureId = 179252,
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.KORTHIA}
+		}
+	},
+	["Rook"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Rook"],
+		itemId = 186552,
+		items = {186658},
+		spellId = 353661,
+		creatureId = 179242,
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW}
+		}
+	},
+	["Fodder"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Fodder"],
+		itemId = 186557,
+		items = {185992},
+		spellId = 353529,
+		creatureId = 179171,
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW}
+		}
+	},
+	["Gizmo"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Gizmo"],
+		itemId = 186534,
+		spellId = 353525,
+		creatureId = 179166,
+		npcs = {175646},
+		chance = 100, -- Blind guess
+		instanceDifficulties = {[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.TAZAVESH_THE_VEILED_MARKET, n = L["P.O.S.T. Master"]}
+		}
+	},
+	["Invasive Buzzer"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Invasive Buzzer"],
+		itemId = 186547,
+		items = {185991},
+		spellId = 353569,
+		creatureId = 179180,
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW}
+		}
+	},
+	["Copperback Etherwyrm"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Copperback Etherwyrm"],
+		itemId = 186546,
+		items = {185993},
+		spellId = 353451,
+		creatureId = 179132,
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW}
+		}
+	},
+	["Gnashtooth"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Gnashtooth"],
+		itemId = 186538,
+		items = {187028},
+		spellId = 353666,
+		creatureId = 179255,
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.KORTHIA}
+		}
+	},
+	["Amaranthine Stinger"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Amaranthine Stinger"],
+		itemId = 186449,
+		spellId = 353570,
+		creatureId = 179181,
+		npcs = {177979},
+		chance = 25, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW, n = L["Gralebboih"]}
+		}
+	},
+	["Golden Eye"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Golden Eye"],
+		itemId = 186564,
+		spellId = 353644,
+		creatureId = 179228,
+		npcs = {177132},
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW, n = L["Helsworn Soulseeker"]}
+		}
+	},
+	["Korthian Specimen"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Korthian Specimen"],
+		itemId = 186542,
+		spellId = 353663,
+		creatureId = 179251,
+		npcs = {177336},
+		chance = 50, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 30.3, y = 54.9, n = L["Cave Entrance"]},
+			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 44.3, y = 67.1, n = L["Zelnithop"]}
+		}
+	},
+	["Grappling Gauntlet"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Grappling Gauntlet"],
+		itemId = 186559,
+		spellId = 353638,
+		creatureId = 179220,
+		npcs = {
+			177321,
+			177323,
+			177164,
+			177397,
+			178671,
+			178744,
+			177805,
+			179260,
+			178727,
+			177244,
+			179305,
+			179284,
+			179217,
+			177292,
+			177293,
+			177201,
+			161849,
+			170694,
+			175708,
+			166398,
+			170157,
+			167323,
+			173138,
+			175702,
+			167322,
+			175697,
+			157824,
+		},
+		chance = 200, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.KORTHIA},
+			{m = CONSTANTS.UIMAPIDS.THE_MAW},
+			{m = CONSTANTS.UIMAPIDS.ARDENWEALD},
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)
