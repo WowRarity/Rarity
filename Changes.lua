@@ -1,12 +1,12 @@
 local changes = {
 	["r709"] = {
 		additions = {
-			"Added tracking for mounts introduced in Chains of Domination (experimental)",
-			"Added tracking for multiple toys introduced in Chains of Domination (experimental)",
-			"Added tracking for most pets introduced in Chains of Domination (experimental)",
+			"Added tracking for mounts introduced in Chains of Domination ",
+			"Added tracking for various toys introduced in Chains of Domination",
+			"Added tracking for most pets introduced in Chains of Domination",
 		},
 		notes = {
-			"Work is currently in progress to add the remaining collectibles. Please let us know if there's an issue with any the items that are already being tracked!"
+			"There are a number of collectibles we don't currently have sufficient data on. These will be added as soon™ as possible, but it might still take a while."
 		},
 		contributors = {
 			"Tommy Godejord"
