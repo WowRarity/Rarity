@@ -5,6 +5,12 @@ Additions:
 > Added tracking for various toys introduced in Chains of Domination
 > Added tracking for most pets introduced in Chains of Domination
 
+Changes:
+> Rarity's achievement toast now also supports two lines of text properly, similar to Blizzard's recently-updated version
+
+Fixes:
+> Fixed an issue where two icons would be displayed in the achievement toast
+
 Developer Notes:
 > There are a number of collectibles we don't currently have sufficient data on. These will be added as soon™ as possible, but it might still take a while.
 
