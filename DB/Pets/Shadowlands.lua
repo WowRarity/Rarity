@@ -957,6 +957,20 @@ local shadowlandsPets = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
 	},
+	["Gnashtooth"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Gnashtooth"],
+		itemId = 186538,
+		items = {187028},
+		spellId = 353666,
+		creatureId = 179255,
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.KORTHIA}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)
