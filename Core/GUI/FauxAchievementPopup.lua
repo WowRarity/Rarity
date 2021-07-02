@@ -43,14 +43,14 @@ local function RarityAchievementAlertFrame_SetUp(frame, itemId, attempts)
 		oldCheevo:Hide()
 		frame.guildDisplay = nil
 		frame:SetHeight(88)
+		frame:SetHeight(104)
 		local background = frame.Background
 		background:SetTexture("Interface\\AchievementFrame\\UI-Achievement-Alert-Background")
 		background:SetTexCoord(0, 0.605, 0, 0.703)
 		background:SetPoint("TOPLEFT", 0, 0)
 		background:SetPoint("BOTTOMRIGHT", 0, 0)
 		local iconBorder = frame.Icon.Overlay
-		iconBorder:SetTexture("Interface\\AchievementFrame\\UI-Achievement-IconFrame")
-		iconBorder:SetTexCoord(0, 0.5625, 0, 0.5625)
+		iconBorder:SetAtlas("ui-achievement-guild-iconframe", TextureKitConstants.UseAtlasSize);
 		iconBorder:SetPoint("CENTER", -1, 2)
 		frame.Icon:SetPoint("TOPLEFT", -26, 16)
 		displayName:SetPoint("BOTTOMLEFT", 72, 36)
@@ -63,14 +63,12 @@ local function RarityAchievementAlertFrame_SetUp(frame, itemId, attempts)
 		frame.GuildName:Hide()
 		frame.GuildBorder:Hide()
 		frame.GuildBanner:Hide()
-		frame.glow:SetTexture("Interface\\AchievementFrame\\UI-Achievement-Alert-Glow")
-		frame.glow:SetTexCoord(0, 0.78125, 0, 0.66796875)
-		frame.shine:SetTexture("Interface\\AchievementFrame\\UI-Achievement-Alert-Glow")
-		frame.shine:SetTexCoord(0.78125, 0.912109375, 0, 0.28125)
+		frame.glow:SetAtlas("ui-achievement-guild-glow", TextureKitConstants.UseAtlasSize);
+		frame.shine:SetAtlas("ui-achievement-guild-shine", TextureKitConstants.UseAtlasSize);
 		frame.shine:SetPoint("BOTTOMLEFT", 0, 8)
 	end
 
-	shieldIcon:SetTexture([[Interface\AchievementFrame\UI-Achievement-Shields-NoPoints]])
+	shieldIcon:SetAtlas("UI-Achievement-Shield-NoPoints", TextureKitConstants.UseAtlasSize);
 
 	frame.Icon.Texture:SetTexture(itemTexture)
 	frame:EnableMouse(false) -- Make achievement toast unclickable
