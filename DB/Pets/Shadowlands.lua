@@ -971,6 +971,20 @@ local shadowlandsPets = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA}
 		}
 	},
+	["Amaranthine Stinger"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Amaranthine Stinger"],
+		itemId = 186449,
+		spellId = 353570,
+		creatureId = 179181,
+		npcs = {177979},
+		chance = 25, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW, n = L["Gralebboih"]}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)

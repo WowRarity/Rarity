@@ -1856,6 +1856,8 @@ L["P.O.S.T. Master"] = true
 L["Invasive Buzzer"] = true
 L["Copperback Etherwyrm"] = true
 L["Gnashtooth"] = true
+L["Amaranthine Stinger"] = true
+L["Gralebboih"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
