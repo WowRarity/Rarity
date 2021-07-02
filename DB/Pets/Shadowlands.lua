@@ -770,6 +770,57 @@ local shadowlandsPets = {
 			{m = CONSTANTS.UIMAPIDS.SANCTUM_OF_DOMINATION, i = true}
 		}
 	},
+	["Irongrasp"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		name = L["Irongrasp"],
+		itemId = 186558,
+		spellId = 353639,
+		creatureId = 179222,
+		npcs = {99999},
+		tooltipNpcs = {175727},
+		chance = 100, -- Blind guess
+		statisticId = {15155, 15153, 15154, 15152}, -- All difficulties.
+		groupSize = 10,
+		equalOdds = true,
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true
+		},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Soulrender Dormazain",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true
+				}
+			},
+			{
+				encounterName = "Soulrender Dormazain",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true
+				}
+			},
+			{
+				encounterName = "Soulrender Dormazain",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true
+				}
+			},
+			{
+				encounterName = "Soulrender Dormazain",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true
+				}
+			},
+		},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.SANCTUM_OF_DOMINATION, i = true}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)
