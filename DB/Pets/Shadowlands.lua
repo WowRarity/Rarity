@@ -872,6 +872,20 @@ local shadowlandsPets = {
 			{m = CONSTANTS.UIMAPIDS.SANCTUM_OF_DOMINATION, i = true}
 		}
 	},
+	["Mosscoated Hopper"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Mosscoated Hopper"],
+		itemId = 186541,
+		items = {186650},
+		spellId = 353664,
+		creatureId = 179252,
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.KORTHIA}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)
