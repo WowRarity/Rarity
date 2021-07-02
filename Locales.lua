@@ -1851,6 +1851,8 @@ L["Mawsworn Minion"] = true
 L["Mosscoated Hopper"] = true
 L["Rook"] = true
 L["Fodder"] = true
+L["Gizmo"] = true
+L["P.O.S.T. Master"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

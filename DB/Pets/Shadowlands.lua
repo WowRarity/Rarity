@@ -914,6 +914,21 @@ local shadowlandsPets = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
 	},
+	["Gizmo"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Gizmo"],
+		itemId = 186534,
+		spellId = 353525,
+		creatureId = 179166,
+		npcs = {175646},
+		chance = 100, -- Blind guess
+		instanceDifficulties = {[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true},
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.TAZAVESH_THE_VEILED_MARKET, n = L["P.O.S.T. Master"]}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)
