@@ -1014,6 +1014,50 @@ local shadowlandsPets = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 44.3, y = 67.1, n = L["Zelnithop"]}
 		}
 	},
+	["Grappling Gauntlet"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Grappling Gauntlet"],
+		itemId = 186559,
+		spellId = 353638,
+		creatureId = 179220,
+		npcs = {
+			177321,
+			177323,
+			177164,
+			177397,
+			178671,
+			178744,
+			177805,
+			179260,
+			178727,
+			177244,
+			179305,
+			179284,
+			179217,
+			177292,
+			177293,
+			177201,
+			161849,
+			170694,
+			175708,
+			166398,
+			170157,
+			167323,
+			173138,
+			175702,
+			167322,
+			175697,
+			157824,
+		},
+		chance = 200, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.KORTHIA},
+			{m = CONSTANTS.UIMAPIDS.THE_MAW},
+			{m = CONSTANTS.UIMAPIDS.ARDENWEALD},
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)

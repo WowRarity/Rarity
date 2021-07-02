@@ -1862,6 +1862,7 @@ L["Golden Eye"] = true
 L["Helsworn Soulseeker"] = true
 L["Korthian Specimen"] = true
 L["Zelnithop"] = true
+L["Grappling Gauntlet"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
