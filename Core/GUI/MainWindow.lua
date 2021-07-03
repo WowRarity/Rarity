@@ -1126,7 +1126,7 @@ local function addGroup(group, requiresGroup)
 								 then
 									if
 										not Rarity.db.profile.hideOutsideZone or
-											(Rarity.db.profile.hideOutsideZone and R:IsItemInCurrentZone(v) and R:IsAttemptAllowed(v))
+											(Rarity.db.profile.hideOutsideZone and R.Waypoints:IsItemInCurrentZone(v) and R:IsAttemptAllowed(v))
 									 then
 										itemsExistInThisGroup = true
 										if
