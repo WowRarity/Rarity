@@ -11,6 +11,7 @@ local lbz = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
 -- Upvalues
 --- WoW API
 local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
+local IsQuestFlaggedCompleted = _G.C_QuestLog.IsQuestFlaggedCompleted
 --- Addon API
 local CONSTANTS = addonTable.constants
 local colorize = Rarity.Utils.String.Colorize
