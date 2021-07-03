@@ -1068,6 +1068,7 @@ local shadowlandsPets = {
 		spellId = 348561,
 		creatureId = 176662,
 		chance = 50, -- Blind guess
+		questId = 63435,
 		sourceText = L[
 			"This bag is rewarded for completing the pet battle daily offered by Anthea at the Temple of the White Tiger in Kun-Lai Summit."
 		],
