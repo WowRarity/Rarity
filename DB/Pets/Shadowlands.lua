@@ -1058,6 +1058,24 @@ local shadowlandsPets = {
 			{m = CONSTANTS.UIMAPIDS.ARDENWEALD},
 		}
 	},
+	["Squibbles"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Squibbles"],
+		itemId = 184867,
+		items = {184866},
+		spellId = 348561,
+		creatureId = 176662,
+		chance = 50, -- Blind guess
+		questId = 63435,
+		sourceText = L[
+			"This bag is rewarded for completing the pet battle daily offered by Anthea at the Temple of the White Tiger in Kun-Lai Summit."
+		],
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.KUNLAI_SUMMIT}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)
