@@ -1863,6 +1863,8 @@ L["Helsworn Soulseeker"] = true
 L["Korthian Specimen"] = true
 L["Zelnithop"] = true
 L["Grappling Gauntlet"] = true
+L["Squibbles"] = true
+L["This bag is rewarded for completing the pet battle daily offered by Anthea at the Temple of the White Tiger in Kun-Lai Summit."] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
