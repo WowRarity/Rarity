@@ -308,6 +308,7 @@ local shadowlandsToys = {
 		isToy = true,
 		itemId = 183901,
 		npcs = {158025},
+		questId = {62282},
 		chance = 100, -- Blind guess
 		unique = true,
 		coords = {

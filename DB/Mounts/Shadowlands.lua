@@ -442,6 +442,7 @@ local shadowlandsMounts = {
 		itemId = 187183,
 		spellId = 356501,
 		npcs = {179472},
+		questId = {64246},
 		chance = 50, -- Estimate,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, n = L["Konthrogz the Obliterator"]}
@@ -455,6 +456,7 @@ local shadowlandsMounts = {
 		itemId = 186652,
 		spellId = 354360,
 		npcs = {180160},
+		questId = {64455},
 		chance = 100, -- Estimate,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 56.3, y = 66.3, n = L["Reliwik the Defiant"]}
@@ -468,6 +470,7 @@ local shadowlandsMounts = {
 		itemId = 186645,
 		spellId = 354357,
 		npcs = {179684},
+		questId = {64233},
 		chance = 100, -- Estimate,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 45.35, y = 30.34, n = L["Malbog"]}
