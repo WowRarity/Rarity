@@ -1009,6 +1009,7 @@ local shadowlandsPets = {
 		creatureId = 179251,
 		npcs = {177336},
 		chance = 50, -- Blind guess
+		questId = 64442,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 30.3, y = 54.9, n = L["Cave Entrance"]},
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 27.75, y = 59.27, n = L["Zelnithop"]}
