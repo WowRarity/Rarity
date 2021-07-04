@@ -1011,7 +1011,7 @@ local shadowlandsPets = {
 		chance = 50, -- Blind guess
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 30.3, y = 54.9, n = L["Cave Entrance"]},
-			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 44.3, y = 67.1, n = L["Zelnithop"]}
+			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 27.75, y = 59.27, n = L["Zelnithop"]}
 		}
 	},
 	["Grappling Gauntlet"] = {
