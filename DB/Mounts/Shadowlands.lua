@@ -605,6 +605,22 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
 	},
+	["Dusklight Razorwing"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.COLLECTION,
+		name = L["Dusklight Razorwing"],
+		spellId = 354361,
+		itemId = 186651,
+		collectedItemId = 187054,
+		chance = 10,
+		obtain = L["Dropped from various creatures in Korthia"],
+		tooltipNpcs = {177913, 177645, 177295, 179472, 179859, 177646, 177245, 177582},
+		sourceText = L[
+			"Bring the 10 Lost Razorwing Egg to the Razorwing Nest in Korthia."
+		],
+		coords = {{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 25.6, y = 51.1, n = L["Razorwing Nest"]}}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)

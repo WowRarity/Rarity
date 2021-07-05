@@ -1881,6 +1881,10 @@ L["Personal Ball and Chain"] = true
 L["This treasure can only be found within the rift phase of The Maw."] = true
 L["Jailer's Cage"] = true
 L["Zovaal's Vault"] = true
+L["Dusklight Razorwing"] = true
+L["Dropped from various creatures in Korthia"] = true
+L["Bring the 10 Lost Razorwing Egg to the Razorwing Nest in Korthia."] = true
+L["Razorwing Nest"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
