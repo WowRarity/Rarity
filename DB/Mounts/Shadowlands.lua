@@ -621,6 +621,21 @@ local shadowlandsMounts = {
 		],
 		coords = {{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 25.6, y = 51.1, n = L["Razorwing Nest"]}}
 	},
+	["Darkmaul"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.COLLECTION,
+		name = L["Darkmaul"],
+		spellId = 354358,
+		itemId = 186646,
+		collectedItemId = 187153,
+		chance = 10,
+		obtain = L["The Mawshrooms are obtained from treasure nodes called Invasive Mawshroom in Korthia."],
+		sourceText = L[
+			"Darkmaul is obtained by feeding a friendly NPC in Korthia called Darkmaul 10 Tasty Mawshroom"
+		],
+		coords = {{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 42.8, y = 32.7, n = L["Darkmaul"]}}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)

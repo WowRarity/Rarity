@@ -1885,6 +1885,9 @@ L["Dusklight Razorwing"] = true
 L["Dropped from various creatures in Korthia"] = true
 L["Bring the 10 Lost Razorwing Egg to the Razorwing Nest in Korthia."] = true
 L["Razorwing Nest"] = true
+L["Darkmaul"] = true
+L["The Mawshrooms are obtained from treasure nodes called Invasive Mawshroom in Korthia."] = true
+L["Darkmaul is obtained by feeding a friendly NPC in Korthia called Darkmaul 10 Tasty Mawshroom"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
