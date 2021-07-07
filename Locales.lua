@@ -1823,7 +1823,6 @@ L["Crimson Shardhide"] = true
 L["Malbog"] = true
 L["Fallen Charger's Reins"] = true
 L["Fallen Charger"] = true
-L["Foresworn Aquilon"] = true
 L["Wild Worldcracker"] = true
 L["Summer Wilderling Harness"] = true
 L["Escaped Wilderling"] = true
