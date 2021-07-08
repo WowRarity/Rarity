@@ -134,21 +134,15 @@ do
 	end
 end
 
---[[
-      HELPERS ----------------------------------------------------------------------------------------------------------------
-  ]]
--- Helper function (to look up map names more easily)
--- Returns the localized map name, or nil if the uiMapID is invalid
-local function GetMapNameByID(uiMapID)
-	local UiMapDetails = GetMapInfo(uiMapID)
-	return UiMapDetails and UiMapDetails.name or nil
-end
+local GetMapNameByID = Rarity.MapInfo.GetMapNameByID
 
 --[[
       LIFECYCLE ----------------------------------------------------------------------------------------------------------------
   ]]
 function R:OnInitialize()
 end
+
+local Output = Rarity.Output
 
 do
 	local isInitialized = false
@@ -166,7 +160,7 @@ do
 		self:PrepareDefaults() -- Loads in any new items
 
 		self.db = LibStub("AceDB-3.0"):New("RarityDB", self.defaults, true)
-		self:SetSinkStorage(self.db.profile)
+		Output:Setup()
 
 		self:RegisterChatCommand("rarity", "OnChatCommand")
 		self:RegisterChatCommand("rare", "OnChatCommand")
@@ -175,19 +169,6 @@ do
 
 		-- Expose private objects
 		R.npcs = npcs
-
-		-- LibSink still tries to call a non-existent Blizzard function sometimes
-		if not CombatText_StandardScroll then
-			CombatText_StandardScroll = 0
-		end
-		if not UIERRORS_HOLD_TIME then
-			UIERRORS_HOLD_TIME = 2
-		end
-		if not CombatText_AddMessage then
-			CombatText_AddMessage = function(text, _, r, g, b, sticky, _)
-				UIErrorsFrame:AddMessage(text, r, g, b, 1, UIERRORS_HOLD_TIME)
-			end
-		end
 
 		Rarity.GUI:InitialiseBar()
 

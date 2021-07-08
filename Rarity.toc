@@ -1,6 +1,6 @@
 ## Author: Allara
-## Interface: 90005
-## X-Min-Interface: 90005
+## Interface: 90100
+## X-Min-Interface: 90100
 ## Title: Rarity
 ## Version: 1.0 (@project-version@)
 
@@ -103,12 +103,19 @@ DB\Toys\Shadowlands.lua
 Utils\DebugCache.lua
 Utils\PrettyPrint.lua
 Utils\Sorting.lua
+Utils\String.lua
+Utils\Table.lua
 Utils\Time.lua
 
 # Wrappers for external libraries (to provide a consistent API)
-Core\Interfaces\AuctionDB.lua
+Core\Interoperability\LibSink\Output.lua
+Core\Interoperability\TradeSkillMaster\AuctionDB.lua
+
+# Wrappers for the WOW API (to provide a consistent API)
+Core\Interoperability\Blizzard\MapInfo.lua
 
 # Addon Core
+Core\Announcements.lua
 Core\Caching.lua
 Core\Collections.lua
 Core\Database.lua
@@ -123,5 +130,17 @@ Core\Settings.lua
 Core\Statistics.lua
 Core\Tracking.lua
 Core\Validation.lua
+Core\Waypoints.lua
+
+# UI
+Core\GUI\AnchoredTrackingBar.lua
+Core\GUI\DataBrokerDisplay.lua
+Core\GUI\FauxAchievementPopup.lua
+Core\GUI\GameTooltipHooks.lua
+Core\GUI\MainWindow.lua
+
+# Addon loader
 Core.lua
+
+# Initialization for the config UI
 Options_Defaults.lua

@@ -99,7 +99,10 @@ C.UIMAPIDS = {
 	MISTS_OF_TIRNA_SCITHE = 1669,
 	PLAGUEFALL = 1674,
 	SANGUINE_DEPTHS = 1675,
-	CASTLE_NATHRIA = 1735
+	CASTLE_NATHRIA = 1735,
+	KORTHIA = 1961,
+	TAZAVESH_THE_VEILED_MARKET = 1989,
+	SANCTUM_OF_DOMINATION = 1998,
 }
 
 -- Types of items
@@ -261,4 +264,19 @@ C.TOOLTIP_ACTIONS = {
 	end
 }
 
+C.Colors = {
+	Red = {r = 1.0, g = 0.2, b = 0.2},
+	Blue = {r = 0.4, g = 0.4, b = 1.0},
+	Green = {r = 0.2, g = 1.0, b = 0.2},
+	Yellow = {r = 1.0, g = 1.0, b = 0.2},
+	Gray = {r = 0.5, g = 0.5, b = 0.5},
+	Black = {r = 0.0, g = 0.0, b = 0.0},
+	White = {r = 1.0, g = 1.0, b = 1.0}
+}
+
+-- Legacy method of sharing constants (awkward, but better than not sharing them I guess)
+-- DEPRECATED: Use Rarity.Enum instead
 addonTable.constants = C
+
+-- More consistent with Blizzard's method as of Shadowlands (global Enum table); it's probably easier to use, as well
+Rarity.Enum = C
