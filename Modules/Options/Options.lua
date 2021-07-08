@@ -1783,6 +1783,23 @@ function R:CreateGroup(options, group, isUser)
 					name = item.sourceText or "",
 					hidden = item.sourceText == nil or item.sourceText == ""
 				},
+				currentAttemptsDesc = {
+					type = "description",
+					order = newOrder(),
+					name = colorize(L["Current Attempts"] .. ": ", green) .. tostring((item.attempts or 0) - (item.lastAttempts or 0))
+				},
+				lastAttemptsDesc = {
+					type = "description",
+					order = newOrder(),
+					name = colorize(L["Last Obtained In"] .. ": ", green) .. tostring(item.lastAttempts or 0),
+					hidden = (item.lastAttempts or 0) == 0
+				},
+				totalAttemptsDesc = {
+					type = "description",
+					order = newOrder(),
+					name = colorize(L["Total Attempts"] .. ": ", green) .. tostring(item.attempts or 0),
+					hidden = (item.lastAttempts or 0) == 0
+				},
 				worldBossFactionless = {
 					type = "description",
 					order = newOrder(),
@@ -2404,17 +2421,6 @@ function R:CreateGroup(options, group, isUser)
 					end
 				},
 				spacer4 = {type = "header", name = L["Attempts"], order = newOrder()},
-				lastAttemptsDesc = {
-					type = "description", 
-					name = function()
-						if (item.lastAttempts or 0) > 0 then
-							return L["Last Obtained In"] .. ": " .. tostring(item.lastAttempts or 0)
-						else
-							return L["Not Obtained"]
-						end
-					end,
-					order = newOrder()
-				},
 				attempts = {
 					type = "input",
 					order = newOrder(),
