@@ -1,0 +1,38 @@
+name: Static Analysis
+
+on:
+  push:
+  pull_request:
+    branches: [master]
+
+jobs:
+  luacheck:
+    runs-on: ubuntu-latest
+
+    steps:
+      # LuaRocks needs the 5.1 headers to compile LuaCheck later, so we download them, too
+      - name: Install LuaJIT
+        run: sudo apt-get install luajit libluajit-5.1-dev
+
+      - name: Download LuaRocks
+        run: wget https://luarocks.org/releases/luarocks-3.7.0.tar.gz
+
+      - name: Unpack LuaRocks release
+        run: tar zxpf luarocks-3.7.0.tar.gz
+
+      - name: Install LuaRocks
+        run: cd luarocks-3.7.0 && ./configure && make && sudo make install
+
+      - name: Install LuaCheck
+        run: sudo luarocks install luacheck
+
+      # We don't want LuaCheck to analyze LuaRocks itself
+      # Ironically, it fails when doing that, but that's not useful here
+      - name: Change to temporary directory
+        run: mkdir temp && cd temp
+
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Perform static analysis
+        run: luacheck .
