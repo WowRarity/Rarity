@@ -10,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v2
-
       - name: Install LuaJIT
         run: sudo apt-get install luajit
 
@@ -31,6 +28,14 @@ jobs:
 
       - name: Install luacheck
         run: sudo luarocks install luacheck
+
+      # We don't want LuaCheck to analyze LuaRocks itself
+      # Ironically, it fails when doing that, but that's not useful here
+      - name: Change to temporary directory
+        run: mkdir temp && cd temp
+
+      - name: Check out Git repository
+        uses: actions/checkout@v2
 
       - name: Perform static analysis
         run: cd .. && luacheck .
