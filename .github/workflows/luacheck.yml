@@ -30,7 +30,7 @@ jobs:
         run: cd luarocks-3.7.0 && ./configure && make && sudo make install
 
       - name: Install luacheck
-        run: luarocks install luacheck
+        run: sudo luarocks install luacheck
 
       - name: Perform static analysis
         run: cd .. && luacheck .
