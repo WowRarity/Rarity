@@ -13,7 +13,19 @@ jobs:
 
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
-      - name: Run luacheck via GitHub Super-Linter
-        run: github/super-linter@v4.2.2
+      - name: Download luarocks
+        run: wget https://luarocks.org/releases/luarocks-3.7.0.tar.gz
+
+      - name: Unpack luarocks release
+        run: tar zxpf luarocks-3.7.0.tar.gz
+
+      - name: Install Luarocks
+        run: cd luarocks-3.7.0 && ./configure && make && sudo make install
+
+      - name: Install luacheck
+        run: luarocks install luacheck
+
+      - name: Perform static analysis
+        run: cd .. && luacheck .
