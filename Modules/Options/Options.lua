@@ -1783,6 +1783,23 @@ function R:CreateGroup(options, group, isUser)
 					name = item.sourceText or "",
 					hidden = item.sourceText == nil or item.sourceText == ""
 				},
+				currentAttemptsDesc = {
+					type = "description",
+					order = newOrder(),
+					name = colorize(L["Current Attempts"] .. ": ", green) .. tostring((item.attempts or 0) - (item.lastAttempts or 0))
+				},
+				lastAttemptsDesc = {
+					type = "description",
+					order = newOrder(),
+					name = colorize(L["Last Obtained In"] .. ": ", green) .. tostring(item.lastAttempts or 0),
+					hidden = (item.lastAttempts or 0) == 0
+				},
+				totalAttemptsDesc = {
+					type = "description",
+					order = newOrder(),
+					name = colorize(L["Total Attempts"] .. ": ", green) .. tostring(item.attempts or 0),
+					hidden = (item.lastAttempts or 0) == 0
+				},
 				worldBossFactionless = {
 					type = "description",
 					order = newOrder(),
