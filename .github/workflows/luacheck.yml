@@ -10,12 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # LuaRocks needs the 5.1 headers to compile LuaCheck later, so we download them, too
       - name: Install LuaJIT
-        run: sudo apt-get install luajit
-
-      # LuaRocks needs the 5.1 headers to compile LuaCheck later
-      - name: Install LuaJIT development package
-        run: sudo apt-get install libluajit-5.1-dev
+        run: sudo apt-get install luajit libluajit-5.1-dev
 
       - name: Download LuaRocks
         run: wget https://luarocks.org/releases/luarocks-3.7.0.tar.gz
