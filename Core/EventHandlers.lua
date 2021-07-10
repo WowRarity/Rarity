@@ -964,36 +964,49 @@ function R:OnBagUpdate()
 
 		-- Check for an increase in quantity of any items we're watching for
 		for itemID, newInventoryAmount in pairs(Rarity.bagitems) do
+			Rarity:Debug(format("Processing inventory item %s (newInventoryAmount: %d)", itemID, newInventoryAmount))
 			-- Handle collection items
 			if Rarity.items[itemID] then
+				Rarity:Debug(format("Processed item %s is something we're tracking", itemID))
 				if Rarity.items[itemID].method == CONSTANTS.DETECTION_METHODS.COLLECTION then
+					Rarity:Debug("Processed item is a COLLECTION item we're tracking")
 					local bagCount = (Rarity.bagitems[itemID] or 0)
+					Rarity:Debug(format("Processing collection item with bagCount %d", bagCount))
 
 					-- Our items hashtable only saves one item for this collected item, so we have to scan to find them all now.
 					-- Earlier, we pre-built a list of just the items that are COLLECTION items to save some time here.
 					for kk, vv in pairs(Rarity.collection_items) do
+						Rarity:Debug(format("Checking for new attempts at COLLECTION item %s", vv.name))
 						-- This item is a collection of several items; add them all up and check for attempts
 						if type(vv.collectedItemId) == "table" then
+							Rarity:Debug(format("Processing aggregate collection item %s", vv.name))
 							-- This item is a collection of a single type of item
 							if vv.enabled ~= false then
 								local total = 0
 								local originalCount = (vv.attempts or 0)
 								local goal = (vv.chance or 100)
+								Rarity:Debug(format("Aggregate with total %d, originalCount %d, goal %d", total, originalCount, goal))
 								for kkk, vvv in pairs(vv.collectedItemId) do
+									Rarity:Debug(format("Adding inventoryAmount for item %d (%s)", kkk, vvv))
 									if (Rarity.bagitems[vvv] or 0) > 0 then
 										total = total + Rarity.bagitems[vvv]
+										Rarity:Debug(format("Found %d of these in bags, new total is %d", Rarity.bagitems[vvv], total))
 									end
 								end
 								if total > originalCount then
+									Rarity:Debug("Total is > original count, overriding current attempts")
 									vv.attempts = total
 									if originalCount < goal and total >= goal then
+										Rarity:Debug("Triggering OnItemFound since we just reached the goal")
 										self:OnItemFound(vv.itemId, vv)
 									elseif total > originalCount then
+										Rarity:Debug("Triggering OutputAttempts since we gained one item, but didn't reach the goal")
 										self:OutputAttempts(vv)
 									end
 								end
 							end
 						else
+							Rarity:Debug(format("Processing single collection item %s", vv.name))
 							if
 								vv.enabled and
 									(vv.collectedItemId == Rarity.items[itemID].collectedItemId or
