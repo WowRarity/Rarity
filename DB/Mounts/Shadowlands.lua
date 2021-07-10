@@ -489,11 +489,11 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW, n = L["Fallen Charger"]}
 		}
 	},
-	["Summer Wilderling Harness"] = {	
+	["Wilderling Saddle"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
-		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
 		method = CONSTANTS.DETECTION_METHODS.LOOT_TOAST, -- This method doesn't exist, it's effectively SPECIAL but with a better name
-		name = L["Summer Wilderling Harness"],
+		name = L["Wilderling Saddle"],
 		itemId = 186492,
 		items = {187278},
 		spellId = 353859,
