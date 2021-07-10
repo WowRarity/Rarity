@@ -489,22 +489,6 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW, n = L["Fallen Charger"]}
 		}
 	},
-	["Summer Wilderling Harness"] = {	
-		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
-		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.USE,
-		name = L["Summer Wilderling Harness"],
-		itemId = 186492,
-		items = {187278},
-		spellId = 353859,
-		tooltipNpcs = {180014, 180013},
-		chance = 100, -- Estimate,
-		requiresCovenant = true,
-		requiredCovenantID = CONSTANTS.COVENANT_IDS.NIGHT_FAE,
-		coords = {
-			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 33.49, y = 39.54, n = L["Escaped Wilderling"]}
-		}
-	},
 	["Cartel Master's Gearglider"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,

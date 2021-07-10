@@ -88,6 +88,7 @@ function EventHandlers:Register()
 	self:RegisterEvent("ISLAND_COMPLETED", "OnIslandCompleted")
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", "OnSpellcastSucceeded")
 	self:RegisterEvent("QUEST_TURNED_IN", "OnQuestTurnedIn")
+	self:RegisterEvent("SHOW_LOOT_TOAST", "OnShowLootToast")
 	self:RegisterBucketEvent("UPDATE_INSTANCE_INFO", 1, "OnEvent")
 	self:RegisterBucketEvent("LFG_UPDATE_RANDOM_INFO", 1, "OnEvent")
 	self:RegisterBucketEvent("CALENDAR_UPDATE_EVENT_LIST", 1, "OnEvent")
@@ -147,6 +148,61 @@ function R:OnSpellcastSucceeded(event, unitID, castGUID, spellID)
 		Rarity:Debug("Detected Opening on " .. L["Dirty Glinting Object"] .. " (method = SPECIAL)")
 		addAttemptForItem("Lucy's Lost Collar", "pets")
 	end
+end
+
+-- TBD: Move to shared constants?
+local TYPE_IDENTIFIER_ITEM = "item" -- What others do they have? currency? gold? No idea.
+
+-- Upvalues
+--- WOW API
+local GetItemInfoInstant = GetItemInfoInstant
+
+-- This needs to be generalized as it's widely duplicated across the codebase. But that'll have to wait (separate issue...)
+local function AddAttempt(itemEntry)
+	if itemEntry and type(itemEntry) == "table" and itemEntry.enabled ~= false and R:IsAttemptAllowed(itemEntry) then -- Add one attempt for this item
+		if itemEntry.attempts == nil then
+			itemEntry.attempts = 1
+		else
+			itemEntry.attempts = itemEntry.attempts + 1
+		end
+		R:OutputAttempts(itemEntry)
+	end
+end
+
+function R:OnShowLootToast(
+	event,
+	typeIdentifier,
+	itemLink,
+	quantity,
+	specID,
+	sex,
+	personalLootToast,
+	toastMethod,
+	lessAwesome,
+	upgraded,
+	corrupted)
+	if typeIdentifier ~= TYPE_IDENTIFIER_ITEM then
+		return R:Debug(format("Ignoring loot toast of type %s (not an item)", typeIdentifier))
+	end
+
+	-- From wowhead: "\124cff0070dd\124Hitem:187278::::::::60:::::\124h[Talon-Pierced Mawsworn Lockbox]\124h\124r"
+	local itemID = GetItemInfoInstant(itemLink)
+
+	-- TBD: Should we generalize this to a LOOT_TOAST detection method? Not sure if there are many other items people would care about
+	-- Seems a bit too specialized, since we're detecting the loot toast for one item and then add attempts for another (hacky)
+	local TALONPIERCED_MAWSWORN_LOCKBOX = 187278 -- TBD: Move to shared enum for ITEM_IDS? If we ever get to that point, that is...
+	local lootToastItems = {
+		[TALONPIERCED_MAWSWORN_LOCKBOX] = "Wilderling Saddle"
+	}
+
+	local linkedItemName = lootToastItems[itemID]
+	if not linkedItemName then
+		return R:Debug(format("Ignoring loot toast item %s (not relevant)", itemID))
+	end
+
+	-- There's only one item, so hardcoding the mounts group isn't an issue (but if we do want to generalize this later, it'll be easy)
+	local itemEntry = Rarity.ItemDB.toys[linkedItemName] -- It's not a toy, but the table still combines toys AND items currently...
+	AddAttempt(itemEntry) -- Should take care of the covenant restriction by itself (and not add them if it doesn't match)
 end
 
 -------------------------------------------------------------------------------------

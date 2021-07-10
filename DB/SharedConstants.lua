@@ -122,7 +122,8 @@ C.DETECTION_METHODS = {
 	ARCH = "ARCH",
 	SPECIAL = "SPECIAL",
 	MINING = "MINING",
-	COLLECTION = "COLLECTION"
+	COLLECTION = "COLLECTION",
+	LOOT_TOAST = "LOOT_TOAST" -- Unused/NYI (but we'll get there later)
 }
 
 -- Categories (expansions-based, with some special types of items)

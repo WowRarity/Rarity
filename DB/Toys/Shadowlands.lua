@@ -371,6 +371,21 @@ local shadowlandsToys = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 47.0, y = 35.5, n = L["Wild Worldcracker"]}
 		}
 	},
+	["Wilderling Saddle"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEMS,
+		method = CONSTANTS.DETECTION_METHODS.LOOT_TOAST, -- This method doesn't exist, it's effectively SPECIAL but with a better name
+		name = L["Wilderling Saddle"],
+		itemId = 187281,
+		spellId = 353859,
+		tooltipNpcs = {180014, 180013},
+		chance = 100, -- Estimate,
+		requiresCovenant = true,
+		requiredCovenantID = CONSTANTS.COVENANT_IDS.NIGHT_FAE,
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 33.49, y = 39.54, n = L["Escaped Wilderling"]}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)
