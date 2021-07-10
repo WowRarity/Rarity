@@ -987,6 +987,7 @@ function R:OnBagUpdate()
 								local goal = (vv.chance or 100)
 								Rarity:Debug(format("Aggregate with total %d, originalCount %d, goal %d", total, originalCount, goal))
 								for kkk, vvv in pairs(vv.collectedItemId) do
+									vvv = tonumber(vvv) -- It's stored as string, but we expect numbers...
 									Rarity:Debug(format("Adding inventoryAmount for item %d (%s)", kkk, vvv))
 									if (Rarity.bagitems[vvv] or 0) > 0 then
 										total = total + Rarity.bagitems[vvv]
