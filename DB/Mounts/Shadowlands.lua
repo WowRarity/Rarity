@@ -428,6 +428,7 @@ local shadowlandsMounts = {
 		name = L["Chain of Bahmethra"],
 		spellId = 352309,
 		itemId = 185973,
+		questId = {63854},
 		items = {185972},
 		chance = 100, -- Blind guess
 		coords = {
