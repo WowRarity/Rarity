@@ -963,11 +963,11 @@ function R:OnBagUpdate()
 		end
 
 		-- Check for an increase in quantity of any items we're watching for
-		for k, v in pairs(Rarity.bagitems) do
+		for itemID, newInventoryAmount in pairs(Rarity.bagitems) do
 			-- Handle collection items
-			if Rarity.items[k] then
-				if Rarity.items[k].method == CONSTANTS.DETECTION_METHODS.COLLECTION then
-					local bagCount = (Rarity.bagitems[k] or 0)
+			if Rarity.items[itemID] then
+				if Rarity.items[itemID].method == CONSTANTS.DETECTION_METHODS.COLLECTION then
+					local bagCount = (Rarity.bagitems[itemID] or 0)
 
 					-- Our items hashtable only saves one item for this collected item, so we have to scan to find them all now.
 					-- Earlier, we pre-built a list of just the items that are COLLECTION items to save some time here.
@@ -996,8 +996,8 @@ function R:OnBagUpdate()
 						else
 							if
 								vv.enabled and
-									(vv.collectedItemId == Rarity.items[k].collectedItemId or
-										table_contains(Rarity.items[k].collectedItemId, vv.collectedItemId))
+									(vv.collectedItemId == Rarity.items[itemID].collectedItemId or
+										table_contains(Rarity.items[itemID].collectedItemId, vv.collectedItemId))
 							 then
 								local originalCount = (vv.attempts or 0)
 								local goal = (vv.chance or 100)
@@ -1017,12 +1017,12 @@ function R:OnBagUpdate()
 			end
 
 			-- Other items
-			if (Rarity.bagitems[k] or 0) > (Rarity.tempbagitems[k] or 0) then -- An inventory item went up in count
+			if (Rarity.bagitems[itemID] or 0) > (Rarity.tempbagitems[itemID] or 0) then -- An inventory item went up in count
 				if
-					Rarity.items[k] and Rarity.items[k].enabled ~= false and
-						Rarity.items[k].method ~= CONSTANTS.DETECTION_METHODS.COLLECTION
+					Rarity.items[itemID] and Rarity.items[itemID].enabled ~= false and
+						Rarity.items[itemID].method ~= CONSTANTS.DETECTION_METHODS.COLLECTION
 				 then
-					self:OnItemFound(k, Rarity.items[k])
+					self:OnItemFound(itemID, Rarity.items[itemID])
 				end
 			end
 		end
