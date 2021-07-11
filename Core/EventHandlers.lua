@@ -157,18 +157,6 @@ local TYPE_IDENTIFIER_ITEM = "item" -- What others do they have? currency? gold?
 --- WOW API
 local GetItemInfoInstant = GetItemInfoInstant
 
--- This needs to be generalized as it's widely duplicated across the codebase. But that'll have to wait (separate issue...)
-local function AddAttempt(itemEntry)
-	if itemEntry and type(itemEntry) == "table" and itemEntry.enabled ~= false and R:IsAttemptAllowed(itemEntry) then -- Add one attempt for this item
-		if itemEntry.attempts == nil then
-			itemEntry.attempts = 1
-		else
-			itemEntry.attempts = itemEntry.attempts + 1
-		end
-		R:OutputAttempts(itemEntry)
-	end
-end
-
 function R:OnShowLootToast(
 	event,
 	typeIdentifier,
@@ -201,8 +189,7 @@ function R:OnShowLootToast(
 	end
 
 	-- There's only one item, so hardcoding the mounts group isn't an issue (but if we do want to generalize this later, it'll be easy)
-	local itemEntry = Rarity.ItemDB.toys[linkedItemName] -- It's not a toy, but the table still combines toys AND items currently...
-	AddAttempt(itemEntry) -- Should take care of the covenant restriction by itself (and not add them if it doesn't match)
+	addAttemptForItem(linkedItemName, "items") -- Should take care of the covenant restriction by itself (and not add them if it doesn't match)
 end
 
 -------------------------------------------------------------------------------------
