@@ -246,5 +246,6 @@ R.opennodes = {
 	[L["Gift of Thenios"]] = true,
 	[L["Hidden Hoard"]] = true,
 	[L["Memorial Offerings"]] = true,
-	[L["Treasure of Courage"]] = true
+	[L["Treasure of Courage"]] = true,
+	[L["Zovaal's Vault"]] = true
 }
