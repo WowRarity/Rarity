@@ -386,6 +386,32 @@ local shadowlandsToys = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 33.49, y = 39.54, n = L["Escaped Wilderling"]}
 		}
 	},
+	["Personal Ball and Chain"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Personal Ball and Chain"],
+		itemId = 187113,
+		chance = 10, -- Estimate,
+		sourceText = L["This treasure can only be found within the rift phase of The Maw."],
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW}
+		}
+	},
+	["Jailer's Cage"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Jailer's Cage"],
+		itemId = 187416,
+		chance = 15, -- Estimate,
+		sourceText = L["This treasure can only be found within the rift phase of The Maw."],
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.THE_MAW}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)

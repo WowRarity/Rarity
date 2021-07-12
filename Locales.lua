@@ -1868,6 +1868,10 @@ L["Grappling Gauntlet"] = true
 L["Squibbles"] = true
 L["This bag is rewarded for completing the pet battle daily offered by Anthea at the Temple of the White Tiger in Kun-Lai Summit."] = true
 L["Intact Aquilon Core"] = true
+L["Personal Ball and Chain"] = true
+L["This treasure can only be found within the rift phase of The Maw."] = true
+L["Jailer's Cage"] = true
+L["Zovaal's Vault"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
