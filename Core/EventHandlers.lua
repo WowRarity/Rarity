@@ -98,15 +98,24 @@ end
 
 -- TODO: Move elsewhere/refactor
 local function addAttemptForItem(itemName, categoryName)
-	local self = Rarity
-	local v = self.db.profile.groups[categoryName][itemName]
-	if v and type(v) == "table" and v.enabled ~= false then
-		if v.attempts == nil then
-			v.attempts = 1
+
+	if not itemName or not categoryName then return end
+
+	local Rarity = Rarity
+
+	local group = Rarity.db.profile.groups[categoryName]
+	if not group then return end
+
+	local item = group[itemName]
+	if not item then return end
+
+	if item and type(item) == "table" and item.enabled ~= false and Rarity:IsAttemptAllowed(item) then -- Add one attempt for this item
+		if item.attempts == nil then
+			item.attempts = 1
 		else
-			v.attempts = v.attempts + 1
+			item.attempts = item.attempts + 1
 		end
-		self:OutputAttempts(v)
+		Rarity:OutputAttempts(item)
 	end
 end
 
