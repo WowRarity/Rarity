@@ -156,7 +156,7 @@ _G.GameTooltip:HookScript(
 					 then
 						if not R.db.profile.hideKnownItemsInTooltip then
 							if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
-								blankAdded = true
+								-- blankAdded = true -- Why?
 								GameTooltip:AddLine(" ")
 							end
 							GameTooltip:AddLine(

@@ -255,9 +255,9 @@ local function enc64(data)
 	return ((data:gsub(
 		".",
 		function(x)
-			local r, b = "", x:byte()
+			local r, byte = "", x:byte()
 			for i = 8, 1, -1 do
-				r = r .. (b % 2 ^ i - b % 2 ^ (i - 1) > 0 and "1" or "0")
+				r = r .. (byte % 2 ^ i - byte % 2 ^ (i - 1) > 0 and "1" or "0")
 			end
 			return r
 		end
@@ -687,7 +687,7 @@ function R:PrepareOptions()
 							tooltipShowDelay = {
 								order = newOrder(),
 								type = "range",
-				 				width = "double",
+								width = "double",
 								name = L["Primary tooltip show delay"],
 								desc = L["When you move your mouse over the Rarity minimap icon, it will take this long before the GUI opens."],
 								min = 0,
@@ -695,7 +695,7 @@ function R:PrepareOptions()
 								step = .1,
 								get = function() return self.db.profile.tooltipShowDelay or 0.1 end,
 								set = function(_, val)
-				  				self.db.profile.tooltipShowDelay = val
+								self.db.profile.tooltipShowDelay = val
 								end,
 							}
 						} -- args

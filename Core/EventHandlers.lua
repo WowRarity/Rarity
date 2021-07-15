@@ -21,7 +21,7 @@ local strlower = _G.strlower
 local format = _G.format
 
 -- WOW APIs
-local GetCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo
+local GetCurrencyInfo = _G.C_CurrencyInfo.GetCurrencyInfo
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
 local UnitGUID = UnitGUID
 local LoadAddOn = LoadAddOn

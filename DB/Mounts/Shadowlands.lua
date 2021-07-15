@@ -395,7 +395,7 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
 	},
-	["Soulbound Gloomcharger's Reins"] = {	
+	["Soulbound Gloomcharger's Reins"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.USE,
@@ -408,7 +408,7 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
 	},
-	["Tamed Mauler Harness"] = {	
+	["Tamed Mauler Harness"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.USE,
@@ -421,7 +421,7 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA}
 		}
 	},
-	["Chain of Bahmethra"] = {	
+	["Chain of Bahmethra"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.USE,
@@ -435,7 +435,7 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
 	},
-	["Rampaging Mauler"] = {	
+	["Rampaging Mauler"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.NPC,
@@ -449,7 +449,7 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, n = L["Konthrogz the Obliterator"]}
 		}
 	},
-	["Garnet Razorwing"] = {	
+	["Garnet Razorwing"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.NPC,
@@ -463,7 +463,7 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 56.3, y = 66.3, n = L["Reliwik the Defiant"]}
 		}
 	},
-	["Crimson Shardhide"] = {	
+	["Crimson Shardhide"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.NPC,
@@ -477,7 +477,7 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.KORTHIA, x = 45.35, y = 30.34, n = L["Malbog"]}
 		}
 	},
-	["Fallen Charger's Reins"] = {	
+	["Fallen Charger's Reins"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.NPC,
@@ -566,7 +566,7 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.SANCTUM_OF_DOMINATION, i = true}
 		}
 	},
-	["Undying Darkhound's Harness"] = {	
+	["Undying Darkhound's Harness"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.USE,
@@ -579,7 +579,7 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
 	},
-	["Legsplitter War Harness"] = {	
+	["Legsplitter War Harness"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.USE,
@@ -592,7 +592,7 @@ local shadowlandsMounts = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
 	},
-	["Harvester's Dredwing Saddle"] = {	
+	["Harvester's Dredwing Saddle"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.USE,
