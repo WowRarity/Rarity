@@ -111,7 +111,7 @@ local C_Timer = _G.C_Timer
 local IsSpellKnown = _G.IsSpellKnown
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
 local IsQuestFlaggedCompleted = _G.IsQuestFlaggedCompleted
-local C_Covenants = C_Covenants
+local C_Covenants = _G.C_Covenants
 
 local COMBATLOG_OBJECT_AFFILIATION_MINE = _G.COMBATLOG_OBJECT_AFFILIATION_MINE
 local COMBATLOG_OBJECT_AFFILIATION_PARTY = _G.COMBATLOG_OBJECT_AFFILIATION_PARTY
