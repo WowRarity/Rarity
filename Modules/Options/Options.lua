@@ -1497,7 +1497,7 @@ function R:PrepareOptions()
 
 							alertWithCopy(
 								L[
-									"Copy the generated Rarity Item Pack string below using Ctrl-C. You can then paste it elsewhere using Ctrl-V.\n\nFeel free to comment on the Curse web site to share your Item Pack. Allara will promote the best ones to the main add-on page."
+									"Copy the generated Rarity Export String below using Ctrl-C. You can then paste it elsewhere using Ctrl-V.\n\nFeel free to post it on Curse, GitHub, or Discord to share your Item Pack. We will publish the best ones to the main add-on page."
 								],
 								enc
 							)
