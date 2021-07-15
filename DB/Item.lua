@@ -220,7 +220,7 @@ function Item:IsValidFishingItem(entry)
 	if not Item:IsValidZoneItem(entry) then
 		return false
 	end
-	
+
 	return entry.requiresPool ~= nil
 end
 

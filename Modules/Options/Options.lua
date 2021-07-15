@@ -687,7 +687,7 @@ function R:PrepareOptions()
 							tooltipShowDelay = {
 								order = newOrder(),
 								type = "range",
-				 				width = "double",
+								width = "double",
 								name = L["Primary tooltip show delay"],
 								desc = L["When you move your mouse over the Rarity minimap icon, it will take this long before the GUI opens."],
 								min = 0,
@@ -695,7 +695,7 @@ function R:PrepareOptions()
 								step = .1,
 								get = function() return self.db.profile.tooltipShowDelay or 0.1 end,
 								set = function(_, val)
-				  				self.db.profile.tooltipShowDelay = val
+								self.db.profile.tooltipShowDelay = val
 								end,
 							}
 						} -- args
