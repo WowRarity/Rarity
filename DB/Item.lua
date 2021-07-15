@@ -242,14 +242,14 @@ end
 
 function Item:HasValidWaypoints(entry)
 	for _, waypoint in pairs(entry.coords) do
-		if not IsValidWaypoint(waypoint) then
+		if not Rarity:IsValidWaypoint(waypoint) then
 			return false
 		end
 	end
 	return true
 end
 
-function IsValidWaypoint(waypointData)
+function Rarity:IsValidWaypoint(waypointData)
 	if type(waypointData) == "table" then
 		if not waypointData.m then
 			Rarity:Print("Waypoint data is missing a mapID")
