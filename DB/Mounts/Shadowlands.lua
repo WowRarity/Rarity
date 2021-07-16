@@ -485,7 +485,7 @@ local shadowlandsMounts = {
 		itemId = 186659,
 		spellId = 354353,
 		npcs = {179460},
-		chance = 100, -- Estimate,
+		chance = 7,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW, n = L["Fallen Charger"]}
 		}
