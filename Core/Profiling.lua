@@ -1,5 +1,13 @@
 local _, addonTable = ...
 
+-- Upvalues
+--- WOW API
+local IsAddOnLoaded = IsAddOnLoaded
+local LoadAddOn = LoadAddOn
+--- Lua API
+local table_wipe = table.wipe
+local pairs = pairs
+
 local Profiling = {
 	DEFAULT_TIMER_LABEL = "Default",
 	isTimerRunning = false,
