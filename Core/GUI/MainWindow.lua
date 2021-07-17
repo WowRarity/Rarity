@@ -819,7 +819,7 @@ local function addGroup(group, requiresGroup)
 	local addGroupSortEnd = debugprofilestop()
 
 	-- Inlining this because it has WAY too many interdependencies and I don't have time to unwrangle it now, but using early exit is easier this way (and more readable). It doesn't change the functionality and the small overhead shouldn't matter here
-	local function AddItem(k, v)
+	local function AddItem(v)
 		if
 			type(v) == "table" and v.enabled ~= false and
 				((requiresGroup and v.groupSize ~= nil and v.groupSize > 1) or
@@ -839,8 +839,7 @@ local function addGroup(group, requiresGroup)
 			if not v.itemId then
 				Rarity:Error(
 					format(
-						"Failed to add tooltip line for item %s (%s) in group %s (invalid ID or the server didn't return any data)",
-						k,
+						"Failed to add tooltip line for item %s in group %s (invalid ID or the server didn't return any data)",
 						v.name or "nil",
 						group.name
 					)
@@ -1205,8 +1204,8 @@ local function addGroup(group, requiresGroup)
 		end
 	end
 
-	for k, v in ipairs(sortedGroup) do
-		AddItem(k, v)
+	for index, item in ipairs(sortedGroup) do
+		AddItem(item)
 	end
 
 	local addGroupIterationEnd = debugprofilestop()
