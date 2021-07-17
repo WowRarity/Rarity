@@ -32,6 +32,22 @@ function Profiling:HasAccumulatedTime(label)
 	return self.accumulatedTimes[label] ~= nil
 end
 
+function Profiling:InspectAccumulatedTimes()
+	-- TODO: If clicked multiple times, it will open a new instance. But I guess we don't really care to fix this?
+	local isLoading, isLoaded = IsAddOnLoaded("Blizzard_DebugTools")
+	if not isLoaded then
+		Rarity:Debug("Loading Blizzard_DebugTools (required to use the Table Inspector)")
+		local success, reason = LoadAddOn("Blizzard_DebugTools")
+		if not success then
+			Rarity:Debug("Failed to open Table Inspector (Blizzard_DebugTools could not be loaded)")
+			return
+		end
+	end
+	-- This can't be cached as the addon isn't loaded automatically, and the global DisplayTableInspectorWindow won't be available
+	local tableInspectorInstance = _G["DisplayTableInspectorWindow"](self.accumulatedTimes, "Rarity Profiling Data")
+	tableInspectorInstance:SetDynamicUpdates(true)
+end
+
 function Profiling:ResetAccumulatedTime(label)
 	self.accumulatedTimes[label] = 0
 end
