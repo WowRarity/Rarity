@@ -61,6 +61,7 @@ function Profiling:ResetAccumulatedTime(label)
 		return
 	end
 
+	Rarity:Debug("Reset accumulated profiling data for label %s", label)
 	self.accumulatedTimes[label] = 0
 end
 
