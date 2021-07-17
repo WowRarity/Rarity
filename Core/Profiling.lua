@@ -2,6 +2,7 @@ local _, addonTable = ...
 
 local Profiling = {
 	DEFAULT_TIMER_LABEL = "Default",
+	isTimerRunning = false,
 	activeTimers = {},
 	accumulatedTimes = {}
 }
@@ -20,6 +21,31 @@ function Profiling:StartTimer(label)
 
 	local startTime = self:GetCurrentTimeInMilliseconds()
 	self.activeTimers[label] = startTime
+
+	-- If it's is the first time this label was used, we'll initialize the total implicitly here
+	if not self:HasAccumulatedTime(label) then
+		self:ResetAccumulatedTime(label)
+	end
+end
+
+function Profiling:HasAccumulatedTime(label)
+	return self.accumulatedTimes[label] ~= nil
+end
+
+function Profiling:ResetAccumulatedTime(label)
+	self.accumulatedTimes[label] = 0
+end
+
+function Profiling:GetAccumulatedTime(label)
+	return self.accumulatedTimes[label]
+end
+
+function Profiling:AccumulateTime(label, timeInMilliseconds)
+	if not self:HasAccumulatedTime(label) then
+		self:ResetAccumulatedTime(label)
+	end
+
+	self.accumulatedTimes[label] = self.accumulatedTimes[label] + timeInMilliseconds
 end
 
 local GetTimePreciseSec = _G.GetTimePreciseSec
@@ -47,6 +73,8 @@ function Profiling:EndTimer(label)
 
 	local endTime = self:GetCurrentTimeInMilliseconds()
 	local elapsedTimeInMilliseconds = endTime - startTime
+
+	self:AccumulateTime(label, elapsedTimeInMilliseconds)
 
 	self.activeTimers[label] = nil
 
