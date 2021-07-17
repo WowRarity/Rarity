@@ -60,6 +60,15 @@ function Profiling:ResetAccumulatedTime(label)
 	self.accumulatedTimes[label] = 0
 end
 
+function Profiling:ResetAccumulatedTimes()
+	Rarity:Debug("Reset ALL accumulated profiling data")
+
+	for label, time in pairs(self.accumulatedTimes) do
+		-- If we just re-assign the table, the Table Inspector's dynamic updates will stop working and we have to re-open it (I think)
+		self:ResetAccumulatedTime(label)
+	end
+end
+
 function Profiling:GetAccumulatedTime(label)
 	return self.accumulatedTimes[label]
 end
