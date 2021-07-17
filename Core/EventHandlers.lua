@@ -753,6 +753,19 @@ function R:OnChatCommand(input)
 			self.db.profile.enableProfiling = true
 			self:Print(L["Profiling ON"])
 		end
+	elseif strlower(input) == "tinspect" then --  TODO Document it?
+
+		local isLoading, isLoaded = IsAddOnLoaded("Blizzard_DebugTools")
+		if not isLoaded then
+			Rarity:Debug("Loading Blizzard_DebugTools (required to use the Table Inspector)")
+			local success, reason = LoadAddOn("Blizzard_DebugTools")
+			if not success then
+				Rarity:Debug("Failed to open Table Inspector (Blizzard_DebugTools could not be loaded)")
+				return
+			end
+		end
+		local tableInspectorInstance = _G["DisplayTableInspectorWindow"](Rarity.Profiling.accumulatedTimes, "Rarity Profiling Data")
+		tableInspectorInstance:SetDynamicUpdates(true)
 	else
 		LoadAddOn("Rarity_Options")
 		if R.optionsFrame then
