@@ -887,9 +887,7 @@ local function addGroup(group, requiresGroup)
 			attempts = attempts - item.lastAttempts
 		end
 
-		local label = "AddItem_" .. item.name or "UNKNOWN" -- TODO Rename to timerLabel or sth
-
-		Rarity.Profiling:StartTimer(label)
+		Rarity.Profiling:StartTimer("AddItem")
 
 		local lucky, chance, dropChance
 
@@ -1222,7 +1220,7 @@ local function addGroup(group, requiresGroup)
 			end
 		end
 		-- Since there's no early exit between this and the call to StartTimer(), this should never leave an active timer behind
-		Rarity.Profiling:EndTimer(label)
+		Rarity.Profiling:EndTimer("AddItem")
 		-- End "should display the item" endif section
 	end
 
