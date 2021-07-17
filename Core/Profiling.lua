@@ -57,6 +57,10 @@ function Profiling:InspectAccumulatedTimes()
 end
 
 function Profiling:ResetAccumulatedTime(label)
+	if not label then
+		return
+	end
+
 	self.accumulatedTimes[label] = 0
 end
 
