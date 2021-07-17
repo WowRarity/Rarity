@@ -982,7 +982,8 @@ local function addGroup(group, requiresGroup)
 							-- OR: At least one encounter must be defeated
 							-- AND: All encounters must be defeated
 							-- (before the item will be displayed as defeated)
-							local usesNewDefeatDetection = item.lockoutDetails and type(item.lockoutDetails) == "table" and #item.lockoutDetails > 0
+							local usesNewDefeatDetection =
+								item.lockoutDetails and type(item.lockoutDetails) == "table" and #item.lockoutDetails > 0
 
 							if usesNewDefeatDetection then -- Resolve the defeat detection using the item's parameters
 								isDefeated = false
@@ -1063,7 +1064,8 @@ local function addGroup(group, requiresGroup)
 
 						-- Support for Defeated items with multiple steps of defeat (supports quests only)
 						if
-							status == colorize(L["Defeated"], red) and item.defeatAllQuests and item.questId ~= nil and type(item.questId) == "table"
+							status == colorize(L["Defeated"], red) and item.defeatAllQuests and item.questId ~= nil and
+								type(item.questId) == "table"
 						 then
 							local totalQuests = 0
 							local numCompletedQuests = 0
@@ -1092,7 +1094,8 @@ local function addGroup(group, requiresGroup)
 										local text
 										if item.worldQuestId then
 											if IsWorldQuestActive(item.worldQuestId) then
-												text = format(L["A world event is currently available for %s! Go get it!"], itemLink or itemName or item.name)
+												text =
+													format(L["A world event is currently available for %s! Go get it!"], itemLink or itemName or item.name)
 											end
 										else
 											text = format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or item.name)
@@ -1164,10 +1167,15 @@ local function addGroup(group, requiresGroup)
 
 											-- Zone
 											local zoneInfo = R.Waypoints:GetZoneInfoForItem(item)
-											local zoneText, inMyZone, zoneColor, numZones = zoneInfo.zoneText, zoneInfo.inMyZone, zoneInfo.zoneColor, zoneInfo.numZones
+											local zoneText, inMyZone, zoneColor, numZones =
+												zoneInfo.zoneText,
+												zoneInfo.inMyZone,
+												zoneInfo.zoneColor,
+												zoneInfo.numZones
 
 											-- Retrieve the DBMarket price provided by the TSM_API (if loaded)
-											local marketPrice = Rarity.db.profile.showTSMColumn and AuctionDB:GetMarketPrice(item.itemId, "DBMarket", true)
+											local marketPrice =
+												Rarity.db.profile.showTSMColumn and AuctionDB:GetMarketPrice(item.itemId, "DBMarket", true)
 
 											-- Add the item to the tooltip
 											local catIcon = ""
