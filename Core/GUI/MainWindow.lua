@@ -819,28 +819,28 @@ local function addGroup(group, requiresGroup)
 	local addGroupSortEnd = debugprofilestop()
 
 	-- Inlining this because it has WAY too many interdependencies and I don't have time to unwrangle it now, but using early exit is easier this way (and more readable). It doesn't change the functionality and the small overhead shouldn't matter here
-	local function AddItem(v)
+	local function AddItem(item)
 		if
-			type(v) == "table" and v.enabled ~= false and
-				((requiresGroup and v.groupSize ~= nil and v.groupSize > 1) or
-					(not requiresGroup and (v.groupSize == nil or v.groupSize <= 1)))
+			type(item) == "table" and item.enabled ~= false and
+				((requiresGroup and item.groupSize ~= nil and item.groupSize > 1) or
+					(not requiresGroup and (item.groupSize == nil or item.groupSize <= 1)))
 		 then
 			local classGood = true
 			if not Rarity.Caching:GetPlayerClass() then
 				Rarity.Caching:SetPlayerClass(select(2, UnitClass("player")))
 			end
 			if
-				v.disableForClass and type(v.disableForClass == "table") and
-					v.disableForClass[Rarity.Caching:GetPlayerClass()] == true
+				item.disableForClass and type(item.disableForClass == "table") and
+					item.disableForClass[Rarity.Caching:GetPlayerClass()] == true
 			 then
 				classGood = false
 			end
 
-			if not v.itemId then
+			if not item.itemId then
 				Rarity:Error(
 					format(
 						"Failed to add tooltip line for item %s in group %s (invalid ID or the server didn't return any data)",
-						v.name or "nil",
+						item.name or "nil",
 						group.name
 					)
 				)
@@ -848,11 +848,11 @@ local function addGroup(group, requiresGroup)
 			end
 			-- Item
 			if
-				(v.requiresHorde and R.Caching:IsHorde()) or (v.requiresAlliance and not R.Caching:IsHorde()) or
-					(not v.requiresHorde and not v.requiresAlliance)
+				(item.requiresHorde and R.Caching:IsHorde()) or (item.requiresAlliance and not R.Caching:IsHorde()) or
+					(not item.requiresHorde and not item.requiresAlliance)
 			 then
-				if (R.db.profile.cats[v.cat]) or v.cat == nil then
-					if (not (R.db.profile.hideHighChance and (v.chance or 0) < 50)) and classGood then
+				if (R.db.profile.cats[item.cat]) or item.cat == nil then
+					if (not (R.db.profile.hideHighChance and (item.chance or 0) < 50)) and classGood then
 						local itemName,
 							itemLink,
 							itemRarity,
@@ -863,19 +863,19 @@ local function addGroup(group, requiresGroup)
 							itemStackCount,
 							itemEquipLoc,
 							itemTexture,
-							itemSellPrice = GetItemInfo(v.itemId)
-						local attempts = tonumber(v.attempts or 0) or 0
+							itemSellPrice = GetItemInfo(item.itemId)
+						local attempts = tonumber(item.attempts or 0) or 0
 						if type(attempts) ~= "number" then
 							attempts = 0
 						end
-						if v.lastAttempts then
-							attempts = attempts - v.lastAttempts
+						if item.lastAttempts then
+							attempts = attempts - item.lastAttempts
 						end
 
 						local lucky, chance, dropChance
 
-						if v.method ~= CONSTANTS.DETECTION_METHODS.COLLECTION then
-							dropChance = Rarity.Statistics.GetRealDropPercentage(v)
+						if item.method ~= CONSTANTS.DETECTION_METHODS.COLLECTION then
+							dropChance = Rarity.Statistics.GetRealDropPercentage(item)
 							chance = 100 * (1 - math.pow(1 - dropChance, attempts))
 							local medianLoots = Round(math.log(1 - 0.5) / math.log(1 - dropChance))
 							lucky = colorize(L["Lucky"], green)
@@ -883,7 +883,7 @@ local function addGroup(group, requiresGroup)
 								lucky = colorize(L["Unlucky"], red)
 							end
 						else
-							chance = 100 * (attempts / (v.chance or 100))
+							chance = 100 * (attempts / (item.chance or 100))
 							if chance < 0 then
 								chance = 0
 							end
@@ -894,17 +894,17 @@ local function addGroup(group, requiresGroup)
 						end
 
 						local icon = ""
-						if trackedItem == v then
+						if trackedItem == item then
 							icon = [[|TInterface\Buttons\UI-CheckBox-Check:0|t]]
 						end
 						local duration = 0
-						if v.time then
-							duration = v.time
+						if item.time then
+							duration = item.time
 						end
-						if v.lastTime then
-							duration = v.time - v.lastTime
+						if item.lastTime then
+							duration = item.time - item.lastTime
 						end
-						if Rarity.Session:IsActive() and trackedItem == v then
+						if Rarity.Session:IsActive() and trackedItem == item then
 							local len = Rarity.Session:GetLastTime() - Rarity.Session:GetStartTime()
 							duration = duration + len
 						end
@@ -920,56 +920,56 @@ local function addGroup(group, requiresGroup)
 							duration = ""
 						end
 						if
-							v.method ~= CONSTANTS.DETECTION_METHODS.NPC and v.method ~= CONSTANTS.DETECTION_METHODS.ZONE and
-								v.method ~= CONSTANTS.DETECTION_METHODS.FISHING and
-								v.method ~= CONSTANTS.DETECTION_METHODS.USE
+							item.method ~= CONSTANTS.DETECTION_METHODS.NPC and item.method ~= CONSTANTS.DETECTION_METHODS.ZONE and
+								item.method ~= CONSTANTS.DETECTION_METHODS.FISHING and
+								item.method ~= CONSTANTS.DETECTION_METHODS.USE
 						 then
 							duration = ""
 						end
 						local status = ""
-						if v.questId and not v.holidayTexture then
-							if type(v.questId) == "table" then
+						if item.questId and not item.holidayTexture then
+							if type(item.questId) == "table" then
 								status = colorize(L["Undefeated"], green)
-								for key, questId in pairs(v.questId) do
+								for key, questId in pairs(item.questId) do
 									if IsQuestFlaggedCompleted(questId) then
 										status = colorize(L["Defeated"], red)
 									end
 								end
 							else
-								if IsQuestFlaggedCompleted(v.questId) then
+								if IsQuestFlaggedCompleted(item.questId) then
 									status = colorize(L["Defeated"], red)
 								else
 									status = colorize(L["Undefeated"], green)
 								end
 							end
 							-- If item is linked to a World Quest, flag as unavailable if WQ isn't up.
-							if v.worldQuestId then
-								if IsWorldQuestActive(v.worldQuestId) == false then
+							if item.worldQuestId then
+								if IsWorldQuestActive(item.worldQuestId) == false then
 									status = colorize(L["Unavailable"], gray)
 								end
 							end
-						elseif v.questId and v.holidayTexture then
-							if Rarity.holiday_textures[v.holidayTexture] == nil then
+						elseif item.questId and item.holidayTexture then
+							if Rarity.holiday_textures[item.holidayTexture] == nil then
 								status = colorize(L["Unavailable"], gray)
-							elseif v.christmasOnly and dt.month == 12 and dt.day < 25 then
+							elseif item.christmasOnly and dt.month == 12 and dt.day < 25 then
 								status = colorize(L["Unavailable"], gray)
 							else
-								if type(v.questId) == "table" then
+								if type(item.questId) == "table" then
 									status = colorize(L["Undefeated"], green)
-									for key, questId in pairs(v.questId) do
+									for key, questId in pairs(item.questId) do
 										if IsQuestFlaggedCompleted(questId) then
 											status = colorize(L["Defeated"], red)
 										end
 									end
 								else
-									if IsQuestFlaggedCompleted(v.questId) then
+									if IsQuestFlaggedCompleted(item.questId) then
 										status = colorize(L["Defeated"], red)
 									else
 										status = colorize(L["Undefeated"], green)
 									end
 								end
 							end
-						elseif v.lockBossName or v.lockoutDetails then
+						elseif item.lockBossName or item.lockoutDetails then
 							-- Lockout-based defeat detection requires special treatment due to the underlying complexity
 							if not lbb["Theralion and Valiona"] and lbb["Valiona and Theralion"] then
 								-- LibBabble-Boss is still outdated -> Add correct encounter name
@@ -982,15 +982,15 @@ local function addGroup(group, requiresGroup)
 							-- OR: At least one encounter must be defeated
 							-- AND: All encounters must be defeated
 							-- (before the item will be displayed as defeated)
-							local usesNewDefeatDetection = v.lockoutDetails and type(v.lockoutDetails) == "table" and #v.lockoutDetails > 0
+							local usesNewDefeatDetection = item.lockoutDetails and type(item.lockoutDetails) == "table" and #item.lockoutDetails > 0
 
 							if usesNewDefeatDetection then -- Resolve the defeat detection using the item's parameters
 								isDefeated = false
 								local continue = true
 
-								mode = v.lockoutDetails.mode or mode
+								mode = item.lockoutDetails.mode or mode
 
-								for index, sharedDifficultyGroup in ipairs(v.lockoutDetails) do
+								for index, sharedDifficultyGroup in ipairs(item.lockoutDetails) do
 									-- Check all stored lockouts and resolve the defeat detection
 									-- (if there are none there isn't anything left to do)
 									local isValidEntry =
@@ -1000,7 +1000,7 @@ local function addGroup(group, requiresGroup)
 
 									if not isValidEntry then
 										Rarity:Debug(
-											"Invalid lockout details for item " .. tostring(v.name) .. " - defeat detection will not be resolved"
+											"Invalid lockout details for item " .. tostring(item.name) .. " - defeat detection will not be resolved"
 										)
 										continue = false
 									end
@@ -1033,28 +1033,28 @@ local function addGroup(group, requiresGroup)
 
 							-- Currently, only one of the two detection routines should be used
 							if
-								(v.lockBossName and lbb[v.lockBossName] and
-									(Rarity.lockouts[lbb[v.lockBossName]] == true or Rarity.lockouts[v.lockBossName] == true)) or -- Legacy detection (I'll leave it be, for now)
+								(item.lockBossName and lbb[item.lockBossName] and
+									(Rarity.lockouts[lbb[item.lockBossName]] == true or Rarity.lockouts[item.lockBossName] == true)) or -- Legacy detection (I'll leave it be, for now)
 									isDefeated
 							 then
 								status = colorize(L["Defeated"], red)
 							else
 								status = colorize(L["Undefeated"], green)
 							end
-						elseif v.lockDungeonId then
-							if Rarity.lockouts_holiday[v.lockDungeonId] == true then
+						elseif item.lockDungeonId then
+							if Rarity.lockouts_holiday[item.lockDungeonId] == true then
 								status = colorize(L["Defeated"], red)
 							else
-								if Rarity.lockouts_holiday[v.lockDungeonId] == false then
+								if Rarity.lockouts_holiday[item.lockDungeonId] == false then
 									status = colorize(L["Undefeated"], green)
 								else
 									status = colorize(L["Unavailable"], gray)
 								end
 							end
-						elseif v.holidayTexture and Rarity.holiday_textures[v.holidayTexture] == nil then
+						elseif item.holidayTexture and Rarity.holiday_textures[item.holidayTexture] == nil then
 							status = colorize(L["Unavailable"], gray)
 						end
-						if v.pickpocket then
+						if item.pickpocket then
 							local class, classFileName = UnitClass("player")
 							if classFileName ~= "ROGUE" then
 								status = colorize(L["Unavailable"], gray)
@@ -1063,11 +1063,11 @@ local function addGroup(group, requiresGroup)
 
 						-- Support for Defeated items with multiple steps of defeat (supports quests only)
 						if
-							status == colorize(L["Defeated"], red) and v.defeatAllQuests and v.questId ~= nil and type(v.questId) == "table"
+							status == colorize(L["Defeated"], red) and item.defeatAllQuests and item.questId ~= nil and type(item.questId) == "table"
 						 then
 							local totalQuests = 0
 							local numCompletedQuests = 0
-							for _, quest in pairs(v.questId) do
+							for _, quest in pairs(item.questId) do
 								totalQuests = totalQuests + 1
 								if IsQuestFlaggedCompleted(quest) then
 									numCompletedQuests = numCompletedQuests + 1
@@ -1082,20 +1082,20 @@ local function addGroup(group, requiresGroup)
 							if Rarity.db.profile.hideDefeated == false or status ~= colorize(L["Defeated"], red) then
 								-- Holiday reminder
 								if
-									Rarity.db.profile.holidayReminder and Rarity.allRemindersDone == nil and v.holidayReminder ~= false and
-										(v.cat == HOLIDAY or v.worldQuestId) and
+									Rarity.db.profile.holidayReminder and Rarity.allRemindersDone == nil and item.holidayReminder ~= false and
+										(item.cat == HOLIDAY or item.worldQuestId) and
 										status == colorize(L["Undefeated"], green)
 								 then
 									Rarity.anyReminderDone = true
 									numHolidayReminders = numHolidayReminders + 1
 									if numHolidayReminders <= 2 then
 										local text
-										if v.worldQuestId then
-											if IsWorldQuestActive(v.worldQuestId) then
-												text = format(L["A world event is currently available for %s! Go get it!"], itemLink or itemName or v.name)
+										if item.worldQuestId then
+											if IsWorldQuestActive(item.worldQuestId) then
+												text = format(L["A world event is currently available for %s! Go get it!"], itemLink or itemName or item.name)
 											end
 										else
-											text = format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or v.name)
+											text = format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or item.name)
 										end
 										Rarity:Print(text)
 										if tostring(SHOW_COMBAT_TEXT) ~= "0" then
@@ -1121,16 +1121,16 @@ local function addGroup(group, requiresGroup)
 
 								if
 									not Rarity.db.profile.onlyShowItemsWithAttempts or
-										(Rarity.db.profile.onlyShowItemsWithAttempts and (tonumber(v.attempts or 0) or 0) > 0)
+										(Rarity.db.profile.onlyShowItemsWithAttempts and (tonumber(item.attempts or 0) or 0) > 0)
 								 then
 									if
 										not Rarity.db.profile.hideOutsideZone or
-											(Rarity.db.profile.hideOutsideZone and R.Waypoints:IsItemInCurrentZone(v) and R:IsAttemptAllowed(v))
+											(Rarity.db.profile.hideOutsideZone and R.Waypoints:IsItemInCurrentZone(item) and R:IsAttemptAllowed(item))
 									 then
 										itemsExistInThisGroup = true
 										if
 											((not requiresGroup and group.collapsed ~= true) or (requiresGroup and group.collapsedGroup ~= true)) and
-												v.itemId ~= nil
+												item.itemId ~= nil
 										 then
 											-- Header
 											if not added then
@@ -1139,7 +1139,7 @@ local function addGroup(group, requiresGroup)
 												if requiresGroup then
 													groupName = groupName .. L[" (Group)"]
 												end
-												if not headers[groupName] and v.itemId ~= nil then
+												if not headers[groupName] and item.itemId ~= nil then
 													headers[groupName] = true
 													local collapsed = group.collapsed or false
 													if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
@@ -1163,21 +1163,21 @@ local function addGroup(group, requiresGroup)
 											end
 
 											-- Zone
-											local zoneInfo = R.Waypoints:GetZoneInfoForItem(v)
+											local zoneInfo = R.Waypoints:GetZoneInfoForItem(item)
 											local zoneText, inMyZone, zoneColor, numZones = zoneInfo.zoneText, zoneInfo.inMyZone, zoneInfo.zoneColor, zoneInfo.numZones
 
 											-- Retrieve the DBMarket price provided by the TSM_API (if loaded)
-											local marketPrice = Rarity.db.profile.showTSMColumn and AuctionDB:GetMarketPrice(v.itemId, "DBMarket", true)
+											local marketPrice = Rarity.db.profile.showTSMColumn and AuctionDB:GetMarketPrice(item.itemId, "DBMarket", true)
 
 											-- Add the item to the tooltip
 											local catIcon = ""
-											if Rarity.db.profile.showCategoryIcons and v.cat and Rarity.catIcons[v.cat] then
-												catIcon = [[|TInterface\AddOns\Rarity\Icons\]] .. Rarity.catIcons[v.cat] .. ".blp:0:4|t "
+											if Rarity.db.profile.showCategoryIcons and item.cat and Rarity.catIcons[item.cat] then
+												catIcon = [[|TInterface\AddOns\Rarity\Icons\]] .. Rarity.catIcons[item.cat] .. ".blp:0:4|t "
 											end
 											line =
 												tooltip:AddLine(
 												icon,
-												catIcon .. (itemTexture and "|T" .. itemTexture .. ":0|t " or "") .. (itemLink or v.name or L["Unknown"]),
+												catIcon .. (itemTexture and "|T" .. itemTexture .. ":0|t " or "") .. (itemLink or item.name or L["Unknown"]),
 												attempts,
 												likelihood,
 												Rarity.db.profile.showTimeColumn and duration or nil,
@@ -1186,8 +1186,8 @@ local function addGroup(group, requiresGroup)
 												status,
 												Rarity.db.profile.showTSMColumn and marketPrice or nil
 											)
-											tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
-											tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
+											tooltip:SetLineScript(line, "OnMouseUp", onClickItem, item)
+											tooltip:SetLineScript(line, "OnEnter", showSubTooltip, item)
 											tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
 											added = true
 
