@@ -820,396 +820,410 @@ local function addGroup(group, requiresGroup)
 
 	-- Inlining this because it has WAY too many interdependencies and I don't have time to unwrangle it now, but using early exit is easier this way (and more readable). It doesn't change the functionality and the small overhead shouldn't matter here
 	local function AddItem(item)
-		if
-			type(item) == "table" and item.enabled ~= false and
-				((requiresGroup and item.groupSize ~= nil and item.groupSize > 1) or
-					(not requiresGroup and (item.groupSize == nil or item.groupSize <= 1)))
-		 then
-			local classGood = true
-			if not Rarity.Caching:GetPlayerClass() then
-				Rarity.Caching:SetPlayerClass(select(2, UnitClass("player")))
-			end
-			if
-				item.disableForClass and type(item.disableForClass == "table") and
-					item.disableForClass[Rarity.Caching:GetPlayerClass()] == true
-			 then
-				classGood = false
-			end
+		local shouldAddItem =
+			(type(item) == "table" and item.enabled ~= false and
+			((requiresGroup and item.groupSize ~= nil and item.groupSize > 1) or
+				(not requiresGroup and (item.groupSize == nil or item.groupSize <= 1))))
 
-			if not item.itemId then
-				Rarity:Error(
-					format(
-						"Failed to add tooltip line for item %s in group %s (invalid ID or the server didn't return any data)",
-						item.name or "nil",
-						group.name
-					)
+		if not shouldAddItem then
+			return
+		end
+
+		local playerClass = select(2, UnitClass("player"))
+		local shouldHideForCurrentClass =
+			(item.disableForClass and type(item.disableForClass) == "table" and item.disableForClass[playerClass] == true)
+
+		if not item.itemId then
+			Rarity:Error(
+				format(
+					"Failed to add tooltip line for item %s in group %s (invalid ID or the server didn't return any data)",
+					item.name or "nil",
+					group.name
 				)
-				return
+			)
+			return
+		end
+
+		local hasItemInvalidCategory = not ((R.db.profile.cats[item.cat]) or item.cat == nil)
+		local isItemForDifferentFaction =
+			not ((item.requiresHorde and R.Caching:IsHorde()) or (item.requiresAlliance and not R.Caching:IsHorde()) or
+			(not item.requiresHorde and not item.requiresAlliance))
+
+		local hasItemHighDropRate = (item.chance or 0) < 50 -- 1 in 50 = 2%, so anything ABOVE 2% is considered "high", apparently
+		local shouldItemBeFilteredDueToHighChance = R.db.profile.hideHighChance and hasItemHighDropRate
+
+		if isItemForDifferentFaction then
+			return
+		end
+
+		if hasItemInvalidCategory then
+			return
+		end
+
+		if shouldItemBeFilteredDueToHighChance then
+			return
+		end
+
+		if shouldHideForCurrentClass then
+			return
+		end
+
+		local itemName,
+			itemLink,
+			itemRarity,
+			itemLevel,
+			itemMinLevel,
+			itemType,
+			itemSubType,
+			itemStackCount,
+			itemEquipLoc,
+			itemTexture,
+			itemSellPrice = GetItemInfo(item.itemId)
+		local attempts = tonumber(item.attempts or 0) or 0
+		if type(attempts) ~= "number" then
+			attempts = 0
+		end
+		if item.lastAttempts then
+			attempts = attempts - item.lastAttempts
+		end
+
+		local label = "AddItem_" .. item.name or "UNKNOWN" -- TODO Rename to timerLabel or sth
+
+		Rarity.Profiling:StartTimer(label)
+
+		local lucky, chance, dropChance
+
+		if item.method ~= CONSTANTS.DETECTION_METHODS.COLLECTION then
+			dropChance = Rarity.Statistics.GetRealDropPercentage(item)
+			chance = 100 * (1 - math.pow(1 - dropChance, attempts))
+			local medianLoots = Round(math.log(1 - 0.5) / math.log(1 - dropChance))
+			lucky = colorize(L["Lucky"], green)
+			if (tonumber(medianLoots) or 0) < (tonumber(attempts) or 0) then
+				lucky = colorize(L["Unlucky"], red)
 			end
-			-- Item
+		else
+			chance = 100 * (attempts / (item.chance or 100))
+			if chance < 0 then
+				chance = 0
+			end
+			if chance > 100 then
+				chance = 100
+			end
+			lucky = colorize(L["Lucky"], green)
+		end
+
+		local icon = ""
+		if trackedItem == item then
+			icon = [[|TInterface\Buttons\UI-CheckBox-Check:0|t]]
+		end
+		local duration = 0
+		if item.time then
+			duration = item.time
+		end
+		if item.lastTime then
+			duration = item.time - item.lastTime
+		end
+		if Rarity.Session:IsActive() and trackedItem == item then
+			local len = Rarity.Session:GetLastTime() - Rarity.Session:GetStartTime()
+			duration = duration + len
+		end
+		duration = FormatTime(duration)
+		local likelihood = format("%.2f%%", chance)
+		if attempts == 0 then
+			attempts = ""
+			lucky = ""
+			duration = ""
+			likelihood = ""
+		end
+		if duration == "0:00" then
+			duration = ""
+		end
+		if
+			item.method ~= CONSTANTS.DETECTION_METHODS.NPC and item.method ~= CONSTANTS.DETECTION_METHODS.ZONE and
+				item.method ~= CONSTANTS.DETECTION_METHODS.FISHING and
+				item.method ~= CONSTANTS.DETECTION_METHODS.USE
+		 then
+			duration = ""
+		end
+		local status = ""
+		if item.questId and not item.holidayTexture then
+			if type(item.questId) == "table" then
+				status = colorize(L["Undefeated"], green)
+				for key, questId in pairs(item.questId) do
+					if IsQuestFlaggedCompleted(questId) then
+						status = colorize(L["Defeated"], red)
+					end
+				end
+			else
+				if IsQuestFlaggedCompleted(item.questId) then
+					status = colorize(L["Defeated"], red)
+				else
+					status = colorize(L["Undefeated"], green)
+				end
+			end
+			-- If item is linked to a World Quest, flag as unavailable if WQ isn't up.
+			if item.worldQuestId then
+				if IsWorldQuestActive(item.worldQuestId) == false then
+					status = colorize(L["Unavailable"], gray)
+				end
+			end
+		elseif item.questId and item.holidayTexture then
+			if Rarity.holiday_textures[item.holidayTexture] == nil then
+				status = colorize(L["Unavailable"], gray)
+			elseif item.christmasOnly and dt.month == 12 and dt.day < 25 then
+				status = colorize(L["Unavailable"], gray)
+			else
+				if type(item.questId) == "table" then
+					status = colorize(L["Undefeated"], green)
+					for key, questId in pairs(item.questId) do
+						if IsQuestFlaggedCompleted(questId) then
+							status = colorize(L["Defeated"], red)
+						end
+					end
+				else
+					if IsQuestFlaggedCompleted(item.questId) then
+						status = colorize(L["Defeated"], red)
+					else
+						status = colorize(L["Undefeated"], green)
+					end
+				end
+			end
+		elseif item.lockBossName or item.lockoutDetails then
+			-- Lockout-based defeat detection requires special treatment due to the underlying complexity
+			if not lbb["Theralion and Valiona"] and lbb["Valiona and Theralion"] then
+				-- LibBabble-Boss is still outdated -> Add correct encounter name
+				lbb["Theralion and Valiona"] = lbb["Valiona and Theralion"] -- Workaround for issue:
+			-- https://github.com/SacredDuckwhale/Rarity/issues/22 - can be removed once the library was updated
+			end
+
+			local isDefeated
+			local mode = CONSTANTS.DEFEAT_DETECTION.MODE_OR
+			-- OR: At least one encounter must be defeated
+			-- AND: All encounters must be defeated
+			-- (before the item will be displayed as defeated)
+			local usesNewDefeatDetection =
+				item.lockoutDetails and type(item.lockoutDetails) == "table" and #item.lockoutDetails > 0
+
+			if usesNewDefeatDetection then -- Resolve the defeat detection using the item's parameters
+				isDefeated = false
+				local continue = true
+
+				mode = item.lockoutDetails.mode or mode
+
+				for index, sharedDifficultyGroup in ipairs(item.lockoutDetails) do
+					-- Check all stored lockouts and resolve the defeat detection
+					-- (if there are none there isn't anything left to do)
+					local isValidEntry =
+						sharedDifficultyGroup.encounterName and type(sharedDifficultyGroup.encounterName) == "string" and
+						sharedDifficultyGroup.instanceDifficulties and
+						type(sharedDifficultyGroup.instanceDifficulties) == "table"
+
+					if not isValidEntry then
+						Rarity:Debug(
+							"Invalid lockout details for item " .. tostring(item.name) .. " - defeat detection will not be resolved"
+						)
+						continue = false
+					end
+
+					local storedLockouts = Rarity.lockouts_detailed[sharedDifficultyGroup.encounterName] or {}
+
+					local isGroupCompleted = false
+					for instanceDifficulty, membershipFlag in pairs(sharedDifficultyGroup.instanceDifficulties) do
+						-- Check if a lockout is stored for any of the group's members (difficulties)
+						if storedLockouts[instanceDifficulty] then -- Flag the entire group as locked out
+							isGroupCompleted = true -- isGroupCompleted = storedLockouts[instanceDifficulty]
+						end
+					end
+
+					if mode == CONSTANTS.DEFEAT_DETECTION.MODE_AND and not isGroupCompleted and continue then
+						-- Since at least one step isn't complete, the item shouldn't be marked as defeated
+						isDefeated = false
+						continue = false
+					elseif continue then -- Overwrite default value
+						isDefeated = true
+					end
+
+					-- Otherwise, at least one version was defeated, so the item should be marked as defeated
+					if mode == CONSTANTS.DEFEAT_DETECTION.MODE_OR and isGroupCompleted and continue then
+						isDefeated = true
+						continue = false
+					end
+				end
+			end
+
+			-- Currently, only one of the two detection routines should be used
 			if
-				(item.requiresHorde and R.Caching:IsHorde()) or (item.requiresAlliance and not R.Caching:IsHorde()) or
-					(not item.requiresHorde and not item.requiresAlliance)
+				(item.lockBossName and lbb[item.lockBossName] and
+					(Rarity.lockouts[lbb[item.lockBossName]] == true or Rarity.lockouts[item.lockBossName] == true)) or -- Legacy detection (I'll leave it be, for now)
+					isDefeated
 			 then
-				if (R.db.profile.cats[item.cat]) or item.cat == nil then
-					if (not (R.db.profile.hideHighChance and (item.chance or 0) < 50)) and classGood then
-						local itemName,
-							itemLink,
-							itemRarity,
-							itemLevel,
-							itemMinLevel,
-							itemType,
-							itemSubType,
-							itemStackCount,
-							itemEquipLoc,
-							itemTexture,
-							itemSellPrice = GetItemInfo(item.itemId)
-						local attempts = tonumber(item.attempts or 0) or 0
-						if type(attempts) ~= "number" then
-							attempts = 0
-						end
-						if item.lastAttempts then
-							attempts = attempts - item.lastAttempts
-						end
+				status = colorize(L["Defeated"], red)
+			else
+				status = colorize(L["Undefeated"], green)
+			end
+		elseif item.lockDungeonId then
+			if Rarity.lockouts_holiday[item.lockDungeonId] == true then
+				status = colorize(L["Defeated"], red)
+			else
+				if Rarity.lockouts_holiday[item.lockDungeonId] == false then
+					status = colorize(L["Undefeated"], green)
+				else
+					status = colorize(L["Unavailable"], gray)
+				end
+			end
+		elseif item.holidayTexture and Rarity.holiday_textures[item.holidayTexture] == nil then
+			status = colorize(L["Unavailable"], gray)
+		end
+		if item.pickpocket then
+			local class, classFileName = UnitClass("player")
+			if classFileName ~= "ROGUE" then
+				status = colorize(L["Unavailable"], gray)
+			end
+		end
 
-						local lucky, chance, dropChance
+		-- Support for Defeated items with multiple steps of defeat (supports quests only)
+		if
+			status == colorize(L["Defeated"], red) and item.defeatAllQuests and item.questId ~= nil and
+				type(item.questId) == "table"
+		 then
+			local totalQuests = 0
+			local numCompletedQuests = 0
+			for _, quest in pairs(item.questId) do
+				totalQuests = totalQuests + 1
+				if IsQuestFlaggedCompleted(quest) then
+					numCompletedQuests = numCompletedQuests + 1
+				end
+			end
+			if totalQuests > numCompletedQuests then
+				status = colorize(format(L["Defeated"] .. " (%d of %d)", numCompletedQuests, totalQuests), yellow)
+			end
+		end
 
-						if item.method ~= CONSTANTS.DETECTION_METHODS.COLLECTION then
-							dropChance = Rarity.Statistics.GetRealDropPercentage(item)
-							chance = 100 * (1 - math.pow(1 - dropChance, attempts))
-							local medianLoots = Round(math.log(1 - 0.5) / math.log(1 - dropChance))
-							lucky = colorize(L["Lucky"], green)
-							if (tonumber(medianLoots) or 0) < (tonumber(attempts) or 0) then
-								lucky = colorize(L["Unlucky"], red)
+		if Rarity.db.profile.hideUnavailable == false or status ~= colorize(L["Unavailable"], gray) then
+			if Rarity.db.profile.hideDefeated == false or status ~= colorize(L["Defeated"], red) then
+				-- Holiday reminder
+				if
+					Rarity.db.profile.holidayReminder and Rarity.allRemindersDone == nil and item.holidayReminder ~= false and
+						(item.cat == HOLIDAY or item.worldQuestId) and
+						status == colorize(L["Undefeated"], green)
+				 then
+					Rarity.anyReminderDone = true
+					numHolidayReminders = numHolidayReminders + 1
+					if numHolidayReminders <= 2 then
+						local text
+						if item.worldQuestId then
+							if IsWorldQuestActive(item.worldQuestId) then
+								text = format(L["A world event is currently available for %s! Go get it!"], itemLink or itemName or item.name)
 							end
 						else
-							chance = 100 * (attempts / (item.chance or 100))
-							if chance < 0 then
-								chance = 0
-							end
-							if chance > 100 then
-								chance = 100
-							end
-							lucky = colorize(L["Lucky"], green)
+							text = format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or item.name)
 						end
+						Rarity:Print(text)
+						if tostring(SHOW_COMBAT_TEXT) ~= "0" then
+							if type(CombatText_AddMessage) == "nil" then
+								UIParentLoadAddOn("Blizzard_CombatText")
+							end
+							CombatText_AddMessage(text, CombatText_StandardScroll, 1, 1, 1, true, false)
+						else
+							UIErrorsFrame:AddMessage(text, 1, 1, 1, 1.0)
+						end
+					else
+						if showedHolidayReminderOverflow == false then
+							Rarity:Print(
+								colorize(L["There are more holiday items available, but Rarity only reminds you about the first two."], gray)
+							)
+						end
+						showedHolidayReminderOverflow = true
+					end
+				end
 
-						local icon = ""
-						if trackedItem == item then
-							icon = [[|TInterface\Buttons\UI-CheckBox-Check:0|t]]
-						end
-						local duration = 0
-						if item.time then
-							duration = item.time
-						end
-						if item.lastTime then
-							duration = item.time - item.lastTime
-						end
-						if Rarity.Session:IsActive() and trackedItem == item then
-							local len = Rarity.Session:GetLastTime() - Rarity.Session:GetStartTime()
-							duration = duration + len
-						end
-						duration = FormatTime(duration)
-						local likelihood = format("%.2f%%", chance)
-						if attempts == 0 then
-							attempts = ""
-							lucky = ""
-							duration = ""
-							likelihood = ""
-						end
-						if duration == "0:00" then
-							duration = ""
-						end
+				if
+					not Rarity.db.profile.onlyShowItemsWithAttempts or
+						(Rarity.db.profile.onlyShowItemsWithAttempts and (tonumber(item.attempts or 0) or 0) > 0)
+				 then
+					if
+						not Rarity.db.profile.hideOutsideZone or
+							(Rarity.db.profile.hideOutsideZone and R.Waypoints:IsItemInCurrentZone(item) and R:IsAttemptAllowed(item))
+					 then
+						itemsExistInThisGroup = true
 						if
-							item.method ~= CONSTANTS.DETECTION_METHODS.NPC and item.method ~= CONSTANTS.DETECTION_METHODS.ZONE and
-								item.method ~= CONSTANTS.DETECTION_METHODS.FISHING and
-								item.method ~= CONSTANTS.DETECTION_METHODS.USE
+							((not requiresGroup and group.collapsed ~= true) or (requiresGroup and group.collapsedGroup ~= true)) and
+								item.itemId ~= nil
 						 then
-							duration = ""
-						end
-						local status = ""
-						if item.questId and not item.holidayTexture then
-							if type(item.questId) == "table" then
-								status = colorize(L["Undefeated"], green)
-								for key, questId in pairs(item.questId) do
-									if IsQuestFlaggedCompleted(questId) then
-										status = colorize(L["Defeated"], red)
-									end
+							-- Header
+							if not added then
+								headerAdded = true
+								local groupName = group.name
+								if requiresGroup then
+									groupName = groupName .. L[" (Group)"]
 								end
-							else
-								if IsQuestFlaggedCompleted(item.questId) then
-									status = colorize(L["Defeated"], red)
-								else
-									status = colorize(L["Undefeated"], green)
-								end
-							end
-							-- If item is linked to a World Quest, flag as unavailable if WQ isn't up.
-							if item.worldQuestId then
-								if IsWorldQuestActive(item.worldQuestId) == false then
-									status = colorize(L["Unavailable"], gray)
-								end
-							end
-						elseif item.questId and item.holidayTexture then
-							if Rarity.holiday_textures[item.holidayTexture] == nil then
-								status = colorize(L["Unavailable"], gray)
-							elseif item.christmasOnly and dt.month == 12 and dt.day < 25 then
-								status = colorize(L["Unavailable"], gray)
-							else
-								if type(item.questId) == "table" then
-									status = colorize(L["Undefeated"], green)
-									for key, questId in pairs(item.questId) do
-										if IsQuestFlaggedCompleted(questId) then
-											status = colorize(L["Defeated"], red)
-										end
-									end
-								else
-									if IsQuestFlaggedCompleted(item.questId) then
-										status = colorize(L["Defeated"], red)
+								if not headers[groupName] and item.itemId ~= nil then
+									headers[groupName] = true
+									local collapsed = group.collapsed or false
+									if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
+										line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
 									else
-										status = colorize(L["Undefeated"], green)
-									end
-								end
-							end
-						elseif item.lockBossName or item.lockoutDetails then
-							-- Lockout-based defeat detection requires special treatment due to the underlying complexity
-							if not lbb["Theralion and Valiona"] and lbb["Valiona and Theralion"] then
-								-- LibBabble-Boss is still outdated -> Add correct encounter name
-								lbb["Theralion and Valiona"] = lbb["Valiona and Theralion"] -- Workaround for issue:
-							-- https://github.com/SacredDuckwhale/Rarity/issues/22 - can be removed once the library was updated
-							end
-
-							local isDefeated
-							local mode = CONSTANTS.DEFEAT_DETECTION.MODE_OR
-							-- OR: At least one encounter must be defeated
-							-- AND: All encounters must be defeated
-							-- (before the item will be displayed as defeated)
-							local usesNewDefeatDetection =
-								item.lockoutDetails and type(item.lockoutDetails) == "table" and #item.lockoutDetails > 0
-
-							if usesNewDefeatDetection then -- Resolve the defeat detection using the item's parameters
-								isDefeated = false
-								local continue = true
-
-								mode = item.lockoutDetails.mode or mode
-
-								for index, sharedDifficultyGroup in ipairs(item.lockoutDetails) do
-									-- Check all stored lockouts and resolve the defeat detection
-									-- (if there are none there isn't anything left to do)
-									local isValidEntry =
-										sharedDifficultyGroup.encounterName and type(sharedDifficultyGroup.encounterName) == "string" and
-										sharedDifficultyGroup.instanceDifficulties and
-										type(sharedDifficultyGroup.instanceDifficulties) == "table"
-
-									if not isValidEntry then
-										Rarity:Debug(
-											"Invalid lockout details for item " .. tostring(item.name) .. " - defeat detection will not be resolved"
+										line =
+											tooltip:AddLine(
+											"|TInterface\\Buttons\\UI-MinusButton-Up:16|t",
+											colorize(groupName, yellow),
+											colorize(L["Attempts"], yellow),
+											colorize(L["Likelihood"], yellow),
+											Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil,
+											Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil,
+											Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil,
+											colorize(L["Defeated"], yellow),
+											TSM_API ~= nil and Rarity.db.profile.showTSMColumn and colorize(L["Market Price"], yellow) or nil
 										)
-										continue = false
 									end
-
-									local storedLockouts = Rarity.lockouts_detailed[sharedDifficultyGroup.encounterName] or {}
-
-									local isGroupCompleted = false
-									for instanceDifficulty, membershipFlag in pairs(sharedDifficultyGroup.instanceDifficulties) do
-										-- Check if a lockout is stored for any of the group's members (difficulties)
-										if storedLockouts[instanceDifficulty] then -- Flag the entire group as locked out
-											isGroupCompleted = true -- isGroupCompleted = storedLockouts[instanceDifficulty]
-										end
-									end
-
-									if mode == CONSTANTS.DEFEAT_DETECTION.MODE_AND and not isGroupCompleted and continue then
-										-- Since at least one step isn't complete, the item shouldn't be marked as defeated
-										isDefeated = false
-										continue = false
-									elseif continue then -- Overwrite default value
-										isDefeated = true
-									end
-
-									-- Otherwise, at least one version was defeated, so the item should be marked as defeated
-									if mode == CONSTANTS.DEFEAT_DETECTION.MODE_OR and isGroupCompleted and continue then
-										isDefeated = true
-										continue = false
-									end
+									tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
 								end
 							end
 
-							-- Currently, only one of the two detection routines should be used
-							if
-								(item.lockBossName and lbb[item.lockBossName] and
-									(Rarity.lockouts[lbb[item.lockBossName]] == true or Rarity.lockouts[item.lockBossName] == true)) or -- Legacy detection (I'll leave it be, for now)
-									isDefeated
-							 then
-								status = colorize(L["Defeated"], red)
-							else
-								status = colorize(L["Undefeated"], green)
+							-- Zone
+							local zoneInfo = R.Waypoints:GetZoneInfoForItem(item)
+							local zoneText, inMyZone, zoneColor, numZones =
+								zoneInfo.zoneText,
+								zoneInfo.inMyZone,
+								zoneInfo.zoneColor,
+								zoneInfo.numZones
+
+							-- Retrieve the DBMarket price provided by the TSM_API (if loaded)
+							local marketPrice = Rarity.db.profile.showTSMColumn and AuctionDB:GetMarketPrice(item.itemId, "DBMarket", true)
+
+							-- Add the item to the tooltip
+							local catIcon = ""
+							if Rarity.db.profile.showCategoryIcons and item.cat and Rarity.catIcons[item.cat] then
+								catIcon = [[|TInterface\AddOns\Rarity\Icons\]] .. Rarity.catIcons[item.cat] .. ".blp:0:4|t "
 							end
-						elseif item.lockDungeonId then
-							if Rarity.lockouts_holiday[item.lockDungeonId] == true then
-								status = colorize(L["Defeated"], red)
-							else
-								if Rarity.lockouts_holiday[item.lockDungeonId] == false then
-									status = colorize(L["Undefeated"], green)
-								else
-									status = colorize(L["Unavailable"], gray)
-								end
-							end
-						elseif item.holidayTexture and Rarity.holiday_textures[item.holidayTexture] == nil then
-							status = colorize(L["Unavailable"], gray)
+
+							line =
+								tooltip:AddLine(
+								icon,
+								catIcon .. (itemTexture and "|T" .. itemTexture .. ":0|t " or "") .. (itemLink or item.name or L["Unknown"]),
+								attempts,
+								likelihood,
+								Rarity.db.profile.showTimeColumn and duration or nil,
+								Rarity.db.profile.showLuckinessColumn and lucky or nil,
+								Rarity.db.profile.showZoneColumn and colorize(zoneText, zoneColor) or nil,
+								status,
+								Rarity.db.profile.showTSMColumn and marketPrice or nil
+							)
+							tooltip:SetLineScript(line, "OnMouseUp", onClickItem, item)
+							tooltip:SetLineScript(line, "OnEnter", showSubTooltip, item)
+							tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
 						end
-						if item.pickpocket then
-							local class, classFileName = UnitClass("player")
-							if classFileName ~= "ROGUE" then
-								status = colorize(L["Unavailable"], gray)
-							end
-						end
+						added = true
 
-						-- Support for Defeated items with multiple steps of defeat (supports quests only)
-						if
-							status == colorize(L["Defeated"], red) and item.defeatAllQuests and item.questId ~= nil and
-								type(item.questId) == "table"
-						 then
-							local totalQuests = 0
-							local numCompletedQuests = 0
-							for _, quest in pairs(item.questId) do
-								totalQuests = totalQuests + 1
-								if IsQuestFlaggedCompleted(quest) then
-									numCompletedQuests = numCompletedQuests + 1
-								end
-							end
-							if totalQuests > numCompletedQuests then
-								status = colorize(format(L["Defeated"] .. " (%d of %d)", numCompletedQuests, totalQuests), yellow)
-							end
-						end
-
-						if Rarity.db.profile.hideUnavailable == false or status ~= colorize(L["Unavailable"], gray) then
-							if Rarity.db.profile.hideDefeated == false or status ~= colorize(L["Defeated"], red) then
-								-- Holiday reminder
-								if
-									Rarity.db.profile.holidayReminder and Rarity.allRemindersDone == nil and item.holidayReminder ~= false and
-										(item.cat == HOLIDAY or item.worldQuestId) and
-										status == colorize(L["Undefeated"], green)
-								 then
-									Rarity.anyReminderDone = true
-									numHolidayReminders = numHolidayReminders + 1
-									if numHolidayReminders <= 2 then
-										local text
-										if item.worldQuestId then
-											if IsWorldQuestActive(item.worldQuestId) then
-												text =
-													format(L["A world event is currently available for %s! Go get it!"], itemLink or itemName or item.name)
-											end
-										else
-											text = format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or item.name)
-										end
-										Rarity:Print(text)
-										if tostring(SHOW_COMBAT_TEXT) ~= "0" then
-											if type(CombatText_AddMessage) == "nil" then
-												UIParentLoadAddOn("Blizzard_CombatText")
-											end
-											CombatText_AddMessage(text, CombatText_StandardScroll, 1, 1, 1, true, false)
-										else
-											UIErrorsFrame:AddMessage(text, 1, 1, 1, 1.0)
-										end
-									else
-										if showedHolidayReminderOverflow == false then
-											Rarity:Print(
-												colorize(
-													L["There are more holiday items available, but Rarity only reminds you about the first two."],
-													gray
-												)
-											)
-										end
-										showedHolidayReminderOverflow = true
-									end
-								end
-
-								if
-									not Rarity.db.profile.onlyShowItemsWithAttempts or
-										(Rarity.db.profile.onlyShowItemsWithAttempts and (tonumber(item.attempts or 0) or 0) > 0)
-								 then
-									if
-										not Rarity.db.profile.hideOutsideZone or
-											(Rarity.db.profile.hideOutsideZone and R.Waypoints:IsItemInCurrentZone(item) and R:IsAttemptAllowed(item))
-									 then
-										itemsExistInThisGroup = true
-										if
-											((not requiresGroup and group.collapsed ~= true) or (requiresGroup and group.collapsedGroup ~= true)) and
-												item.itemId ~= nil
-										 then
-											-- Header
-											if not added then
-												headerAdded = true
-												local groupName = group.name
-												if requiresGroup then
-													groupName = groupName .. L[" (Group)"]
-												end
-												if not headers[groupName] and item.itemId ~= nil then
-													headers[groupName] = true
-													local collapsed = group.collapsed or false
-													if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
-														line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
-													else
-														line =
-															tooltip:AddLine(
-															"|TInterface\\Buttons\\UI-MinusButton-Up:16|t",
-															colorize(groupName, yellow),
-															colorize(L["Attempts"], yellow),
-															colorize(L["Likelihood"], yellow),
-															Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil,
-															Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil,
-															Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil,
-															colorize(L["Defeated"], yellow),
-															TSM_API ~= nil and Rarity.db.profile.showTSMColumn and colorize(L["Market Price"], yellow) or nil
-														)
-													end
-													tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
-												end
-											end
-
-											-- Zone
-											local zoneInfo = R.Waypoints:GetZoneInfoForItem(item)
-											local zoneText, inMyZone, zoneColor, numZones =
-												zoneInfo.zoneText,
-												zoneInfo.inMyZone,
-												zoneInfo.zoneColor,
-												zoneInfo.numZones
-
-											-- Retrieve the DBMarket price provided by the TSM_API (if loaded)
-											local marketPrice =
-												Rarity.db.profile.showTSMColumn and AuctionDB:GetMarketPrice(item.itemId, "DBMarket", true)
-
-											-- Add the item to the tooltip
-											local catIcon = ""
-											if Rarity.db.profile.showCategoryIcons and item.cat and Rarity.catIcons[item.cat] then
-												catIcon = [[|TInterface\AddOns\Rarity\Icons\]] .. Rarity.catIcons[item.cat] .. ".blp:0:4|t "
-											end
-											line =
-												tooltip:AddLine(
-												icon,
-												catIcon .. (itemTexture and "|T" .. itemTexture .. ":0|t " or "") .. (itemLink or item.name or L["Unknown"]),
-												attempts,
-												likelihood,
-												Rarity.db.profile.showTimeColumn and duration or nil,
-												Rarity.db.profile.showLuckinessColumn and lucky or nil,
-												Rarity.db.profile.showZoneColumn and colorize(zoneText, zoneColor) or nil,
-												status,
-												Rarity.db.profile.showTSMColumn and marketPrice or nil
-											)
-											tooltip:SetLineScript(line, "OnMouseUp", onClickItem, item)
-											tooltip:SetLineScript(line, "OnEnter", showSubTooltip, item)
-											tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
-											added = true
-
-										-- "Should display the item" endif section:
-										end
-									end
-								end
-							end
-						end
-					-- End "should display the item" endif section
+					-- "Should display the item" endif section:
+					-- end
 					end
 				end
 			end
 		end
+		-- Since there's no early exit between this and the call to StartTimer(), this should never leave an active timer behind
+		Rarity.Profiling:EndTimer(label)
+		-- End "should display the item" endif section
 	end
 
 	for index, item in ipairs(sortedGroup) do
