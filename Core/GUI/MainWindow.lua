@@ -39,6 +39,7 @@ local headers = {}
 
 -- Constants
 -- Sort parameters
+local SORT_NONE = CONSTANTS.SORT_METHODS.SORT_NONE
 local SORT_NAME = CONSTANTS.SORT_METHODS.SORT_NAME
 local SORT_DIFFICULTY = CONSTANTS.SORT_METHODS.SORT_DIFFICULTY
 local SORT_PROGRESS = CONSTANTS.SORT_METHODS.SORT_PROGRESS
@@ -1364,8 +1365,10 @@ function R:ShowTooltip(hidden)
 		sortDesc = L["Sorting by percent complete"]
 	elseif self.db.profile.sortMode == SORT_CATEGORY then
 		sortDesc = L["Sorting by category, then name"]
-	elseif self.db.profile.sortMode == SORT_ZONE then
-		sortDesc = L["Sorting by zone"]
+		elseif self.db.profile.sortMode == SORT_ZONE then
+			sortDesc = L["Sorting by zone"]
+		elseif self.db.profile.sortMode == SORT_NONE then
+			sortDesc = L["Sorting is disabled"]
 	end
 	sortDesc = sortDesc .. colorize(" (" .. L["Ctrl-Click to change sort order"] .. ")", gray)
 	local line = tooltip:AddLine()
