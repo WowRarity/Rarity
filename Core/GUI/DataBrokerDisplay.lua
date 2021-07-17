@@ -4,7 +4,6 @@ local _, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local dbicon = LibStub("LibDBIcon-1.0")
 local ldb = LibStub:GetLibrary("LibDataBroker-1.1")
-local qtip = LibStub("LibQTip-1.0")
 
 -- Upvalues
 local R = Rarity
@@ -82,7 +81,7 @@ function dataobj:OnClick(button)
 		Rarity.GUI:UpdateBar()
 		Rarity.GUI:UpdateText()
 	elseif self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_CLICK and isLeftButton then
-		if qtip:IsAcquired("RarityTooltip") then
+		if Rarity.Tooltips:IsTooltipAcquired("RarityTooltip") then
 			Rarity:HideTooltip()
 		else
 			Rarity:HideQuicktip()

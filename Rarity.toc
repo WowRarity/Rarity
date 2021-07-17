@@ -108,6 +108,7 @@ Utils\Table.lua
 Utils\Time.lua
 
 # Wrappers for external libraries (to provide a consistent API)
+Core\Interoperability\LibQTip\Tooltips.lua
 Core\Interoperability\LibSink\Output.lua
 Core\Interoperability\TradeSkillMaster\AuctionDB.lua
 
