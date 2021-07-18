@@ -1,4 +1,28 @@
 local changes = {
+	["r710"] = {
+		additions = {
+			"Added an overview of the tracking data to each item's settings in the Options UI",
+			"Added tracking for toys obtained from Zovaal's Vault",
+			"Added links to the Rarity Discord and GitHub repository to the Options UI"
+		},
+		changes = {
+			"The main window should now render MUCH faster, depending on the sort method selected (sorting by zone is still relatively slow)"
+		},
+		fixes = {
+			"Fixed tracking for Wilderling Saddle",
+			"Fixed tracking for Rook",
+			"Fixed tracking for Intact Aquilon Core",
+			"Fixed an issue that could prevent items using the COLLECTION method from being tracked correctly",
+		},
+		notes = {
+			"By improving the sorting algorithms used internally, we were able to reduce the time spent on rendering the addon's main window significantly. The remaining time for all sort modes except \"by zone\" is now limited by the WOW client's UI system and can't be reduced as easily, though we're looking at workarounds to this problem. If you're still experiencing significant performance issues after updating, please let us know!"
+		},
+		contributors = {
+			"AySz88",
+			"Tommy Godejord",
+			"Matthew Rowland",
+		}
+	},
 	["r709"] = {
 		additions = {
 			"Added tracking for mounts introduced in Chains of Domination ",
