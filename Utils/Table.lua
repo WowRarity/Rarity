@@ -1,5 +1,7 @@
 local Table = {}
 
+local pairs = pairs
+
 -- Extending Lua's table API would make more sense, but we don't want to modify the environment to avoid interoperability issues
 function Table.Count(luaTable)
 	local numEntries = 0
