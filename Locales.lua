@@ -2,6 +2,9 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Close Window"] = true
+L["Use CMD+C to copy and CMD+V to paste"] = true
+L["Use CTRL+C to copy and CTRL+V to paste"] = true
 L["Displays accumulated profiling data for the current session."] = true
 L["Show profiling data"] = true
 L["This is merely a shortcut introduced to make life easier for developers, and as a regular player you can safely ignore it."] = true
