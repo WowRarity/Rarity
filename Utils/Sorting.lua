@@ -111,7 +111,15 @@ local function compareNum(a, b)
 	return (a.num or 0) < (b.num or 0)
 end
 
+-- These don't exist when the utils are loaded, but we want to cache them here for performance reasons
+local Waypoints
+local GetZoneInfoForItem
+
 local function compareZone(a, b)
+
+	Waypoints = Waypoints or Rarity.Waypoints
+	GetZoneInfoForItem = GetZoneInfoForItem or Waypoints.GetZoneInfoForItem -- To initialize on the first call
+
 	-- Sort by zone text, unless there are multiple zones. Those go at the bottom, sorted by number of zones.
 	-- If the item is in your current zone as well as one or more other zones,
 	-- we sort it alphabetically instead of putting it at the bottom.
@@ -121,8 +129,14 @@ local function compareZone(a, b)
 	if type(a) ~= "table" or type(b) ~= "table" then
 		return 0
 	end
-	local zoneInfoA = R.Waypoints:GetZoneInfoForItem(a)
-	local zoneInfoB = R.Waypoints:GetZoneInfoForItem(b)
+	-- We want to upvalue the API calls for performance reasons, so we have to pass "self" manually here
+	Rarity.Profiling:StartTimer("compareZone_GetZoneInfoForItem")
+	local zoneInfoA = GetZoneInfoForItem(Waypoints, a)
+	local zoneInfoB = GetZoneInfoForItem(Waypoints, b)
+	Rarity.Profiling:EndTimer("compareZone_GetZoneInfoForItem")
+
+
+	Rarity.Profiling:StartTimer("compareZone_compareZoneTexts")
 	local zoneTextA, inMyZoneA, zoneColorA, numZonesA = zoneInfoA.zoneText, zoneInfoA.inMyZone, zoneInfoA.zoneColor, zoneInfoA.numZones
 	local zoneTextB, inMyZoneB, zoneColorB, numZonesB = zoneInfoB.zoneText, zoneInfoB.inMyZone, zoneInfoB.zoneColor, zoneInfoB.numZones
 	if numZonesA > 1 and inMyZoneA ~= true then
@@ -143,6 +157,7 @@ local function compareZone(a, b)
 	if numZonesB > 1 and inMyZoneB ~= true then
 		zoneTextB = zoneTextB .. numZonesB
 	end
+	Rarity.Profiling:EndTimer("compareZone_compareZoneTexts")
 	return (zoneTextA or "") < (zoneTextB or "")
 end
 
@@ -159,7 +174,9 @@ function Sorting:SortGroup(group, method)
 	elseif method == CONSTANTS.SORT_METHODS.SORT_CATEGORY then
 		sortedGroup = self:sort_category(group)
 	elseif method == CONSTANTS.SORT_METHODS.SORT_ZONE then
+		Rarity.Profiling:StartTimer("compareZone")
 		sortedGroup = self:sort_zone(group)
+		Rarity.Profiling:EndTimer("compareZone")
 	elseif method == CONSTANTS.SORT_METHODS.SORT_PROGRESS then
 		sortedGroup = self:sort_progress(group)
 	end
