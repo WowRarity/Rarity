@@ -83,6 +83,7 @@ globals = {
 	"GameTooltip_UnitColor",
 	"SecureButton_GetModifiedUnit",
 	"StaticPopup_Show",
+	"StaticPopup_Hide",
 	"StaticPopupDialogs",
 	"STATICPOPUP_NUMDIALOGS",
 	"SlashCmdList",
