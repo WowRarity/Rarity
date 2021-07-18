@@ -2,6 +2,10 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Sorting is disabled"] = true
+L["Disable sorting inside the main window. Can be used to troubleshoot performance issues."] = true
+L["Disable sorting"] = true
+L["Performance"] = true
 L["Outrider's Bridle Chain"] = true
 L["Starts a series of quests that ultimately award Kua'fon's Harness (Pterrordax mount)"] = true
 L["Pterrordax Egg"] = true
