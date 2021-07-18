@@ -2,6 +2,11 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Displays accumulated profiling data for the current session."] = true
+L["Show profiling data"] = true
+L["This is merely a shortcut introduced to make life easier for developers, and as a regular player you can safely ignore it."] = true
+L["Deletes accumulated profiling data for the current session."] = true
+L["Reset profiling data"] = true
 L["Sorting is disabled"] = true
 L["Disable sorting inside the main window. Can be used to troubleshoot performance issues."] = true
 L["Disable sorting"] = true
