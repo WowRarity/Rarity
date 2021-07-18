@@ -753,6 +753,8 @@ function R:OnChatCommand(input)
 			self.db.profile.enableProfiling = true
 			self:Print(L["Profiling ON"])
 		end
+	elseif strlower(input) == "tinspect" then --  TODO Document it?
+		Rarity.Profiling:InspectAccumulatedTimes()
 	else
 		LoadAddOn("Rarity_Options")
 		if R.optionsFrame then

@@ -1671,8 +1671,28 @@ function R:PrepareOptions()
 							self.db.profile.sortMode = C.SORT_METHODS.SORT_NONE
 						end
 					},
-				},
-			},
+					showAccumulatedTimes = {
+						type = "execute",
+						order = newOrder(),
+						-- width = "full",
+						name = L["Show profiling data"],
+						desc = L["Displays accumulated profiling data for the current session."] .. " " ..  L["This is merely a shortcut introduced to make life easier for developers, and as a regular player you can safely ignore it."],
+						func = function(info, val)
+							Rarity.Profiling:InspectAccumulatedTimes()
+						end
+					},
+					resetAccumulatedTimes = {
+						type = "execute",
+						order = newOrder(),
+						-- width = "full",
+						name = L["Reset profiling data"],
+						desc = L["Deletes accumulated profiling data for the current session."] .. " " ..  L["This is merely a shortcut introduced to make life easier for developers, and as a regular player you can safely ignore it."],
+						func = function(info, val)
+							Rarity.Profiling:ResetAccumulatedTimes()
+						end
+					},
+				}
+			}
 		}
 	}
 end -- function R:PrepareOptions()
