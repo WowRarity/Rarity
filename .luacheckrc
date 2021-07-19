@@ -3,7 +3,8 @@ max_line_length = false
 exclude_files = {
 	".luacheckrc",
 	"Changes.lua",
-	"Libs"
+	"Libs",
+	"Tests", -- Lots of warnings here thanks to LuaUnit, but we'll pretend they don't exist since it's run offline only
 }
 ignore = {
 	--"11./SLASH_.*", -- Setting an undefined (Slash handler) global variable
