@@ -7,6 +7,12 @@ local CopyPastePopup = {
 
 function CopyPastePopup:OnLoad()
 	self:ConfigureStaticPopUp()
+
+	local instructionText = L["Use CTRL+C to copy and CTRL+V to paste"]
+	if IsMacClient() then
+		instructionText = L["Use CMD+C to copy and CMD+V to paste"]
+	end
+	self:SetInstructionText(instructionText)
 end
 
 function CopyPastePopup:ConfigureStaticPopUp()

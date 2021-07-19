@@ -352,12 +352,6 @@ function R:PrepareOptions()
 								desc = L["You can follow the development process or contribute to the project on our public GitHub repository. What could be more fun than browsing a gigantic backlog of unresolved issues?"],
 								func = function(info)
 									Rarity.CopyPastePopup:SetEditBoxText("https://github.com/WowRarity/Rarity")
-
-									local instructionText = L["Use CTRL+C to copy and CTRL+V to paste"]
-									if IsMacClient() then
-										instructionText = L["Use CMD+C to copy and CMD+V to paste"]
-									end
-									Rarity.CopyPastePopup:SetInstructionText(instructionText)
 									Rarity.CopyPastePopup:Show()
 								end,
 							},
@@ -367,12 +361,6 @@ function R:PrepareOptions()
 								desc = L["You can ask questions, follow the latest Rarity news and share the excitement of finally getting that one elusive drop with your fellow collectors in our Discord server.\n\nPS: We have cookies."],
 								func = function(info)
 									Rarity.CopyPastePopup:SetEditBoxText("https://discord.gg/sQ3UqtSh6m")
-
-									local instructionText = L["Use CTRL+C to copy and CTRL+V to paste"]
-									if IsMacClient() then
-										instructionText = L["Use CMD+C to copy and CMD+V to paste"]
-									end
-									Rarity.CopyPastePopup:SetInstructionText(instructionText)
 									Rarity.CopyPastePopup:Show()
 								end,
 							}
