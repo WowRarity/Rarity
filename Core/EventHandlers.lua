@@ -1064,7 +1064,16 @@ function R:IsCollectionItem(item)
 end
 
 function R:ProcessOtherItem(itemID)
+
+	if not itemID then
+		return
+	end
+
 	local item = Rarity.items[itemID]
+	if not item then
+		return
+	end
+
 	local amountIncreasedSinceLastScan = (Rarity.bagitems[itemID] or 0) > (Rarity.tempbagitems[itemID] or 0)
 	if amountIncreasedSinceLastScan then -- An inventory item went up in count
 		if item and item.enabled ~= false and not self:IsCollectionItem(item) then
