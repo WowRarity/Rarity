@@ -2,6 +2,7 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["The WoWUnit addon is required in order to run integration tests. Please download it from CurseForge or GitHub and make sure it's enabled before trying again!"] = true
 L["Close Window"] = true
 L["Use CMD+C to copy and CMD+V to paste"] = true
 L["Use CTRL+C to copy and CTRL+V to paste"] = true

@@ -111,6 +111,7 @@ Utils\Time.lua
 Core\Interoperability\LibQTip\Tooltips.lua
 Core\Interoperability\LibSink\Output.lua
 Core\Interoperability\TradeSkillMaster\AuctionDB.lua
+Core\Interoperability\WoWUnit\Testing.lua
 
 # Wrappers for the WOW API (to provide a consistent API)
 Core\Interoperability\Blizzard\MapInfo.lua
