@@ -1012,7 +1012,7 @@ function R:ProcessInventoryItems()
 		self:Debug(format("Processing inventory item %s (currentInventoryAmount: %d)", itemID, currentInventoryAmount))
 		-- It's still really bad, but a major rework is probably too risky
 		self:ProcessCollectionItem(itemID)
-		self:ProcessOtherItem()
+		self:ProcessOtherItem(itemID)
 	end
 end
 
