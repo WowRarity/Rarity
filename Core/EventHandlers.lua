@@ -1044,7 +1044,7 @@ function R:ProcessCollectionItem(itemID)
 		self:Debug(format("Checking for new attempts at COLLECTION item %s", collectionItem.name))
 
 		-- This item is a collection of several items; add them all up and check for attempts
-		if self:HasMultipleCollectionItems(item) then
+		if self:HasMultipleCollectionItems(collectionItem) then
 			self:Debug(format("Processing aggregate collection item %s", collectionItem.name))
 			self:ProcessCollectionItemAggregate(collectionItem)
 		else
