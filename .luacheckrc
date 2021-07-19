@@ -42,6 +42,7 @@ globals = {
 	"LibStub",
 	"TomTom",
 	"TSM_API",
+	"WoWUnit",
 
 	-- This addon
 	"Rarity",
