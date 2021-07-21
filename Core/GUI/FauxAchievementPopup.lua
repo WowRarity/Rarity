@@ -82,7 +82,7 @@ local function RarityAchievementAlertFrame_SetUp(frame, itemId, attempts)
 		attempts = 1
 	end
 	-- It's a quick 'n' dirty fix, but that's probably the least of our worries here...
-	local item = Rarity.db.profile.groups.mounts[itemName] or Rarity.db.profile.groups.pets[itemName] or Rarity.db.profile.groups.items[itemName] or Rarity.db.profile.groups.custom[itemName]
+	local item = Rarity.db.profile.groups.mounts[itemName] or Rarity.db.profile.groups.pets[itemName] or Rarity.db.profile.groups.items[itemName] or Rarity.db.profile.groups.user[itemName]
 	if item and item.method and item.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
 		unlocked:SetText(L["Collection Complete"])
 	else
