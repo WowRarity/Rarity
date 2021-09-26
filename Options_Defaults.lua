@@ -65,7 +65,7 @@ R.catIcons = {
 function R:PrepareDefaults()
 	self.defaults = {
 		profile = {
-			minimap = { hide = true },
+			minimap = { hide = false },
 
 			enableAnnouncements = true,
 			feedText = CONSTANTS.LDB_TEXT_STYLES.FEED_NORMAL,
