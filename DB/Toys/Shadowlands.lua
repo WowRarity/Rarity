@@ -412,6 +412,21 @@ local shadowlandsToys = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
 	},
+	["Adamant Vaults Cell"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Adamant Vaults Cell"],
+		isToy = true,
+		itemId = 187417,
+		npcs = {176578, 179526, 179433},
+		chance = 11, -- Blind guess
+		unique = true,
+		sourceText = L["This item can only drop in the Adamant Vaults section of Torghast."],
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.TORGHAST}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)
