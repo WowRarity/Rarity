@@ -1,4 +1,18 @@
 local changes = {
+	["r711"] = {
+		additions = {
+			"Added tracking for Adamant Vaults Cell",
+		},
+		changes = {
+			"The mini map button is now displayed by default, to hopefully improve the experience for first-time users"
+		},
+		fixes = {
+			"Fixed an issue that prevented item information being displayed in the game tooltip for items using the ZONE (zonewide) detection method",
+		},
+		contributors = {
+			"Tommy Godejord",
+		}
+	},
 	["r710"] = {
 		additions = {
 			"Added an overview of the tracking data to each item's settings in the Options UI",
