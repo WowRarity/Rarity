@@ -249,6 +249,11 @@ _G.GameTooltip:HookScript(
 		local FIND_FIRST_GUID_TOKEN_PATTERN = "([^-]+)%" .. UNIT_GUID_SEPARATOR
 
 		local unitType = guid:match(FIND_FIRST_GUID_TOKEN_PATTERN)
+
+		if R.db.profile.debugMode then
+			GameTooltip:AddLine("Type: " .. tostring(unitType), 255, 255, 255)
+		end
+
 		if unitType ~= UNIT_TYPES.CREATURE and unitType ~= UNIT_TYPES.PET then
 			Rarity:Debug(format("Not showing GameTooltip info since the hovered unit is of type %s", unitType))
 			return
