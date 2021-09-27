@@ -2587,7 +2587,7 @@ function R:CreateGroup(options, group, isUser)
 					type = "toggle",
 					name = L["Holiday reminders"],
 					desc = L[
-						"When on, Rarity will remind you to go farm holiday items you're missing if the holiday is active and the item is set as Undefeated. (This only works for items that originate from holiday dungeons or daily quests.) The reminder occurs each time you log in or reload your UI, and stops for the day once you defeat the holiday dungeon or complete the	quest."
+						"When on, Rarity will remind you to go farm holiday items you're missing if the holiday is active and the item is set as Undefeated. (This only works for items that originate from holiday dungeons or daily quests.) The reminder occurs each time you log in or reload your UI, and stops for the day once you defeat the holiday dungeon or complete the quest."
 					],
 					get = function()
 						if item.holidayReminder == false then
