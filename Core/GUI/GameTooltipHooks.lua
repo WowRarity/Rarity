@@ -235,8 +235,22 @@ _G.GameTooltip:HookScript(
 		if UnitIsPlayer(unit) then
 			return
 		end -- A player
-		local unitType = tonumber(guid:sub(5, 5), 16) or 0
-		if unitType ~= 3 and unitType ~= 5 then
+
+		local UNIT_TYPES = {
+			CREATURE = "Creature",
+			PET = "Pet",
+			GAME_OBJECT = "GameObject",
+			VEHICLE = "Vehicle",
+			VIGNETTE = "Vignette"
+		}
+
+		local UNIT_GUID_SEPARATOR = "-"
+		-- GUID Format: <unitType>-<token2>-<...> etc
+		local FIND_FIRST_GUID_TOKEN_PATTERN = "([^-]+)%" .. UNIT_GUID_SEPARATOR
+
+		local unitType = guid:match(FIND_FIRST_GUID_TOKEN_PATTERN)
+		if unitType ~= UNIT_TYPES.CREATURE and unitType ~= UNIT_TYPES.PET then
+			Rarity:Debug(format("Not showing GameTooltip info since the hovered unit is of type %s", unitType))
 			return
 		end
 
