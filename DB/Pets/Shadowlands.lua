@@ -1087,7 +1087,7 @@ local shadowlandsPets = {
 		creatureId = 179239,
 		npcs = {179526, 176578, 179433},
 		chance = 7,
-		sourceText = L["This pet can only drop in the Adamant Vaults section of Torghast."],
+		sourceText = L["This item can only drop in the Adamant Vaults section of Torghast."],
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.TORGHAST}
 		}

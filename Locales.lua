@@ -1898,7 +1898,6 @@ L["Darkmaul is obtained by feeding a friendly NPC in Korthia called Darkmaul 10 
 L["Adamant Vaults Cell"] = true
 L["This item can only drop in the Adamant Vaults section of Torghast."] = true
 L["Gilded Darknight"] = true
-L["This pet can only drop in the Adamant Vaults section of Torghast."] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
