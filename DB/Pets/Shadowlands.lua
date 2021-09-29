@@ -1077,6 +1077,21 @@ local shadowlandsPets = {
 			{m = CONSTANTS.UIMAPIDS.KUNLAI_SUMMIT}
 		}
 	},
+	["Gilded Darknight"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Gilded Darknight"],
+		itemId = 186549,
+		spellId = 353656,
+		creatureId = 179239,
+		npcs = {179526, 176578, 179433},
+		chance = 7,
+		sourceText = L["This item can only drop in the Adamant Vaults section of Torghast."],
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.TORGHAST}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)
