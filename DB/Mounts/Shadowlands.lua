@@ -377,7 +377,7 @@ local shadowlandsMounts = {
 		spellId = 354359,
 		itemId = 186649,
 		items = {186650},
-		chance = 100, -- Blind guess
+		chance = 8,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
@@ -390,7 +390,7 @@ local shadowlandsMounts = {
 		spellId = 347810,
 		itemId = 186644,
 		items = {186650},
-		chance = 100, -- Blind guess
+		chance = 8,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
@@ -403,7 +403,7 @@ local shadowlandsMounts = {
 		spellId = 354352,
 		itemId = 186657,
 		items = {187029},
-		chance = 100, -- Blind guess
+		chance = 8,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
@@ -430,7 +430,7 @@ local shadowlandsMounts = {
 		itemId = 185973,
 		questId = {63854},
 		items = {185972},
-		chance = 100, -- Blind guess
+		chance = 50,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
@@ -574,7 +574,7 @@ local shadowlandsMounts = {
 		spellId = 352742,
 		itemId = 186103,
 		items = {185992},
-		chance = 100, -- Blind guess
+		chance = 25,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
@@ -587,7 +587,7 @@ local shadowlandsMounts = {
 		spellId = 352441,
 		itemId = 186000,
 		items = {185991},
-		chance = 100, -- Blind guess
+		chance = 25,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
@@ -600,7 +600,7 @@ local shadowlandsMounts = {
 		spellId = 332904,
 		itemId = 185996,
 		items = {185990},
-		chance = 100, -- Blind guess
+		chance = 25,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW}
 		}
