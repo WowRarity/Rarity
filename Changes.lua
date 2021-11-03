@@ -1,4 +1,15 @@
 local changes = {
+	["r712"] = {
+		additions = {
+			"Added tracking for Gilded Darknight",
+		},
+		fixes = {
+			"The main window should again be rendered properly (previously broken by patch 9.1.5 API changes)",
+		},
+		contributors = {
+			"Tommy Godejord",
+		}
+	},
 	["r711"] = {
 		additions = {
 			"Added tracking for Adamant Vaults Cell",

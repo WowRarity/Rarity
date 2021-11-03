@@ -1,3 +1,16 @@
+**r712:**
+
+Additions:
+> Added tracking for Gilded Darknight
+
+Fixes:
+> The main window should again be rendered properly (previously broken by patch 9.1.5 API changes)
+
+Contributors (in alphabetical order):
+> Tommy Godejord
+
+-----
+
 **r711:**
 
 Additions:
@@ -78,17 +91,3 @@ Fixes:
 
 Contributors (in alphabetical order):
 > Tommy Godejord
-
------
-
-**r707:**
-
-Changes:
-> The tooltip text for faction-restricted items is now dynamically colored based on whether it's available to the logged-in character
-
-Fixes:
-> Fixed an issue where looting Forgotten Chests in Stormsong Valley would cause attempts to be added for Silessa's Battle Harness and Stony's Infused Ruby
-
-Contributors (in alphabetical order):
-> Nick Bayley
-<br>Tommy Godejord
