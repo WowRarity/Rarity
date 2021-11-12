@@ -78,7 +78,7 @@ function DC:AddMessage(text, category)
 	text = text or ""
 
 	-- Create wrapper object
-	message = {
+	local message = {
 		text = text,
 		category = category,
 		timestamp = time()
