@@ -1,7 +1,11 @@
 **r713:**
 
 Additions:
-> Added tracking for Illidari Doomhawk and Doomwalker Trophy Stand (17th anniversary)
+> Attempts for Reins of the Infinite Timereaver should now also accumulate in Legion Timewalking dungeons
+<br>REVERTED: Added tracking for Illidari Doomhawk and Doomwalker Trophy Stand (17th anniversary)
+
+Developer Notes:
+> Blizzard hotfixed the anniversary drops to be guaranteed. As such they've been removed from Rarity again.
 
 -----
 

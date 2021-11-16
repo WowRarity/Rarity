@@ -1,8 +1,12 @@
 local changes = {
 	["r713"] = {
 		additions = {
-			"Added tracking for Illidari Doomhawk and Doomwalker Trophy Stand (17th anniversary)",
+			"Attempts for Reins of the Infinite Timereaver should now also accumulate in Legion Timewalking dungeons",
+			"REVERTED: Added tracking for Illidari Doomhawk and Doomwalker Trophy Stand (17th anniversary)",
 		},
+		notes = {
+			"Blizzard hotfixed the anniversary drops to be guaranteed. As such they've been removed from Rarity again."
+		}
 	},
 	["r712"] = {
 		additions = {
