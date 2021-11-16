@@ -294,8 +294,8 @@ local wodMounts = {
 		spellId = 201098,
 		itemId = 133543,
 		npcs = {
-			-- NPCs marked with * can't be looted; they CONSTANTS.DETECTION_METHODS.USE a workaround and are detected via checking their achievement criteria. The entry here is mostly for the tooltip display....
-			-- CONSTANTS.ITEM_CATEGORIES.TBC Dungeons
+			-- NPCs marked with * can't be looted; they use a workaround and are detected via checking their achievement criteria. The entry here is mostly for the tooltip display....
+			-- TBC Dungeons
 			---- Magister's Terrace
 			24723, -- Selin Fireheart
 			24744, -- Vexallus
@@ -324,7 +324,7 @@ local wodMounts = {
 			20885, -- Dalliah the Doomsayer
 			20886, -- Wrath-Scryer Soccothrates
 			20912, -- Harbinger Skyriss
-			-- CONSTANTS.ITEM_CATEGORIES.WOTLK Dungeons
+			-- WOTLK Dungeons
 			---- Pit of Saron
 			36494, -- Forgemaster Garfrost
 			36476, -- Ick
@@ -358,7 +358,7 @@ local wodMounts = {
 			29310, -- Jedoga Shadowseeker
 			29311, -- Herald Volazj
 			30258, -- Amanitar
-			-- CONSTANTS.ITEM_CATEGORIES.CATA Dungeons
+			-- Cataclysm Dungeons
 			---- Throne of the Tides
 			40586, -- Lady Naz'jar
 			40765, -- Commander Ulthok
@@ -389,7 +389,7 @@ local wodMounts = {
 			54123, -- Echo of Sylvanas
 			54544, -- Echo of Tyrande
 			54432, -- Murozond *
-			-- CONSTANTS.ITEM_CATEGORIES.MOP Timewalking
+			-- MOP Timewalking
 			---- Gate of the Setting Sun
 			56906, -- Saboteur Kip'tilak
 			56589, -- Striker Ga'dok
