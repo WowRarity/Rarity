@@ -1,4 +1,9 @@
 local changes = {
+	["r713"] = {
+		additions = {
+			"Added tracking for Illidari Doomhawk and Doomwalker Trophy Stand (17th anniversary)",
+		},
+	},
 	["r712"] = {
 		additions = {
 			"Added tracking for Gilded Darknight",
