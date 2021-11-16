@@ -442,6 +442,20 @@ local holidayEventToys = {
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		questId = {8788, 8767},
 		coords = {{m = 86, x = 49.1, y = 78.2, h = true}, {m = 87, x = 33.4, y = 65.9, a = true}}
+	},
+	["Doomwalker Trophy Stand"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		name = L["Doomwalker Trophy Stand"],
+		itemId = 186501,
+		chance = 10, -- Blind guess (no data is currently available)
+		groupSize = 10,
+		npcs = { 167749 }, -- Doomwalker (Tanaris)
+		questId = 60214,
+		equalOdds = true,
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WOW_ANNIVERSARY,
+		coords = {{ m = CONSTANTS.UIMAPIDS.TANARIS, x = 63.3, y = 50.7 }}
 	}
 }
 
