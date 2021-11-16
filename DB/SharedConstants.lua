@@ -27,7 +27,6 @@ C.UIMAPIDS = {
 	ARATHI_HIGHLANDS = 14,
 	HILLSBRAD_FOOTHILLS = 25,
 	DARKSHORE = 62,
-	TANARIS = 71,
 	SILITHUS = 81,
 	--
 	ICECROWN = 118,
@@ -194,7 +193,7 @@ C.HOLIDAY_TEXTURES = {
 	BREWFEST = "Calendar_Brewfest",
 	HALLOWS_END = "Calendar_HallowsEnd",
 	PILGRIMS_BOUNTY = "Calendar_HarvestFestival",
-	WOW_ANNIVERSARY = 1084433,
+	WOW_ANNIVERSARY = "calendar_anniversary",
 	LOVE_IS_IN_THE_AIR = "Calendar_LoveInTheAir",
 	LUNAR_FESTIVAL = "Calendar_LunarFestival",
 	NOBLEGARDEN = "Calendar_Noblegarden",

@@ -90,21 +90,6 @@ local holidayEventMounts = {
 		lockDungeonId = 285,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.HALLOWS_END,
 		coords = {{m = 435, i = true}}
-	},
-	["Illidari Doomhawk"] = {
-		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
-		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.BOSS,
-		name = L["Illidari Doomhawk"],
-		spellId = 62048,
-		itemId = 186469,
-		chance = 100, -- Blind guess (no data is currently available)
-		groupSize = 10,
-		npcs = { 167749 }, -- Doomwalker (Tanaris)
-		questId = 60214,
-		equalOdds = true,
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WOW_ANNIVERSARY,
-		coords = {{ m = CONSTANTS.UIMAPIDS.TANARIS, x = 63.3, y = 50.7 }}
 	}
 }
 
