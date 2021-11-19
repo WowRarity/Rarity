@@ -1899,6 +1899,7 @@ L["Adamant Vaults Cell"] = true
 L["This item can only drop in the Adamant Vaults section of Torghast."] = true
 L["Gilded Darknight"] = true
 L["Steward's First Feather"] = true
+L["Apprentice Slimemancer's Boots"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

@@ -440,6 +440,19 @@ local shadowlandsToys = {
 			{m = CONSTANTS.UIMAPIDS.BASTION}
 		}
 	},
+	["Apprentice Slimemancer's Boots"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Apprentice Slimemancer's Boots"],
+		itemId = 187913,
+		items = {181732, 181733},
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.MALDRAXXUS}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)
