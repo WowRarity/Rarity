@@ -453,6 +453,19 @@ local shadowlandsToys = {
 			{m = CONSTANTS.UIMAPIDS.MALDRAXXUS}
 		}
 	},
+	["Sparkle Wings"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Sparkle Wings"],
+		itemId = 187840,
+		items = {181475, 181476},
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.ARDENWEALD}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)
