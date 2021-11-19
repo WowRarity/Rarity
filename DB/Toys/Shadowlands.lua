@@ -466,6 +466,19 @@ local shadowlandsToys = {
 			{m = CONSTANTS.UIMAPIDS.ARDENWEALD}
 		}
 	},
+	["Tome of Small Sins"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Tome of Small Sins"],
+		itemId = 187512,
+		items = {181556, 181557},
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.REVENDRETH}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)
