@@ -427,6 +427,19 @@ local shadowlandsToys = {
 			{m = CONSTANTS.UIMAPIDS.TORGHAST}
 		}
 	},
+	["Steward's First Feather"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Steward's First Feather"],
+		itemId = 187419,
+		items = {181741, 181372},
+		chance = 100, -- Blind guess
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.BASTION}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)
