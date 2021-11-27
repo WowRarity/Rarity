@@ -3,12 +3,16 @@ local changes = {
 		additions = {
 			"Attempts for Reins of the Infinite Timereaver should now also accumulate in Legion Timewalking dungeons",
 			"REVERTED: Added tracking for Illidari Doomhawk and Doomwalker Trophy Stand (17th anniversary)",
+			"Added tracking for the convenant-specific toys added in patch 9.1.5 (obtained from Callings)"
 		},
 		fixes = {
 			"Fixed an error in the spell detection that caused attempts for custom items using Pick Pocket to not be detected"
 		},
 		notes = {
 			"Blizzard hotfixed the anniversary drops to be guaranteed. As such they've been removed from Rarity again."
+		},
+		contributors = {
+			"Tommy Godejord",
 		}
 	},
 	["r712"] = {
