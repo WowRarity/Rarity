@@ -2,7 +2,6 @@
 -- Note: Spell names are no longer needed, and dealing with them is actually more complicated after the 8.0.1 API changes. They're only used for readability's sake
 Rarity.relevantSpells = {
 	-- Tested (confirmed working in 8.0.1)
-	[921] = "Pick Pocket",
 	[3365] = "Opening",
 	[13262] = "Disenchant",
 	[22810] = "Opening - No Text",
