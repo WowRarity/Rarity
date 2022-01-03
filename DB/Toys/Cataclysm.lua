@@ -21,7 +21,7 @@ local cataclysmToys = {
 		},
 		pickpocket = true,
 		coords = {
-			{m = CONSTANTS.UIMAPIDS.TWILIGHT_HIGHLANDS}, 
+			{m = CONSTANTS.UIMAPIDS.TWILIGHT_HIGHLANDS},
 			{m = CONSTANTS.UIMAPIDS.TOL_BARAD},
 			{m = CONSTANTS.UIMAPIDS.ULDUM_CATACLYSM}
 		}
