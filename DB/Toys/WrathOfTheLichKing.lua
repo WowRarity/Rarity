@@ -29,6 +29,18 @@ local wotlkToys = {
 		items = {46007},
 		chance = 20,
 		coords = {{m = 125, x = 52.6, y = 65.6}}
+	},
+	["Decahedral Dwarven Dice"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.WOTLK,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Decahedral Dwarven Dice"],
+		itemId = 36863,
+		chance = 300,
+		npcs = { 27357, 32149, 29614, 27367, 27203, 29330},
+		pickpocket = true,
+		coords = {{m = CONSTANTS.UIMAPIDS.DRAGONBLIGHT}, {m = CONSTANTS.UIMAPIDS.ICECROWN}}
 	}
 }
 
