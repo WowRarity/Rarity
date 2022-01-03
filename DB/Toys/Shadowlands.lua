@@ -479,6 +479,27 @@ local shadowlandsToys = {
 			{m = CONSTANTS.UIMAPIDS.REVENDRETH}
 		}
 	},
+	["Shaded Judgment Stone"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Shaded Judgment Stone"],
+		isToy = true,
+		itemId = 187174,
+		npcs = {
+			179913,
+			179608,
+			179914,
+			179911,
+			179853
+		},
+		chance = 100, -- Blind guess
+		sourceText = L["This item can only drop in the rift phase of Korthia and The Maw."],
+		coords = {
+			{m = CONSTANTS.UIMAPIDS.KORTHIA},
+			{m = CONSTANTS.UIMAPIDS.THE_MAW}
+		}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)
