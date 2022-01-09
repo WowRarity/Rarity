@@ -578,6 +578,8 @@ local shadowlandsPets = {
 		npcs = {156340},
 		questId = 61634,
 		chance = 25,
+		requiresCovenant = true,
+		requiredCovenantID = CONSTANTS.COVENANT_IDS.KYRIAN,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.BASTION, x = 22.6, y = 22.8, n = L["Larionrider Orstus"]}
 		}
