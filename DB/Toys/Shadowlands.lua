@@ -338,6 +338,7 @@ local shadowlandsToys = {
 		npcs = {179735},
 		chance = 8,
 		unique = true,
+		questId = {64232},
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW, x = 28.5, y = 24.9, n = L["Torglluun"]}
 		}
