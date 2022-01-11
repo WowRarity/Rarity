@@ -336,7 +336,7 @@ local shadowlandsToys = {
 		isToy = true,
 		itemId = 187139,
 		npcs = {179735},
-		chance = 100, -- Blind guess
+		chance = 8,
 		unique = true,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW, x = 28.5, y = 24.9, n = L["Torglluun"]}
