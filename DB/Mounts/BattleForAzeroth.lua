@@ -571,7 +571,6 @@ local bfaMounts = {
 		npcs = {126983},
 		statisticId = {12752},
 		chance = 200,
-		equalOdds = true,
 		instanceDifficulties = {[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true},
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
@@ -582,7 +581,6 @@ local bfaMounts = {
 				}
 			}
 		},
-		groupSize = 5,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.FREEHOLD, i = true}
 		}
