@@ -996,7 +996,7 @@ local shadowlandsPets = {
 		spellId = 353644,
 		creatureId = 179228,
 		npcs = {177132},
-		chance = 100, -- Blind guess
+		chance = 500,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.THE_MAW, n = L["Helsworn Soulseeker"]}
 		}
