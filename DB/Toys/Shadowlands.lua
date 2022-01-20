@@ -55,7 +55,7 @@ local shadowlandsToys = {
 		name = L["Smolderheart"],
 		itemId = 180873,
 		npcs = {160857},
-		chance = 25,
+		chance = 20,
 		questId = {58263},
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 34.08, y = 55.47, n = L["Sire Ladinas"]}
