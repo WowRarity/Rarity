@@ -1904,6 +1904,7 @@ L["Sparkle Wings"] = true
 L["Tome of Small Sins"] = true
 L["Shaded Judgment Stone"] = true
 L["This item can only drop in the rift phase of Korthia and The Maw."] = true
+L["This mount can only drop while having the Abomination Stitching construct Neena as your active companion."] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
