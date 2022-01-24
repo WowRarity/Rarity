@@ -382,7 +382,6 @@ local wodMounts = {
 			36502, -- Devourer of Souls
 			---- Utgarde Keep
 			23953, -- Prince Keleseth
-			24200, -- Skarvald
 			24201, -- Dalronn
 			23954, -- Ingvar the Plunderer
 			-- Cataclysm Dungeons
