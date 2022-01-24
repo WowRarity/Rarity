@@ -30,6 +30,7 @@ local shadowlandsMounts = {
 		spellId = 332457,
 		npcs = { 162586 },
 		chance = 100,
+		questId = {58783},
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 44.2, y = 51.2, n = L["Tahonta"] },
 		},
