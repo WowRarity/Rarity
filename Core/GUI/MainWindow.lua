@@ -8,6 +8,7 @@ local CONSTANTS = addonTable.constants
 local GetBestMapForUnit = C_Map.GetBestMapForUnit
 local IsWorldQuestActive = C_TaskQuest.IsActive
 local IsQuestFlaggedCompleted = _G.C_QuestLog.IsQuestFlaggedCompleted
+local C_Covenants = _G.C_Covenants
 
 local FormatTime = Rarity.Utils.PrettyPrint.FormatTime
 local sort2 = Rarity.Utils.Sorting.sort2
@@ -1060,6 +1061,13 @@ local function addGroup(group, requiresGroup)
 						if v.pickpocket then
 							local class, classFileName = UnitClass("player")
 							if classFileName ~= "ROGUE" then
+								status = colorize(L["Unavailable"], gray)
+							end
+						end
+
+						if v.requiresCovenant and v.requiredCovenantID ~= nil then
+							local activeCovenantID = C_Covenants.GetActiveCovenantID()
+							if (activeCovenantID ~= v.requiredCovenantID) then
 								status = colorize(L["Unavailable"], gray)
 							end
 						end
