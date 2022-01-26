@@ -301,10 +301,6 @@ local wodMounts = {
 			24744, -- Vexallus
 			24560, -- Priestess Velrissa
 			24664, -- Kael'thas Sunstrider
-			---- The Slave Pens this has been removed
-			--17941, -- Mennu the Betrayer
-			--17991, -- Rokmar the Crackler
-			--17942, -- Quagmirran
 			-- The Shattered Halls
 			16807, -- Grand Warlock Nethekurse
 			20923, -- Blood Guard Porung
@@ -315,15 +311,6 @@ local wodMounts = {
 			18343, -- Tavarok
 			18344, -- Nexus-Prince Shaffar
 			22930, -- Yor
-			---- The Black Morass this has been removed
-			----17879, -- Chrono Lord Deja
-			----17880, -- Temporus
-			----17881, -- Aeonus
-			---- The Arcatraz this has been removed
-			----20870, -- Zereketh the Unbound
-			----20885, -- Dalliah the Doomsayer
-			----20886, -- Wrath-Scryer Soccothrates
-			----20912, -- Harbinger Skyriss
 			---- Blood furnace newly added
 			17381, -- The Maker
 			17380, -- Broggok
@@ -340,15 +327,6 @@ local wodMounts = {
 			17826, -- Swamplord Musel'ek
 			17882, -- The Black Stalker
 			-- WOTLK Dungeons
-			---- Pit of Saron rotaed out
-			----36494, -- Forgemaster Garfrost
-			----36476, -- Ick
-			----36658, -- Scourgelord Tyrannus
-			---- Utgarde Pinnacle roated out
-			----26668, -- Svala Sorrowgrave
-			----26687, -- Gortok Palehoof
-			----26693, -- Skadi the Ruthless
-			----26861, -- King Ymiron
 			---- The Nexus
 			26731, -- Grand Magus Telestra
 			26763, -- Anomalus
@@ -367,12 +345,6 @@ local wodMounts = {
 			29305, -- Moorabi
 			29306, -- Gal'darah
 			29932, -- Eck the Ferocious
-			---- Ahn'kahet: The Old Kingdom rotated out
-			----29309, -- Elder Nadox
-			----29308, -- Prince Taldaram
-			----29310, -- Jedoga Shadowseeker
-			----29311, -- Herald Volazj
-			----30258, -- Amanitar
 			---- Azjol-Nerub
 			28684, -- Krik'thir the Gatewatcher
 			28921, -- Hadronox
@@ -404,11 +376,6 @@ local wodMounts = {
 			43612, -- High Prophet Barim
 			44819, -- Siamat
 			49045, -- Augh
-			---- Grim Batol dungeon removed
-			---- 39625, -- General Umbriss
-			---- 40177, -- Forgemaster Throngus
-			---- 40319, -- Drahga Shadowburner
-			---- 40484, -- Erudax
 			---- End Time
 			54431, -- Echo of Baine
 			54445, -- Echo of Jaina
@@ -437,11 +404,6 @@ local wodMounts = {
 			56637, -- Ook-ook
 			56717, -- Hoptallus
 			59479, -- Yan-Zhu the Uncasked
-			---- Siege of Niuzao Temple dungeon was removed
-			---- 61567, -- Vizier Jin'bak
-			---- 61634, -- Commander Vo'jak
-			---- 61485, -- General Pa'valak
-			---- 62205, -- Wing Leader Ner'onok
 			---- Shado-Pan Monastery
 			56747, -- Gu Cloudstrike
 			56541, -- Master Snowdrift *
@@ -469,11 +431,6 @@ local wodMounts = {
 			74787, -- Slave Watcher Crushto
 			75786, -- Roltall
 			74790, -- GugÄrokk
-			---- Iron Docks this dungeon has been removed from rotation
-			---- 81305, -- Fleshrender Nok'gar
-			---- 80816, -- Ahri'ok Dugru
-			---- 79852, -- Oshir
-			---- 83612, -- Skulloc
 			---- Auchindoun
 			75839, -- Vigilant Kaathar
 			76177, -- Soulbinder Nyami
