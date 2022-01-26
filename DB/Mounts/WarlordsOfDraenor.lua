@@ -311,17 +311,17 @@ local wodMounts = {
 			18343, -- Tavarok
 			18344, -- Nexus-Prince Shaffar
 			22930, -- Yor
-			---- Blood furnace newly added
+			---- Blood Furnace
 			17381, -- The Maker
 			17380, -- Broggok
 			17377, -- Keli'dan the Breaker
-			----The Botanica
+			---- The Botanica
 			17976, -- Commander Sarannis
 			17975, -- High Botanist Freywinn
 			17978, -- Thorngrin the Tender
 			17980, -- Laj
 			17977, -- Warp Splinter
-			----The Underbog
+			---- The Underbog
 			17770, -- Hungarfen
 			18105, -- Ghaz'an
 			17826, -- Swamplord Musel'ek
@@ -350,7 +350,7 @@ local wodMounts = {
 			28921, -- Hadronox
 			29120, -- Anub'arak
 			---- The Forge of Souls
-			36497, -- Bronjahm 
+			36497, -- Bronjahm
 			36502, -- Devourer of Souls
 			---- Utgarde Keep
 			23953, -- Prince Keleseth
