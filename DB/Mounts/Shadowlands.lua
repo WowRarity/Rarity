@@ -21,21 +21,24 @@ local shadowlandsMounts = {
 		requiresCovenant = true,
 		requiredCovenantID = CONSTANTS.COVENANT_IDS.VENTHYR
 	},
-	-- ["Bonehoof Tauralus"] = { -- NYI as of 21/01/2021 ?
-	-- 	cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
-	-- 	type = CONSTANTS.ITEM_TYPES.MOUNT,
-	-- 	method = CONSTANTS.DETECTION_METHODS.NPC,
-	-- 	name = L["Bonehoof Tauralus"],
-	-- 	itemId = 182075,
-	-- 	spellId = 332457,
-	-- 	npcs = { 162586 },
-	-- 	chance = 100,
-	-- 	coords = {
-	-- 		{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 44.2, y = 51.2, n = L["Tahonta"] },
-	-- 	},
-	-- 	requiresCovenant = true,
-	-- 	requiredCovenantID = CONSTANTS.COVENANT_IDS.NECROLORD
-	-- },
+	["Bonehoof Tauralus"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Bonehoof Tauralus"],
+		itemId = 182075,
+		spellId = 332457,
+		npcs = { 162586 },
+		chance = 100,
+		questId = {58783},
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 44.2, y = 51.2, n = L["Tahonta"] },
+		},
+		requiresCovenant = true,
+		requiredCovenantID = CONSTANTS.COVENANT_IDS.NECROLORD,
+		sourceText = L["This mount can only drop while having the Abomination Stitching construct Neena as your active companion."],
+		requiresCompletedQuestId = { 57603 } -- This quest represents having the companion Neena summoned.
+	},
 
 	["Hopecrusher Gargon"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,

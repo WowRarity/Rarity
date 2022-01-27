@@ -110,7 +110,7 @@ local GetMapInfo = _G.C_Map.GetMapInfo
 local C_Timer = _G.C_Timer
 local IsSpellKnown = _G.IsSpellKnown
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
-local IsQuestFlaggedCompleted = _G.IsQuestFlaggedCompleted
+local IsQuestFlaggedCompleted = _G.C_QuestLog.IsQuestFlaggedCompleted
 local C_Covenants = _G.C_Covenants
 
 local COMBATLOG_OBJECT_AFFILIATION_MINE = _G.COMBATLOG_OBJECT_AFFILIATION_MINE
@@ -739,6 +739,15 @@ function R:IsAttemptAllowed(item)
 			)
 		)
 		return false
+	end
+
+	-- If any prerequisite quests exist, check if they are all completed
+	if item.requiresCompletedQuestId and type(item.requiresCompletedQuestId) == "table" then
+		for key, questId in pairs(item.requiresCompletedQuestId) do
+			if not IsQuestFlaggedCompleted(questId) then
+				return false
+			end
+		end
 	end
 
 	-- No valid instance difficulty configuration; allow (this needs to be the second-to-last check)
