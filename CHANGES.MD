@@ -1,3 +1,22 @@
+**r714:**
+
+Additions:
+> Added tracking for Shaded Judgement Stone (Korthia/The Maw)
+<br>Added tracking for the various 'dice' toys obtainable only via pickpocketing
+
+Changes:
+> Adjusted the drop rate of several Shadowlands collectibles to more accurately reflect wowhead's data
+
+Fixes:
+> Attempts for the Infinite Timereaver mount should now correctly be detected in the recently-added Timewalking dungeons
+<br>Collectibles that require being affiliated with a different covenant should now correctly be marked as 'unavailable' in the addon's main window
+
+Contributors (in alphabetical order):
+> ithappenedagain
+<br>Tommy Godejord
+
+-----
+
 **r713:**
 
 Additions:
@@ -68,24 +87,3 @@ Contributors (in alphabetical order):
 > AySz88
 <br>Tommy Godejord
 <br>Matthew Rowland
-
------
-
-**r709:**
-
-Additions:
-> Added tracking for mounts introduced in Chains of Domination 
-<br>Added tracking for various toys introduced in Chains of Domination
-<br>Added tracking for most pets introduced in Chains of Domination
-
-Changes:
-> Rarity's achievement toast now also supports two lines of text properly, similar to Blizzard's recently-updated version
-
-Fixes:
-> Fixed an issue where two icons would be displayed in the achievement toast
-
-Developer Notes:
-> There are a number of collectibles we don't currently have sufficient data on. These will be added as soon™ as possible, but it might still take a while.
-
-Contributors (in alphabetical order):
-> Tommy Godejord

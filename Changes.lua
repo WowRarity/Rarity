@@ -1,4 +1,21 @@
 local changes = {
+	["r714"] = {
+		additions = {
+			"Added tracking for Shaded Judgement Stone (Korthia/The Maw)",
+			"Added tracking for the various 'dice' toys obtainable only via pickpocketing",
+		},
+		changes = {
+			"Adjusted the drop rate of several Shadowlands collectibles to more accurately reflect wowhead's data",
+		},
+		fixes = {
+			"Attempts for the Infinite Timereaver mount should now correctly be detected in the recently-added Timewalking dungeons",
+			"Collectibles that require being affiliated with a different covenant should now correctly be marked as 'unavailable' in the addon's main window"
+		},
+		contributors = {
+			"ithappenedagain",
+			"Tommy Godejord",
+		}
+	},
 	["r713"] = {
 		additions = {
 			"Attempts for Reins of the Infinite Timereaver should now also accumulate in Legion Timewalking dungeons",
