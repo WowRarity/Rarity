@@ -599,6 +599,15 @@ local bfaMounts = {
 		equalOdds = true,
 		instanceDifficulties = {[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true},
 		groupSize = 5,
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Unbound Abomination",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true
+				}
+			}
+		},
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.THE_UNDERROT, i = true}
 		}
