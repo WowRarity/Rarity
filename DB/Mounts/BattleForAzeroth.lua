@@ -615,6 +615,15 @@ local bfaMounts = {
 		statisticId = {12763},
 		chance = 200,
 		instanceDifficulties = {[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true},
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "King Dazar",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true
+				}
+			}
+		},
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.KINGS_REST, i = true}
 		}
