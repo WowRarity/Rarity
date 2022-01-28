@@ -614,9 +614,7 @@ local bfaMounts = {
 		tooltipNpcs = {136160},
 		statisticId = {12763},
 		chance = 200,
-		equalOdds = true,
 		instanceDifficulties = {[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true},
-		groupSize = 5,
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.KINGS_REST, i = true}
 		}
