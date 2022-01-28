@@ -596,9 +596,7 @@ local bfaMounts = {
 		tooltipNpcs = {133007},
 		statisticId = {12745},
 		chance = 200,
-		equalOdds = true,
 		instanceDifficulties = {[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true},
-		groupSize = 5,
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
 			{
