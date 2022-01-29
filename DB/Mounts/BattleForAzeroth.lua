@@ -614,9 +614,16 @@ local bfaMounts = {
 		tooltipNpcs = {136160},
 		statisticId = {12763},
 		chance = 200,
-		equalOdds = true,
 		instanceDifficulties = {[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true},
-		groupSize = 5,
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "King Dazar",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true
+				}
+			}
+		},
 		coords = {
 			{m = CONSTANTS.UIMAPIDS.KINGS_REST, i = true}
 		}
