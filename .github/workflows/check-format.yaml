@@ -1,0 +1,43 @@
+name: Formatting
+
+on:
+  pull_request:
+    paths-ignore:
+      - "README.MD"
+    types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - "README.MD"
+
+jobs:
+  check-format:
+    name: luaformat
+    runs-on: ubuntu-latest
+
+    steps:
+      # LuaRocks needs the 5.1 headers to compile LuaCheck later, so we download them, too
+      - name: Install LuaJIT
+        run: sudo apt-get install luajit libluajit-5.1-dev
+
+      - name: Download LuaRocks
+        run: wget https://luarocks.org/releases/luarocks-3.7.0.tar.gz
+
+      - name: Unpack LuaRocks release
+        run: tar zxpf luarocks-3.7.0.tar.gz
+
+      - name: Install LuaRocks
+        run: cd luarocks-3.7.0 && ./configure && make && sudo make install
+
+      - name: Install lua-formatter
+        run: sudo luarocks install --server=https://luarocks.org/dev luaformatter
+
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+
+      - name: Run lua-formatter
+        run: ./autoformat.sh
+
+      - name: Check for inconsistent formatting
+        run: git --no-pager diff --exit-code -b . #The -b is for inconsistent newlines, which we ignore (for now)
