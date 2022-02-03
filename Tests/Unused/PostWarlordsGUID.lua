@@ -4,7 +4,7 @@ local UNIT_TYPES = {
 	PET = "Pet",
 	GAME_OBJECT = "GameObject",
 	VEHICLE = "Vehicle",
-	VIGNETTE = "Vignette"
+	VIGNETTE = "Vignette",
 }
 
 local UNIT_GUID_SEPARATOR = "-"

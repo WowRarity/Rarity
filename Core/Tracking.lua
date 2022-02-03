@@ -78,7 +78,7 @@ function Tracking:Update(item)
 		end
 	end
 	Rarity.GUI:UpdateText()
-	--if self:InTooltip() then self:ShowTooltip() end
+	-- if self:InTooltip() then self:ShowTooltip() end
 	self:ProfileStop2("UpdateTrackedItem: %fms")
 end
 

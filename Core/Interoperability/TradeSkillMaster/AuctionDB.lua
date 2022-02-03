@@ -27,8 +27,7 @@ function AuctionDB:IsLoaded()
 
 	if not (GetCustomPriceValue and FormatMoneyString and ToItemString and GetPriceSourceKeys) then
 		Rarity:Print(
-			"Failed to load one or more of the required TSM_APIs. TSM integration will not work until this is fixed, so please report the error :)"
-		)
+				"Failed to load one or more of the required TSM_APIs. TSM integration will not work until this is fixed, so please report the error :)")
 		Rarity:Print("In the meantime, you can disable the feature to hide all messages pertaining to it")
 		return
 	end

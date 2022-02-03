@@ -14,11 +14,9 @@ function Statistics.GetRealDropPercentage(item)
 	local realDropChance = dropChance -- Default: Personal Loot -> group members don't matter
 	local fractionalDropChance = ((item.chance or 0) * (item.groupSize or 1))
 
-	local itemUsesSharedLoot =
-		(item.method == BOSS and -- Only applies to
-		item.groupSize ~= nil and
-		item.groupSize > 1 and -- Item uses Shared Loot
-		not item.equalOdds) -- Not overwritten by the Personal Loot toggle
+	local itemUsesSharedLoot = (item.method == BOSS and -- Only applies to
+	item.groupSize ~= nil and item.groupSize > 1 and -- Item uses Shared Loot
+	not item.equalOdds) -- Not overwritten by the Personal Loot toggle
 	if itemUsesSharedLoot then
 		realDropChance = dropChance / item.groupSize
 	end

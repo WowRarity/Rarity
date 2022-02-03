@@ -15,7 +15,7 @@ R.coins = {
 	-- Legion
 	[1273] = true, -- Seal of Broken Fate
 	-- Battle for Azeroth
-	[1580] = true -- Seal of Wartorn Fate
+	[1580] = true, -- Seal of Wartorn Fate
 }
 
 R.fishnodes = {
@@ -151,7 +151,7 @@ R.fishnodes = {
 	[L["Silvergill Pike School"]] = true,
 	[L["Elysian Thade School"]] = true,
 	[L["Lost Sole School"]] = true,
-	[L["Spinefin Piranha School"]] = true
+	[L["Spinefin Piranha School"]] = true,
 }
 
 R.miningnodes = {
@@ -216,7 +216,7 @@ R.miningnodes = {
 	[L["Leystone Seam"]] = true,
 	[L["Felslate Deposit"]] = true,
 	[L["Rich Felslate Deposit"]] = true,
-	[L["Felslate Seam"]] = true
+	[L["Felslate Seam"]] = true,
 }
 
 R.opennodes = {
@@ -247,5 +247,5 @@ R.opennodes = {
 	[L["Hidden Hoard"]] = true,
 	[L["Memorial Offerings"]] = true,
 	[L["Treasure of Courage"]] = true,
-	[L["Zovaal's Vault"]] = true
+	[L["Zovaal's Vault"]] = true,
 }

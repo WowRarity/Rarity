@@ -12,12 +12,10 @@ local wotlkToys = {
 		method = CONSTANTS.DETECTION_METHODS.USE,
 		name = L["Frenzyheart Brew"],
 		itemId = 44719,
-		items = {44718},
+		items = { 44718 },
 		chance = 4,
-		sourceText = L[
-			"Contained in Ripe Disgusting Jar, which is obtained by becoming Revered with Frenzyheart Tribe, purchasing a Disgusting Jar from their reputation vendor, and waiting three days."
-		],
-		coords = {{m = 119, x = 55, y = 69}}
+		sourceText = L["Contained in Ripe Disgusting Jar, which is obtained by becoming Revered with Frenzyheart Tribe, purchasing a Disgusting Jar from their reputation vendor, and waiting three days."],
+		coords = { { m = 119, x = 55, y = 69 } },
 	},
 	["Unusual Compass"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOTLK,
@@ -26,9 +24,9 @@ local wotlkToys = {
 		method = CONSTANTS.DETECTION_METHODS.USE,
 		name = L["Unusual Compass"],
 		itemId = 45984,
-		items = {46007},
+		items = { 46007 },
 		chance = 20,
-		coords = {{m = 125, x = 52.6, y = 65.6}}
+		coords = { { m = 125, x = 52.6, y = 65.6 } },
 	},
 	["Decahedral Dwarven Dice"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOTLK,
@@ -38,9 +36,9 @@ local wotlkToys = {
 		name = L["Decahedral Dwarven Dice"],
 		itemId = 36863,
 		chance = 300,
-		npcs = { 27357, 32149, 29614, 27367, 27203, 29330},
+		npcs = { 27357, 32149, 29614, 27367, 27203, 29330 },
 		pickpocket = true,
-		coords = {{m = CONSTANTS.UIMAPIDS.DRAGONBLIGHT}, {m = CONSTANTS.UIMAPIDS.ICECROWN}}
+		coords = { { m = CONSTANTS.UIMAPIDS.DRAGONBLIGHT }, { m = CONSTANTS.UIMAPIDS.ICECROWN } },
 	},
 	["Worn Troll Dice"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOTLK,
@@ -74,14 +72,14 @@ local wotlkToys = {
 		},
 		pickpocket = true,
 		coords = {
-			{m = CONSTANTS.UIMAPIDS.HROTHGARS_LANDING},
-			{m = CONSTANTS.UIMAPIDS.ICECROWN},
-			{m = CONSTANTS.UIMAPIDS.HOWLING_FJORD},
-			{m = CONSTANTS.UIMAPIDS.GRIZZLY_HILLS},
-			{m = CONSTANTS.UIMAPIDS.ZUL_DRAK},
-			{m = CONSTANTS.UIMAPIDS.SHOLAZAR_BASIN},
-		}
-	}
+			{ m = CONSTANTS.UIMAPIDS.HROTHGARS_LANDING },
+			{ m = CONSTANTS.UIMAPIDS.ICECROWN },
+			{ m = CONSTANTS.UIMAPIDS.HOWLING_FJORD },
+			{ m = CONSTANTS.UIMAPIDS.GRIZZLY_HILLS },
+			{ m = CONSTANTS.UIMAPIDS.ZUL_DRAK },
+			{ m = CONSTANTS.UIMAPIDS.SHOLAZAR_BASIN },
+		},
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, wotlkToys)

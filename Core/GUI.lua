@@ -59,7 +59,6 @@ local sort_progress = Rarity.Utils.Sorting.sort_progress
 local GetDate = Rarity.Utils.Time.GetDate
 local AuctionDB = Rarity.AuctionDB
 
-
 --[[
       GAME TOOLTIPS ------------------------------------------------------------------------------------------------------------
   ]]
@@ -167,10 +166,8 @@ function Rarity:UpdateSessionAttempts(item)
 	local trackedItem = Rarity.Tracking:GetTrackedItem()
 	local trackedItem2 = Rarity.Tracking:GetTrackedItem(2)
 
-	if
-		lastAttemptItem and lastAttemptItem ~= item and
-			GetTime() - (Rarity.Tracking:GetLastAttemptTime() or 0) <= DUAL_TRACK_THRESHOLD
-	 then -- Beginning to track two things at once
+	if lastAttemptItem and lastAttemptItem ~= item and GetTime() - (Rarity.Tracking:GetLastAttemptTime() or 0) <=
+			DUAL_TRACK_THRESHOLD then -- Beginning to track two things at once
 		Rarity.Session:Update()
 	else
 		if trackedItem == item or trackedItem2 == item then
@@ -187,19 +184,13 @@ function Rarity:ProcessLockoutDetection(item)
 		RequestRaidInfo()
 		RequestLFDPlayerLockInfo()
 
-		self:ScheduleTimer(
-			function()
-				RequestRaidInfo()
-				RequestLFDPlayerLockInfo()
-			end,
-			10
-		)
-		self:ScheduleTimer(
-			function()
-				Rarity:ScanInstanceLocks("ATTEMPT DETECTED")
-			end,
-			5
-		)
+		self:ScheduleTimer(function()
+			RequestRaidInfo()
+			RequestLFDPlayerLockInfo()
+		end, 10)
+		self:ScheduleTimer(function()
+			Rarity:ScanInstanceLocks("ATTEMPT DETECTED")
+		end, 5)
 	end
 end
 
@@ -208,17 +199,13 @@ function Rarity:StartBonusRollTrackingTimer(item)
 		self:Debug("Allowing this item to be counted again if a coin is used in the next 90 seconds")
 		self.lastCoinItem = item
 
-		self:ScheduleTimer(
-			function()
-				self.lastCoinItem = nil
-			end,
-			90
-		)
+		self:ScheduleTimer(function()
+			self.lastCoinItem = nil
+		end, 90)
 	else
 		self.lastCoinItem = nil
 	end
 end
-
 
 Rarity.GUI = GUI
 return GUI

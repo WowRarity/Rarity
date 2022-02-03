@@ -17,12 +17,12 @@ local obsoleteItems = {
 		["Regenerating Banana Bunch"] = true,
 		["Kojo's Master Matching Set"] = true,
 		["Jinyu Light Globe"] = true,
-		["Words of Akunda"] = true
+		["Words of Akunda"] = true,
 	},
 	pets = {
 		["Tiny Emerald Whelpling"] = true, -- Blizzard renamed this to "Emerald Whelpling" (data is not transfered)
-		["Mr. Pinchy"] = true -- Not actually removed, but moved to the items category apparently? (data is not transfered)
-	}
+		["Mr. Pinchy"] = true, -- Not actually removed, but moved to the items category apparently? (data is not transfered)
+	},
 }
 
 --- Removes unused (dangling) entries from the DB.

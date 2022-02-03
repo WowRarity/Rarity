@@ -84,7 +84,7 @@ function R:ScanInstanceLocks(reason)
 	local savedInstances = GetNumSavedInstances()
 	for i = 1, savedInstances do
 		local instanceName, instanceID, instanceReset, instanceDifficulty, locked, extended, instanceIDMostSig =
-			GetSavedInstanceInfo(i)
+				GetSavedInstanceInfo(i)
 
 		-- Legacy code (deprecated)
 		if instanceReset > 0 then
@@ -113,7 +113,7 @@ function R:ScanInstanceLocks(reason)
 						-- Create containers if this is the first lockout for a given instance
 						self.lockouts_detailed[encounterName] = self.lockouts_detailed[encounterName] or {}
 						self.lockouts_detailed[encounterName][instanceDifficulty] =
-							self.lockouts_detailed[encounterName][instanceDifficulty] or {}
+								self.lockouts_detailed[encounterName][instanceDifficulty] or {}
 						-- Add this lockout to the container
 						self.lockouts_detailed[encounterName][instanceDifficulty] = true
 					end
@@ -134,18 +134,18 @@ function R:ScanInstanceLocks(reason)
 	end
 
 	-- This code lists every LFG dungeon ID in the game (up through 1000)
-	--for instanceID = 0, 1000 do
+	-- for instanceID = 0, 1000 do
 	--	local dungeonName, typeId, subtypeId, minLvl, maxLvl, recLvl, minRecLvl, maxRecLvl, expansionId, groupId, textureName, difficulty, maxPlayers, dungeonDesc, isHoliday = GetLFGDungeonInfo(instanceID)
 	--		if dungeonName then
 	--			self:Print("instanceID = " .. instanceID .. " Name = " .. dungeonName .. " typeID = " .. tostring(typeId) .. " minLvl = " .. minLvl .. " maxLvl = " .. maxLvl .. " recLvl = " .. recLvl .. " groupId = " .. tostring(groupId) .." maxPlayers = " .. tostring(maxPlayers))
 	--		end
-	--end
+	-- end
 end
 
 -- TODO: Does this really belong here? I don't think so...
 function R:BuildStatistics(reason)
 	self:ProfileStart2()
-	--self:Debug("Building statistics table ("..reason..")")
+	-- self:Debug("Building statistics table ("..reason..")")
 
 	local tbl = {}
 	Rarity.lastStatCount = 0
@@ -182,7 +182,7 @@ function R:ScanStatistics(reason)
 	end -- Don't do this during combat as it has a tendency to run too long
 
 	self:ProfileStart2()
-	--self:Debug("Scanning statistics ("..reason..")")
+	-- self:Debug("Scanning statistics ("..reason..")")
 
 	if rarity_stats == nil or (Rarity.lastStatCount or 0) <= 0 then
 		self:Debug("Building initial statistics table")
@@ -193,10 +193,8 @@ function R:ScanStatistics(reason)
 
 	for kk, vv in pairs(Rarity.items_with_stats) do
 		if type(vv) == "table" then
-			if
-				(vv.requiresHorde and R.Caching:IsHorde()) or (vv.requiresAlliance and not R.Caching:IsHorde()) or
-					(not vv.requiresHorde and not vv.requiresAlliance)
-			 then
+			if (vv.requiresHorde and R.Caching:IsHorde()) or (vv.requiresAlliance and not R.Caching:IsHorde()) or
+					(not vv.requiresHorde and not vv.requiresAlliance) then
 				if vv.statisticId and type(vv.statisticId) == "table" then
 					local count = 0
 					local totalCrossAccount = 0
@@ -210,8 +208,8 @@ function R:ScanStatistics(reason)
 						if Rarity.db.profile.accountWideStatistics then
 							for playerGuid, playerData in pairs(Rarity.db.profile.accountWideStatistics) do
 								if playerData.statistics then
-									totalCrossAccount =
-										totalCrossAccount + (Rarity.db.profile.accountWideStatistics[playerGuid].statistics[vvv] or 0)
+									totalCrossAccount = totalCrossAccount +
+											                    (Rarity.db.profile.accountWideStatistics[playerGuid].statistics[vvv] or 0)
 								end
 							end
 						end
@@ -237,9 +235,8 @@ function R:ScanStatistics(reason)
 
 					-- Cross-account statistic total is higher than the one we have; update to new total
 					if totalCrossAccount > (vv.attempts or 0) and vv.doNotUpdateToHighestStat ~= true then
-						R:Debug(
-							"Account-wide statistics for " .. vv.name .. " are higher than current amount. Updating to " .. totalCrossAccount
-						)
+						R:Debug("Account-wide statistics for " .. vv.name .. " are higher than current amount. Updating to " ..
+								        totalCrossAccount)
 						vv.attempts = totalCrossAccount
 						self:OutputAttempts(vv, true)
 					end
