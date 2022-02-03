@@ -10,17 +10,13 @@ local R = Rarity
 local GUI = Rarity.GUI
 local CONSTANTS = addonTable.constants
 
-local dataobj =
-	ldb:NewDataObject(
-	"Rarity",
-	{
-		type = "data source",
-		text = L["Loading"],
-		label = "Rarity",
-		tocname = "Rarity",
-		icon = [[Interface\Icons\spell_nature_forceofnature]]
-	}
-)
+local dataobj = ldb:NewDataObject("Rarity", {
+	type = "data source",
+	text = L["Loading"],
+	label = "Rarity",
+	tocname = "Rarity",
+	icon = [[Interface\Icons\spell_nature_forceofnature]],
+})
 GUI.dataobj = dataobj
 
 function GUI:RegisterDataBroker()
@@ -32,12 +28,10 @@ function dataobj.OnEnter(self)
 	if Rarity.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_HOVER then
 		Rarity.tooltipOpenDelay = true
 		-- The following will queue opening of the tooltip based on a user set delay that triggers on mouseover.
-		C_Timer.After(
-			Rarity.db.profile.tooltipShowDelay or 0.1, -- Delay in seconds
-			function()
-				Rarity.GUI:ShowDelayedTooltip()
-			end
-		)
+		C_Timer.After(Rarity.db.profile.tooltipShowDelay or 0.1, -- Delay in seconds
+		function()
+			Rarity.GUI:ShowDelayedTooltip()
+		end)
 	else
 		Rarity:ShowQuicktip()
 	end
@@ -72,10 +66,8 @@ function dataobj:OnClick(button)
 		end
 	elseif IsControlKeyDown() and isLeftButton then
 		Rarity.GUI:SelectNextSortOrder()
-	elseif
-		((self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_CLICK and isRightButton) or
-			(self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_HOVER and isLeftButton))
-	 then
+	elseif ((self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_CLICK and isRightButton) or
+			(self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_HOVER and isLeftButton)) then
 		-- Toggle progress bar visibility
 		R.db.profile.bar.visible = not R.db.profile.bar.visible
 		Rarity.GUI:UpdateBar()
@@ -96,9 +88,8 @@ function GUI:UpdateText()
 	self = Rarity
 
 	if not Rarity.Caching:IsReady() then
-		dataobj.text =
-			L["Loading"] ..
-			" (" .. format("%d%%", Rarity.Caching:GetPrimedItems() / Rarity.Caching:GetItemsToPrime() * 100) .. ")"
+		dataobj.text = L["Loading"] .. " (" ..
+				               format("%d%%", Rarity.Caching:GetPrimedItems() / Rarity.Caching:GetItemsToPrime() * 100) .. ")"
 		return
 	end
 
@@ -112,17 +103,8 @@ function GUI:UpdateText()
 	end
 
 	-- Feed text
-	local itemName,
-		itemLink,
-		itemRarity,
-		itemLevel,
-		itemMinLevel,
-		itemType,
-		itemSubType,
-		itemStackCount,
-		itemEquipLoc,
-		itemTexture,
-		itemSellPrice = GetItemInfo(trackedItem.itemId)
+	local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc,
+	      itemTexture, itemSellPrice = GetItemInfo(trackedItem.itemId)
 	if not itemTexture then
 		dataobj.icon = [[Interface\Icons\spell_nature_forceofnature]]
 	else
@@ -200,14 +182,8 @@ function GUI:UpdateText()
 	end
 	local text = format("%s: %d (%.2f%%)", itemName or trackedItem.name, attempts, chance)
 	if not self.bar then
-		self.bar =
-			self.barGroup:NewCounterBar(
-			"Track",
-			text,
-			chance,
-			100,
-			itemTexture or [[Interface\Icons\spell_nature_forceofnature]]
-		)
+		self.bar = self.barGroup:NewCounterBar("Track", text, chance, 100,
+		                                       itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
 	else
 		self.bar:SetIcon(itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
 		self.bar:SetLabel(text)
@@ -228,16 +204,9 @@ function GUI:UpdateText()
 	else
 		self.hadBarTwo = true
 		_, -- itemName,
-			_, -- itemLink,
-			itemRarity,
-			itemLevel,
-			itemMinLevel,
-			itemType,
-			itemSubType,
-			itemStackCount,
-			itemEquipLoc,
-			itemTexture,
-			itemSellPrice = GetItemInfo(trackedItem2.itemId)
+		_, -- itemLink,
+		itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
+				GetItemInfo(trackedItem2.itemId)
 		attempts = 0
 		if trackedItem2.attempts then
 			attempts = trackedItem2.attempts
@@ -276,14 +245,8 @@ function GUI:UpdateText()
 		end
 		text = format("%s: %d (%.2f%%)", trackedItem2.name or "", attempts, chance)
 		if not self.bar2 then
-			self.bar2 =
-				self.barGroup:NewCounterBar(
-				"Track2",
-				text,
-				chance,
-				100,
-				itemTexture or [[Interface\Icons\spell_nature_forceofnature]]
-			)
+			self.bar2 = self.barGroup:NewCounterBar("Track2", text, chance, 100,
+			                                        itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
 		else
 			self.bar2:SetIcon(itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
 			self.bar2:SetLabel(text)

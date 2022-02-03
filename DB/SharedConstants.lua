@@ -8,16 +8,11 @@ addonTable.constants = addonTable.constants or {}
 local C = addonTable.constants
 
 -- Types of items
-C.TOOLTIP = {
-	ACTIVATION_METHOD_HOVER = "ACTIVATION_METHOD_HOVER",
-	ACTIVATION_METHOD_CLICK = "ACTIVATION_METHOD_CLICK"
-}
+C.TOOLTIP = { ACTIVATION_METHOD_HOVER = "ACTIVATION_METHOD_HOVER",
+              ACTIVATION_METHOD_CLICK = "ACTIVATION_METHOD_CLICK" }
 
 -- Misc. stuff for the detailed lockout storage / defeat detection
-C.DEFEAT_DETECTION = {
-	MODE_OR = 1,
-	MODE_AND = 2
-}
+C.DEFEAT_DETECTION = { MODE_OR = 1, MODE_AND = 2 }
 
 -- Embedded mapIDs: It's best to avoid hardcoding these in case of yet another re-mapping on Blizzard's end...
 C.UIMAPIDS = {
@@ -113,11 +108,7 @@ C.UIMAPIDS = {
 }
 
 -- Types of items
-C.ITEM_TYPES = {
-	MOUNT = "MOUNT",
-	PET = "PET",
-	ITEM = "ITEM"
-}
+C.ITEM_TYPES = { MOUNT = "MOUNT", PET = "PET", ITEM = "ITEM" }
 
 -- Types of different detection methods
 C.DETECTION_METHODS = {
@@ -130,7 +121,7 @@ C.DETECTION_METHODS = {
 	SPECIAL = "SPECIAL",
 	MINING = "MINING",
 	COLLECTION = "COLLECTION",
-	LOOT_TOAST = "LOOT_TOAST" -- Unused/NYI (but we'll get there later)
+	LOOT_TOAST = "LOOT_TOAST", -- Unused/NYI (but we'll get there later)
 }
 
 -- Categories (expansions-based, with some special types of items)
@@ -144,7 +135,7 @@ C.ITEM_CATEGORIES = {
 	LEGION = "LEGION",
 	BFA = "BFA",
 	SHADOWLANDS = "SHADOWLANDS",
-	HOLIDAY = "HOLIDAY"
+	HOLIDAY = "HOLIDAY",
 }
 
 -- Instance difficulties
@@ -162,20 +153,13 @@ C.INSTANCE_DIFFICULTIES = {
 	LFR = 17,
 	MYTHIC_DUNGEON = 23, -- Mythic 5-player instance
 	TIMEWALKING_DUNGEON = 24, -- Timewalking 5-player instance
-	TIMEWALKING_RAID = 33
+	TIMEWALKING_RAID = 33,
 }
 
 -- LDB feed text
-C.LDB_TEXT_STYLES = {
-	FEED_MINIMAL = "FEED_MINIMAL",
-	FEED_VERBOSE = "FEED_VERBOSE"
-}
+C.LDB_TEXT_STYLES = { FEED_MINIMAL = "FEED_MINIMAL", FEED_VERBOSE = "FEED_VERBOSE" }
 
-C.TOOLTIP_POSITIONS = {
-	TIP_LEFT = "TIP_LEFT",
-	TIP_RIGHT = "TIP_RIGHT",
-	TIP_HIDDEN = "TIP_HIDDEN"
-}
+C.TOOLTIP_POSITIONS = { TIP_LEFT = "TIP_LEFT", TIP_RIGHT = "TIP_RIGHT", TIP_HIDDEN = "TIP_HIDDEN" }
 
 C.SORT_METHODS = {
 	SORT_NONE = "None",
@@ -183,15 +167,10 @@ C.SORT_METHODS = {
 	SORT_DIFFICULTY = "SORT_DIFFICULTY",
 	SORT_PROGRESS = "SORT_PROGRESS",
 	SORT_CATEGORY = "SORT_CATEGORY",
-	SORT_ZONE = "SORT_ZONE"
+	SORT_ZONE = "SORT_ZONE",
 }
 
-C.COVENANT_IDS = {
-	KYRIAN = 1,
-	VENTHYR = 2,
-	NIGHT_FAE = 3,
-	NECROLORD = 4
-}
+C.COVENANT_IDS = { KYRIAN = 1, VENTHYR = 2, NIGHT_FAE = 3, NECROLORD = 4 }
 
 C.HOLIDAY_TEXTURES = {
 	WINTERS_VEIL = "Calendar_WinterVeil",
@@ -207,7 +186,7 @@ C.HOLIDAY_TEXTURES = {
 	CHILDRENS_WEEK = "Calendar_ChildrensWeek",
 	MIDSUMMER_FESTIVAL = "Calendar_Midsummer",
 	FIREWORKS = "calendar_fireworks", -- What is this used for?
-	PIRATES_DAY = "Calendar_PiratesDay"
+	PIRATES_DAY = "Calendar_PiratesDay",
 }
 
 C.ARCHAEOLOGY_RACES = {
@@ -230,7 +209,7 @@ C.ARCHAEOLOGY_RACES = {
 	NIGHT_ELF = 17,
 	FOSSIL = 18,
 	DRAENEI = 19,
-	DWARF = 20
+	DWARF = 20,
 }
 
 -- This doesn't really belong here and needs streamlining anyway, but for now this is the best place.
@@ -241,17 +220,10 @@ C.TOOLTIP_FILTERS = {
 	IS_SPELL_KNOWN = IsSpellKnown,
 	IS_PLAYER_IN_LFR = function()
 		-- Returns true if the player is in a LFR instance
-		local name,
-			type,
-			difficulty,
-			difficultyName,
-			maxPlayers,
-			playerDifficulty,
-			isDynamicInstance,
-			mapID,
-			instanceGroupSize = GetInstanceInfo()
+		local name, type, difficulty, difficultyName, maxPlayers, playerDifficulty, isDynamicInstance, mapID,
+		      instanceGroupSize = GetInstanceInfo()
 		return (difficulty == 7 or difficulty == 17) -- Legacy or regular LFR
-	end
+	end,
 }
 
 -- Tooltip actions (used for modifiers)
@@ -259,28 +231,26 @@ C.TOOLTIP_FILTERS = {
 C.TOOLTIP_ACTIONS = {
 	OVERRIDE_TOOLTIP_NPCS = function(entry, newTooltipNpcs) -- Overwrites all tooltip NPCs
 		-- Sanity checks
-		if
-			not (entry and type(entry) == "table" and newTooltipNpcs and type(newTooltipNpcs) == "number" or
-				type(newTooltipNpcs) == "table")
-		 then
+		if not (entry and type(entry) == "table" and newTooltipNpcs and type(newTooltipNpcs) == "number" or
+				type(newTooltipNpcs) == "table") then
 			Rarity:Debug("Action OVERRIDE_TOOLTIP_NPCS failed! Required parameters: entry, newTooltipNpcs")
 			return
 		end
 
 		-- The tooltipNpcs field needs to be a table (for backwards compatibiliy) even if it's only one CONSTANTS.DETECTION_METHODS.NPC
-		entry.tooltipNpcs = (type(newTooltipNpcs) == "table") and newTooltipNpcs or {newTooltipNpcs}
+		entry.tooltipNpcs = (type(newTooltipNpcs) == "table") and newTooltipNpcs or { newTooltipNpcs }
 		return entry
-	end
+	end,
 }
 
 C.Colors = {
-	Red = {r = 1.0, g = 0.2, b = 0.2},
-	Blue = {r = 0.4, g = 0.4, b = 1.0},
-	Green = {r = 0.2, g = 1.0, b = 0.2},
-	Yellow = {r = 1.0, g = 1.0, b = 0.2},
-	Gray = {r = 0.5, g = 0.5, b = 0.5},
-	Black = {r = 0.0, g = 0.0, b = 0.0},
-	White = {r = 1.0, g = 1.0, b = 1.0}
+	Red = { r = 1.0, g = 0.2, b = 0.2 },
+	Blue = { r = 0.4, g = 0.4, b = 1.0 },
+	Green = { r = 0.2, g = 1.0, b = 0.2 },
+	Yellow = { r = 1.0, g = 1.0, b = 0.2 },
+	Gray = { r = 0.5, g = 0.5, b = 0.5 },
+	Black = { r = 0.0, g = 0.0, b = 0.0 },
+	White = { r = 1.0, g = 1.0, b = 1.0 },
 }
 
 -- Legacy method of sharing constants (awkward, but better than not sharing them I guess)

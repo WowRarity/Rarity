@@ -24,7 +24,7 @@ function Waypoints:GetZoneInfoForItem(item)
 		zoneText = self:GetZoneTextForItem(item),
 		inMyZone = self:IsItemInCurrentZone(item),
 		zoneColor = (self:IsItemInCurrentZone(item) and green) or gray,
-		numZones = self:GetNumZonesForItem(item)
+		numZones = self:GetNumZonesForItem(item),
 	}
 	return zoneInfo
 end

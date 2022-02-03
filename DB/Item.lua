@@ -81,8 +81,8 @@ local Item = {
 		export = false,
 		obtainedQuestId = false,
 		enableAnnouncements = false, -- This is actually wrong, but since the import is bugged it'll exist in all imports (I think)... Doesn't do anything though :/
-		announce = false -- This should be used instead
-	}
+		announce = false, -- This should be used instead
+	},
 }
 
 function Item:HasAllRequiredFields(entry)

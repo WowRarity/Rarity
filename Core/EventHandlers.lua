@@ -99,15 +99,21 @@ end
 -- TODO: Move elsewhere/refactor
 local function addAttemptForItem(itemName, categoryName)
 
-	if not itemName or not categoryName then return end
+	if not itemName or not categoryName then
+		return
+	end
 
 	local Rarity = Rarity
 
 	local group = Rarity.db.profile.groups[categoryName]
-	if not group then return end
+	if not group then
+		return
+	end
 
 	local item = group[itemName]
-	if not item then return end
+	if not item then
+		return
+	end
 
 	if item and type(item) == "table" and item.enabled ~= false and Rarity:IsAttemptAllowed(item) then -- Add one attempt for this item
 		if item.attempts == nil then
@@ -133,7 +139,7 @@ end
 
 local function IsPlayerInHorrificVision()
 	return (GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND) or
-		(GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR)
+			       (GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR)
 end
 
 function R:OnSpellcastSucceeded(event, unitID, castGUID, spellID)
@@ -167,17 +173,18 @@ local TYPE_IDENTIFIER_ITEM = "item" -- What others do they have? currency? gold?
 local GetItemInfoInstant = GetItemInfoInstant
 
 function R:OnShowLootToast(
-	event,
-	typeIdentifier,
-	itemLink,
-	quantity,
-	specID,
-	sex,
-	personalLootToast,
-	toastMethod,
-	lessAwesome,
-	upgraded,
-	corrupted)
+		event,
+		typeIdentifier,
+		itemLink,
+		quantity,
+		specID,
+		sex,
+		personalLootToast,
+		toastMethod,
+		lessAwesome,
+		upgraded,
+		corrupted
+)
 	if typeIdentifier ~= TYPE_IDENTIFIER_ITEM then
 		return R:Debug(format("Ignoring loot toast of type %s (not an item)", typeIdentifier))
 	end
@@ -188,9 +195,7 @@ function R:OnShowLootToast(
 	-- TBD: Should we generalize this to a LOOT_TOAST detection method? Not sure if there are many other items people would care about
 	-- Seems a bit too specialized, since we're detecting the loot toast for one item and then add attempts for another (hacky)
 	local TALONPIERCED_MAWSWORN_LOCKBOX = 187278 -- TBD: Move to shared enum for ITEM_IDS? If we ever get to that point, that is...
-	local lootToastItems = {
-		[TALONPIERCED_MAWSWORN_LOCKBOX] = "Wilderling Saddle"
-	}
+	local lootToastItems = { [TALONPIERCED_MAWSWORN_LOCKBOX] = "Wilderling Saddle" }
 
 	local linkedItemName = lootToastItems[itemID]
 	if not linkedItemName then
@@ -241,42 +246,24 @@ function R:OnCurrencyUpdate(event)
 		if diff < 0 then
 			self:Debug("Used coin: " .. name)
 			R:CheckForCoinItem()
-			self:ScheduleTimer(
-				function()
-					R:CheckForCoinItem()
-				end,
-				2
-			)
-			self:ScheduleTimer(
-				function()
-					R:CheckForCoinItem()
-				end,
-				5
-			)
-			self:ScheduleTimer(
-				function()
-					R:CheckForCoinItem()
-				end,
-				10
-			)
-			self:ScheduleTimer(
-				function()
-					R:CheckForCoinItem()
-				end,
-				15
-			)
-			self:ScheduleTimer(
-				function()
-					R:CheckForCoinItem()
-				end,
-				20
-			)
-			self:ScheduleTimer(
-				function()
-					R:CheckForCoinItem()
-				end,
-				25
-			)
+			self:ScheduleTimer(function()
+				R:CheckForCoinItem()
+			end, 2)
+			self:ScheduleTimer(function()
+				R:CheckForCoinItem()
+			end, 5)
+			self:ScheduleTimer(function()
+				R:CheckForCoinItem()
+			end, 10)
+			self:ScheduleTimer(function()
+				R:CheckForCoinItem()
+			end, 15)
+			self:ScheduleTimer(function()
+				R:CheckForCoinItem()
+			end, 20)
+			self:ScheduleTimer(function()
+				R:CheckForCoinItem()
+			end, 25)
 		end
 	end
 end
@@ -302,59 +289,27 @@ end
 -- at this time I'm not sure if that wouldn't cause problems elsewhere... so I won't touch it
 -------------------------------------------------------------------------------------
 local encounterLUT = {
-	[1140] = {
-		"Stormforged Rune"
-	}, -- The Assembly of Iron
-	[1133] = {
-		"Blessed Seed"
-	}, -- Freya
-	[1135] = {
-		"Ominous Pile of Snow"
-	}, -- Hodir
-	[1138] = {
-		"Overcomplicated Controller"
-	}, -- Mimiron
-	[1143] = {
-		"Wriggling Darkness"
-	}, -- Yogg-Saron (mount uses the BOSS method and is tracked separately)
-	[1500] = {
-		"Celestial Gift"
-	}, -- Elegon
-	[1505] = {
-		"Azure Cloud Serpent Egg"
-	}, -- Tsulong
-	[1506] = {
-		"Spirit of the Spring"
-	}, -- Lei Shi
+	[1140] = { "Stormforged Rune" }, -- The Assembly of Iron
+	[1133] = { "Blessed Seed" }, -- Freya
+	[1135] = { "Ominous Pile of Snow" }, -- Hodir
+	[1138] = { "Overcomplicated Controller" }, -- Mimiron
+	[1143] = { "Wriggling Darkness" }, -- Yogg-Saron (mount uses the BOSS method and is tracked separately)
+	[1500] = { "Celestial Gift" }, -- Elegon
+	[1505] = { "Azure Cloud Serpent Egg" }, -- Tsulong
+	[1506] = { "Spirit of the Spring" }, -- Lei Shi
 	-- 8.3: Horrific Visions
-	[2332] = {
-		"Swirling Black Bottle",
-		"Void-Link Frostwolf Collar"
-	}, -- Thrall the Corrupted
-	[2338] = {
-		"Swirling Black Bottle",
-		"Voidwoven Cat Collar"
-	}, -- Alleria Windrunner
-	[2370] = {
-		"C'Thuffer"
-	}, -- Rexxar
-	[2377] = {
-		"Void-Scarred Hare"
-	}, -- Magister Umbric
-	[2372] = {
-		"Void-Touched Souvenir Totem",
-		"Box With Faintly Glowing 'Air' Holes"
-	}, -- Oblivion Elemental (Final objective for Zekhan's area)
-	[2374] = {
-		'Box Labeled "Danger: Void Rat Inside"'
-	} -- Therum Deepforge (Final objective for Kelsey's area)
+	[2332] = { "Swirling Black Bottle", "Void-Link Frostwolf Collar" }, -- Thrall the Corrupted
+	[2338] = { "Swirling Black Bottle", "Voidwoven Cat Collar" }, -- Alleria Windrunner
+	[2370] = { "C'Thuffer" }, -- Rexxar
+	[2377] = { "Void-Scarred Hare" }, -- Magister Umbric
+	[2372] = { "Void-Touched Souvenir Totem", "Box With Faintly Glowing 'Air' Holes" }, -- Oblivion Elemental (Final objective for Zekhan's area)
+	[2374] = { "Box Labeled \"Danger: Void Rat Inside\"" }, -- Therum Deepforge (Final objective for Kelsey's area)
 }
 
 function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidSize, endStatus)
 	R:Debug(
-		"ENCOUNTER_END with encounterID = " ..
-			tonumber(encounterID or "0") .. ", name = " .. tostring(encounterName) .. ", endStatus = " .. tostring(endStatus)
-	)
+			"ENCOUNTER_END with encounterID = " .. tonumber(encounterID or "0") .. ", name = " .. tostring(encounterName) ..
+					", endStatus = " .. tostring(endStatus))
 
 	local items = encounterLUT[encounterID]
 	if type(items) ~= "table" then
@@ -364,8 +319,8 @@ function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidS
 	for _, item in ipairs(items) do
 		if item and type(item) == "string" then -- This encounter has an entry in the LUT and needs special handling
 			R:Debug("Found item of interest for this encounter: " .. tostring(item))
-			local v =
-				self.db.profile.groups.pets[item] or self.db.profile.groups.items[item] or self.db.profile.groups.mounts[item]
+			local v = self.db.profile.groups.pets[item] or self.db.profile.groups.items[item] or
+					          self.db.profile.groups.mounts[item]
 			-- v = value = number of attempts for this item
 
 			if endStatus == 1 then -- Encounter succeeded -> Check if number of attempts should be increased
@@ -392,7 +347,7 @@ end
 do
 	local timer1, timer2, timer3, timer4, timer5, timer6
 	function R:OnCombatEnded(event)
-		--if R:InTooltip() then Rarity:ShowTooltip() end
+		-- if R:InTooltip() then Rarity:ShowTooltip() end
 
 		self:CancelTimer(timer1, true)
 		self:CancelTimer(timer2, true)
@@ -403,48 +358,24 @@ do
 
 		self:ScanStatistics(event)
 
-		timer1 =
-			self:ScheduleTimer(
-			function()
-				Rarity:ScanStatistics(event .. " 1")
-			end,
-			2
-		)
-		timer2 =
-			self:ScheduleTimer(
-			function()
-				Rarity:ScanStatistics(event .. " 2")
-			end,
-			5
-		)
-		timer3 =
-			self:ScheduleTimer(
-			function()
-				Rarity:ScanStatistics(event .. " 3")
-			end,
-			8
-		)
-		timer4 =
-			self:ScheduleTimer(
-			function()
-				Rarity:ScanStatistics(event .. " 4")
-			end,
-			10
-		)
-		timer5 =
-			self:ScheduleTimer(
-			function()
-				Rarity:ScanStatistics(event .. " 5")
-			end,
-			15
-		)
-		timer6 =
-			self:ScheduleTimer(
-			function()
-				Rarity:ScanStatistics(event .. " 6")
-			end,
-			20
-		)
+		timer1 = self:ScheduleTimer(function()
+			Rarity:ScanStatistics(event .. " 1")
+		end, 2)
+		timer2 = self:ScheduleTimer(function()
+			Rarity:ScanStatistics(event .. " 2")
+		end, 5)
+		timer3 = self:ScheduleTimer(function()
+			Rarity:ScanStatistics(event .. " 3")
+		end, 8)
+		timer4 = self:ScheduleTimer(function()
+			Rarity:ScanStatistics(event .. " 4")
+		end, 10)
+		timer5 = self:ScheduleTimer(function()
+			Rarity:ScanStatistics(event .. " 5")
+		end, 15)
+		timer6 = self:ScheduleTimer(function()
+			Rarity:ScanStatistics(event .. " 6")
+		end, 20)
 	end
 end
 
@@ -454,30 +385,15 @@ end
 -------------------------------------------------------------------------------------
 function R:OnCombat()
 	-- Extract event payload (it's no longer being passed by the event iself as of 8.0.1)
-	local timestamp,
-		eventType,
-		hideCaster,
-		srcGuid,
-		srcName,
-		srcFlags,
-		srcRaidFlags,
-		dstGuid,
-		dstName,
-		dstFlags,
-		dstRaidFlags,
-		spellId,
-		spellName,
-		spellSchool,
-		auraType = CombatLogGetCurrentEventInfo()
+	local timestamp, eventType, hideCaster, srcGuid, srcName, srcFlags, srcRaidFlags, dstGuid, dstName, dstFlags,
+	      dstRaidFlags, spellId, spellName, spellSchool, auraType = CombatLogGetCurrentEventInfo()
 
 	if eventType == "UNIT_DIED" then -- A unit died near you
 		local npcid = self:GetNPCIDFromGUID(dstGuid)
 		if Rarity.bosses[npcid] then -- It's a boss we're interested in
 			R:Debug("Detected UNIT_DIED for relevant NPC with ID = " .. tostring(npcid))
-			if
-				bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_MINE) or bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_PARTY) or
-					bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_RAID)
-			 then -- You, a party member, or a raid member killed it
+			if bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_MINE) or bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_PARTY) or
+					bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_RAID) then -- You, a party member, or a raid member killed it
 				if not Rarity.guids[dstGuid] then
 					if not UnitAffectingCombat("player") and not UnitIsDead("player") then
 						Rarity:Debug("Ignoring this UNIT_DIED event because the player is alive, but not in combat")
@@ -508,13 +424,12 @@ end
 
 -- Handle quest turnins: Only used to detect world quests used for outdoor world bosses. It's not ideal, but probably more reliable than the loot lockout quest (which may or may not already be completed when the UNIT_DIED event is fired)
 local worldBossQuests = {
-	[52196] = "Slightly Damp Pile of Fur" -- Dunegorger Kraulok
+	[52196] = "Slightly Damp Pile of Fur", -- Dunegorger Kraulok
 }
 
 function R:OnQuestTurnedIn(event, questID, experience, money)
-	self:Debug(
-		"OnQuestTurnedIn triggered with ID = " .. questID .. ", experience = " .. experience .. ", money = " .. money
-	)
+	self:Debug("OnQuestTurnedIn triggered with ID = " .. questID .. ", experience = " .. experience .. ", money = " ..
+			           money)
 
 	local relevantItem = worldBossQuests[questID]
 	if not relevantItem then
@@ -522,9 +437,8 @@ function R:OnQuestTurnedIn(event, questID, experience, money)
 	end
 	self:Debug(format("Relevant quest turnin detected for item %s (questID = %d)", questID, relevantItem))
 
-	local v =
-		self.db.profile.groups.items[relevantItem] or self.db.profile.groups.pets[relevantItem] or
-		self.db.profile.groups.mounts[relevantItem]
+	local v = self.db.profile.groups.items[relevantItem] or self.db.profile.groups.pets[relevantItem] or
+			          self.db.profile.groups.mounts[relevantItem]
 	if v and type(v) == "table" and v.enabled ~= false then
 		if v.attempts == nil then
 			v.attempts = 1
@@ -552,7 +466,7 @@ local islandMapIDs = {
 	[1814] = "Havenswood",
 	[1879] = "Jorundall",
 	[1907] = "Snowblossom",
-	[2124] = "Crestfall"
+	[2124] = "Crestfall",
 }
 
 local islandExpeditionCollectibles = {
@@ -625,14 +539,12 @@ local islandExpeditionCollectibles = {
 	"Risen Mare",
 	"Island Thunderscale",
 	"Bloodgorged Hunter",
-	"Stonehide Elderhorn"
+	"Stonehide Elderhorn",
 }
 
 function R:OnIslandCompleted(event, mapID, winner)
-	R:Debug(
-		"Detected completion for Island Expedition: " ..
-			(islandMapIDs[mapID] or "Unknown Map") .. " (mapID = " .. tostring(mapID) .. ")"
-	)
+	R:Debug("Detected completion for Island Expedition: " .. (islandMapIDs[mapID] or "Unknown Map") .. " (mapID = " ..
+			        tostring(mapID) .. ")")
 
 	if islandMapIDs[mapID] then -- Is a relevant map -> Add attempts for all collectibles
 		-- (for now, I'm assuming they just drop from everything at the same rate.
@@ -642,8 +554,8 @@ function R:OnIslandCompleted(event, mapID, winner)
 		R:Debug("Found this Island Expedition to be relevant -> Adding attempts for all known collectibles...")
 
 		for index, name in pairs(islandExpeditionCollectibles) do -- Add an attempt for each item
-			local v =
-				self.db.profile.groups.items[name] or self.db.profile.groups.pets[name] or self.db.profile.groups.mounts[name]
+			local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name] or
+					          self.db.profile.groups.mounts[name]
 			if v and type(v) == "table" and v.enabled ~= false then
 				if v.attempts == nil then
 					v.attempts = 1
@@ -664,7 +576,7 @@ local timewalkingCriteriaLUT = {
 	[34414] = "Ozumat", -- Timewalking difficulty only? (need to test)
 	[24784] = "Trial of the King", -- [126952] = "Trial of the King", -- Object: Legacy of the Clan Leaders
 	[19244] = "Master Snowdrift", -- [123096] = "Master Snowdrift", -- Object: Snowdrift's Possessions
-	[34410] = "Taran Zhu" --[123095] = "Taran Zhu", -- Object: Taran Zhu's Personal Stash
+	[34410] = "Taran Zhu", -- [123095] = "Taran Zhu", -- Object: Taran Zhu's Personal Stash
 }
 
 function R:OnCriteriaComplete(event, id)
@@ -803,31 +715,25 @@ function R:OnItemFound(itemId, item)
 	for k, v in pairs(item.finds) do
 		count = count + 1
 	end
-	table.insert(
-		item.finds,
-		{
-			num = count + 1,
-			totalAttempts = item.attempts,
-			totalTime = item.time,
-			attempts = item.realAttempts,
-			time = (item.time or 0) - (item.lastTime or 0)
-		}
-	)
+	table.insert(item.finds, {
+		num = count + 1,
+		totalAttempts = item.attempts,
+		totalTime = item.time,
+		attempts = item.realAttempts,
+		time = (item.time or 0) - (item.lastTime or 0),
+	})
 	item.lastTime = item.time
 	Rarity.Tracking:Update(item)
 	self:UpdateInterestingThings()
 	if item.repeatable then
-		self:ScheduleTimer(
-			function()
-				-- If this is a repeatable item, turn it back on in a few seconds.
-				-- OnItemFound() gets called repeatedly when we get an item, so we need to lock it out for a few seconds.
-				item.enabled = nil
-				item.found = nil
-				self:UpdateInterestingThings()
-				Rarity.GUI:UpdateText()
-			end,
-			5
-		)
+		self:ScheduleTimer(function()
+			-- If this is a repeatable item, turn it back on in a few seconds.
+			-- OnItemFound() gets called repeatedly when we get an item, so we need to lock it out for a few seconds.
+			item.enabled = nil
+			item.found = nil
+			self:UpdateInterestingThings()
+			Rarity.GUI:UpdateText()
+		end, 5)
 	end
 end
 
@@ -840,10 +746,8 @@ function R:OnSpellcastSent(event, unit, target, castGUID, spellID)
 	Rarity.foundTarget = false
 	-- ga = "No" -- WTF is this?
 
-	Rarity:Debug(
-		"Detected UNIT_SPELLCAST_SENT for unit = player, spellID = " ..
-			tostring(spellID) .. ", castGUID = " .. tostring(castGUID) .. ", target = " .. tostring(target)
-	) -- TODO: Remove?
+	Rarity:Debug("Detected UNIT_SPELLCAST_SENT for unit = player, spellID = " .. tostring(spellID) .. ", castGUID = " ..
+			             tostring(castGUID) .. ", target = " .. tostring(target)) -- TODO: Remove?
 
 	if Rarity.relevantSpells[spellID] then -- An entry exists for this spell in the LUT -> It's one that needs to be tracked
 		Rarity:Debug("Detected relevant spell: " .. tostring(spellID) .. " ~ " .. tostring(Rarity.relevantSpells[spellID]))
@@ -880,13 +784,10 @@ end
 function R:OnLootFrameClosed(event)
 	Rarity.previousSpell, Rarity.currentSpell = nil, nil
 	Rarity.foundTarget = false
-	self:ScheduleTimer(
-		function()
-			R:Debug("Setting lastNode to nil")
-			Rarity.lastNode = nil
-		end,
-		1
-	)
+	self:ScheduleTimer(function()
+		R:Debug("Setting lastNode to nil")
+		Rarity.lastNode = nil
+	end, 1)
 end
 
 local tooltipLeftText1 = _G["GameTooltipTextLeft1"]
@@ -1003,7 +904,7 @@ function R:ProcessContainerItems()
 						end
 					end
 				end
-			-- End scan through all items
+				-- End scan through all items
 			end
 		end
 	end
@@ -1094,11 +995,8 @@ function R:ProcessCollectionItemSingle(collectionItem, itemID)
 	local inventoryItemCount = self:GetInventoryItemCount(itemID)
 	local item = Rarity.items[itemID]
 
-	if
-		collectionItem.enabled and
-			(collectionItem.collectedItemId == item.collectedItemId or
-				table_contains(item.collectedItemId, collectionItem.collectedItemId))
-	 then
+	if collectionItem.enabled and (collectionItem.collectedItemId == item.collectedItemId or
+			table_contains(item.collectedItemId, collectionItem.collectedItemId)) then
 		local originalCount = (collectionItem.attempts or 0)
 		local goal = (collectionItem.chance or 100)
 		collectionItem.lastAttempts = 0
@@ -1153,10 +1051,8 @@ function R:OnBagUpdate()
 	self:ScanBags()
 
 	-- I assume that if there's even the feintest possibility of items being removed, we don't want to risk it?
-	local shouldSkipBagUpdate =
-		(Rarity.isBankOpen or Rarity.isGuildBankOpen or Rarity.isAuctionHouseOpen or Rarity.isTradeWindowOpen or
-		Rarity.isTradeskillOpen or
-		Rarity.isMailboxOpen)
+	local shouldSkipBagUpdate = (Rarity.isBankOpen or Rarity.isGuildBankOpen or Rarity.isAuctionHouseOpen or
+			                            Rarity.isTradeWindowOpen or Rarity.isTradeskillOpen or Rarity.isMailboxOpen)
 
 	if shouldSkipBagUpdate then
 		return
@@ -1231,10 +1127,8 @@ function R:OnEvent(event, ...)
 		end
 
 		-- Handle opening Snow Mound
-		if
-			Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Snow Mound"]) and
-				GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.FROSTFIRE_RIDGE
-		 then -- Make sure we're in Frostfire Ridge (there are Snow Mounds in other zones, particularly Ulduar in the Hodir room)
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Snow Mound"]) and
+				GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.FROSTFIRE_RIDGE then -- Make sure we're in Frostfire Ridge (there are Snow Mounds in other zones, particularly Ulduar in the Hodir room)
 			Rarity:Debug("Detected Opening on " .. L["Snow Mound"] .. " (method = SPECIAL)")
 			local v = self.db.profile.groups.pets["Grumpling"]
 			if v and type(v) == "table" and v.enabled ~= false then
@@ -1249,7 +1143,7 @@ function R:OnEvent(event, ...)
 
 		-- Handle opening Curious Wyrmtongue Cache
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Curious Wyrmtongue Cache"]) then
-			local names = {"Scraps", "Pilfered Sweeper"}
+			local names = { "Scraps", "Pilfered Sweeper" }
 			Rarity:Debug("Detected Opening on " .. L["Curious Wyrmtongue Cache"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
@@ -1266,7 +1160,7 @@ function R:OnEvent(event, ...)
 
 		-- Handle opening Glimmering Chest
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Glimmering Chest"]) then
-			local names = {"Sandclaw Nestseeker"}
+			local names = { "Sandclaw Nestseeker" }
 			Rarity:Debug("Detected Opening on " .. L["Glimmering Chest"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
@@ -1283,7 +1177,7 @@ function R:OnEvent(event, ...)
 
 		-- Handle opening Penitence of Purity (Shadowlands Kyrian only chest)
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Penitence of Purity"]) then
-			local names = {"Phalynx of Humility"}
+			local names = { "Phalynx of Humility" }
 			Rarity:Debug("Detected Opening on " .. L["Penitence of Purity"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.mounts[name]
@@ -1299,11 +1193,9 @@ function R:OnEvent(event, ...)
 		end
 
 		-- Handle opening Silver Strongbox & Gilded Chest (Bastion, Shadowlands nodes for Acrobatic Steward (toy) and Gilded Wader (pet))
-		if
-			Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and
-				(Rarity.lastNode == L["Silver Strongbox"] or Rarity.lastNode == L["Gilded Chest"])
-		 then
-			local names = {"Acrobatic Steward", "Gilded Wader"}
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and
+				(Rarity.lastNode == L["Silver Strongbox"] or Rarity.lastNode == L["Gilded Chest"]) then
+			local names = { "Acrobatic Steward", "Gilded Wader" }
 			Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
@@ -1319,11 +1211,9 @@ function R:OnEvent(event, ...)
 		end
 
 		-- Handle opening Broken Bell & Skyward Bell (Shadowlands, Bastion nodes for Soothing Vesper (toy) & Gilded Wader (pet))
-		if
-			Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and
-				(Rarity.lastNode == L["Broken Bell"] or Rarity.lastNode == L["Skyward Bell"])
-		 then
-			local names = {"Soothing Vesper", "Gilded Wader"}
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and
+				(Rarity.lastNode == L["Broken Bell"] or Rarity.lastNode == L["Skyward Bell"]) then
+			local names = { "Soothing Vesper", "Gilded Wader" }
 			Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
@@ -1340,7 +1230,7 @@ function R:OnEvent(event, ...)
 
 		-- Handle opening Cache of the Ascended (Shadowlands, Bastion mount cache)
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Cache of the Ascended"]) then
-			local names = {"Ascended Skymane"}
+			local names = { "Ascended Skymane" }
 			Rarity:Debug("Detected Opening on " .. L["Cache of the Ascended"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.mounts[name]
@@ -1357,7 +1247,7 @@ function R:OnEvent(event, ...)
 
 		-- Handle opening Slime-Coated Crate (Shadowlands, Maldraxxus crate for Kevin's Party Supplies (toy) & Bubbling Pustule (pet))
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Slime-Coated Crate"]) then
-			local names = {"Kevin's Party Supplies", "Bubbling Pustule"}
+			local names = { "Kevin's Party Supplies", "Bubbling Pustule" }
 			Rarity:Debug("Detected Opening on " .. L["Slime-Coated Crate"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
@@ -1374,7 +1264,7 @@ function R:OnEvent(event, ...)
 
 		-- Handle opening Sprouting Growth (Shadowlands, Maldraxxus crate for Skittering Venomspitter pet)
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Sprouting Growth"]) then
-			local names = {"Skittering Venomspitter"}
+			local names = { "Skittering Venomspitter" }
 			Rarity:Debug("Detected Opening on " .. L["Sprouting Growth"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
@@ -1390,8 +1280,9 @@ function R:OnEvent(event, ...)
 		end
 
 		-- Handle opening Stewart's Stewpendous Stew (Shadowlands, Bastion crate for Silvershell Snapper pet)
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Stewart's Stewpendous Stew"]) then
-			local names = {"Silvershell Snapper"}
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and
+				(Rarity.lastNode == L["Stewart's Stewpendous Stew"]) then
+			local names = { "Silvershell Snapper" }
 			Rarity:Debug("Detected Opening on " .. L["Stewart's Stewpendous Stew"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
@@ -1408,7 +1299,7 @@ function R:OnEvent(event, ...)
 
 		-- Handle opening Bleakwood Chest (Shadowlands, Revendreth chest for Trapped Stonefiend pet)
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Bleakwood Chest"]) then
-			local names = {"Trapped Stonefiend"}
+			local names = { "Trapped Stonefiend" }
 			Rarity:Debug("Detected Opening on " .. L["Bleakwood Chest"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
@@ -1425,7 +1316,7 @@ function R:OnEvent(event, ...)
 
 		-- Handle opening Blackhound Cache (Shadowlands, Maldraxxus cache for Battlecry of Krexus - Necrolord toy)
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Blackhound Cache"]) then
-			local names = {"Battlecry of Krexus"}
+			local names = { "Battlecry of Krexus" }
 			Rarity:Debug("Detected Opening on " .. L["Blackhound Cache"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
@@ -1442,7 +1333,7 @@ function R:OnEvent(event, ...)
 
 		-- Handle opening Secret Treasure (Shadowlands, Revendreth chest for Soullocked Sinstone pet)
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Secret Treasure"]) then
-			local names = {"Soullocked Sinstone"}
+			local names = { "Soullocked Sinstone" }
 			Rarity:Debug("Detected Opening on " .. L["Secret Treasure"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
@@ -1458,10 +1349,10 @@ function R:OnEvent(event, ...)
 		end
 
 		-- Handle opening Forgotten Chest (Shadowlands, Revendreth chest for Stony's Infused Ruby pet and Silessa's Battle Harness mount)
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Forgotten Chest"])
-			and GetBestMapForUnit("player") ~= CONSTANTS.UIMAPIDS.STORMSONG_VALLEY -- Chest with the same name in Stormsong Valley
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Forgotten Chest"]) and
+				GetBestMapForUnit("player") ~= CONSTANTS.UIMAPIDS.STORMSONG_VALLEY -- Chest with the same name in Stormsong Valley
 		then
-			local names = {"Stony's Infused Ruby", "Silessa's Battle Harness"}
+			local names = { "Stony's Infused Ruby", "Silessa's Battle Harness" }
 			Rarity:Debug("Detected Opening on " .. L["Forgotten Chest"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.pets[name] or self.db.profile.groups.mounts[name]
@@ -1478,7 +1369,7 @@ function R:OnEvent(event, ...)
 
 		-- Handle opening Cache of Eyes (Shadowlands, Maldraxxus chest for Luminous Webspinner pet)
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Cache of Eyes"]) then
-			local names = {"Luminous Webspinner"}
+			local names = { "Luminous Webspinner" }
 			Rarity:Debug("Detected Opening on " .. L["Cache of Eyes"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
@@ -1504,10 +1395,8 @@ function R:OnEvent(event, ...)
 		if Rarity.lastNode then
 			isRelevantNode = nodesGildedWader[Rarity.lastNode]
 		end
-		if
-			Rarity.isFishing and Rarity.isOpening and isRelevantNode
-		 then
-			local names = {"Gilded Wader"}
+		if Rarity.isFishing and Rarity.isOpening and isRelevantNode then
+			local names = { "Gilded Wader" }
 			Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.pets[name]
@@ -1524,7 +1413,7 @@ function R:OnEvent(event, ...)
 
 		-- Handle opening Zovaal's Vault (The Maw, Shadowlands treasure for Personal Ball and Chain & Jailer's Cage
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Zovaal's Vault"]) then
-			local names = {"Personal Ball and Chain", "Jailer's Cage"}
+			local names = { "Personal Ball and Chain", "Jailer's Cage" }
 			Rarity:Debug("Detected Opening on " .. L["Zovaal's Vault"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name]
@@ -1541,7 +1430,7 @@ function R:OnEvent(event, ...)
 
 		-- Handle opening Pile of Coins
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Pile of Coins"]) then
-			local names = {"Armored Vaultbot"}
+			local names = { "Armored Vaultbot" }
 			Rarity:Debug("Detected Opening on " .. L["Pile of Coins"] .. " (method = SPECIAL)")
 			for _, name in pairs(names) do
 				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
@@ -1557,10 +1446,8 @@ function R:OnEvent(event, ...)
 		end
 
 		-- Handle opening Glimmering Treasure Chest
-		if
-			Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Glimmering Treasure Chest"]) and
-				select(8, GetInstanceInfo()) == 1626
-		 then -- Player is in Withered Army scenario and looted the reward chest
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Glimmering Treasure Chest"]) and
+				select(8, GetInstanceInfo()) == 1626 then -- Player is in Withered Army scenario and looted the reward chest
 			local bigChest = false
 			for _, slot in pairs(GetLootInfo()) do
 				if slot.item == L["Ancient Mana"] and slot.quantity == 100 then
@@ -1576,7 +1463,7 @@ function R:OnEvent(event, ...)
 					"Kaldorei Light Globe",
 					"Unstable Powder Box",
 					"Wisp in a Bottle",
-					"Ley Spider Eggs"
+					"Ley Spider Eggs",
 				}
 				for _, name in pairs(names) do
 					local v = self.db.profile.groups.items[name]
@@ -1609,11 +1496,8 @@ function R:OnEvent(event, ...)
 			else
 				self:Debug("Successfully fished")
 			end
-			if
-				Rarity.fishzones[tostring(GetBestMapForUnit("player"))] or Rarity.fishzones[zone] or Rarity.fishzones[subzone] or
-					Rarity.fishzones[zone_t] or
-					Rarity.fishzones[subzone_t]
-			 then
+			if Rarity.fishzones[tostring(GetBestMapForUnit("player"))] or Rarity.fishzones[zone] or Rarity.fishzones[subzone] or
+					Rarity.fishzones[zone_t] or Rarity.fishzones[subzone_t] then
 				-- We're interested in fishing in this zone; let's find the item(s) involved
 				Rarity:Debug("We're interested in fishing in this zone; let's find the item(s) involved")
 				for k, v in pairs(self.db.profile.groups) do
@@ -1624,15 +1508,9 @@ function R:OnEvent(event, ...)
 									local found = false
 									if vv.method == CONSTANTS.DETECTION_METHODS.FISHING and vv.zones ~= nil and type(vv.zones) == "table" then
 										for kkk, vvv in pairs(vv.zones) do
-											if
-												vvv == tostring(GetBestMapForUnit("player")) or vvv == zone or vvv == lbz[zone] or vvv == subzone or
-													vvv == lbsz[subzone] or
-													vvv == zone_t or
-													vvv == subzone_t or
-													vvv == lbz[zone_t] or
-													vvv == subzone or
-													vvv == lbsz[subzone_t]
-											 then
+											if vvv == tostring(GetBestMapForUnit("player")) or vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv ==
+													lbsz[subzone] or vvv == zone_t or vvv == subzone_t or vvv == lbz[zone_t] or vvv == subzone or vvv ==
+													lbsz[subzone_t] then
 												if (vv.requiresPool and Rarity.isPool) or not vv.requiresPool then
 													Rarity:Debug("Found interesting item for this zone: " .. tostring(vv.name))
 													found = true
@@ -1642,9 +1520,8 @@ function R:OnEvent(event, ...)
 									end
 
 									if (vv.excludedMaps and type(vv.excludedMaps) == "table" and vv.excludedMaps[GetBestMapForUnit("player")]) then
-										Rarity:Debug(
-											"The current map is excluded for item: " .. tostring(vv.name) .. ". Attempts will not be counted"
-										)
+										Rarity:Debug("The current map is excluded for item: " .. tostring(vv.name) ..
+												             ". Attempts will not be counted")
 										found = false
 									end
 
@@ -1673,10 +1550,8 @@ function R:OnEvent(event, ...)
 		Rarity.isPool = false
 
 		-- Handle mining Elementium
-		if
-			Rarity.relevantSpells[Rarity.previousSpell] == "Mining" and
-				(Rarity.lastNode == L["Elementium Vein"] or Rarity.lastNode == L["Rich Elementium Vein"])
-		 then
+		if Rarity.relevantSpells[Rarity.previousSpell] == "Mining" and
+				(Rarity.lastNode == L["Elementium Vein"] or Rarity.lastNode == L["Rich Elementium Vein"]) then
 			Rarity:Debug("Detected Mining on " .. Rarity.lastNode .. " (method = SPECIAL)")
 			local v = self.db.profile.groups.pets["Elementium Geode"]
 			if v and type(v) == "table" and v.enabled ~= false then
@@ -1690,13 +1565,10 @@ function R:OnEvent(event, ...)
 		end
 
 		-- Handle skinning on Argus (Fossorial Bile Larva)
-		if
-			(Rarity.relevantSpells[Rarity.previousSpell] == "Skinning" or
-				Rarity.relevantSpells[Rarity.previousSpell] == "Mother's Skinning Knife") and -- Skinned something
-				(GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.KROKUUN or
-					GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.MACAREE or
-					GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.ANTORAN_WASTES)
-		 then -- Player is on Argus -> Can obtain the pet from skinning creatures
+		if (Rarity.relevantSpells[Rarity.previousSpell] == "Skinning" or Rarity.relevantSpells[Rarity.previousSpell] ==
+				"Mother's Skinning Knife") and -- Skinned something
+				(GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.KROKUUN or GetBestMapForUnit("player") ==
+						CONSTANTS.UIMAPIDS.MACAREE or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.ANTORAN_WASTES) then -- Player is on Argus -> Can obtain the pet from skinning creatures
 			Rarity:Debug("Detected skinning on Argus - Can obtain " .. L["Fossorial Bile Larva"] .. " (method = SPECIAL)")
 			local v = self.db.profile.groups.pets["Fossorial Bile Larva"]
 			if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt
@@ -1706,12 +1578,9 @@ function R:OnEvent(event, ...)
 		end
 
 		-- Handle herb gathering on Argus (Fel Lasher)
-		if
-			Rarity.relevantSpells[Rarity.previousSpell] == "Herb Gathering" and -- Gathered a herbalism node
-				(GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.KROKUUN or
-					GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.MACAREE or
-					GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.ANTORAN_WASTES)
-		 then -- Player is on Argus -> Can obtain the pet from gathering herbalism nodes
+		if Rarity.relevantSpells[Rarity.previousSpell] == "Herb Gathering" and -- Gathered a herbalism node
+				(GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.KROKUUN or GetBestMapForUnit("player") ==
+						CONSTANTS.UIMAPIDS.MACAREE or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.ANTORAN_WASTES) then -- Player is on Argus -> Can obtain the pet from gathering herbalism nodes
 			Rarity:Debug("Detected herb gathering on Argus - Can obtain " .. L["Fel Lasher"] .. " (method = SPECIAL)")
 			local v = self.db.profile.groups.pets["Fel Lasher"]
 			if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt
@@ -1752,9 +1621,9 @@ function R:OnEvent(event, ...)
 		for slotID = 1, numItems, 1 do -- Loop through all loot slots (for AoE looting)
 			local guidlist
 			if GetLootSourceInfo then
-				guidlist = {GetLootSourceInfo(slotID)}
+				guidlist = { GetLootSourceInfo(slotID) }
 			else
-				guidlist = {guid}
+				guidlist = { guid }
 			end
 			local guidIndex
 			for k, v in pairs(guidlist) do -- Loop through all NPC Rarity.guids being looted (will be 1 for single-target looting pre-5.0)
@@ -1763,8 +1632,8 @@ function R:OnEvent(event, ...)
 					self:Debug("Checking NPC guid (" .. (numChecked + 1) .. "): " .. guid)
 					self:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, Rarity.currentSpell, requiresPickpocket) -- Decide if we should increment an attempt count for this NPC
 					numChecked = numChecked + 1
-				-- else
-				-- 	--self:Debug("Didn't check guid: "..guid or "nil")
+					-- else
+					-- 	--self:Debug("Didn't check guid: "..guid or "nil")
 				end -- Loop through all NPC GUIDs being looted (will be 1 for single-target looting pre-5.0)
 			end -- Haven't seen this corpse yet
 		end -- Loop through all loot slots (for AoE looting)

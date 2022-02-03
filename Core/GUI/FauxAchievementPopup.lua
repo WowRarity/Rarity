@@ -11,17 +11,8 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 
 -- Fake achievement popup stuff
 local function RarityAchievementAlertFrame_SetUp(frame, itemId, attempts)
-	local itemName,
-		itemLink,
-		itemRarity,
-		itemLevel,
-		itemMinLevel,
-		itemType,
-		itemSubType,
-		itemStackCount,
-		itemEquipLoc,
-		itemTexture,
-		itemSellPrice = GetItemInfo(itemId)
+	local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc,
+	      itemTexture, itemSellPrice = GetItemInfo(itemId)
 	if itemName == nil then
 		return
 	end
@@ -82,7 +73,8 @@ local function RarityAchievementAlertFrame_SetUp(frame, itemId, attempts)
 		attempts = 1
 	end
 	-- It's a quick 'n' dirty fix, but that's probably the least of our worries here...
-	local item = Rarity.db.profile.groups.mounts[itemName] or Rarity.db.profile.groups.pets[itemName] or Rarity.db.profile.groups.items[itemName] or Rarity.db.profile.groups.user[itemName]
+	local item = Rarity.db.profile.groups.mounts[itemName] or Rarity.db.profile.groups.pets[itemName] or
+			             Rarity.db.profile.groups.items[itemName] or Rarity.db.profile.groups.user[itemName]
 	if item and item.method and item.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
 		unlocked:SetText(L["Collection Complete"])
 	else
@@ -92,26 +84,22 @@ local function RarityAchievementAlertFrame_SetUp(frame, itemId, attempts)
 			unlocked:SetText(format(L["Obtained After %d Attempts"], attempts))
 		end
 	end
-	Rarity:ScheduleTimer(
-		function()
-			-- Put the achievement frame back to normal when we're done
-			unlocked:SetText(ACHIEVEMENT_UNLOCKED)
-			frame:EnableMouse(true)
-		end,
-		10000 -- Give it enough time to fade out properly
+	Rarity:ScheduleTimer(function()
+		-- Put the achievement frame back to normal when we're done
+		unlocked:SetText(ACHIEVEMENT_UNLOCKED)
+		frame:EnableMouse(true)
+	end, 10000 -- Give it enough time to fade out properly
 	)
 
 	frame.id = itemId
 	return true
 end
 
-local RarityAchievementAlertSystem =
-	AlertFrame:AddQueuedAlertFrameSubSystem("AchievementAlertFrameTemplate", RarityAchievementAlertFrame_SetUp, 2, 6)
-RarityAchievementAlertSystem:SetCanShowMoreConditionFunc(
-	function()
-		return not C_PetBattles.IsInBattle()
-	end
-)
+local RarityAchievementAlertSystem = AlertFrame:AddQueuedAlertFrameSubSystem("AchievementAlertFrameTemplate",
+                                                                             RarityAchievementAlertFrame_SetUp, 2, 6)
+RarityAchievementAlertSystem:SetCanShowMoreConditionFunc(function()
+	return not C_PetBattles.IsInBattle()
+end)
 
 local Output = Rarity.Output
 
@@ -122,17 +110,8 @@ function R:ShowFoundAlert(itemId, attempts, item)
 		item = trackedItem
 	end
 
-	local itemName,
-		itemLink,
-		itemRarity,
-		itemLevel,
-		itemMinLevel,
-		itemType,
-		itemSubType,
-		itemStackCount,
-		itemEquipLoc,
-		itemTexture,
-		itemSellPrice = GetItemInfo(itemId)
+	local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc,
+	      itemTexture, itemSellPrice = GetItemInfo(itemId)
 	if itemName == nil then
 		return
 	end -- Server doesn't know this item, we can't award it
@@ -168,16 +147,13 @@ function R:ShowFoundAlert(itemId, attempts, item)
 		PlaySound(12891) -- UI_Alert_AchievementGained
 	end
 
-	self:ScheduleTimer(
-		function()
-			-- Take a screenshot
-			if Rarity.db.profile.takeScreenshot then
-				if (ActionStatus:IsShown()) then
-					ActionStatus:Hide()
-				end
-				Screenshot()
+	self:ScheduleTimer(function()
+		-- Take a screenshot
+		if Rarity.db.profile.takeScreenshot then
+			if (ActionStatus:IsShown()) then
+				ActionStatus:Hide()
 			end
-		end,
-		2
-	)
+			Screenshot()
+		end
+	end, 2)
 end

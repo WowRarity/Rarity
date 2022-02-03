@@ -12,17 +12,8 @@ local Output = Rarity.Output
 local CONSTANTS = addonTable.constants
 
 function Announcements:AnnounceAttemptForItem(item)
-	local itemName,
-		itemLink,
-		itemRarity,
-		itemLevel,
-		itemMinLevel,
-		itemType,
-		itemSubType,
-		itemStackCount,
-		itemEquipLoc,
-		itemTexture,
-		itemSellPrice = GetItemInfo(item.itemId)
+	local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc,
+	      itemTexture, itemSellPrice = GetItemInfo(item.itemId)
 	if itemName or item.name then
 		local displayedText
 		local attempts = item.attempts or 1

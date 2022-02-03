@@ -2,7 +2,7 @@ local _, addonTable = ...
 
 local Testing = {
 	TEST_GROUP_NAME = "RarityIntegrationTests",
-	FAUX_TRIGGER_EVENT = "PLAYER_LOGIN" -- We don't really run any tests on login, since the groups aren't created yet
+	FAUX_TRIGGER_EVENT = "PLAYER_LOGIN", -- We don't really run any tests on login, since the groups aren't created yet
 }
 
 -- Upvalues
@@ -17,10 +17,7 @@ function Testing:RunIntegrationTests()
 
 	if not self:IsFrameworkAvailable() then
 		Rarity:Print(
-			L[
-				"The WoWUnit addon is required in order to run integration tests. Please download it from CurseForge or GitHub and make sure it's enabled before trying again!"
-			]
-		)
+				"The WoWUnit addon is required in order to run integration tests. Please download it from CurseForge or GitHub and make sure it's enabled before trying again!")
 		return
 	end
 

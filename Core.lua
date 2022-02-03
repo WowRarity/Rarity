@@ -251,31 +251,22 @@ do
 
 		-- Progressively prime our item cache over time instead of hitting Blizzard's API all at once
 		Rarity.Caching:SetItemsToPrime(100) -- Just setting this temporarily to avoid a divide by zero
-		self:ScheduleTimer(
-			function()
-				self:PrimeItemCache()
-			end,
-			2
-		)
+		self:ScheduleTimer(function()
+			self:PrimeItemCache()
+		end, 2)
 
 		-- Scan instance locks 5 seconds after init
-		self:ScheduleTimer(
-			function()
-				R:ScanInstanceLocks("DELAYED INIT")
-			end,
-			5
-		)
+		self:ScheduleTimer(function()
+			R:ScanInstanceLocks("DELAYED INIT")
+		end, 5)
 
 		-- Scan bags, currency, and instance locks 10 seconds after init
-		self:ScheduleTimer(
-			function()
-				R:ScanBags()
-				R:OnCurrencyUpdate("DELAYED INIT")
-				R:OnBagUpdate()
-				R:ScanInstanceLocks("DELAYED INIT 2")
-			end,
-			10
-		)
+		self:ScheduleTimer(function()
+			R:ScanBags()
+			R:OnCurrencyUpdate("DELAYED INIT")
+			R:OnBagUpdate()
+			R:ScanInstanceLocks("DELAYED INIT 2")
+		end, 10)
 
 		-- Clean up session info
 		for k, v in pairs(self.db.profile.groups) do
@@ -289,72 +280,45 @@ do
 		end
 
 		-- Delayed calendar init a few times
-		self:ScheduleTimer(
-			function()
-				if type(CalendarFrame) ~= "table" or not CalendarFrame:IsShown() then
-					local CalendarTime = C_DateAndTime.GetCurrentCalendarTime()
-					local month, year = CalendarTime.month, CalendarTime.year
-					C_Calendar.SetAbsMonth(month, year)
-				end
-			end,
-			7
-		)
-		self:ScheduleTimer(
-			function()
-				if type(CalendarFrame) ~= "table" or not CalendarFrame:IsShown() then
-					local CalendarTime = C_DateAndTime.GetCurrentCalendarTime()
-					local month, year = CalendarTime.month, CalendarTime.year
-					C_Calendar.SetAbsMonth(month, year)
-				end
-			end,
-			20
-		)
+		self:ScheduleTimer(function()
+			if type(CalendarFrame) ~= "table" or not CalendarFrame:IsShown() then
+				local CalendarTime = C_DateAndTime.GetCurrentCalendarTime()
+				local month, year = CalendarTime.month, CalendarTime.year
+				C_Calendar.SetAbsMonth(month, year)
+			end
+		end, 7)
+		self:ScheduleTimer(function()
+			if type(CalendarFrame) ~= "table" or not CalendarFrame:IsShown() then
+				local CalendarTime = C_DateAndTime.GetCurrentCalendarTime()
+				local month, year = CalendarTime.month, CalendarTime.year
+				C_Calendar.SetAbsMonth(month, year)
+			end
+		end, 20)
 
 		-- Update text again several times later - this helps get the icon right after login
-		self:ScheduleTimer(
-			function()
-				R:DelayedInit()
-			end,
-			10
-		)
-		self:ScheduleTimer(
-			function()
-				R:DelayedInit()
-			end,
-			20
-		)
-		self:ScheduleTimer(
-			function()
-				R:DelayedInit()
-			end,
-			30
-		)
-		self:ScheduleTimer(
-			function()
-				R:DelayedInit()
-			end,
-			60
-		)
-		self:ScheduleTimer(
-			function()
-				R:DelayedInit()
-			end,
-			120
-		)
-		self:ScheduleTimer(
-			function()
-				R:DelayedInit()
-			end,
-			180
-		)
-		self:ScheduleTimer(
-			function()
-				self:ScanCalendar("FINAL INIT")
-				Rarity.Collections:ScanExistingItems("FINAL INIT")
-				Rarity.GUI:UpdateText()
-			end,
-			240
-		)
+		self:ScheduleTimer(function()
+			R:DelayedInit()
+		end, 10)
+		self:ScheduleTimer(function()
+			R:DelayedInit()
+		end, 20)
+		self:ScheduleTimer(function()
+			R:DelayedInit()
+		end, 30)
+		self:ScheduleTimer(function()
+			R:DelayedInit()
+		end, 60)
+		self:ScheduleTimer(function()
+			R:DelayedInit()
+		end, 120)
+		self:ScheduleTimer(function()
+			R:DelayedInit()
+		end, 180)
+		self:ScheduleTimer(function()
+			self:ScanCalendar("FINAL INIT")
+			Rarity.Collections:ScanExistingItems("FINAL INIT")
+			Rarity.GUI:UpdateText()
+		end, 240)
 
 		self:Debug(L["Loaded (running in debug mode)"])
 
@@ -397,57 +361,47 @@ function R:PrimeItemCache()
 
 	-- Prime the items
 	self:Debug("Loading " .. Rarity.Caching:GetItemsToPrime() .. " item(s) from server...")
-	initTimer =
-		self:ScheduleRepeatingTimer(
-		function()
-			if Rarity.Caching:GetPrimedItems() <= 0 then
-				Rarity.Caching:SetPrimedItems(1)
+	initTimer = self:ScheduleRepeatingTimer(function()
+		if Rarity.Caching:GetPrimedItems() <= 0 then
+			Rarity.Caching:SetPrimedItems(1)
+		end
+		for i = 1, 10 do
+			GetItemInfo(R.itemsToPrime[Rarity.Caching:GetPrimedItems()])
+			Rarity.Caching:SetPrimedItems(Rarity.Caching:GetPrimedItems() + 1)
+			if Rarity.Caching:GetPrimedItems() > Rarity.Caching:GetItemsToPrime() then
+				break
 			end
-			for i = 1, 10 do
-				GetItemInfo(R.itemsToPrime[Rarity.Caching:GetPrimedItems()])
-				Rarity.Caching:SetPrimedItems(Rarity.Caching:GetPrimedItems() + 1)
-				if Rarity.Caching:GetPrimedItems() > Rarity.Caching:GetItemsToPrime() then
-					break
-				end
+		end
+		if Rarity.Caching:GetPrimedItems() >= Rarity.Caching:GetItemsToPrime() then
+			self:CancelTimer(initTimer)
+			-- First-time initialization finished
+			if not Rarity.Caching:IsReady() then
+				Rarity.Caching:SetReadyState(false)
+				-- Trigger holiday reminders
+				self:ScheduleTimer(function()
+					Rarity:ShowTooltip(true)
+				end, 5)
 			end
-			if Rarity.Caching:GetPrimedItems() >= Rarity.Caching:GetItemsToPrime() then
-				self:CancelTimer(initTimer)
-				-- First-time initialization finished
-				if not Rarity.Caching:IsReady() then
-					Rarity.Caching:SetReadyState(false)
-					-- Trigger holiday reminders
-					self:ScheduleTimer(
-						function()
-							Rarity:ShowTooltip(true)
-						end,
-						5
-					)
-				end
-				-- Check how many items were not processed, rescanning if necessary
-				local got = 0
-				local totalNeeded = 0
-				for k, v in pairs(R.itemInfoCache) do
-					got = got + 1
-				end
-				for k, v in pairs(R.itemsMasterList) do
-					totalNeeded = totalNeeded + 1
-				end
-				if got < totalNeeded then
-					self:Debug("Initialization failed to retrieve " .. (totalNeeded - got) .. " item(s)")
-					self:ScheduleTimer(
-						function()
-							self:PrimeItemCache()
-						end,
-						5
-					)
-				else
-					self:Debug("Finished loading " .. Rarity.Caching:GetItemsToPrime() .. " item(s) from server")
-				end
+			-- Check how many items were not processed, rescanning if necessary
+			local got = 0
+			local totalNeeded = 0
+			for k, v in pairs(R.itemInfoCache) do
+				got = got + 1
 			end
-			Rarity.GUI:UpdateText()
-		end,
-		0.1
-	)
+			for k, v in pairs(R.itemsMasterList) do
+				totalNeeded = totalNeeded + 1
+			end
+			if got < totalNeeded then
+				self:Debug("Initialization failed to retrieve " .. (totalNeeded - got) .. " item(s)")
+				self:ScheduleTimer(function()
+					self:PrimeItemCache()
+				end, 5)
+			else
+				self:Debug("Finished loading " .. Rarity.Caching:GetItemsToPrime() .. " item(s) from server")
+			end
+		end
+		Rarity.GUI:UpdateText()
+	end, 0.1)
 end
 
 --[[
@@ -464,7 +418,7 @@ function R:GetItemInfo(id)
 	if itemCacheDebug and Rarity.Caching:IsReady() == false then
 		R:Debug("ItemInfo not cached for " .. id)
 	end
-	local info = {GetItemInfo_Blizzard(id)}
+	local info = { GetItemInfo_Blizzard(id) }
 	if #info > 0 then
 		R.itemInfoCache[id] = info
 	end
@@ -499,7 +453,7 @@ function R:GetDistanceToItem(item)
 				local itemWorldX, itemWorldY = hbd:GetWorldCoordinatesFromZone(x, y, map, v.f or 1)
 				if itemWorldX ~= nil then -- Library returns nil for instances
 					local thisDistance = hbd:GetWorldDistance(instance, itemWorldX, itemWorldY, playerWorldX, playerWorldY)
-					--R:Print("map: "..map..", x: "..x..", y: "..y..", itemWorldX: "..itemWorldX..", itemWorldY: "..itemWorldY..", playerWorldX: "..playerWorldX..", playerWorldY: "..playerWorldY..", thisDistance: "..thisDistance)
+					-- R:Print("map: "..map..", x: "..x..", y: "..y..", itemWorldX: "..itemWorldX..", itemWorldY: "..itemWorldY..", playerWorldX: "..playerWorldX..", playerWorldY: "..playerWorldY..", thisDistance: "..thisDistance)
 					if thisDistance < distance then
 						distance = thisDistance
 					end
@@ -630,12 +584,9 @@ function R:UpdateInterestingThings()
 					if vv.tooltipNpcs and type(vv.tooltipNpcs) == "table" then -- Item has tooltipNpcs -> Check if they should be displayed
 						local showTooltipNpcs = true -- If no filters exist, always show the tooltip for relevant NPCs
 
-						if
-							vv.showTooltipCondition and type(vv.showTooltipCondition) == "table" and -- This item has filter conditions to help decide when the tooltipNpcs should be added
-								vv.showTooltipCondition.filter and
-								type(vv.showTooltipCondition.filter) == "function" and
-								vv.showTooltipCondition.value
-						 then -- Filter has the correct format and can be applied -- Check filter conditions to see if tooltipNpcs should be added
+						if vv.showTooltipCondition and type(vv.showTooltipCondition) == "table" and -- This item has filter conditions to help decide when the tooltipNpcs should be added
+						vv.showTooltipCondition.filter and type(vv.showTooltipCondition.filter) == "function" and
+								vv.showTooltipCondition.value then -- Filter has the correct format and can be applied -- Check filter conditions to see if tooltipNpcs should be added
 							showTooltipNpcs = false -- Hide the additional tooltip info by default (filters will overwrite this if they can find a match, below)
 
 							-- Each filter requires separate handling here
@@ -651,17 +602,15 @@ function R:UpdateInterestingThings()
 								end
 							end
 
-						-- There aren't any other Filter types at the moment... but there could be!
+							-- There aren't any other Filter types at the moment... but there could be!
 						end
 
 						-- Check for post-processing via tooltip modifiers (additional logic contained in a database entry that requires special handling)
 						-- This has to run last, as it is intended to update things on the fly where a filter isn't sufficient
 						local tooltipModifier = vv.tooltipModifier
 
-						if
-							tooltipModifier ~= nil and type(tooltipModifier) == "table" and tooltipModifier.condition ~= nil and
-								tooltipModifier.value ~= nil
-						 then -- Apply modifications where necessary
+						if tooltipModifier ~= nil and type(tooltipModifier) == "table" and tooltipModifier.condition ~= nil and
+								tooltipModifier.value ~= nil then -- Apply modifications where necessary
 							local shouldApplyModification = type(tooltipModifier.condition) == "function" and tooltipModifier.condition()
 							if shouldApplyModification and tooltipModifier.action and type(tooltipModifier.action) == "function" then -- Apply this action to the entry
 								vv = tooltipModifier.action(vv, tooltipModifier.value) -- A tooltip modifier always returns the (modified) database entry to keep processing separate
@@ -717,27 +666,16 @@ function R:IsAttemptAllowed(item)
 		local requiredCovenantData = C_Covenants.GetCovenantData(item.requiredCovenantID)
 
 		if not activeCovenantData then
-			Rarity:Debug(
-				format(
-					"Attempts for item %s are disallowed (Covenant %d/%s is required, but none is currently active)",
-					item.name,
-					item.requiredCovenantID,
-					requiredCovenantData.name
-				)
-			)
+			Rarity:Debug(format(
+					             "Attempts for item %s are disallowed (Covenant %d/%s is required, but none is currently active)",
+					             item.name, item.requiredCovenantID, requiredCovenantData.name))
 			return false
 		end
 
-		Rarity:Debug(
-			format(
-				"Attempts for item %s are disallowed (Covenant %d/%s is required, but active covenant is %d/%s)",
-				item.name,
-				item.requiredCovenantID,
-				requiredCovenantData.name,
-				activeCovenantID,
-				activeCovenantData.name
-			)
-		)
+		Rarity:Debug(format(
+				             "Attempts for item %s are disallowed (Covenant %d/%s is required, but active covenant is %d/%s)",
+				             item.name, item.requiredCovenantID, requiredCovenantData.name, activeCovenantID,
+				             activeCovenantData.name))
 		return false
 	end
 
@@ -751,10 +689,8 @@ function R:IsAttemptAllowed(item)
 	end
 
 	-- No valid instance difficulty configuration; allow (this needs to be the second-to-last check)
-	if
-		item.instanceDifficulties == nil or type(item.instanceDifficulties) ~= "table" or
-			next(item.instanceDifficulties) == nil
-	 then
+	if item.instanceDifficulties == nil or type(item.instanceDifficulties) ~= "table" or next(item.instanceDifficulties) ==
+			nil then
 		return true
 	end
 
@@ -768,8 +704,8 @@ function R:IsAttemptAllowed(item)
 	if foundTrue == false then
 		return true
 	end
-	local name, type, difficulty, difficultyName, maxPlayers, playerDifficulty, isDynamicInstance, mapID, instanceGroupSize =
-		GetInstanceInfo()
+	local name, type, difficulty, difficultyName, maxPlayers, playerDifficulty, isDynamicInstance, mapID,
+	      instanceGroupSize = GetInstanceInfo()
 	if item.instanceDifficulties[difficulty] and item.instanceDifficulties[difficulty] == true then
 		return true
 	end
@@ -791,15 +727,10 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
 	if npcs[npcid] == nil then -- Not an NPC we need, abort
 		self:Debug("NPC ID not on the list of needed NPCs: " .. (npcid or "nil"))
 
-		if
-			Rarity.zones[tostring(GetBestMapForUnit("player"))] == nil and Rarity.zones[zone] == nil and
-				Rarity.zones[lbz[zone] or "."] == nil and
-				Rarity.zones[lbsz[subzone] or "."] == nil and
-				Rarity.zones[zone_t] == nil and
-				Rarity.zones[subzone_t] == nil and
-				Rarity.zones[lbz[zone_t] or "."] == nil and
-				Rarity.zones[lbsz[subzone_t] or "."] == nil
-		 then -- Not a zone we need, abort
+		if Rarity.zones[tostring(GetBestMapForUnit("player"))] == nil and Rarity.zones[zone] == nil and
+				Rarity.zones[lbz[zone] or "."] == nil and Rarity.zones[lbsz[subzone] or "."] == nil and Rarity.zones[zone_t] ==
+				nil and Rarity.zones[subzone_t] == nil and Rarity.zones[lbz[zone_t] or "."] == nil and
+				Rarity.zones[lbsz[subzone_t] or "."] == nil then -- Not a zone we need, abort
 			self:Debug("Map ID not on the list of needed zones: " .. tostring(GetBestMapForUnit("player")))
 			return
 		end
@@ -860,12 +791,8 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
 								if tonumber(vvv) ~= nil and tonumber(vvv) == GetBestMapForUnit("player") then
 									found = true
 								end
-								if
-									vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv == lbsz[subzone] or vvv == zone_t or vvv == subzone_t or
-										vvv == lbz[zone_t] or
-										vvv == subzone or
-										vvv == lbsz[subzone_t]
-								 then
+								if vvv == zone or vvv == lbz[zone] or vvv == subzone or vvv == lbsz[subzone] or vvv == zone_t or vvv ==
+										subzone_t or vvv == lbz[zone_t] or vvv == subzone or vvv == lbsz[subzone_t] then
 									found = true
 								end
 							end
@@ -895,5 +822,5 @@ function R:Update(reason)
 	self:UpdateInterestingThings(reason)
 	Rarity.Tracking:FindTrackedItem()
 	Rarity.GUI:UpdateText()
-	--if self:InTooltip() then self:ShowTooltip() end
+	-- if self:InTooltip() then self:ShowTooltip() end
 end

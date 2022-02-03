@@ -12,10 +12,10 @@ local legionPets = {
 		name = L["Eye of Inquisition"],
 		spellId = 210673,
 		itemId = 136901,
-		npcs = {101878},
+		npcs = { 101878 },
 		chance = 100,
 		creatureId = 97179,
-		coords = {{m = CONSTANTS.UIMAPIDS.SURAMAR, x = 27.8, y = 85.2}}
+		coords = { { m = CONSTANTS.UIMAPIDS.SURAMAR, x = 27.8, y = 85.2 } },
 	},
 	["Knockoff Blingtron"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -24,12 +24,10 @@ local legionPets = {
 		name = L["Knockoff Blingtron"],
 		spellId = 210683,
 		itemId = 136911,
-		items = {132892, 168740},
+		items = { 132892, 168740 },
 		chance = 200,
 		creatureId = 99505,
-		coords = {
-			{m = CONSTANTS.UIMAPIDS.NONE}
-		}
+		coords = { { m = CONSTANTS.UIMAPIDS.NONE } },
 	},
 	["Ridgeback Piglet"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -39,11 +37,9 @@ local legionPets = {
 		spellId = 210678,
 		itemId = 136905,
 		creatureId = 98172,
-		items = {137608},
+		items = { 137608 },
 		chance = 10,
-		coords = {
-			{m = CONSTANTS.UIMAPIDS.NONE}
-		}
+		coords = { { m = CONSTANTS.UIMAPIDS.NONE } },
 	},
 	["Thaumaturgical Piglet"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -53,11 +49,9 @@ local legionPets = {
 		spellId = 210681,
 		itemId = 136908,
 		creatureId = 98183,
-		items = {137608},
+		items = { 137608 },
 		chance = 10,
-		coords = {
-			{m = CONSTANTS.UIMAPIDS.NONE}
-		}
+		coords = { { m = CONSTANTS.UIMAPIDS.NONE } },
 	},
 	["Transmutant"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -67,13 +61,11 @@ local legionPets = {
 		spellId = 221906,
 		itemId = 139789,
 		creatureId = 111425,
-		items = {137608},
+		items = { 137608 },
 		chance = 10,
-		coords = {
-			{m = CONSTANTS.UIMAPIDS.NONE}
-		}
+		coords = { { m = CONSTANTS.UIMAPIDS.NONE } },
 	},
-	--["Sting Ray Pup"] =                                 { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.COLLECTION, name = L["Sting Ray Pup"], spellId = 217218, itemId = 138810, creatureId = 109216, collectedItemId = { 138777 }, chance = 50, },
+	-- ["Sting Ray Pup"] =                                 { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.COLLECTION, name = L["Sting Ray Pup"], spellId = 217218, itemId = 138810, creatureId = 109216, collectedItemId = { 138777 }, chance = 50, },
 	-- 7.1
 	["Blessed Seed"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -83,11 +75,11 @@ local legionPets = {
 		itemId = 142091,
 		spellId = 229098,
 		creatureId = 115143,
-		npcs = {32906},
+		npcs = { 32906 },
 		chance = 10,
-		statisticId = {2864, 3258},
+		statisticId = { 2864, 3258 },
 		doNotUpdateToHighestStat = true,
-		coords = {{m = 148, x = 53.2, y = 22.3, i = true}}
+		coords = { { m = 148, x = 53.2, y = 22.3, i = true } },
 	},
 	["Call of the Frozen Blade"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -97,11 +89,11 @@ local legionPets = {
 		itemId = 142099,
 		spellId = 229106,
 		creatureId = 115152,
-		npcs = {36597},
+		npcs = { 36597 },
 		chance = 10,
-		statisticId = {4686, 4688},
+		statisticId = { 4686, 4688 },
 		doNotUpdateToHighestStat = true,
-		coords = {{m = 186, x = 49.6, y = 52.5, i = true}}
+		coords = { { m = 186, x = 49.6, y = 52.5, i = true } },
 	},
 	["Drudge Remains"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -111,11 +103,11 @@ local legionPets = {
 		itemId = 142098,
 		spellId = 229105,
 		creatureId = 115150,
-		npcs = {36597},
+		npcs = { 36597 },
 		chance = 10,
-		statisticId = {4653, 4687},
+		statisticId = { 4653, 4687 },
 		doNotUpdateToHighestStat = true,
-		coords = {{m = 186, x = 49.6, y = 52.5, i = true}}
+		coords = { { m = 186, x = 49.6, y = 52.5, i = true } },
 	},
 	["Fragment of Frozen Bone"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -125,9 +117,9 @@ local legionPets = {
 		itemId = 142094,
 		spellId = 229101,
 		creatureId = 115146,
-		npcs = {36612},
+		npcs = { 36612 },
 		chance = 10,
-		coords = {{m = 186, x = 38.9, y = 59.4, i = true}}
+		coords = { { m = 186, x = 38.9, y = 59.4, i = true } },
 	},
 	["Giant Worm Egg"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -137,9 +129,9 @@ local legionPets = {
 		itemId = 142083,
 		spellId = 229090,
 		creatureId = 115135,
-		npcs = {34797},
+		npcs = { 34797 },
 		chance = 10,
-		coords = {{m = 172, x = 51.3, y = 52.5, i = true}}
+		coords = { { m = 172, x = 51.3, y = 52.5, i = true } },
 	},
 	["Glittering Ball of Yarn"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -149,9 +141,9 @@ local legionPets = {
 		itemId = 142089,
 		spellId = 229096,
 		creatureId = 115141,
-		npcs = {33515},
+		npcs = { 33515 },
 		chance = 10,
-		coords = {{m = 148, x = 51.3, y = 57.2, i = true}}
+		coords = { { m = 148, x = 51.3, y = 57.2, i = true } },
 	},
 	["Ironbound Collar"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -161,9 +153,9 @@ local legionPets = {
 		itemId = 142087,
 		spellId = 229094,
 		creatureId = 115139,
-		npcs = {33186},
+		npcs = { 33186 },
 		chance = 10,
-		coords = {{m = 148, x = 54.3, y = 26.5, i = true}}
+		coords = { { m = 148, x = 54.3, y = 26.5, i = true } },
 	},
 	["Magnataur Hunting Horn"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -173,9 +165,9 @@ local legionPets = {
 		itemId = 142084,
 		spellId = 229091,
 		creatureId = 115136,
-		npcs = {34797},
+		npcs = { 34797 },
 		chance = 33,
-		coords = {{m = 172, x = 51.3, y = 52.5, i = true}}
+		coords = { { m = 172, x = 51.3, y = 52.5, i = true } },
 	},
 	["Nerubian Relic"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -185,9 +177,9 @@ local legionPets = {
 		itemId = 142085,
 		spellId = 229092,
 		creatureId = 115137,
-		npcs = {34564},
+		npcs = { 34564 },
 		chance = 10,
-		coords = {{m = 172, x = 53, y = 35.5, i = true}}
+		coords = { { m = 172, x = 53, y = 35.5, i = true } },
 	},
 	["Ominous Pile of Snow"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -197,11 +189,11 @@ local legionPets = {
 		itemId = 142090,
 		spellId = 229097,
 		creatureId = 115142,
-		npcs = {32845},
+		npcs = { 32845 },
 		chance = 10,
-		statisticId = {2862, 3256},
+		statisticId = { 2862, 3256 },
 		doNotUpdateToHighestStat = true,
-		coords = {{m = 148, x = 67.1, y = 63.4, i = true}}
+		coords = { { m = 148, x = 67.1, y = 63.4, i = true } },
 	},
 	["Overcomplicated Controller"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -211,11 +203,11 @@ local legionPets = {
 		itemId = 142092,
 		spellId = 229099,
 		creatureId = 115144,
-		npcs = {33350},
+		npcs = { 33350 },
 		chance = 10,
-		statisticId = {2865, 2879},
+		statisticId = { 2865, 2879 },
 		doNotUpdateToHighestStat = true,
-		coords = {{m = 148, x = 43.8, y = 40.8, i = true}}
+		coords = { { m = 148, x = 43.8, y = 40.8, i = true } },
 	},
 	["Putricide's Alchemy Supplies"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -225,9 +217,9 @@ local legionPets = {
 		itemId = 142096,
 		spellId = 229103,
 		creatureId = 115148,
-		npcs = {36678},
+		npcs = { 36678 },
 		chance = 10,
-		coords = {{m = 186, x = 12.8, y = 53.1, i = true}}
+		coords = { { m = 186, x = 12.8, y = 53.1, i = true } },
 	},
 	["Red-Hot Coal"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -237,9 +229,9 @@ local legionPets = {
 		itemId = 142086,
 		spellId = 229093,
 		creatureId = 115138,
-		npcs = {33118},
+		npcs = { 33118 },
 		chance = 10,
-		coords = {{m = 148, x = 38, y = 26.5, i = true}}
+		coords = { { m = 148, x = 38, y = 26.5, i = true } },
 	},
 	["Remains of a Blood Beast"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -249,11 +241,11 @@ local legionPets = {
 		itemId = 142095,
 		spellId = 229102,
 		creatureId = 115147,
-		npcs = {37813},
+		npcs = { 37813 },
 		chance = 10,
-		statisticId = {4645, 4662, 4663, 4664},
+		statisticId = { 4645, 4662, 4663, 4664 },
 		doNotUpdateToHighestStat = true,
-		coords = {{m = 186, x = 51.5, y = 21.4, i = true}}
+		coords = { { m = 186, x = 51.5, y = 21.4, i = true } },
 	},
 	["Skull of a Frozen Whelp"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -263,9 +255,9 @@ local legionPets = {
 		itemId = 142097,
 		spellId = 229104,
 		creatureId = 115149,
-		npcs = {36853},
+		npcs = { 36853 },
 		chance = 10,
-		coords = {{m = 186, x = 36.5, y = 22.6, i = true}}
+		coords = { { m = 186, x = 36.5, y = 22.6, i = true } },
 	},
 	["Stormforged Rune"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -275,10 +267,10 @@ local legionPets = {
 		itemId = 142088,
 		spellId = 229095,
 		creatureId = 115140,
-		npcs = {99999},
-		tooltipNpcs = {32857, 32927, 32867},
+		npcs = { 99999 },
+		tooltipNpcs = { 32857, 32927, 32867 },
 		chance = 10,
-		coords = {{m = 148, x = 15.5, y = 55.9, i = true}}
+		coords = { { m = 148, x = 15.5, y = 55.9, i = true } },
 	},
 	["Wriggling Darkness"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -288,11 +280,11 @@ local legionPets = {
 		itemId = 142093,
 		spellId = 229100,
 		creatureId = 115145,
-		npcs = {33288},
+		npcs = { 33288 },
 		chance = 10,
-		statisticId = {2869, 2883},
+		statisticId = { 2869, 2883 },
 		doNotUpdateToHighestStat = true,
-		coords = {{m = 148, x = 68.3, y = 39.8, i = true}}
+		coords = { { m = 148, x = 68.3, y = 39.8, i = true } },
 	},
 	-- 7.2
 	["Ageless Bronze Drake"] = {
@@ -302,10 +294,10 @@ local legionPets = {
 		name = L["Ageless Bronze Drake"],
 		spellId = 248240,
 		itemId = 151828,
-		items = {151482},
+		items = { 151482 },
 		chance = 20,
 		creatureId = 124944,
-		coords = {{m = 115, x = 60, y = 54.4, n = L["Chromie"]}}
+		coords = { { m = 115, x = 60, y = 54.4, n = L["Chromie"] } },
 	},
 	["Albino Buzzard"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -314,11 +306,11 @@ local legionPets = {
 		name = L["Albino Buzzard"],
 		spellId = 231017,
 		itemId = 142448,
-		items = {142447},
+		items = { 142447 },
 		chance = 100,
 		creatureId = 116080,
 		questId = 45083,
-		coords = {{m = 10, x = 63.58, y = 35.94, n = L["Crysa"]}}
+		coords = { { m = 10, x = 63.58, y = 35.94, n = L["Crysa"] } },
 	},
 	["Bronze Proto-Whelp"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -327,10 +319,10 @@ local legionPets = {
 		name = L["Bronze Proto-Whelp"],
 		spellId = 248025,
 		itemId = 151829,
-		items = {151482},
+		items = { 151482 },
 		chance = 33,
 		creatureId = 124858,
-		coords = {{m = 115, x = 60, y = 54.4, n = L["Chromie"]}}
+		coords = { { m = 115, x = 60, y = 54.4, n = L["Chromie"] } },
 	},
 	["Cavern Moccasin"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -339,11 +331,11 @@ local legionPets = {
 		name = L["Cavern Moccasin"],
 		spellId = 233333,
 		itemId = 143754,
-		items = {143753},
+		items = { 143753 },
 		chance = 100,
 		creatureId = 117182,
 		questId = 45539,
-		coords = {{m = 10, x = 38.8, y = 68.2, n = L["Muyani"]}}
+		coords = { { m = 10, x = 38.8, y = 68.2, n = L["Muyani"] } },
 	},
 	["Everliving Spore"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -352,11 +344,11 @@ local legionPets = {
 		name = L["Everliving Spore"],
 		spellId = 233331,
 		itemId = 143756,
-		items = {143753},
+		items = { 143753 },
 		chance = 100,
 		creatureId = 117180,
 		questId = 45539,
-		coords = {{m = 10, x = 38.8, y = 68.2, n = L["Muyani"]}}
+		coords = { { m = 10, x = 38.8, y = 68.2, n = L["Muyani"] } },
 	},
 	["Nightmare Whelpling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -366,14 +358,14 @@ local legionPets = {
 		spellId = 210675,
 		itemId = 136903,
 		creatureId = 112015,
-		npcs = {99999},
-		tooltipNpcs = {102679},
+		npcs = { 99999 },
+		tooltipNpcs = { 102679 },
 		chance = 100,
 		groupSize = 3,
 		equalOdds = true,
-		statisticId = {10928, 10929, 10930, 10931},
+		statisticId = { 10928, 10929, 10930, 10931 },
 		enableCoin = true,
-		coords = {{m = 781, i = true}}
+		coords = { { m = 781, i = true } },
 	},
 	["Orphaned Felbat"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -382,14 +374,14 @@ local legionPets = {
 		name = L["Orphaned Felbat"],
 		spellId = 243136,
 		itemId = 147841,
-		items = {152108},
+		items = { 152108 },
 		chance = 20,
 		creatureId = 121715,
 		coords = {
-			{m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES},
-			{m = CONSTANTS.UIMAPIDS.KROKUUN},
-			{m = CONSTANTS.UIMAPIDS.MACAREE}
-		}
+			{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES },
+			{ m = CONSTANTS.UIMAPIDS.KROKUUN },
+			{ m = CONSTANTS.UIMAPIDS.MACAREE },
+		},
 	},
 	["Scraps"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -400,7 +392,7 @@ local legionPets = {
 		itemId = 146953,
 		chance = 33,
 		creatureId = 120397,
-		coords = {{m = 646}}
+		coords = { { m = 646 } },
 	},
 	["Young Venomfang"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -409,11 +401,11 @@ local legionPets = {
 		name = L["Young Venomfang"],
 		spellId = 233335,
 		itemId = 143755,
-		items = {143753},
+		items = { 143753 },
 		chance = 100,
 		creatureId = 117184,
 		questId = 45539,
-		coords = {{m = 10, x = 38.8, y = 68.2, n = L["Muyani"]}}
+		coords = { { m = 10, x = 38.8, y = 68.2, n = L["Muyani"] } },
 	},
 	-- 7.3
 	["Breezy Essence"] = {
@@ -424,13 +416,13 @@ local legionPets = {
 		itemId = 152974,
 		spellId = 253818,
 		creatureId = 127863,
-		npcs = {99999},
-		tooltipNpcs = {45870, 45871, 45872},
+		npcs = { 99999 },
+		tooltipNpcs = { 45870, 45871, 45872 },
 		lockBossName = "Conclave of Wind",
 		chance = 10,
-		statisticId = {5574, 5575},
+		statisticId = { 5574, 5575 },
 		doNotUpdateToHighestStat = true,
-		coords = {{m = 328, x = 47.5, y = 26, i = true}}
+		coords = { { m = 328, x = 47.5, y = 26, i = true } },
 	},
 	["Cinderweb Egg"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -440,10 +432,10 @@ local legionPets = {
 		itemId = 152976,
 		spellId = 253918,
 		creatureId = 127948,
-		npcs = {52498},
+		npcs = { 52498 },
 		lockBossName = "Beth'tilac",
 		chance = 10,
-		coords = {{m = 367, x = 21, y = 32.7, i = true}}
+		coords = { { m = 367, x = 21, y = 32.7, i = true } },
 	},
 	["Elementium Back Plate"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -453,13 +445,13 @@ local legionPets = {
 		itemId = 152980,
 		spellId = 253927,
 		creatureId = 127953,
-		npcs = {99999},
-		tooltipNpcs = {53879},
+		npcs = { 99999 },
+		tooltipNpcs = { 53879 },
 		lockBossName = "Spine of Deathwing",
 		chance = 10,
-		statisticId = {6165, 6166},
+		statisticId = { 6165, 6166 },
 		doNotUpdateToHighestStat = true,
-		coords = {{m = 409, x = 33.2, y = 85.2, i = true}}
+		coords = { { m = 409, x = 33.2, y = 85.2, i = true } },
 	},
 	["Experiment-In-A-Jar"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -469,13 +461,13 @@ local legionPets = {
 		itemId = 152967,
 		spellId = 253790,
 		creatureId = 127852,
-		npcs = {99999},
-		tooltipNpcs = {41378},
+		npcs = { 99999 },
+		tooltipNpcs = { 41378 },
 		lockBossName = "Maloriak",
 		chance = 10,
-		statisticId = {5559, 5560},
+		statisticId = { 5559, 5560 },
 		doNotUpdateToHighestStat = true,
-		coords = {{m = 285, x = 71.4, y = 70.2, i = true}}
+		coords = { { m = 285, x = 71.4, y = 70.2, i = true } },
 	},
 	["Fandral's Pet Carrier"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -485,10 +477,10 @@ local legionPets = {
 		itemId = 152978,
 		spellId = 253925,
 		creatureId = 127951,
-		npcs = {52571},
+		npcs = { 52571 },
 		lockBossName = "Majordomo Staghelm",
 		chance = 10,
-		coords = {{m = 367, x = 50.9, y = 72.4, i = true}}
+		coords = { { m = 367, x = 50.9, y = 72.4, i = true } },
 	},
 	["Lesser Circle of Binding"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -498,13 +490,13 @@ local legionPets = {
 		itemId = 152970,
 		spellId = 253809,
 		creatureId = 127858,
-		npcs = {99999},
-		tooltipNpcs = {43687, 43686, 43688, 43689, 43735},
+		npcs = { 99999 },
+		tooltipNpcs = { 43687, 43686, 43688, 43689, 43735 },
 		lockBossName = "Terrastra",
 		chance = 10,
-		statisticId = {5569, 5570},
+		statisticId = { 5569, 5570 },
 		doNotUpdateToHighestStat = true,
-		coords = {{m = 294, x = 42.5, 45.5, i = true}}
+		coords = { { m = 294, x = 42.5, 45.5, i = true } },
 	},
 	["Model D1-BB-L3R"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -513,11 +505,11 @@ local legionPets = {
 		name = L["Model D1-BB-L3R"],
 		spellId = 233647,
 		itemId = 151645,
-		items = {151638},
+		items = { 151638 },
 		chance = 100,
 		creatureId = 117340,
 		questId = 47895,
-		coords = {{m = 27, x = 26.8, y = 36.3, n = L["Environeer Bert"]}}
+		coords = { { m = 27, x = 26.8, y = 36.3, n = L["Environeer Bert"] } },
 	},
 	["Odd Twilight Egg"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -527,13 +519,13 @@ local legionPets = {
 		itemId = 152969,
 		spellId = 253805,
 		creatureId = 127857,
-		npcs = {99999},
-		tooltipNpcs = {45993, 45992},
+		npcs = { 99999 },
+		tooltipNpcs = { 45993, 45992 },
 		lockBossName = "Theralion and Valiona",
 		chance = 10,
-		statisticId = {5567, 5568},
+		statisticId = { 5567, 5568 },
 		doNotUpdateToHighestStat = true,
-		coords = {{m = 294, i = true}}
+		coords = { { m = 294, i = true } },
 	},
 	["Puddle of Black Liquid"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -543,13 +535,13 @@ local legionPets = {
 		itemId = 152979,
 		spellId = 253926,
 		creatureId = 127952,
-		npcs = {99999},
-		tooltipNpcs = {55312},
+		npcs = { 99999 },
+		tooltipNpcs = { 55312 },
 		lockBossName = "Yor'sahj the Unsleeping",
 		chance = 10,
-		statisticId = {6157, 6158},
+		statisticId = { 6157, 6158 },
 		doNotUpdateToHighestStat = true,
-		coords = {{m = 409, x = 46.8, y = 49.9, i = true}}
+		coords = { { m = 409, x = 46.8, y = 49.9, i = true } },
 	},
 	["Rough-Hewn Remote"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -559,13 +551,13 @@ local legionPets = {
 		itemId = 152966,
 		spellId = 253788,
 		creatureId = 127850,
-		npcs = {99999},
-		tooltipNpcs = {42179, 42166, 42180, 42178},
+		npcs = { 99999 },
+		tooltipNpcs = { 42179, 42166, 42180, 42178 },
 		lockBossName = "Omnotron Defense System",
 		chance = 10,
-		statisticId = {5557, 5558},
+		statisticId = { 5557, 5558 },
 		doNotUpdateToHighestStat = true,
-		coords = {{m = 285, x = 61.4, y = 57.4, i = true}}
+		coords = { { m = 285, x = 61.4, y = 57.4, i = true } },
 	},
 	["Severed Tentacle"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -575,13 +567,13 @@ local legionPets = {
 		itemId = 152981,
 		spellId = 253928,
 		creatureId = 127954,
-		npcs = {99999},
-		tooltipNpcs = {56173},
+		npcs = { 99999 },
+		tooltipNpcs = { 56173 },
 		lockBossName = "Madness of Deathwing",
 		chance = 10,
-		statisticId = {6167, 6168},
+		statisticId = { 6167, 6168 },
 		doNotUpdateToHighestStat = true,
-		coords = {{m = 409, i = true}}
+		coords = { { m = 409, i = true } },
 	},
 	["Smoldering Treat"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -591,10 +583,10 @@ local legionPets = {
 		itemId = 152975,
 		spellId = 253916,
 		creatureId = 127947,
-		npcs = {53691},
+		npcs = { 53691 },
 		lockBossName = "Shannox",
 		chance = 10,
-		coords = {{m = 367, x = 49.3, y = 44.3, i = true}}
+		coords = { { m = 367, x = 49.3, y = 44.3, i = true } },
 	},
 	["Shadowy Pile of Bones"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -604,13 +596,13 @@ local legionPets = {
 		itemId = 152968,
 		spellId = 253799,
 		creatureId = 127853,
-		npcs = {99999},
-		tooltipNpcs = {41376, 41270},
+		npcs = { 99999 },
+		tooltipNpcs = { 41376, 41270 },
 		lockBossName = "Nefarian's End",
 		chance = 10,
-		statisticId = {5565, 5566},
+		statisticId = { 5565, 5566 },
 		doNotUpdateToHighestStat = true,
-		coords = {{m = 285, x = 48, y = 70.2, i = true}}
+		coords = { { m = 285, x = 48, y = 70.2, i = true } },
 	},
 	["Strange Humming Crystal"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -619,11 +611,11 @@ local legionPets = {
 		name = L["Strange Humming Crystal"],
 		spellId = 226682,
 		itemId = 141349,
-		items = {157828},
+		items = { 157828 },
 		chance = 100,
 		creatureId = 113827,
 		sourceText = L["The quest starter item for Wondrous Wisdomball"],
-		coords = {{m = 625, x = 33.6, y = 48, n = L["Warmage Silva"]}}
+		coords = { { m = 625, x = 33.6, y = 48, n = L["Warmage Silva"] } },
 	},
 	["Thistleleaf Adventurer"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -632,10 +624,10 @@ local legionPets = {
 		name = L["Thistleleaf Adventurer"],
 		spellId = 195369,
 		itemId = 130167,
-		items = {157822},
+		items = { 157822 },
 		chance = 100,
 		creatureId = 99389,
-		coords = {{m = 641, x = 54.6, y = 73.2, n = L["Sylvia Hartshorn"]}}
+		coords = { { m = 641, x = 54.6, y = 73.2, n = L["Sylvia Hartshorn"] } },
 	},
 	["Twilight Summoning Portal"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -645,13 +637,13 @@ local legionPets = {
 		itemId = 152972,
 		spellId = 253813,
 		creatureId = 127859,
-		npcs = {99999},
-		tooltipNpcs = {43324},
+		npcs = { 99999 },
+		tooltipNpcs = { 43324 },
 		lockBossName = "Cho'gall",
 		chance = 10,
-		statisticId = {5572, 5571},
+		statisticId = { 5572, 5571 },
 		doNotUpdateToHighestStat = true,
-		coords = {{m = 294, x = 73.4, 75.4, i = true}}
+		coords = { { m = 294, x = 73.4, 75.4, i = true } },
 	},
 	["Vibrating Stone"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -661,10 +653,10 @@ local legionPets = {
 		itemId = 152977,
 		spellId = 253924,
 		creatureId = 127950,
-		npcs = {53494},
+		npcs = { 53494 },
 		lockBossName = "Baleroc",
 		chance = 10,
-		coords = {{m = 367, x = 49.5, y = 30.9, i = true}}
+		coords = { { m = 367, x = 49.5, y = 30.9, i = true } },
 	},
 	["Zephyr's Call"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -674,13 +666,13 @@ local legionPets = {
 		itemId = 152973,
 		spellId = 253816,
 		creatureId = 127862,
-		npcs = {99999},
-		tooltipNpcs = {46753},
+		npcs = { 99999 },
+		tooltipNpcs = { 46753 },
 		lockBossName = "Al'Akir",
 		chance = 10,
-		statisticId = {5576, 5577},
+		statisticId = { 5576, 5577 },
 		doNotUpdateToHighestStat = true,
-		coords = {{m = 328, i = true}}
+		coords = { { m = 328, i = true } },
 	},
 	-- 7.3
 	["Docile Skyfin"] = {
@@ -690,17 +682,15 @@ local legionPets = {
 		name = L["Docile Skyfin"],
 		spellId = 254295,
 		itemId = 153054,
-		items = {153191},
+		items = { 153191 },
 		chance = 5,
 		creatureId = 128157,
-		sourceText = L[
-			"Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."
-		],
+		sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
 		coords = {
-			{m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 64.32, y = 48.62, n = L["Varga"]},
-			{m = CONSTANTS.UIMAPIDS.KROKUUN, x = 70.21, y = 34.38, n = L["Naroua"]},
-			{m = CONSTANTS.UIMAPIDS.MACAREE, x = 43.55, y = 49.19, n = L["Sabuul"]}
-		}
+			{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 64.32, y = 48.62, n = L["Varga"] },
+			{ m = CONSTANTS.UIMAPIDS.KROKUUN, x = 70.21, y = 34.38, n = L["Naroua"] },
+			{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 43.55, y = 49.19, n = L["Sabuul"] },
+		},
 	},
 	["Fel-Afflicted Skyfin"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -709,17 +699,15 @@ local legionPets = {
 		name = L["Fel-Afflicted Skyfin"],
 		spellId = 254296,
 		itemId = 153055,
-		items = {153191},
+		items = { 153191 },
 		chance = 5,
 		creatureId = 128158,
-		sourceText = L[
-			"Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."
-		],
+		sourceText = L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."],
 		coords = {
-			{m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 64.32, y = 48.62, n = L["Varga"]},
-			{m = CONSTANTS.UIMAPIDS.KROKUUN, x = 70.21, y = 34.38, n = L["Naroua"]},
-			{m = CONSTANTS.UIMAPIDS.MACAREE, x = 43.55, y = 49.19, n = L["Sabuul"]}
-		}
+			{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 64.32, y = 48.62, n = L["Varga"] },
+			{ m = CONSTANTS.UIMAPIDS.KROKUUN, x = 70.21, y = 34.38, n = L["Naroua"] },
+			{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 43.55, y = 49.19, n = L["Sabuul"] },
+		},
 	},
 	["Rebellious Imp"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -728,13 +716,11 @@ local legionPets = {
 		name = L["Rebellious Imp"],
 		spellId = 254749,
 		itemId = 153252,
-		npcs = {127705},
+		npcs = { 127705 },
 		chance = 16,
 		creatureId = 128388,
 		questId = 48970,
-		coords = {
-			{m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 66.72, y = 18.12, n = L["Mother Rosula"]}
-		}
+		coords = { { m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 66.72, y = 18.12, n = L["Mother Rosula"] } },
 	},
 	["Grasping Manifestation"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -743,13 +729,11 @@ local legionPets = {
 		name = L["Grasping Manifestation"],
 		spellId = 254297,
 		itemId = 153056,
-		npcs = {126887},
+		npcs = { 126887 },
 		chance = 6,
 		creatureId = 128159,
 		questId = 48709,
-		coords = {
-			{m = CONSTANTS.UIMAPIDS.MACAREE, x = 30.12, y = 40.18, n = L["Ataxon"]}
-		}
+		coords = { { m = CONSTANTS.UIMAPIDS.MACAREE, x = 30.12, y = 40.18, n = L["Ataxon"] } },
 	},
 	["Uuna's Doll"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -758,13 +742,11 @@ local legionPets = {
 		name = L["Uuna's Doll"],
 		spellId = 254763,
 		itemId = 153195,
-		npcs = {127581},
+		npcs = { 127581 },
 		chance = 20,
 		creatureId = 128396,
 		questId = 48966,
-		coords = {
-			{m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 54.83, y = 39.15, n = L["The Many-Faced Devourer"]}
-		}
+		coords = { { m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 54.83, y = 39.15, n = L["The Many-Faced Devourer"] } },
 	},
 	["Silithid Mini-Tank"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -773,21 +755,17 @@ local legionPets = {
 		name = L["Silithid Mini-Tank"],
 		spellId = 261755,
 		itemId = 156851,
-		npcs = {132578, 132584, 132580},
+		npcs = { 132578, 132584, 132580 },
 		chance = 10,
 		creatureId = 133064,
-		questId = {50223, 50224, 50255},
+		questId = { 50223, 50224, 50255 },
 		defeatAllQuests = true,
-		defeatSteps = {
-			[50223] = L["Ssinkrix"],
-			[50224] = L["Xaarshej"],
-			[50255] = L["Qroshekx"]
-		},
+		defeatSteps = { [50223] = L["Ssinkrix"], [50224] = L["Xaarshej"], [50255] = L["Qroshekx"] },
 		coords = {
-			{m = 81, x = 59, y = 15, n = L["Qroshekx"]},
-			{m = 81, x = 30, y = 35, n = L["Xaarshej"]},
-			{m = 81, x = 54, y = 80, n = L["Ssinkrix"]}
-		}
+			{ m = 81, x = 59, y = 15, n = L["Qroshekx"] },
+			{ m = 81, x = 30, y = 35, n = L["Xaarshej"] },
+			{ m = 81, x = 54, y = 80, n = L["Ssinkrix"] },
+		},
 	},
 	["Fossorial Bile Larva"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -846,14 +824,14 @@ local legionPets = {
 			119747,
 			126174,
 			124439,
-			124486
+			124486,
 		},
-		showTooltipCondition = {filter = CONSTANTS.TOOLTIP_FILTERS.IS_SPELL_KNOWN, value = "Skinning"}, -- Display only if player can actually skin them
+		showTooltipCondition = { filter = CONSTANTS.TOOLTIP_FILTERS.IS_SPELL_KNOWN, value = "Skinning" }, -- Display only if player can actually skin them
 		coords = {
-			{m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES},
-			{m = CONSTANTS.UIMAPIDS.KROKUUN},
-			{m = CONSTANTS.UIMAPIDS.MACAREE}
-		}
+			{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES },
+			{ m = CONSTANTS.UIMAPIDS.KROKUUN },
+			{ m = CONSTANTS.UIMAPIDS.MACAREE },
+		},
 	},
 	["Fel Lasher"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -867,11 +845,11 @@ local legionPets = {
 		obtain = L["Obtained by gathering herbs on Argus"],
 		sourceText = L["Obtained by gathering herbs on Argus"],
 		coords = {
-			{m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES},
-			{m = CONSTANTS.UIMAPIDS.KROKUUN},
-			{m = CONSTANTS.UIMAPIDS.MACAREE}
-		}
-	}
+			{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES },
+			{ m = CONSTANTS.UIMAPIDS.KROKUUN },
+			{ m = CONSTANTS.UIMAPIDS.MACAREE },
+		},
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, legionPets)

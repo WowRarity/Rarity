@@ -5,8 +5,8 @@ local Validation = {
 		-- Why is this stored in the item database!? IDK, but we can't change it easily now without proper schema migrations
 		["collapsedGroup"] = true,
 		["collapsed"] = true,
-		["name"] = true
-	}
+		["name"] = true,
+	},
 }
 
 -- Upvalues

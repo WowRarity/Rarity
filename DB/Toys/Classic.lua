@@ -11,10 +11,10 @@ local classicToys = {
 		method = CONSTANTS.DETECTION_METHODS.NPC,
 		name = L["Piccolo of the Flaming Fire"],
 		itemId = 13379,
-		npcs = {10558},
+		npcs = { 10558 },
 		chance = 4,
-		coords = {{m = 317, i = true}}
-	}
+		coords = { { m = 317, i = true } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, classicToys)

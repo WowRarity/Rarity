@@ -23,7 +23,7 @@ local catOrder = {
 	[CONSTANTS.ITEM_CATEGORIES.WOD] = 6,
 	[CONSTANTS.ITEM_CATEGORIES.LEGION] = 7,
 	[CONSTANTS.ITEM_CATEGORIES.BFA] = 8,
-	[CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS] = 9
+	[CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS] = 9,
 }
 
 local function compareCategory(a, b)
@@ -123,8 +123,10 @@ local function compareZone(a, b)
 	end
 	local zoneInfoA = R.Waypoints:GetZoneInfoForItem(a)
 	local zoneInfoB = R.Waypoints:GetZoneInfoForItem(b)
-	local zoneTextA, inMyZoneA, zoneColorA, numZonesA = zoneInfoA.zoneText, zoneInfoA.inMyZone, zoneInfoA.zoneColor, zoneInfoA.numZones
-	local zoneTextB, inMyZoneB, zoneColorB, numZonesB = zoneInfoB.zoneText, zoneInfoB.inMyZone, zoneInfoB.zoneColor, zoneInfoB.numZones
+	local zoneTextA, inMyZoneA, zoneColorA, numZonesA = zoneInfoA.zoneText, zoneInfoA.inMyZone, zoneInfoA.zoneColor,
+	                                                    zoneInfoA.numZones
+	local zoneTextB, inMyZoneB, zoneColorB, numZonesB = zoneInfoB.zoneText, zoneInfoB.inMyZone, zoneInfoB.zoneColor,
+	                                                    zoneInfoB.numZones
 	if numZonesA > 1 and inMyZoneA ~= true then
 		zoneTextA = "ZZZZZZZZZZZZZZ"
 	end
@@ -148,7 +150,9 @@ end
 
 function Sorting:SortGroup(group, method)
 
-	if method == CONSTANTS.SORT_METHODS.SORT_NONE then return self:DebugNoOp(group) end
+	if method == CONSTANTS.SORT_METHODS.SORT_NONE then
+		return self:DebugNoOp(group)
+	end
 
 	Rarity.Profiling:StartTimer("SortGroup")
 	local sortedGroup = group

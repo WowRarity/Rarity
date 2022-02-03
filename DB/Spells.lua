@@ -74,7 +74,7 @@ Rarity.relevantSpells = {
 	[50305] = "Skinning",
 	[74522] = "Skinning",
 	[102216] = "Skinning",
-	[158756] = "Skinning"
+	[158756] = "Skinning",
 
 	-- Not tested (and disabled until they are needed)
 	-- [1804] = "Pick Lock",

@@ -8,12 +8,8 @@ local LoadAddOn = LoadAddOn
 local table_wipe = table.wipe
 local pairs = pairs
 
-local Profiling = {
-	DEFAULT_TIMER_LABEL = "Default",
-	isTimerRunning = false,
-	activeTimers = {},
-	accumulatedTimes = {}
-}
+local Profiling =
+		{ DEFAULT_TIMER_LABEL = "Default", isTimerRunning = false, activeTimers = {}, accumulatedTimes = {} }
 
 function Profiling:StartTimer(label)
 	if not self:IsProfilingEnabled() then

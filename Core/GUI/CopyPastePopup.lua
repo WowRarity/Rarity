@@ -1,9 +1,6 @@
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity", false)
 
-local CopyPastePopup = {
-	editBoxText = "",
-	instructionText = ""
-}
+local CopyPastePopup = { editBoxText = "", instructionText = "" }
 
 function CopyPastePopup:OnLoad()
 	self:ConfigureStaticPopUp()
@@ -31,7 +28,7 @@ function CopyPastePopup:ConfigureStaticPopUp()
 					if popup.callback then
 						popup.callback(frame.editBox:GetText())
 					end
-				end
+				end,
 			}
 			StaticPopupDialogs["RarityCopyPastePopup"] = popup
 		end
@@ -59,13 +56,9 @@ function CopyPastePopup:SetInstructionText(text)
 end
 
 function CopyPastePopup:Show()
-	self.ShowPopupDialogWithEditBox(
-		self.instructionText,
-		self.editBoxText,
-		function(frame)
-			-- OnCloseCallback? (or at least it's triggered when you click OK)
-		end,
-		nil -- autoCloseTimeoutInMilliseconds
+	self.ShowPopupDialogWithEditBox(self.instructionText, self.editBoxText, function(frame)
+		-- OnCloseCallback? (or at least it's triggered when you click OK)
+	end, nil -- autoCloseTimeoutInMilliseconds
 	)
 	local popup = StaticPopupDialogs["RarityCopyPastePopup"] or self.popup
 	self.popup = popup

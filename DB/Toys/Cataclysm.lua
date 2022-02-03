@@ -12,19 +12,13 @@ local cataclysmToys = {
 		name = L["Loaded Gnomish Dice"],
 		itemId = 63269,
 		chance = 300,
-		npcs = {
-			45174,
-			49124,
-			47595,
-			46320,
-			48629,
-		},
+		npcs = { 45174, 49124, 47595, 46320, 48629 },
 		pickpocket = true,
 		coords = {
-			{m = CONSTANTS.UIMAPIDS.TWILIGHT_HIGHLANDS},
-			{m = CONSTANTS.UIMAPIDS.TOL_BARAD},
-			{m = CONSTANTS.UIMAPIDS.ULDUM_CATACLYSM}
-		}
+			{ m = CONSTANTS.UIMAPIDS.TWILIGHT_HIGHLANDS },
+			{ m = CONSTANTS.UIMAPIDS.TOL_BARAD },
+			{ m = CONSTANTS.UIMAPIDS.ULDUM_CATACLYSM },
+		},
 	},
 }
 

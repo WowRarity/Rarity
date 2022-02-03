@@ -1,26 +1,28 @@
 local addonName, addonTable = ...
 
-if not Rarity then return end
+if not Rarity then
+	return
+end
 local R = Rarity
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 
 local CONSTANTS = addonTable.constants
 
 R.string_types = {
- [CONSTANTS.ITEM_TYPES.MOUNT] = L["Mount"],
- [CONSTANTS.ITEM_TYPES.PET] = L["Battle Pet"],
- [CONSTANTS.ITEM_TYPES.ITEM] = L["Toy or Item"],
+	[CONSTANTS.ITEM_TYPES.MOUNT] = L["Mount"],
+	[CONSTANTS.ITEM_TYPES.PET] = L["Battle Pet"],
+	[CONSTANTS.ITEM_TYPES.ITEM] = L["Toy or Item"],
 }
 
 R.string_methods = {
- [CONSTANTS.DETECTION_METHODS.NPC] = L["Drops from NPC(s)"],
- [CONSTANTS.DETECTION_METHODS.BOSS] = L["Drops from a boss requiring a group"],
- [CONSTANTS.DETECTION_METHODS.ZONE] = L["Drops from any mob in a zone"],
- [CONSTANTS.DETECTION_METHODS.USE] = L["Obtained by using an item or opening a container"],
- [CONSTANTS.DETECTION_METHODS.FISHING] = L["Obtained by fishing"],
- [CONSTANTS.DETECTION_METHODS.ARCH] = L["Obtained as an archaeology project"],
- [CONSTANTS.DETECTION_METHODS.SPECIAL] = L["Special case"],
- [CONSTANTS.DETECTION_METHODS.MINING] = L["Obtained by mining"],
+	[CONSTANTS.DETECTION_METHODS.NPC] = L["Drops from NPC(s)"],
+	[CONSTANTS.DETECTION_METHODS.BOSS] = L["Drops from a boss requiring a group"],
+	[CONSTANTS.DETECTION_METHODS.ZONE] = L["Drops from any mob in a zone"],
+	[CONSTANTS.DETECTION_METHODS.USE] = L["Obtained by using an item or opening a container"],
+	[CONSTANTS.DETECTION_METHODS.FISHING] = L["Obtained by fishing"],
+	[CONSTANTS.DETECTION_METHODS.ARCH] = L["Obtained as an archaeology project"],
+	[CONSTANTS.DETECTION_METHODS.SPECIAL] = L["Special case"],
+	[CONSTANTS.DETECTION_METHODS.MINING] = L["Obtained by mining"],
 	[CONSTANTS.DETECTION_METHODS.COLLECTION] = L["Obtained by collecting a number of items"],
 }
 
@@ -50,16 +52,16 @@ R.string_archraces = {
 
 -- Categories
 R.catIcons = {
- [CONSTANTS.ITEM_CATEGORIES.HOLIDAY] = "holiday",
- [CONSTANTS.ITEM_CATEGORIES.CLASSIC] = "classic",
- [CONSTANTS.ITEM_CATEGORIES.TBC] = "bc",
- [CONSTANTS.ITEM_CATEGORIES.WOTLK] = "wotlk",
- [CONSTANTS.ITEM_CATEGORIES.CATA] = "cata",
- [CONSTANTS.ITEM_CATEGORIES.MOP] = "mop",
- [CONSTANTS.ITEM_CATEGORIES.WOD] = "wod",
- [CONSTANTS.ITEM_CATEGORIES.LEGION] = "legion",
- [CONSTANTS.ITEM_CATEGORIES.BFA] = "bfa",
- [CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS] = "shadowlands",
+	[CONSTANTS.ITEM_CATEGORIES.HOLIDAY] = "holiday",
+	[CONSTANTS.ITEM_CATEGORIES.CLASSIC] = "classic",
+	[CONSTANTS.ITEM_CATEGORIES.TBC] = "bc",
+	[CONSTANTS.ITEM_CATEGORIES.WOTLK] = "wotlk",
+	[CONSTANTS.ITEM_CATEGORIES.CATA] = "cata",
+	[CONSTANTS.ITEM_CATEGORIES.MOP] = "mop",
+	[CONSTANTS.ITEM_CATEGORIES.WOD] = "wod",
+	[CONSTANTS.ITEM_CATEGORIES.LEGION] = "legion",
+	[CONSTANTS.ITEM_CATEGORIES.BFA] = "bfa",
+	[CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS] = "shadowlands",
 }
 
 function R:PrepareDefaults()
@@ -137,16 +139,16 @@ function R:PrepareDefaults()
 			-- These are achievements with the names of rare NPCs as criteria to kill
 			achNpcs = {
 				-- Burning Crusade
-				1312,  -- Bloody Rare
+				1312, -- Bloody Rare
 
 				-- Wrath of the Lich King
-				2257,  -- Frostbitten
+				2257, -- Frostbitten
 
 				-- Mists of Pandaria
-				7439,  -- Glorious!
+				7439, -- Glorious!
 
 				-- Warlords of Draenor
-				9400,  -- Gorgrond Monster Hunter
+				9400, -- Gorgrond Monster Hunter
 				10070, -- Jungle Stalker
 
 				-- Legion
@@ -178,14 +180,14 @@ function R:PrepareDefaults()
 			-- These are inventory items that may result in another CONSTANTS.ITEM_TYPES.ITEM that Rarity would like to make you aware of
 			extraTooltips = {
 				inventoryItems = {
-					[94295] = { 94292, 94293, 94291, }, -- Primal Egg: Reins of the Black Primal Raptor, Reins of the Green Primal Raptor, Reins of the Red Primal Raptor
-					[94288] = { 94290, }, -- Giant Dinosaur Bone: Reins of the Bone-White Primal Raptor
-					[86547] = { 90655, }, -- Skyshard: Reins of the Thundering Ruby Cloud Serpent
-					[86546] = { 90655, }, -- Sky Crystal: Reins of the Thundering Ruby Cloud Serpent
-					[128025] = { 116658, 116669, 116780, }, -- Rattling Iron Cage: Tundra Icehoof, Armored Razorback, Warsong Direfang
-					[53190] = { 152840, 152841, 152842, 152843, 153054, 153055}, -- Fel-Spotted Egg: Scintillating Mana Ray, Felglow Mana Ray, Vibrant Mana Ray, Darkspore Mana Ray,  Docile Skyfin, Fel-Afflicted Skyfin
+					[94295] = { 94292, 94293, 94291 }, -- Primal Egg: Reins of the Black Primal Raptor, Reins of the Green Primal Raptor, Reins of the Red Primal Raptor
+					[94288] = { 94290 }, -- Giant Dinosaur Bone: Reins of the Bone-White Primal Raptor
+					[86547] = { 90655 }, -- Skyshard: Reins of the Thundering Ruby Cloud Serpent
+					[86546] = { 90655 }, -- Sky Crystal: Reins of the Thundering Ruby Cloud Serpent
+					[128025] = { 116658, 116669, 116780 }, -- Rattling Iron Cage: Tundra Icehoof, Armored Razorback, Warsong Direfang
+					[53190] = { 152840, 152841, 152842, 152843, 153054, 153055 }, -- Fel-Spotted Egg: Scintillating Mana Ray, Felglow Mana Ray, Vibrant Mana Ray, Darkspore Mana Ray,  Docile Skyfin, Fel-Afflicted Skyfin
 
-					--[6948] = { 6948, }, -- Hearthstone: Hearthstone [this is for testing extraTooltips]
+					-- [6948] = { 6948, }, -- Hearthstone: Hearthstone [this is for testing extraTooltips]
 				},
 			},
 			-- These are items with a 100% drop rate from various mobs; many of them only drop the first time and include a tracking quest
@@ -193,22 +195,22 @@ function R:PrepareDefaults()
 				-- [NPCID] = { questId = QUESTID, itemId = ITEMID }, -- CONSTANTS.DETECTION_METHODS.NPC Name
 
 				-- Test CONSTANTS.ITEM_TYPES.ITEM(s)
-				--[65432] = { questId = 0--[[31676]], itemId = 102248   }, -- Kyparite Pulverizer (in The Dread Wastes)
+				-- [65432] = { questId = 0--[[31676]], itemId = 102248   }, -- Kyparite Pulverizer (in The Dread Wastes)
 				---------------------------------------------------------------------------------------
 				-- WRATH OF THE LICH KING
 				---------------------------------------------------------------------------------------
-				[32491] = { itemId = 44168  }, -- Time-Lost Proto-Drake (Reins of the Time-Lost Proto-Drake, The Storm Peaks)
+				[32491] = { itemId = 44168 }, -- Time-Lost Proto-Drake (Reins of the Time-Lost Proto-Drake, The Storm Peaks)
 				---------------------------------------------------------------------------------------
 				-- CATACLYSM
 				---------------------------------------------------------------------------------------
-				[50062] = { itemId = 63042  }, -- Aeonaxx (Reins of the Phosphorescent Stone Drake, Deepholm)
-				[51236] = { itemId = 63042  }, -- Aeonaxx (Reins of the Phosphorescent Stone Drake, Deepholm)
-				[50005] = { itemId = 67151  }, -- Poseidus (Reins of Poseidus, Shimmering Expanse)
+				[50062] = { itemId = 63042 }, -- Aeonaxx (Reins of the Phosphorescent Stone Drake, Deepholm)
+				[51236] = { itemId = 63042 }, -- Aeonaxx (Reins of the Phosphorescent Stone Drake, Deepholm)
+				[50005] = { itemId = 67151 }, -- Poseidus (Reins of Poseidus, Shimmering Expanse)
 				---------------------------------------------------------------------------------------
 				-- MISTS OF PANDARIA
 				---------------------------------------------------------------------------------------
-				[64403] = { itemId = 90655  }, -- Alani <The Stormborn> (Reins of the Thundering Ruby Cloud Serpent, Vale of Eternal Blossoms)
-				[59369] = { itemId = 88566  }, -- Doctor Theolen Krastinov <The Butcher> (Krastinov's Bag of Horrors, Scholomance)
+				[64403] = { itemId = 90655 }, -- Alani <The Stormborn> (Reins of the Thundering Ruby Cloud Serpent, Vale of Eternal Blossoms)
+				[59369] = { itemId = 88566 }, -- Doctor Theolen Krastinov <The Butcher> (Krastinov's Bag of Horrors, Scholomance)
 				---------------------------------------------------------------------------------------
 				-- WARLORDS OF DRAENOR
 				---------------------------------------------------------------------------------------
@@ -491,7 +493,7 @@ function R:PrepareDefaults()
 				items = Rarity.ItemDB.toys,
 				user = {
 					name = L["Custom"],
-						--["Test 1"] =      { type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = "Test 1", spellId = 10682, itemId = 25467, npcs = { 16520, 16516 }, chance = 100,  },
+					-- ["Test 1"] =      { type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.NPC, name = "Test 1", spellId = 10682, itemId = 25467, npcs = { 16520, 16516 }, chance = 100,  },
 				},
 			}, -- groups
 		}, -- profile
@@ -532,4 +534,4 @@ end
 			**- Add a new category icon for the expansion
 			**- If a new class was added, add it to the list at the top of Options.lua in the Options module
 
-]]--
+]] --

@@ -69,7 +69,7 @@ local classes = {
 	["ROGUE"] = "|c" .. RAID_CLASS_COLORS["ROGUE"]["colorStr"] .. L["Rogue"] .. "|r",
 	["SHAMAN"] = "|c" .. RAID_CLASS_COLORS["SHAMAN"]["colorStr"] .. L["Shaman"] .. "|r",
 	["WARLOCK"] = "|c" .. RAID_CLASS_COLORS["WARLOCK"]["colorStr"] .. L["Warlock"] .. "|r",
-	["WARRIOR"] = "|c" .. RAID_CLASS_COLORS["WARRIOR"]["colorStr"] .. L["Warrior"] .. "|r"
+	["WARRIOR"] = "|c" .. RAID_CLASS_COLORS["WARRIOR"]["colorStr"] .. L["Warrior"] .. "|r",
 }
 
 local red = Rarity.Enum.Colors.Red
@@ -92,12 +92,9 @@ do
 		end
 
 		if R.db == nil then
-			R:ScheduleTimer(
-				function()
-					R:Options_DoEnable()
-				end,
-				1.0
-			)
+			R:ScheduleTimer(function()
+				R:Options_DoEnable()
+			end, 1.0)
 			return
 		end
 
@@ -187,7 +184,7 @@ local function alert(msg)
 		hideOnEscape = 1,
 		timeout = 0,
 		exclusive = 1,
-		whileDead = 1
+		whileDead = 1,
 	}
 	StaticPopup_Show("RARITY_OPTIONS_ALERT")
 end
@@ -219,7 +216,7 @@ local function alertWithCopy(msg, textToCopy)
 		timeout = 0,
 		exclusive = 1,
 		whileDead = 1,
-		hideOnEscape = 1
+		hideOnEscape = 1,
 	}
 	StaticPopup_Show("RARITY_OPTIONS_ALERT_WITH_COPY")
 end
@@ -252,28 +249,22 @@ end
 local b = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
 local function enc64(data)
-	return ((data:gsub(
-		".",
-		function(x)
-			local r, byte = "", x:byte()
-			for i = 8, 1, -1 do
-				r = r .. (byte % 2 ^ i - byte % 2 ^ (i - 1) > 0 and "1" or "0")
-			end
-			return r
+	return ((data:gsub(".", function(x)
+		local r, byte = "", x:byte()
+		for i = 8, 1, -1 do
+			r = r .. (byte % 2 ^ i - byte % 2 ^ (i - 1) > 0 and "1" or "0")
 		end
-	) .. "0000"):gsub(
-		"%d%d%d?%d?%d?%d?",
-		function(x)
-			if (#x < 6) then
-				return ""
-			end
-			local c = 0
-			for i = 1, 6 do
-				c = c + (x:sub(i, i) == "1" and 2 ^ (6 - i) or 0)
-			end
-			return b:sub(c + 1, c + 1)
+		return r
+	end) .. "0000"):gsub("%d%d%d?%d?%d?%d?", function(x)
+		if (#x < 6) then
+			return ""
 		end
-	) .. ({"", "==", "="})[#data % 3 + 1])
+		local c = 0
+		for i = 1, 6 do
+			c = c + (x:sub(i, i) == "1" and 2 ^ (6 - i) or 0)
+		end
+		return b:sub(c + 1, c + 1)
+	end) .. ({ "", "==", "=" })[#data % 3 + 1])
 end
 
 local function dec64(data)
@@ -281,31 +272,25 @@ local function dec64(data)
 		return nil
 	end
 	data = string.gsub(data, "[^" .. b .. "=]", "")
-	return (data:gsub(
-		".",
-		function(x)
-			if (x == "=") then
-				return ""
-			end
-			local r, f = "", (b:find(x) - 1)
-			for i = 6, 1, -1 do
-				r = r .. (f % 2 ^ i - f % 2 ^ (i - 1) > 0 and "1" or "0")
-			end
-			return r
+	return (data:gsub(".", function(x)
+		if (x == "=") then
+			return ""
 		end
-	):gsub(
-		"%d%d%d?%d?%d?%d?%d?%d?",
-		function(x)
-			if (#x ~= 8) then
-				return ""
-			end
-			local c = 0
-			for i = 1, 8 do
-				c = c + (x:sub(i, i) == "1" and 2 ^ (8 - i) or 0)
-			end
-			return string.char(c)
+		local r, f = "", (b:find(x) - 1)
+		for i = 6, 1, -1 do
+			r = r .. (f % 2 ^ i - f % 2 ^ (i - 1) > 0 and "1" or "0")
 		end
-	))
+		return r
+	end):gsub("%d%d%d?%d?%d?%d?%d?%d?", function(x)
+		if (#x ~= 8) then
+			return ""
+		end
+		local c = 0
+		for i = 1, 8 do
+			c = c + (x:sub(i, i) == "1" and 2 ^ (8 - i) or 0)
+		end
+		return string.char(c)
+	end))
 end
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -363,8 +348,8 @@ function R:PrepareOptions()
 									Rarity.CopyPastePopup:SetEditBoxText("https://discord.gg/sQ3UqtSh6m")
 									Rarity.CopyPastePopup:Show()
 								end,
-							}
-						}
+							},
+						},
 					},
 					general = {
 						type = "group",
@@ -388,21 +373,20 @@ function R:PrepareOptions()
 										LibStub("LibDBIcon-1.0"):Hide("Rarity")
 									end
 									self:Update("OPTIONS")
-								end
+								end,
 							}, -- minimap
 							holidayReminder = {
 								type = "toggle",
 								order = newOrder(),
 								name = L["Holiday reminders"],
-								desc = L["When on, Rarity will remind you to go farm holiday items you're missing if the holiday is active and the item is set as Undefeated. (This only works for items that originate from holiday dungeons or daily quests.) The reminder occurs each time you log in or reload your UI, and stops for the day once you defeat the holiday dungeon or complete the quest."
-								],
+								desc = L["When on, Rarity will remind you to go farm holiday items you're missing if the holiday is active and the item is set as Undefeated. (This only works for items that originate from holiday dungeons or daily quests.) The reminder occurs each time you log in or reload your UI, and stops for the day once you defeat the holiday dungeon or complete the quest."],
 								get = function()
 									return self.db.profile.holidayReminder
 								end,
 								set = function(info, val)
 									self.db.profile.holidayReminder = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							takeScreenshot = {
 								type = "toggle",
@@ -415,19 +399,13 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.takeScreenshot = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							feedText = {
 								type = "select",
 								name = L["Feed text"],
-								desc = L[
-									"Controls what type of text is shown in Rarity's LDB feed. Minimal shows just the number of attempts. Normal adds the likelihood percent, and verbose adds the item link."
-								],
-								values = {
-									[FEED_MINIMAL] = L["Minimal"],
-									[FEED_NORMAL] = L["Normal"],
-									[FEED_VERBOSE] = L["Verbose"]
-								},
+								desc = L["Controls what type of text is shown in Rarity's LDB feed. Minimal shows just the number of attempts. Normal adds the likelihood percent, and verbose adds the item link."],
+								values = { [FEED_MINIMAL] = L["Minimal"], [FEED_NORMAL] = L["Normal"], [FEED_VERBOSE] = L["Verbose"] },
 								get = function()
 									return self.db.profile.feedText
 								end,
@@ -435,7 +413,7 @@ function R:PrepareOptions()
 									self.db.profile.feedText = val
 									self:Update("OPTIONS")
 								end,
-								order = newOrder()
+								order = newOrder(),
 							}, -- feedText
 							showAchievementToast = {
 								type = "toggle",
@@ -448,7 +426,7 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.showAchievementToast = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							debug = {
 								type = "toggle",
@@ -464,15 +442,13 @@ function R:PrepareOptions()
 									else
 										self:Print(L["Debug mode OFF"])
 									end
-								end
+								end,
 							}, -- debug
 							enableProfiling = {
 								type = "toggle",
 								order = newOrder(),
 								name = L["Enable profiling"],
-								desc = L[
-									"When enabled, Rarity will print debug profiling messages to the chat window when certain things happen. This is used to determine which parts of the code are slow."
-								],
+								desc = L["When enabled, Rarity will print debug profiling messages to the chat window when certain things happen. This is used to determine which parts of the code are slow."],
 								get = function()
 									return self.db.profile.enableProfiling
 								end,
@@ -483,17 +459,15 @@ function R:PrepareOptions()
 									else
 										self:Print(L["Profiling OFF"])
 									end
-								end
+								end,
 							}, -- enableProfiling
 							tooltipActivation = {
 								type = "select",
 								name = L["Tooltip activation"],
-								desc = L[
-									'If "On click" is selected, activating the tracker is done via CTRL + SHIFT + Click, otherwise it\'s activated with a simple click.'
-								],
+								desc = L["If \"On click\" is selected, activating the tracker is done via CTRL + SHIFT + Click, otherwise it's activated with a simple click."],
 								values = {
 									[C.TOOLTIP.ACTIVATION_METHOD_HOVER] = L["On hover"],
-									[C.TOOLTIP.ACTIVATION_METHOD_CLICK] = L["On click"]
+									[C.TOOLTIP.ACTIVATION_METHOD_CLICK] = L["On click"],
 								},
 								get = function()
 									return self.db.profile.tooltipActivation
@@ -502,9 +476,9 @@ function R:PrepareOptions()
 									self.db.profile.tooltipActivation = val
 									self:Update("OPTIONS")
 								end,
-								order = newOrder()
-							} -- tooltipActivation
-						} -- args
+								order = newOrder(),
+							}, -- tooltipActivation
+						}, -- args
 					}, -- general
 					rarityTooltip = {
 						type = "group",
@@ -516,46 +490,40 @@ function R:PrepareOptions()
 								type = "toggle",
 								order = newOrder(),
 								name = L["Show category icons"],
-								desc = L[
-									"When on, Rarity will show an icon next to each item in the tooltip indicating which expansion the item belongs to."
-								],
+								desc = L["When on, Rarity will show an icon next to each item in the tooltip indicating which expansion the item belongs to."],
 								get = function()
 									return self.db.profile.showCategoryIcons
 								end,
 								set = function(info, val)
 									self.db.profile.showCategoryIcons = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							hideHighChance = {
 								type = "toggle",
 								order = newOrder(),
 								name = L["Hide high chance items"],
-								desc = L[
-									"When on, this option hides any item with a drop chance of 1 in 49 or better. The item is merely hidden from the tooltip in order to keep it clean. Items hidden in this fashion are still tracked like normal."
-								],
+								desc = L["When on, this option hides any item with a drop chance of 1 in 49 or better. The item is merely hidden from the tooltip in order to keep it clean. Items hidden in this fashion are still tracked like normal."],
 								get = function()
 									return self.db.profile.hideHighChance
 								end,
 								set = function(info, val)
 									self.db.profile.hideHighChance = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							hideUnavailable = {
 								type = "toggle",
 								order = newOrder(),
 								name = L["Hide unavailable items"],
-								desc = L[
-									"When on, items marked as Unavailable will be hidden from the tooltip. This way, items requiring a certain holiday will automatically be hidden when the holiday is not active."
-								],
+								desc = L["When on, items marked as Unavailable will be hidden from the tooltip. This way, items requiring a certain holiday will automatically be hidden when the holiday is not active."],
 								get = function()
 									return self.db.profile.hideUnavailable
 								end,
 								set = function(info, val)
 									self.db.profile.hideUnavailable = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							hideDefeated = {
 								type = "toggle",
@@ -568,7 +536,7 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.hideDefeated = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							onlyShowItemsWithAttempts = {
 								type = "toggle",
@@ -581,22 +549,20 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.onlyShowItemsWithAttempts = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							hideOutsideZone = {
 								type = "toggle",
 								order = newOrder(),
 								name = L["Hide items not in your zone"],
-								desc = L[
-									"When on, only items that can be obtained in your current zone will be shown in the tooltip. When this is on and you're in an instance, the instance difficulty is also checked to make sure it matches what the item supports."
-								],
+								desc = L["When on, only items that can be obtained in your current zone will be shown in the tooltip. When this is on and you're in an instance, the instance difficulty is also checked to make sure it matches what the item supports."],
 								get = function()
 									return self.db.profile.hideOutsideZone
 								end,
 								set = function(info, val)
 									self.db.profile.hideOutsideZone = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							showTimeColumn = {
 								type = "toggle",
@@ -609,7 +575,7 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.showTimeColumn = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							showLuckinessColumn = {
 								type = "toggle",
@@ -622,7 +588,7 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.showLuckinessColumn = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							showZoneColumn = {
 								type = "toggle",
@@ -635,7 +601,7 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.showZoneColumn = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							showTSMColumn = {
 								type = "toggle",
@@ -653,7 +619,7 @@ function R:PrepareOptions()
 										self.db.profile.showTSMColumn = val
 									end
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							tooltipScale = {
 								order = newOrder(),
@@ -669,16 +635,14 @@ function R:PrepareOptions()
 								end,
 								set = function(_, val)
 									self.db.profile.tooltipScale = val
-								end
+								end,
 							},
 							tooltipHideDelay = {
 								order = newOrder(),
 								type = "range",
 								width = "double",
 								name = L["Primary tooltip hide delay"],
-								desc = L[
-									"When you move your mouse out of the Rarity tooltip, it will take this long before it automatically hides itself."
-								],
+								desc = L["When you move your mouse out of the Rarity tooltip, it will take this long before it automatically hides itself."],
 								min = 0,
 								max = 5,
 								step = .1,
@@ -687,19 +651,13 @@ function R:PrepareOptions()
 								end,
 								set = function(_, val)
 									self.db.profile.tooltipHideDelay = val
-								end
+								end,
 							},
 							statusTip = {
 								type = "select",
 								name = L["Secondary tooltip display"],
-								desc = L[
-									"Controls on which side the secondary tooltip appears when you hover over an item in the main tooltip. If the main tooltip is on the right side of your screen, change this to Left. Otherwise, choose Right. You can also hide the status tooltip completely."
-								],
-								values = {
-									[TIP_LEFT] = L["Left"],
-									[TIP_RIGHT] = L["Right"],
-									[TIP_HIDDEN] = L["Hidden"]
-								},
+								desc = L["Controls on which side the secondary tooltip appears when you hover over an item in the main tooltip. If the main tooltip is on the right side of your screen, change this to Left. Otherwise, choose Right. You can also hide the status tooltip completely."],
+								values = { [TIP_LEFT] = L["Left"], [TIP_RIGHT] = L["Right"], [TIP_HIDDEN] = L["Hidden"] },
 								get = function()
 									return self.db.profile.statusTip or TIP_RIGHT
 								end,
@@ -707,7 +665,7 @@ function R:PrepareOptions()
 									self.db.profile.statusTip = val
 									self:Update("OPTIONS")
 								end,
-								order = newOrder()
+								order = newOrder(),
 							}, -- statusTip
 							tooltipShowDelay = {
 								order = newOrder(),
@@ -718,12 +676,14 @@ function R:PrepareOptions()
 								min = 0,
 								max = 5,
 								step = .1,
-								get = function() return self.db.profile.tooltipShowDelay or 0.1 end,
-								set = function(_, val)
-								self.db.profile.tooltipShowDelay = val
+								get = function()
+									return self.db.profile.tooltipShowDelay or 0.1
 								end,
-							}
-						} -- args
+								set = function(_, val)
+									self.db.profile.tooltipShowDelay = val
+								end,
+							},
+						}, -- args
 					}, -- rarityTooltip
 					worldTooltips = {
 						type = "group",
@@ -743,21 +703,21 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.enableTooltipAdditions = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							blankLineAfterRarity = {
 								type = "toggle",
 								order = newOrder(),
 								width = "double",
-								name = L['Put "Rarity:" on a separate line'],
-								desc = L['When on, the text "Rarity:" will be put on its own line in world and item tooltips.'],
+								name = L["Put \"Rarity:\" on a separate line"],
+								desc = L["When on, the text \"Rarity:\" will be put on its own line in world and item tooltips."],
 								get = function()
 									return self.db.profile.blankLineAfterRarity
 								end,
 								set = function(info, val)
 									self.db.profile.blankLineAfterRarity = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							blankLineBeforeTooltipAdditions = {
 								type = "toggle",
@@ -771,7 +731,7 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.blankLineBeforeTooltipAdditions = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							tooltipAttempts = {
 								type = "toggle",
@@ -785,7 +745,7 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.tooltipAttempts = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							hideKnownItemsInTooltip = {
 								type = "toggle",
@@ -799,9 +759,9 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.hideKnownItemsInTooltip = val
 									Rarity.GUI:UpdateText()
-								end
-							}
-						} -- args
+								end,
+							},
+						}, -- args
 					}, -- worldTooltips
 					contentCategory = {
 						type = "group",
@@ -811,10 +771,8 @@ function R:PrepareOptions()
 						args = {
 							desc = {
 								type = "description",
-								name = L[
-									"These toggles control which items appear in the main Rarity tooltip. Items are categorized by the expansion they were introduced in (although holiday items have a separate category). Turning off these checkboxes does not turn off tracking for any items within the category; it simply hides the item from the tooltip in order to help reduce the number of items in it."
-								],
-								order = newOrder()
+								name = L["These toggles control which items appear in the main Rarity tooltip. Items are categorized by the expansion they were introduced in (although holiday items have a separate category). Turning off these checkboxes does not turn off tracking for any items within the category; it simply hides the item from the tooltip in order to help reduce the number of items in it."],
+								order = newOrder(),
 							},
 							holiday = {
 								type = "toggle",
@@ -826,7 +784,7 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.cats[HOLIDAY] = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							base = {
 								type = "toggle",
@@ -838,7 +796,7 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.cats[BASE] = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							tbc = {
 								type = "toggle",
@@ -850,7 +808,7 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.cats[TBC] = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							wotlk = {
 								type = "toggle",
@@ -862,7 +820,7 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.cats[WOTLK] = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							cata = {
 								type = "toggle",
@@ -874,7 +832,7 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.cats[CATA] = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							mop = {
 								type = "toggle",
@@ -886,7 +844,7 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.cats[MOP] = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							wod = {
 								type = "toggle",
@@ -898,7 +856,7 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.cats[WOD] = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							legion = {
 								type = "toggle",
@@ -910,7 +868,7 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.cats[LEGION] = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							vfa = {
 								type = "toggle",
@@ -922,7 +880,7 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.cats[BFA] = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							shadowlands = {
 								type = "toggle",
@@ -934,9 +892,9 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.cats[SHADOWLANDS] = val
 									Rarity.GUI:UpdateText()
-								end
-							}
-						} -- args
+								end,
+							},
+						}, -- args
 					}, -- contentCategory
 					collectionType = {
 						type = "group",
@@ -946,10 +904,8 @@ function R:PrepareOptions()
 						args = {
 							desc = {
 								type = "description",
-								name = L[
-									"These toggles filter which items appear in the main Rarity tooltip. Items are categorized by their type (eg. Mounts, Battle Pets...). Turning off these checkboxes does not turn off tracking for any items within the category; it simply hides the item from the tooltip in order to help reduce the number of items in it."
-								],
-								order = newOrder()
+								name = L["These toggles filter which items appear in the main Rarity tooltip. Items are categorized by their type (eg. Mounts, Battle Pets...). Turning off these checkboxes does not turn off tracking for any items within the category; it simply hides the item from the tooltip in order to help reduce the number of items in it."],
+								order = newOrder(),
 							},
 							mounts = {
 								type = "toggle",
@@ -961,7 +917,7 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.collectionType[MOUNT] = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							pets = {
 								type = "toggle",
@@ -973,7 +929,7 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.collectionType[PET] = val
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							items = {
 								type = "toggle",
@@ -985,9 +941,9 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.collectionType[ITEM] = val
 									Rarity.GUI:UpdateText()
-								end
-							}
-						} --args
+								end,
+							},
+						}, -- args
 					}, -- collectionType
 					bar = {
 						type = "group",
@@ -1006,7 +962,7 @@ function R:PrepareOptions()
 									self.db.profile.bar.anchor = val
 									Rarity.GUI:UpdateBar()
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							locked = {
 								type = "toggle",
@@ -1019,7 +975,7 @@ function R:PrepareOptions()
 									self.db.profile.bar.locked = val
 									Rarity.GUI:UpdateBar()
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							growUp = {
 								type = "toggle",
@@ -1032,7 +988,7 @@ function R:PrepareOptions()
 									self.db.profile.bar.growUp = val
 									Rarity.GUI:UpdateBar()
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							rightAligned = {
 								type = "toggle",
@@ -1045,7 +1001,7 @@ function R:PrepareOptions()
 									self.db.profile.bar.rightAligned = val
 									Rarity.GUI:UpdateBar()
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							showIcon = {
 								type = "toggle",
@@ -1058,7 +1014,7 @@ function R:PrepareOptions()
 									self.db.profile.bar.showIcon = val
 									Rarity.GUI:UpdateBar()
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							showText = {
 								type = "toggle",
@@ -1071,7 +1027,7 @@ function R:PrepareOptions()
 									self.db.profile.bar.showText = val
 									Rarity.GUI:UpdateBar()
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							width = {
 								order = newOrder(),
@@ -1088,7 +1044,7 @@ function R:PrepareOptions()
 									self.db.profile.bar.width = val
 									Rarity.GUI:UpdateBar()
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							height = {
 								order = newOrder(),
@@ -1105,7 +1061,7 @@ function R:PrepareOptions()
 									self.db.profile.bar.height = val
 									Rarity.GUI:UpdateBar()
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							scale = {
 								order = newOrder(),
@@ -1122,7 +1078,7 @@ function R:PrepareOptions()
 									self.db.profile.bar.scale = val
 									Rarity.GUI:UpdateBar()
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							font = {
 								order = newOrder(),
@@ -1138,7 +1094,7 @@ function R:PrepareOptions()
 									self.db.profile.bar.font = key
 									Rarity.GUI:UpdateBar()
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							fontSize = {
 								order = newOrder(),
@@ -1155,7 +1111,7 @@ function R:PrepareOptions()
 									self.db.profile.bar.fontSize = val
 									Rarity.GUI:UpdateBar()
 									Rarity.GUI:UpdateText()
-								end
+								end,
 							},
 							texture = {
 								order = newOrder(),
@@ -1171,9 +1127,9 @@ function R:PrepareOptions()
 									self.db.profile.bar.texture = key
 									Rarity.GUI:UpdateBar()
 									Rarity.GUI:UpdateText()
-								end
-							}
-						} -- args
+								end,
+							},
+						}, -- args
 					}, -- bar
 					announcements = {
 						type = "group",
@@ -1185,20 +1141,18 @@ function R:PrepareOptions()
 								type = "toggle",
 								order = newOrder(),
 								name = L["Only announce when found"],
-								desc = L[
-									"Announcements will only be triggered when the item is found. When this is off, Rarity will announce every attempt and when the item is found."
-								],
+								desc = L["Announcements will only be triggered when the item is found. When this is off, Rarity will announce every attempt and when the item is found."],
 								get = function()
 									return self.db.profile.onlyAnnounceFound
 								end,
 								set = function(info, val)
 									self.db.profile.onlyAnnounceFound = val
-								end
+								end,
 							},
-							output = Output:GetOptionsTable()
-						} -- args
-					} -- announcements
-				} -- args
+							output = Output:GetOptionsTable(),
+						}, -- args
+					}, -- announcements
+				}, -- args
 			}, -- general
 			-- Mounts ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1207,7 +1161,7 @@ function R:PrepareOptions()
 				name = L["Mounts"],
 				order = newOrder(),
 				childGroups = "tree",
-				args = {} -- args
+				args = {}, -- args
 			}, -- mounts
 			-- Companions -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -1216,7 +1170,7 @@ function R:PrepareOptions()
 				name = L["Battle Pets"],
 				order = newOrder(),
 				childGroups = "tree",
-				args = {} -- args
+				args = {}, -- args
 			}, -- companions
 			-- Items ----------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1225,7 +1179,7 @@ function R:PrepareOptions()
 				name = L["Toys & Items"],
 				order = newOrder(),
 				childGroups = "tree",
-				args = {} -- args
+				args = {}, -- args
 			}, -- items
 			-- Custom ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1234,7 +1188,7 @@ function R:PrepareOptions()
 				name = L["Custom"],
 				order = newOrder(),
 				childGroups = "tree",
-				args = {} -- args
+				args = {}, -- args
 			}, -- custom
 			-- Import/Export --------------------------------------------------------------------------------------------------------------------------------
 
@@ -1247,20 +1201,14 @@ function R:PrepareOptions()
 					head1 = {
 						type = "description",
 						order = newOrder(),
-						name = L["This tab lets you import and export items into and out of your Custom tab."]
+						name = L["This tab lets you import and export items into and out of your Custom tab."],
 					},
-					blankLine1 = {
-						type = "description",
-						order = newOrder(),
-						name = " "
-					},
-					spacer1 = {type = "header", name = L["Import Rarity Item Pack"], order = newOrder()},
+					blankLine1 = { type = "description", order = newOrder(), name = " " },
+					spacer1 = { type = "header", name = L["Import Rarity Item Pack"], order = newOrder() },
 					head2 = {
 						type = "description",
 						order = newOrder(),
-						name = L[
-							"To import a group of items, paste a Rarity Item Pack string into the Import text box below and click the Import button. Rarity will tell you which items were imported (or which ones failed to import) in your chat window. You can find many Rarity Item Packs on the Curse web site, or elsewhere on the web."
-						]
+						name = L["To import a group of items, paste a Rarity Item Pack string into the Import text box below and click the Import button. Rarity will tell you which items were imported (or which ones failed to import) in your chat window. You can find many Rarity Item Packs on the Curse web site, or elsewhere on the web."],
 					},
 					importPreview = {
 						type = "description",
@@ -1307,27 +1255,14 @@ function R:PrepareOptions()
 									break -- Why?
 								end
 							end
-							if
-								type(e) == "table" and e.items and type(e.items) == "table" and numItems > 0 and e.build and
-									tonumber(e.build) > 0 and
-									e.signature and
-									e.signature == IMPORTEXPORT_SIGNATURE
-							 then
+							if type(e) == "table" and e.items and type(e.items) == "table" and numItems > 0 and e.build and
+									tonumber(e.build) > 0 and e.signature and e.signature == IMPORTEXPORT_SIGNATURE then
 								-- Import is good; create a preview
 								s = "\n" .. L["Here is a preview of what will (or won't) be imported:"] .. "\n\n"
 
 								for itemkey, item in pairs(e.items) do
-									local itemName,
-										itemLink,
-										itemRarity,
-										itemLevel,
-										itemMinLevel,
-										itemType,
-										itemSubType,
-										itemStackCount,
-										itemEquipLoc,
-										itemTexture,
-										itemSellPrice = GetItemInfo(item.itemId)
+									local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
+									      itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
 									local status = colorize(" - " .. L["will be imported"], green)
 									Rarity.Serialization:CleanItemForImport(item)
 									item.import = true
@@ -1345,8 +1280,8 @@ function R:PrepareOptions()
 									for k, v in pairs(allitems()) do
 										if item.itemId == v.itemId then
 											item.import = false
-											status =
-												colorize(" - " .. L["an item with the same Item ID already exists, so it will not be imported"], red)
+											status = colorize(" - " .. L["an item with the same Item ID already exists, so it will not be imported"],
+											                  red)
 										end
 									end
 
@@ -1365,7 +1300,7 @@ function R:PrepareOptions()
 						end,
 						hidden = function()
 							return not self.db.profile.lastImportString or strtrim(self.db.profile.lastImportString) == ""
-						end
+						end,
 					},
 					importText = {
 						order = newOrder(),
@@ -1378,7 +1313,7 @@ function R:PrepareOptions()
 						end,
 						get = function()
 							return self.db.profile.lastImportString or ""
-						end
+						end,
 					}, -- importText
 					import = {
 						type = "execute",
@@ -1392,17 +1327,8 @@ function R:PrepareOptions()
 
 							-- Do the import
 							for itemkey, item in pairs(Rarity.itemPack.items) do
-								local itemName,
-									itemLink,
-									itemRarity,
-									itemLevel,
-									itemMinLevel,
-									itemType,
-									itemSubType,
-									itemStackCount,
-									itemEquipLoc,
-									itemTexture,
-									itemSellPrice = GetItemInfo(item.itemId)
+								local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
+								      itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
 								if not item.import then
 									R:Print((itemLink or item.name or "Unknown") .. " - " .. colorize(L["not imported"], red))
 								else
@@ -1426,20 +1352,14 @@ function R:PrepareOptions()
 								return true
 							end
 							return false
-						end
+						end,
 					}, -- import
-					blankLine2 = {
-						type = "description",
-						order = newOrder(),
-						name = " "
-					},
-					spacer2 = {type = "header", name = L["Export Rarity Item Pack"], order = newOrder()},
+					blankLine2 = { type = "description", order = newOrder(), name = " " },
+					spacer2 = { type = "header", name = L["Export Rarity Item Pack"], order = newOrder() },
 					head3 = {
 						type = "description",
 						order = newOrder(),
-						name = L[
-							"To export a group of items, go through each item in your Custom tab and check or uncheck the Export checkbox. The checkbox will be disabled if you haven't yet filled out enough information for Rarity to detect the item. Once you've done that, return here and click the Export button. A Rarity Item Pack string will be generated that you can copy to the clipboard using Ctrl-C."
-						]
+						name = L["To export a group of items, go through each item in your Custom tab and check or uncheck the Export checkbox. The checkbox will be disabled if you haven't yet filled out enough information for Rarity to detect the item. Once you've done that, return here and click the Export button. A Rarity Item Pack string will be generated that you can copy to the clipboard using Ctrl-C."],
 					},
 					exportPreview = {
 						type = "description",
@@ -1451,17 +1371,8 @@ function R:PrepareOptions()
 							local foundRed = false
 							for itemkey, item in pairs(g) do
 								if item and type(item) == "table" and item.export and Rarity.Serialization:CanItemBeExportedImported(item) then
-									local itemName,
-										itemLink,
-										itemRarity,
-										itemLevel,
-										itemMinLevel,
-										itemType,
-										itemSubType,
-										itemStackCount,
-										itemEquipLoc,
-										itemTexture,
-										itemSellPrice = GetItemInfo(item.itemId)
+									local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
+									      itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
 									s = s .. (itemLink or colorize(item.name, red)) .. "\n"
 									if not itemLink then
 										foundRed = true
@@ -1470,13 +1381,10 @@ function R:PrepareOptions()
 								end
 							end
 							if foundRed then
-								s =
-									s ..
-									"\n" ..
-										colorize(
-											L["(Items listed in red could not be found on the server and may not exist. Consider removing them.)"],
-											red
-										)
+								s = s .. "\n" ..
+										    colorize(
+												    L["(Items listed in red could not be found on the server and may not exist. Consider removing them.)"],
+												    red)
 							end
 							s = "\n" .. format(L["The following %d item(s) have been selected to export:"], numItems) .. "\n\n" .. s
 							return s
@@ -1488,14 +1396,14 @@ function R:PrepareOptions()
 								end
 							end
 							return true
-						end
+						end,
 					},
 					export = {
 						type = "execute",
 						name = L["Export"],
 						func = function(info)
 							-- Do the export
-							local e = {items = {}}
+							local e = { items = {} }
 							local g = sort(self.db.profile.groups.user)
 							for itemkey, item in pairs(g) do
 								if item and type(item) == "table" and item.export and Rarity.Serialization:CanItemBeExportedImported(item) then
@@ -1521,11 +1429,8 @@ function R:PrepareOptions()
 							end
 
 							alertWithCopy(
-								L[
-									"Copy the generated Rarity Export String below using Ctrl-C. You can then paste it elsewhere using Ctrl-V.\n\nFeel free to post it on Curse, GitHub, or Discord to share your Item Pack. We will publish the best ones to the main add-on page."
-								],
-								enc
-							)
+									L["Copy the generated Rarity Export String below using Ctrl-C. You can then paste it elsewhere using Ctrl-V.\n\nFeel free to post it on Curse, GitHub, or Discord to share your Item Pack. We will publish the best ones to the main add-on page."],
+									enc)
 						end,
 						order = newOrder(),
 						disabled = function()
@@ -1535,7 +1440,7 @@ function R:PrepareOptions()
 								end
 							end
 							return true
-						end
+						end,
 					}, -- export
 					clearAllExport = {
 						type = "execute",
@@ -1557,13 +1462,13 @@ function R:PrepareOptions()
 								end
 							end
 							return true
-						end
-					} -- export
-				}
-			}
+						end,
+					}, -- export
+				},
+			},
 
 			-------------------------------------------------------------------------------------------------------------------------------------------------
-		} -- args
+		}, -- args
 	} -- self.options
 
 	-- Create the options for each group of items
@@ -1590,32 +1495,29 @@ function R:PrepareOptions()
 						name = L["Verify item database on login"],
 						width = "full",
 						desc = format(
-							L["Run the verification routine automatically after logging in. It can always be run manually (by typing %s)."],
-							"/rarity validate"
-						),
+								L["Run the verification routine automatically after logging in. It can always be run manually (by typing %s)."],
+								"/rarity validate"),
 						get = function()
 							return self.db.profile.verifyDatabaseOnLogin
 						end,
 						set = function(info, val)
 							self.db.profile.verifyDatabaseOnLogin = val
-						end
+						end,
 					},
 					disableCustomErrors = {
 						type = "toggle",
 						order = newOrder(),
 						name = L["Disable Rarity-specific error messages"],
 						width = "full",
-						desc = L[
-							"Disables the detailed (red) error messages that are used by the addon to detect invalid states rather than allowing it to crash. Any detected errors will still be handled, but you won't see the notification."
-						],
+						desc = L["Disables the detailed (red) error messages that are used by the addon to detect invalid states rather than allowing it to crash. Any detected errors will still be handled, but you won't see the notification."],
 						get = function()
 							return self.db.profile.disableCustomErrors
 						end,
 						set = function(info, val)
 							self.db.profile.disableCustomErrors = val
-						end
-					}
-				}
+						end,
+					},
+				},
 			},
 			cacheManagement = {
 				name = L["Cached Data"],
@@ -1628,16 +1530,14 @@ function R:PrepareOptions()
 						order = newOrder(),
 						width = "full",
 						name = L["Clear accountwide statistics"],
-						desc = L[
-							"Clears the accountwide statistics saved for all characters. You can use this to remove the attempts stored for characters that no longer exist in their original form, e.g., after a server transfer, realm merge, or name change. After clearing this cached data, you will have to log into each character once so attempts can be updated from their statistics again."
-						],
+						desc = L["Clears the accountwide statistics saved for all characters. You can use this to remove the attempts stored for characters that no longer exist in their original form, e.g., after a server transfer, realm merge, or name change. After clearing this cached data, you will have to log into each character once so attempts can be updated from their statistics again."],
 						func = function(info, value) -- What are these parameters?
 							Rarity.db.profile.accountWideStatisticsBackup = Rarity.db.profile.accountWideStatistics -- There's no way to restore it automatically, for now, but it's still better to be safe rather than sorry
 							Rarity.db.profile.accountWideStatistics = {}
 							Rarity:Print(L["Cleared accountwide statistics"])
-						end
-					}
-				}
+						end,
+					},
+				},
 			},
 			trackingOverrides = {
 				name = L["Tracking Overrides"],
@@ -1650,8 +1550,8 @@ function R:PrepareOptions()
 						order = newOrder(),
 						-- width = "full",
 						name = L["Track pets repeatedly"],
-						desc = L["Set all battle pets to be tracked repeatedly."] ..
-							" " .. L["Note: Your existing settings will be overwritten."],
+						desc = L["Set all battle pets to be tracked repeatedly."] .. " " ..
+								L["Note: Your existing settings will be overwritten."],
 						func = function(info, val)
 							for index, item in pairs(self.db.profile.groups.pets) do
 								if type(item) == "table" then -- For some reason, there's a bunch of other properties, too...
@@ -1659,15 +1559,15 @@ function R:PrepareOptions()
 									Rarity:Debug(format("Setting repeatable = %s for item %s", tostring(item.repeatable), item.name))
 								end
 							end
-						end
+						end,
 					},
 					untrackPetsRepeatedly = {
 						type = "execute",
 						order = newOrder(),
 						-- width = "full",
 						name = L["Untrack pets repeatedly"],
-						desc = L["Set all battle pets to NOT be tracked repeatedly."] ..
-							" " .. L["Note: Your existing settings will be overwritten."],
+						desc = L["Set all battle pets to NOT be tracked repeatedly."] .. " " ..
+								L["Note: Your existing settings will be overwritten."],
 						func = function(info, val)
 							for index, item in pairs(self.db.profile.groups.pets) do
 								if type(item) == "table" then -- For some reason, there's a bunch of other properties, too...
@@ -1675,9 +1575,9 @@ function R:PrepareOptions()
 									Rarity:Debug(format("Setting repeatable = %s for item %s", tostring(item.repeatable), item.name))
 								end
 							end
-						end
-					}
-				}
+						end,
+					},
+				},
 			},
 			profilingTools = {
 				name = L["Performance"],
@@ -1690,35 +1590,37 @@ function R:PrepareOptions()
 						order = newOrder(),
 						-- width = "full",
 						name = L["Disable sorting"],
-						desc = L["Disable sorting inside the main window. Can be used to troubleshoot performance issues."] ..
-							" " .. L["Note: Your existing settings will be overwritten."],
+						desc = L["Disable sorting inside the main window. Can be used to troubleshoot performance issues."] .. " " ..
+								L["Note: Your existing settings will be overwritten."],
 						func = function(info, val)
 							self.db.profile.sortMode = C.SORT_METHODS.SORT_NONE
-						end
+						end,
 					},
 					showAccumulatedTimes = {
 						type = "execute",
 						order = newOrder(),
 						-- width = "full",
 						name = L["Show profiling data"],
-						desc = L["Displays accumulated profiling data for the current session."] .. " " ..  L["This is merely a shortcut introduced to make life easier for developers, and as a regular player you can safely ignore it."],
+						desc = L["Displays accumulated profiling data for the current session."] .. " " ..
+								L["This is merely a shortcut introduced to make life easier for developers, and as a regular player you can safely ignore it."],
 						func = function(info, val)
 							Rarity.Profiling:InspectAccumulatedTimes()
-						end
+						end,
 					},
 					resetAccumulatedTimes = {
 						type = "execute",
 						order = newOrder(),
 						-- width = "full",
 						name = L["Reset profiling data"],
-						desc = L["Deletes accumulated profiling data for the current session."] .. " " ..  L["This is merely a shortcut introduced to make life easier for developers, and as a regular player you can safely ignore it."],
+						desc = L["Deletes accumulated profiling data for the current session."] .. " " ..
+								L["This is merely a shortcut introduced to make life easier for developers, and as a regular player you can safely ignore it."],
 						func = function(info, val)
 							Rarity.Profiling:ResetAccumulatedTimes()
-						end
+						end,
 					},
-				}
-			}
-		}
+				},
+			},
+		},
 	}
 end -- function R:PrepareOptions()
 
@@ -1733,9 +1635,7 @@ function R:CreateGroup(options, group, isUser)
 			type = "input",
 			width = "double",
 			name = L["Create a new item to track"],
-			desc = L[
-				"To create a new item, enter a unique name for the item, and click Okay. The name will be used if the server does not return the item link or if the item is invalid.\n\nYou can't change this name after you create the item, so choose it well."
-			],
+			desc = L["To create a new item, enter a unique name for the item, and click Okay. The name will be used if the server does not return the item link or if the item is invalid.\n\nYou can't change this name after you create the item, so choose it well."],
 			set = function(info, val)
 				if strtrim(val) ~= "" then
 					val = strtrim(val)
@@ -1749,13 +1649,13 @@ function R:CreateGroup(options, group, isUser)
 							return
 						end
 					end
-					self.db.profile.groups.user[val] = {name = val}
+					self.db.profile.groups.user[val] = { name = val }
 					self:Update("OPTIONS")
 					self:CreateGroup(self.options.args.custom, self.db.profile.groups.user, true)
 				end
 			end,
-			hidden = not isUser
-		}
+			hidden = not isUser,
+		},
 	}
 
 	local g = sort(group)
@@ -1782,15 +1682,13 @@ function R:CreateGroup(options, group, isUser)
 					fontSize = "large",
 					hidden = function()
 						return GetItemInfo(item.itemId)
-					end
+					end,
 				},
 				export = {
 					order = newOrder(),
 					type = "toggle",
 					name = L["Export this item"],
-					desc = L[
-						"Check this for every Custom item you wish to export. Then click on the Import/Export tab and click the Export button. This checkbox will be disabled until enough information has been filled in below to make it a detectable item."
-					],
+					desc = L["Check this for every Custom item you wish to export. Then click on the Import/Export tab and click the Export button. This checkbox will be disabled until enough information has been filled in below to make it a detectable item."],
 					get = function()
 						if item.export == true and Rarity.Serialization:CanItemBeExportedImported(item) then
 							return true
@@ -1805,7 +1703,7 @@ function R:CreateGroup(options, group, isUser)
 					hidden = not isUser,
 					disabled = function()
 						return not Rarity.Serialization:CanItemBeExportedImported(item)
-					end
+					end,
 				},
 				delete = {
 					type = "execute",
@@ -1818,7 +1716,7 @@ function R:CreateGroup(options, group, isUser)
 						self:Update("OPTIONS")
 					end,
 					order = newOrder(),
-					hidden = not isUser
+					hidden = not isUser,
 				},
 				source = {
 					type = "description",
@@ -1839,83 +1737,82 @@ function R:CreateGroup(options, group, isUser)
 							return false
 						end
 						return true
-					end
+					end,
 				},
 				sourceExtra = {
 					type = "description",
 					order = newOrder(),
 					name = item.sourceText or "",
-					hidden = item.sourceText == nil or item.sourceText == ""
+					hidden = item.sourceText == nil or item.sourceText == "",
 				},
 				currentAttemptsDesc = {
 					type = "description",
 					order = newOrder(),
-					name = colorize(L["Current Attempts"] .. ": ", green) .. tostring((item.attempts or 0) - (item.lastAttempts or 0))
+					name = colorize(L["Current Attempts"] .. ": ", green) ..
+							tostring((item.attempts or 0) - (item.lastAttempts or 0)),
 				},
 				lastAttemptsDesc = {
 					type = "description",
 					order = newOrder(),
 					name = colorize(L["Last Obtained In"] .. ": ", green) .. tostring(item.lastAttempts or 0),
-					hidden = (item.lastAttempts or 0) == 0
+					hidden = (item.lastAttempts or 0) == 0,
 				},
 				totalAttemptsDesc = {
 					type = "description",
 					order = newOrder(),
 					name = colorize(L["Total Attempts"] .. ": ", green) .. tostring(item.attempts or 0),
-					hidden = (item.lastAttempts or 0) == 0
+					hidden = (item.lastAttempts or 0) == 0,
 				},
 				worldBossFactionless = {
 					type = "description",
 					order = newOrder(),
-					name = colorize(
-						L["All players can participate in killing this world boss once per week, regardless of faction"],
-						blue
-					),
-					hidden = item.worldBossFactionless == false or item.worldBossFactionless == nil
+					name = colorize(L["All players can participate in killing this world boss once per week, regardless of faction"],
+					                blue),
+					hidden = item.worldBossFactionless == false or item.worldBossFactionless == nil,
 				},
 				wasGuaranteed = {
 					type = "description",
 					order = newOrder(),
 					name = colorize(L["This was a guaranteed drop for players who defeated the encounter when it was current"], blue),
-					hidden = item.wasGuaranteed == false or item.wasGuaranteed == nil
+					hidden = item.wasGuaranteed == false or item.wasGuaranteed == nil,
 				},
 				bonusSatchel = {
 					type = "description",
 					order = newOrder(),
 					name = colorize(L["Contained in bonus satchels"], yellow),
-					hidden = item.bonusSatchel == false or item.bonusSatchel == nil
+					hidden = item.bonusSatchel == false or item.bonusSatchel == nil,
 				},
 				blackMarket = {
 					type = "description",
 					order = newOrder(),
 					name = colorize(L["Appears in the Black Market"], yellow),
-					hidden = item.blackMarket == false or item.blackMarket == nil
+					hidden = item.blackMarket == false or item.blackMarket == nil,
 				},
 				enableCoinD = {
 					type = "description",
 					order = newOrder(),
 					name = colorize(L["Can be obtained with a bonus roll"], yellow),
-					hidden = item.enableCoin == false or item.enableCoin == nil
+					hidden = item.enableCoin == false or item.enableCoin == nil,
 				},
 				requiresAllianceT = {
 					type = "description",
 					order = newOrder(),
 					name = colorize(L["This item is only obtainable by Alliance players"], R.Caching:IsAlliance() and green or red),
-					hidden = item.requiresAlliance == false or item.requiresAlliance == nil
+					hidden = item.requiresAlliance == false or item.requiresAlliance == nil,
 				},
 				requiresHordeT = {
 					type = "description",
 					order = newOrder(),
 					name = colorize(L["This item is only obtainable by Horde players"], R.Caching:IsHorde() and green or red),
-					hidden = item.requiresHorde == false or item.requiresHorde == nil
+					hidden = item.requiresHorde == false or item.requiresHorde == nil,
 				},
 				blankLine = {
 					type = "description",
 					order = newOrder(),
 					name = " ",
-					hidden = item.sourceText == nil or item.sourceText == ""
+					hidden = item.sourceText == nil or item.sourceText == "",
 				},
-				spacer1 = {type = "header", name = L["Identify the Item"], order = newOrder()},
+				spacer1 = { type = "header", name = L["Identify the Item"], order = newOrder() },
 				method = {
 					type = "select",
 					name = L["Method of obtaining"],
@@ -1928,7 +1825,7 @@ function R:CreateGroup(options, group, isUser)
 						[USE] = R.string_methods[USE],
 						[FISHING] = R.string_methods[FISHING],
 						[ARCH] = R.string_methods[ARCH],
-						[COLLECTION] = R.string_methods[COLLECTION]
+						[COLLECTION] = R.string_methods[COLLECTION],
 					},
 					get = function()
 						return item.method
@@ -1938,17 +1835,13 @@ function R:CreateGroup(options, group, isUser)
 						self:Update("OPTIONS")
 					end,
 					order = newOrder(),
-					disabled = not isUser
+					disabled = not isUser,
 				},
 				type = {
 					type = "select",
 					name = L["Type of item"],
 					desc = L["Determines what type of item this is."],
-					values = {
-						[MOUNT] = L["Mount"],
-						[PET] = L["Battle Pet"],
-						[ITEM] = L["Toy or Item"]
-					},
+					values = { [MOUNT] = L["Mount"], [PET] = L["Battle Pet"], [ITEM] = L["Toy or Item"] },
 					get = function()
 						return item.type
 					end,
@@ -1957,16 +1850,14 @@ function R:CreateGroup(options, group, isUser)
 						self:Update("OPTIONS")
 					end,
 					order = newOrder(),
-					hidden = not isUser
+					hidden = not isUser,
 				},
 				itemId = {
 					type = "input",
 					order = newOrder(),
 					width = "half",
 					name = L["Item ID"],
-					desc = L[
-						"The item ID to track. This is the item as it appears in your inventory or in a loot window. Use WowHead or a similar service to lookup item IDs. This must be a valid number and must be unique."
-					],
+					desc = L["The item ID to track. This is the item as it appears in your inventory or in a loot window. Use WowHead or a similar service to lookup item IDs. This must be a valid number and must be unique."],
 					set = function(info, val)
 						if strtrim(val) == "" then
 							alert(L["You must enter an item ID."])
@@ -1994,20 +1885,18 @@ function R:CreateGroup(options, group, isUser)
 							return nil
 						end
 					end,
-					disabled = not isUser
+					disabled = not isUser,
 				},
 				collectedItemId = {
 					type = "input",
 					order = newOrder(),
 					name = L["Item ID to Collect"],
-					desc = L[
-						"The item ID that you need to collect. Rarity uses the number of this item that you have in your bags as your progress. Use WowHead or a similar service to lookup item IDs. This must be a valid number and must not be used by another item."
-					],
+					desc = L["The item ID that you need to collect. Rarity uses the number of this item that you have in your bags as your progress. Use WowHead or a similar service to lookup item IDs. This must be a valid number and must not be used by another item."],
 					set = function(info, val)
 						if strtrim(val) == "" then
 							alert(L["You must enter an item ID."])
 						else
-							local list = {strsplit(",", val)}
+							local list = { strsplit(",", val) }
 							for k, v in pairs(list) do
 								if strtrim(v) == "" then
 									alert(L["Please enter a comma-separated list of item IDs."])
@@ -2040,16 +1929,14 @@ function R:CreateGroup(options, group, isUser)
 					disabled = not isUser,
 					hidden = function()
 						return item.method ~= COLLECTION
-					end
+					end,
 				},
 				spellId = {
 					type = "input",
 					order = newOrder(),
 					width = "half",
 					name = L["Spell ID"],
-					desc = L[
-						"The spell ID of the item once you've learned it. This applies only to mounts and companions, and is the spell as it appears in your spell book after learning the item. Use WowHead or a similar service to lookup spell IDs. This must be a valid number and must be unique."
-					],
+					desc = L["The spell ID of the item once you've learned it. This applies only to mounts and companions, and is the spell as it appears in your spell book after learning the item. Use WowHead or a similar service to lookup spell IDs. This must be a valid number and must be unique."],
 					set = function(info, val)
 						if strtrim(val) == "" then
 							alert(L["You must enter a spell ID."])
@@ -2084,16 +1971,14 @@ function R:CreateGroup(options, group, isUser)
 							return true
 						end
 					end,
-					disabled = not isUser
+					disabled = not isUser,
 				},
 				creatureId = {
 					type = "input",
 					order = newOrder(),
 					width = "half",
 					name = L["Creature ID"],
-					desc = L[
-						"The NPC ID of the creature that is spawned when you summon this pet. This is used to track account-wide battle pets."
-					],
+					desc = L["The NPC ID of the creature that is spawned when you summon this pet. This is used to track account-wide battle pets."],
 					set = function(info, val)
 						if strtrim(val) == "" then
 							alert(L["You must enter a creature ID."])
@@ -2128,7 +2013,7 @@ function R:CreateGroup(options, group, isUser)
 							return true
 						end
 					end,
-					disabled = not isUser
+					disabled = not isUser,
 				},
 				raceId = {
 					type = "select",
@@ -2146,48 +2031,37 @@ function R:CreateGroup(options, group, isUser)
 					disabled = not isUser,
 					hidden = function()
 						return item.method ~= ARCH
-					end
+					end,
 				},
 				zones = {
 					type = "input",
 					order = newOrder(),
 					width = "double",
 					name = L["Zones"],
-					desc = L[
-						"A comma-separated list of the zones or sub-zones this item can be found in. For zones, you can enter either the Map ID (i.e. 811 is Vale of Eternal Blossoms), or the full name of the zone. For sub-zones, you must enter the full name of the sub-zone.\n\nEnter zone names with proper spelling, capitalization, and punctuation. They can be entered either in US English or your client's local language. Use WowHead or a similar service to make sure you're entering the zone names perfectly.\n\nPLEASE NOTE: Zone translations may not be correct. For zones, it is highly recommended that you use the Map ID instead of the name. For sub-zones, you must enter the name. If sub-zone detection isn't working for you, please visit the LibBabble-SubZone-3.0 library page on wowace.com and update the translations for your language."
-					],
+					desc = L["A comma-separated list of the zones or sub-zones this item can be found in. For zones, you can enter either the Map ID (i.e. 811 is Vale of Eternal Blossoms), or the full name of the zone. For sub-zones, you must enter the full name of the sub-zone.\n\nEnter zone names with proper spelling, capitalization, and punctuation. They can be entered either in US English or your client's local language. Use WowHead or a similar service to make sure you're entering the zone names perfectly.\n\nPLEASE NOTE: Zone translations may not be correct. For zones, it is highly recommended that you use the Map ID instead of the name. For sub-zones, you must enter the name. If sub-zone detection isn't working for you, please visit the LibBabble-SubZone-3.0 library page on wowace.com and update the translations for your language."],
 					set = function(info, val)
 						if strtrim(val) == "" then
 							alert(L["You must enter at least one zone."])
 						else
-							local list = {strsplit(",", val)}
+							local list = { strsplit(",", val) }
 							for k, v in pairs(list) do
 								if strtrim(v) == "" then
 									alert(L["Please enter a comma-separated list of zones."])
 									return
 								else
 									if tonumber(v) == nil then
-										if
-											lbz:GetUnstrictLookupTable()[v] == nil and lbz:GetReverseLookupTable()[v] == nil and
-												lbsz:GetUnstrictLookupTable()[v] == nil and
-												lbsz:GetReverseLookupTable()[v] == nil
-										 then
-											alert(
-												format(
-													L[
-														"One of the zones or sub-zones you entered (%s) cannot be found. Check that it is spelled correctly, and is either US English or your client's local language."
-													],
-													v
-												)
-											)
+										if lbz:GetUnstrictLookupTable()[v] == nil and lbz:GetReverseLookupTable()[v] == nil and
+												lbsz:GetUnstrictLookupTable()[v] == nil and lbsz:GetReverseLookupTable()[v] == nil then
+											alert(format(
+													      L["One of the zones or sub-zones you entered (%s) cannot be found. Check that it is spelled correctly, and is either US English or your client's local language."],
+													      v))
 											return
 										end
 									else
 										local mapID = tonumber(v)
 										if mapID <= 0 then
-											alert(
-												format(L["One of the Map IDs you entered (%s) is incorrect. Please enter numbers larger than zero."], v)
-											)
+											alert(format(L["One of the Map IDs you entered (%s) is incorrect. Please enter numbers larger than zero."],
+											             v))
 											return
 										end
 									end
@@ -2221,21 +2095,19 @@ function R:CreateGroup(options, group, isUser)
 							return true
 						end
 					end,
-					disabled = not isUser
+					disabled = not isUser,
 				},
 				items = {
 					type = "input",
 					order = newOrder(),
 					width = "double",
 					name = L["Items to Use"],
-					desc = L[
-						"A comma-separated list of item IDs which, when used or opened, can give you this item. Use WowHead or a similar service to lookup item IDs."
-					],
+					desc = L["A comma-separated list of item IDs which, when used or opened, can give you this item. Use WowHead or a similar service to lookup item IDs."],
 					set = function(info, val)
 						if strtrim(val) == "" then
 							alert(L["You must enter at least one item ID."])
 						else
-							local list = {strsplit(",", val)}
+							local list = { strsplit(",", val) }
 							for k, v in pairs(list) do
 								if strtrim(v) == "" or tonumber(strtrim(v)) == nil then
 									alert(L["Please enter a comma-separated list of item IDs."])
@@ -2273,21 +2145,19 @@ function R:CreateGroup(options, group, isUser)
 							return true
 						end
 					end,
-					disabled = not isUser
+					disabled = not isUser,
 				},
 				npcs = {
 					type = "input",
 					order = newOrder(),
 					width = "double",
 					name = L["NPCs"],
-					desc = L[
-						"A comma-separated list of NPC IDs who drop this item. Use WowHead or a similar service to lookup NPC IDs."
-					],
+					desc = L["A comma-separated list of NPC IDs who drop this item. Use WowHead or a similar service to lookup NPC IDs."],
 					set = function(info, val)
 						if strtrim(val) == "" then
 							alert(L["You must enter at least one NPC ID."])
 						else
-							local list = {strsplit(",", val)}
+							local list = { strsplit(",", val) }
 							for k, v in pairs(list) do
 								if strtrim(v) == "" or tonumber(strtrim(v)) == nil then
 									alert(L["Please enter a comma-separated list of NPC IDs."])
@@ -2325,21 +2195,19 @@ function R:CreateGroup(options, group, isUser)
 							return true
 						end
 					end,
-					disabled = not isUser
+					disabled = not isUser,
 				},
 				statistics = {
 					type = "input",
 					order = newOrder(),
 					width = "double",
 					name = L["Kill Statistic IDs"],
-					desc = L[
-						"A comma-separated list of Statistic IDs that track the number of kills toward obtaining this item. These statistics will be added together. Use WowHead or a similar service to locate statistic IDs."
-					],
+					desc = L["A comma-separated list of Statistic IDs that track the number of kills toward obtaining this item. These statistics will be added together. Use WowHead or a similar service to locate statistic IDs."],
 					set = function(info, val)
 						if strtrim(val) == "" then
 							item.statisticId = {}
 						else
-							local list = {strsplit(",", val)}
+							local list = { strsplit(",", val) }
 							for k, v in pairs(list) do
 								if strtrim(v) == "" or tonumber(strtrim(v)) == nil then
 									alert(L["Please enter a comma-separated list of Statistic IDs."])
@@ -2377,15 +2245,13 @@ function R:CreateGroup(options, group, isUser)
 							return true
 						end
 					end,
-					disabled = not isUser
+					disabled = not isUser,
 				},
 				requiresPool = {
 					order = newOrder(),
 					type = "toggle",
 					name = L["Requires a pool"],
-					desc = L[
-						"Determines whether the item can only be obtained from fishing in pools. In order for this option to work, the fishing pools must have all been translated into your client's language."
-					],
+					desc = L["Determines whether the item can only be obtained from fishing in pools. In order for this option to work, the fishing pools must have all been translated into your client's language."],
 					get = function()
 						if item.requiresPool == true then
 							return true
@@ -2404,16 +2270,14 @@ function R:CreateGroup(options, group, isUser)
 							return true
 						end
 					end,
-					disabled = not isUser
+					disabled = not isUser,
 				},
-				spacer2 = {type = "header", name = L["Options"], order = newOrder()},
+				spacer2 = { type = "header", name = L["Options"], order = newOrder() },
 				enabled = {
 					order = newOrder(),
 					type = "toggle",
 					name = L["Track this"],
-					desc = L[
-						"Determines whether tracking should be enabled for this item. Items that are disabled will not appear in the tooltip."
-					],
+					desc = L["Determines whether tracking should be enabled for this item. Items that are disabled will not appear in the tooltip."],
 					get = function()
 						if item.enabled == false then
 							return false
@@ -2424,7 +2288,7 @@ function R:CreateGroup(options, group, isUser)
 					set = function(info, val)
 						item.enabled = val
 						self:Update("OPTIONS")
-					end
+					end,
 				},
 				found = {
 					order = newOrder(),
@@ -2443,15 +2307,13 @@ function R:CreateGroup(options, group, isUser)
 					end,
 					hidden = function()
 						return not R.db.profile.debugMode
-					end
+					end,
 				},
 				repeatable = {
 					order = newOrder(),
 					type = "toggle",
 					name = L["Repeatable"],
-					desc = L[
-						"Determines whether you want to repeatedly farm this item. If you turn this on and find the item, Rarity will mark the item as un-found after a few seconds."
-					],
+					desc = L["Determines whether you want to repeatedly farm this item. If you turn this on and find the item, Rarity will mark the item as un-found after a few seconds."],
 					get = function()
 						if item.repeatable == true then
 							return true
@@ -2465,7 +2327,7 @@ function R:CreateGroup(options, group, isUser)
 							item.enabled = true
 						end
 						self:Update("OPTIONS")
-					end
+					end,
 				},
 				enableAnnouncements = {
 					order = newOrder(),
@@ -2482,9 +2344,9 @@ function R:CreateGroup(options, group, isUser)
 					set = function(info, val)
 						item.announce = val
 						self:Update("OPTIONS")
-					end
+					end,
 				},
-				spacer4 = {type = "header", name = L["Attempts"], order = newOrder()},
+				spacer4 = { type = "header", name = L["Attempts"], order = newOrder() },
 				attempts = {
 					type = "input",
 					order = newOrder(),
@@ -2519,7 +2381,7 @@ function R:CreateGroup(options, group, isUser)
 					end,
 					get = function(into)
 						return tostring((item.attempts or 0) - (item.lastAttempts or 0))
-					end
+					end,
 				},
 				chance = {
 					type = "input",
@@ -2558,15 +2420,13 @@ function R:CreateGroup(options, group, isUser)
 						else
 							return nil
 						end
-					end
+					end,
 				},
 				enableCoin = {
 					order = newOrder(),
 					type = "toggle",
 					name = L["Enable Coins"],
-					desc = L[
-						"When any good-luck coin is used within about 90 seconds of an attempt on this item, another attempt will be counted for this item. Only enable this for items which can legitimately be obtained from coin rolls."
-					],
+					desc = L["When any good-luck coin is used within about 90 seconds of an attempt on this item, another attempt will be counted for this item. Only enable this for items which can legitimately be obtained from coin rolls."],
 					get = function()
 						if item.enableCoin == true then
 							return true
@@ -2580,15 +2440,13 @@ function R:CreateGroup(options, group, isUser)
 					end,
 					hidden = function()
 						return item.method == COLLECTION
-					end
+					end,
 				},
 				holidayReminder = {
 					order = newOrder(),
 					type = "toggle",
 					name = L["Holiday reminders"],
-					desc = L[
-						"When on, Rarity will remind you to go farm holiday items you're missing if the holiday is active and the item is set as Undefeated. (This only works for items that originate from holiday dungeons or daily quests.) The reminder occurs each time you log in or reload your UI, and stops for the day once you defeat the holiday dungeon or complete the quest."
-					],
+					desc = L["When on, Rarity will remind you to go farm holiday items you're missing if the holiday is active and the item is set as Undefeated. (This only works for items that originate from holiday dungeons or daily quests.) The reminder occurs each time you log in or reload your UI, and stops for the day once you defeat the holiday dungeon or complete the quest."],
 					get = function()
 						if item.holidayReminder == false then
 							return false
@@ -2601,23 +2459,22 @@ function R:CreateGroup(options, group, isUser)
 						self:Update("OPTIONS")
 					end,
 					hidden = function()
-						return (item.cat ~= HOLIDAY and item.worldQuestId == nil) or (item.questId == nil and item.lockDungeonId == nil and item.holidayTexture == nil)
-					end
+						return (item.cat ~= HOLIDAY and item.worldQuestId == nil) or
+								       (item.questId == nil and item.lockDungeonId == nil and item.holidayTexture == nil)
+					end,
 				},
-				spacer3 = {type = "header", name = L["Defeat Detection"], order = newOrder()},
+				spacer3 = { type = "header", name = L["Defeat Detection"], order = newOrder() },
 				questId = {
 					type = "input",
 					order = newOrder(),
 					width = "double",
 					name = L["Quest ID"],
-					desc = L[
-						"A comma-separated list of quest IDs. When these quest IDs are completed, the item is considered defeated."
-					],
+					desc = L["A comma-separated list of quest IDs. When these quest IDs are completed, the item is considered defeated."],
 					set = function(info, val)
 						if strtrim(val) == "" then
 							item.questId = nil
 						else
-							local list = {strsplit(",", val)}
+							local list = { strsplit(",", val) }
 							for k, v in pairs(list) do
 								if strtrim(v) == "" or tonumber(strtrim(v)) == nil then
 									alert(L["Please enter a comma-separated list of Quest IDs."])
@@ -2649,16 +2506,14 @@ function R:CreateGroup(options, group, isUser)
 						end
 						return ""
 					end,
-					disabled = not isUser
+					disabled = not isUser,
 				},
 				lockDungeonId = {
 					type = "input",
 					order = newOrder(),
 					width = "half",
 					name = L["Dungeon ID"],
-					desc = L[
-						"A dungeon ID which, when marked as completed by the game client, will cause this item to be considered Defeated. This is primarily used for holiday items which have unique dungeon IDs."
-					],
+					desc = L["A dungeon ID which, when marked as completed by the game client, will cause this item to be considered Defeated. This is primarily used for holiday items which have unique dungeon IDs."],
 					set = function(info, val)
 						if strtrim(val) == "" then
 							item.lockDungeonId = nil
@@ -2677,16 +2532,14 @@ function R:CreateGroup(options, group, isUser)
 					get = function(into)
 						return tostring(item.lockDungeonId or "")
 					end,
-					disabled = not isUser
+					disabled = not isUser,
 				},
 				lockBossName = {
 					type = "input",
 					order = newOrder(),
 					width = "full",
 					name = L["Boss Name"],
-					desc = L[
-						"The boss name, in English (enUS), which appears in the instance lock inside the Raid Info panel. The name will be translated to your local language automatically using the LibBoss library (if detection fails, check that the translation exists in this library). IMPORTANT: This method of defeat detection only works when the boss exists in one place at a time. Certain bosses, such as Ragnaros and Kael'thas Sunstrider, exist in two instances at once. Those bosses can be used here, but killing them in either of their instances will result in this Defeat Detection triggering."
-					],
+					desc = L["The boss name, in English (enUS), which appears in the instance lock inside the Raid Info panel. The name will be translated to your local language automatically using the LibBoss library (if detection fails, check that the translation exists in this library). IMPORTANT: This method of defeat detection only works when the boss exists in one place at a time. Certain bosses, such as Ragnaros and Kael'thas Sunstrider, exist in two instances at once. Those bosses can be used here, but killing them in either of their instances will result in this Defeat Detection triggering."],
 					set = function(info, val)
 						item.lockBossName = val
 						self:Update("OPTIONS")
@@ -2694,16 +2547,14 @@ function R:CreateGroup(options, group, isUser)
 					get = function(into)
 						return item.lockBossName or ""
 					end,
-					disabled = not isUser
+					disabled = not isUser,
 				},
-				spacer5 = {type = "header", name = L["Other Requirements"], order = newOrder()},
+				spacer5 = { type = "header", name = L["Other Requirements"], order = newOrder() },
 				pickpocket = {
 					order = newOrder(),
 					type = "toggle",
 					name = L["Requires Pickpocketing"],
-					desc = L[
-						"When enabled, the item can only be obtained by pickpocketing. The item will be marked Unavailable for non-rogues."
-					],
+					desc = L["When enabled, the item can only be obtained by pickpocketing. The item will be marked Unavailable for non-rogues."],
 					get = function()
 						if item.pickpocket == true then
 							return true
@@ -2717,14 +2568,14 @@ function R:CreateGroup(options, group, isUser)
 					end,
 					hidden = function()
 						return item.method ~= NPC
-					end
+					end,
 				},
 				groupSize = {
 					type = "input",
 					order = newOrder(),
 					name = L["Group size"],
 					desc = L["The number of players it takes to obtain the item. This will lower your chances of obtaining the item."] ..
-						" " .. L["Enter 1 or leave this blank to mark the item as soloable."],
+							" " .. L["Enter 1 or leave this blank to mark the item as soloable."],
 					set = function(info, val)
 						if strtrim(val) == "" then
 							alert(L["You must enter an amount."])
@@ -2749,15 +2600,13 @@ function R:CreateGroup(options, group, isUser)
 					end,
 					hidden = function()
 						return item.method ~= BOSS and item.method ~= USE
-					end
+					end,
 				},
 				equalOdds = {
 					order = newOrder(),
 					type = "toggle",
 					name = L["Equal odds"],
-					desc = L[
-						"Turn this on if the item requires a group to obtain, but every player gets an equal chance to obtain the item. This currently only applies to some of the holiday mounts. When you turn this on, Rarity will stop lowering your chance to obtain based on the group size."
-					],
+					desc = L["Turn this on if the item requires a group to obtain, but every player gets an equal chance to obtain the item. This currently only applies to some of the holiday mounts. When you turn this on, Rarity will stop lowering your chance to obtain based on the group size."],
 					get = function()
 						if item.equalOdds == true then
 							return true
@@ -2771,16 +2620,14 @@ function R:CreateGroup(options, group, isUser)
 					end,
 					hidden = function()
 						return item.method ~= BOSS and item.method ~= USE
-					end
+					end,
 				},
 				instanceDifficulty = {
 					order = newOrder(),
 					type = "multiselect",
 					width = "double",
 					name = L["Instance Difficulty"],
-					desc = L[
-						"Determines which instance difficulties this item may be obtained in. Leave everything unchecked if the instance difficulty doesn't matter.\n\nIf you specified a Statistic ID for this item, the Instance Difficulty is probably meaningless, because all modern statistics already incorporate the difficulty.\n\nYou can check multiple items in this list at once."
-					],
+					desc = L["Determines which instance difficulties this item may be obtained in. Leave everything unchecked if the instance difficulty doesn't matter.\n\nIf you specified a Statistic ID for this item, the Instance Difficulty is probably meaningless, because all modern statistics already incorporate the difficulty.\n\nYou can check multiple items in this list at once."],
 					values = {
 						[0] = L["None (not in an instance)"],
 						[1] = L["5-player instance"],
@@ -2802,7 +2649,7 @@ function R:CreateGroup(options, group, isUser)
 						[19] = L["5-player Event instance"],
 						[20] = L["25-player Event scenario"],
 						[23] = L["Mythic 5-player instance"],
-						[24] = L["Timewalker 5-player instance"]
+						[24] = L["Timewalker 5-player instance"],
 					},
 					get = function(s, key)
 						if item.instanceDifficulties then
@@ -2816,15 +2663,13 @@ function R:CreateGroup(options, group, isUser)
 						end
 						item.instanceDifficulties[key] = state
 						self:Update("OPTIONS")
-					end
+					end,
 				},
 				disableForClass = {
 					order = newOrder(),
 					type = "multiselect",
 					name = L["Disable for classes"],
-					desc = L[
-						"Choose which classes this item should be disabled for. Checking a class below hides the item from the Rarity tooltip and prevents it from being tracked. You can still toggle Track This, but the item will not track for any classes specified here."
-					],
+					desc = L["Choose which classes this item should be disabled for. Checking a class below hides the item from the Rarity tooltip and prevents it from being tracked. You can still toggle Track This, but the item will not track for any classes specified here."],
 					values = classes,
 					get = function(s, key)
 						if item.disableForClass then
@@ -2837,7 +2682,7 @@ function R:CreateGroup(options, group, isUser)
 							item.disableForClass = {}
 						end
 						item.disableForClass[key] = state
-					end
+					end,
 				},
 				requiresHorde = {
 					order = newOrder(),
@@ -2857,7 +2702,7 @@ function R:CreateGroup(options, group, isUser)
 							item.requiresAlliance = false
 						end
 						self:Update("OPTIONS")
-					end
+					end,
 				},
 				requiresAlliance = {
 					order = newOrder(),
@@ -2877,16 +2722,14 @@ function R:CreateGroup(options, group, isUser)
 							item.requiresHorde = false
 						end
 						self:Update("OPTIONS")
-					end
+					end,
 				},
-				spacer6 = {type = "header", name = "", order = newOrder(), hidden = not isUser},
+				spacer6 = { type = "header", name = "", order = newOrder(), hidden = not isUser },
 				obtainedQuestId = {
 					type = "input",
 					order = newOrder(),
 					name = L["Obtained Quest ID"],
-					desc = L[
-						"Certain items, such as Illusions in your wardrobe, flag a completed Quest ID when you learn them. Rarity can automatically stop tracking this item if you enter that Quest ID here. (Only one ID, not a list.)"
-					],
+					desc = L["Certain items, such as Illusions in your wardrobe, flag a completed Quest ID when you learn them. Rarity can automatically stop tracking this item if you enter that Quest ID here. (Only one ID, not a list.)"],
 					set = function(info, val)
 						if strtrim(val) == "" then
 							item.obtainedQuestId = nil
@@ -2908,15 +2751,13 @@ function R:CreateGroup(options, group, isUser)
 						else
 							return nil
 						end
-					end
+					end,
 				},
 				achievementId = {
 					type = "input",
 					order = newOrder(),
 					name = L["Obtained Achievement ID"],
-					desc = L[
-						"Set this to the achievement ID which indicates this item has been obtained. This is useful for items which do not yield mounts or pets, but which do grant an achievement when obtained, such as Old Crafty or Old Ironjaw. Leave this blank for mounts and pets. Use WowHead to find achievement IDs."
-					],
+					desc = L["Set this to the achievement ID which indicates this item has been obtained. This is useful for items which do not yield mounts or pets, but which do grant an achievement when obtained, such as Old Crafty or Old Ironjaw. Leave this blank for mounts and pets. Use WowHead to find achievement IDs."],
 					set = function(info, val)
 						if strtrim(val) == "" then
 							item.achievementId = nil
@@ -2944,9 +2785,9 @@ function R:CreateGroup(options, group, isUser)
 							return nil
 						end
 					end,
-					disabled = not isUser
-				}
-			}
+					disabled = not isUser,
+				},
+			},
 		}
 	end
 end

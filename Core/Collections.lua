@@ -101,17 +101,8 @@ function Collections:ScanExistingItems(reason)
 	if (C_MountJournal.GetMountInfo ~= nil) then
 		-- Mounts (7.0+)
 		for id = 1, C_MountJournal.GetNumMounts() do
-			local creatureName,
-				spellId,
-				icon,
-				active,
-				isUsable,
-				sourceType,
-				isFavorite,
-				isFactionSpecific,
-				faction,
-				hideOnChar,
-				isCollected = C_MountJournal.GetMountInfo(id)
+			local creatureName, spellId, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction,
+			      hideOnChar, isCollected = C_MountJournal.GetMountInfo(id)
 			local creatureDisplayID, descriptionText, sourceText, isSelfMount, mountType = C_MountJournal.GetMountInfoExtra(id)
 
 			Rarity.mount_sources[spellId] = sourceText
@@ -194,24 +185,8 @@ function Collections:ScanExistingItems(reason)
 	end
 	local total, numOwnedPets = C_PetJournal.GetNumPets()
 	for i = 1, total do
-		local petID,
-			speciesID,
-			owned,
-			customName,
-			level,
-			favorite,
-			isRevoked,
-			speciesName,
-			icon,
-			petType,
-			companionID,
-			tooltip,
-			description,
-			isWild,
-			canBattle,
-			isTradeable,
-			isUnique,
-			obtainable = C_PetJournal.GetPetInfoByIndex(i)
+		local petID, speciesID, owned, customName, level, favorite, isRevoked, speciesName, icon, petType, companionID,
+		      tooltip, description, isWild, canBattle, isTradeable, isUnique, obtainable = C_PetJournal.GetPetInfoByIndex(i)
 		Rarity.pet_sources[companionID] = tooltip
 		if owned then
 			for k, v in pairs(R.db.profile.groups) do
@@ -239,7 +214,7 @@ function Collections:ScanExistingItems(reason)
 				if type(vv) == "table" then
 					if vv.achievementId and tonumber(vv.achievementId) then
 						local IDNumber, Name, Points, Completed, Month, Day, Year, Description, Flags, Image, RewardText, isGuildAch =
-							GetAchievementInfo(vv.achievementId)
+								GetAchievementInfo(vv.achievementId)
 						if Completed and not vv.repeatable then
 							vv.enabled = false
 							vv.found = true
@@ -375,30 +350,18 @@ function R:ScanArchFragments(event)
 	if scan then
 		-- Scan now, and later. The server takes a while to decide on the next project. The time it takes varies considerably.
 		self:ScanArchProjects(event)
-		self:ScheduleTimer(
-			function()
-				R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 1")
-			end,
-			2
-		)
-		self:ScheduleTimer(
-			function()
-				R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 2")
-			end,
-			5
-		)
-		self:ScheduleTimer(
-			function()
-				R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 3")
-			end,
-			10
-		)
-		self:ScheduleTimer(
-			function()
-				R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 4")
-			end,
-			20
-		)
+		self:ScheduleTimer(function()
+			R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 1")
+		end, 2)
+		self:ScheduleTimer(function()
+			R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 2")
+		end, 5)
+		self:ScheduleTimer(function()
+			R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 3")
+		end, 10)
+		self:ScheduleTimer(function()
+			R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 4")
+		end, 20)
 	end
 end
 

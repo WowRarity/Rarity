@@ -100,14 +100,10 @@ function R:ShowQuicktip(hidden)
 	quicktip:AddLine(L["Shift + Left click"], L["Open settings"])
 	quicktip:AddLine(L["Ctrl + Left click"], L["Change sorting"])
 
-	quicktip:SetAutoHideDelay(
-		0.1,
-		Rarity.frame,
-		function()
-			quicktip = nil
-			Rarity.Tooltips:ReleaseTooltip("RarityQuicktip")
-		end
-	)
+	quicktip:SetAutoHideDelay(0.1, Rarity.frame, function()
+		quicktip = nil
+		Rarity.Tooltips:ReleaseTooltip("RarityQuicktip")
+	end)
 
 	quicktip:SmartAnchorTo(Rarity.frame)
 	quicktip:UpdateScrolling()
@@ -151,17 +147,8 @@ local function onClickItem(cell, item)
 			return
 		end
 		local v = item
-		local itemName,
-			itemLink,
-			itemRarity,
-			itemLevel,
-			itemMinLevel,
-			itemType,
-			itemSubType,
-			itemStackCount,
-			itemEquipLoc,
-			itemTexture,
-			itemSellPrice = GetItemInfo(v.itemId)
+		local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc,
+		      itemTexture, itemSellPrice = GetItemInfo(v.itemId)
 		local attempts = v.attempts or 0
 		if v.lastAttempts then
 			attempts = attempts - v.lastAttempts
@@ -203,12 +190,8 @@ local function onClickItem(cell, item)
 						extraName = " (" .. coord.n .. ")"
 					end
 					if coord.i ~= true then
-						TomTom:AddWaypoint(
-							coord.m,
-							coord.x / 100.0,
-							coord.y / 100.0,
-							{title = "Rarity" .. ": " .. item.name .. extraName}
-						)
+						TomTom:AddWaypoint(coord.m, coord.x / 100.0, coord.y / 100.0,
+						                   { title = "Rarity" .. ": " .. item.name .. extraName })
 						added = added + 1
 					end
 					if coord.i == true then
@@ -223,12 +206,9 @@ local function onClickItem(cell, item)
 				Rarity:Print(format(L["Added %d |4waypoint:waypoints; to TomTom"], added))
 			end
 			if instance > 0 then
-				Rarity:Print(
-					format(
-						L["%d |4waypoint:waypoints; |4is:are; located inside |4an instance:instances; and |4was:were; not added"],
-						instance
-					)
-				)
+				Rarity:Print(format(
+						             L["%d |4waypoint:waypoints; |4is:are; located inside |4an instance:instances; and |4was:were; not added"],
+						             instance))
 			end
 		end
 	else
@@ -265,29 +245,12 @@ local function showSubTooltip(cell, item)
 		tooltip2:SetPoint("RIGHT", cell, "LEFT", -30, 0)
 	end
 
-	local itemName,
-		itemLink,
-		itemRarity,
-		itemLevel,
-		itemMinLevel,
-		itemType,
-		itemSubType,
-		itemStackCount,
-		itemEquipLoc,
-		itemTexture,
-		itemSellPrice
+	local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc,
+	      itemTexture, itemSellPrice
 
 	_, -- itemName,
-		itemLink,
-		itemRarity,
-		itemLevel,
-		itemMinLevel,
-		itemType,
-		itemSubType,
-		itemStackCount,
-		itemEquipLoc,
-		itemTexture,
-		itemSellPrice = GetItemInfo(item.itemId)
+	itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
+			GetItemInfo(item.itemId)
 
 	-- Rarity extended information tooltip
 	if R.db.profile.statusTip == TIP_HIDDEN then
@@ -361,7 +324,7 @@ local function showSubTooltip(cell, item)
 					zone = lbsz[v]
 				end
 				if not zone then
-				-- zone = v -- Why?
+					-- zone = v -- Why?
 				end
 				if not tonumber(v) then
 					tooltip2AddLine(colorize("    " .. v, gray))
@@ -376,16 +339,8 @@ local function showSubTooltip(cell, item)
 		if item.items and type(item.items) == "table" then
 			for k, v in pairs(item.items) do
 				_, -- itemName,
-					itemLink,
-					itemRarity,
-					itemLevel,
-					itemMinLevel,
-					itemType,
-					itemSubType,
-					itemStackCount,
-					itemEquipLoc,
-					_, -- itemTexture,
-					itemSellPrice = GetItemInfo(v)
+				itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, _, -- itemTexture,
+				itemSellPrice = GetItemInfo(v)
 				if itemLink then
 					tooltip2AddLine("    " .. itemLink)
 				end
@@ -410,14 +365,13 @@ local function showSubTooltip(cell, item)
 		hadSource = true
 	end
 	if item.worldBossFactionless then
-		tooltip2AddLine(
-			colorize(L["All players can participate in killing this world boss once per week, regardless of faction"], blue)
-		)
+		tooltip2AddLine(colorize(
+				                L["All players can participate in killing this world boss once per week, regardless of faction"],
+				                blue))
 	end
 	if item.wasGuaranteed then
-		tooltip2AddLine(
-			colorize(L["This was a guaranteed drop for players who defeated the encounter when it was current"], blue)
-		)
+		tooltip2AddLine(colorize(L["This was a guaranteed drop for players who defeated the encounter when it was current"],
+		                         blue))
 	end
 	if item.bonusSatchel then
 		tooltip2AddLine(colorize(L["Contained in bonus satchels"], yellow))
@@ -429,18 +383,14 @@ local function showSubTooltip(cell, item)
 		tooltip2AddLine(colorize(L["Can be obtained with a bonus roll"], yellow))
 	end
 	if item.requiresAlliance then
-		tooltip2AddLine(
-			colorize(L["This item is only obtainable by Alliance players"], R.Caching:IsAlliance() and green or red)
-		)
+		tooltip2AddLine(colorize(L["This item is only obtainable by Alliance players"],
+		                         R.Caching:IsAlliance() and green or red))
 	end
 	if item.requiresHorde then
 		tooltip2AddLine(colorize(L["This item is only obtainable by Horde players"], R.Caching:IsHorde() and green or red))
 	end
-	if
-		hadSource or item.bonusSatchel or item.blackMarket or item.wasGuaranteed or item.worldBossFactionless or
-			item.requiresAlliance or
-			item.requiresHorde
-	 then
+	if hadSource or item.bonusSatchel or item.blackMarket or item.wasGuaranteed or item.worldBossFactionless or
+			item.requiresAlliance or item.requiresHorde then
 		tooltip2:AddSeparator(1, 1, 1, 1, 1)
 	end
 
@@ -478,31 +428,13 @@ local function showSubTooltip(cell, item)
 	if item.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
 		local collectText = ""
 		if type(item.collectedItemId) ~= "table" then
-			itemName,
-				itemLink,
-				itemRarity,
-				itemLevel,
-				itemMinLevel,
-				itemType,
-				itemSubType,
-				itemStackCount,
-				itemEquipLoc,
-				_, -- itemTexture,
-				itemSellPrice = GetItemInfo(item.collectedItemId)
+			itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, _, -- itemTexture,
+			itemSellPrice = GetItemInfo(item.collectedItemId)
 			collectText = itemLink or itemName or ""
 		else
 			for k, v in pairs(item.collectedItemId) do
-				itemName,
-					itemLink,
-					itemRarity,
-					itemLevel,
-					itemMinLevel,
-					itemType,
-					itemSubType,
-					itemStackCount,
-					itemEquipLoc,
-					_, -- itemTexture,
-					itemSellPrice = GetItemInfo(v)
+				itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, _, -- itemTexture,
+				itemSellPrice = GetItemInfo(v)
 				if collectText ~= "" then
 					collectText = collectText .. ", "
 				end
@@ -539,11 +471,8 @@ local function showSubTooltip(cell, item)
 	else
 		tooltip2AddDoubleLine(L["Attempts"], attempts)
 	end
-	if
-		item.method == CONSTANTS.DETECTION_METHODS.NPC or item.method == CONSTANTS.DETECTION_METHODS.ZONE or
-			item.method == CONSTANTS.DETECTION_METHODS.FISHING or
-			item.method == CONSTANTS.DETECTION_METHODS.USE
-	 then
+	if item.method == CONSTANTS.DETECTION_METHODS.NPC or item.method == CONSTANTS.DETECTION_METHODS.ZONE or item.method ==
+			CONSTANTS.DETECTION_METHODS.FISHING or item.method == CONSTANTS.DETECTION_METHODS.USE then
 		tooltip2AddDoubleLine(L["Time spent farming"], FormatTime((item.time or 0) - (item.lastTime or 0) + len))
 	end
 	if attempts > 0 then
@@ -567,11 +496,8 @@ local function showSubTooltip(cell, item)
 		tooltip2AddLine(colorize(L["Total"], yellow))
 		attempts = (item.attempts or 0)
 		tooltip2AddDoubleLine(L["Attempts"], attempts)
-		if
-			item.method == CONSTANTS.DETECTION_METHODS.NPC or item.method == CONSTANTS.DETECTION_METHODS.ZONE or
-				item.method == CONSTANTS.DETECTION_METHODS.FISHING or
-				item.method == CONSTANTS.DETECTION_METHODS.USE
-		 then
+		if item.method == CONSTANTS.DETECTION_METHODS.NPC or item.method == CONSTANTS.DETECTION_METHODS.ZONE or item.method ==
+				CONSTANTS.DETECTION_METHODS.FISHING or item.method == CONSTANTS.DETECTION_METHODS.USE then
 			tooltip2AddDoubleLine(L["Time spent farming"], FormatTime((item.time or 0) + len))
 		end
 		tooltip2AddDoubleLine(L["Total found"], item.totalFinds)
@@ -582,15 +508,11 @@ local function showSubTooltip(cell, item)
 				dropChance = Rarity.Statistics.GetRealDropPercentage(v)
 				local chance = 100 * (1 - math.pow(1 - dropChance, v.attempts))
 				if v.attempts == 1 then
-					tooltip2AddDoubleLine(
-						format(L["#%d: %d attempt (%.2f%%)"], v.num, v.attempts, chance),
-						FormatTime((v.time or 0) + len)
-					)
+					tooltip2AddDoubleLine(format(L["#%d: %d attempt (%.2f%%)"], v.num, v.attempts, chance),
+					                      FormatTime((v.time or 0) + len))
 				else
-					tooltip2AddDoubleLine(
-						format(L["#%d: %d attempts (%.2f%%)"], v.num, v.attempts, chance),
-						FormatTime((v.time or 0) + len)
-					)
+					tooltip2AddDoubleLine(format(L["#%d: %d attempts (%.2f%%)"], v.num, v.attempts, chance),
+					                      FormatTime((v.time or 0) + len))
 				end
 			end
 		end
@@ -657,37 +579,27 @@ local function showSubTooltip(cell, item)
 	-- Add TSM pricing information to the tooltip
 	if AuctionDB:IsLoaded() and Rarity.db.profile.showTSMColumn then
 		local tooltipLines = {
-			{priceSource = "DBMinBuyout", isMonetaryValue = true, localisedDisplayText = L["Min Buyout"]},
-			{priceSource = "DBMarket", isMonetaryValue = true, localisedDisplayText = L["Market Price"]},
-			{priceSource = "DBRegionMarketAvg", isMonetaryValue = true, localisedDisplayText = L["Region Market Avg"]},
-			{priceSource = "DBRegionSaleAvg", isMonetaryValue = true, localisedDisplayText = L["Region Sale Avg"]},
-			{priceSource = "DBRegionSaleRate", isMonetaryValue = false, localisedDisplayText = L["Region Sale Rate"]},
-			{priceSource = "DBRegionSoldPerDay", isMonetaryValue = false, localisedDisplayText = L["Region Avg Daily Sold"]}
+			{ priceSource = "DBMinBuyout", isMonetaryValue = true, localisedDisplayText = L["Min Buyout"] },
+			{ priceSource = "DBMarket", isMonetaryValue = true, localisedDisplayText = L["Market Price"] },
+			{ priceSource = "DBRegionMarketAvg", isMonetaryValue = true, localisedDisplayText = L["Region Market Avg"] },
+			{ priceSource = "DBRegionSaleAvg", isMonetaryValue = true, localisedDisplayText = L["Region Sale Avg"] },
+			{ priceSource = "DBRegionSaleRate", isMonetaryValue = false, localisedDisplayText = L["Region Sale Rate"] },
+			{ priceSource = "DBRegionSoldPerDay", isMonetaryValue = false, localisedDisplayText = L["Region Avg Daily Sold"] },
 		}
 
 		local hasPrice = false
 		for _, lineInfo in pairs(tooltipLines) do -- Add text to tooltip if TSM4 has pricing data for this source
 			if not AuctionDB:IsValidPriceSource(lineInfo.priceSource) then
-				Rarity:Print(
-					format(
-						"Attempting to use invalid price source %s to retrieve a price for item %d via TSM_API." ..
-							" Please report this error so it can be fixed :)",
-						lineInfo.priceSource,
-						item.itemId
-					)
-				)
+				Rarity:Print(format("Attempting to use invalid price source %s to retrieve a price for item %d via TSM_API." ..
+						                    " Please report this error so it can be fixed :)", lineInfo.priceSource, item.itemId))
 				break
 			end
 
 			local formattedPrice = AuctionDB:GetMarketPrice(item.itemId, lineInfo.priceSource, true)
 			if (formattedPrice ~= nil) then
 				hasPrice = true
-				tooltip2AddDoubleLine(
-					colorize(lineInfo.localisedDisplayText, blue),
-					lineInfo.isMonetaryValue and formattedPrice,
-					nil,
-					nil
-				)
+				tooltip2AddDoubleLine(colorize(lineInfo.localisedDisplayText, blue), lineInfo.isMonetaryValue and formattedPrice,
+				                      nil, nil)
 			end
 		end
 
@@ -741,7 +653,7 @@ local function showSubTooltip(cell, item)
 		end
 	end
 
-	--tooltip2:UpdateScrolling()
+	-- tooltip2:UpdateScrolling()
 	tooltip2:Show()
 end
 
@@ -823,51 +735,30 @@ local function addGroup(group, requiresGroup)
 
 	-- Inlining this because it has WAY too many interdependencies and I don't have time to unwrangle it now, but using early exit is easier this way (and more readable). It doesn't change the functionality and the small overhead shouldn't matter here
 	local function AddItem(k, v)
-		if
-			type(v) == "table" and v.enabled ~= false and
-				((requiresGroup and v.groupSize ~= nil and v.groupSize > 1) or
-					(not requiresGroup and (v.groupSize == nil or v.groupSize <= 1)))
-		 then
+		if type(v) == "table" and v.enabled ~= false and ((requiresGroup and v.groupSize ~= nil and v.groupSize > 1) or
+				(not requiresGroup and (v.groupSize == nil or v.groupSize <= 1))) then
 			local classGood = true
 			if not Rarity.Caching:GetPlayerClass() then
 				Rarity.Caching:SetPlayerClass(select(2, UnitClass("player")))
 			end
-			if
-				v.disableForClass and type(v.disableForClass == "table") and
-					v.disableForClass[Rarity.Caching:GetPlayerClass()] == true
-			 then
+			if v.disableForClass and type(v.disableForClass == "table") and v.disableForClass[Rarity.Caching:GetPlayerClass()] ==
+					true then
 				classGood = false
 			end
 
 			if not v.itemId then
-				Rarity:Error(
-					format(
-						"Failed to add tooltip line for item %s (%s) in group %s (invalid ID or the server didn't return any data)",
-						k,
-						v.name or "nil",
-						group.name
-					)
-				)
+				Rarity:Error(format(
+						             "Failed to add tooltip line for item %s (%s) in group %s (invalid ID or the server didn't return any data)",
+						             k, v.name or "nil", group.name))
 				return
 			end
 			-- Item
-			if
-				(v.requiresHorde and R.Caching:IsHorde()) or (v.requiresAlliance and not R.Caching:IsHorde()) or
-					(not v.requiresHorde and not v.requiresAlliance)
-			 then
+			if (v.requiresHorde and R.Caching:IsHorde()) or (v.requiresAlliance and not R.Caching:IsHorde()) or
+					(not v.requiresHorde and not v.requiresAlliance) then
 				if (R.db.profile.cats[v.cat]) or v.cat == nil then
 					if (not (R.db.profile.hideHighChance and (v.chance or 0) < 50)) and classGood then
-						local itemName,
-							itemLink,
-							itemRarity,
-							itemLevel,
-							itemMinLevel,
-							itemType,
-							itemSubType,
-							itemStackCount,
-							itemEquipLoc,
-							itemTexture,
-							itemSellPrice = GetItemInfo(v.itemId)
+						local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
+						      itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(v.itemId)
 						local attempts = tonumber(v.attempts or 0) or 0
 						if type(attempts) ~= "number" then
 							attempts = 0
@@ -923,11 +814,8 @@ local function addGroup(group, requiresGroup)
 						if duration == "0:00" then
 							duration = ""
 						end
-						if
-							v.method ~= CONSTANTS.DETECTION_METHODS.NPC and v.method ~= CONSTANTS.DETECTION_METHODS.ZONE and
-								v.method ~= CONSTANTS.DETECTION_METHODS.FISHING and
-								v.method ~= CONSTANTS.DETECTION_METHODS.USE
-						 then
+						if v.method ~= CONSTANTS.DETECTION_METHODS.NPC and v.method ~= CONSTANTS.DETECTION_METHODS.ZONE and v.method ~=
+								CONSTANTS.DETECTION_METHODS.FISHING and v.method ~= CONSTANTS.DETECTION_METHODS.USE then
 							duration = ""
 						end
 						local status = ""
@@ -978,7 +866,7 @@ local function addGroup(group, requiresGroup)
 							if not lbb["Theralion and Valiona"] and lbb["Valiona and Theralion"] then
 								-- LibBabble-Boss is still outdated -> Add correct encounter name
 								lbb["Theralion and Valiona"] = lbb["Valiona and Theralion"] -- Workaround for issue:
-							-- https://github.com/SacredDuckwhale/Rarity/issues/22 - can be removed once the library was updated
+								-- https://github.com/SacredDuckwhale/Rarity/issues/22 - can be removed once the library was updated
 							end
 
 							local isDefeated
@@ -997,15 +885,13 @@ local function addGroup(group, requiresGroup)
 								for index, sharedDifficultyGroup in ipairs(v.lockoutDetails) do
 									-- Check all stored lockouts and resolve the defeat detection
 									-- (if there are none there isn't anything left to do)
-									local isValidEntry =
-										sharedDifficultyGroup.encounterName and type(sharedDifficultyGroup.encounterName) == "string" and
-										sharedDifficultyGroup.instanceDifficulties and
-										type(sharedDifficultyGroup.instanceDifficulties) == "table"
+									local isValidEntry = sharedDifficultyGroup.encounterName and type(sharedDifficultyGroup.encounterName) ==
+											                     "string" and sharedDifficultyGroup.instanceDifficulties and
+											                     type(sharedDifficultyGroup.instanceDifficulties) == "table"
 
 									if not isValidEntry then
-										Rarity:Debug(
-											"Invalid lockout details for item " .. tostring(v.name) .. " - defeat detection will not be resolved"
-										)
+										Rarity:Debug("Invalid lockout details for item " .. tostring(v.name) ..
+												             " - defeat detection will not be resolved")
 										continue = false
 									end
 
@@ -1036,11 +922,9 @@ local function addGroup(group, requiresGroup)
 							end
 
 							-- Currently, only one of the two detection routines should be used
-							if
-								(v.lockBossName and lbb[v.lockBossName] and
+							if (v.lockBossName and lbb[v.lockBossName] and
 									(Rarity.lockouts[lbb[v.lockBossName]] == true or Rarity.lockouts[v.lockBossName] == true)) or -- Legacy detection (I'll leave it be, for now)
-									isDefeated
-							 then
+							isDefeated then
 								status = colorize(L["Defeated"], red)
 							else
 								status = colorize(L["Undefeated"], green)
@@ -1073,9 +957,8 @@ local function addGroup(group, requiresGroup)
 						end
 
 						-- Support for Defeated items with multiple steps of defeat (supports quests only)
-						if
-							status == colorize(L["Defeated"], red) and v.defeatAllQuests and v.questId ~= nil and type(v.questId) == "table"
-						 then
+						if status == colorize(L["Defeated"], red) and v.defeatAllQuests and v.questId ~= nil and type(v.questId) ==
+								"table" then
 							local totalQuests = 0
 							local numCompletedQuests = 0
 							for _, quest in pairs(v.questId) do
@@ -1092,18 +975,16 @@ local function addGroup(group, requiresGroup)
 						if Rarity.db.profile.hideUnavailable == false or status ~= colorize(L["Unavailable"], gray) then
 							if Rarity.db.profile.hideDefeated == false or status ~= colorize(L["Defeated"], red) then
 								-- Holiday reminder
-								if
-									Rarity.db.profile.holidayReminder and Rarity.allRemindersDone == nil and v.holidayReminder ~= false and
-										(v.cat == HOLIDAY or v.worldQuestId) and
-										status == colorize(L["Undefeated"], green)
-								 then
+								if Rarity.db.profile.holidayReminder and Rarity.allRemindersDone == nil and v.holidayReminder ~= false and
+										(v.cat == HOLIDAY or v.worldQuestId) and status == colorize(L["Undefeated"], green) then
 									Rarity.anyReminderDone = true
 									numHolidayReminders = numHolidayReminders + 1
 									if numHolidayReminders <= 2 then
 										local text
 										if v.worldQuestId then
 											if IsWorldQuestActive(v.worldQuestId) then
-												text = format(L["A world event is currently available for %s! Go get it!"], itemLink or itemName or v.name)
+												text =
+														format(L["A world event is currently available for %s! Go get it!"], itemLink or itemName or v.name)
 											end
 										else
 											text = format(L["A holiday event is available today for %s! Go get it!"], itemLink or itemName or v.name)
@@ -1119,30 +1000,21 @@ local function addGroup(group, requiresGroup)
 										end
 									else
 										if showedHolidayReminderOverflow == false then
-											Rarity:Print(
-												colorize(
-													L["There are more holiday items available, but Rarity only reminds you about the first two."],
-													gray
-												)
-											)
+											Rarity:Print(colorize(
+													             L["There are more holiday items available, but Rarity only reminds you about the first two."],
+													             gray))
 										end
 										showedHolidayReminderOverflow = true
 									end
 								end
 
-								if
-									not Rarity.db.profile.onlyShowItemsWithAttempts or
-										(Rarity.db.profile.onlyShowItemsWithAttempts and (tonumber(v.attempts or 0) or 0) > 0)
-								 then
-									if
-										not Rarity.db.profile.hideOutsideZone or
-											(Rarity.db.profile.hideOutsideZone and R.Waypoints:IsItemInCurrentZone(v) and R:IsAttemptAllowed(v))
-									 then
+								if not Rarity.db.profile.onlyShowItemsWithAttempts or
+										(Rarity.db.profile.onlyShowItemsWithAttempts and (tonumber(v.attempts or 0) or 0) > 0) then
+									if not Rarity.db.profile.hideOutsideZone or
+											(Rarity.db.profile.hideOutsideZone and R.Waypoints:IsItemInCurrentZone(v) and R:IsAttemptAllowed(v)) then
 										itemsExistInThisGroup = true
-										if
-											((not requiresGroup and group.collapsed ~= true) or (requiresGroup and group.collapsedGroup ~= true)) and
-												v.itemId ~= nil
-										 then
+										if ((not requiresGroup and group.collapsed ~= true) or (requiresGroup and group.collapsedGroup ~= true)) and
+												v.itemId ~= nil then
 											-- Header
 											if not added then
 												headerAdded = true
@@ -1156,18 +1028,13 @@ local function addGroup(group, requiresGroup)
 													if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
 														line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
 													else
-														line =
-															tooltip:AddLine(
-															"|TInterface\\Buttons\\UI-MinusButton-Up:16|t",
-															colorize(groupName, yellow),
-															colorize(L["Attempts"], yellow),
-															colorize(L["Likelihood"], yellow),
-															Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil,
-															Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil,
-															Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil,
-															colorize(L["Defeated"], yellow),
-															TSM_API ~= nil and Rarity.db.profile.showTSMColumn and colorize(L["Market Price"], yellow) or nil
-														)
+														line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow),
+														                       colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow),
+														                       Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil,
+														                       Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil,
+														                       Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil,
+														                       colorize(L["Defeated"], yellow), TSM_API ~= nil and
+																                       Rarity.db.profile.showTSMColumn and colorize(L["Market Price"], yellow) or nil)
 													end
 													tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
 												end
@@ -1175,40 +1042,36 @@ local function addGroup(group, requiresGroup)
 
 											-- Zone
 											local zoneInfo = R.Waypoints:GetZoneInfoForItem(v)
-											local zoneText, inMyZone, zoneColor, numZones = zoneInfo.zoneText, zoneInfo.inMyZone, zoneInfo.zoneColor, zoneInfo.numZones
+											local zoneText, inMyZone, zoneColor, numZones = zoneInfo.zoneText, zoneInfo.inMyZone, zoneInfo.zoneColor,
+											                                                zoneInfo.numZones
 
 											-- Retrieve the DBMarket price provided by the TSM_API (if loaded)
-											local marketPrice = Rarity.db.profile.showTSMColumn and AuctionDB:GetMarketPrice(v.itemId, "DBMarket", true)
+											local marketPrice = Rarity.db.profile.showTSMColumn and
+													                    AuctionDB:GetMarketPrice(v.itemId, "DBMarket", true)
 
 											-- Add the item to the tooltip
 											local catIcon = ""
 											if Rarity.db.profile.showCategoryIcons and v.cat and Rarity.catIcons[v.cat] then
 												catIcon = [[|TInterface\AddOns\Rarity\Icons\]] .. Rarity.catIcons[v.cat] .. ".blp:0:4|t "
 											end
-											line =
-												tooltip:AddLine(
-												icon,
-												catIcon .. (itemTexture and "|T" .. itemTexture .. ":0|t " or "") .. (itemLink or v.name or L["Unknown"]),
-												attempts,
-												likelihood,
-												Rarity.db.profile.showTimeColumn and duration or nil,
-												Rarity.db.profile.showLuckinessColumn and lucky or nil,
-												Rarity.db.profile.showZoneColumn and colorize(zoneText, zoneColor) or nil,
-												status,
-												Rarity.db.profile.showTSMColumn and marketPrice or nil
-											)
+											line = tooltip:AddLine(icon, catIcon .. (itemTexture and "|T" .. itemTexture .. ":0|t " or "") ..
+													                       (itemLink or v.name or L["Unknown"]), attempts, likelihood,
+											                       Rarity.db.profile.showTimeColumn and duration or nil,
+											                       Rarity.db.profile.showLuckinessColumn and lucky or nil,
+											                       Rarity.db.profile.showZoneColumn and colorize(zoneText, zoneColor) or nil, status,
+											                       Rarity.db.profile.showTSMColumn and marketPrice or nil)
 											tooltip:SetLineScript(line, "OnMouseUp", onClickItem, v)
 											tooltip:SetLineScript(line, "OnEnter", showSubTooltip, v)
 											tooltip:SetLineScript(line, "OnLeave", hideSubTooltip)
 											added = true
 
-										-- "Should display the item" endif section:
+											-- "Should display the item" endif section:
 										end
 									end
 								end
 							end
 						end
-					-- End "should display the item" endif section
+						-- End "should display the item" endif section
 					end
 				end
 			end
@@ -1222,10 +1085,8 @@ local function addGroup(group, requiresGroup)
 	local addGroupIterationEnd = debugprofilestop()
 
 	-- Collapsed Header
-	if
-		(not headerAdded) and itemsExistInThisGroup and
-			((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true))
-	 then
+	if (not headerAdded) and itemsExistInThisGroup and
+			((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
 		-- headerAdded = true -- Why?
 		local groupName = group.name
 		if requiresGroup then
@@ -1237,17 +1098,12 @@ local function addGroup(group, requiresGroup)
 			if ((not requiresGroup and group.collapsed == true) or (requiresGroup and group.collapsedGroup == true)) then
 				line = tooltip:AddLine("|TInterface\\Buttons\\UI-PlusButton-Up:16|t", colorize(groupName, yellow))
 			else
-				line =
-					tooltip:AddLine(
-					"|TInterface\\Buttons\\UI-MinusButton-Up:16|t",
-					colorize(groupName, yellow),
-					colorize(L["Attempts"], yellow),
-					colorize(L["Likelihood"], yellow),
-					Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil,
-					Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil,
-					Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil,
-					colorize(L["Defeated"], yellow)
-				)
+				line = tooltip:AddLine("|TInterface\\Buttons\\UI-MinusButton-Up:16|t", colorize(groupName, yellow),
+				                       colorize(L["Attempts"], yellow), colorize(L["Likelihood"], yellow),
+				                       Rarity.db.profile.showTimeColumn and colorize(L["Time"], yellow) or nil,
+				                       Rarity.db.profile.showLuckinessColumn and colorize(L["Luckiness"], yellow) or nil,
+				                       Rarity.db.profile.showZoneColumn and colorize(L["Zone"], yellow) or nil,
+				                       colorize(L["Defeated"], yellow))
 			end
 			tooltip:SetLineScript(line, "OnMouseUp", requiresGroup and onClickGroup2 or onClickGroup, group)
 		end
@@ -1255,20 +1111,10 @@ local function addGroup(group, requiresGroup)
 
 	local addGroupEnd = debugprofilestop()
 
-	R:ProfileStop2(
-		"addGroup(" ..
-			group.name ..
-				", " ..
-					tostring(requiresGroup) ..
-						") took %fms" ..
-							format(
-								" (Total: %f, Sort: %f, Iteration: %f, Tooltip: %f",
-								(addGroupEnd - addGroupStart),
-								(addGroupSortEnd - addGroupSortStart),
-								(addGroupIterationEnd - addGroupSortEnd),
-								(addGroupEnd - addGroupIterationEnd)
-							)
-	)
+	R:ProfileStop2("addGroup(" .. group.name .. ", " .. tostring(requiresGroup) .. ") took %fms" ..
+			               format(" (Total: %f, Sort: %f, Iteration: %f, Tooltip: %f", (addGroupEnd - addGroupStart),
+			                      (addGroupSortEnd - addGroupSortStart), (addGroupIterationEnd - addGroupSortEnd),
+			                      (addGroupEnd - addGroupIterationEnd)))
 
 	return added, itemsExistInThisGroup
 end
@@ -1311,7 +1157,8 @@ function R:ShowTooltip(hidden)
 		end
 		tooltip:Clear()
 	else
-		tooltip = Rarity.Tooltips:AcquireTooltip("RarityTooltip", 9, "LEFT", "LEFT", "RIGHT", "RIGHT", "RIGHT", "CENTER", "CENTER", "CENTER")
+		tooltip = Rarity.Tooltips:AcquireTooltip("RarityTooltip", 9, "LEFT", "LEFT", "RIGHT", "RIGHT", "RIGHT", "CENTER",
+		                                         "CENTER", "CENTER")
 		-- intentionally one column more than we need to avoid text clipping
 		tooltip:SetScale(self.db.profile.tooltipScale or 1)
 	end
@@ -1327,14 +1174,10 @@ function R:ShowTooltip(hidden)
 	else
 		delay = self.db.profile.tooltipHideDelay or 0.6
 	end
-	tooltip:SetAutoHideDelay(
-		delay,
-		Rarity.frame,
-		function()
-			tooltip = nil
-			Rarity.Tooltips:ReleaseTooltip("RarityTooltip")
-		end
-	)
+	tooltip:SetAutoHideDelay(delay, Rarity.frame, function()
+		tooltip = nil
+		Rarity.Tooltips:ReleaseTooltip("RarityTooltip")
+	end)
 
 	-- The tooltip can't be built in combat; it takes too long and the script will receive a "script ran too long" error
 	if InCombatLockdown() then
@@ -1374,10 +1217,10 @@ function R:ShowTooltip(hidden)
 		sortDesc = L["Sorting by percent complete"]
 	elseif self.db.profile.sortMode == SORT_CATEGORY then
 		sortDesc = L["Sorting by category, then name"]
-		elseif self.db.profile.sortMode == SORT_ZONE then
-			sortDesc = L["Sorting by zone"]
-		elseif self.db.profile.sortMode == SORT_NONE then
-			sortDesc = L["Sorting is disabled"]
+	elseif self.db.profile.sortMode == SORT_ZONE then
+		sortDesc = L["Sorting by zone"]
+	elseif self.db.profile.sortMode == SORT_NONE then
+		sortDesc = L["Sorting is disabled"]
 	end
 	sortDesc = sortDesc .. colorize(" (" .. L["Ctrl-Click to change sort order"] .. ")", gray)
 	local line = tooltip:AddLine()
@@ -1492,36 +1335,15 @@ function R:ShowTooltip(hidden)
 
 	if not somethingAdded then
 		line = tooltip:AddLine()
-		tooltip:SetCell(
-			line,
-			1,
-			colorize(
-				L[
-					"No items to display! Either you've obtained every item, or you have\n" ..
-						"one or more options turned on which hide things from the tooltip."
-				],
-				red
-			),
-			nil,
-			nil,
-			3
-		)
+		tooltip:SetCell(line, 1, colorize(L["No items to display! Either you've obtained every item, or you have\n" ..
+				                                  "one or more options turned on which hide things from the tooltip."], red), nil,
+		                nil, 3)
 	end
 
-	R:ProfileStop(
-		"Tooltip rendering took %fms" ..
-			format(
-				" (%f, %f, %f, %f, %f, %f, %f, %f)",
-				(group1end - group1start),
-				(group2end - group2start),
-				(group3end - group3start),
-				(group4end - group4start),
-				(group5end - group5start),
-				(group6end - group6start),
-				(group7end - group7start),
-				(group8end - group8start)
-			)
-	)
+	R:ProfileStop("Tooltip rendering took %fms" ..
+			              format(" (%f, %f, %f, %f, %f, %f, %f, %f)", (group1end - group1start), (group2end - group2start),
+			                     (group3end - group3start), (group4end - group4start), (group5end - group5start),
+			                     (group6end - group6start), (group7end - group7start), (group8end - group8start)))
 
 	-- Footer
 	line = tooltip:AddLine()
@@ -1534,14 +1356,9 @@ function R:ShowTooltip(hidden)
 	if Rarity.anyReminderDone and not Rarity.allRemindersDone then
 		Rarity.allRemindersDone = true
 		if Rarity.db.profile.holidayReminder then
-			Rarity:Print(
-				colorize(
-					L[
-						"You can turn off holiday reminders as a whole or on an item-by-item basis by visiting the Rarity Options screen."
-					],
-					gray
-				)
-			)
+			Rarity:Print(colorize(
+					             L["You can turn off holiday reminders as a whole or on an item-by-item basis by visiting the Rarity Options screen."],
+					             gray))
 		end
 	end
 	if hidden == true or Rarity.frame == nil then
