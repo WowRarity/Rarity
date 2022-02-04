@@ -1,5 +1,10 @@
 <Bindings>
 	<Binding category="ADDONS" name="RARITY_TOGGLE_MAIN_WINDOW" header="RARITY">
-		Rarity:ShowTooltip()
+		if Rarity.Tooltips:IsTooltipAcquired("RarityTooltip") then
+			Rarity:HideTooltip()
+		else
+			Rarity:HideQuicktip()
+			Rarity:ShowTooltip()
+		end
 	</Binding>
 </Bindings>
