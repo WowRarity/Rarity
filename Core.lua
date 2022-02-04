@@ -167,7 +167,7 @@ do
 
 		-- Register keybinds
 		-- TODO Tests
-		BINDING_HEADER_RARITY = "RARITY"
+		BINDING_HEADER_RARITY = "Rarity"
 		_G["BINDING_NAME_RARITY_TOGGLE_MAIN_WINDOW"] = "Toggle Main Window" -- TODO Show, not toggle (for now); localize
 
 		Rarity.GUI:RegisterDataBroker()
