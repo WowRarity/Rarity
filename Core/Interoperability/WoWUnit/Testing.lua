@@ -1,9 +1,6 @@
 local _, addonTable = ...
 
-local Testing = {
-	TEST_GROUP_NAME = "RarityIntegrationTests",
-	FAUX_TRIGGER_EVENT = "PLAYER_LOGIN", -- We don't really run any tests on login, since the groups aren't created yet
-}
+local Testing = {}
 
 -- Upvalues
 --- Externals
@@ -12,51 +9,32 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Rarity", false)
 local IsAddOnLoaded = IsAddOnLoaded
 local LoadAddOn = LoadAddOn
 
-function Testing:RunIntegrationTests()
-	Rarity:Debug("Attempting to run the full integration test suite")
+function Testing:RunTestSuite()
+	Rarity:Debug("Attempting to run the integrated test suite")
 
 	if not self:IsFrameworkAvailable() then
-		Rarity:Print(
-				"The WoWUnit addon is required in order to run integration tests. Please download it from CurseForge or GitHub and make sure it's enabled before trying again!")
+		Rarity:Print("The Rarity_Tests addon is required in order to run the test suite.")
 		return
 	end
 
-	if not self:IsFrameworkInitialized() then
-		self:InitializeFramework()
-	end
+	Rarity:RunTests() -- Added by the Rarity_Tests addon, if present
 
-	WoWUnit:RunTests(self.FAUX_TRIGGER_EVENT)
-
-	Rarity:Debug("Finished running the full integration test suite")
+	Rarity:Debug("Finished running the integrated test suite")
 end
 
 function Testing:IsFrameworkAvailable()
-	local isFrameworkLoaded = IsAddOnLoaded("WoWUnit") or self:LoadFrameworkOnDemand()
+	local isFrameworkLoaded = IsAddOnLoaded("Rarity_Tests") or self:LoadFrameworkOnDemand()
 	return isFrameworkLoaded
 end
 
 function Testing:LoadFrameworkOnDemand()
-	Rarity:Debug("Loading WoWUnit addon to initialize the testing framework")
-	local isLoaded, reason = LoadAddOn("WoWUnit")
+	Rarity:Debug("Loading Rarity_Tests addon to initialize the testing framework")
+	local isLoaded, reason = LoadAddOn("Rarity_Tests")
 	if not isLoaded then
-		Rarity:Debug("Failed to load WoWUnit addon (reason: %s)", reason)
+		Rarity:Debug("Failed to load Rarity_Tests addon (reason: %s)", reason)
 	end
 
 	return isLoaded
-end
-
-function Testing:IsFrameworkInitialized()
-	return WoWUnit:HasGroup(self.TEST_GROUP_NAME) and self.testSuite
-end
-
-function Testing:InitializeFramework()
-	local testSuite = WoWUnit:NewGroup(self.TEST_GROUP_NAME, self.FAUX_TRIGGER_EVENT) -- We don't want them to run automatically, ever
-	if not testSuite then
-		Rarity:Debug("Failed to create test group (already initialized?)")
-		return
-	end
-
-	self.testSuite = testSuite
 end
 
 Rarity.Testing = Testing

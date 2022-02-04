@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding category="ADDONS" name="RARITY_TOGGLE_MAIN_WINDOW" header="RARITY">
+		Rarity:ShowTooltip()
+	</Binding>
+</Bindings>

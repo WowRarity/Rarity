@@ -658,7 +658,7 @@ function R:OnChatCommand(input)
 	elseif strlower(input) == "purge" then -- TODO: This should be done automatically, no?
 		self.Database:PurgeObsoleteEntries()
 	elseif strlower(input) == "test" then
-		self.Testing:RunIntegrationTests()
+		self.Testing:RunTestSuite()
 	elseif strlower(input) == "profiling" then
 		if self.db.profile.enableProfiling then
 			self.db.profile.enableProfiling = false

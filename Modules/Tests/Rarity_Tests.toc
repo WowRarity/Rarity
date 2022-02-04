@@ -1,0 +1,13 @@
+## Author: Cakechart
+## Interface: 90105
+## X-Min-Interface: 90105
+## Notes: Test suite for the Rarity addon. Use AddonLoader to load this on demand.
+## Title: Rarity [|caaedc99fTests|r]
+## LoadOnDemand: 1
+## Dependencies: Rarity
+## X-Part-Of: Rarity
+## LoadManagers: AddonLoader
+## X-LoadOn-Slash: /rarity, /rare
+## X-LoadOn-InterfaceOptions: Rarity
+
+Tests.lua

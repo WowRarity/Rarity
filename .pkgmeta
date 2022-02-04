@@ -84,6 +84,7 @@ tools-used:
 
 move-folders:
     Rarity/Modules/Options: Rarity_Options
+    Rarity/Modules/Tests: Rarity_Tests
 
 ignore:
  - README.MD
