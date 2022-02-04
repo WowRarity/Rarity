@@ -165,6 +165,11 @@ do
 		self:RegisterChatCommand("rarity", "OnChatCommand")
 		self:RegisterChatCommand("rare", "OnChatCommand")
 
+		-- Register keybinds
+		-- TODO Tests
+		BINDING_HEADER_RARITY = "RARITY"
+		_G["BINDING_NAME_RARITY_TOGGLE_MAIN_WINDOW"] = "Toggle Main Window" -- TODO Show, not toggle (for now); localize
+
 		Rarity.GUI:RegisterDataBroker()
 
 		-- Expose private objects
