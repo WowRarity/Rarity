@@ -772,12 +772,7 @@ local bfaToys = {
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
-			{
-				encounterName = "Merektha",
-				instanceDifficulties = {
-					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true
-				}
-			}
+			{ encounterName = "Merektha", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true } },
 		},
 		sourceText = L["Dropped by Merektha in Temple of Sethraliss. Will hatch into Spawn of Merektha pet after three days."],
 		coords = { { m = CONSTANTS.UIMAPIDS.TEMPLE_OF_SETHRALISS, i = true } },
