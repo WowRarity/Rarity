@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v1
         with:
           fetch-depth: 100
-
+        if: startsWith(github.ref, 'refs/tags/r')
       - name: Publish new release
         uses: BigWigsMods/packager@master
         env:
