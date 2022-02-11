@@ -77,7 +77,7 @@ externals:
     Libs/AceSerializer-3.0:
         url: https://repos.wowace.com/wow/ace3/trunk/AceSerializer-3.0
         tag: latest
-            
+
 tools-used:
     - libdatabroker-1-1
     - addon-loader
@@ -89,3 +89,4 @@ ignore:
  - README.MD
  - Changes.lua
  - .luacheckrc
+ - autoformat.sh
