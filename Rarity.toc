@@ -3,6 +3,7 @@
 ## X-Min-Interface: 90105
 ## Title: Rarity
 ## Version: 1.0 (@project-version@)
+## X-Curse-Project-ID: 30801
 
 ## Notes: Tracks rare drops, including companions and mounts
 ## Notes-ruRU: @localization(locale="ruRU", key="Notes", namespace="ToC - Table of Contents")@
