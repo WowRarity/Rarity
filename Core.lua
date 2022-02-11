@@ -7,7 +7,7 @@ local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
 local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
 local hbd = LibStub("HereBeDragons-2.0")
 
----
+--- NO-OP
 
 --[[
       VARIABLES ----------------------------------------------------------------------------------------------------------------
