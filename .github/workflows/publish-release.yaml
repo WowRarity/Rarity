@@ -1,0 +1,26 @@
+name: Packaging
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - '*'
+    paths-ignore:
+      - '.github/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 100
+
+      - name: Publish new release
+        uses: BigWigsMods/packager@master
+        env:
+          CF_API_KEY: ${{ secrets.CURSEFORGE_API_TOKEN }}
+          GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
