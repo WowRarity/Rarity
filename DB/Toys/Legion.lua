@@ -276,8 +276,6 @@ local legionToys = {
 		itemId = 143544,
 		npcs = { 99999 },
 		tooltipNpcs = { 105503, 111022 }, -- Gul'dan / The Demon Within (Mythic only)
-		groupSize = 3,
-		equalOdds = true,
 		chance = 30,
 		enableCoin = true,
 		disableForClass = {
@@ -313,8 +311,6 @@ local legionToys = {
 			-- todo bonus roll
 			111022,
 		}, -- Gul'dan / The Demon Within (Mythic only)
-		groupSize = 3,
-		equalOdds = true,
 		chance = 275,
 		statisticId = { 10977, 10979, 10980, 10978 },
 		coords = { { m = 772, i = true } },
