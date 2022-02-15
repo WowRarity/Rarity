@@ -573,8 +573,6 @@ local bfaMounts = {
 		itemId = 163584,
 		npcs = 99999,
 		chance = 100,
-		equalOdds = true,
-		groupSize = 3,
 		coords = { { m = CONSTANTS.UIMAPIDS.BORALUS }, { m = CONSTANTS.UIMAPIDS.DAZARALOR } },
 	},
 	["Craghorn Chasm-Leaper"] = {
@@ -586,8 +584,6 @@ local bfaMounts = {
 		itemId = 163583,
 		npcs = 99999,
 		chance = 100,
-		equalOdds = true,
-		groupSize = 3,
 		coords = { { m = CONSTANTS.UIMAPIDS.BORALUS }, { m = CONSTANTS.UIMAPIDS.DAZARALOR } },
 	},
 	["Qinsho's Eternal Hound"] = {
@@ -599,8 +595,6 @@ local bfaMounts = {
 		itemId = 163582,
 		npcs = 99999,
 		chance = 100,
-		equalOdds = true,
-		groupSize = 3,
 		coords = { { m = CONSTANTS.UIMAPIDS.BORALUS }, { m = CONSTANTS.UIMAPIDS.DAZARALOR } },
 	},
 	["Squawks"] = {
@@ -612,8 +606,6 @@ local bfaMounts = {
 		itemId = 163586,
 		npcs = 99999,
 		chance = 100,
-		equalOdds = true,
-		groupSize = 3,
 		coords = { { m = CONSTANTS.UIMAPIDS.BORALUS }, { m = CONSTANTS.UIMAPIDS.DAZARALOR } },
 	},
 	["Surf Jelly"] = {
@@ -625,8 +617,6 @@ local bfaMounts = {
 		itemId = 163585,
 		npcs = 99999,
 		chance = 100,
-		equalOdds = true,
-		groupSize = 3,
 		coords = { { m = CONSTANTS.UIMAPIDS.BORALUS }, { m = CONSTANTS.UIMAPIDS.DAZARALOR } },
 	},
 	["Great Sea Ray"] = {
@@ -712,8 +702,6 @@ local bfaMounts = {
 		itemId = 166466,
 		npcs = 99999,
 		chance = 100,
-		equalOdds = true,
-		groupSize = 3,
 		coords = { { m = CONSTANTS.UIMAPIDS.BORALUS }, { m = CONSTANTS.UIMAPIDS.DAZARALOR } },
 	},
 	["Island Thunderscale"] = {
@@ -725,8 +713,6 @@ local bfaMounts = {
 		itemId = 166467,
 		npcs = 99999,
 		chance = 100,
-		equalOdds = true,
-		groupSize = 3,
 		coords = { { m = CONSTANTS.UIMAPIDS.BORALUS }, { m = CONSTANTS.UIMAPIDS.DAZARALOR } },
 	},
 	["Bloodgorged Hunter"] = {
@@ -738,8 +724,6 @@ local bfaMounts = {
 		itemId = 166468,
 		npcs = 99999,
 		chance = 100,
-		equalOdds = true,
-		groupSize = 3,
 		coords = { { m = CONSTANTS.UIMAPIDS.BORALUS }, { m = CONSTANTS.UIMAPIDS.DAZARALOR } },
 	},
 	["Stonehide Elderhorn"] = {
@@ -751,8 +735,6 @@ local bfaMounts = {
 		itemId = 166470,
 		npcs = 99999,
 		chance = 100,
-		equalOdds = true,
-		groupSize = 3,
 		coords = { { m = CONSTANTS.UIMAPIDS.BORALUS }, { m = CONSTANTS.UIMAPIDS.DAZARALOR } },
 	},
 	-- 8.3
