@@ -13,8 +13,6 @@ local bfaToys = {
 		name = L["Oomgut Ritual Drum"],
 		itemId = 163795,
 		chance = 250,
-		groupSize = 3,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.BORALUS }, { m = CONSTANTS.UIMAPIDS.DAZARALOR } },
 	},
 	["Whiskerwax Candle"] = {
@@ -25,8 +23,6 @@ local bfaToys = {
 		name = L["Whiskerwax Candle"],
 		itemId = 163924,
 		chance = 250,
-		groupSize = 3,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.BORALUS }, { m = CONSTANTS.UIMAPIDS.DAZARALOR } },
 	},
 	-- ["Yaungol Oil Stove"] = { -- NYI as of 18/01/19
@@ -59,8 +55,6 @@ local bfaToys = {
 		name = L["Enchanted Soup Stone"],
 		itemId = 164373,
 		chance = 250,
-		groupSize = 3,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.BORALUS }, { m = CONSTANTS.UIMAPIDS.DAZARALOR } },
 	},
 	["Magic Monkey Banana"] = {
@@ -71,8 +65,6 @@ local bfaToys = {
 		name = L["Magic Monkey Banana"],
 		itemId = 164374,
 		chance = 250,
-		groupSize = 3,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.BORALUS }, { m = CONSTANTS.UIMAPIDS.DAZARALOR } },
 	},
 	["Bad Mojo Banana"] = {
@@ -83,8 +75,6 @@ local bfaToys = {
 		name = L["Bad Mojo Banana"],
 		itemId = 164375,
 		chance = 250,
-		groupSize = 3,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.BORALUS }, { m = CONSTANTS.UIMAPIDS.DAZARALOR } },
 	},
 	-- ["Regenerating Banana Bunch"] = { -- NYI as of 18/01/19
