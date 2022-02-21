@@ -271,12 +271,11 @@ local legionToys = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
 		isToy = true,
-		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
 		name = L["Skull of Corruption"],
 		itemId = 143544,
-		npcs = { 99999 },
-		tooltipNpcs = { 105503, 111022 }, -- Gul'dan / The Demon Within (Mythic only)
-		chance = 30,
+		npcs = { 111022 }, -- Gul'dan / The Demon Within (Mythic only)
+		chance = 200,
 		enableCoin = true,
 		disableForClass = {
 			["DEATHKNIGHT"] = true,
@@ -291,7 +290,6 @@ local legionToys = {
 			["WARLOCK"] = true,
 			["WARRIOR"] = true,
 		},
-		statisticId = { 10977, 10979, 10980, 10978 },
 		coords = { { m = 772, i = true } },
 	},
 	-- 7.2 Toys
