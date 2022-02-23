@@ -1505,6 +1505,22 @@ function R:OnEvent(event, ...)
 			end
 		end
 
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Sandworn Chest"]) then
+			local names = { "Makaris's Satchel of Mines" }
+			Rarity:Debug("Detected Opening on " .. L["Sandworn Chest"] .. " (method = SPECIAL)")
+			for _, name in pairs(names) do
+				local v = self.db.profile.groups.items[name]
+				if v and type(v) == "table" and v.enabled ~= false then
+					if v.attempts == nil then
+						v.attempts = 1
+					else
+						v.attempts = v.attempts + 1
+					end
+					self:OutputAttempts(v)
+				end
+			end
+		end
+
 		-- HANDLE FISHING
 		if Rarity.isFishing and Rarity.isOpening == false then
 			if Rarity.isPool then
