@@ -423,6 +423,17 @@ local shadowlandsToys = {
 		chance = 100, -- Blind guess
 		coords = { { m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS } },
 	},
+	["Xy'rath's Booby-Trapped Cache"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Xy'rath's Booby-Trapped Cache"],
+		isToy = true,
+		itemId = 190238,
+		npcs = { 183737 },
+		chance = 6,
+		coords = { { m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS, n = L["Xy'rath the Covetous"], x = 64.06, y = 49.76 } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)
