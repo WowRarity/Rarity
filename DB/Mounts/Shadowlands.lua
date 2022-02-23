@@ -549,6 +549,16 @@ local shadowlandsMounts = {
 		chance = 100, -- Blind guess
 		coords = { { x = 63.8, y = 25.1, n = L["Iska, Outrider of Ruin"], m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS } },
 	},
+	["Spectral Mawrat's Tail"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Spectral Mawrat's Tail"],
+		itemId = 190766,
+		spellId = 368128,
+		chance = 100, -- Blind guess
+		coords = { { m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)
