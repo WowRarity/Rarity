@@ -413,6 +413,16 @@ local shadowlandsToys = {
 		sourceText = L["This item can only drop in the rift phase of Korthia and The Maw."],
 		coords = { { m = CONSTANTS.UIMAPIDS.KORTHIA }, { m = CONSTANTS.UIMAPIDS.THE_MAW } },
 	},
+	["Makaris's Satchel of Mines"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Makaris's Satchel of Mines"],
+		itemId = 190734,
+		chance = 100, -- Blind guess
+		coords = { { m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)
