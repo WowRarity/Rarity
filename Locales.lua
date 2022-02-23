@@ -2,6 +2,8 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Iska, Outrider of Ruin"] = true
+L["Iska's Mawrat Leash"] = true
 L["The WoWUnit addon is required in order to run integration tests. Please download it from CurseForge or GitHub and make sure it's enabled before trying again!"] =
 		true
 L["Close Window"] = true

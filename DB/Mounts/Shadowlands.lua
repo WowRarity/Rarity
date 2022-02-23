@@ -538,6 +538,17 @@ local shadowlandsMounts = {
 		sourceText = L["Darkmaul is obtained by feeding a friendly NPC in Korthia called Darkmaul 10 Tasty Mawshroom"],
 		coords = { { m = CONSTANTS.UIMAPIDS.KORTHIA, x = 42.8, y = 32.7, n = L["Darkmaul"] } },
 	},
+	["Iska's Mawrat Leash"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Iska's Mawrat Leash"],
+		itemId = 190765,
+		spellId = 368105,
+		npcs = { 182114 },
+		chance = 100, -- Blind guess
+		coords = { { x = 63.8, y = 25.1, n = L["Iska, Outrider of Ruin"], m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)
