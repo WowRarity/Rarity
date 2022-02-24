@@ -434,6 +434,17 @@ local shadowlandsToys = {
 		chance = 6,
 		coords = { { m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS, n = L["Xy'rath the Covetous"], x = 64.06, y = 49.76 } },
 	},
+	["Sphere of Enlightened Cogitation"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Sphere of Enlightened Cogitation"],
+		itemId = 190177,
+		items = { 187780 },
+		chance = 100, -- Blind guess
+		coords = { { m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)
