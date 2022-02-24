@@ -559,6 +559,17 @@ local shadowlandsMounts = {
 		chance = 100, -- Blind guess
 		coords = { { m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS } },
 	},
+	["Sturdy Silver Mawrat Harness"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Sturdy Silver Mawrat Harness"],
+		itemId = 188700,
+		spellId = 363178,
+		npcs = { 171422 },
+		chance = 100, -- Blind guess
+		coords = { { m = CONSTANTS.UIMAPIDS.TORGHAST } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)
