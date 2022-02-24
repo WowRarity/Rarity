@@ -2,6 +2,7 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Geordy"] = true
 L["Sphere of Enlightened Cogitation"] = true
 L["Xy'rath the Covetous"] = true
 L["Xy'rath's Booby-Trapped Cache"] = true
