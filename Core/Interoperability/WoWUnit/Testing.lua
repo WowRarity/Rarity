@@ -16,7 +16,7 @@ function Testing:RunIntegrationTests()
 	Rarity:Debug("Attempting to run the full integration test suite")
 
 	if not self:IsFrameworkAvailable() then
-		Rarity:Print(
+		Rarity:Debug(
 				"The WoWUnit addon is required in order to run integration tests. Please download it from CurseForge or GitHub and make sure it's enabled before trying again!")
 		return
 	end
