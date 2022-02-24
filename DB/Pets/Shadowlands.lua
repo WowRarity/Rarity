@@ -923,6 +923,18 @@ local shadowlandsPets = {
 		sourceText = L["This item can only drop in the Adamant Vaults section of Torghast."],
 		coords = { { m = CONSTANTS.UIMAPIDS.TORGHAST } },
 	},
+	["Geordy"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Geordy"],
+		itemId = 187735,
+		items = { 187787 },
+		spellId = 359606,
+		creatureId = 181337,
+		chance = 20, -- Blind guess
+		coords = { { m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)

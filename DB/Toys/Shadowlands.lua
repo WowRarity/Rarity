@@ -413,6 +413,38 @@ local shadowlandsToys = {
 		sourceText = L["This item can only drop in the rift phase of Korthia and The Maw."],
 		coords = { { m = CONSTANTS.UIMAPIDS.KORTHIA }, { m = CONSTANTS.UIMAPIDS.THE_MAW } },
 	},
+	["Makaris's Satchel of Mines"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Makaris's Satchel of Mines"],
+		itemId = 190734,
+		chance = 100, -- Blind guess
+		coords = { { m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS } },
+	},
+	["Xy'rath's Booby-Trapped Cache"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Xy'rath's Booby-Trapped Cache"],
+		isToy = true,
+		itemId = 190238,
+		npcs = { 183737 },
+		chance = 6,
+		coords = { { m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS, n = L["Xy'rath the Covetous"], x = 64.06, y = 49.76 } },
+	},
+	["Sphere of Enlightened Cogitation"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Sphere of Enlightened Cogitation"],
+		itemId = 190177,
+		items = { 187780 },
+		chance = 100, -- Blind guess
+		coords = { { m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)

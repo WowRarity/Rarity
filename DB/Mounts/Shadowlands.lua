@@ -538,6 +538,50 @@ local shadowlandsMounts = {
 		sourceText = L["Darkmaul is obtained by feeding a friendly NPC in Korthia called Darkmaul 10 Tasty Mawshroom"],
 		coords = { { m = CONSTANTS.UIMAPIDS.KORTHIA, x = 42.8, y = 32.7, n = L["Darkmaul"] } },
 	},
+	["Iska's Mawrat Leash"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Iska's Mawrat Leash"],
+		itemId = 190765,
+		spellId = 368105,
+		npcs = { 182114 },
+		chance = 100, -- Blind guess
+		coords = { { x = 63.8, y = 25.1, n = L["Iska, Outrider of Ruin"], m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS } },
+	},
+	["Spectral Mawrat's Tail"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Spectral Mawrat's Tail"],
+		itemId = 190766,
+		spellId = 368128,
+		chance = 100, -- Blind guess
+		coords = { { m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS } },
+	},
+	["Sturdy Silver Mawrat Harness"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Sturdy Silver Mawrat Harness"],
+		itemId = 188700,
+		spellId = 363178,
+		npcs = { 171422 },
+		chance = 100, -- Blind guess
+		coords = { { m = CONSTANTS.UIMAPIDS.TORGHAST } },
+	},
+	["Deepstar Polyp"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Deepstar Polyp"],
+		itemId = 187676,
+		spellId = 342680,
+		npcs = { 180978 },
+		chance = 100, -- Blind guess
+		sourceText = format(L["This item appears to be a guaranteed drop for the player who summoned %s"], L["Hirukon"]),
+		coords = { { x = 52, 2, y = 75, 3, m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS, n = L["Hirukon"] } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)

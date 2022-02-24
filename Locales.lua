@@ -2,6 +2,20 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["This item appears to be a guaranteed drop for the player who summoned %s"] = true
+L["Hirukon"] = true
+L["Deepstar Polyp"] = true
+L["Sturdy Silver Mawrat Harness"] = true
+L["Geordy"] = true
+L["Sphere of Enlightened Cogitation"] = true
+L["Xy'rath the Covetous"] = true
+L["Xy'rath's Booby-Trapped Cache"] = true
+L["Sandworn Chest"] = true
+L["Makaris's Satchel of Mines"] = true
+L["Spectral Mawrat's Tail"] = true
+L["Mawsworn Supply Chest"] = true
+L["Iska, Outrider of Ruin"] = true
+L["Iska's Mawrat Leash"] = true
 L["The WoWUnit addon is required in order to run integration tests. Please download it from CurseForge or GitHub and make sure it's enabled before trying again!"] =
 		true
 L["Close Window"] = true
