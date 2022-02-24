@@ -16,8 +16,6 @@ L["Spectral Mawrat's Tail"] = true
 L["Mawsworn Supply Chest"] = true
 L["Iska, Outrider of Ruin"] = true
 L["Iska's Mawrat Leash"] = true
-L["The WoWUnit addon is required in order to run integration tests. Please download it from CurseForge or GitHub and make sure it's enabled before trying again!"] =
-		true
 L["Close Window"] = true
 L["Use CMD+C to copy and CMD+V to paste"] = true
 L["Use CTRL+C to copy and CTRL+V to paste"] = true
