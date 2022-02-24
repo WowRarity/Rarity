@@ -2,6 +2,9 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["This item appears to be a guaranteed drop for the player who summoned %s"] = true
+L["Hirukon"] = true
+L["Deepstar Polyp"] = true
 L["Sturdy Silver Mawrat Harness"] = true
 L["Geordy"] = true
 L["Sphere of Enlightened Cogitation"] = true

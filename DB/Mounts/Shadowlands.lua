@@ -570,6 +570,18 @@ local shadowlandsMounts = {
 		chance = 100, -- Blind guess
 		coords = { { m = CONSTANTS.UIMAPIDS.TORGHAST } },
 	},
+	["Deepstar Polyp"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Deepstar Polyp"],
+		itemId = 187676,
+		spellId = 342680,
+		npcs = { 180978 },
+		chance = 100, -- Blind guess
+		sourceText = format(L["This item appears to be a guaranteed drop for the player who summoned %s"], L["Hirukon"]),
+		coords = { { x = 52, 2, y = 75, 3, m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS, n = L["Hirukon"] } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)
