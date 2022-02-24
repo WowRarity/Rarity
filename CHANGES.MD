@@ -1,3 +1,19 @@
+**r715:**
+
+Additions:
+> Added tracking for various collectibles obtained in Zereth Mortis
+
+Changes:
+> Adjusted the difficulty settings for certain legacy collectibles
+
+Fixes:
+> Fixed the attempts detection for Skull of Corruption
+
+Contributors (in alphabetical order):
+> Tommy Godejord
+
+-----
+
 **r714:**
 
 Additions:
@@ -61,29 +77,3 @@ Fixes:
 
 Contributors (in alphabetical order):
 > Tommy Godejord
-
------
-
-**r710:**
-
-Additions:
-> Added an overview of the tracking data to each item's settings in the Options UI
-<br>Added tracking for toys obtained from Zovaal's Vault
-<br>Added links to the Rarity Discord and GitHub repository to the Options UI
-
-Changes:
-> The main window should now render MUCH faster, depending on the sort method selected (sorting by zone is still relatively slow)
-
-Fixes:
-> Fixed tracking for Wilderling Saddle
-<br>Fixed tracking for Rook
-<br>Fixed tracking for Intact Aquilon Core
-<br>Fixed an issue that could prevent items using the COLLECTION method from being tracked correctly
-
-Developer Notes:
-> By improving the sorting algorithms used internally, we were able to reduce the time spent on rendering the addon's main window significantly. The remaining time for all sort modes except "by zone" is now limited by the WOW client's UI system and can't be reduced as easily, though we're looking at workarounds to this problem. If you're still experiencing significant performance issues after updating, please let us know!
-
-Contributors (in alphabetical order):
-> AySz88
-<br>Tommy Godejord
-<br>Matthew Rowland
