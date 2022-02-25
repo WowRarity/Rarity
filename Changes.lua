@@ -1,15 +1,9 @@
 local changes = {
 	["r715"] = {
-		additions = {
-			"Added tracking for various collectibles obtained in Zereth Mortis",
-		},
-		fixes = {
-			"Fixed the attempts detection for Skull of Corruption"
-		},
-		changes = {
-			"Adjusted the difficulty settings for certain legacy collectibles"
-		},
-		contributors = {"Tommy Godejord" }
+		additions = { "Added tracking for various collectibles obtained in Zereth Mortis" },
+		fixes = { "Fixed the attempts detection for Skull of Corruption" },
+		changes = { "Adjusted the difficulty settings for certain legacy collectibles" },
+		contributors = { "Tommy Godejord" },
 	},
 	["r714"] = {
 		additions = {
