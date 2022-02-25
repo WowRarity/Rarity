@@ -445,6 +445,19 @@ local shadowlandsToys = {
 		chance = 100, -- Blind guess
 		coords = { { m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS } },
 	},
+	["Strange Goop"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.FISHING,
+		name = L["Strange Goop"],
+		zones = { "1970" },
+		spellId = 342680,
+		itemId = 187662,
+		chance = 1333,
+		requiresPool = false,
+		sourceText = format(L["Can be used to summon %s, but only once per day"], L["Hirukon"]),
+		coords = { { x = 52, 2, y = 75, 3, m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS, n = L["Hirukon"] } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)

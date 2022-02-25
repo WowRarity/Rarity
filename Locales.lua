@@ -2,6 +2,8 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Can be used to summon %s, but only once per day"] = true
+L["Strange Goop"] = true
 L["This item appears to be a guaranteed drop for the player who summoned %s"] = true
 L["Hirukon"] = true
 L["Deepstar Polyp"] = true
