@@ -566,7 +566,7 @@ local shadowlandsMounts = {
 		name = L["Sturdy Silver Mawrat Harness"],
 		itemId = 188700,
 		spellId = 363178,
-		npcs = { 171422, 179526, 185026, 176578, 185027, 179433, 185028 },
+		npcs = { 171422, 179526, 185026, 176578, 185027, 179433, 185028, 159755, 151331, 169859 },
 		chance = 100, -- Blind guess
 		coords = { { m = CONSTANTS.UIMAPIDS.TORGHAST } },
 	},
