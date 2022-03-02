@@ -248,4 +248,6 @@ R.opennodes = {
 	[L["Memorial Offerings"]] = true,
 	[L["Treasure of Courage"]] = true,
 	[L["Zovaal's Vault"]] = true,
+	[L["Mawsworn Supply Chest"]] = true,
+	[L["Sandworn Chest"]] = true,
 }
