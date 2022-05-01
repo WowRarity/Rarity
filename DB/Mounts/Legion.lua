@@ -357,6 +357,10 @@ local legionMounts = {
 		wasGuaranteed = true,
 		statisticId = { 10980 },
 		coords = { { m = CONSTANTS.UIMAPIDS.THE_NIGHTHOLD, i = true } },
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{ encounterName = "Gul'dan", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true } },
+		},
 	},
 	["Antoran Charhound"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
