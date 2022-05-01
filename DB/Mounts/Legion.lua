@@ -390,6 +390,13 @@ local legionMounts = {
 		blackMarket = true,
 		statisticId = { 11986 },
 		coords = { { m = CONSTANTS.UIMAPIDS.ANTORUS, i = true } },
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Argus the Unmaker",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true },
+			},
+		},
 	},
 }
 
