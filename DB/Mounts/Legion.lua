@@ -356,7 +356,11 @@ local legionMounts = {
 		chance = 100,
 		wasGuaranteed = true,
 		statisticId = { 10980 },
-		coords = { { m = 772, i = true } },
+		coords = { { m = CONSTANTS.UIMAPIDS.THE_NIGHTHOLD, i = true } },
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{ encounterName = "Gul'dan", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true } },
+		},
 	},
 	["Antoran Charhound"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -385,7 +389,14 @@ local legionMounts = {
 		wasGuaranteed = true,
 		blackMarket = true,
 		statisticId = { 11986 },
-		coords = { { m = 910, i = true } },
+		coords = { { m = CONSTANTS.UIMAPIDS.ANTORUS, i = true } },
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Argus the Unmaker",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true },
+			},
+		},
 	},
 }
 
