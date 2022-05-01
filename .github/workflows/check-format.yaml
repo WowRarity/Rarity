@@ -22,13 +22,13 @@ jobs:
         run: sudo apt-get install luajit libluajit-5.1-dev
 
       - name: Download LuaRocks
-        run: wget https://luarocks.org/releases/luarocks-3.7.0.tar.gz
+        run: wget https://luarocks.org/releases/luarocks-3.9.0.tar.gz
 
       - name: Unpack LuaRocks release
-        run: tar zxpf luarocks-3.7.0.tar.gz
+        run: tar zxpf luarocks-3.9.0.tar.gz
 
       - name: Install LuaRocks
-        run: cd luarocks-3.7.0 && ./configure && make && sudo make install
+        run: cd luarocks-3.9.0 && ./configure && make && sudo make install
 
       - name: Install lua-formatter
         run: sudo luarocks install --server=https://luarocks.org/dev luaformatter
