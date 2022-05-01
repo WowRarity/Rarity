@@ -389,7 +389,7 @@ local legionMounts = {
 		wasGuaranteed = true,
 		blackMarket = true,
 		statisticId = { 11986 },
-		coords = { { m = 910, i = true } },
+		coords = { { m = CONSTANTS.UIMAPIDS.ANTORUS, i = true } },
 	},
 }
 
