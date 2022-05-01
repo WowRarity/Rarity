@@ -356,7 +356,7 @@ local legionMounts = {
 		chance = 100,
 		wasGuaranteed = true,
 		statisticId = { 10980 },
-		coords = { { m = 772, i = true } },
+		coords = { { m = CONSTANTS.UIMAPIDS.THE_NIGHTHOLD, i = true } },
 	},
 	["Antoran Charhound"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
