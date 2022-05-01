@@ -39,7 +39,7 @@ end
 -- @param priceSource A string representing the price source
 -- @return True if TSM recognized the price source; false (nil) otherwise
 function AuctionDB:IsValidPriceSource(priceSource)
-	if not type(priceSource) == "string" then
+	if type(priceSource) ~= "string" then
 		return
 	end
 
