@@ -323,11 +323,19 @@ local legionMounts = {
 		tooltipNpcs = {
 			105503,
 			104154, -- Gul'dan (normal)
+			111022, -- The Demon Within (Mythic only)
 		},
 		chance = 100,
 		blackMarket = true,
 		statisticId = { 10979, 10980, 10978 },
 		coords = { { m = 772, i = true } },
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{ encounterName = "Gul'dan", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true } },
+			{ encounterName = "Gul'dan", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true } },
+			{ encounterName = "Gul'dan", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true } },
+
+		},
 	},
 	["Midnight's Eternal Reins"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
