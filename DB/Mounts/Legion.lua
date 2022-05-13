@@ -323,6 +323,7 @@ local legionMounts = {
 		tooltipNpcs = {
 			105503,
 			104154, -- Gul'dan (normal)
+			111022, -- The Demon Within (Mythic only)
 		},
 		chance = 100,
 		blackMarket = true,
