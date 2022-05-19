@@ -556,7 +556,7 @@ local shadowlandsMounts = {
 		name = L["Spectral Mawrat's Tail"],
 		itemId = 190766,
 		spellId = 368128,
-		chance = 100, -- Blind guess
+		chance = 200,
 		coords = { { m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS } },
 	},
 	["Sturdy Silver Mawrat Harness"] = {
