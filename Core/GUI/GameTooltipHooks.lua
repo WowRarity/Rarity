@@ -278,11 +278,8 @@ _G.GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 	end
 end)
 
--- TOOLTIP: ITEMS IN INVENTORY
-
-hooksecurefunc(GameTooltip, "SetBagItem", function(self, bag, slot)
+local function processItem(id)
 	local blankAdded = false
-	local id = GetContainerItemID(bag, slot)
 	if id then
 		local item
 		local rarityAdded = false
@@ -381,4 +378,43 @@ hooksecurefunc(GameTooltip, "SetBagItem", function(self, bag, slot)
 			end
 		end
 	end
+end
+
+local function processItemString(itemString)
+	if itemString then
+		local id = itemString:match("item:(%d+):")
+		processItem(tonumber(id))
+	end
+end
+
+-- TOOLTIP: ITEMS IN INVENTORY
+
+hooksecurefunc(GameTooltip, "SetBagItem", function(self, bag, slot)
+	local id = GetContainerItemID(bag, slot)
+	processItem(id)
 end)
+
+-- TOOLTIP: ITEMS FROM QUESTGIVERS
+
+hooksecurefunc(GameTooltip, "SetQuestItem", function(self, type, index)
+	local itemString = GetQuestItemLink(type, index)
+	processItemString(itemString)
+end)
+
+-- TOOLTIP: ITEMS FROM QUEST LOG
+
+hooksecurefunc(GameTooltip, "SetQuestLogItem", function(self, type, index)
+	local itemString = GetQuestLogItemLink(type, index)
+	processItemString(itemString)
+end)
+
+-- TOOLTIP: EMISSARY QUEST REWARD
+
+-- hooksecurefunc("GameTooltip_AddQuestRewardsToTooltip", function(self, questID)
+--    if GetNumQuestLogRewards(questID) > 0 then
+--        local _, _, _, _, _, id = GetQuestLogRewardInfo(1, questID)
+--        if id then
+--            processItem(id)
+--        end
+--    end
+-- end)
