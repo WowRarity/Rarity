@@ -8,8 +8,7 @@ addonTable.constants = addonTable.constants or {}
 local C = addonTable.constants
 
 -- Types of items
-C.TOOLTIP = { ACTIVATION_METHOD_HOVER = "ACTIVATION_METHOD_HOVER",
-              ACTIVATION_METHOD_CLICK = "ACTIVATION_METHOD_CLICK" }
+C.TOOLTIP = { ACTIVATION_METHOD_HOVER = "ACTIVATION_METHOD_HOVER", ACTIVATION_METHOD_CLICK = "ACTIVATION_METHOD_CLICK" }
 
 -- Misc. stuff for the detailed lockout storage / defeat detection
 C.DEFEAT_DETECTION = { MODE_OR = 1, MODE_AND = 2 }
@@ -223,8 +222,8 @@ C.TOOLTIP_FILTERS = {
 	IS_SPELL_KNOWN = IsSpellKnown,
 	IS_PLAYER_IN_LFR = function()
 		-- Returns true if the player is in a LFR instance
-		local name, type, difficulty, difficultyName, maxPlayers, playerDifficulty, isDynamicInstance, mapID,
-		      instanceGroupSize = GetInstanceInfo()
+		local name, type, difficulty, difficultyName, maxPlayers, playerDifficulty, isDynamicInstance, mapID, instanceGroupSize =
+			GetInstanceInfo()
 		return (difficulty == 7 or difficulty == 17) -- Legacy or regular LFR
 	end,
 }
@@ -234,8 +233,12 @@ C.TOOLTIP_FILTERS = {
 C.TOOLTIP_ACTIONS = {
 	OVERRIDE_TOOLTIP_NPCS = function(entry, newTooltipNpcs) -- Overwrites all tooltip NPCs
 		-- Sanity checks
-		if not (entry and type(entry) == "table" and newTooltipNpcs and type(newTooltipNpcs) == "number" or
-				type(newTooltipNpcs) == "table") then
+		if
+			not (
+				entry and type(entry) == "table" and newTooltipNpcs and type(newTooltipNpcs) == "number"
+				or type(newTooltipNpcs) == "table"
+			)
+		then
 			Rarity:Debug("Action OVERRIDE_TOOLTIP_NPCS failed! Required parameters: entry, newTooltipNpcs")
 			return
 		end

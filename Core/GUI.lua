@@ -166,8 +166,11 @@ function Rarity:UpdateSessionAttempts(item)
 	local trackedItem = Rarity.Tracking:GetTrackedItem()
 	local trackedItem2 = Rarity.Tracking:GetTrackedItem(2)
 
-	if lastAttemptItem and lastAttemptItem ~= item and GetTime() - (Rarity.Tracking:GetLastAttemptTime() or 0) <=
-			DUAL_TRACK_THRESHOLD then -- Beginning to track two things at once
+	if
+		lastAttemptItem
+		and lastAttemptItem ~= item
+		and GetTime() - (Rarity.Tracking:GetLastAttemptTime() or 0) <= DUAL_TRACK_THRESHOLD
+	then -- Beginning to track two things at once
 		Rarity.Session:Update()
 	else
 		if trackedItem == item or trackedItem2 == item then

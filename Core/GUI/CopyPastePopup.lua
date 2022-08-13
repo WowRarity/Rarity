@@ -56,9 +56,13 @@ function CopyPastePopup:SetInstructionText(text)
 end
 
 function CopyPastePopup:Show()
-	self.ShowPopupDialogWithEditBox(self.instructionText, self.editBoxText, function(frame)
-		-- OnCloseCallback? (or at least it's triggered when you click OK)
-	end, nil -- autoCloseTimeoutInMilliseconds
+	self.ShowPopupDialogWithEditBox(
+		self.instructionText,
+		self.editBoxText,
+		function(frame)
+			-- OnCloseCallback? (or at least it's triggered when you click OK)
+		end,
+		nil -- autoCloseTimeoutInMilliseconds
 	)
 	local popup = StaticPopupDialogs["RarityCopyPastePopup"] or self.popup
 	self.popup = popup

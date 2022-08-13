@@ -17,8 +17,9 @@ local DC = { messages = {}, print = print, cacheSize = 250 }
 
 -- Prints a string representation of the internal state (not including the actual messages)
 function DC:Debug()
-	self.print("Settings: " .. "cacheSize = " .. tostring(self.cacheSize) .. ", numMessages = " ..
-			           tostring(#self.messages))
+	self.print(
+		"Settings: " .. "cacheSize = " .. tostring(self.cacheSize) .. ", numMessages = " .. tostring(#self.messages)
+	)
 end
 
 -- Resets the state back to its default settings

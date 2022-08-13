@@ -141,12 +141,12 @@ local legionToys = {
 		questId = 43943,
 		coords = { { m = 680 } },
 	},
-	["Goren \"Log\" Roller"] = {
+	['Goren "Log" Roller'] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION, -- Why not WOD?
 		type = CONSTANTS.ITEM_TYPES.ITEM,
 		isToy = true,
 		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Goren \"Log\" Roller"],
+		name = L['Goren "Log" Roller'],
 		itemId = 119180,
 		npcs = { 87352 },
 		chance = 7,
@@ -397,7 +397,9 @@ local legionToys = {
 		npcs = { 127700 },
 		chance = 7,
 		questId = 48967,
-		coords = { { m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 83.72, y = 81.14, n = L["Squadron Commander Vishax"] } },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.ANTORAN_WASTES, x = 83.72, y = 81.14, n = L["Squadron Commander Vishax"] },
+		},
 	},
 	["Micro-Artillery Controller"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -450,8 +452,11 @@ local legionToys = {
 		questId = { 48703, 48704 },
 		defeatAllQuests = true,
 		defeatSteps = { [48703] = L["Vigilant Thanos"], [48704] = L["Vigilant Kuro"] },
-		sourceText = format(L["Has a chance to drop from either %s or %s on Argus. Each can be looted once per day."],
-		                    L["Vigilant Thanos"], L["Vigilant Kuro"]),
+		sourceText = format(
+			L["Has a chance to drop from either %s or %s on Argus. Each can be looted once per day."],
+			L["Vigilant Thanos"],
+			L["Vigilant Kuro"]
+		),
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 63.88, y = 64.25, n = L["Vigilant Kuro"] },
 			{ m = CONSTANTS.UIMAPIDS.MACAREE, x = 36.32, y = 23.71, n = L["Vigilant Thanos"] },

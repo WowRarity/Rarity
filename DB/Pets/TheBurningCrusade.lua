@@ -66,7 +66,10 @@ local tbcPets = {
 		items = { 35348 },
 		chance = 10,
 		creatureId = 26056,
-		coords = { { m = 111, x = 54.6, y = 39.6, n = L["Cupri"] }, { m = 108, x = 38.6, y = 12.8, n = L["Old Man Barlo"] } },
+		coords = {
+			{ m = 111, x = 54.6, y = 39.6, n = L["Cupri"] },
+			{ m = 108, x = 38.6, y = 12.8, n = L["Old Man Barlo"] },
+		},
 	},
 	["Muckbreaths's Bucket"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TBC,
@@ -78,7 +81,10 @@ local tbcPets = {
 		items = { 35348 },
 		chance = 10,
 		creatureId = 24389,
-		coords = { { m = 111, x = 54.6, y = 39.6, n = L["Cupri"] }, { m = 108, x = 38.6, y = 12.8, n = L["Old Man Barlo"] } },
+		coords = {
+			{ m = 111, x = 54.6, y = 39.6, n = L["Cupri"] },
+			{ m = 108, x = 38.6, y = 12.8, n = L["Old Man Barlo"] },
+		},
 	},
 	["Snarly's Bucket"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TBC,
@@ -90,7 +96,10 @@ local tbcPets = {
 		items = { 35348 },
 		chance = 10,
 		creatureId = 26050,
-		coords = { { m = 111, x = 54.6, y = 39.6, n = L["Cupri"] }, { m = 108, x = 38.6, y = 12.8, n = L["Old Man Barlo"] } },
+		coords = {
+			{ m = 111, x = 54.6, y = 39.6, n = L["Cupri"] },
+			{ m = 108, x = 38.6, y = 12.8, n = L["Old Man Barlo"] },
+		},
 	},
 	["Toothy's Bucket"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TBC,
@@ -102,7 +111,10 @@ local tbcPets = {
 		items = { 35348 },
 		chance = 10,
 		creatureId = 24388,
-		coords = { { m = 111, x = 54.6, y = 39.6, n = L["Cupri"] }, { m = 108, x = 38.6, y = 12.8, n = L["Old Man Barlo"] } },
+		coords = {
+			{ m = 111, x = 54.6, y = 39.6, n = L["Cupri"] },
+			{ m = 108, x = 38.6, y = 12.8, n = L["Old Man Barlo"] },
+		},
 	},
 }
 

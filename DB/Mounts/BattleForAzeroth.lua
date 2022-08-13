@@ -241,7 +241,12 @@ local bfaMounts = {
 		questId = { 54883 },
 		requiresAlliance = true,
 		coords = {
-			{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 49.2, y = 24.8, n = L["Agathe Wyrmwood"] .. " - " .. L["Alliance only"] },
+			{
+				m = CONSTANTS.UIMAPIDS.DARKSHORE,
+				x = 49.2,
+				y = 24.8,
+				n = L["Agathe Wyrmwood"] .. " - " .. L["Alliance only"],
+			},
 		},
 	},
 	["Blackpaw"] = {
@@ -255,7 +260,9 @@ local bfaMounts = {
 		chance = 20,
 		requiresHorde = true,
 		questId = { 54890 },
-		coords = { { m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 49.2, y = 24.8, n = L["Blackpaw"] .. " - " .. L["Horde only"] } },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 49.2, y = 24.8, n = L["Blackpaw"] .. " - " .. L["Horde only"] },
+		},
 	},
 	["Captured Kaldorei Nightsaber"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -269,7 +276,12 @@ local bfaMounts = {
 		questId = { 54886 },
 		requiresAlliance = true,
 		coords = {
-			{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 50.6, y = 32.6, n = L["Croz Bloodrage"] .. " - " .. L["Alliance only"] },
+			{
+				m = CONSTANTS.UIMAPIDS.DARKSHORE,
+				x = 50.6,
+				y = 32.6,
+				n = L["Croz Bloodrage"] .. " - " .. L["Alliance only"],
+			},
 		},
 	},
 	["Kaldorei Nightsaber"] = {
@@ -283,7 +295,9 @@ local bfaMounts = {
 		chance = 20,
 		questId = { 54892 },
 		requiresHorde = true,
-		coords = { { m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 39.9, y = 33.0, n = L["Shadowclaw"] .. " - " .. L["Horde only"] } },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 39.9, y = 33.0, n = L["Shadowclaw"] .. " - " .. L["Horde only"] },
+		},
 	},
 	["Umber Nightsaber"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -312,7 +326,12 @@ local bfaMounts = {
 		questId = { 54277 },
 		requiresAlliance = true,
 		coords = {
-			{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 63.7, y = 20.9, n = L["Moxo the Beheader"] .. " - " .. L["Alliance only"] },
+			{
+				m = CONSTANTS.UIMAPIDS.DARKSHORE,
+				x = 63.7,
+				y = 20.9,
+				n = L["Moxo the Beheader"] .. " - " .. L["Alliance only"],
+			},
 		},
 	},
 	["Glacial Tidestorm"] = {
@@ -412,7 +431,9 @@ local bfaMounts = {
 		npcs = { 157466 },
 		chance = 100,
 		questId = { 57363 },
-		coords = { { m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 34.15, y = 68.05, n = L["Anh-De the Loyal"] } },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 34.15, y = 68.05, n = L["Anh-De the Loyal"] },
+		},
 	},
 	["Reins of the Drake of the Four Winds"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -560,7 +581,10 @@ local bfaMounts = {
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
-			{ encounterName = "King Dazar", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true } },
+			{
+				encounterName = "King Dazar",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
+			},
 		},
 		coords = { { m = CONSTANTS.UIMAPIDS.KINGS_REST, i = true } },
 	},
@@ -680,10 +704,22 @@ local bfaMounts = {
 		statisticId = { 13372, 13373, 13374, 13379 },
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
-			{ encounterName = "Mekkatorque", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true } },
-			{ encounterName = "Mekkatorque", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true } },
-			{ encounterName = "Mekkatorque", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true } },
-			{ encounterName = "Lady Jaina Proudmoore", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true } },
+			{
+				encounterName = "Mekkatorque",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true },
+			},
+			{
+				encounterName = "Mekkatorque",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true },
+			},
+			{
+				encounterName = "Mekkatorque",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true },
+			},
+			{
+				encounterName = "Lady Jaina Proudmoore",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true },
+			},
 		},
 		instanceDifficulties = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true, -- Normal (Raids)

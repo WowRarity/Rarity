@@ -123,10 +123,10 @@ local function compareZone(a, b)
 	end
 	local zoneInfoA = R.Waypoints:GetZoneInfoForItem(a)
 	local zoneInfoB = R.Waypoints:GetZoneInfoForItem(b)
-	local zoneTextA, inMyZoneA, zoneColorA, numZonesA = zoneInfoA.zoneText, zoneInfoA.inMyZone, zoneInfoA.zoneColor,
-	                                                    zoneInfoA.numZones
-	local zoneTextB, inMyZoneB, zoneColorB, numZonesB = zoneInfoB.zoneText, zoneInfoB.inMyZone, zoneInfoB.zoneColor,
-	                                                    zoneInfoB.numZones
+	local zoneTextA, inMyZoneA, zoneColorA, numZonesA =
+		zoneInfoA.zoneText, zoneInfoA.inMyZone, zoneInfoA.zoneColor, zoneInfoA.numZones
+	local zoneTextB, inMyZoneB, zoneColorB, numZonesB =
+		zoneInfoB.zoneText, zoneInfoB.inMyZone, zoneInfoB.zoneColor, zoneInfoB.numZones
 	if numZonesA > 1 and inMyZoneA ~= true then
 		zoneTextA = "ZZZZZZZZZZZZZZ"
 	end
@@ -149,7 +149,6 @@ local function compareZone(a, b)
 end
 
 function Sorting:SortGroup(group, method)
-
 	if method == CONSTANTS.SORT_METHODS.SORT_NONE then
 		return self:DebugNoOp(group)
 	end
@@ -174,7 +173,6 @@ end
 
 -- Minimum impact NO OP "sort" (for debugging purposes); introduced since disabling sorting entirely didn't work
 function Sorting:DebugNoOp(t)
-
 	local nt = {}
 	local n = 0
 
