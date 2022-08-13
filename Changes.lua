@@ -10,7 +10,9 @@ local changes = {
 			"Added tracking for Shaded Judgement Stone (Korthia/The Maw)",
 			"Added tracking for the various 'dice' toys obtainable only via pickpocketing",
 		},
-		changes = { "Adjusted the drop rate of several Shadowlands collectibles to more accurately reflect wowhead's data" },
+		changes = {
+			"Adjusted the drop rate of several Shadowlands collectibles to more accurately reflect wowhead's data",
+		},
 		fixes = {
 			"Attempts for the Infinite Timereaver mount should now correctly be detected in the recently-added Timewalking dungeons",
 			"Collectibles that require being affiliated with a different covenant should now correctly be marked as 'unavailable' in the addon's main window",
@@ -251,7 +253,9 @@ local changes = {
 		},
 	},
 	["r693"] = {
-		fixes = { "Fixed integration with the TradeSkillMaster4 addon (used to display pricing info in Rarity's tooltip)" },
+		fixes = {
+			"Fixed integration with the TradeSkillMaster4 addon (used to display pricing info in Rarity's tooltip)",
+		},
 	},
 	["r692"] = {
 		additions = { "Added defeat detection for all relevant rares in Nazjatar and Mechagon Island" },
@@ -319,7 +323,9 @@ local changes = {
 		},
 	},
 	["r684"] = {
-		additions = { "Added tracking for collectibles that can be obtained in the Battle of Dazar'alor raid (experimental)" },
+		additions = {
+			"Added tracking for collectibles that can be obtained in the Battle of Dazar'alor raid (experimental)",
+		},
 		fixes = {
 			"Fishing from pools in Skettis (Draenor) should no longer incorrectly add attempts for Mr. Pinchy",
 			"Attempts for the Everburning Treant pet should now be properly tracked for players of both factions",
@@ -362,7 +368,7 @@ local changes = {
 			"Added tracking for both toys obtainable from the Arathi Highlands world bosses (Doom's Howl and The Lion's Roar)",
 		},
 		changes = {
-			"Existing mounts that are dropped by rares in the Arathi Highlands are now listed under the \"Groups\" category if defeating said rare tends to require a group",
+			'Existing mounts that are dropped by rares in the Arathi Highlands are now listed under the "Groups" category if defeating said rare tends to require a group',
 		},
 		fixes = {
 			"Luckiness calculation for the mounts dropped by rares in the Arathi Highlands now correctly assumed Personal Loot",
@@ -384,7 +390,9 @@ local changes = {
 			"Added tracking for all collectibles obtainable from Island Expeditions (see notes below)",
 			"Added item: Viable Cobra Egg (Drop: Merektha)",
 		},
-		changes = { "Reverted a minor cosmetic change to the addon's output that had harmless, but unintended, side effects" },
+		changes = {
+			"Reverted a minor cosmetic change to the addon's output that had harmless, but unintended, side effects",
+		},
 		fixes = {
 			"Looting Nok-Karosh should no longer count attempts for the Eye of Observation pet (which is a drop from Orumo the Observer)",
 		},
@@ -416,23 +424,25 @@ local changes = {
 	},
 	["r675"] = {
 		additions = {
-			"Added tooltip for the \"Adventurer of ...\" exploration achievements to all relevant rares in Kul'tiras and Zandalar",
+			'Added tooltip for the "Adventurer of ..." exploration achievements to all relevant rares in Kul\'tiras and Zandalar',
 		},
 		fixes = { "Fixed tracking for Stormforged Rune (Drop: The Assembly of Iron)" },
 	},
 	["r674"] = {
-		additions = { "Added tooltip for the \"Commander of Argus\" achievement to all relevant rares on Argus" },
+		additions = { 'Added tooltip for the "Commander of Argus" achievement to all relevant rares on Argus' },
 		fixes = { "Fixed tooltip display for Fossorial Bile Larva (Profession: Skinning)" },
 	},
 	["r673"] = {
 		changes = { "Installing the addon without embedded libraries is no longer possible" },
 		notes = {
-			"This Curse/Twitch \"feature\" caused many bug reports and offers little tangible benefit, as it was often done in error or automatically by the Twitch client. I ultimately chose to disable it in order to reduce the time spent on providing support instead of working on bug fixes or new features",
+			'This Curse/Twitch "feature" caused many bug reports and offers little tangible benefit, as it was often done in error or automatically by the Twitch client. I ultimately chose to disable it in order to reduce the time spent on providing support instead of working on bug fixes or new features',
 		},
 	},
 	["r672"] = {
 		additions = { "Added pet: Fel Lasher", "Added pet: Fossorial Bile Larva" },
-		fixes = { "Fixed detection for various 8.0.1 gathering (and fishing) spells that had not already been supported" },
+		fixes = {
+			"Fixed detection for various 8.0.1 gathering (and fishing) spells that had not already been supported",
+		},
 	},
 	["r671"] = { changes = { "Minor cosmetic changes to the addon's output" } },
 	["r670"] = {

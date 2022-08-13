@@ -7,7 +7,13 @@ function String:Colorize(floatColorRGB)
 	-- Literal copy/paste from the legacy codebase; streamline later (as needed)
 	local function colorize(s, color)
 		if color and s then
-			return string_format("|cff%02x%02x%02x%s|r", (color.r or 1) * 255, (color.g or 1) * 255, (color.b or 1) * 255, s)
+			return string_format(
+				"|cff%02x%02x%02x%s|r",
+				(color.r or 1) * 255,
+				(color.g or 1) * 255,
+				(color.b or 1) * 255,
+				s
+			)
 		else
 			return s
 		end

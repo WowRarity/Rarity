@@ -112,7 +112,8 @@ do
 		R.profileFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity-Profiles", "Profiles", "Rarity")
 
 		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity-Advanced", R.advancedSettings)
-		R.advancedSettingsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity-Advanced", "Advanced", "Rarity")
+		R.advancedSettingsFrame =
+			LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity-Advanced", "Advanced", "Rarity")
 	end
 end
 
@@ -249,22 +250,24 @@ end
 local b = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
 local function enc64(data)
-	return ((data:gsub(".", function(x)
-		local r, byte = "", x:byte()
-		for i = 8, 1, -1 do
-			r = r .. (byte % 2 ^ i - byte % 2 ^ (i - 1) > 0 and "1" or "0")
-		end
-		return r
-	end) .. "0000"):gsub("%d%d%d?%d?%d?%d?", function(x)
-		if (#x < 6) then
-			return ""
-		end
-		local c = 0
-		for i = 1, 6 do
-			c = c + (x:sub(i, i) == "1" and 2 ^ (6 - i) or 0)
-		end
-		return b:sub(c + 1, c + 1)
-	end) .. ({ "", "==", "=" })[#data % 3 + 1])
+	return (
+		(data:gsub(".", function(x)
+			local r, byte = "", x:byte()
+			for i = 8, 1, -1 do
+				r = r .. (byte % 2 ^ i - byte % 2 ^ (i - 1) > 0 and "1" or "0")
+			end
+			return r
+		end) .. "0000"):gsub("%d%d%d?%d?%d?%d?", function(x)
+			if #x < 6 then
+				return ""
+			end
+			local c = 0
+			for i = 1, 6 do
+				c = c + (x:sub(i, i) == "1" and 2 ^ (6 - i) or 0)
+			end
+			return b:sub(c + 1, c + 1)
+		end) .. ({ "", "==", "=" })[#data % 3 + 1]
+	)
 end
 
 local function dec64(data)
@@ -272,25 +275,29 @@ local function dec64(data)
 		return nil
 	end
 	data = string.gsub(data, "[^" .. b .. "=]", "")
-	return (data:gsub(".", function(x)
-		if (x == "=") then
-			return ""
-		end
-		local r, f = "", (b:find(x) - 1)
-		for i = 6, 1, -1 do
-			r = r .. (f % 2 ^ i - f % 2 ^ (i - 1) > 0 and "1" or "0")
-		end
-		return r
-	end):gsub("%d%d%d?%d?%d?%d?%d?%d?", function(x)
-		if (#x ~= 8) then
-			return ""
-		end
-		local c = 0
-		for i = 1, 8 do
-			c = c + (x:sub(i, i) == "1" and 2 ^ (8 - i) or 0)
-		end
-		return string.char(c)
-	end))
+	return (
+		data
+			:gsub(".", function(x)
+				if x == "=" then
+					return ""
+				end
+				local r, f = "", (b:find(x) - 1)
+				for i = 6, 1, -1 do
+					r = r .. (f % 2 ^ i - f % 2 ^ (i - 1) > 0 and "1" or "0")
+				end
+				return r
+			end)
+			:gsub("%d%d%d?%d?%d?%d?%d?%d?", function(x)
+				if #x ~= 8 then
+					return ""
+				end
+				local c = 0
+				for i = 1, 8 do
+					c = c + (x:sub(i, i) == "1" and 2 ^ (8 - i) or 0)
+				end
+				return string.char(c)
+			end)
+	)
 end
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -405,7 +412,11 @@ function R:PrepareOptions()
 								type = "select",
 								name = L["Feed text"],
 								desc = L["Controls what type of text is shown in Rarity's LDB feed. Minimal shows just the number of attempts. Normal adds the likelihood percent, and verbose adds the item link."],
-								values = { [FEED_MINIMAL] = L["Minimal"], [FEED_NORMAL] = L["Normal"], [FEED_VERBOSE] = L["Verbose"] },
+								values = {
+									[FEED_MINIMAL] = L["Minimal"],
+									[FEED_NORMAL] = L["Normal"],
+									[FEED_VERBOSE] = L["Verbose"],
+								},
 								get = function()
 									return self.db.profile.feedText
 								end,
@@ -464,7 +475,7 @@ function R:PrepareOptions()
 							tooltipActivation = {
 								type = "select",
 								name = L["Tooltip activation"],
-								desc = L["If \"On click\" is selected, activating the tracker is done via CTRL + SHIFT + Click, otherwise it's activated with a simple click."],
+								desc = L['If "On click" is selected, activating the tracker is done via CTRL + SHIFT + Click, otherwise it\'s activated with a simple click.'],
 								values = {
 									[C.TOOLTIP.ACTIVATION_METHOD_HOVER] = L["On hover"],
 									[C.TOOLTIP.ACTIVATION_METHOD_CLICK] = L["On click"],
@@ -627,9 +638,9 @@ function R:PrepareOptions()
 								width = "double",
 								name = L["Primary tooltip scale"],
 								desc = L["Adjusts the scale of the primary tooltip. This will take effect the next time the tooltip is shown."],
-								min = .1,
+								min = 0.1,
 								max = 5,
-								step = .05,
+								step = 0.05,
 								get = function()
 									return self.db.profile.tooltipScale or 1
 								end,
@@ -645,7 +656,7 @@ function R:PrepareOptions()
 								desc = L["When you move your mouse out of the Rarity tooltip, it will take this long before it automatically hides itself."],
 								min = 0,
 								max = 5,
-								step = .1,
+								step = 0.1,
 								get = function()
 									return self.db.profile.tooltipHideDelay or 0.6
 								end,
@@ -657,7 +668,11 @@ function R:PrepareOptions()
 								type = "select",
 								name = L["Secondary tooltip display"],
 								desc = L["Controls on which side the secondary tooltip appears when you hover over an item in the main tooltip. If the main tooltip is on the right side of your screen, change this to Left. Otherwise, choose Right. You can also hide the status tooltip completely."],
-								values = { [TIP_LEFT] = L["Left"], [TIP_RIGHT] = L["Right"], [TIP_HIDDEN] = L["Hidden"] },
+								values = {
+									[TIP_LEFT] = L["Left"],
+									[TIP_RIGHT] = L["Right"],
+									[TIP_HIDDEN] = L["Hidden"],
+								},
 								get = function()
 									return self.db.profile.statusTip or TIP_RIGHT
 								end,
@@ -675,7 +690,7 @@ function R:PrepareOptions()
 								desc = L["When you move your mouse over the Rarity minimap icon, it will take this long before the GUI opens."],
 								min = 0,
 								max = 5,
-								step = .1,
+								step = 0.1,
 								get = function()
 									return self.db.profile.tooltipShowDelay or 0.1
 								end,
@@ -709,8 +724,8 @@ function R:PrepareOptions()
 								type = "toggle",
 								order = newOrder(),
 								width = "double",
-								name = L["Put \"Rarity:\" on a separate line"],
-								desc = L["When on, the text \"Rarity:\" will be put on its own line in world and item tooltips."],
+								name = L['Put "Rarity:" on a separate line'],
+								desc = L['When on, the text "Rarity:" will be put on its own line in world and item tooltips.'],
 								get = function()
 									return self.db.profile.blankLineAfterRarity
 								end,
@@ -1068,9 +1083,9 @@ function R:PrepareOptions()
 								type = "range",
 								width = "double",
 								name = L["Scale"],
-								min = .1,
+								min = 0.1,
 								max = 5,
-								step = .05,
+								step = 0.05,
 								get = function()
 									return self.db.profile.bar.scale or 1
 								end,
@@ -1255,33 +1270,53 @@ function R:PrepareOptions()
 									break -- Why?
 								end
 							end
-							if type(e) == "table" and e.items and type(e.items) == "table" and numItems > 0 and e.build and
-									tonumber(e.build) > 0 and e.signature and e.signature == IMPORTEXPORT_SIGNATURE then
+							if
+								type(e) == "table"
+								and e.items
+								and type(e.items) == "table"
+								and numItems > 0
+								and e.build
+								and tonumber(e.build) > 0
+								and e.signature
+								and e.signature == IMPORTEXPORT_SIGNATURE
+							then
 								-- Import is good; create a preview
 								s = "\n" .. L["Here is a preview of what will (or won't) be imported:"] .. "\n\n"
 
 								for itemkey, item in pairs(e.items) do
-									local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
-									      itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
+									local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
+										GetItemInfo(item.itemId)
 									local status = colorize(" - " .. L["will be imported"], green)
 									Rarity.Serialization:CleanItemForImport(item)
 									item.import = true
 									if not itemLink then
-										status = status .. " " .. colorize(L["(Warning: item could not be retrieved from server)"], red)
+										status = status
+											.. " "
+											.. colorize(L["(Warning: item could not be retrieved from server)"], red)
 									end
 
 									for k, v in pairs(allitems()) do
-										if strupper(strtrim(k)) == strupper(item.name) or strupper(strtrim(v.name or "")) == strupper(item.name) then
+										if
+											strupper(strtrim(k)) == strupper(item.name)
+											or strupper(strtrim(v.name or "")) == strupper(item.name)
+										then
 											item.import = false
-											status = colorize(" - " .. L["an item already exists by this name, so it will not be imported"], red)
+											status = colorize(
+												" - "
+													.. L["an item already exists by this name, so it will not be imported"],
+												red
+											)
 										end
 									end
 
 									for k, v in pairs(allitems()) do
 										if item.itemId == v.itemId then
 											item.import = false
-											status = colorize(" - " .. L["an item with the same Item ID already exists, so it will not be imported"],
-											                  red)
+											status = colorize(
+												" - "
+													.. L["an item with the same Item ID already exists, so it will not be imported"],
+												red
+											)
 										end
 									end
 
@@ -1299,7 +1334,8 @@ function R:PrepareOptions()
 							end
 						end,
 						hidden = function()
-							return not self.db.profile.lastImportString or strtrim(self.db.profile.lastImportString) == ""
+							return not self.db.profile.lastImportString
+								or strtrim(self.db.profile.lastImportString) == ""
 						end,
 					},
 					importText = {
@@ -1327,15 +1363,23 @@ function R:PrepareOptions()
 
 							-- Do the import
 							for itemkey, item in pairs(Rarity.itemPack.items) do
-								local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
-								      itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
+								local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
+									GetItemInfo(item.itemId)
 								if not item.import then
-									R:Print((itemLink or item.name or "Unknown") .. " - " .. colorize(L["not imported"], red))
+									R:Print(
+										(itemLink or item.name or "Unknown")
+											.. " - "
+											.. colorize(L["not imported"], red)
+									)
 								else
 									item.import = false
 									item.export = false
 									self.db.profile.groups.user[item.name] = item
-									R:Print((itemLink or item.name or "Unknown") .. " - " .. colorize(L["imported successfully"], green))
+									R:Print(
+										(itemLink or item.name or "Unknown")
+											.. " - "
+											.. colorize(L["imported successfully"], green)
+									)
 								end
 							end
 
@@ -1345,7 +1389,10 @@ function R:PrepareOptions()
 						end,
 						order = newOrder(),
 						disabled = function()
-							if not self.db.profile.lastImportString or strtrim(self.db.profile.lastImportString) == "" then
+							if
+								not self.db.profile.lastImportString
+								or strtrim(self.db.profile.lastImportString) == ""
+							then
 								return true
 							end
 							if self.db.profile.importIsError then
@@ -1370,9 +1417,14 @@ function R:PrepareOptions()
 							local g = sort(self.db.profile.groups.user)
 							local foundRed = false
 							for itemkey, item in pairs(g) do
-								if item and type(item) == "table" and item.export and Rarity.Serialization:CanItemBeExportedImported(item) then
-									local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,
-									      itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
+								if
+									item
+									and type(item) == "table"
+									and item.export
+									and Rarity.Serialization:CanItemBeExportedImported(item)
+								then
+									local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
+										GetItemInfo(item.itemId)
 									s = s .. (itemLink or colorize(item.name, red)) .. "\n"
 									if not itemLink then
 										foundRed = true
@@ -1381,12 +1433,17 @@ function R:PrepareOptions()
 								end
 							end
 							if foundRed then
-								s = s .. "\n" ..
-										    colorize(
-												    L["(Items listed in red could not be found on the server and may not exist. Consider removing them.)"],
-												    red)
+								s = s
+									.. "\n"
+									.. colorize(
+										L["(Items listed in red could not be found on the server and may not exist. Consider removing them.)"],
+										red
+									)
 							end
-							s = "\n" .. format(L["The following %d item(s) have been selected to export:"], numItems) .. "\n\n" .. s
+							s = "\n"
+								.. format(L["The following %d item(s) have been selected to export:"], numItems)
+								.. "\n\n"
+								.. s
 							return s
 						end,
 						hidden = function()
@@ -1406,7 +1463,12 @@ function R:PrepareOptions()
 							local e = { items = {} }
 							local g = sort(self.db.profile.groups.user)
 							for itemkey, item in pairs(g) do
-								if item and type(item) == "table" and item.export and Rarity.Serialization:CanItemBeExportedImported(item) then
+								if
+									item
+									and type(item) == "table"
+									and item.export
+									and Rarity.Serialization:CanItemBeExportedImported(item)
+								then
 									e.items[itemkey] = item
 								end
 							end
@@ -1429,8 +1491,9 @@ function R:PrepareOptions()
 							end
 
 							alertWithCopy(
-									L["Copy the generated Rarity Export String below using Ctrl-C. You can then paste it elsewhere using Ctrl-V.\n\nFeel free to post it on Curse, GitHub, or Discord to share your Item Pack. We will publish the best ones to the main add-on page."],
-									enc)
+								L["Copy the generated Rarity Export String below using Ctrl-C. You can then paste it elsewhere using Ctrl-V.\n\nFeel free to post it on Curse, GitHub, or Discord to share your Item Pack. We will publish the best ones to the main add-on page."],
+								enc
+							)
 						end,
 						order = newOrder(),
 						disabled = function()
@@ -1495,8 +1558,9 @@ function R:PrepareOptions()
 						name = L["Verify item database on login"],
 						width = "full",
 						desc = format(
-								L["Run the verification routine automatically after logging in. It can always be run manually (by typing %s)."],
-								"/rarity validate"),
+							L["Run the verification routine automatically after logging in. It can always be run manually (by typing %s)."],
+							"/rarity validate"
+						),
 						get = function()
 							return self.db.profile.verifyDatabaseOnLogin
 						end,
@@ -1550,13 +1614,20 @@ function R:PrepareOptions()
 						order = newOrder(),
 						-- width = "full",
 						name = L["Track pets repeatedly"],
-						desc = L["Set all battle pets to be tracked repeatedly."] .. " " ..
-								L["Note: Your existing settings will be overwritten."],
+						desc = L["Set all battle pets to be tracked repeatedly."]
+							.. " "
+							.. L["Note: Your existing settings will be overwritten."],
 						func = function(info, val)
 							for index, item in pairs(self.db.profile.groups.pets) do
 								if type(item) == "table" then -- For some reason, there's a bunch of other properties, too...
 									item.repeatable = true
-									Rarity:Debug(format("Setting repeatable = %s for item %s", tostring(item.repeatable), item.name))
+									Rarity:Debug(
+										format(
+											"Setting repeatable = %s for item %s",
+											tostring(item.repeatable),
+											item.name
+										)
+									)
 								end
 							end
 						end,
@@ -1566,13 +1637,20 @@ function R:PrepareOptions()
 						order = newOrder(),
 						-- width = "full",
 						name = L["Untrack pets repeatedly"],
-						desc = L["Set all battle pets to NOT be tracked repeatedly."] .. " " ..
-								L["Note: Your existing settings will be overwritten."],
+						desc = L["Set all battle pets to NOT be tracked repeatedly."]
+							.. " "
+							.. L["Note: Your existing settings will be overwritten."],
 						func = function(info, val)
 							for index, item in pairs(self.db.profile.groups.pets) do
 								if type(item) == "table" then -- For some reason, there's a bunch of other properties, too...
 									item.repeatable = false
-									Rarity:Debug(format("Setting repeatable = %s for item %s", tostring(item.repeatable), item.name))
+									Rarity:Debug(
+										format(
+											"Setting repeatable = %s for item %s",
+											tostring(item.repeatable),
+											item.name
+										)
+									)
 								end
 							end
 						end,
@@ -1590,8 +1668,9 @@ function R:PrepareOptions()
 						order = newOrder(),
 						-- width = "full",
 						name = L["Disable sorting"],
-						desc = L["Disable sorting inside the main window. Can be used to troubleshoot performance issues."] .. " " ..
-								L["Note: Your existing settings will be overwritten."],
+						desc = L["Disable sorting inside the main window. Can be used to troubleshoot performance issues."]
+							.. " "
+							.. L["Note: Your existing settings will be overwritten."],
 						func = function(info, val)
 							self.db.profile.sortMode = C.SORT_METHODS.SORT_NONE
 						end,
@@ -1601,8 +1680,9 @@ function R:PrepareOptions()
 						order = newOrder(),
 						-- width = "full",
 						name = L["Show profiling data"],
-						desc = L["Displays accumulated profiling data for the current session."] .. " " ..
-								L["This is merely a shortcut introduced to make life easier for developers, and as a regular player you can safely ignore it."],
+						desc = L["Displays accumulated profiling data for the current session."]
+							.. " "
+							.. L["This is merely a shortcut introduced to make life easier for developers, and as a regular player you can safely ignore it."],
 						func = function(info, val)
 							Rarity.Profiling:InspectAccumulatedTimes()
 						end,
@@ -1612,8 +1692,9 @@ function R:PrepareOptions()
 						order = newOrder(),
 						-- width = "full",
 						name = L["Reset profiling data"],
-						desc = L["Deletes accumulated profiling data for the current session."] .. " " ..
-								L["This is merely a shortcut introduced to make life easier for developers, and as a regular player you can safely ignore it."],
+						desc = L["Deletes accumulated profiling data for the current session."]
+							.. " "
+							.. L["This is merely a shortcut introduced to make life easier for developers, and as a regular player you can safely ignore it."],
 						func = function(info, val)
 							Rarity.Profiling:ResetAccumulatedTimes()
 						end,
@@ -1640,12 +1721,19 @@ function R:CreateGroup(options, group, isUser)
 				if strtrim(val) ~= "" then
 					val = strtrim(val)
 					if strupper(val) == "NAME" or strupper(val) == "COLLAPSED" or strupper(val) == "COLLAPSEDGROUP" then
-						alert(L["You entered a reserved name. Please enter the correct item name as it appears in game."])
+						alert(
+							L["You entered a reserved name. Please enter the correct item name as it appears in game."]
+						)
 						return
 					end
 					for k, v in pairs(allitems()) do
-						if strupper(strtrim(k)) == strupper(val) or strupper(strtrim(v.name or "")) == strupper(val) then
-							alert(L["The name you entered is already being used by another item. Please enter a unique name."])
+						if
+							strupper(strtrim(k)) == strupper(val)
+							or strupper(strtrim(v.name or "")) == strupper(val)
+						then
+							alert(
+								L["The name you entered is already being used by another item. Please enter a unique name."]
+							)
 							return
 						end
 					end
@@ -1725,7 +1813,11 @@ function R:CreateGroup(options, group, isUser)
 						if item.type == MOUNT and item.spellId ~= nil and Rarity.mount_sources[item.spellId] ~= nil then
 							return Rarity.mount_sources[item.spellId]
 						end
-						if item.type == PET and item.creatureId ~= nil and Rarity.pet_sources[item.creatureId] ~= nil then
+						if
+							item.type == PET
+							and item.creatureId ~= nil
+							and Rarity.pet_sources[item.creatureId] ~= nil
+						then
 							return Rarity.pet_sources[item.creatureId]
 						end
 					end,
@@ -1733,7 +1825,11 @@ function R:CreateGroup(options, group, isUser)
 						if item.type == MOUNT and item.spellId ~= nil and Rarity.mount_sources[item.spellId] ~= nil then
 							return false
 						end
-						if item.type == PET and item.creatureId ~= nil and Rarity.pet_sources[item.creatureId] ~= nil then
+						if
+							item.type == PET
+							and item.creatureId ~= nil
+							and Rarity.pet_sources[item.creatureId] ~= nil
+						then
 							return false
 						end
 						return true
@@ -1748,8 +1844,9 @@ function R:CreateGroup(options, group, isUser)
 				currentAttemptsDesc = {
 					type = "description",
 					order = newOrder(),
-					name = colorize(L["Current Attempts"] .. ": ", green) ..
-							tostring((item.attempts or 0) - (item.lastAttempts or 0)),
+					name = colorize(L["Current Attempts"] .. ": ", green) .. tostring(
+						(item.attempts or 0) - (item.lastAttempts or 0)
+					),
 				},
 				lastAttemptsDesc = {
 					type = "description",
@@ -1766,14 +1863,19 @@ function R:CreateGroup(options, group, isUser)
 				worldBossFactionless = {
 					type = "description",
 					order = newOrder(),
-					name = colorize(L["All players can participate in killing this world boss once per week, regardless of faction"],
-					                blue),
+					name = colorize(
+						L["All players can participate in killing this world boss once per week, regardless of faction"],
+						blue
+					),
 					hidden = item.worldBossFactionless == false or item.worldBossFactionless == nil,
 				},
 				wasGuaranteed = {
 					type = "description",
 					order = newOrder(),
-					name = colorize(L["This was a guaranteed drop for players who defeated the encounter when it was current"], blue),
+					name = colorize(
+						L["This was a guaranteed drop for players who defeated the encounter when it was current"],
+						blue
+					),
 					hidden = item.wasGuaranteed == false or item.wasGuaranteed == nil,
 				},
 				bonusSatchel = {
@@ -1797,13 +1899,19 @@ function R:CreateGroup(options, group, isUser)
 				requiresAllianceT = {
 					type = "description",
 					order = newOrder(),
-					name = colorize(L["This item is only obtainable by Alliance players"], R.Caching:IsAlliance() and green or red),
+					name = colorize(
+						L["This item is only obtainable by Alliance players"],
+						R.Caching:IsAlliance() and green or red
+					),
 					hidden = item.requiresAlliance == false or item.requiresAlliance == nil,
 				},
 				requiresHordeT = {
 					type = "description",
 					order = newOrder(),
-					name = colorize(L["This item is only obtainable by Horde players"], R.Caching:IsHorde() and green or red),
+					name = colorize(
+						L["This item is only obtainable by Horde players"],
+						R.Caching:IsHorde() and green or red
+					),
 					hidden = item.requiresHorde == false or item.requiresHorde == nil,
 				},
 				blankLine = {
@@ -2050,18 +2158,29 @@ function R:CreateGroup(options, group, isUser)
 									return
 								else
 									if tonumber(v) == nil then
-										if lbz:GetUnstrictLookupTable()[v] == nil and lbz:GetReverseLookupTable()[v] == nil and
-												lbsz:GetUnstrictLookupTable()[v] == nil and lbsz:GetReverseLookupTable()[v] == nil then
-											alert(format(
-													      L["One of the zones or sub-zones you entered (%s) cannot be found. Check that it is spelled correctly, and is either US English or your client's local language."],
-													      v))
+										if
+											lbz:GetUnstrictLookupTable()[v] == nil
+											and lbz:GetReverseLookupTable()[v] == nil
+											and lbsz:GetUnstrictLookupTable()[v] == nil
+											and lbsz:GetReverseLookupTable()[v] == nil
+										then
+											alert(
+												format(
+													L["One of the zones or sub-zones you entered (%s) cannot be found. Check that it is spelled correctly, and is either US English or your client's local language."],
+													v
+												)
+											)
 											return
 										end
 									else
 										local mapID = tonumber(v)
 										if mapID <= 0 then
-											alert(format(L["One of the Map IDs you entered (%s) is incorrect. Please enter numbers larger than zero."],
-											             v))
+											alert(
+												format(
+													L["One of the Map IDs you entered (%s) is incorrect. Please enter numbers larger than zero."],
+													v
+												)
+											)
 											return
 										end
 									end
@@ -2459,8 +2578,8 @@ function R:CreateGroup(options, group, isUser)
 						self:Update("OPTIONS")
 					end,
 					hidden = function()
-						return (item.cat ~= HOLIDAY and item.worldQuestId == nil) or
-								       (item.questId == nil and item.lockDungeonId == nil and item.holidayTexture == nil)
+						return (item.cat ~= HOLIDAY and item.worldQuestId == nil)
+							or (item.questId == nil and item.lockDungeonId == nil and item.holidayTexture == nil)
 					end,
 				},
 				spacer3 = { type = "header", name = L["Defeat Detection"], order = newOrder() },
@@ -2574,8 +2693,9 @@ function R:CreateGroup(options, group, isUser)
 					type = "input",
 					order = newOrder(),
 					name = L["Group size"],
-					desc = L["The number of players it takes to obtain the item. This will lower your chances of obtaining the item."] ..
-							" " .. L["Enter 1 or leave this blank to mark the item as soloable."],
+					desc = L["The number of players it takes to obtain the item. This will lower your chances of obtaining the item."]
+						.. " "
+						.. L["Enter 1 or leave this blank to mark the item as soloable."],
 					set = function(info, val)
 						if strtrim(val) == "" then
 							alert(L["You must enter an amount."])

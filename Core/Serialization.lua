@@ -131,7 +131,12 @@ function Serialization:ImportFromBunnyHunter()
 							for itemkey, item in pairs(group) do
 								if item.itemId == tonumber(k) then
 									for kk, vv in pairs(v) do
-										self:Debug("%s: adding a kill after %d attempts, %s time", itemkey, vv.loots, FormatTime(vv.time))
+										self:Debug(
+											"%s: adding a kill after %d attempts, %s time",
+											itemkey,
+											vv.loots,
+											FormatTime(vv.time)
+										)
 										if not item.finds then
 											item.finds = {}
 										end

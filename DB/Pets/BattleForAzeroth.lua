@@ -635,7 +635,12 @@ local bfaPets = {
 		creatureId = 148781,
 		questId = { 54431, 54768 },
 		coords = {
-			{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 42, y = 77.6, n = L["Burninator Mark V"] .. " - " .. L["Alliance only"] },
+			{
+				m = CONSTANTS.UIMAPIDS.DARKSHORE,
+				x = 42,
+				y = 77.6,
+				n = L["Burninator Mark V"] .. " - " .. L["Alliance only"],
+			},
 			{ m = CONSTANTS.UIMAPIDS.DARKSHORE, x = 42, y = 77.6, n = L["Athil Dewfire"] .. " - " .. L["Horde only"] },
 		},
 	},
@@ -923,8 +928,10 @@ local bfaPets = {
 					[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
 				},
 			},
-			{ encounterName = "The Stone Guard",
-     instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true } },
+			{
+				encounterName = "The Stone Guard",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true },
+			},
 		},
 		chance = 4,
 		coords = { { m = 471, i = true } },
@@ -978,7 +985,10 @@ local bfaPets = {
 					[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
 				},
 			},
-			{ encounterName = "Elegon", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true } },
+			{
+				encounterName = "Elegon",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true },
+			},
 		},
 		chance = 4,
 		coords = { { m = 471, i = true } },
@@ -1087,7 +1097,10 @@ local bfaPets = {
 					[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
 				},
 			},
-			{ encounterName = "Garalon", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true } },
+			{
+				encounterName = "Garalon",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true },
+			},
 		},
 		chance = 4,
 		coords = { { m = 475, i = true } },
@@ -1169,7 +1182,10 @@ local bfaPets = {
 					[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
 				},
 			},
-			{ encounterName = "Tsulong", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true } },
+			{
+				encounterName = "Tsulong",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true },
+			},
 		},
 		chance = 3,
 		coords = { { m = 456, i = true } },
@@ -1195,7 +1211,10 @@ local bfaPets = {
 					[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_HEROIC] = true,
 				},
 			},
-			{ encounterName = "Lei Shi", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true } },
+			{
+				encounterName = "Lei Shi",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LEGACY_LFR] = true },
+			},
 		},
 		chance = 4,
 		coords = { { m = 456, i = true } },
@@ -1255,7 +1274,10 @@ local bfaPets = {
 				encounterName = "Blackwater Behemoth",
 				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true },
 			},
-			{ encounterName = "Blackwater Behemoth", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true } },
+			{
+				encounterName = "Blackwater Behemoth",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true },
+			},
 		},
 		instanceDifficulties = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
@@ -1281,10 +1303,22 @@ local bfaPets = {
 		statisticId = { 13600, 13601, 13602, 13603 },
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
-			{ encounterName = "Lady Ashvane", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true } },
-			{ encounterName = "Lady Ashvane", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true } },
-			{ encounterName = "Lady Ashvane", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true } },
-			{ encounterName = "Lady Ashvane", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true } },
+			{
+				encounterName = "Lady Ashvane",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true },
+			},
+			{
+				encounterName = "Lady Ashvane",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true },
+			},
+			{
+				encounterName = "Lady Ashvane",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true },
+			},
+			{
+				encounterName = "Lady Ashvane",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true },
+			},
 		},
 		instanceDifficulties = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
@@ -1310,10 +1344,22 @@ local bfaPets = {
 		statisticId = { 13616, 13617, 13618, 13619 },
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
-			{ encounterName = "Queen Azshara", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true } },
-			{ encounterName = "Queen Azshara", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true } },
-			{ encounterName = "Queen Azshara", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true } },
-			{ encounterName = "Queen Azshara", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true } },
+			{
+				encounterName = "Queen Azshara",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true },
+			},
+			{
+				encounterName = "Queen Azshara",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true },
+			},
+			{
+				encounterName = "Queen Azshara",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true },
+			},
+			{
+				encounterName = "Queen Azshara",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true },
+			},
 		},
 		instanceDifficulties = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
@@ -1600,7 +1646,9 @@ local bfaPets = {
 		creatureId = 154854,
 		questId = { 55544 },
 		chance = 20,
-		coords = { { m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x = 60.65, y = 42.22, n = L["Malfunctioning Beastbot"] } },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND, x = 60.65, y = 42.22, n = L["Malfunctioning Beastbot"] },
+		},
 	},
 	["Snowsoft Nibbler"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1643,9 +1691,18 @@ local bfaPets = {
 		statisticId = { 13612, 13613, 13614, 13615 },
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
-			{ encounterName = "Za'qul", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true } },
-			{ encounterName = "Za'qul", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true } },
-			{ encounterName = "Za'qul", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true } },
+			{
+				encounterName = "Za'qul",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true },
+			},
+			{
+				encounterName = "Za'qul",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true },
+			},
+			{
+				encounterName = "Za'qul",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true },
+			},
 			{ encounterName = "Za'qul", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true } },
 		},
 		instanceDifficulties = {
@@ -1741,11 +1798,11 @@ local bfaPets = {
 		coords = { { m = CONSTANTS.UIMAPIDS.MECHAGON_ISLAND_DUNGEON, i = true } },
 	},
 	-- 8.3 Pets
-	["Box Labeled \"Danger: Void Rat Inside\""] = {
+	['Box Labeled "Danger: Void Rat Inside"'] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
 		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
-		name = L["Box Labeled \"Danger: Void Rat Inside\""],
+		name = L['Box Labeled "Danger: Void Rat Inside"'],
 		spellId = 315301,
 		itemId = 174460,
 		chance = 100,
@@ -1895,7 +1952,9 @@ local bfaPets = {
 		creatureId = 161992,
 		questId = { 56303 },
 		chance = 20,
-		coords = { { m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 52.51, y = 62.14, n = L["Will of N'zoth"] } },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 52.51, y = 62.14, n = L["Will of N'zoth"] },
+		},
 	},
 	["Stinky Sack"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1947,7 +2006,10 @@ local bfaPets = {
 				encounterName = "N'Zoth the Corruptor",
 				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true },
 			},
-			{ encounterName = "N'Zoth the Corruptor", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true } },
+			{
+				encounterName = "N'Zoth the Corruptor",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true },
+			},
 		},
 		instanceDifficulties = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
@@ -1973,9 +2035,18 @@ local bfaPets = {
 		statisticId = { 14127, 14128, 14129, 14130 },
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
-			{ encounterName = "Ra-den", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true } },
-			{ encounterName = "Ra-den", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true } },
-			{ encounterName = "Ra-den", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true } },
+			{
+				encounterName = "Ra-den",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true },
+			},
+			{
+				encounterName = "Ra-den",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true },
+			},
+			{
+				encounterName = "Ra-den",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true },
+			},
 			{ encounterName = "Ra-den", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true } },
 		},
 		instanceDifficulties = {
@@ -2002,9 +2073,18 @@ local bfaPets = {
 		statisticId = { 14089, 14091, 14093, 14094 },
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
-			{ encounterName = "Maut", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true } },
-			{ encounterName = "Maut", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true } },
-			{ encounterName = "Maut", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true } },
+			{
+				encounterName = "Maut",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true },
+			},
+			{
+				encounterName = "Maut",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true },
+			},
+			{
+				encounterName = "Maut",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true },
+			},
 			{ encounterName = "Maut", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true } },
 		},
 		instanceDifficulties = {
@@ -2031,10 +2111,22 @@ local bfaPets = {
 		statisticId = { 14107, 14108, 14109, 14110 },
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
-			{ encounterName = "The Hivemind", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true } },
-			{ encounterName = "The Hivemind", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true } },
-			{ encounterName = "The Hivemind", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true } },
-			{ encounterName = "The Hivemind", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true } },
+			{
+				encounterName = "The Hivemind",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true },
+			},
+			{
+				encounterName = "The Hivemind",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true },
+			},
+			{
+				encounterName = "The Hivemind",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true },
+			},
+			{
+				encounterName = "The Hivemind",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true },
+			},
 		},
 		instanceDifficulties = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
@@ -2060,10 +2152,22 @@ local bfaPets = {
 		statisticId = { 14107, 14108, 14109, 14110 },
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
-			{ encounterName = "The Hivemind", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true } },
-			{ encounterName = "The Hivemind", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true } },
-			{ encounterName = "The Hivemind", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true } },
-			{ encounterName = "The Hivemind", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true } },
+			{
+				encounterName = "The Hivemind",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true },
+			},
+			{
+				encounterName = "The Hivemind",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true },
+			},
+			{
+				encounterName = "The Hivemind",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true },
+			},
+			{
+				encounterName = "The Hivemind",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true },
+			},
 		},
 		instanceDifficulties = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,

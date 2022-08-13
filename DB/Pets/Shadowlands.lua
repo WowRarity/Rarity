@@ -582,7 +582,10 @@ local shadowlandsPets = {
 				encounterName = "Sire Denathrius",
 				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true },
 			},
-			{ encounterName = "Sire Denathrius", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true } },
+			{
+				encounterName = "Sire Denathrius",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true },
+			},
 		},
 		coords = { { m = CONSTANTS.UIMAPIDS.CASTLE_NATHRIA, i = true } },
 	},
@@ -656,7 +659,10 @@ local shadowlandsPets = {
 				encounterName = "Eye of the Jailer",
 				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true },
 			},
-			{ encounterName = "Eye of the Jailer", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true } },
+			{
+				encounterName = "Eye of the Jailer",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true },
+			},
 		},
 		coords = { { m = CONSTANTS.UIMAPIDS.SANCTUM_OF_DOMINATION, i = true } },
 	},
@@ -694,7 +700,10 @@ local shadowlandsPets = {
 				encounterName = "Soulrender Dormazain",
 				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true },
 			},
-			{ encounterName = "Soulrender Dormazain", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true } },
+			{
+				encounterName = "Soulrender Dormazain",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true },
+			},
 		},
 		coords = { { m = CONSTANTS.UIMAPIDS.SANCTUM_OF_DOMINATION, i = true } },
 	},
@@ -720,9 +729,18 @@ local shadowlandsPets = {
 		},
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
-			{ encounterName = "Kel'Thuzad", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true } },
-			{ encounterName = "Kel'Thuzad", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true } },
-			{ encounterName = "Kel'Thuzad", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true } },
+			{
+				encounterName = "Kel'Thuzad",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true },
+			},
+			{
+				encounterName = "Kel'Thuzad",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true },
+			},
+			{
+				encounterName = "Kel'Thuzad",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true },
+			},
 			{ encounterName = "Kel'Thuzad", instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true } },
 		},
 		coords = { { m = CONSTANTS.UIMAPIDS.SANCTUM_OF_DOMINATION, i = true } },

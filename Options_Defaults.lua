@@ -175,7 +175,6 @@ function R:PrepareDefaults()
 				14309, -- Adventurer of Ardenweald
 				14310, -- Adventurer of Revendreth
 				14744, -- Better to Be Lucky Than Dead (The Maw)
-
 			},
 			-- These are inventory items that may result in another CONSTANTS.ITEM_TYPES.ITEM that Rarity would like to make you aware of
 			extraTooltips = {
@@ -534,4 +533,5 @@ end
 			**- Add a new category icon for the expansion
 			**- If a new class was added, add it to the list at the top of Options.lua in the Options module
 
-]] --
+]]
+--

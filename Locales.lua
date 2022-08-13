@@ -22,16 +22,16 @@ L["Close Window"] = true
 L["Use CMD+C to copy and CMD+V to paste"] = true
 L["Use CTRL+C to copy and CTRL+V to paste"] = true
 L["You can ask questions, follow the latest Rarity news and share the excitement of finally getting that one elusive drop with your fellow collectors in our Discord server.\n\nPS: We have cookies."] =
-		true
+	true
 L["You can follow the development process or contribute to the project on our public GitHub repository. What could be more fun than browsing a gigantic backlog of unresolved issues?"] =
-		true
+	true
 L["Join the Rarity Discord"] = true
 L["Contribute on GitHub"] = true
 L["Community"] = true
 L["Displays accumulated profiling data for the current session."] = true
 L["Show profiling data"] = true
 L["This is merely a shortcut introduced to make life easier for developers, and as a regular player you can safely ignore it."] =
-		true
+	true
 L["Deletes accumulated profiling data for the current session."] = true
 L["Reset profiling data"] = true
 L["Sorting is disabled"] = true
@@ -75,7 +75,7 @@ L["Devoured Wader"] = true
 L["Hopecrusher Gargon"] = true
 L["Hopecrusher"] = true
 L["Sometimes contained in the caches awarded for completing any covenant's Calling in Maldraxxus. Will hatch into one of three Necroray mounts after three days."] =
-		true
+	true
 L["Necroray Egg"] = true
 L["Note: Your existing settings will be overwritten."] = true
 L["Set all battle pets to be tracked repeatedly."] = true
@@ -86,11 +86,11 @@ L["Tracking Overrides"] = true
 L["Cleared accountwide statistics"] = true
 L["Clear accountwide statistics"] = true
 L["Clears the accountwide statistics saved for all characters. You can use this to remove the attempts stored for characters that no longer exist in their original form, e.g., after a server transfer, realm merge, or name change. After clearing this cached data, you will have to log into each character once so attempts can be updated from their statistics again."] =
-		true
+	true
 L["Cached Data"] = true
 L["Removing data for obsolete item %s"] = true
 L["Disables the detailed (red) error messages that are used by the addon to detect invalid states rather than allowing it to crash. Any detected errors will still be handled, but you won't see the notification."] =
-		true
+	true
 L["Disable Rarity-specific error messages"] = true
 L["Eye of Corruption"] = true
 L["Void-Scarred Anubisath"] = true
@@ -146,7 +146,7 @@ L["Honey Smasher"] = true
 L["Mail Muncher"] = true
 L["Mailbox"] = true
 L["Corrupted Chest"] = true
-L["Box Labeled \"Danger: Void Rat Inside\""] = true
+L['Box Labeled "Danger: Void Rat Inside"'] = true
 L["Swirling Black Bottle"] = true
 L["Voidwoven Cat Collar"] = true
 L["Void-Link Frostwolf Collar"] = true
@@ -497,7 +497,7 @@ L["Chance so far"] = true
 L["Total"] = true
 L["Total found"] = true
 L["Bunny Hunter is running. Would you like Rarity to import data from Bunny Hunter now? Disable Bunny Hunter or click Yes if you don't want to be asked again."] =
-		true
+	true
 L["Data has been imported from Bunny Hunter"] = true
 L["#%d: %d attempt (%.2f%%)"] = true
 L["#%d: %d attempts (%.2f%%)"] = true
@@ -508,10 +508,10 @@ L["Turns on a minimap icon for Rarity. Use this option if you don't have an LDB 
 L["Announcements"] = true
 L["Enable announcements"] = true
 L["Enables announcements whenever you complete a new attempt toward anything Rarity is tracking. You can also enable announcements per-item, but this is the master switch."] =
-		true
+	true
 L["Feed text"] = true
 L["Controls what type of text is shown in Rarity's LDB feed. Minimal shows just the number of attempts. Normal adds the likelihood percent, and verbose adds the item link."] =
-		true
+	true
 L["Minimal"] = true
 L["Normal"] = true
 L["Verbose"] = true
@@ -526,10 +526,10 @@ L["Create a New Item"] = true
 L["New item"] = true
 L["Custom"] = true
 L["To create a new item, enter a unique name for the item, and click Okay. The name will be used if the server does not return the item link or if the item is invalid.\n\nYou can't change this name after you create the item, so choose it well."] =
-		true
+	true
 L["Item ID"] = true
 L["The item ID to track. This is the item as it appears in your inventory or in a loot window. Use WowHead or a similar service to lookup item IDs. This must be a valid number and must be unique."] =
-		true
+	true
 L["You must enter an item ID."] = true
 L["You must enter a valid number."] = true
 L["You entered an item ID that is already being used by another item."] = true
@@ -541,10 +541,10 @@ L["You must enter a number larger than or equal to 0."] = true
 L["How many attempts you've made so far."] = true
 L["Track this"] = true
 L["Determines whether tracking should be enabled for this item. Items that are disabled will not appear in the tooltip."] =
-		true
+	true
 L["Repeatable"] = true
 L["Determines whether you want to repeatedly farm this item. If you turn this on and find the item, Rarity will mark the item as un-found after a few seconds."] =
-		true
+	true
 L["Enables announcements whenever you complete a new attempt toward this item."] = true
 L["Type of item"] = true
 L["Announce"] = true
@@ -556,7 +556,7 @@ L["Spell ID"] = true
 L["You must enter a spell ID."] = true
 L["You entered a spell ID that is already being used by another item."] = true
 L["The spell ID of the item once you've learned it. This applies only to mounts and companions, and is the spell as it appears in your spell book after learning the item. Use WowHead or a similar service to lookup spell IDs. This must be a valid number and must be unique."] =
-		true
+	true
 L["You must enter a number larger than 0."] = true
 L["Method of obtaining"] = true
 L["Determines how this item is obtained."] = true
@@ -564,20 +564,20 @@ L["Group size"] = true
 L["The number of players it takes to obtain the item. This will lower your chances of obtaining the item."] = true
 L["Equal odds"] = true
 L["Turn this on if the item requires a group to obtain, but every player gets an equal chance to obtain the item. This currently only applies to some of the holiday mounts. When you turn this on, Rarity will stop lowering your chance to obtain based on the group size."] =
-		true
+	true
 L["Archaeology race"] = true
 L["Determines which race includes this archaeology project."] = true
 L["Zones"] = true
 L["A comma-separated list of the zones or sub-zones this item can be found in. For zones, you can enter either the Map ID (i.e. 811 is Vale of Eternal Blossoms), or the full name of the zone. For sub-zones, you must enter the full name of the sub-zone.\n\nEnter zone names with proper spelling, capitalization, and punctuation. They can be entered either in US English or your client's local language. Use WowHead or a similar service to make sure you're entering the zone names perfectly.\n\nPLEASE NOTE: Zone translations may not be correct. For zones, it is highly recommended that you use the Map ID instead of the name. For sub-zones, you must enter the name. If sub-zone detection isn't working for you, please visit the LibBabble-SubZone-3.0 library page on wowace.com and update the translations for your language."] =
-		true
+	true
 L["One of the Map IDs you entered (%s) is incorrect. Please enter numbers larger than zero."] = true
 L["You must enter at least one zone."] = true
 L["Please enter a comma-separated list of zones."] = true
 L["One of the zones or sub-zones you entered (%s) cannot be found. Check that it is spelled correctly, and is either US English or your client's local language."] =
-		true
+	true
 L["Items to Use"] = true
 L["A comma-separated list of item IDs which, when used or opened, can give you this item. Use WowHead or a similar service to lookup item IDs."] =
-		true
+	true
 L["You must enter at least one item ID."] = true
 L["Please enter a comma-separated list of item IDs."] = true
 L["Every item ID must be a number greater than 0."] = true
@@ -596,7 +596,7 @@ L["lucky"] = true
 L["unlucky"] = true
 L["Requires a pool"] = true
 L["Determines whether the item can only be obtained from fishing in pools. In order for this option to work, the fishing pools must have all been translated into your client's language."] =
-		true
+	true
 L["Special case"] = true
 L["Obtained by mining"] = true
 L["Mysterious Camel Figurine"] = true
@@ -610,13 +610,13 @@ L["Left"] = true
 L["Right"] = true
 L["Hidden"] = true
 L["Controls on which side the secondary tooltip appears when you hover over an item in the main tooltip. If the main tooltip is on the right side of your screen, change this to Left. Otherwise, choose Right. You can also hide the status tooltip completely."] =
-		true
+	true
 L["Kill Statistic IDs"] = true
 L["A comma-separated list of Statistic IDs that track the number of kills toward obtaining this item."] = true
 L["You must enter at least one Statistic ID."] = true
 L["Please enter a comma-separated list of Statistic IDs."] = true
 L["A comma-separated list of Statistic IDs that track the number of kills toward obtaining this item. These statistics will be added together. Use WowHead or a similar service to locate statistic IDs."] =
-		true
+	true
 L["Ctrl-Click to change sort order"] = true
 L["Sorting by name"] = true
 L["Sorting by difficulty"] = true
@@ -642,15 +642,15 @@ L["Mists of Pandaria"] = true
 L["Holiday"] = true
 L["Content Category"] = true
 L["These toggles control which items appear in the main Rarity tooltip. Items are categorized by the expansion they were introduced in (although holiday items have a separate category). Turning off these checkboxes does not turn off tracking for any items within the category; it simply hides the item from the tooltip in order to help reduce the number of items in it."] =
-		true
+	true
 L["Hide high chance items"] = true
 L["When on, this option hides any item with a drop chance of 1 in 49 or better. The item is merely hidden from the tooltip in order to keep it clean. Items hidden in this fashion are still tracked like normal."] =
-		true
+	true
 L["Undefeated"] = true
 L["Defeated"] = true
 L["Creature ID"] = true
 L["The NPC ID of the creature that is spawned when you summon this pet. This is used to track account-wide battle pets."] =
-		true
+	true
 L["You must enter a creature ID."] = true
 L["You entered a creature ID that is already being used by another item."] = true
 L["Mantid"] = true
@@ -658,7 +658,7 @@ L["Pandaren"] = true
 L["Mogu"] = true
 L["Enable Coins"] = true
 L["When any good-luck coin is used within about 90 seconds of an attempt on this item, another attempt will be counted for this item. Only enable this for items which can legitimately be obtained from coin rolls."] =
-		true
+	true
 L["Warlords of Draenor"] = true
 L["Arakkoa"] = true
 L["Draenor Clans"] = true
@@ -675,7 +675,7 @@ L["Collection Size"] = true
 L["How many items you need to collect."] = true
 L["Item ID to Collect"] = true
 L["The item ID that you need to collect. Rarity uses the number of this item that you have in your bags as your progress. Use WowHead or a similar service to lookup item IDs. This must be a valid number and must not be used by another item."] =
-		true
+	true
 L["You entered an item ID that is already set as the collected item for something else."] = true
 L["%s: %d collected"] = true
 L["Rarity: "] = true
@@ -691,11 +691,11 @@ L["Show Icon"] = true
 L["Show Text"] = true
 L["Obtained Achievement ID"] = true
 L["Set this to the achievement ID which indicates this item has been obtained. This is useful for items which do not yield mounts or pets, but which do grant an achievement when obtained, such as Old Crafty or Old Ironjaw. Leave this blank for mounts and pets. Use WowHead to find achievement IDs."] =
-		true
+	true
 L["You entered a achievement ID that is already being used by another item."] = true
 L["Instance Difficulty"] = true
 L["Determines which instance difficulties this item may be obtained in. Leave everything unchecked if the instance difficulty doesn't matter.\n\nIf you specified a Statistic ID for this item, the Instance Difficulty is probably meaningless, because all modern statistics already incorporate the difficulty.\n\nYou can check multiple items in this list at once."] =
-		true
+	true
 L["Take screenshots"] = true
 L["When on, Rarity will take a screenshot when an item is found."] = true
 L["Already known"] = true
@@ -709,17 +709,17 @@ L["Already defeated"] = true
 L["Unavailable"] = true
 L["Hide unavailable items"] = true
 L["When on, items marked as Unavailable will be hidden from the tooltip. This way, items requiring a certain holiday will automatically be hidden when the holiday is not active."] =
-		true
+	true
 L["Holiday reminders"] = true
 L["When on, Rarity will remind you to go farm holiday items you're missing if the holiday is active and the item is set as Undefeated. (This only works for items that originate from holiday dungeons or daily quests.) The reminder occurs each time you log in or reload your UI, and stops for the day once you defeat the holiday dungeon or complete the quest."] =
-		true
+	true
 L["A holiday event is available today for %s! Go get it!"] = true
 L["You can turn off holiday reminders as a whole or on an item-by-item basis by visiting the Rarity Options screen."] =
-		true
+	true
 L["Sorting by category, then name"] = true
 L["Show category icons"] = true
 L["When on, Rarity will show an icon next to each item in the tooltip indicating which expansion the item belongs to."] =
-		true
+	true
 L["Primary tooltip scale"] = true
 L["Adjusts the scale of the primary tooltip. This will take effect the next time the tooltip is shown."] = true
 L["Rarity Tooltip Options"] = true
@@ -728,8 +728,8 @@ L["General Options"] = true
 L["Tooltip activation"] = true
 L["On hover"] = true
 L["On click"] = true
-L["If \"On click\" is selected, activating the tracker is done via CTRL + SHIFT + Click, otherwise it's activated with a simple click."] =
-		true
+L['If "On click" is selected, activating the tracker is done via CTRL + SHIFT + Click, otherwise it\'s activated with a simple click.'] =
+	true
 L["Left click"] = true
 L["Open Rarity window"] = true
 L["Right click"] = true
@@ -741,14 +741,14 @@ L["Change sorting"] = true
 L["Secondary tooltip display"] = true
 L["Requires Pickpocketing"] = true
 L["When enabled, the item can only be obtained by pickpocketing. The item will be marked Unavailable for non-rogues."] =
-		true
+	true
 L["Required for %s"] = true
 L["Already defeated for %s"] = true
 L["Profiling ON"] = true
 L["Profiling OFF"] = true
 L["Enable profiling"] = true
 L["When enabled, Rarity will print debug profiling messages to the chat window when certain things happen. This is used to determine which parts of the code are slow."] =
-		true
+	true
 L["Use your bonus roll for a chance at this item"] = true
 L["There are more holiday items available, but Rarity only reminds you about the first two."] = true
 L["Rarity has %d |4coordinate:coordinates; for this item."] = true
@@ -778,7 +778,7 @@ L["Highmountain Tauren"] = true
 L["Highborne"] = true
 L["Primary tooltip hide delay"] = true
 L["When you move your mouse out of the Rarity tooltip, it will take this long before it automatically hides itself."] =
-		true
+	true
 L["Defeat Detection"] = true
 L["Quest ID"] = true
 L["A comma-separated list of quest IDs. When these quest IDs are completed, the item is considered defeated."] = true
@@ -787,13 +787,13 @@ L["Every Quest ID must be a number greater than 0."] = true
 L["Options"] = true
 L["Dungeon ID"] = true
 L["A dungeon ID which, when marked as completed by the game client, will cause this item to be considered Defeated. This is primarily used for holiday items which have unique dungeon IDs."] =
-		true
+	true
 L["Boss Name"] = true
 L["The boss name, in English (enUS), which appears in the instance lock inside the Raid Info panel. The name will be translated to your local language automatically using the LibBoss library (if detection fails, check that the translation exists in this library). IMPORTANT: This method of defeat detection only works when the boss exists in one place at a time. Certain bosses, such as Ragnaros and Kael'thas Sunstrider, exist in two instances at once. Those bosses can be used here, but killing them in either of their instances will result in this Defeat Detection triggering."] =
-		true
+	true
 L["Only announce when found"] = true
 L["Announcements will only be triggered when the item is found. When this is off, Rarity will announce every attempt and when the item is found."] =
-		true
+	true
 L["Death Knight"] = true
 L["Demon Hunter"] = true
 L["Druid"] = true
@@ -808,18 +808,18 @@ L["Warlock"] = true
 L["Warrior"] = true
 L["Disable for classes"] = true
 L["Choose which classes this item should be disabled for. Checking a class below hides the item from the Rarity tooltip and prevents it from being tracked. You can still toggle Track This, but the item will not track for any classes specified here."] =
-		true
+	true
 L["Export this item"] = true
 L["Check this for every Custom item you wish to export. Then click on the Import/Export tab and click the Export button. This checkbox will be disabled until enough information has been filled in below to make it a detectable item."] =
-		true
+	true
 L["Import/Export"] = true
 L["This tab lets you import and export items into and out of your Custom tab."] = true
 L["Import Rarity Item Pack"] = true
 L["To import a group of items, paste a Rarity Item Pack string into the Import text box below and click the Import button. Rarity will tell you which items were imported (or which ones failed to import) in your chat window. You can find many Rarity Item Packs on the Curse web site, or elsewhere on the web."] =
-		true
+	true
 L["Export Rarity Item Pack"] = true
 L["To export a group of items, go through each item in your Custom tab and check or uncheck the Export checkbox. The checkbox will be disabled if you haven't yet filled out enough information for Rarity to detect the item. Once you've done that, return here and click the Export button. A Rarity Item Pack string will be generated that you can copy to the clipboard using Ctrl-C."] =
-		true
+	true
 L["Unable to retrieve item information from the server"] = true
 L["Rarity Item Pack String"] = true
 L["Paste a Rarity Item Pack String here using Ctrl-V, then click the Import button."] = true
@@ -829,7 +829,7 @@ L["Export"] = true
 L["The following %d item(s) have been selected to export:"] = true
 L["(Items listed in red could not be found on the server and may not exist. Consider removing them.)"] = true
 L["Copy the generated Rarity Export String below using Ctrl-C. You can then paste it elsewhere using Ctrl-V.\n\nFeel free to post it on Curse, GitHub, or Discord to share your Item Pack. We will publish the best ones to the main add-on page."] =
-		true
+	true
 L["Clear All Exports"] = true
 L["Are you sure you want to turn off the Export toggle for all your Custom items?"] = true
 L["Error serializing item pack"] = true
@@ -847,18 +847,18 @@ L["not imported"] = true
 L["imported successfully"] = true
 L["Obtained Quest ID"] = true
 L["Certain items, such as Illusions in your wardrobe, flag a completed Quest ID when you learn them. Rarity can automatically stop tracking this item if you enter that Quest ID here. (Only one ID, not a list.)"] =
-		true
+	true
 L["Hide items with no attempts"] = true
 L["When on, items that have no attempts yet will be hidden from the tooltip."] = true
-L["Put \"Rarity:\" on a separate line"] = true
-L["When on, the text \"Rarity:\" will be put on its own line in world and item tooltips."] = true
+L['Put "Rarity:" on a separate line'] = true
+L['When on, the text "Rarity:" will be put on its own line in world and item tooltips.'] = true
 L["Distance"] = true
 L["Sorting by zone"] = true
 L["Hide items not in your zone"] = true
 L["When on, only items that can be obtained in your current zone will be shown in the tooltip. When this is on and you're in an instance, the instance difficulty is also checked to make sure it matches what the item supports."] =
-		true
+	true
 L["No items to display! Either you've obtained every item, or you have\none or more options turned on which hide things from the tooltip."] =
-		true
+	true
 L["When on, Rarity will generate an achievement alert pop-up indicating that you obtained an item."] = true
 L["Show achievement"] = true
 L["Primary tooltip show delay"] = true
@@ -893,60 +893,59 @@ L["Timewalker 5-player instance"] = true
 L["Dropped by Yogg-Saron in Ulduar with no Keepers assisting"] = true
 L["Dropped by Malygos in The Eye of Eternity (any raid size)"] = true
 L["Dropped by Koralon the Flame Watcher, Emalon the Storm Watcher, Archavon the Stone Watcher, and Toravon the Ice Watcher in Vault of Archavon (any raid size)."] =
-		true
+	true
 L["Contained in Cracked Egg, which is obtained by becoming Revered with The Oracles, purchasing a Mysterious Egg from their reputation vendor, and waiting three days. The mount has a 5% chance to appear in the Cracked Egg."] =
-		true
+	true
 L["Contained in Ripe Disgusting Jar, which is obtained by becoming Revered with Frenzyheart Tribe, purchasing a Disgusting Jar from their reputation vendor, and waiting three days."] =
-		true
+	true
 L["Dropped by Onyxia in Onyxia's Lair (any raid size)"] = true
 L["Contained in Hyldnir Spoils, which is rewarded for completing daily quests given by Gretta the Arbiter in Brunnhildar Village, Storm Peaks. The mount has a 3% chance to appear in Hyldnir Spoils."] =
-		true
+	true
 L["Obtained very rarely by fishing in pools located in any expansion zone (not Classic zones)"] = true
 L["Dropped by Ultraxion in Dragon Soul (any raid size or difficulty)"] = true
 L["Obtained as a rare project for the Fossil branch of archaeology"] = true
 L["Dropped by the Madness of Deathwing encounter in Dragon Soul (any raid size or difficulty)"] = true
 L["Guaranteed drop from Dormus the Camel-Hoarder. Accessing this encounter requires finding a rare Mysterious Camel Figurine in Uldum. These are difficult to spot and, when clicked, have a small chance to grant you access to the Dormus encounter. Rarity will count how many Figurines you've found if you mouseover them."] =
-		true
+	true
 L["Obtained as a very rare project for the Tol'vir branch of archaeology"] = true
 L["Dropped by the Madness of Deathwing encounter in Dragon Soul (heroic, any raid size)"] = true
 L["The Warbringer will be riding the mount color he has a chance to drop."] = true
 L["Can be contained in Heart-Shaped Box, rewarded for defeating the World Event Dungeon during Love is in the Air."] =
-		true
+	true
 L["Can be contained in Keg-Shaped Treasure Chest, rewarded for defeating the World Event Dungeon during Brewfest."] =
-		true
-L["Can be contained in Loot-Filled Pumpkin, rewarded for defeating the World Event Dungeon during Hallow's End."] =
-		true
+	true
+L["Can be contained in Loot-Filled Pumpkin, rewarded for defeating the World Event Dungeon during Hallow's End."] = true
 L["Dropped by Elegon in Mogu'shan Vaults (all raid formats except Raid Finder)"] = true
 L["Obtained by fishing in pools located in Terrokar Forest"] = true
 L["Obtained by fishing in any water in Orgrimmar"] = true
 L["Obtained by fishing in any water in Ironforge"] = true
 L["Dropped by dinosaurs on Isle of Giants Will hatch into one of three Primal Raptor mounts after three days."] = true
 L["Dropped by any mob in Vale of Eternal Blossoms (except minor mobs). 10 of these can be combined to pierce Alani's shield, allowing combat and a guaranteed drop of Reins of the Thundering Ruby Cloud Serpent."] =
-		true
+	true
 L["Earned by giving 9999 Giant Dinosaur Bones to Ku'ma on Isle of Giants. Giant Dinosaur bones drop from all dinosaurs and Zandalari Dinomancers on Isle of Giants."] =
-		true
+	true
 L["This bag is rewarded for earning a Gold or Platinum victory in a garrison invasion."] = true
 L["This bag is rewarded for completing the pet battle daily offered by Jeremy Feasel at the Darkmoon Faire."] = true
 L["This bag is rewarded for completing the pet battle daily offered by Christoph VonFeasel at the Darkmoon Faire."] =
-		true
+	true
 L["This item has a 1 in 4 chance to drop from Golganarr, a rare spawn on Timeless Isle. It has a 1 in 250 chance to drop from Eroded Cliffdweller on Timeless Isle."] =
-		true
+	true
 L["Dropped by Disturbed Podling, which has a chance to spawn when picking herbs in Draenor."] = true
 L["Dropped by Goren Protector, which has a chance to spawn when mining ore in Draenor."] = true
 L["Available starting December 25th"] = true
 L["Can drop from Fel-Touched Pet Supplies, which is obtained by defeating the Fel-corrupted legendary pets in Tanaan Jungle."] =
-		true
+	true
 L["After upgrading your garrison's Fishing Shack to level 3, fish up 5 minnows to summon a Cavedweller which can drop this mount."] =
-		true
+	true
 L["Will only drop for druids."] = true
-L["Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount \"defeated\" for the day when you kill any of the four."] =
-		true
+L['Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount "defeated" for the day when you kill any of the four.'] =
+	true
 L["Dropped from monsters in Fang'rila"] = true
 L["Purchased from Z'tenga the Walker <Saberstalker Quartermaster> in Fang'rila in Tanaan Jungle. Blackfang Claws drop from all monsters in Fang'rila."] =
-		true
+	true
 L["Fished anywhere in Draenor (except your garrison) with the help of Nat Pagle"] = true
 L["Lunkers can be fished anywhere in Draenor (except in your garrison) after you've obtained a level 3 Fishing Shack and acquired Nat Pagle as a follower."] =
-		true
+	true
 L["Obtained by opening Snow Mound in Frostfire Ridge"] = true
 L["Greatfather Winter's Tree"] = true
 
@@ -1425,7 +1424,7 @@ L["Crashin' Thrashin' Roller Controller"] = true
 L["Gondar"] = true
 L["Smashum Grabb"] = true
 L["Drakum"] = true
-L["Goren \"Log\" Roller"] = true
+L['Goren "Log" Roller'] = true
 L["Sassy Imp"] = true
 L["Battle Horn"] = true
 L["Eternal Warrior's Sigil"] = true
@@ -1564,9 +1563,9 @@ L["Houndmaster Kerrax"] = true
 L["Venomtail Skyfin"] = true
 L["Fel-Spotted Egg"] = true
 L["Dropped by the panthara rares on Argus. Has a chance to hatch into one of four Mana Ray mounts as well as one of two Skyfin pets after five days."] =
-		true
+	true
 L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."] =
-		true
+	true
 L["Scintillating Mana Ray"] = true
 L["Felglow Mana Ray"] = true
 L["Darkspore Mana Ray"] = true
@@ -1629,7 +1628,7 @@ L["Drust"] = true
 L["Zandalari"] = true
 L["Eye of Observation"] = true
 L["Five players are needed to activate the runes on the floor. The boss can be attacked only after all runes have been activated."] =
-		true
+	true
 L["Fossorial Bile Larva"] = true
 L["Obtained by skinning creatures on Argus"] = true
 L["Fel Lasher"] = true
@@ -1753,7 +1752,7 @@ L["Bleakwood Chest"] = true
 L["Trapped Stonefiend"] = true
 L["Collectable Type Filter"] = true
 L["These toggles filter which items appear in the main Rarity tooltip. Items are categorized by their type (eg. Mounts, Battle Pets...). Turning off these checkboxes does not turn off tracking for any items within the category; it simply hides the item from the tooltip in order to help reduce the number of items in it."] =
-		true
+	true
 L["Wind-Up Frog"] = true
 L["Undulating Blue Sac"] = true
 L["Baby Crawg"] = true
@@ -1849,7 +1848,7 @@ L["Zelnithop"] = true
 L["Grappling Gauntlet"] = true
 L["Squibbles"] = true
 L["This bag is rewarded for completing the pet battle daily offered by Anthea at the Temple of the White Tiger in Kun-Lai Summit."] =
-		true
+	true
 L["Intact Aquilon Core"] = true
 L["Personal Ball and Chain"] = true
 L["This treasure can only be found within the rift phase of The Maw."] = true

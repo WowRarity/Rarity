@@ -14,7 +14,7 @@ local wodMounts = {
 		itemId = 116669,
 		npcs = { 95044, 95054, 95053, 95056 },
 		chance = 30,
-		sourceText = L["Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount \"defeated\" for the day when you kill any of the four."],
+		sourceText = L['Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount "defeated" for the day when you kill any of the four.'],
 		questId = { 39287, 39288, 39289, 39290 },
 		defeatAllQuests = true,
 		coords = {
@@ -57,7 +57,10 @@ local wodMounts = {
 		questId = { 37640, 38482 },
 		defeatAllQuests = true,
 		coords = { zoneOverride = L["Draenor Garrison"], { m = 579 }, { m = 585 } },
-		defeatSteps = { [37640] = L["Garrison Invasion Gold Victory"], [38482] = L["Garrison Invasion Platinum Victory"] },
+		defeatSteps = {
+			[37640] = L["Garrison Invasion Gold Victory"],
+			[38482] = L["Garrison Invasion Platinum Victory"],
+		},
 	},
 	["Giant Coldsnout"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
@@ -72,7 +75,10 @@ local wodMounts = {
 		questId = { 37640, 38482 },
 		defeatAllQuests = true,
 		coords = { zoneOverride = L["Draenor Garrison"], { m = 579 }, { m = 585 } },
-		defeatSteps = { [37640] = L["Garrison Invasion Gold Victory"], [38482] = L["Garrison Invasion Platinum Victory"] },
+		defeatSteps = {
+			[37640] = L["Garrison Invasion Gold Victory"],
+			[38482] = L["Garrison Invasion Platinum Victory"],
+		},
 	},
 	["Reins of the Crimson Water Strider"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
@@ -125,7 +131,10 @@ local wodMounts = {
 		questId = { 37640, 38482 },
 		defeatAllQuests = true,
 		coords = { zoneOverride = L["Draenor Garrison"], { m = 579 }, { m = 585 } },
-		defeatSteps = { [37640] = L["Garrison Invasion Gold Victory"], [38482] = L["Garrison Invasion Platinum Victory"] },
+		defeatSteps = {
+			[37640] = L["Garrison Invasion Gold Victory"],
+			[38482] = L["Garrison Invasion Platinum Victory"],
+		},
 	},
 	["Smoky Direwolf"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
@@ -140,7 +149,10 @@ local wodMounts = {
 		questId = { 37640, 38482 },
 		defeatAllQuests = true,
 		coords = { zoneOverride = L["Draenor Garrison"], { m = 579 }, { m = 585 } },
-		defeatSteps = { [37640] = L["Garrison Invasion Gold Victory"], [38482] = L["Garrison Invasion Platinum Victory"] },
+		defeatSteps = {
+			[37640] = L["Garrison Invasion Gold Victory"],
+			[38482] = L["Garrison Invasion Platinum Victory"],
+		},
 	},
 	["Tundra Icehoof"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
@@ -151,7 +163,7 @@ local wodMounts = {
 		itemId = 116658,
 		npcs = { 95044, 95054, 95053, 95056 },
 		chance = 30,
-		sourceText = L["Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount \"defeated\" for the day when you kill any of the four."],
+		sourceText = L['Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount "defeated" for the day when you kill any of the four.'],
 		questId = { 39287, 39288, 39289, 39290 },
 		defeatAllQuests = true,
 		coords = {
@@ -176,7 +188,7 @@ local wodMounts = {
 		itemId = 116780,
 		npcs = { 95044, 95054, 95053, 95056 },
 		chance = 30,
-		sourceText = L["Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount \"defeated\" for the day when you kill any of the four."],
+		sourceText = L['Can be obtained from Rattling Iron Cage, which has a chance to drop from any of the four champions of Hellfire Citadel in Tanaan Jungle (Terrorfist, Deathtalon, Vengeance, or Doomroller). Each of them can be looted once per day. Rarity will consider this mount "defeated" for the day when you kill any of the four.'],
 		questId = { 39287, 39288, 39289, 39290 },
 		defeatAllQuests = true,
 		coords = {
