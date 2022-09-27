@@ -24,7 +24,7 @@ jobs:
         uses: JohnnyMorganz/stylua-action@1.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          args: --check .
+          args: --check . --verbose
           version: v0.15.1
 
       - name: Run autoformat
