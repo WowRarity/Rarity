@@ -809,7 +809,7 @@ local mopPets = {
 		spellId = 148050,
 		itemId = 104159,
 		npcs = { 73282 },
-		chance = 25,
+		chance = 33,
 		creatureId = 73356,
 		coords = { { m = 554, x = 64.6, y = 28.6 } },
 	},
