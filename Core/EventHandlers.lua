@@ -65,7 +65,7 @@ function EventHandlers:Register()
 	self:RegisterEvent("GUILDBANKFRAME_CLOSED", "OnEvent")
 	self:RegisterEvent("MAIL_CLOSED", "OnEvent")
 	self:RegisterEvent("MAIL_SHOW", "OnEvent")
-	self:RegisterEvent("CURSOR_UPDATE", "OnCursorUpdate") -- Fishing detection
+	self:RegisterEvent("CURSOR_CHANGED", "OnCursorChanged") -- Fishing detection
 	self:RegisterEvent("UNIT_SPELLCAST_SENT", "OnSpellcastSent") -- Fishing detection
 	self:RegisterEvent("UNIT_SPELLCAST_STOP", "OnSpellcastStopped") -- Fishing detection
 	self:RegisterEvent("UNIT_SPELLCAST_FAILED", "OnSpellcastFailed") -- Fishing detection
@@ -823,7 +823,7 @@ local function stripColorCode(input)
 	return output
 end
 
-function R:OnCursorUpdate(event)
+function R:OnCursorChanged(event)
 	if Rarity.foundTarget then
 		return
 	end
@@ -833,7 +833,7 @@ function R:OnCursorUpdate(event)
 	local t = stripColorCode(tooltipLeftText1:GetText())
 	if self.miningnodes[t] or self.fishnodes[t] or self.opennodes[t] then
 		Rarity.lastNode = t
-		Rarity:Debug("OnCursorUpdate found lastNode = " .. tostring(t))
+		Rarity:Debug("OnCursorChanged found lastNode = " .. tostring(t))
 	end
 	if Rarity.relevantSpells[Rarity.previousSpell] then
 		self:GetWorldTarget()
