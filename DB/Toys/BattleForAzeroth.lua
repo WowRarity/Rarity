@@ -644,7 +644,7 @@ local bfaToys = {
 		name = L["Trans-mogu-rifier"],
 		itemId = 174873,
 		npcs = { 155958 },
-		chance = 20, -- Blind guess (no data)
+		chance = 33,
 		questId = { 58507 },
 		coords = { { m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 29.13, y = 22.07, n = L["Tashara"] } },
 	},
