@@ -1925,7 +1925,7 @@ local bfaPets = {
 		itemId = 174476,
 		creatureId = 162004,
 		questId = { 58697 },
-		chance = 20,
+		chance = 75,
 		coords = { { m = CONSTANTS.UIMAPIDS.ULDUM, x = 21.23, y = 61.05, n = L["Skikx'traz"] } },
 	},
 	["Wicked Lurker"] = {
@@ -1938,7 +1938,7 @@ local bfaPets = {
 		itemId = 174478,
 		creatureId = 162012,
 		questId = { 58330 },
-		chance = 20,
+		chance = 50,
 		coords = { { m = CONSTANTS.UIMAPIDS.ULDUM, x = 60, y = 72, n = L["Amalgamation of Flesh"] } },
 	},
 	["Corrupted Tentacle"] = {
@@ -1966,7 +1966,7 @@ local bfaPets = {
 		itemId = 174475,
 		creatureId = 161997,
 		questId = { 56340 },
-		chance = 20,
+		chance = 50,
 		coords = { { m = CONSTANTS.UIMAPIDS.ULDUM, x = 36.85, y = 20.93, n = L["Lord Aj'qirai"] } },
 	},
 	["Snarling Butterfly Crate"] = {

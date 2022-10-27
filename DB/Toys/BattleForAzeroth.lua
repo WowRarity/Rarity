@@ -616,7 +616,7 @@ local bfaToys = {
 		name = L["Hell-Bent Bracers"],
 		itemId = 169303,
 		npcs = { 158636 },
-		chance = 20, -- Blind guess (no data)
+		chance = 33,
 		questId = { 57688 },
 		coords = { { m = CONSTANTS.UIMAPIDS.ULDUM, x = 49.35, y = 82.29, n = L["The Grand Executor"] } },
 	},
@@ -628,7 +628,7 @@ local bfaToys = {
 		name = L["Budget K'thir Disguise"],
 		itemId = 174874,
 		npcs = { 157473 },
-		chance = 20, -- Blind guess (no data)
+		chance = 10,
 		questId = { 57438 },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.ULDUM, x = 50, y = 88, n = L["Yiphrim the Will Ravager"] },
@@ -762,7 +762,7 @@ local bfaToys = {
 		npcs = { 154495 },
 		itemId = 175141,
 		questId = { 56303 },
-		chance = 75,
+		chance = 50,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 52.51, y = 62.14, n = L["Will of N'zoth"] },
 		},
