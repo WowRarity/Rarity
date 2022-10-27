@@ -1888,7 +1888,7 @@ local bfaPets = {
 		itemId = 174473,
 		creatureId = 161954,
 		questId = { 57342 },
-		chance = 20,
+		chance = 33,
 		coords = { { m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 51.85, y = 42.19, n = L["The Forgotten"] } },
 	},
 	["Cursed Dune Watcher"] = {
@@ -1951,7 +1951,7 @@ local bfaPets = {
 		itemId = 174474,
 		creatureId = 161992,
 		questId = { 56303 },
-		chance = 20,
+		chance = 50,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS, x = 52.51, y = 62.14, n = L["Will of N'zoth"] },
 		},
