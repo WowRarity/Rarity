@@ -1,4 +1,15 @@
 local changes = {
+	["r717"] = {
+		fixes = { "Fixed script errors caused by API changes in patch 10.0" },
+		changes = { "Tooltip additions should now also work for items in the quest log" },
+		contributors = { "Patrick Borgogno", "Tommy Godejord" },
+	},
+	["r716"] = {
+		additions = { "Added defeat detection data for Mythic-difficulty Legion raids" },
+		fixes = {
+			"Added several missing Torghast bosses to the list of NPCs counting for Sturdy Silver Mawrat Harness",
+		},
+	},
 	["r715"] = {
 		additions = { "Added tracking for various collectibles obtained in Zereth Mortis" },
 		fixes = { "Fixed the attempts detection for Skull of Corruption" },

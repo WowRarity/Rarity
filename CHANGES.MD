@@ -1,3 +1,27 @@
+**r717:**
+
+Changes:
+> Tooltip additions should now also work for items in the quest log
+
+Fixes:
+> Fixed script errors caused by API changes in patch 10.0
+
+Contributors (in alphabetical order):
+> Patrick Borgogno
+<br>Tommy Godejord
+
+-----
+
+**r716:**
+
+Additions:
+> Added defeat detection data for Mythic-difficulty Legion raids
+
+Fixes:
+> Added several missing Torghast bosses to the list of NPCs counting for Sturdy Silver Mawrat Harness
+
+-----
+
 **r715:**
 
 Additions:
@@ -45,35 +69,6 @@ Fixes:
 
 Developer Notes:
 > Blizzard hotfixed the anniversary drops to be guaranteed. As such they've been removed from Rarity again.
-
-Contributors (in alphabetical order):
-> Tommy Godejord
-
------
-
-**r712:**
-
-Additions:
-> Added tracking for Gilded Darknight
-
-Fixes:
-> The main window should again be rendered properly (previously broken by patch 9.1.5 API changes)
-
-Contributors (in alphabetical order):
-> Tommy Godejord
-
------
-
-**r711:**
-
-Additions:
-> Added tracking for Adamant Vaults Cell
-
-Changes:
-> The mini map button is now displayed by default, to hopefully improve the experience for first-time users
-
-Fixes:
-> Fixed an issue that prevented item information being displayed in the game tooltip for items using the ZONE (zonewide) detection method
 
 Contributors (in alphabetical order):
 > Tommy Godejord
