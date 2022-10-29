@@ -2,7 +2,7 @@ local changes = {
 	["r717"] = {
 		fixes = { "Fixed script errors caused by API changes in patch 10.0" },
 		changes = { "Tooltip additions should now also work for items in the quest log" },
-		contributors = { "Patrick Borgogno", "Tommy Godejord" },
+		contributors = { "Patrick Borgogno", "Tommy Godejord", "teelolws" },
 	},
 	["r716"] = {
 		additions = { "Added defeat detection data for Mythic-difficulty Legion raids" },
