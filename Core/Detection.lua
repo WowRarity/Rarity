@@ -40,7 +40,8 @@ function R:ScanBags()
 			for ii = 1, numSlots do
 				local id = GetContainerItemID(i, ii)
 				if id then
-					local qty = select(2, GetContainerItemInfo(i, ii))
+					local containerItemInfo = GetContainerItemInfo(i, ii)
+					local qty = containerItemInfo.stackCount
 					if qty and qty > 0 then
 						if not Rarity.bagitems[id] then
 							Rarity.bagitems[id] = 0
