@@ -505,6 +505,7 @@ local function processItemString(itemString)
 end
 
 -- TOOLTIP: ITEMS IN INVENTORY
+local GetContainerItemID = _G.C_Container.GetContainerItemID
 
 hooksecurefunc(GameTooltip, "SetBagItem", function(self, bag, slot)
 	local id = GetContainerItemID(bag, slot)
