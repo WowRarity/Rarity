@@ -38,9 +38,9 @@ local GetItemInfo = function(id)
 	return R:GetItemInfo(id)
 end
 local GetRealZoneText = _G.GetRealZoneText
-local GetContainerNumSlots = _G.GetContainerNumSlots
-local GetContainerItemID = _G.GetContainerItemID
-local GetContainerItemInfo = _G.GetContainerItemInfo
+local GetContainerNumSlots = _G.C_Container.GetContainerNumSlots
+local GetContainerItemID = _G.C_Container.GetContainerItemID
+local GetContainerItemInfo = _G.C_Container.GetContainerItemInfo
 local GetNumArchaeologyRaces = _G.GetNumArchaeologyRaces
 local GetArchaeologyRaceInfo = _G.GetArchaeologyRaceInfo
 local GetStatistic = _G.GetStatistic
