@@ -1,4 +1,7 @@
 local changes = {
+	["r718"] = {
+		fixes = { "Fixed script errors caused by API changes in patch 10.0.2" },
+	},
 	["r717"] = {
 		fixes = { "Fixed script errors caused by API changes in patch 10.0" },
 		changes = { "Tooltip additions should now also work for items in the quest log" },
