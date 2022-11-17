@@ -31,6 +31,11 @@ local function onTooltipSetUnit(tooltip, data)
 		return
 	end
 
+	if not self.GetUnit then
+		-- Probably a tooltip created by another addon, that hasn't been updated to use GameTooltipDataMixin (risky assumption)
+		return
+	end
+
 	-- If debug mode is on, find NPCID from mouseover target and append it to the tooltip
 	if R.db.profile.debugMode then
 		GameTooltip:AddLine("NPCID: " .. R:GetNPCIDFromGUID(UnitGUID("mouseover")), 255, 255, 255)
