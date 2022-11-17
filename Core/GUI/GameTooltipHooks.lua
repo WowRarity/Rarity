@@ -27,13 +27,13 @@ local white = Rarity.Enum.Colors.White
 local function onTooltipSetUnit(tooltip, data)
 	local self = tooltip -- For backwards compatibility with the legacy code below (should be refactored eventually...)
 
+	if not R.db or R.db.profile.enableTooltipAdditions == false then
+		return
+	end
+
 	-- If debug mode is on, find NPCID from mouseover target and append it to the tooltip
 	if R.db.profile.debugMode then
 		GameTooltip:AddLine("NPCID: " .. R:GetNPCIDFromGUID(UnitGUID("mouseover")), 255, 255, 255)
-	end
-
-	if not R.db or R.db.profile.enableTooltipAdditions == false then
-		return
 	end
 
 	local name, unit = self:GetUnit()
