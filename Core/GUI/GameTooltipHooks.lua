@@ -25,6 +25,10 @@ local white = Rarity.Enum.Colors.White
 
 -- Game Tooltip hijacking stuff
 local function onTooltipSetUnit(tooltip, data)
+	if tooltip ~= _G.GameTooltip then
+		return -- Probably a tooltip created by another addon, that does use the new GameTooltipDataMixin (triggers post-hooks globally...)
+	end
+
 	local self = tooltip -- For backwards compatibility with the legacy code below (should be refactored eventually...)
 
 	if not R.db or R.db.profile.enableTooltipAdditions == false then
