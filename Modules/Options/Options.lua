@@ -33,6 +33,7 @@ local WOD = "WOD"
 local LEGION = "LEGION"
 local BFA = "BFA"
 local SHADOWLANDS = "SHADOWLANDS"
+local DRAGONFLIGHT = "DRAGONFLIGHT"
 local HOLIDAY = "HOLIDAY"
 
 -- Methods of obtaining
@@ -904,6 +905,18 @@ function R:PrepareOptions()
 								end,
 								set = function(info, val)
 									self.db.profile.cats[SHADOWLANDS] = val
+									Rarity.GUI:UpdateText()
+								end,
+							},
+							dragonflight = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Dragonflight"],
+								get = function()
+									return self.db.profile.cats[DRAGONFLIGHT]
+								end,
+								set = function(info, val)
+									self.db.profile.cats[DRAGONFLIGHT] = val
 									Rarity.GUI:UpdateText()
 								end,
 							},

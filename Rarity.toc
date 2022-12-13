@@ -75,6 +75,7 @@ DB\Mounts\WarlordsOfDraenor.lua
 DB\Mounts\Legion.lua
 DB\Mounts\BattleForAzeroth.lua
 DB\Mounts\Shadowlands.lua
+DB\Mounts\Dragonflight.lua
 
 ## Pets
 DB\Pets\HolidayEvents.lua
@@ -87,6 +88,7 @@ DB\Pets\WarlordsOfDraenor.lua
 DB\Pets\Legion.lua
 DB\Pets\BattleForAzeroth.lua
 DB\Pets\Shadowlands.lua
+DB\Pets\Dragonflight.lua
 
 ## Toys (and other items, for now...)
 DB\Toys\HolidayEvents.lua
@@ -99,6 +101,7 @@ DB\Toys\WarlordsOfDraenor.lua
 DB\Toys\Legion.lua
 DB\Toys\BattleForAzeroth.lua
 DB\Toys\Shadowlands.lua
+DB\Toys\Dragonflight.lua
 
 # Utility/Helpers
 Utils\DebugCache.lua
