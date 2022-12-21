@@ -1874,6 +1874,7 @@ L["This mount can only drop while having the Abomination Stitching construct Nee
 L["Dragonflight"] = true
 L["Reins of the Liberated Slyvern"] = true
 L["Breezebiter"] = true
+L["Plainswalker Bearer"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
