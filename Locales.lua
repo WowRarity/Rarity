@@ -1876,6 +1876,7 @@ L["Reins of the Liberated Slyvern"] = true
 L["Breezebiter"] = true
 L["Plainswalker Bearer"] = true
 L["Rockin' Rollin' Racer Customizer 19.9.3"] = true
+L["Vengeance's Reins"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
