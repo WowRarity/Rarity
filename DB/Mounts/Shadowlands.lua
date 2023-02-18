@@ -623,6 +623,40 @@ local shadowlandsMounts = {
 		),
 		coords = { { x = 52, 2, y = 75, 3, m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS, n = L["Hirukon"] } },
 	},
+	["Vengeance's Reins"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		name = L["Vengeance's Reins"],
+		spellId = 351195,
+		itemId = 186642,
+		npcs = { 99999 },
+		tooltipNpcs = { 175732 }, -- Sylvanas Windrunner
+		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true },
+		chance = 100,
+		wasGuaranteed = true,
+		groupSize = 10,
+		equalOdds = true,
+		statisticId = { 15176 },
+		coords = { { m = CONSTANTS.UIMAPIDS.SANCTUM_OF_DOMINATION, i = true } },
+	},
+	["Fractal Cypher of the Zereth Overseer"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		name = L["Fractal Cypher of the Zereth Overseer"],
+		spellId = 368158,
+		itemId = 190768,
+		npcs = { 99999 },
+		tooltipNpcs = { 180990 }, -- The Jailer
+		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true },
+		chance = 100,
+		wasGuaranteed = true,
+		groupSize = 10,
+		equalOdds = true,
+		statisticId = { 15467 },
+		coords = { { m = CONSTANTS.UIMAPIDS.SEPULCHER_OF_THE_FIRST_ONES, i = true } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)
