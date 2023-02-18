@@ -1221,6 +1221,7 @@ globals = {
 	"C_WowTokenSecure.RedeemToken",
 	"C_WowTokenSecure.RedeemTokenConfirm",
 	"C_WowTokenSecure.WillKickFromWorld",
+	"CVarCallbackRegistry",
 	"CalculateAuctionDeposit",
 	"CalendarAddEvent",
 	"CalendarCanAddEvent",
