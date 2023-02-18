@@ -1156,7 +1156,7 @@ local function addGroup(group, requiresGroup)
 											)
 										end
 										Rarity:Print(text)
-										if tostring(SHOW_COMBAT_TEXT) ~= "0" then
+										if CVarCallbackRegistry:GetCVarValueBool("enableFloatingCombatText") then
 											if type(CombatText_AddMessage) == "nil" then
 												UIParentLoadAddOn("Blizzard_CombatText")
 											end
