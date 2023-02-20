@@ -28,7 +28,6 @@ ignore = {
 	"542", -- empty if branch (likely some commented-out code that needs to be reviewed later)
 	"512", -- loop is executed at most once (no idea why, will also have to be reviewed later)
 	"231", -- variable is never accessed (still more readable than replacing everything with underscores... remove later?)
-
 }
 globals = {
 
@@ -742,6 +741,7 @@ globals = {
 	"C_LootJournal.SetLegendaryInventoryTypeFilter",
 	"C_LossOfControl.GetEventInfo",
 	"C_LossOfControl.GetNumEvents",
+	"C_MajorFactions",
 	"C_MapBar",
 	"C_MapBar.BarIsShown",
 	"C_MapBar.GetCurrentValue",

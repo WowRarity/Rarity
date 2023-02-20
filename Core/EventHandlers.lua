@@ -47,6 +47,7 @@ local GetStatistic = _G.GetStatistic
 local GetLootSourceInfo = _G.GetLootSourceInfo
 local C_Timer = _G.C_Timer
 local IsSpellKnown = _G.IsSpellKnown
+local GetCurrentRenownLevel = C_MajorFactions.GetCurrentRenownLevel
 
 -- Addon APIs
 local DebugCache = Rarity.Utils.DebugCache
@@ -1606,6 +1607,31 @@ function R:OnEvent(event, ...)
 						v.attempts = v.attempts + 1
 					end
 					self:OutputAttempts(v)
+				end
+			end
+		end
+
+		-- Handle opening Expedition Scout's Pack (Verdant Skitterfly mount in Dragonflight)
+		if
+			Rarity.isFishing
+			and Rarity.isOpening
+			and Rarity.lastNode
+			and (Rarity.lastNode == L["Expedition Scout's Pack"])
+		then
+			local names = { "Verdant Skitterfly" }
+			Rarity:Debug("Detected Opening on " .. L["Expedition Scout's Pack"] .. " (method = SPECIAL)")
+			-- This mount has a prerequisite to drop. Renown 25 with Dragonscale Expedition
+			if GetCurrentRenownLevel(CONSTANTS.FACTION_IDS.DRAGONSCALE_EXPEDITION) >= 25 then
+				for _, name in pairs(names) do
+					local v = self.db.profile.groups.mounts[name]
+					if v and type(v) == "table" and v.enabled ~= false then
+						if v.attempts == nil then
+							v.attempts = 1
+						else
+							v.attempts = v.attempts + 1
+						end
+						self:OutputAttempts(v)
+					end
 				end
 			end
 		end

@@ -1878,6 +1878,9 @@ L["Plainswalker Bearer"] = true
 L["Rockin' Rollin' Racer Customizer 19.9.3"] = true
 L["Vengeance's Reins"] = true
 L["Fractal Cypher of the Zereth Overseer"] = true
+L["Verdant Skitterfly"] = true
+L["This mount can only drop after hitting renown 25 with Dragonscale Expedition."] = true
+L["Expedition Scout's Pack"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
