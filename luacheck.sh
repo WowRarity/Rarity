@@ -1,0 +1,1 @@
+luacheck . --config luacheckrc.lua --exclude-files luacheckrc.lua
