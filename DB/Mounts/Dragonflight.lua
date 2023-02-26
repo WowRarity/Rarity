@@ -32,6 +32,22 @@ local dragonflightMounts = {
 			{ m = CONSTANTS.UIMAPIDS.THALDRASZUS },
 		},
 	},
+	["Verdant Skitterfly"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Verdant Skitterfly"],
+		spellId = 374048,
+		itemId = 192764,
+		chance = 100, -- Blind guess
+		sourceText = L["This mount can only drop after hitting renown 25 with Dragonscale Expedition."],
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.THE_WAKING_SHORES },
+			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS },
+			{ m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN },
+			{ m = CONSTANTS.UIMAPIDS.THALDRASZUS },
+		},
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, dragonflightMounts)

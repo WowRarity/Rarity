@@ -221,6 +221,14 @@ C.ARCHAEOLOGY_RACES = {
 	DWARF = 20,
 }
 
+C.FACTION_IDS = {
+	-- Dragonflight
+	MARUUK_CENTAUR = 2503,
+	DRAGONSCALE_EXPEDITION = 2507,
+	VALDRAKKEN_ACCORD = 2510,
+	ISKAARA_TUSKARR = 2511,
+}
+
 -- This doesn't really belong here and needs streamlining anyway, but for now this is the best place.
 -- Tooltip Filters (Note: Currently, this system is merely a stub. but more (and custom) filters may be added in the future)
 -- These are used to decide whether the tooltip should be extended to display information about an CONSTANTS.ITEM_TYPES.ITEM for the NPCs listed in its tooltipNpcs table. Useful if we want to draw attention to an CONSTANTS.ITEM_TYPES.ITEM, but not every player can obtain it

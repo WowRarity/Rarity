@@ -250,4 +250,5 @@ R.opennodes = {
 	[L["Zovaal's Vault"]] = true,
 	[L["Mawsworn Supply Chest"]] = true,
 	[L["Sandworn Chest"]] = true,
+	[L["Expedition Scout's Pack"]] = true,
 }
