@@ -36,7 +36,7 @@ local mopPets = {
 		name = L["Porcupette"],
 		spellId = 118414,
 		itemId = 89587,
-		items = { 89125 },
+		items = { 89125, 142447, 151638, 184866 },
 		chance = 250,
 		creatureId = 61086,
 		coords = { { m = CONSTANTS.UIMAPIDS.NONE } },
