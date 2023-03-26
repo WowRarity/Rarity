@@ -183,6 +183,7 @@ function R:PrepareDefaults()
 				16677, -- Adventurer of the Ohn'ahran Plains
 				16678, -- Adventurer of The Azure Span
 				16679, -- Adventurer of Thaldraszus
+				17525, -- Champion of the Forbidden Reach
 			},
 			-- These are inventory items that may result in another CONSTANTS.ITEM_TYPES.ITEM that Rarity would like to make you aware of
 			extraTooltips = {
