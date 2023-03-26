@@ -1883,6 +1883,23 @@ L["This mount can only drop after hitting renown 25 with Dragonscale Expedition.
 L["Expedition Scout's Pack"] = true
 L["Ohuna Companion"] = true
 L["Bakar Companion"] = true
+L["Ancient Salamanther"] = true
+L["Mad-Eye Carrey"] = true
+L["Warden Entrix"] = true
+L["Vraken the Hunter"] = true
+L["Veltrax"] = true
+L["Ookbeard"] = true
+L["Wyrmslayer Angvardi"] = true
+L["Duzalgor"] = true
+L["Grugoth the Hullcrusher"] = true
+L["Volcanakk"] = true
+L["Reisa the Drowned"] = true
+L["Galakhad"] = true
+L["Pyrachniss"] = true
+L["Lady Shaz'ra"] = true
+L["Bonesifter Marwak"] = true
+L["Ishyra"] = true
+L["Gahz'raxes"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
