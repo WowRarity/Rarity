@@ -45,8 +45,6 @@ local shadowlandsMounts = {
 		spellId = 312753,
 		npcs = { 166679 },
 		chance = 100,
-		groupSize = 5,
-		equalOdds = true,
 		questId = { 59900 },
 		coords = { { m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 51.98, y = 51.80, n = L["Hopecrusher"] } },
 		requiresCovenant = true,
@@ -140,8 +138,6 @@ local shadowlandsMounts = {
 		npcs = { 166521 },
 		chance = 100,
 		questId = { 59869 },
-		groupSize = 5,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 62.0, y = 47.0, n = L["Famu the Infinite"] } },
 	},
 	["Wild Glimmerfur Prowler"] = {
@@ -154,8 +150,6 @@ local shadowlandsMounts = {
 		npcs = { 168647 },
 		chance = 100,
 		questId = { 61632 },
-		groupSize = 5,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.ARDENWEALD, x = 30.4, y = 55.2, n = L["Valfir the Unrelenting"] } },
 		requiresCovenant = true,
 		requiredCovenantID = CONSTANTS.COVENANT_IDS.NIGHT_FAE,
@@ -186,8 +180,6 @@ local shadowlandsMounts = {
 		npcs = { 157309 },
 		chance = 33,
 		questId = { 61720 },
-		groupSize = 5,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 58.6, y = 74.2, n = L["Violet Mistake"] } },
 	},
 	["Gorespine"] = {
@@ -200,8 +192,6 @@ local shadowlandsMounts = {
 		npcs = { 162690 },
 		chance = 50,
 		questId = { 58851 },
-		groupSize = 5,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 65.8, y = 35.3, n = L["Nerissa Heartless"] } },
 	},
 	["Blisterback Bloodtusk"] = {
@@ -215,8 +205,6 @@ local shadowlandsMounts = {
 		chance = 33,
 		questId = { 58889 },
 		tooltipNpcs = { 162818 },
-		groupSize = 5,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 33.6, y = 80.6, n = L["Warbringer Mal'Korak"] } },
 	},
 	["Armored Bonehoof Tauralus"] = {
@@ -230,8 +218,6 @@ local shadowlandsMounts = {
 		chance = 100, -- Estimate
 		questId = { 58784 },
 		tooltipNpcs = { 168148 },
-		groupSize = 5,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 50.67, y = 47.37, n = L["Sabriel the Bonecleaver"] } },
 		requiresCovenant = true,
 		requiredCovenantID = CONSTANTS.COVENANT_IDS.NECROLORD,
@@ -265,8 +251,6 @@ local shadowlandsMounts = {
 		npcs = { 174861 },
 		chance = 50,
 		questId = 63433,
-		groupSize = 5,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.THE_MAW, x = 53.5, y = 79.5, n = L["Gorged Shadehound"] } },
 	},
 	["Gnawed Reins of the Battle-Bound Warhound"] = {
@@ -279,8 +263,6 @@ local shadowlandsMounts = {
 		npcs = { 162873, 162880, 162875, 162853, 162874, 162872 },
 		chance = 100, -- Estimate
 		questId = 62786,
-		groupSize = 5,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 50.67, y = 47.37, n = L["Theater of Pain"] } },
 	},
 	["Marrowfang's Reins"] = {
@@ -294,9 +276,7 @@ local shadowlandsMounts = {
 		tooltipNpcs = { 162693 },
 		statisticId = { 14404 },
 		chance = 100,
-		equalOdds = true,
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
-		groupSize = 5,
 		coords = { { m = CONSTANTS.UIMAPIDS.THE_NECROTIC_WAKE } },
 	},
 	["Impressionable Gorger Spawn"] = {
@@ -309,8 +289,6 @@ local shadowlandsMounts = {
 		npcs = { 160821 },
 		chance = 100, -- Estimate,
 		questId = 58259,
-		groupSize = 5,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 38.60, y = 72.00, n = L["Worldedge Gorger"] } },
 	},
 	["Ascended Skymane"] = {
