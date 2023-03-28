@@ -1917,6 +1917,8 @@ L["Innumerable Ruination"] = true
 L["Sandana the Tempest"] = true
 L["Phleep"] = true
 L["A Collection Of Me"] = true
+L["Ashenwing"] = true
+L["Bonesifter Marwak"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
