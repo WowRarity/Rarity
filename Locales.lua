@@ -1900,6 +1900,23 @@ L["Lady Shaz'ra"] = true
 L["Bonesifter Marwak"] = true
 L["Ishyra"] = true
 L["Gahz'raxes"] = true
+L["Notfar the Unbearable"] = true
+L["Notfar's Favorite Food"] = true
+L["The Super Shellkhan Gang"] = true
+L["The Great Shellkhan"] = true
+L["Aquatic Shades"] = true
+L["Immaculate Sac of Swog Treasures"] = true
+L["Blightfur"] = true
+L["High Shaman Rotknuckle"] = true
+L["Blightpaw the Depraved"] = true
+L["Infected Ichor"] = true
+L["Sunscale Behemoth"] = true
+L["Personal Shell"] = true
+L["Lord Epochbrgl"] = true
+L["Innumerable Ruination"] = true
+L["Sandana the Tempest"] = true
+L["Phleep"] = true
+L["A Collection Of Me"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
