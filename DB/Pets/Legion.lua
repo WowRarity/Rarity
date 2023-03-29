@@ -361,8 +361,6 @@ local legionPets = {
 		npcs = { 99999 },
 		tooltipNpcs = { 102679 },
 		chance = 100,
-		groupSize = 3,
-		equalOdds = true,
 		statisticId = { 10928, 10929, 10930, 10931 },
 		enableCoin = true,
 		coords = { { m = 781, i = true } },
