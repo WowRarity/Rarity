@@ -408,9 +408,7 @@ local shadowlandsPets = {
 		tooltipNpcs = { 164267 },
 		statisticId = { 14398 },
 		chance = 100,
-		equalOdds = true,
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
-		groupSize = 5,
 		coords = { { m = CONSTANTS.UIMAPIDS.PLAGUEFALL } },
 	},
 	["Vial of Roiling Emotions"] = {
@@ -424,9 +422,7 @@ local shadowlandsPets = {
 		npcs = { 162102 },
 		-- tooltipNpcs = { 162102 }, -- Not needed if using NPC instead of BOSS
 		chance = 100,
-		equalOdds = true,
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
-		groupSize = 5,
 		coords = { { m = CONSTANTS.UIMAPIDS.SANGUINE_DEPTHS } },
 	},
 	["Spinemaw Gormling"] = {
@@ -441,9 +437,7 @@ local shadowlandsPets = {
 		tooltipNpcs = { 164517 },
 		statisticId = { 14395 },
 		chance = 100,
-		equalOdds = true,
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
-		groupSize = 5,
 		coords = { { m = CONSTANTS.UIMAPIDS.MISTS_OF_TIRNA_SCITHE } },
 	},
 	["Skittering Venomspitter"] = {
