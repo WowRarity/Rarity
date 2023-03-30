@@ -114,6 +114,7 @@ C.UIMAPIDS = {
 	THE_AZURE_SPAN = 2024,
 	THALDRASZUS = 2025,
 	THE_FORBIDDEN_REACH = 2151,
+	VAULT_OF_THE_INCARNATES = 2125, -- rasz chest room = 2135 (valdraken)
 }
 
 -- Types of items
