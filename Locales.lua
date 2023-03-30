@@ -1923,6 +1923,7 @@ L["Entrance to Zskera Vault"] = true
 L["Gilded Mechafrog"] = true
 L["Inside Zskera Vaults, collect Neltharion Gift Tokens for Prototype Tinker-Tron in order to receive Tattered Gift Package, which can drop the Gilded Mechafrog pet."] =
 	true
+L["Renewed Proto-Drake: Embodiment of the Storm-Eater"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
