@@ -61,7 +61,7 @@ local dragonflightPets = {
 		items = { 203699, 203700 },
 		spellId = 403072,
 		creatureId = 202484,
-		sourceText = L["Inside Zakera Vault Collect Neltharion Gift Tokens to hand in to Prototype Tinker-Tron to receive Tattered Gift Package which can drop the Gilded Mechafrog"],
+		sourceText = L["Inside Zskera Vaults, collect Neltharion Gift Tokens for Prototype Tinker-Tron in order to receive Tattered Gift Package, which can drop the Gilded Mechafrog pet."],
 		chance = 25,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 29.2, y = 53.0, L["Entrance to Zskera Vault"] },
