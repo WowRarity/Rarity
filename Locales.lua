@@ -1919,6 +1919,10 @@ L["Phleep"] = true
 L["A Collection Of Me"] = true
 L["Ashenwing"] = true
 L["Bonesifter Marwak"] = true
+L["Entrance to Zskera Vault"] = true
+L["Gilded Mechafrog"] = true
+L["Inside Zskera Vaults, collect Neltharion Gift Tokens for Prototype Tinker-Tron in order to receive Tattered Gift Package, which can drop the Gilded Mechafrog pet."] =
+	true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
