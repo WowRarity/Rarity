@@ -25,7 +25,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --check . --verbose
-          version: v0.16.1
+          version: v0.17.1
 
       - name: Run autoformat
         run: ./autoformat.sh
