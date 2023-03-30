@@ -95,6 +95,21 @@ local dragonflightMounts = {
 			{ m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 28.2, y = 38.2, n = L["Gahz'raxes"] },
 		},
 	},
+	["Renewed Proto-Drake: Embodiment of the Storm-Eater"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		name = L["Renewed Proto-Drake: Embodiment of the Storm-Eater"],
+		spellId = 394780,
+		itemId = 201790,
+		npcs = { 99999 },
+		tooltipNpcs = { 199031 }, -- Raszageth,
+		chance = 50,
+		statisticId = { 16386, 16394, 16370, 16378 },
+		groupSize = 10,
+		evenOdds = true,
+		coords = { { m = CONSTANTS.UIMAPIDS.VAULT_OF_THE_INCARNATES, i = true } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, dragonflightMounts)
