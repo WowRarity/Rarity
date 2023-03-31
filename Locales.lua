@@ -1923,6 +1923,22 @@ L["Entrance to Zskera Vault"] = true
 L["Gilded Mechafrog"] = true
 L["Inside Zskera Vaults, collect Neltharion Gift Tokens for Prototype Tinker-Tron in order to receive Tattered Gift Package, which can drop the Gilded Mechafrog pet."] =
 	true
+L["Tide Spirit"] = true
+L["Gale Spirit"] = true
+L["Blaze Spirit"] = true
+L["Dust Spirit"] = true
+L["Fire Elemental"] = true
+L["Stormbound Colossus"] = true
+L["Earthshatter Elemental"] = true
+L["Force of the Springs"] = true
+L["Collect Encaged Fiery Soul and wait 15min until it turns into Docile Fiery Soul, then open it for a chance at the pet."] =
+	true
+L["Collect Encaged Airy Soul and wait 15min until it turns into Docile Airy Soul, then open it for a chance at the pet."] =
+	true
+L["Collect Encaged Frosty Soul and wait 15min until it turns into Docile Frosty Soul, then open it for a chance at the pet."] =
+	true
+L["Collect Encaged Earthen Soul and wait 15min until it turns into Docile Earthen Soul, then open it for a chance at the pet."] =
+	true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
