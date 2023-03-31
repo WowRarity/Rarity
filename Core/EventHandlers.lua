@@ -676,7 +676,7 @@ function R:OnChatCommand(input)
 		local mapID = C_Map.GetBestMapForUnit("player")
 		local mapInfo = C_Map.GetMapInfo(mapID)
 		local mapName = mapInfo and mapInfo.name or "Unknown"
-		self:Print("Current Map ID: " .. mapID .. " - Current Zone: " .. mapName)
+		self:Print("Current map: " .. mapID .. " ~ " .. mapName)
 	elseif strlower(input) == "purge" then -- TODO: This should be done automatically, no?
 		self.Database:PurgeObsoleteEntries()
 	elseif strlower(input) == "test" then
