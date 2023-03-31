@@ -672,6 +672,11 @@ function R:OnChatCommand(input)
 		DebugCache:PrintMessages(numMessages)
 	elseif strlower(input) == "validate" then -- Verify the ItemDB
 		self.Validation:ValidateItemDB()
+	elseif strlower(input) == "mapinfo" then
+		local mapID = C_Map.GetBestMapForUnit("player")
+		local mapInfo = C_Map.GetMapInfo(mapID)
+		local mapName = mapInfo and mapInfo.name or "Unknown"
+		self:Print("Current map: " .. mapID .. " ~ " .. mapName)
 	elseif strlower(input) == "purge" then -- TODO: This should be done automatically, no?
 		self.Database:PurgeObsoleteEntries()
 	elseif strlower(input) == "test" then

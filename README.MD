@@ -32,6 +32,7 @@
 <p>Simply typing <strong>/rarity</strong> should open the options menu (unless disabled).</p>
 <p>For troubleshooting issues:</p>
 <ul>
+<li><strong>/rarity mapinfo</strong> prints the current map name and ID, which can help track zonewide custom items</li>
 <li><strong>/rarity dump</strong> prints the most recent debug log entries (even if the debug mode is disabled)</li>
 <li><strong>/rarity validate</strong> checks the consistency of your item database, including custom items (experimental)</li>
 </ul>
