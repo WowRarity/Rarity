@@ -1939,6 +1939,10 @@ L["Collect Encaged Frosty Soul and wait 15min until it turns into Docile Frosty 
 	true
 L["Collect Encaged Earthen Soul and wait 15min until it turns into Docile Earthen Soul, then open it for a chance at the pet."] =
 	true
+L["Luvvy"] = true
+L["Luttrok"] = true
+L["Wakyn"] = true
+L["Scruffles"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
