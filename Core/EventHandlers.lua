@@ -57,7 +57,7 @@ function EventHandlers:Register()
 
 	self:UnregisterAllEvents()
 	self:RegisterBucketEvent("BAG_UPDATE", 0.5, "OnBagUpdate")
-	self:RegisterEvent("LOOT_READY", "OnEvent")
+	self:RegisterBucketEvent("LOOT_READY", 0.5, "OnLootReady")
 	self:RegisterEvent("CURRENCY_DISPLAY_UPDATE", "OnCurrencyUpdate")
 	self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED", "OnCombat") -- Used to detect boss kills that we didn't solo
 	self:RegisterEvent("BANKFRAME_OPENED", "OnEvent")
@@ -1114,756 +1114,7 @@ end
       -- Some easy, some fairly arcane methods to detect when we've obtained something we're looking for
   ]]
 function R:OnEvent(event, ...)
-	-------------------------------------------------------------------------------------
-	-- You opened a loot window on a corpse or fishing node
-	-------------------------------------------------------------------------------------
-	if event == "LOOT_READY" then
-		-- Detect bank, guild bank, auction house, tradeskill, trade, and mail. This turns off item use detection.
-		self:Debug("LOOT_READY with target: " .. (UnitGUID("target") or "NO TARGET"))
-
-		-- In 8.0.1, two LOOT_READY events fire when the loot window opens. We'll just ignore subsequent events for a short time to prevent double counting
-		if Rarity.Session:IsLocked() then -- One attempt is already being counted and we don't want another one for this loot event -> Ignore this call
-			Rarity:Debug("Session is locked; ignoring this LOOT_READY event")
-			return
-		else
-			Rarity.Session:Lock(1)
-		end
-
-		local zone = GetRealZoneText()
-		local subzone = GetSubZoneText()
-		local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
-		local subzone_t = LibStub("LibBabble-SubZone-3.0"):GetReverseLookupTable()[subzone]
-
-		if Rarity.isFishing and Rarity.isOpening then
-			self:Debug("Opened something")
-		end
-
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode then
-			self:Debug("Opened a node: " .. Rarity.lastNode)
-		end
-
-		-- Handle opening Crane Nest
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Crane Nest"]) then
-			Rarity:Debug("Detected Opening on " .. L["Crane Nest"] .. " (method = SPECIAL)")
-			local v = self.db.profile.groups.pets["Azure Crane Chick"]
-			if v and type(v) == "table" and v.enabled ~= false then
-				if v.attempts == nil then
-					v.attempts = 1
-				else
-					v.attempts = v.attempts + 1
-				end
-				self:OutputAttempts(v)
-			end
-		end
-
-		-- Handle opening Timeless Chest
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Timeless Chest"]) then
-			Rarity:Debug("Detected Opening on " .. L["Timeless Chest"] .. " (method = SPECIAL)")
-			local v = self.db.profile.groups.pets["Bonkers"]
-			if v and type(v) == "table" and v.enabled ~= false then
-				if v.attempts == nil then
-					v.attempts = 1
-				else
-					v.attempts = v.attempts + 1
-				end
-				self:OutputAttempts(v)
-			end
-		end
-
-		-- Handle opening Snow Mound
-		if
-			Rarity.isFishing
-			and Rarity.isOpening
-			and Rarity.lastNode
-			and (Rarity.lastNode == L["Snow Mound"])
-			and GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.FROSTFIRE_RIDGE
-		then -- Make sure we're in Frostfire Ridge (there are Snow Mounds in other zones, particularly Ulduar in the Hodir room)
-			Rarity:Debug("Detected Opening on " .. L["Snow Mound"] .. " (method = SPECIAL)")
-			local v = self.db.profile.groups.pets["Grumpling"]
-			if v and type(v) == "table" and v.enabled ~= false then
-				if v.attempts == nil then
-					v.attempts = 1
-				else
-					v.attempts = v.attempts + 1
-				end
-				self:OutputAttempts(v)
-			end
-		end
-
-		-- Handle opening Curious Wyrmtongue Cache
-		if
-			Rarity.isFishing
-			and Rarity.isOpening
-			and Rarity.lastNode
-			and (Rarity.lastNode == L["Curious Wyrmtongue Cache"])
-		then
-			local names = { "Scraps", "Pilfered Sweeper" }
-			Rarity:Debug("Detected Opening on " .. L["Curious Wyrmtongue Cache"] .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening Glimmering Chest
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Glimmering Chest"]) then
-			local names = { "Sandclaw Nestseeker" }
-			Rarity:Debug("Detected Opening on " .. L["Glimmering Chest"] .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening Penitence of Purity (Shadowlands Kyrian only chest)
-		if
-			Rarity.isFishing
-			and Rarity.isOpening
-			and Rarity.lastNode
-			and (Rarity.lastNode == L["Penitence of Purity"])
-		then
-			local names = { "Phalynx of Humility" }
-			Rarity:Debug("Detected Opening on " .. L["Penitence of Purity"] .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name] or self.db.profile.groups.mounts[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening Silver Strongbox & Gilded Chest (Bastion, Shadowlands nodes for Acrobatic Steward (toy) and Gilded Wader (pet))
-		if
-			Rarity.isFishing
-			and Rarity.isOpening
-			and Rarity.lastNode
-			and (Rarity.lastNode == L["Silver Strongbox"] or Rarity.lastNode == L["Gilded Chest"])
-		then
-			local names = { "Acrobatic Steward", "Gilded Wader" }
-			Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening Broken Bell & Skyward Bell (Shadowlands, Bastion nodes for Soothing Vesper (toy) & Gilded Wader (pet))
-		if
-			Rarity.isFishing
-			and Rarity.isOpening
-			and Rarity.lastNode
-			and (Rarity.lastNode == L["Broken Bell"] or Rarity.lastNode == L["Skyward Bell"])
-		then
-			local names = { "Soothing Vesper", "Gilded Wader" }
-			Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening Cache of the Ascended (Shadowlands, Bastion mount cache)
-		if
-			Rarity.isFishing
-			and Rarity.isOpening
-			and Rarity.lastNode
-			and (Rarity.lastNode == L["Cache of the Ascended"])
-		then
-			local names = { "Ascended Skymane" }
-			Rarity:Debug("Detected Opening on " .. L["Cache of the Ascended"] .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name] or self.db.profile.groups.mounts[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening Slime-Coated Crate (Shadowlands, Maldraxxus crate for Kevin's Party Supplies (toy) & Bubbling Pustule (pet))
-		if
-			Rarity.isFishing
-			and Rarity.isOpening
-			and Rarity.lastNode
-			and (Rarity.lastNode == L["Slime-Coated Crate"])
-		then
-			local names = { "Kevin's Party Supplies", "Bubbling Pustule" }
-			Rarity:Debug("Detected Opening on " .. L["Slime-Coated Crate"] .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening Sprouting Growth (Shadowlands, Maldraxxus crate for Skittering Venomspitter pet)
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Sprouting Growth"]) then
-			local names = { "Skittering Venomspitter" }
-			Rarity:Debug("Detected Opening on " .. L["Sprouting Growth"] .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening Stewart's Stewpendous Stew (Shadowlands, Bastion crate for Silvershell Snapper pet)
-		if
-			Rarity.isFishing
-			and Rarity.isOpening
-			and Rarity.lastNode
-			and (Rarity.lastNode == L["Stewart's Stewpendous Stew"])
-		then
-			local names = { "Silvershell Snapper" }
-			Rarity:Debug("Detected Opening on " .. L["Stewart's Stewpendous Stew"] .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening Bleakwood Chest (Shadowlands, Revendreth chest for Trapped Stonefiend pet)
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Bleakwood Chest"]) then
-			local names = { "Trapped Stonefiend" }
-			Rarity:Debug("Detected Opening on " .. L["Bleakwood Chest"] .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening Blackhound Cache (Shadowlands, Maldraxxus cache for Battlecry of Krexus - Necrolord toy)
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Blackhound Cache"]) then
-			local names = { "Battlecry of Krexus" }
-			Rarity:Debug("Detected Opening on " .. L["Blackhound Cache"] .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening Secret Treasure (Shadowlands, Revendreth chest for Soullocked Sinstone pet)
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Secret Treasure"]) then
-			local names = { "Soullocked Sinstone" }
-			Rarity:Debug("Detected Opening on " .. L["Secret Treasure"] .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening Forgotten Chest (Shadowlands, Revendreth chest for Stony's Infused Ruby pet and Silessa's Battle Harness mount)
-		if
-			Rarity.isFishing
-			and Rarity.isOpening
-			and Rarity.lastNode
-			and (Rarity.lastNode == L["Forgotten Chest"])
-			and GetBestMapForUnit("player") ~= CONSTANTS.UIMAPIDS.STORMSONG_VALLEY -- Chest with the same name in Stormsong Valley
-		then
-			local names = { "Stony's Infused Ruby", "Silessa's Battle Harness" }
-			Rarity:Debug("Detected Opening on " .. L["Forgotten Chest"] .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.pets[name] or self.db.profile.groups.mounts[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening Cache of Eyes (Shadowlands, Maldraxxus chest for Luminous Webspinner pet)
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Cache of Eyes"]) then
-			local names = { "Luminous Webspinner" }
-			Rarity:Debug("Detected Opening on " .. L["Cache of Eyes"] .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening lots of various chests for Gilded Wader (pet).
-		local nodesGildedWader = {
-			[L["Gift of Thenios"]] = true,
-			[L["Hidden Hoard"]] = true,
-			[L["Memorial Offerings"]] = true,
-			[L["Treasure of Courage"]] = true,
-		}
-		local isRelevantNode = false
-		if Rarity.lastNode then
-			isRelevantNode = nodesGildedWader[Rarity.lastNode]
-		end
-		if Rarity.isFishing and Rarity.isOpening and isRelevantNode then
-			local names = { "Gilded Wader" }
-			Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.pets[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening Zovaal's Vault (The Maw, Shadowlands treasure for Personal Ball and Chain & Jailer's Cage
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Zovaal's Vault"]) then
-			local names = { "Personal Ball and Chain", "Jailer's Cage" }
-			Rarity:Debug("Detected Opening on " .. L["Zovaal's Vault"] .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening Pile of Coins
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Pile of Coins"]) then
-			local names = { "Armored Vaultbot" }
-			Rarity:Debug("Detected Opening on " .. L["Pile of Coins"] .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening Glimmering Treasure Chest
-		if
-			Rarity.isFishing
-			and Rarity.isOpening
-			and Rarity.lastNode
-			and (Rarity.lastNode == L["Glimmering Treasure Chest"])
-			and select(8, GetInstanceInfo()) == 1626
-		then -- Player is in Withered Army scenario and looted the reward chest
-			local bigChest = false
-			for _, slot in pairs(GetLootInfo()) do
-				if slot.item == L["Ancient Mana"] and slot.quantity == 100 then
-					bigChest = true
-				end
-			end
-
-			if bigChest == true then
-				self:Debug("Detected " .. Rarity.lastNode .. ": Adding toy drop attempts")
-				local names = {
-					"Arcano-Shower",
-					"Displacer Meditation Stone",
-					"Kaldorei Light Globe",
-					"Unstable Powder Box",
-					"Wisp in a Bottle",
-					"Ley Spider Eggs",
-				}
-				for _, name in pairs(names) do
-					local v = self.db.profile.groups.items[name]
-					if v and type(v) == "table" and v.enabled ~= false then
-						if v.attempts == nil then
-							v.attempts = 1
-						else
-							v.attempts = v.attempts + 1
-						end
-						self:OutputAttempts(v)
-					end
-				end
-
-				local v = self.db.profile.groups.mounts["Torn Invitation"]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		if
-			Rarity.isFishing
-			and Rarity.isOpening
-			and Rarity.lastNode
-			and (Rarity.lastNode == L["Mawsworn Supply Chest"])
-		then
-			local names = { "Spectral Mawrat's Tail" }
-			Rarity:Debug("Detected Opening on " .. L["Mawsworn Supply Chest"] .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name] or self.db.profile.groups.mounts[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Sandworn Chest"]) then
-			local names = { "Makaris's Satchel of Mines" }
-			Rarity:Debug("Detected Opening on " .. L["Sandworn Chest"] .. " (method = SPECIAL)")
-			for _, name in pairs(names) do
-				local v = self.db.profile.groups.items[name]
-				if v and type(v) == "table" and v.enabled ~= false then
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening Expedition Scout's Pack (Verdant Skitterfly mount in Dragonflight)
-		if
-			Rarity.isFishing
-			and Rarity.isOpening
-			and Rarity.lastNode
-			and (Rarity.lastNode == L["Expedition Scout's Pack"])
-		then
-			local names = { "Verdant Skitterfly" }
-			Rarity:Debug("Detected Opening on " .. L["Expedition Scout's Pack"] .. " (method = SPECIAL)")
-			-- This mount has a prerequisite to drop. Renown 25 with Dragonscale Expedition
-			if GetCurrentRenownLevel(CONSTANTS.FACTION_IDS.DRAGONSCALE_EXPEDITION) >= 25 then
-				for _, name in pairs(names) do
-					local v = self.db.profile.groups.mounts[name]
-					if v and type(v) == "table" and v.enabled ~= false then
-						if v.attempts == nil then
-							v.attempts = 1
-						else
-							v.attempts = v.attempts + 1
-						end
-						self:OutputAttempts(v)
-					end
-				end
-			end
-		end
-
-		-- HANDLE FISHING
-		if Rarity.isFishing and Rarity.isOpening == false then
-			if Rarity.isPool then
-				self:Debug("Successfully fished from a pool")
-			else
-				self:Debug("Successfully fished")
-			end
-			if
-				Rarity.fishzones[tostring(GetBestMapForUnit("player"))]
-				or Rarity.fishzones[zone]
-				or Rarity.fishzones[subzone]
-				or Rarity.fishzones[zone_t]
-				or Rarity.fishzones[subzone_t]
-			then
-				-- We're interested in fishing in this zone; let's find the item(s) involved
-				Rarity:Debug("We're interested in fishing in this zone; let's find the item(s) involved")
-				for k, v in pairs(self.db.profile.groups) do
-					if type(v) == "table" then
-						for kk, vv in pairs(v) do
-							if type(vv) == "table" then
-								if vv.enabled ~= false then
-									local found = false
-									if
-										vv.method == CONSTANTS.DETECTION_METHODS.FISHING
-										and vv.zones ~= nil
-										and type(vv.zones) == "table"
-									then
-										for kkk, vvv in pairs(vv.zones) do
-											if
-												vvv == tostring(GetBestMapForUnit("player"))
-												or vvv == zone
-												or vvv == lbz[zone]
-												or vvv == subzone
-												or vvv == lbsz[subzone]
-												or vvv == zone_t
-												or vvv == subzone_t
-												or vvv == lbz[zone_t]
-												or vvv == subzone
-												or vvv == lbsz[subzone_t]
-											then
-												if (vv.requiresPool and Rarity.isPool) or not vv.requiresPool then
-													Rarity:Debug(
-														"Found interesting item for this zone: " .. tostring(vv.name)
-													)
-													found = true
-												end
-											end
-										end
-									end
-
-									if
-										vv.excludedMaps
-										and type(vv.excludedMaps) == "table"
-										and vv.excludedMaps[GetBestMapForUnit("player")]
-									then
-										Rarity:Debug(
-											"The current map is excluded for item: "
-												.. tostring(vv.name)
-												.. ". Attempts will not be counted"
-										)
-										found = false
-									end
-
-									if found then
-										if self:IsAttemptAllowed(vv) then
-											if vv.attempts == nil then
-												vv.attempts = 1
-											else
-												vv.attempts = vv.attempts + 1
-											end
-											self:OutputAttempts(vv)
-										end
-									end
-								end
-							end
-						end
-					end
-				end
-			end
-		end
-		if Rarity.fishingTimer then
-			self:CancelTimer(Rarity.fishingTimer, true)
-		end
-		Rarity.fishingTimer = nil
-		Rarity.isFishing = false
-		Rarity.isPool = false
-
-		-- Handle mining Elementium
-		if
-			Rarity.relevantSpells[Rarity.previousSpell] == "Mining"
-			and (Rarity.lastNode == L["Elementium Vein"] or Rarity.lastNode == L["Rich Elementium Vein"])
-		then
-			Rarity:Debug("Detected Mining on " .. Rarity.lastNode .. " (method = SPECIAL)")
-			local v = self.db.profile.groups.pets["Elementium Geode"]
-			if v and type(v) == "table" and v.enabled ~= false then
-				if v.attempts == nil then
-					v.attempts = 1
-				else
-					v.attempts = v.attempts + 1
-				end
-				self:OutputAttempts(v)
-			end
-		end
-
-		-- Handle skinning on Argus (Fossorial Bile Larva)
-		if
-			(
-				Rarity.relevantSpells[Rarity.previousSpell] == "Skinning"
-				or Rarity.relevantSpells[Rarity.previousSpell] == "Mother's Skinning Knife"
-			) -- Skinned something
-			and (
-				GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.KROKUUN
-				or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.MACAREE
-				or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.ANTORAN_WASTES
-			)
-		then -- Player is on Argus -> Can obtain the pet from skinning creatures
-			Rarity:Debug(
-				"Detected skinning on Argus - Can obtain " .. L["Fossorial Bile Larva"] .. " (method = SPECIAL)"
-			)
-			local v = self.db.profile.groups.pets["Fossorial Bile Larva"]
-			if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt
-				v.attempts = v.attempts ~= nil and v.attempts + 1 or 1 -- Defaults to 1 if this is the first attempt
-				self:OutputAttempts(v)
-			end
-		end
-
-		-- Handle herb gathering on Argus (Fel Lasher)
-		if
-			Rarity.relevantSpells[Rarity.previousSpell] == "Herb Gathering" -- Gathered a herbalism node
-			and (
-				GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.KROKUUN
-				or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.MACAREE
-				or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.ANTORAN_WASTES
-			)
-		then -- Player is on Argus -> Can obtain the pet from gathering herbalism nodes
-			Rarity:Debug("Detected herb gathering on Argus - Can obtain " .. L["Fel Lasher"] .. " (method = SPECIAL)")
-			local v = self.db.profile.groups.pets["Fel Lasher"]
-			if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt
-				v.attempts = v.attempts ~= nil and v.attempts + 1 or 1 -- Defaults to 1 if this is the first attempt
-				self:OutputAttempts(v)
-			end
-		end
-
-		-- HANDLE NORMAL NPC LOOTING
-		local numItems = GetNumLootItems()
-
-		-- Legacy support for pre-5.0 single-target looting
-		local guid = UnitGUID("target")
-		local name = UnitName("target")
-		if not name or not guid then
-			return
-		end -- No target when looting
-		if not UnitCanAttack("player", "target") then
-			return
-		end -- You targeted something you can't attack
-		if UnitIsPlayer("target") then
-			return
-		end -- You targetted a player
-
-		-- You're looting something that's alive -- this is only done for pickpocketing
-		local requiresPickpocket = false
-		if not UnitIsDead("target") then
-			requiresPickpocket = true
-		end
-
-		-- Disallow "minus" NPCs; nothing good drops from them
-		if UnitClassification(guid) == "minus" then
-			return
-		end -- (This doesn't actually work currently; UnitClassification needs a unit, not a GUID)
-
-		local numChecked = 0
-		self:Debug(numItems .. " slot(s) to loot")
-		for slotID = 1, numItems, 1 do -- Loop through all loot slots (for AoE looting)
-			local guidlist
-			if GetLootSourceInfo then
-				guidlist = { GetLootSourceInfo(slotID) }
-			else
-				guidlist = { guid }
-			end
-			local guidIndex
-			for k, v in pairs(guidlist) do -- Loop through all NPC Rarity.guids being looted (will be 1 for single-target looting pre-5.0)
-				guid = v
-				if guid and type(guid) == "string" then
-					self:Debug("Checking NPC guid (" .. (numChecked + 1) .. "): " .. guid)
-					self:CheckNpcInterest(
-						guid,
-						zone,
-						subzone,
-						zone_t,
-						subzone_t,
-						Rarity.currentSpell,
-						requiresPickpocket
-					) -- Decide if we should increment an attempt count for this NPC
-					numChecked = numChecked + 1
-					-- else
-					-- 	--self:Debug("Didn't check guid: "..guid or "nil")
-				end -- Loop through all NPC GUIDs being looted (will be 1 for single-target looting pre-5.0)
-			end -- Haven't seen this corpse yet
-		end -- Loop through all loot slots (for AoE looting)
-
-		-- If we failed to scan anything, scan the current target
-		if numChecked <= 0 then
-			self:CheckNpcInterest(UnitGUID("target"), zone, subzone, zone_t, subzone_t, Rarity.currentSpell)
-		end
-
-		-- Scan the loot to see if we found something we're looking for
-		for slotID = 1, numItems, 1 do
-			local _, _, qty = GetLootSlotInfo(slotID)
-			if (qty or 0) > 0 then -- Coins have quantity of 0, so skip those
-				local itemLink = GetLootSlotLink(slotID)
-				if itemLink then
-					local _, itemId = strsplit(":", itemLink)
-					itemId = tonumber(itemId)
-					if
-						Rarity.items[itemId] ~= nil
-						and Rarity.items[itemId].method ~= CONSTANTS.DETECTION_METHODS.COLLECTION
-					then
-						self:OnItemFound(itemId, Rarity.items[itemId])
-					end
-				end
-			end
-		end
-	elseif event == "BANKFRAME_OPENED" then
+	if event == "BANKFRAME_OPENED" then
 		Rarity.isBankOpen = true
 	elseif event == "GUILDBANKFRAME_OPENED" then
 		Rarity.isGuildBankOpen = true
@@ -1905,6 +1156,728 @@ function R:OnEvent(event, ...)
 	elseif event == "PLAYER_LOGOUT" then
 		if Rarity.Session:IsActive() then
 			Rarity.Session:End()
+		end
+	end
+end
+
+-------------------------------------------------------------------------------------
+-- You opened a loot window on a corpse or fishing node
+-------------------------------------------------------------------------------------
+function R:OnLootReady()
+	self:Debug("LOOT_READY with target: " .. (UnitGUID("target") or "NO TARGET"))
+
+	local zone = GetRealZoneText()
+	local subzone = GetSubZoneText()
+	local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
+	local subzone_t = LibStub("LibBabble-SubZone-3.0"):GetReverseLookupTable()[subzone]
+
+	if Rarity.isFishing and Rarity.isOpening then
+		self:Debug("Opened something")
+	end
+
+	if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode then
+		self:Debug("Opened a node: " .. Rarity.lastNode)
+	end
+
+	-- Handle opening Crane Nest
+	if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Crane Nest"]) then
+		Rarity:Debug("Detected Opening on " .. L["Crane Nest"] .. " (method = SPECIAL)")
+		local v = self.db.profile.groups.pets["Azure Crane Chick"]
+		if v and type(v) == "table" and v.enabled ~= false then
+			if v.attempts == nil then
+				v.attempts = 1
+			else
+				v.attempts = v.attempts + 1
+			end
+			self:OutputAttempts(v)
+		end
+	end
+
+	-- Handle opening Timeless Chest
+	if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Timeless Chest"]) then
+		Rarity:Debug("Detected Opening on " .. L["Timeless Chest"] .. " (method = SPECIAL)")
+		local v = self.db.profile.groups.pets["Bonkers"]
+		if v and type(v) == "table" and v.enabled ~= false then
+			if v.attempts == nil then
+				v.attempts = 1
+			else
+				v.attempts = v.attempts + 1
+			end
+			self:OutputAttempts(v)
+		end
+	end
+
+	-- Handle opening Snow Mound
+	if
+		Rarity.isFishing
+		and Rarity.isOpening
+		and Rarity.lastNode
+		and (Rarity.lastNode == L["Snow Mound"])
+		and GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.FROSTFIRE_RIDGE
+	then -- Make sure we're in Frostfire Ridge (there are Snow Mounds in other zones, particularly Ulduar in the Hodir room)
+		Rarity:Debug("Detected Opening on " .. L["Snow Mound"] .. " (method = SPECIAL)")
+		local v = self.db.profile.groups.pets["Grumpling"]
+		if v and type(v) == "table" and v.enabled ~= false then
+			if v.attempts == nil then
+				v.attempts = 1
+			else
+				v.attempts = v.attempts + 1
+			end
+			self:OutputAttempts(v)
+		end
+	end
+
+	-- Handle opening Curious Wyrmtongue Cache
+	if
+		Rarity.isFishing
+		and Rarity.isOpening
+		and Rarity.lastNode
+		and (Rarity.lastNode == L["Curious Wyrmtongue Cache"])
+	then
+		local names = { "Scraps", "Pilfered Sweeper" }
+		Rarity:Debug("Detected Opening on " .. L["Curious Wyrmtongue Cache"] .. " (method = SPECIAL)")
+		for _, name in pairs(names) do
+			local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	-- Handle opening Glimmering Chest
+	if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Glimmering Chest"]) then
+		local names = { "Sandclaw Nestseeker" }
+		Rarity:Debug("Detected Opening on " .. L["Glimmering Chest"] .. " (method = SPECIAL)")
+		for _, name in pairs(names) do
+			local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	-- Handle opening Penitence of Purity (Shadowlands Kyrian only chest)
+	if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Penitence of Purity"]) then
+		local names = { "Phalynx of Humility" }
+		Rarity:Debug("Detected Opening on " .. L["Penitence of Purity"] .. " (method = SPECIAL)")
+		for _, name in pairs(names) do
+			local v = self.db.profile.groups.items[name] or self.db.profile.groups.mounts[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	-- Handle opening Silver Strongbox & Gilded Chest (Bastion, Shadowlands nodes for Acrobatic Steward (toy) and Gilded Wader (pet))
+	if
+		Rarity.isFishing
+		and Rarity.isOpening
+		and Rarity.lastNode
+		and (Rarity.lastNode == L["Silver Strongbox"] or Rarity.lastNode == L["Gilded Chest"])
+	then
+		local names = { "Acrobatic Steward", "Gilded Wader" }
+		Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
+		for _, name in pairs(names) do
+			local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	-- Handle opening Broken Bell & Skyward Bell (Shadowlands, Bastion nodes for Soothing Vesper (toy) & Gilded Wader (pet))
+	if
+		Rarity.isFishing
+		and Rarity.isOpening
+		and Rarity.lastNode
+		and (Rarity.lastNode == L["Broken Bell"] or Rarity.lastNode == L["Skyward Bell"])
+	then
+		local names = { "Soothing Vesper", "Gilded Wader" }
+		Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
+		for _, name in pairs(names) do
+			local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	-- Handle opening Cache of the Ascended (Shadowlands, Bastion mount cache)
+	if
+		Rarity.isFishing
+		and Rarity.isOpening
+		and Rarity.lastNode
+		and (Rarity.lastNode == L["Cache of the Ascended"])
+	then
+		local names = { "Ascended Skymane" }
+		Rarity:Debug("Detected Opening on " .. L["Cache of the Ascended"] .. " (method = SPECIAL)")
+		for _, name in pairs(names) do
+			local v = self.db.profile.groups.items[name] or self.db.profile.groups.mounts[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	-- Handle opening Slime-Coated Crate (Shadowlands, Maldraxxus crate for Kevin's Party Supplies (toy) & Bubbling Pustule (pet))
+	if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Slime-Coated Crate"]) then
+		local names = { "Kevin's Party Supplies", "Bubbling Pustule" }
+		Rarity:Debug("Detected Opening on " .. L["Slime-Coated Crate"] .. " (method = SPECIAL)")
+		for _, name in pairs(names) do
+			local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	-- Handle opening Sprouting Growth (Shadowlands, Maldraxxus crate for Skittering Venomspitter pet)
+	if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Sprouting Growth"]) then
+		local names = { "Skittering Venomspitter" }
+		Rarity:Debug("Detected Opening on " .. L["Sprouting Growth"] .. " (method = SPECIAL)")
+		for _, name in pairs(names) do
+			local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	-- Handle opening Stewart's Stewpendous Stew (Shadowlands, Bastion crate for Silvershell Snapper pet)
+	if
+		Rarity.isFishing
+		and Rarity.isOpening
+		and Rarity.lastNode
+		and (Rarity.lastNode == L["Stewart's Stewpendous Stew"])
+	then
+		local names = { "Silvershell Snapper" }
+		Rarity:Debug("Detected Opening on " .. L["Stewart's Stewpendous Stew"] .. " (method = SPECIAL)")
+		for _, name in pairs(names) do
+			local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	-- Handle opening Bleakwood Chest (Shadowlands, Revendreth chest for Trapped Stonefiend pet)
+	if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Bleakwood Chest"]) then
+		local names = { "Trapped Stonefiend" }
+		Rarity:Debug("Detected Opening on " .. L["Bleakwood Chest"] .. " (method = SPECIAL)")
+		for _, name in pairs(names) do
+			local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	-- Handle opening Blackhound Cache (Shadowlands, Maldraxxus cache for Battlecry of Krexus - Necrolord toy)
+	if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Blackhound Cache"]) then
+		local names = { "Battlecry of Krexus" }
+		Rarity:Debug("Detected Opening on " .. L["Blackhound Cache"] .. " (method = SPECIAL)")
+		for _, name in pairs(names) do
+			local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	-- Handle opening Secret Treasure (Shadowlands, Revendreth chest for Soullocked Sinstone pet)
+	if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Secret Treasure"]) then
+		local names = { "Soullocked Sinstone" }
+		Rarity:Debug("Detected Opening on " .. L["Secret Treasure"] .. " (method = SPECIAL)")
+		for _, name in pairs(names) do
+			local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	-- Handle opening Forgotten Chest (Shadowlands, Revendreth chest for Stony's Infused Ruby pet and Silessa's Battle Harness mount)
+	if
+		Rarity.isFishing
+		and Rarity.isOpening
+		and Rarity.lastNode
+		and (Rarity.lastNode == L["Forgotten Chest"])
+		and GetBestMapForUnit("player") ~= CONSTANTS.UIMAPIDS.STORMSONG_VALLEY -- Chest with the same name in Stormsong Valley
+	then
+		local names = { "Stony's Infused Ruby", "Silessa's Battle Harness" }
+		Rarity:Debug("Detected Opening on " .. L["Forgotten Chest"] .. " (method = SPECIAL)")
+		for _, name in pairs(names) do
+			local v = self.db.profile.groups.pets[name] or self.db.profile.groups.mounts[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	-- Handle opening Cache of Eyes (Shadowlands, Maldraxxus chest for Luminous Webspinner pet)
+	if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Cache of Eyes"]) then
+		local names = { "Luminous Webspinner" }
+		Rarity:Debug("Detected Opening on " .. L["Cache of Eyes"] .. " (method = SPECIAL)")
+		for _, name in pairs(names) do
+			local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	-- Handle opening lots of various chests for Gilded Wader (pet).
+	local nodesGildedWader = {
+		[L["Gift of Thenios"]] = true,
+		[L["Hidden Hoard"]] = true,
+		[L["Memorial Offerings"]] = true,
+		[L["Treasure of Courage"]] = true,
+	}
+	local isRelevantNode = false
+	if Rarity.lastNode then
+		isRelevantNode = nodesGildedWader[Rarity.lastNode]
+	end
+	if Rarity.isFishing and Rarity.isOpening and isRelevantNode then
+		local names = { "Gilded Wader" }
+		Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
+		for _, name in pairs(names) do
+			local v = self.db.profile.groups.pets[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	-- Handle opening Zovaal's Vault (The Maw, Shadowlands treasure for Personal Ball and Chain & Jailer's Cage
+	if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Zovaal's Vault"]) then
+		local names = { "Personal Ball and Chain", "Jailer's Cage" }
+		Rarity:Debug("Detected Opening on " .. L["Zovaal's Vault"] .. " (method = SPECIAL)")
+		for _, name in pairs(names) do
+			local v = self.db.profile.groups.items[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	-- Handle opening Pile of Coins
+	if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Pile of Coins"]) then
+		local names = { "Armored Vaultbot" }
+		Rarity:Debug("Detected Opening on " .. L["Pile of Coins"] .. " (method = SPECIAL)")
+		for _, name in pairs(names) do
+			local v = self.db.profile.groups.items[name] or self.db.profile.groups.pets[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	-- Handle opening Glimmering Treasure Chest
+	if
+		Rarity.isFishing
+		and Rarity.isOpening
+		and Rarity.lastNode
+		and (Rarity.lastNode == L["Glimmering Treasure Chest"])
+		and select(8, GetInstanceInfo()) == 1626
+	then -- Player is in Withered Army scenario and looted the reward chest
+		local bigChest = false
+		for _, slot in pairs(GetLootInfo()) do
+			if slot.item == L["Ancient Mana"] and slot.quantity == 100 then
+				bigChest = true
+			end
+		end
+
+		if bigChest == true then
+			self:Debug("Detected " .. Rarity.lastNode .. ": Adding toy drop attempts")
+			local names = {
+				"Arcano-Shower",
+				"Displacer Meditation Stone",
+				"Kaldorei Light Globe",
+				"Unstable Powder Box",
+				"Wisp in a Bottle",
+				"Ley Spider Eggs",
+			}
+			for _, name in pairs(names) do
+				local v = self.db.profile.groups.items[name]
+				if v and type(v) == "table" and v.enabled ~= false then
+					if v.attempts == nil then
+						v.attempts = 1
+					else
+						v.attempts = v.attempts + 1
+					end
+					self:OutputAttempts(v)
+				end
+			end
+
+			local v = self.db.profile.groups.mounts["Torn Invitation"]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	if
+		Rarity.isFishing
+		and Rarity.isOpening
+		and Rarity.lastNode
+		and (Rarity.lastNode == L["Mawsworn Supply Chest"])
+	then
+		local names = { "Spectral Mawrat's Tail" }
+		Rarity:Debug("Detected Opening on " .. L["Mawsworn Supply Chest"] .. " (method = SPECIAL)")
+		for _, name in pairs(names) do
+			local v = self.db.profile.groups.items[name] or self.db.profile.groups.mounts[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Sandworn Chest"]) then
+		local names = { "Makaris's Satchel of Mines" }
+		Rarity:Debug("Detected Opening on " .. L["Sandworn Chest"] .. " (method = SPECIAL)")
+		for _, name in pairs(names) do
+			local v = self.db.profile.groups.items[name]
+			if v and type(v) == "table" and v.enabled ~= false then
+				if v.attempts == nil then
+					v.attempts = 1
+				else
+					v.attempts = v.attempts + 1
+				end
+				self:OutputAttempts(v)
+			end
+		end
+	end
+
+	-- Handle opening Expedition Scout's Pack (Verdant Skitterfly mount in Dragonflight)
+	if
+		Rarity.isFishing
+		and Rarity.isOpening
+		and Rarity.lastNode
+		and (Rarity.lastNode == L["Expedition Scout's Pack"])
+	then
+		local names = { "Verdant Skitterfly" }
+		Rarity:Debug("Detected Opening on " .. L["Expedition Scout's Pack"] .. " (method = SPECIAL)")
+		-- This mount has a prerequisite to drop. Renown 25 with Dragonscale Expedition
+		if GetCurrentRenownLevel(CONSTANTS.FACTION_IDS.DRAGONSCALE_EXPEDITION) >= 25 then
+			for _, name in pairs(names) do
+				local v = self.db.profile.groups.mounts[name]
+				if v and type(v) == "table" and v.enabled ~= false then
+					if v.attempts == nil then
+						v.attempts = 1
+					else
+						v.attempts = v.attempts + 1
+					end
+					self:OutputAttempts(v)
+				end
+			end
+		end
+	end
+
+	-- HANDLE FISHING
+	if Rarity.isFishing and Rarity.isOpening == false then
+		if Rarity.isPool then
+			self:Debug("Successfully fished from a pool")
+		else
+			self:Debug("Successfully fished")
+		end
+		if
+			Rarity.fishzones[tostring(GetBestMapForUnit("player"))]
+			or Rarity.fishzones[zone]
+			or Rarity.fishzones[subzone]
+			or Rarity.fishzones[zone_t]
+			or Rarity.fishzones[subzone_t]
+		then
+			-- We're interested in fishing in this zone; let's find the item(s) involved
+			Rarity:Debug("We're interested in fishing in this zone; let's find the item(s) involved")
+			for k, v in pairs(self.db.profile.groups) do
+				if type(v) == "table" then
+					for kk, vv in pairs(v) do
+						if type(vv) == "table" then
+							if vv.enabled ~= false then
+								local found = false
+								if
+									vv.method == CONSTANTS.DETECTION_METHODS.FISHING
+									and vv.zones ~= nil
+									and type(vv.zones) == "table"
+								then
+									for kkk, vvv in pairs(vv.zones) do
+										if
+											vvv == tostring(GetBestMapForUnit("player"))
+											or vvv == zone
+											or vvv == lbz[zone]
+											or vvv == subzone
+											or vvv == lbsz[subzone]
+											or vvv == zone_t
+											or vvv == subzone_t
+											or vvv == lbz[zone_t]
+											or vvv == subzone
+											or vvv == lbsz[subzone_t]
+										then
+											if (vv.requiresPool and Rarity.isPool) or not vv.requiresPool then
+												Rarity:Debug(
+													"Found interesting item for this zone: " .. tostring(vv.name)
+												)
+												found = true
+											end
+										end
+									end
+								end
+
+								if
+									vv.excludedMaps
+									and type(vv.excludedMaps) == "table"
+									and vv.excludedMaps[GetBestMapForUnit("player")]
+								then
+									Rarity:Debug(
+										"The current map is excluded for item: "
+											.. tostring(vv.name)
+											.. ". Attempts will not be counted"
+									)
+									found = false
+								end
+
+								if found then
+									if self:IsAttemptAllowed(vv) then
+										if vv.attempts == nil then
+											vv.attempts = 1
+										else
+											vv.attempts = vv.attempts + 1
+										end
+										self:OutputAttempts(vv)
+									end
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+	if Rarity.fishingTimer then
+		self:CancelTimer(Rarity.fishingTimer, true)
+	end
+	Rarity.fishingTimer = nil
+	Rarity.isFishing = false
+	Rarity.isPool = false
+
+	-- Handle mining Elementium
+	if
+		Rarity.relevantSpells[Rarity.previousSpell] == "Mining"
+		and (Rarity.lastNode == L["Elementium Vein"] or Rarity.lastNode == L["Rich Elementium Vein"])
+	then
+		Rarity:Debug("Detected Mining on " .. Rarity.lastNode .. " (method = SPECIAL)")
+		local v = self.db.profile.groups.pets["Elementium Geode"]
+		if v and type(v) == "table" and v.enabled ~= false then
+			if v.attempts == nil then
+				v.attempts = 1
+			else
+				v.attempts = v.attempts + 1
+			end
+			self:OutputAttempts(v)
+		end
+	end
+
+	-- Handle skinning on Argus (Fossorial Bile Larva)
+	if
+		(
+			Rarity.relevantSpells[Rarity.previousSpell] == "Skinning"
+			or Rarity.relevantSpells[Rarity.previousSpell] == "Mother's Skinning Knife"
+		) -- Skinned something
+		and (
+			GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.KROKUUN
+			or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.MACAREE
+			or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.ANTORAN_WASTES
+		)
+	then -- Player is on Argus -> Can obtain the pet from skinning creatures
+		Rarity:Debug("Detected skinning on Argus - Can obtain " .. L["Fossorial Bile Larva"] .. " (method = SPECIAL)")
+		local v = self.db.profile.groups.pets["Fossorial Bile Larva"]
+		if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt
+			v.attempts = v.attempts ~= nil and v.attempts + 1 or 1 -- Defaults to 1 if this is the first attempt
+			self:OutputAttempts(v)
+		end
+	end
+
+	-- Handle herb gathering on Argus (Fel Lasher)
+	if
+		Rarity.relevantSpells[Rarity.previousSpell] == "Herb Gathering" -- Gathered a herbalism node
+		and (
+			GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.KROKUUN
+			or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.MACAREE
+			or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.ANTORAN_WASTES
+		)
+	then -- Player is on Argus -> Can obtain the pet from gathering herbalism nodes
+		Rarity:Debug("Detected herb gathering on Argus - Can obtain " .. L["Fel Lasher"] .. " (method = SPECIAL)")
+		local v = self.db.profile.groups.pets["Fel Lasher"]
+		if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt
+			v.attempts = v.attempts ~= nil and v.attempts + 1 or 1 -- Defaults to 1 if this is the first attempt
+			self:OutputAttempts(v)
+		end
+	end
+
+	-- HANDLE NORMAL NPC LOOTING
+	local numItems = GetNumLootItems()
+
+	-- Legacy support for pre-5.0 single-target looting
+	local guid = UnitGUID("target")
+	local name = UnitName("target")
+	if not name or not guid then
+		return
+	end -- No target when looting
+	if not UnitCanAttack("player", "target") then
+		return
+	end -- You targeted something you can't attack
+	if UnitIsPlayer("target") then
+		return
+	end -- You targetted a player
+
+	-- You're looting something that's alive -- this is only done for pickpocketing
+	local requiresPickpocket = false
+	if not UnitIsDead("target") then
+		requiresPickpocket = true
+	end
+
+	-- Disallow "minus" NPCs; nothing good drops from them
+	if UnitClassification(guid) == "minus" then
+		return
+	end -- (This doesn't actually work currently; UnitClassification needs a unit, not a GUID)
+
+	local numChecked = 0
+	self:Debug(numItems .. " slot(s) to loot")
+	for slotID = 1, numItems, 1 do -- Loop through all loot slots (for AoE looting)
+		local guidlist
+		if GetLootSourceInfo then
+			guidlist = { GetLootSourceInfo(slotID) }
+		else
+			guidlist = { guid }
+		end
+		local guidIndex
+		for k, v in pairs(guidlist) do -- Loop through all NPC Rarity.guids being looted (will be 1 for single-target looting pre-5.0)
+			guid = v
+			if guid and type(guid) == "string" then
+				self:Debug("Checking NPC guid (" .. (numChecked + 1) .. "): " .. guid)
+				self:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, Rarity.currentSpell, requiresPickpocket) -- Decide if we should increment an attempt count for this NPC
+				numChecked = numChecked + 1
+				-- else
+				-- 	--self:Debug("Didn't check guid: "..guid or "nil")
+			end -- Loop through all NPC GUIDs being looted (will be 1 for single-target looting pre-5.0)
+		end -- Haven't seen this corpse yet
+	end -- Loop through all loot slots (for AoE looting)
+
+	-- If we failed to scan anything, scan the current target
+	if numChecked <= 0 then
+		self:CheckNpcInterest(UnitGUID("target"), zone, subzone, zone_t, subzone_t, Rarity.currentSpell)
+	end
+
+	-- Scan the loot to see if we found something we're looking for
+	for slotID = 1, numItems, 1 do
+		local _, _, qty = GetLootSlotInfo(slotID)
+		if (qty or 0) > 0 then -- Coins have quantity of 0, so skip those
+			local itemLink = GetLootSlotLink(slotID)
+			if itemLink then
+				local _, itemId = strsplit(":", itemLink)
+				itemId = tonumber(itemId)
+				if
+					Rarity.items[itemId] ~= nil
+					and Rarity.items[itemId].method ~= CONSTANTS.DETECTION_METHODS.COLLECTION
+				then
+					self:OnItemFound(itemId, Rarity.items[itemId])
+				end
+			end
 		end
 	end
 end
