@@ -152,6 +152,8 @@ R.fishnodes = {
 	[L["Elysian Thade School"]] = true,
 	[L["Lost Sole School"]] = true,
 	[L["Spinefin Piranha School"]] = true,
+	-- Dragonflight pools
+	[L["Disgusting Vat"]] = true,
 }
 
 R.miningnodes = {

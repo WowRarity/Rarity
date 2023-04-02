@@ -3,6 +3,7 @@ L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
 L["Darkmoon Rabbit"] = true
+L["Disgusting Vat"] = true
 L["Fished from Disgusting Vat located within the Zskera Vaults"] = true
 L["Horn of the White War Wolf"] = true
 L["Reins of the Ravenous Black Gryphon"] = true

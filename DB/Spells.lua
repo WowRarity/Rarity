@@ -15,6 +15,7 @@ Rarity.relevantSpells = {
 	[231932] = "Opening", -- Wyrmtongue Cache (Broken Shore: Secret Treasure Lair)
 	[265843] = "Mining",
 	[265825] = "Herb Gathering",
+	[405274] = "Disgusting Vat Fishing",
 	-- 8.2
 	[6478] = "Opening", -- Pile of Coins (Mechagon Island: Armored Vaultbot)
 	-- 8.3
