@@ -1156,6 +1156,22 @@ local dragonflightPets = {
 		chance = 20,
 		coords = { { m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 28.8, y = 52.6 } },
 	},
+	["Emmah"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Emmah"],
+		zones = { "2151" },
+		spellId = 375511,
+		itemId = 193853,
+		creatureId = 189694,
+		questId = 75488,
+		sourceText = L["Fished from Disgusting Vat located within the Zskera Vaults"],
+		requiresPool = true,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 29.2, y = 53.0, n = L["Entrance to Zskera Vault"] },
+		},
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, dragonflightPets)
