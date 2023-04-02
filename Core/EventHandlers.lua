@@ -946,8 +946,6 @@ end
 
 function R:ProcessInventoryItems()
 	for itemID, currentInventoryAmount in pairs(Rarity.bagitems) do
-		self:Debug(format("Processing inventory item %s (currentInventoryAmount: %d)", itemID, currentInventoryAmount))
-		-- It's still really bad, but a major rework is probably too risky
 		self:ProcessCollectionItem(itemID)
 		self:ProcessOtherItem(itemID)
 	end
