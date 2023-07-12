@@ -72,7 +72,6 @@ function EventHandlers:Register()
 	self:RegisterEvent("UNIT_SPELLCAST_FAILED", "OnSpellcastFailed") -- Fishing detection
 	self:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED", "OnSpellcastFailed") -- Fishing detection
 	self:RegisterEvent("LOOT_CLOSED", "OnLootFrameClosed") -- Fishing detection
-	self:RegisterEvent("RESEARCH_ARTIFACT_HISTORY_READY", "ScanAllArch")
 	self:RegisterEvent("PLAYER_LOGOUT", "OnEvent")
 	self:RegisterEvent("AUCTION_HOUSE_CLOSED", "OnEvent")
 	self:RegisterEvent("AUCTION_HOUSE_SHOW", "OnEvent")
