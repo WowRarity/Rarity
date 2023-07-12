@@ -197,7 +197,6 @@ do
 		self.db.RegisterCallback(self, "OnProfileReset", "OnProfileChanged")
 		self.db.RegisterCallback(self, "OnProfileDeleted", "OnProfileChanged")
 
-		RequestArtifactCompletionHistory() -- Request archaeology info from the server
 		RequestRaidInfo() -- Request raid lock info from the server
 		RequestLFDPlayerLockInfo() -- Request LFD data from the server; this is used for holiday boss detection
 		C_Calendar.OpenCalendar() -- Request calendar info from the server

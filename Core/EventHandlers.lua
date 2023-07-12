@@ -47,7 +47,6 @@ local GetStatistic = _G.GetStatistic
 local GetLootSourceInfo = _G.GetLootSourceInfo
 local C_Timer = _G.C_Timer
 local IsSpellKnown = _G.IsSpellKnown
-local GetCurrentRenownLevel = C_MajorFactions.GetCurrentRenownLevel
 
 -- Addon APIs
 local DebugCache = Rarity.Utils.DebugCache
@@ -72,7 +71,6 @@ function EventHandlers:Register()
 	self:RegisterEvent("UNIT_SPELLCAST_FAILED", "OnSpellcastFailed") -- Fishing detection
 	self:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED", "OnSpellcastFailed") -- Fishing detection
 	self:RegisterEvent("LOOT_CLOSED", "OnLootFrameClosed") -- Fishing detection
-	self:RegisterEvent("RESEARCH_ARTIFACT_HISTORY_READY", "ScanAllArch")
 	self:RegisterEvent("PLAYER_LOGOUT", "OnEvent")
 	self:RegisterEvent("AUCTION_HOUSE_CLOSED", "OnEvent")
 	self:RegisterEvent("AUCTION_HOUSE_SHOW", "OnEvent")
@@ -672,11 +670,6 @@ function R:OnChatCommand(input)
 		DebugCache:PrintMessages(numMessages)
 	elseif strlower(input) == "validate" then -- Verify the ItemDB
 		self.Validation:ValidateItemDB()
-	elseif strlower(input) == "mapinfo" then
-		local mapID = C_Map.GetBestMapForUnit("player")
-		local mapInfo = C_Map.GetMapInfo(mapID)
-		local mapName = mapInfo and mapInfo.name or "Unknown"
-		self:Print("Current map: " .. mapID .. " ~ " .. mapName)
 	elseif strlower(input) == "purge" then -- TODO: This should be done automatically, no?
 		self.Database:PurgeObsoleteEntries()
 	elseif strlower(input) == "test" then
@@ -1612,31 +1605,6 @@ function R:OnEvent(event, ...)
 						v.attempts = v.attempts + 1
 					end
 					self:OutputAttempts(v)
-				end
-			end
-		end
-
-		-- Handle opening Expedition Scout's Pack (Verdant Skitterfly mount in Dragonflight)
-		if
-			Rarity.isFishing
-			and Rarity.isOpening
-			and Rarity.lastNode
-			and (Rarity.lastNode == L["Expedition Scout's Pack"])
-		then
-			local names = { "Verdant Skitterfly" }
-			Rarity:Debug("Detected Opening on " .. L["Expedition Scout's Pack"] .. " (method = SPECIAL)")
-			-- This mount has a prerequisite to drop. Renown 25 with Dragonscale Expedition
-			if GetCurrentRenownLevel(CONSTANTS.FACTION_IDS.DRAGONSCALE_EXPEDITION) >= 25 then
-				for _, name in pairs(names) do
-					local v = self.db.profile.groups.mounts[name]
-					if v and type(v) == "table" and v.enabled ~= false then
-						if v.attempts == nil then
-							v.attempts = 1
-						else
-							v.attempts = v.attempts + 1
-						end
-						self:OutputAttempts(v)
-					end
 				end
 			end
 		end
