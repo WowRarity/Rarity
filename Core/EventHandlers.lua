@@ -59,6 +59,7 @@ function EventHandlers:Register()
 	self:RegisterBucketEvent("BAG_UPDATE", 0.5, "OnBagUpdate")
 	self:RegisterEvent("LOOT_READY", "OnEvent")
 	self:RegisterEvent("CURRENCY_DISPLAY_UPDATE", "OnCurrencyUpdate")
+	self:RegisterEvent("RESEARCH_ARTIFACT_COMPLETE", "OnResearchArtifactComplete")
 	self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED", "OnCombat") -- Used to detect boss kills that we didn't solo
 	self:RegisterEvent("BANKFRAME_OPENED", "OnEvent")
 	self:RegisterEvent("BANKFRAME_CLOSED", "OnEvent")
@@ -232,9 +233,6 @@ end
 
 function R:OnCurrencyUpdate(event)
 	self:Debug("Currency updated (" .. event .. ")")
-
-	-- Check if any archaeology projects were solved
-	self:ScanArchFragments(event)
 
 	-- Check if any coins were used
 	for k, v in pairs(self.coins) do
@@ -1106,6 +1104,10 @@ function R:OnBagUpdate()
 
 	-- Check for an increase in quantity of any items we're watching for
 	R:ProcessInventoryItems()
+end
+
+function R:OnResearchArtifactComplete(event, _)
+	self:ScanArchFragments(event)
 end
 
 --[[
