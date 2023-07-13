@@ -303,7 +303,6 @@ end
 -------------------------------------------------------------------------------------
 
 function R:ScanAllArch(event)
-	self:UnregisterEvent("RESEARCH_ARTIFACT_HISTORY_READY")
 	self:ScanArchFragments(event)
 	self:ScanArchProjects(event)
 end
