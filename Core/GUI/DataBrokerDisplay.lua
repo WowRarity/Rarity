@@ -72,10 +72,7 @@ function dataobj:OnClick(button)
 		(self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_CLICK and isRightButton)
 		or (self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_HOVER and isLeftButton)
 	then
-		-- Toggle progress bar visibility
-		R.db.profile.bar.visible = not R.db.profile.bar.visible
-		Rarity.GUI:UpdateBar()
-		Rarity.GUI:UpdateText()
+		Rarity.GUI:ToggleProgressBar()
 	elseif self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_CLICK and isLeftButton then
 		if Rarity.Tooltips:IsTooltipAcquired("RarityTooltip") then
 			Rarity:HideTooltip()

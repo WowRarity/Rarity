@@ -91,3 +91,9 @@ function GUI:UpdateBar()
 		self.barGroup:Lock()
 	end
 end
+
+function GUI:ToggleProgressBar()
+	Rarity.db.profile.bar.visible = not Rarity.db.profile.bar.visible
+	Rarity.GUI:UpdateBar()
+	Rarity.GUI:UpdateText()
+end
