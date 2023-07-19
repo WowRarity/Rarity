@@ -676,6 +676,8 @@ function R:OnChatCommand(input)
 		self:Print("Current map: " .. mapID .. " ~ " .. mapName)
 	elseif strlower(input) == "purge" then -- TODO: This should be done automatically, no?
 		self.Database:PurgeObsoleteEntries()
+	elseif strlower(input) == "progress" then
+		self.GUI:ToggleProgressBar()
 	elseif strlower(input) == "test" then
 		self.Testing:RunIntegrationTests()
 	elseif strlower(input) == "profiling" then
