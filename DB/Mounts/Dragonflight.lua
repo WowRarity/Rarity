@@ -95,6 +95,18 @@ local dragonflightMounts = {
 			{ m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 28.2, y = 38.2, n = L["Gahz'raxes"] },
 		},
 	},
+	-- 10.1 mounts
+	["Cobalt Shalewing"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Cobalt Shalewing"],
+		itemId = 205203,
+		spellId = 408647,
+		npcs = { 203625 },
+		chance = 100,
+		coords = { { x = 42.20, y = 65.17, n = L["Karokta"], m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, dragonflightMounts)
