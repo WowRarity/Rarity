@@ -107,6 +107,17 @@ local dragonflightMounts = {
 		chance = 100,
 		coords = { { x = 42.20, y = 65.17, n = L["Karokta"], m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN } },
 	},
+	["Flaming Shalewing Subject 01"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Flaming Shalewing Subject 01"],
+		itemId = 205204,
+		spellId = 408651,
+		items = { 205368, 205367, 205369, 205372, 205370, 205374 },
+		chance = 33, -- An average. Different sources have different chances.
+		coords = { { m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, dragonflightMounts)
