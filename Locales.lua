@@ -1943,6 +1943,9 @@ L["Luvvy"] = true
 L["Luttrok"] = true
 L["Wakyn"] = true
 L["Scruffles"] = true
+L["Cobalt Shalewing"] = true
+L["Karokta"] = true
+L["Flaming Shalewing Subject 01"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
