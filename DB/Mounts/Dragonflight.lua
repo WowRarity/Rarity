@@ -95,6 +95,22 @@ local dragonflightMounts = {
 			{ m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 28.2, y = 38.2, n = L["Gahz'raxes"] },
 		},
 	},
+	["Gooey Snailemental"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.COLLECTION,
+		name = L["Gooey Snailemental"],
+		spellId = 374157,
+		itemId = 192785,
+		collectedItemId = { 204352 },
+		chance = 50,
+		obtain = L["Dropped from the final bosses of Froststone Vault Primal Storm."],
+		tooltipNpcs = { 198917, 198916, 198915, 198914 },
+		sourceText = L["Combine 50 Leftover Elemental Slime to create the Gooey Snailemental."],
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 59.7, y = 38.5, n = L["Froststone Vault Primal Storm"] },
+		},
+	},
 	-- 10.1 mounts
 	["Cobalt Shalewing"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
