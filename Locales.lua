@@ -1946,6 +1946,10 @@ L["Scruffles"] = true
 L["Cobalt Shalewing"] = true
 L["Karokta"] = true
 L["Flaming Shalewing Subject 01"] = true
+L["Gooey Snailemental"] = true
+L["Dropped from the final bosses of Froststone Vault Primal Storm."] = true
+L["Combine 50 Leftover Elemental Slime to create the Gooey Snailemental."] = true
+L["Froststone Vault Primal Storm"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
