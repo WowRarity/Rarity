@@ -796,6 +796,7 @@ L["Announcements will only be triggered when the item is found. When this is off
 	true
 L["Death Knight"] = true
 L["Demon Hunter"] = true
+L["Evoker"] = true
 L["Druid"] = true
 L["Hunter"] = true
 L["Mage"] = true

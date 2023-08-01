@@ -71,6 +71,7 @@ local classes = {
 	["SHAMAN"] = "|c" .. RAID_CLASS_COLORS["SHAMAN"]["colorStr"] .. L["Shaman"] .. "|r",
 	["WARLOCK"] = "|c" .. RAID_CLASS_COLORS["WARLOCK"]["colorStr"] .. L["Warlock"] .. "|r",
 	["WARRIOR"] = "|c" .. RAID_CLASS_COLORS["WARRIOR"]["colorStr"] .. L["Warrior"] .. "|r",
+	["EVOKER"] = "|c" .. RAID_CLASS_COLORS["EVOKER"]["colorStr"] .. L["Evoker"] .. "|r",
 }
 
 local red = Rarity.Enum.Colors.Red
