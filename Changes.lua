@@ -1,4 +1,16 @@
 local changes = {
+	["r719"] = {
+		additions = {
+			"Created a slash command for toggling the progress bar (for use in macros)",
+			"Added tracking for many Dragonflight collectibles (the list is still incomplete, however)",
+		},
+		fixes = { "Fixed script errors caused by various WOW API changes" },
+		notes = {
+			"Many Dragonflight collectibles, especially pets and toys, are still missing."
+				.. " Please report any that you think should be tracked, but currently aren't.",
+		},
+		contributors = { "cyriun", "Elke Freed", "Tommy Godejord" },
+	},
 	["r718"] = {
 		fixes = { "Fixed script errors caused by API changes in patch 10.0.2" },
 	},
