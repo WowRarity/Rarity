@@ -2,6 +2,12 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["This item can also be purchased from a vendor."] = true
+L["Reins of the Scourgebound Vanquisher"] = true
+L["Perfected Juggernaut"] = true
+L["Felstorm Dragon"] = true
+L["Sulfur Hound's Leash"] = true
+L["Gold-Toed Albatross"] = true
 L["Can be used to summon %s, but only once per day"] = true
 L["Strange Goop"] = true
 L["This item appears to be a guaranteed drop for the player who summoned %s"] = true
