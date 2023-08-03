@@ -358,6 +358,28 @@ local dragonflightToys = {
 			{ m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN, x = 45.8, y = 33.2, n = L["Invoq"] },
 		},
 	},
+	["Bag of Furious Winds"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Bag of Furious Winds"],
+		itemId = 199337,
+		npcs = {
+			193647, -- Karantun
+			193653, -- Gaelzion
+			193674, -- Voraazka
+			193684, -- Pipspark Thundersnap
+		},
+		chance = 150,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.THE_WAKING_SHORES },
+			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS },
+			{ m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN },
+			{ m = CONSTANTS.UIMAPIDS.THALDRASZUS },
+			{ m = CONSTANTS.UIMAPIDS.THE_PRIMALIST_FUTURE },
+		},
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, dragonflightToys)
