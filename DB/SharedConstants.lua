@@ -14,6 +14,7 @@ C.TOOLTIP = { ACTIVATION_METHOD_HOVER = "ACTIVATION_METHOD_HOVER", ACTIVATION_ME
 C.DEFEAT_DETECTION = { MODE_OR = 1, MODE_AND = 2 }
 
 -- Embedded mapIDs: It's best to avoid hardcoding these in case of yet another re-mapping on Blizzard's end...
+-- See https://wowpedia.fandom.com/wiki/UiMapID (list may not always be up-to-date)
 C.UIMAPIDS = {
 	-- Dummy Zone (For items that can be obtained anywhere.)
 	NONE = 0,
@@ -113,8 +114,10 @@ C.UIMAPIDS = {
 	OHN_AHRAN_PLAINS = 2023,
 	THE_AZURE_SPAN = 2024,
 	THALDRASZUS = 2025,
+	THE_PRIMALIST_FUTURE = 2085,
 	THE_FORBIDDEN_REACH = 2151,
 	ZARALEK_CAVERN = 2133,
+	THE_THROUGHWAY = 2165,
 }
 
 -- Types of items
