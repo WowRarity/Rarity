@@ -311,6 +311,23 @@ local dragonflightToys = {
 			{ m = CONSTANTS.UIMAPIDS.CROSSROADS_OF_FATE },
 		},
 	},
+	["Fyrakk's Frenzy"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Fyrakk's Frenzy"],
+		itemId = 206043,
+		npcs = {
+			201673, -- Kretchenwrath
+			203411, -- Shadeisethal
+		},
+		chance = 33,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 75.6, y = 69.6, n = L["Kretchenwrath"] },
+			{ m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN, x = 58.6, y = 31.8, n = L["Shadeisethal"] },
+		},
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, dragonflightToys)
