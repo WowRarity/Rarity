@@ -343,6 +343,21 @@ local dragonflightToys = {
 			{ m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN, x = 28.6, y = 51, n = L["Dinn"] },
 		},
 	},
+	["Molten Lava Pack"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Molten Lava Pack"],
+		itemId = 205796,
+		npcs = {
+			203627, -- Invoq
+		},
+		chance = 33,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN, x = 45.8, y = 33.2, n = L["Invoq"] },
+		},
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, dragonflightToys)
