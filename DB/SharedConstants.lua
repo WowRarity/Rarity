@@ -118,6 +118,7 @@ C.UIMAPIDS = {
 	THE_FORBIDDEN_REACH = 2151,
 	ZARALEK_CAVERN = 2133,
 	THE_THROUGHWAY = 2165,
+	CROSSROADS_OF_FATE = 2194, -- Dawn of the Infinite (subzone)
 }
 
 -- Types of items
