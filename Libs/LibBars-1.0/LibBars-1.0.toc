@@ -1,0 +1,12 @@
+## Interface: 20400
+## LoadOnDemand: 1
+## Title: LibBars-1.0
+## Notes: Library to provide visual bar creation and management.
+## Author: Antiarc
+## X-Category: Library
+## Version: 1.0
+
+LibStub\LibStub.lua
+CallbackHandler-1.0\CallbackHandler-1.0.xml
+
+LibBars-1.0\lib.xml

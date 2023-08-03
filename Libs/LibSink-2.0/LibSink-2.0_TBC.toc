@@ -1,0 +1,16 @@
+## Interface: 20504
+## Version: v10.1.1
+## LoadOnDemand: 1
+## Title: Lib: Sink-2.0
+## Notes: Library that handles chat output.
+## Notes-zhCN: 处理聊天输出的库文件。
+## Notes-zhTW: 處理頻道輸出的函數庫。
+## Author: Funkydude
+## OptionalDeps: LibStub
+## X-Category: Library
+## X-Credits: Rabbit
+## X-License: All Rights Reserved
+
+embeds.xml
+LibSink-2.0\lib.xml
+
