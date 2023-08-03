@@ -2,6 +2,13 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Invoq"] = true
+L["Molten Lava Pack"] = true
+L["Dinn"] = true
+L["Dinn's Drum"] = true
+L["Shadeisethal"] = true
+L["Kretchenwrath"] = true
+L["Fyrakk's Frenzy"] = true
 L["Reins of the Quantum Courser"] = true
 L["Cloak of Many Faces"] = true
 L["Mage's Chewed Wand"] = true

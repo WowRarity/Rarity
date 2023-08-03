@@ -311,6 +311,53 @@ local dragonflightToys = {
 			{ m = CONSTANTS.UIMAPIDS.CROSSROADS_OF_FATE },
 		},
 	},
+	["Fyrakk's Frenzy"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Fyrakk's Frenzy"],
+		itemId = 206043,
+		npcs = {
+			201673, -- Kretchenwrath
+			203411, -- Shadeisethal
+		},
+		chance = 33,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 75.6, y = 69.6, n = L["Kretchenwrath"] },
+			{ m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN, x = 58.6, y = 31.8, n = L["Shadeisethal"] },
+		},
+	},
+	["Dinn's Drum"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Dinn's Drum"],
+		itemId = 205419,
+		npcs = {
+			203646, -- Dinn
+		},
+		chance = 20,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN, x = 28.6, y = 51, n = L["Dinn"] },
+		},
+	},
+	["Molten Lava Pack"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Molten Lava Pack"],
+		itemId = 205796,
+		npcs = {
+			203627, -- Invoq
+		},
+		chance = 33,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN, x = 45.8, y = 33.2, n = L["Invoq"] },
+		},
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, dragonflightToys)
