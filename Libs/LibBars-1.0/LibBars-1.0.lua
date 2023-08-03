@@ -1,5 +1,5 @@
 local MAJOR = "LibBars-1.0"
-local MINOR = tonumber(("$Revision: 77792 $"):match("%d+"))
+local MINOR = 90000 + tonumber(("$Revision: 24 $"):match("%d+")) -- Rarity changed this version to 24 to force an upgrade
 
 local lib, oldminor = LibStub:NewLibrary(MAJOR, MINOR)
 if not lib then return end -- No Upgrade needed.
@@ -9,8 +9,55 @@ local CallbackHandler = LibStub:GetLibrary("CallbackHandler-1.0")
 local GetTime = _G.GetTime
 local sin, cos, rad = _G.math.sin, _G.math.cos, _G.math.rad
 local abs, min, max, floor = _G.math.abs, _G.math.min, _G.math.max, _G.math.floor
-local table_sort, tinsert, tremove = _G.table.sort, tinsert, tremove
-local next, pairs, assert, error = next, pairs, assert, error
+local table_sort, tinsert, tremove, tconcat = _G.table.sort, tinsert, tremove, _G.table.concat
+local next, pairs, assert, error, type, xpcall = next, pairs, assert, error, type, xpcall
+
+--[[
+	 xpcall safecall implementation
+]]
+local function errorhandler(err)
+	return geterrorhandler()(err)
+end
+
+local function CreateDispatcher(argCount)
+	local code = [[
+		local xpcall, eh = ...
+		local method, ARGS
+		local function call() return method(ARGS) end
+
+		local function dispatch(func, ...)
+			 method = func
+			 if not method then return end
+			 ARGS = ...
+			 return xpcall(call, eh)
+		end
+
+		return dispatch
+	]]
+
+	local ARGS = {}
+	for i = 1, argCount do ARGS[i] = "arg"..i end
+	code = code:gsub("ARGS", tconcat(ARGS, ", "))
+	return assert(loadstring(code, "safecall Dispatcher["..argCount.."]"))(xpcall, errorhandler)
+end
+
+local Dispatchers = setmetatable({}, {__index=function(self, argCount)
+	local dispatcher = CreateDispatcher(argCount)
+	rawset(self, argCount, dispatcher)
+	return dispatcher
+end})
+Dispatchers[0] = function(func)
+	return xpcall(func, errorhandler)
+end
+
+local function safecall(func, ...)
+	-- we check to see if the func is passed is actually a function here and don't error when it isn't
+	-- this safecall is used for optional functions like OnInitialize OnEnable etc. When they are not
+	-- present execution should continue without hinderance
+	if type(func) == "function" then
+		return Dispatchers[select('#', ...)](func, ...)
+	end
+end
 
 local dummyFrame, barFrameMT, barPrototype, barPrototype_mt, barListPrototype
 local barListPrototype_mt
@@ -19,10 +66,6 @@ lib.LEFT_TO_RIGHT = 1
 lib.BOTTOM_TO_TOP = 2
 lib.RIGHT_TO_LEFT = 3
 lib.TOP_TO_BOTTOM = 4
-
-local function sizeChanged(f)
-	f:SetValue(f.value)
-end
 
 lib.dummyFrame = lib.dummyFrame or CreateFrame("Frame")
 lib.barFrameMT = lib.barFrameMT or {__index = lib.dummyFrame}
@@ -37,6 +80,14 @@ barPrototype = lib.barPrototype
 barPrototype_mt = lib.barPrototype_mt
 barListPrototype = lib.barListPrototype
 barListPrototype_mt = lib.barListPrototype_mt
+
+barPrototype.prototype = barPrototype
+barPrototype.metatable = barPrototype_mt
+barPrototype.super = dummyFrame
+
+barListPrototype.prototype = barListPrototype
+barListPrototype.metatable = barListPrototype_mt
+barListPrototype.super = dummyFrame
 
 lib.bars = lib.bars or {}
 lib.barLists = lib.barLists or {}
@@ -55,9 +106,8 @@ local frame_defaults = {
 	insets = {left = 2, right = 2, top = 2, bottom = 2}
 }
 
-
 do
-	local mixins = { "NewCounterBar", "NewTimerBar", "GetBar", "NewBarGroup", "ReleaseBar" }
+	local mixins = { "NewCounterBar", "NewTimerBar", "NewBarFromPrototype", "GetBar", "GetBars", "HasBar", "IterateBars", "NewBarGroup", "ReleaseBar", "GetBarGroup", "GetBarGroups" }
 	function lib:Embed(target)
 		for k, v in pairs( mixins ) do
 			target[v] = self[v]
@@ -124,8 +174,12 @@ do
 				upperBoundIndex = colors[i][1]
 				break
 			end
+		     end
+		local diff = (upperBoundIndex - lowerBoundIndex)
+		local pct = 1
+		if diff ~= 0 then
+		      pct = (point - lowerBoundIndex) / diff
 		end
-		local pct = (point - lowerBoundIndex) / (upperBoundIndex - lowerBoundIndex)
 		local r = lowerBound[2] + ((upperBound[2] - lowerBound[2]) * pct)
 		local g = lowerBound[3] + ((upperBound[3] - lowerBound[3]) * pct)
 		local b = lowerBound[4] + ((upperBound[4] - lowerBound[4]) * pct)
@@ -136,6 +190,12 @@ do
 	function ComputeGradient(self)
 		self.gradMap = self.gradMap or {}
 		if not self.colors then return end
+		if #self.colors == 0 then
+			for k in pairs(self.gradMap) do
+				self.gradMap[k] = nil
+			end
+			return
+		end
 
 		for i = 1, #colors do
 			del(tremove(colors))
@@ -163,10 +223,38 @@ function lib:GetBars(name)
 	return bars[self]
 end
 
-function lib:NewCounterBar(name, text, value, maxVal, icon, orientation, width, height, isTimer)
-	if self == lib then
-		error("You may only call :NewBar as an embedded function")
+function lib:HasAnyBar()
+	return not not (bars[self] and next(bars[self]))
+end
+
+do
+	local function NOOP() end
+	function lib:IterateBars()
+		if bars[self] then
+			return pairs(bars[self])
+		else
+			return NOOP
+		end
 	end
+end
+
+-- Convenient method to create a new, empty bar prototype
+function lib:NewBarPrototype(super)
+	assert(super == nil or (type(super) == "table" and type(super.metatable) == "table"),
+		"!NewBarPrototype: super must either be nil or a valid prototype")
+	super = super or barPrototype
+	local prototype = setmetatable({}, super.metatable)
+	prototype.prototype = prototype
+	prototype.super = super
+	prototype.metatable = { __index = prototype }
+	return prototype
+end
+
+--[[ Individual bars ]]--
+
+function lib:NewBarFromPrototype(prototype, name, ...)
+	assert(self ~= lib, "You may only call :NewBar as an embedded function")
+	assert(type(prototype) == "table" and type(prototype.metatable) == "table", "Invalid bar prototype")
 	bars[self] = bars[self] or {}
 	local bar = bars[self][name]
 	local isNew = false
@@ -174,92 +262,46 @@ function lib:NewCounterBar(name, text, value, maxVal, icon, orientation, width, 
 		isNew = true
 		bar = tremove(recycledBars)
 		if not bar then
-			bar = setmetatable(CreateFrame("Frame"), barPrototype_mt)
+			bar = CreateFrame("Frame")
 		else
 			bar:Show()
 		end
 	end
-	bar:Create(text, value, maxVal, icon, orientation, width, height, isTimer)
+	bar = setmetatable(bar, prototype.metatable)
+	bar.name = name
+	bar:Create(...)
 	bar:SetFont(self.font, self.fontSize, self.fontFlags)
 
 	bars[self][name] = bar
-	bar.name = name
-	bar.isTimer = isTimer
-	
+
 	return bar, isNew
 end
 
---[[ Individual bars ]]--
+function lib:NewCounterBar(name, text, value, maxVal, icon, orientation, length, thickness, isTimer)
+	return self:NewBarFromPrototype(barPrototype, name, text, value, maxVal, icon, orientation, length, thickness, isTimer)
+end
 
-function lib:NewTimerBar(name, text, time, maxTime, icon, orientation, width, height)
-	local bar, isNew = self:NewCounterBar(name, text, time, maxTime, icon, orientation, width, height, true)
-	return bar, isNew
+function lib:NewTimerBar(name, text, time, maxTime, icon, orientation,length, thickness)
+	return self:NewBarFromPrototype(barPrototype, name, text, time, maxTime, icon, orientation, length, thickness, true)
 end
 
 function lib:ReleaseBar(name)
-	local bar
-
 	if not bars[self] then return end
 
+	local bar
 	if type(name) == "string" then
 		bar = bars[self][name]
 	elseif type(name) == "table" then
-		for k, v in pairs(bars[self]) do
-			if v == name then
-				bar = v
-				break
-			end
+		if name.name and bars[self][name.name] == name then
+			bar = name
 		end
 	end
-	
-	if bar then
-		tinsert(recycledBars, bar)
-		bar.flashing = false
-		bar:SetScript("OnUpdate", nil)
-		bar.ownerGroup = nil
-		bar:SetParent(UIParent)
-		bar:ClearAllPoints()
-		bar:Hide()
-		if bar.timeLeftTriggers then
-			for k, v in pairs(bar.timeLeftTriggers) do
-				bar.timeLeftTriggers[k] = nil
-			end
-		end
 
-		bar.fill = false
-		if bar.colors then
-			for k, v in pairs(bar.colors) do
-				bar.colors[k] = nil
-			end
-		end
-		if bar.gradMap then
-			for k, v in pairs(bar.gradMap) do
-				bar.gradMap[k] = nil
-			end
-		end
-		local f, s, m = ChatFontNormal:GetFont()
-		bar.label:SetFont(f, s or 10, m)
-		bar.timerLabel:SetFont(f, s or 10, m)
-		
-		-- Cancel all registered callbacks. CBH doesn't seem to provide a method to do this.
-		if bar.callbacks.insertQueue then
-			for eventname, callbacks in pairs(bar.callbacks.insertQueue) do
-				for k, v in pairs(callbacks) do
-					callbacks[k] = nil
-				end
-			end
-		end
-		for eventname, callbacks in pairs(bar.callbacks.events) do
-			for k, v in pairs(callbacks) do
-				callbacks[k] = nil
-			end
-			if bar.callbacks.OnUnused then
-				bar.callbacks.OnUnused(bar.callbacks, target, eventname)
-			end
-		end
-				
+	if bar then
+		bar:OnBarReleased()
 		bars[self][bar.name] = nil
-	end	
+		tinsert(recycledBars, bar)
+	end
 end
 
 ---[[ Bar Groups ]]---
@@ -273,7 +315,7 @@ do
 	end
 	local function stopMove(self)
 		if not self:GetParent().locked then
-			self:GetParent():StopMovingOrSizing()		
+			self:GetParent():StopMovingOrSizing()
 			local endX = self:GetParent():GetLeft()
 			local endY = self:GetParent():GetTop()
 			if self.startX ~= endX or self.startY ~= endY then
@@ -284,10 +326,11 @@ do
 	local function buttonClick(self, button)
 		self:GetParent().callbacks:Fire("AnchorClicked", self:GetParent(), button)
 	end
-
-	function lib:NewBarGroup(name, orientation, width, height, frameName)
+	
+	local DEFAULT_TEXTURE = [[Interface\TARGETINGFRAME\UI-StatusBar]]
+	function lib:NewBarGroup(name, orientation, length, thickness, frameName)
 		if self == lib then
-			error("You may only call :NewBarList as an embedded function")
+			error("You may only call :NewBarGroup as an embedded function")
 		end
 
 		barLists[self] = barLists[self] or {}
@@ -299,47 +342,58 @@ do
 		orientation = orientation == "LEFT" and lib.LEFT_TO_RIGHT or orientation
 		orientation = orientation == "RIGHT" and lib.RIGHT_TO_LEFT or orientation
 
-		local list = setmetatable(CreateFrame("Frame", frameName, UIParent), barListPrototype_mt)
+		local list = setmetatable(CreateFrame("Frame", frameName, UIParent, BackdropTemplateMixin and "BackdropTemplate"), barListPrototype_mt)
 		list:SetMovable(true)
 		list:SetClampedToScreen(true)
 
 		list.callbacks = list.callbacks or CallbackHandler:New(list)
 		barLists[self][name] = list
 		list.name = name
-		list.orientation = orientation
+		
+		-- list:SetBackdrop({
+			-- bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
+			-- edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+			-- inset = 0,
+			-- edgeSize = 12,
+			-- tile = true
+		-- })
 
-		list.button = CreateFrame("Button", nil, list)
+		list.button = CreateFrame("Button", nil, list, BackdropTemplateMixin and "BackdropTemplate")
 		list.button:SetBackdrop(frame_defaults)
-		list.button:SetTextFontObject(ChatFontSmall)
 
-		if orientation % 2 == 0 then
-			list.button:SetText("")
-			list.button:SetWidth(15)
-			local _width = width
-			width = height or 13
-			height = _width or 200
-		else
-			list.button:SetText(name)
-			list.button:SetHeight(15)
-			width = width or 200
-			height = height or 13
-		end
-		list:SetWidth(width)
-		list:SetHeight(height)
+		list.button:SetNormalFontObject(ChatFontSmall)
 
+		list.length = length or 200
+		list.thickness = thickness or 15
+		list:SetOrientation(orientation)
+
+		list:UpdateOrientationLayout()
+		
 		list.button:SetScript("OnMouseDown", move)
 		list.button:SetScript("OnMouseUp", stopMove)
 		list.button:SetBackdropColor(0,0,0,1)
 		list.button:RegisterForClicks("LeftButtonUp", "RightButtonUp", "MiddleButtonUp", "Button4Up", "Button5Up")
 		list.button:SetScript("OnClick", buttonClick)
 
-		list:SetPoint("CENTER", UIParent, "CENTER")
+		list:SetPoint("TOPLEFT", UIParent, "CENTER")
 		list:ReverseGrowth(false)
-		
+
+		list.showIcon = true
+		list.showLabel = true
+		list.showTimerLabel = true
+
+		list.lastBar = list
 		list.locked = false
+		
+		list.texture = DEFAULT_TEXTURE
+		list.spacing = 0
 
 		return list
 	end
+end
+
+function lib:GetBarGroups()
+	return barLists[self]
 end
 
 function lib:GetBarGroup(name)
@@ -348,14 +402,52 @@ end
 
 --[[ BarList prototype ]]--
 
-function barListPrototype:NewCounterBar(name, text, value, maxVal, icon, isTimer)
-	local bar, isNew = lib.NewCounterBar(self, name, text, value, maxVal, icon, self.orientation, nil, self.height, isTimer)
+function barListPrototype:NewBarFromPrototype(prototype, ...)
+	local bar, isNew = lib.NewBarFromPrototype(self, prototype, ...)
 	bar:SetTexture(self.texture)
+	bar:SetFill(self.fill)
+	-- if isNew then bar:SetValue(0) end
+	
+	if self.showIcon then bar:ShowIcon() else bar:HideIcon(bar) end
+	if self.showLabel then bar:ShowLabel() else bar:HideLabel(bar) end
+	if self.showTimerLabel then bar:ShowTimerLabel() else bar:HideTimerLabel(bar) end
 	self:SortBars()
 	bar.ownerGroup = self
 	bar.RegisterCallback(self, "FadeFinished")
 	bar.RegisterCallback(self, "TimerFinished")
 	bar:SetParent(self)
+	return bar, isNew
+end
+
+function barListPrototype:SetWidth(width)
+	if self:IsVertical() then
+		self:SetThickness(width)
+	else
+		self:SetLength(width)
+	end
+end
+
+function barListPrototype:SetHeight(height)
+	if self:IsVertical() then
+		self:SetLength(height)
+	else
+		self:SetThickness(height)
+	end
+end
+
+function barListPrototype:NewCounterBar(name, text, value, maxVal, icon, isTimer)
+	return self:NewBarFromPrototype(barPrototype, name, text, value, maxVal, icon, self.orientation, self.length, self.thickness, isTimer)
+end
+
+local function startFlashing(bar, time)
+	if not bar.flashing then
+		bar:Flash(bar.ownerGroup.flashPeriod)
+	end
+end
+
+function barListPrototype:NewTimerBar(name, text, time, maxTime, icon, flashTrigger)
+	local bar, isNew = self:NewBarFromPrototype(barPrototype, name, text, time, maxTime, icon, self.orientation, self.length, self.thickness, true)
+	bar:RegisterTimeLeftTrigger(flashTrigger or bar.ownerGroup.flashTrigger or 5, startFlashing)
 	return bar, isNew
 end
 
@@ -368,24 +460,16 @@ function barListPrototype:Unlock()
 end
 
 function barListPrototype:IsLocked()
-	return self.locked 
-end
-
-local function startFlashing(bar, time)
-	if not bar.flashing then
-		bar:Flash(bar.ownerGroup.flashPeriod)
-	end
-end
-
-function barListPrototype:NewTimerBar(name, text, time, maxTime, icon, flashTrigger)
-	local bar, isNew = self:NewCounterBar(name, text, time, maxTime, icon, true)
-	bar:RegisterTimeLeftTrigger(flashTrigger or bar.ownerGroup.flashTrigger or 5, startFlashing)
-	return bar, isNew
+	return self.locked
 end
 
 -- Max number of bars to display. nil to display all.
 function barListPrototype:SetMaxBars(num)
 	self.maxBars = num
+end
+
+function barListPrototype:GetMaxBars()
+	return self.maxBars
 end
 
 function barListPrototype:SetFlashTrigger(t)
@@ -423,8 +507,79 @@ function barListPrototype:SetFill(fill)
 	end
 end
 
+function barListPrototype:IsFilling()
+	return self.fill
+end
+
+function barListPrototype:ShowIcon()
+	self.showIcon = true
+	if not bars[self] then return end
+	for name,bar in pairs(bars[self]) do
+		bar:ShowIcon()
+	end
+end
+
+function barListPrototype:HideIcon()
+	self.showIcon = false
+	if not bars[self] then return end
+	for name, bar in pairs(bars[self]) do
+		bar:HideIcon()
+	end
+end
+
+function barListPrototype:IsIconShown()
+	return self.showIcon
+end
+
+function barListPrototype:ShowLabel()
+	self.showLabel = true
+	for name,bar in pairs(bars[self]) do
+		bar:ShowLabel()
+	end
+end
+
+function barListPrototype:HideLabel()
+	self.showLabel = false
+	for name,bar in pairs(bars[self]) do
+		bar:HideLabel()
+	end
+end
+
+function barListPrototype:IsLabelShown()
+	return self.showLabel
+end
+
+function barListPrototype:ShowTimerLabel()
+	self.showTimerLabel = true
+	for name,bar in pairs(bars[self]) do
+		bar:ShowTimerLabel()
+	end
+end
+
+function barListPrototype:HideTimerLabel()
+	self.showTimerLabel = false
+	for name,bar in pairs(bars[self]) do
+		bar:HideTimerLabel()
+	end
+end
+
+function barListPrototype:IsValueLabelShown()
+	return self.showTimerLabel
+end
+
+function barListPrototype:SetSpacing(spacing)
+	self.spacing = spacing
+	self:SortBars()
+end
+
+function barListPrototype:GetSpacing()
+	return self.spacing
+end
+
 barListPrototype.GetBar = lib.GetBar
 barListPrototype.GetBars = lib.GetBars
+barListPrototype.HasAnyBar = lib.HasAnyBar
+barListPrototype.IterateBars = lib.IterateBars
 
 function barListPrototype:MoveBarToGroup(bar, group)
 	if type(bar) ~= "table" then
@@ -536,54 +691,115 @@ function barListPrototype:ToggleAnchor()
 	self:SortBars()
 end
 
-function barListPrototype:GetBarTop()
-	return self.growup and (self.lastBar:GetTop() - self.lastBar:GetHeight()) or (self.lastBar:GetBottom() - self.lastBar:GetHeight())
-end
-
-function barListPrototype:ReverseGrowth(flag)
-	self.growup = flag
-	self.button:ClearAllPoints()
-	if self.orientation % 2 == 0 then
-		if flag then
-			self.button:SetPoint("TOPLEFT", self, "TOPLEFT")
-			self.button:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT")
+function barListPrototype:GetBarAttachPoint()
+	local vertical, growup, lastBar = (self.orientation % 2 == 0), self.growup, self.lastBar
+	if vertical then
+		if growup then
+			return lastBar:GetLeft() - lastBar:GetWidth(), lastBar:GetTop()
 		else
-			self.button:SetPoint("TOPRIGHT", self, "TOPRIGHT")
-			self.button:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT")
+			return lastBar:GetRight() + lastBar:GetWidth(), lastBar:GetTop()
 		end
 	else
-		if flag then
-			self.button:SetPoint("TOPLEFT", self, "TOPLEFT")
-			self.button:SetPoint("TOPRIGHT", self, "TOPRIGHT")
+		if growup then
+			return lastBar:GetLeft(), lastBar:GetTop() + lastBar:GetHeight()
 		else
+			return lastBar:GetLeft(), lastBar:GetBottom() - lastBar:GetHeight()
+		end
+	end
+end
+
+function barListPrototype:ReverseGrowth(reverse)
+	self.growup = reverse
+	self.button:ClearAllPoints()
+	if self.orientation % 2 == 0 then
+		if reverse then
+			self.button:SetPoint("TOPRIGHT", self, "TOPRIGHT")
+			self.button:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT")
+		else
+			self.button:SetPoint("TOPLEFT", self, "TOPLEFT")
+			self.button:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT")
+		end
+	else
+		if reverse then
 			self.button:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT")
 			self.button:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT")
+		else
+			self.button:SetPoint("TOPLEFT", self, "TOPLEFT")
+			self.button:SetPoint("TOPRIGHT", self, "TOPRIGHT")
 		end
 	end
 	self:SortBars()
 end
 
+function barListPrototype:HasReverseGrowth()
+	return self.growup
+end
+
+function barListPrototype:UpdateOrientationLayout()
+	local vertical, length, thickness = (self.orientation % 2 == 0), self.length, self.thickness
+	if vertical then
+		barListPrototype.super.SetWidth(self, thickness)
+		barListPrototype.super.SetHeight(self, length)
+		self.button:SetWidth(thickness)
+		self.button:SetHeight(length)
+	else
+		barListPrototype.super.SetWidth(self, length)
+		barListPrototype.super.SetHeight(self, thickness)
+		self.button:SetWidth(length)
+		self.button:SetHeight(thickness)
+	end
+	
+	self.button:SetText(vertical and "" or self.name)
+	self:ReverseGrowth(self.growup)
+	-- self.button:SetWidth(vertical and 15 or length)
+	-- self.button:SetHeight(vertical and length or 15)
+	-- self:SortBars()
+end
+
+function barListPrototype:SetLength(length)
+	self.length = length
+	if bars[self] then
+		for k, v in pairs(bars[self]) do
+			v:SetLength(length)
+		end
+	end
+	self:UpdateOrientationLayout()
+end
+
+function barListPrototype:GetLength()
+	return self.length
+end
+
+function barListPrototype:SetThickness(thickness)
+	self.thickness = thickness
+	if bars[self] then
+		for k, v in pairs(bars[self]) do
+			v:SetThickness(thickness)
+		end
+	end
+	self:UpdateOrientationLayout()
+end
+
+function barListPrototype:GetThickness()
+	return self.thickness
+end
+
 function barListPrototype:SetOrientation(orientation)
-	local oldorientation = self.orientation
 	self.orientation = orientation
 	if bars[self] then
 		for k, v in pairs(bars[self]) do
 			v:SetOrientation(orientation)
 		end
 	end
-	if orientation % 2 ~= oldorientation % 2 then
-		local height = self:GetHeight()
-		self:SetHeight(self:GetWidth())
-		self:SetWidth(height)
-	end
-	if orientation % 2 == 0 then
-		self.button:SetText("")
-		self.button:SetWidth(15)
-	else
-		self.button:SetText(self.name)
-		self.button:SetHeight(15)
-	end
-	self:SortBars()
+	self:UpdateOrientationLayout()
+end
+
+function barListPrototype:GetOrientation()
+	return self.orientation
+end
+
+function barListPrototype:IsVertical()
+	return self.orientation % 2 == 0
 end
 
 function barListPrototype:SetSortFunction(func)
@@ -613,7 +829,7 @@ do
 		end
 	end
 	function barListPrototype:SortBars()
-		local lastBar = self
+		local lastBar = self.button:IsVisible() and self.button or self
 		local ct = 0
 		if not bars[self] then return end
 		for k, v in pairs(bars[self]) do
@@ -625,64 +841,92 @@ do
 		for i = ct + 1, #values do
 			values[i] = nil
 		end
+		     
 		table_sort(values, self.sortFunc or sortFunc)
 
-		local vertical = self.orientation % 2 == 0
+		local orientation = self.orientation
+		local vertical = orientation % 2 == 0
 		local growup = self.growup
+		local spacing = self.spacing
 
-		local xoff, yoff = 0, 0
 		local from, to
+		local thickness, showIcon = self.thickness, self.showIcon
+		local x1, y1, x2, y2 = 0, 0, 0, 0
 		if vertical then
-			local thickness = self:GetWidth()
 			if growup then
 				from = "RIGHT"
 				to = "LEFT"
-				xoff = 15 - thickness
+				x1, x2 = -spacing, -spacing
 			else
 				from = "LEFT"
 				to = "RIGHT"
-				xoff = thickness - 15
+				x1, x2 = spacing, spacing
 			end
 		else
-			local thickness = self:GetHeight()
 			if growup then
 				from = "BOTTOM"
 				to = "TOP"
-				yoff = thickness - 15
+				y1, y2 = spacing, spacing
 			else
 				from = "TOP"
 				to = "BOTTOM"
-				yoff = 15 - thickness
+				y1, y2 = -spacing, -spacing
 			end
 		end
-		local collapse = not self.button:IsVisible()
+		local totalHeight = 0
 		for i = 1, #values do
-			local realx, realy = 0, 0
-			local realto = to
-			if collapse then
-				realto = from
-				realx = xoff
-				realy = yoff
-				collapse = false
-			end
-
+			local origTo = to
 			local v = values[i]
+			if lastBar == self or lastBar == self.button then
+				if lastBar == self then
+					to = from
+				end
+				if vertical then
+					if orientation == 2 then
+						y1, y2 = 0, (v.showIcon and thickness or 0)
+					else
+						y1, y2 = (v.showIcon and -thickness or 0), 0
+					end
+				else
+					if orientation == 1 then
+						x1, x2 = (v.showIcon and thickness or 0), 0
+					else
+						x1, x2 = 0, (v.showIcon and -thickness or 0)
+					end
+				end
+			else
+				if vertical then
+					y1, y2 = 0, 0
+				else
+					x1, x2 = 0, 0
+				end
+			end
+			
 			v:ClearAllPoints()
 			if self.maxBars and i > self.maxBars then
 				v:Hide()
 			else
 				v:Show()
 				if vertical then
-					v:SetPoint("TOP"..from, lastBar, "TOP"..realto, realx, realy)
-					v:SetPoint("BOTTOM"..from, lastBar, "BOTTOM"..realto, realx, realy)
+					totalHeight = totalHeight + v:GetWidth() + x1			
+					v:SetPoint("TOP"..from, lastBar, "TOP"..to, x1, y1)
+					v:SetPoint("BOTTOM"..from, lastBar, "BOTTOM"..to, x2, y2)
 				else
-					v:SetPoint(from.."LEFT", lastBar, realto.."LEFT", realx, realy)
-					v:SetPoint(from.."RIGHT", lastBar, realto.."RIGHT", realx, realy)
+					totalHeight = totalHeight + v:GetHeight() + y1
+					v:SetPoint(from.."LEFT", lastBar, to.."LEFT", x1, y1)
+					v:SetPoint(from.."RIGHT", lastBar, to.."RIGHT", x2, y2)
 				end
 				lastBar = v
 			end
+			to = origTo
 		end
 		self.lastBar = lastBar
+		-- Todo - use another frame for this; anchoring needs to be left alone
+		-- if vertical then
+			-- self.super.SetWidth(self, 20)
+		-- else
+			-- self.super.SetHeight(self, 20)
+		-- end
 	end
 end
 
@@ -694,25 +938,15 @@ end
 
 --[[ Bar Prototype ]]--
 
-function barPrototype:Create(text, value, maxVal, icon, orientation, width, height, isTimer)
+local DEFAULT_ICON = [[Interface\ICONS\INV_Misc_QuestionMark]]
+function barPrototype:Create(text, value, maxVal, icon, orientation, length, thickness, isTimer)
 
 	self.callbacks = self.callbacks or CallbackHandler:New(self)
 
-	orientation = orientation or 1
-	width = width or 200
-	height = height or 15
-
-	if orientation % 2 == 0 then
-		width, height = height, width
-	end
-
-	self:SetScript("OnSizeChanged", sizeChanged)
-
-	self:SetWidth(width)
-	self:SetHeight(height)
+	self:SetScript("OnSizeChanged", self.OnSizeChanged)
 
 	self.texture = self.texture or self:CreateTexture(nil, "ARTWORK")
-	
+
 	if self.timeLeftTriggers then
 		for k, v in pairs(self.timeLeftTriggers) do
 			self.timeLeftTriggers[k] = false
@@ -722,8 +956,8 @@ function barPrototype:Create(text, value, maxVal, icon, orientation, width, heig
 	if not self.spark then
 		self.spark = self:CreateTexture(nil, "OVERLAY")
 		self.spark:SetTexture([[Interface\CastingBar\UI-CastingBar-Spark]])
-		self.spark:SetWidth(5)
-		self.spark:SetHeight(5)
+		self.spark:SetWidth(10)
+		self.spark:SetHeight(10)
 		self.spark:SetBlendMode("ADD")
 	end
 
@@ -732,29 +966,27 @@ function barPrototype:Create(text, value, maxVal, icon, orientation, width, heig
 	self.bgtexture:SetVertexColor(0.3, 0.3, 0.3, 0.6)
 
 	self.icon = self.icon or self:CreateTexture(nil, "OVERLAY")
-	local ih = min(width, height)
-	self.icon:SetHeight(ih)
-	self.icon:SetWidth(ih)
 	self.icon:SetPoint("LEFT", self, "LEFT", 0, 0)
-	self:SetIcon(icon)
+	self:SetIcon(icon or DEFAULT_ICON)
+	self:ShowIcon()
 
 	self.label = self.label or self:CreateFontString(nil, "OVERLAY", "ChatFontNormal")
 	self.label:SetText(text)
 	self.label:ClearAllPoints()
 	self.label:SetPoint("LEFT", self, "LEFT", 3, 0)
+	self:ShowLabel()
 
 	local f, s, m = self.label:GetFont()
 	self.label:SetFont(f, s or 10, m)
 
 	self.timerLabel = self.timerLabel or self:CreateFontString(nil, "OVERLAY", "ChatFontNormal")
-	self.timerLabel:SetText("")
+	self:SetTimerLabel("")
 	self.timerLabel:ClearAllPoints()
-	self.timerLabel:SetPoint("RIGHT", self, "RIGHT", -3, 0)
+	self.timerLabel:SetPoint("RIGHT", self, "RIGHT", -6, 0)
+	self:HideTimerLabel()
 
 	local f, s, m = self.timerLabel:GetFont()
 	self.timerLabel:SetFont(f, s or 10, m)
-
-	self.SetLabel = self.SetLabel or function(self, l) self.label:SetText(l) end
 
 	self.timerFuncs = self.timerFuncs or {}
 	for i = 1, #self.timerFuncs do
@@ -768,21 +1000,83 @@ function barPrototype:Create(text, value, maxVal, icon, orientation, width, heig
 	self.bgtexture:SetAlpha(0.6)
 	self.icon:SetAlpha(1)
 	]]--
-	
+
 	self.flashing = false
 
-	self:SetOrientation(orientation)
+	self.length = length or 200
+	self.thickness = thickness or 15
+	self:SetOrientation(orientation or 1)
 
 	value = value or 1
 	maxVal = maxVal or value
 	self.value = value
 	self.maxValue = maxVal
+	self.isTimer = isTimer
 
 	if not isTimer then
 		self:SetMaxValue(maxVal)
 	else
-		self.updateDelay = min(max(maxVal, 1) / width, 0.05)
 		self:SetTimer(value, maxVal)
+	end
+	self:SetValue(value)
+end
+
+barPrototype.SetWidth = barListPrototype.SetWidth
+barPrototype.SetHeight = barListPrototype.SetHeight
+
+function barPrototype:OnBarReleased()
+	self:StopTimer()
+	self:StopFlash()
+	self:StopFade()
+	
+	self.callbacks:Fire('BarReleased', self, self.name)
+
+	-- Reset our attributes
+	self.isAnimating = false
+	self.isTimer = false
+	self.ownerGroup = nil
+	self.fill = false
+	if self.colors then
+		for k, v in pairs(self.colors) do
+			self.colors[k] = nil
+		end
+	end
+	if self.gradMap then
+		for k, v in pairs(self.gradMap) do
+			self.gradMap[k] = nil
+		end
+	end
+	if self.timeLeftTriggers then
+		for k, v in pairs(self.timeLeftTriggers) do
+			self.timeLeftTriggers[k] = nil
+		end
+	end
+
+	-- Reset widget
+	self.texture:SetVertexColor(1, 1, 1, 0)
+	self:SetScript("OnUpdate", nil)
+	self:SetParent(UIParent)
+	self:ClearAllPoints()
+	self:Hide()
+	local f, s, m = ChatFontNormal:GetFont()
+	self.label:SetFont(f, s or 10, m)
+	self.timerLabel:SetFont(f, s or 10, m)
+
+	-- Cancel all registered callbacks. CBH doesn't seem to provide a method to do this.
+	if self.callbacks.insertQueue then
+		for eventname, callbacks in pairs(self.callbacks.insertQueue) do
+			for k, v in pairs(callbacks) do
+				callbacks[k] = nil
+			end
+		end
+	end
+	for eventname, callbacks in pairs(self.callbacks.events) do
+		for k, v in pairs(callbacks) do
+			callbacks[k] = nil
+		end
+		if self.callbacks.OnUnused then
+			self.callbacks.OnUnused(self.callbacks, target, eventname)
+		end
 	end
 end
 
@@ -790,12 +1084,19 @@ function barPrototype:GetGroup()
 	return self.ownerGroup
 end
 
-function barPrototype:SetFont(ff, ss, mm)
-	local f, s, m = self.label:GetFont()
-	self.label:SetFont(ff or f, ss or s, mm or m)
+function barPrototype:OnSizeChanged()
+	self:SetValue(self.value)
+end
 
-	f, s, m = self.timerLabel:GetFont()
-	self.timerLabel:SetFont(ff or f, ss or s, mm or m)
+function barPrototype:SetFont(newFont, newSize, newFlags)
+	local t, font, size, flags
+	t = self.label
+	font, size, flags = t:GetFont()
+	t:SetFont(newFont or font, newSize or size, newFlags or flags)
+
+	t = self.timerLabel
+	font, size, flags = t:GetFont()
+	t:SetFont(newFont or font, newSize or size, newFlags or flags)
 end
 
 function barPrototype:AddOnUpdate(f)
@@ -828,14 +1129,38 @@ end
 
 function barPrototype:SetIcon(icon)
 	if icon then
-		self.icon:Show()
-		if type(icon) == "number" then
-			icon = select(3, GetSpellInfo(icon))
-		end
+		-- Starting in Legion (WoW 7.x), SetTexture can accept texture IDs directly. This translation via GetSpellInfo does not work any longer, especially since GetItemInfo now returns a texture ID.
+		--if type(icon) == "number" then
+		--	icon = select(3, GetSpellInfo(icon))
+		--end
 		self.icon:SetTexture(icon)
+		if self.showIcon then
+			self.icon:Show()
+		end
 	else
 		self.icon:Hide()
 	end
+	self.iconTexture = icon or nil
+end
+
+function barPrototype:ShowIcon()
+	self.showIcon = true
+	if self.iconTexture then
+		self.icon:Show()
+	end
+end
+
+function barPrototype:HideIcon()
+	self.showIcon = false
+	self.icon:Hide()
+end
+
+function barPrototype:IsIconShown()
+	return self.showIcon
+end
+
+function barPrototype:OnAnimateFinished()
+	self.callbacks:Fire("AnimateFinished", self, self.name)
 end
 
 local function animate(self, elapsed)
@@ -845,18 +1170,17 @@ local function animate(self, elapsed)
 	local y = self.aniSY + ((self.aniY - self.aniSY) * amt)
 	local s = self.aniSS + ((self.aniS - self.aniSS) * amt)
 	self:ClearAllPoints()
-	self:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", x, y)
+	self:SetPoint("TOPLEFT", UIParent, "TOPLEFT", x, y)
 	self:SetScale(s)
 
 	if amt == 1 then
 		self.isAnimating = false
 		self:RemoveOnUpdate(animate)
-		self.callbacks:Fire("AnimateFinished", self, self.name)
+		safecall(self.OnAnimateFinished, self)
 		if self.ownerGroup then
 			self:ClearAllPoints()
-			self:SetPoint("TOPLEFT", self.ownerGroup.lastBar, "BOTTOMLEFT")
-			-- self.ownerGroup:SortBars()
-			-- self:UpdateColor()
+			self.ownerGroup:SortBars()
+			self:UpdateColor()
 			self:SetParent(self.ownerGroup)
 			self:SetScale(1)
 		end
@@ -868,6 +1192,7 @@ function barPrototype:AnimateTo(x, y, scale, t)
 	self.aniSX, self.aniSY, self.aniSS, self.aniST = self:GetLeft(), self:GetTop(), self:GetScale(), 0
 	self.aniX, self.aniY, self.aniS, self.aniT = x, y, scale, t
 	self:AddOnUpdate(animate)
+	animate(0)
 end
 
 function barPrototype:AnimateToGroup(group)
@@ -876,13 +1201,72 @@ function barPrototype:AnimateToGroup(group)
 	self.ownerGroup:MoveBarToGroup(self, group)
 	self:SetParent(UIParent)
 
-	local x, y = group:GetLeft() / UIParent:GetScale(), group:GetBarTop() / UIParent:GetScale()
+	local x, y = group:GetBarAttachPoint()
+	x = x / UIParent:GetScale()
+	y = y / UIParent:GetScale()
 	self:AnimateTo(x, y, group:GetScale(), 0.75)
+end
+
+function barPrototype:SetLabel(text)
+	self.label:SetText(text)
+end
+
+function barPrototype:GetLabel(text)
+	return self.label:GetText(text)
+end
+
+barPrototype.SetText = barPrototype.SetLabel -- for API compatibility
+barPrototype.GetText = barPrototype.GetLabel -- for API compatibility
+
+function barPrototype:ShowLabel()
+	self.showLabel = true
+	self.label:Show()
+end
+
+function barPrototype:HideLabel()
+	self.showLabel = false
+	self.label:Hide()
+end
+
+function barPrototype:IsLabelShown()
+	return self.showLabel
+end
+
+function barPrototype:SetTimerLabel(text)
+	self.timerLabel:SetText(text)
+end
+
+function barPrototype:GetTimerLabel(text)
+	return self.timerLabel:GetText(text)
+end
+
+function barPrototype:ShowTimerLabel()
+	self.showTimerLabel = true
+	self.timerLabel:Show()
+end
+
+function barPrototype:HideTimerLabel()
+	self.showTimerLabel = false
+	self.timerLabel:Hide()
+end
+
+function barPrototype:IsValueLabelShown()
+	return self.showTimerLabel
 end
 
 function barPrototype:SetTexture(texture)
 	self.texture:SetTexture(texture)
 	self.bgtexture:SetTexture(texture)
+end
+
+-- Added by Ulic
+-- Allows for the setting of background colors for a specific bar
+-- Someday I'll figure out to do it at the group level
+function barPrototype:SetBackgroundColor(r, g, b, a)
+	a = a or .6
+	if r and g and b and a then
+		self.bgtexture:SetVertexColor(r, g, b, a)
+	end
 end
 
 function barPrototype:SetColorAt(at, r, g, b, a)
@@ -918,15 +1302,8 @@ function barPrototype:UnsetAllColors()
 end
 
 do
-	local function RotateTexture(tex, degrees)
-		local angle = rad(degrees)
-		local cosv, sinv = cos(angle), sin(angle)
-		tex:SetTexCoord((sinv - cosv), -(cosv + sinv), -cosv, -sinv, sinv, -cosv, 0, 0)
-	end
-
-	function barPrototype:SetOrientation(o)
-		assert(o >= 1 and o <= 4, "orientation must be 1-4")
-
+	function barPrototype:UpdateOrientationLayout()
+		local o = self.orientation
 		local t
 		if o == lib.LEFT_TO_RIGHT then
 			self.icon:ClearAllPoints()
@@ -943,7 +1320,20 @@ do
 			t:ClearAllPoints()
 			t:SetPoint("TOPLEFT", self, "TOPLEFT")
 			t:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT")
-			t:SetTexCoord(0, 1, 0, 1)
+			-- t:SetTexCoord(0, 1, 0, 1)
+
+			t = self.timerLabel
+			t:ClearAllPoints()
+			t:SetPoint("RIGHT", self, "RIGHT", -6, 0)
+			t:SetJustifyH("RIGHT")
+			t:SetJustifyV("MIDDLE")
+
+			t = self.label
+			t:ClearAllPoints()
+			t:SetPoint("LEFT", self, "LEFT", 6, 0)
+			t:SetPoint("RIGHT", self.timerLabel, "LEFT", 0, 0)
+			t:SetJustifyH("LEFT")
+			t:SetJustifyV("MIDDLE")
 
 			self.bgtexture:SetTexCoord(0, 1, 0, 1)
 		elseif o == lib.BOTTOM_TO_TOP then
@@ -961,7 +1351,21 @@ do
 			t:ClearAllPoints()
 			t:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT")
 			t:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT")
-			t:SetTexCoord(0, 1, 1, 1, 0, 0, 1, 0)
+			-- t:SetTexCoord(0, 1, 1, 1, 0, 0, 1, 0)
+
+			t = self.timerLabel
+			t:ClearAllPoints()
+			t:SetPoint("TOPLEFT", self, "TOPLEFT", 3, -3)
+			t:SetPoint("TOPRIGHT", self, "TOPRIGHT", -3, -3)
+			t:SetJustifyH("CENTER")
+			t:SetJustifyV("TOP")
+
+			t = self.label
+			t:ClearAllPoints()
+			t:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", -3, 3)
+			t:SetPoint("TOPLEFT", self.timerLabel, "BOTTOMLEFT", 0, 0)
+			t:SetJustifyH("CENTER")
+			t:SetJustifyV("BOTTOM")
 
 			self.bgtexture:SetTexCoord(0, 1, 1, 1, 0, 0, 1, 0)
 		elseif o == lib.RIGHT_TO_LEFT then
@@ -979,7 +1383,20 @@ do
 			t:ClearAllPoints()
 			t:SetPoint("TOPRIGHT", self, "TOPRIGHT")
 			t:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT")
-			t:SetTexCoord(0, 1, 0, 1)
+			-- t:SetTexCoord(0, 1, 0, 1)
+
+			t = self.timerLabel
+			t:ClearAllPoints()
+			t:SetPoint("LEFT", self, "LEFT", 6, 0)
+			t:SetJustifyH("LEFT")
+			t:SetJustifyV("MIDDLE")
+
+			t = self.label
+			t:ClearAllPoints()
+			t:SetPoint("RIGHT", self, "RIGHT", -6, 0)
+			t:SetPoint("LEFT", self.timerLabel, "RIGHT", 0, 0)
+			t:SetJustifyH("RIGHT")
+			t:SetJustifyV("MIDDLE")
 
 			self.bgtexture:SetTexCoord(0, 1, 0, 1)
 		elseif o == lib.TOP_TO_BOTTOM then
@@ -997,17 +1414,79 @@ do
 			t:ClearAllPoints()
 			t:SetPoint("TOPLEFT", self, "TOPLEFT")
 			t:SetPoint("TOPRIGHT", self, "TOPRIGHT")
-			t:SetTexCoord(0, 1, 1, 1, 0, 0, 1, 0)
+			-- t:SetTexCoord(0, 1, 1, 1, 0, 0, 1, 0)
+
+			t = self.timerLabel
+			t:ClearAllPoints()
+			t:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", 3, 3)
+			t:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", -3, 3)
+			t:SetJustifyH("CENTER")
+			t:SetJustifyV("BOTTOM")
+
+			t = self.label
+			t:ClearAllPoints()
+			t:SetPoint("TOPLEFT", self, "TOPLEFT", 3, -3)
+			t:SetPoint("BOTTOMRIGHT", self.timerLabel, "TOPRIGHT", 0, 0)
+			t:SetJustifyH("CENTER")
+			t:SetJustifyV("TOP")
 
 			self.bgtexture:SetTexCoord(0, 1, 1, 1, 0, 0, 1, 0)
 		end
-		self.orientation = o
+		self:SetValue(self.value or 0)
 	end
 end
 
-function barPrototype:SetValue(val)
+function barPrototype:GetLength()
+	return self.length
+end
+
+do
+	local function updateSize(self)
+		local vertical, thickness, length = self.orientation % 2 == 0, self.thickness, self.length
+		local iconSize = self.showIcon and (vertical and length or thickness) or 0
+		local width = vertical and thickness or max(0.0001, length - iconSize)
+		local height = vertical and max(0.00001,length - iconSize) or thickness
+		barPrototype.super.SetWidth(self, width)
+	        barPrototype.super.SetHeight(self, height)
+		self.icon:SetWidth(thickness)
+		self.icon:SetHeight(thickness)
+	end
+
+	function barPrototype:SetLength(length)
+		self.length = length
+		updateSize(self)
+	end
+
+	function barPrototype:SetThickness(thickness)
+		self.thickness = thickness
+		updateSize(self)
+	end
+end
+
+function barPrototype:GetThickness()
+	return self.thickness
+end
+
+function barPrototype:SetOrientation(orientation)
+	self.orientation = orientation
+	self:UpdateOrientationLayout()
+	self:SetThickness(self.thickness)
+end
+
+function barPrototype:GetOrientation()
+	return self.orientation
+end
+
+function barPrototype:IsVertical()
+	return self.orientation % 2 == 0
+end
+
+function barPrototype:SetValue(val, maxValue)        
 	assert(val ~= nil, "Value cannot be nil!")
 	self.value = val
+	if maxValue ~= nil then
+		self.maxValue = maxValue
+	end
 	if not self.maxValue or val > self.maxValue then
 		self.maxValue = val
 	end
@@ -1018,20 +1497,37 @@ function barPrototype:SetValue(val)
 	else
 		displayMax = self.maxValue
 	end
-	local amt = min(1, val / displayMax)
-	if amt == 1 then
+	local amt
+	
+	if val == 0 then
+		amt = 0
+	else
+		amt = min(1, val / displayMax)
+	end
+
+	if amt == 1 or amt == 0 then
 		self.spark:Hide()
 	else
 		self.spark:Show()
 	end
-	local dist
-	if self.orientation % 2 == 0 then
-		dist = (ownerGroup and ownerGroup:GetHeight()) or (self:GetTop() and self:GetTop() - self:GetBottom()) or self:GetHeight()
-	else
-		dist = (ownerGroup and ownerGroup:GetWidth()) or (self:GetRight() and self:GetRight() - self:GetLeft()) or self:GetWidth()
-	end
-	self.texture:SetValue(amt * dist)
+	local dist = (ownerGroup and ownerGroup:GetLength()) or self.length
+	self:SetTextureValue(max(amt, 0.000001), dist)
 	self:UpdateColor()
+end
+
+function barPrototype:SetTextureValue(amt, dist)
+	dist = max(0.0001, dist - (self.showIcon and self.thickness or 0))
+	local t, o = self.texture, self.orientation
+	t:SetValue(amt * dist)
+	if o == 1 then
+		t:SetTexCoord(0, amt, 0, 1)
+	elseif o == 2 then
+		t:SetTexCoord(1 - amt, 1, 1, 1, 1 - amt, 0, 1, 0)	
+	elseif o == 3 then
+		t:SetTexCoord(1 - amt, 1, 0, 1)
+	elseif o == 4 then
+		t:SetTexCoord(0, 1, amt, 1, 0, 0, amt, 0)	
+	end
 end
 
 function barPrototype:SetDisplayMax(val)
@@ -1039,8 +1535,7 @@ function barPrototype:SetDisplayMax(val)
 end
 
 function barPrototype:SetMaxValue(val)
-	self.maxValue = val
-	self:SetValue(self.value)
+	self:SetValue(self.value, val)
 end
 
 function barPrototype:RegisterTimeLeftTrigger(time, func)
@@ -1052,7 +1547,20 @@ function barPrototype:RegisterTimeLeftTrigger(time, func)
 	end
 end
 
+function barPrototype:OnTimerStarted()
+	self.callbacks:Fire("TimerStarted", self, self.name)
+end
+
+function barPrototype:OnTimerStopped()
+	self.callbacks:Fire("TimerStopped", self, self.name)
+end
+
+function barPrototype:OnTimerFinished()
+	self.callbacks:Fire("TimerFinished", self, self.name)
+end
+
 function barPrototype:SetTimer(remaining, maxVal)
+	if not self.isTimer then return end
 	self:StopFade()
 	self.maxValue = maxVal or self.maxValue
 	self:SetValue(self.fill and self.maxValue - remaining or remaining)
@@ -1060,10 +1568,23 @@ function barPrototype:SetTimer(remaining, maxVal)
 	self.timerLabel:Show()
 	self.startTime = GetTime() - (self.maxValue - remaining)
 	self.lastElapsed = 0
+	self.updateDelay = min(max(self.maxValue, 1) / self.length, 0.05)
 	self:UpdateTimer()
 	if remaining > 0 then
 		self:RemoveOnUpdate(self.UpdateTimer)
 		self:AddOnUpdate(self.UpdateTimer)
+		if not self.isTimerRunning then
+			self.isTimerRunning = true
+			safecall(self.OnTimerStarted, self)
+		end
+	end
+end
+
+function barPrototype:StopTimer()
+	if self.isTimer and self.isTimerRunning then
+		self:RemoveOnUpdate(self.UpdateTimer)
+		self.isTimerRunning = false
+		safecall(self.OnTimerStopped, self)
 	end
 end
 
@@ -1072,16 +1593,19 @@ function barPrototype:SetFill(fill)
 end
 
 function barPrototype:UpdateColor()
-	local amt = floor(self.value / self.maxValue * 200) * 4
-	local map
-	if self.gradMap and #self.gradMap > 0 then
-		map = self.gradMap
-	elseif self.ownerGroup and self.ownerGroup.gradMap and #self.ownerGroup.gradMap > 0 then
-		map = self.ownerGroup.gradMap
-	end
-	if map then
-		self.texture:SetVertexColor(map[amt], map[amt+1], map[amt+2], map[amt+3])
-	end
+   local amt = 1
+   if self.maxValue ~= 0 then
+       amt = floor(self.value / self.maxValue * 200) * 4
+   end
+   local map
+   if self.gradMap and #self.gradMap > 0 then
+      map = self.gradMap
+   elseif self.ownerGroup and self.ownerGroup.gradMap and #self.ownerGroup.gradMap > 0 then
+      map = self.ownerGroup.gradMap
+   end
+   if map then
+      self.texture:SetVertexColor(map[amt], map[amt+1], map[amt+2], map[amt+3])
+   end
 end
 
 function barPrototype:UpdateTimer(t)
@@ -1094,7 +1618,7 @@ function barPrototype:UpdateTimer(t)
 	self.lastElapsed = elapsed
 
 	local maxvalue = self.maxValue
-	local value, valueClamped, remaining
+	local value, valueClamped, remaining, texcoord
 	if not self.fill then
 		value = maxvalue - elapsed
 		remaining = value
@@ -1116,23 +1640,24 @@ function barPrototype:UpdateTimer(t)
 	end
 	if remaining <= 0 then
 		self:RemoveOnUpdate(self.UpdateTimer)
-		self.callbacks:Fire("TimerFinished", self, self.name)
+		self.isTimerRunning = false
+		safecall(self.OnTimerFinished, self)
 	end
 	if valueClamped >= 3600 then
 		local h, m, s
 		h = floor(valueClamped / 3600)
 		m = floor((valueClamped - (h * 3600)) / 60)
-		s = floor(valueClamped - (h * 3600) - (m * 36))
-		self.timerLabel:SetText(("%02.0f:%02.0f:%02.0f"):format(h, m, s))
+		s = floor((valueClamped - (h * 3600)) - (m * 60))
+		self:SetTimerLabel(("%02.0f:%02.0f:%02.0f"):format(h, m, s))
 	elseif valueClamped >= 60 then
 		local m, s
 		m = floor(valueClamped / 60)
 		s = floor(valueClamped - (m * 60))
-		self.timerLabel:SetText(("%02.0f:%02.0f"):format(m, s))
+		self:SetTimerLabel(("%02.0f:%02.0f"):format(m, s))
 	elseif valueClamped > 10 then
-		self.timerLabel:SetText(("%02.0f"):format(valueClamped))
+		self:SetTimerLabel(("%02.0f"):format(valueClamped))
 	else
-		self.timerLabel:SetText(("%02.1f"):format(abs(value)))
+		self:SetTimerLabel(("%02.1f"):format(abs(value)))
 	end
 	self:SetValue(value)
 
@@ -1148,34 +1673,62 @@ function barPrototype:UpdateTimer(t)
 	end
 end
 
+function barPrototype:OnFadeStarted()
+	self.callbacks:Fire("FadeStarted", self, self.name)
+end
+
+function barPrototype:OnFadeFinished()
+	self.callbacks:Fire("FadeFinished", self, self.name)
+end
+
+function barPrototype:OnFadeStopped()
+	self.callbacks:Fire("FadeStopped", self, self.name)
+end
+
 do
 	local function fade(self, elapsed)
 		self.fadeElapsed = (self.fadeElapsed or 0) + elapsed
-		self:SetAlpha(1 - min(1, max(0, self.fadeElapsed / self.fadeTotal)))
+		self:SetAlpha(self.fadeAlpha * (1 - min(1, max(0, self.fadeElapsed / self.fadeTotal))))
 		if self.fadeElapsed > self.fadeTotal then
 			self:RemoveOnUpdate(fade)
-			self.fadeElapsed, self.fadeTotal = nil, nil
-			self.callbacks:Fire("FadeFinished", self, self.name)
+			self.fadeElapsed, self.fadeTotal, self.fadeAlpha, self.fading = nil, nil, nil, false
+			safecall(self.OnFadeFinished, self)
 		end
 	end
 
 	function barPrototype:Fade(t)
+		if self.fading then return end
+		self:StopTimer()
+		self.fading = true
 		t = t or 0.5
 		self.fadeTotal = t
 		self.fadeElapsed = 0
+		self.fadeAlpha = self.flashAlpha or self:GetAlpha()
 		self:AddOnUpdate(fade)
 		fade(self, 0)
-		self.fading = true
+		safecall(self.OnFadeStarted, self)
 	end
 
 	function barPrototype:StopFade()
 		if self.fading then
-			self.fading = false
 			self:RemoveOnUpdate(fade)
-			self.fadeElapsed, self.fadeTotal = nil, nil
-			self:SetAlpha(1)
+			self:SetAlpha(self.fadeAlpha)
+			self.fadeElapsed, self.fadeTotal, self.fadeAlpha, self.fading = nil, nil, nil, false
+			safecall(self.OnFadeStopped, self)
 		end
 	end
+
+	function barPrototype:IsFading()
+		return self.fading
+	end
+end
+
+function barPrototype:OnFlashStarted()
+	self.callbacks:Fire("FlashStarted", self, self.name)
+end
+
+function barPrototype:OnFlashStopped()
+	self.callbacks:Fire("FlashStopped", self, self.name)
 end
 
 do
@@ -1191,29 +1744,31 @@ do
 				end
 			end
 		end
-		local amt = (cos(self.flashTime / self.flashPeriod) + 1) / 2
-		--[[
-		self.texture:SetAlpha(amt)
-		self.bgtexture:SetAlpha(amt * 0.6)
-		self.icon:SetAlpha(amt)
-		]]--
+		local amt = self.flashAlpha * (cos(self.flashTime / self.flashPeriod) + 1) / 2
 		self:SetAlpha(amt)
 	end
 
 	function barPrototype:Flash(period, times)
 		self.flashTimes = times
+		self.flashTime = 0
 		self.flashedTimes = 0
 		self.flashPeriod = (period or 1 / 5) or 0.1
-		self:SetAlpha(1)
-		self.flashTime = 0
-		self.flashing = true
-		self:AddOnUpdate(flash)
+		if not self.flashing then
+			self.flashing = true
+			self.flashAlpha = self.fadeAlpha or self:GetAlpha()
+			self:SetAlpha(self.flashAlpha)
+			self:AddOnUpdate(flash)
+			safecall(self.OnFlashStarted, self)
+		end
 	end
 
 	function barPrototype:StopFlash()
-		self.flashing = false
-		self:RemoveOnUpdate(flash)
-		self:SetAlpha(1)
+		if self.flashing then
+			self:SetAlpha(self.flashAlpha)
+			self.flashing, self.flashAlpha = false, nil
+			self:RemoveOnUpdate(flash)
+			safecall(self.OnFlashStopped, self)
+		end
 	end
 end
 
