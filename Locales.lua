@@ -2,6 +2,9 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Mage's Chewed Wand"] = true
+L["Primalist Prison"] = true
+L["Talisman of Sargha"] = true
 L["This item can also be purchased from a vendor."] = true
 L["Reins of the Scourgebound Vanquisher"] = true
 L["Perfected Juggernaut"] = true
