@@ -3,6 +3,7 @@ require("Tests.WOWAPI")
 require("Tests.RarityCoreSetup")
 
 local specFiles = {
+	"Tests/test-serialization.spec.lua",
 }
 
 local numFailedSections = C_Runtime.RunDetailedTests(specFiles)
