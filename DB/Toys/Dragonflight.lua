@@ -296,6 +296,21 @@ local dragonflightToys = {
 			{ m = CONSTANTS.UIMAPIDS.THE_WAKING_SHORES },
 		},
 	},
+	["Reins of the Quantum Courser"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.ITEM, -- Not a real mount, so this'll have to do
+		isToy = false,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Reins of the Quantum Courser"],
+		itemId = 208216,
+		npcs = {
+			199000, -- Chrono-Lord Deios
+		},
+		chance = 50,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.CROSSROADS_OF_FATE },
+		},
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, dragonflightToys)
