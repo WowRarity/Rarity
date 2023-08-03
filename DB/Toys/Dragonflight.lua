@@ -328,6 +328,21 @@ local dragonflightToys = {
 			{ m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN, x = 58.6, y = 31.8, n = L["Shadeisethal"] },
 		},
 	},
+	["Dinn's Drum"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Dinn's Drum"],
+		itemId = 205419,
+		npcs = {
+			203646, -- Dinn
+		},
+		chance = 20,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN, x = 28.6, y = 51, n = L["Dinn"] },
+		},
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, dragonflightToys)
