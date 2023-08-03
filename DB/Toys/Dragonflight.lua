@@ -283,6 +283,19 @@ local dragonflightToys = {
 			{ m = CONSTANTS.UIMAPIDS.THALDRASZUS },
 		},
 	},
+	["Cloak of Many Faces"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Cloak of Many Faces"],
+		itemId = 201815,
+		items = { 201818, 201817 },
+		chance = 20,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.THE_WAKING_SHORES },
+		},
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, dragonflightToys)
