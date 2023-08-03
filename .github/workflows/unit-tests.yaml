@@ -1,0 +1,36 @@
+name: Automated Testing
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+  create:
+    # Any branch or tag
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+
+      - name: Download test runner
+        uses: evo-lua/evo-setup-action@main
+        with:
+          version: 'v0.0.9'
+
+      - name: Run unit tests
+        run: evo Tests/unit-test.lua
