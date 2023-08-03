@@ -201,7 +201,7 @@ local function onClickItem(cell, item)
 							coord.m,
 							coord.x / 100.0,
 							coord.y / 100.0,
-							{ title = "Rarity" .. ": " .. item.name .. extraName }
+							{ title = item.name .. extraName, from = "Rarity" }
 						)
 						added = added + 1
 					end
