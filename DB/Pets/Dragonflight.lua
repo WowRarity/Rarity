@@ -1582,6 +1582,24 @@ local dragonflightPets = {
 			{ m = CONSTANTS.UIMAPIDS.THE_PRIMALIST_FUTURE },
 		},
 	},
+	["Ambre"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Ambre"],
+		itemId = 205003,
+		spellId = 407921,
+		creatureId = 204221,
+		chance = 50,
+		npcs = {
+			201673, -- Kretchenwrath
+			203411, -- Shadeisethal
+		},
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 75.6, y = 69.6, n = L["Kretchenwrath"] },
+			{ m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN, x = 58.6, y = 31.8, n = L["Shadeisethal"] },
+		},
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, dragonflightPets)
