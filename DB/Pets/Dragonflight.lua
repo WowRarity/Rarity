@@ -1660,6 +1660,20 @@ local dragonflightPets = {
 		},
 		coords = { { x = 48.4, y = 75, n = L["Aquifon"], m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN } },
 	},
+	["Teardrop Moth"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Teardrop Moth"],
+		itemId = 205159,
+		spellId = 408317,
+		creatureId = 204363,
+		chance = 20,
+		npcs = {
+			203593, -- Underlight Queen
+		},
+		coords = { { x = 58, y = 69.2, n = L["Underlight Queen"], m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, dragonflightPets)
