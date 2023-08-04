@@ -161,6 +161,19 @@ local dragonflightPets = {
 		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 55.8, y = 51.6, n = L["Luttrok"] } },
 	},
+	["Doomrubble"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Doomrubble"],
+		spellId = 418039,
+		itemId = 208008,
+		items = { 207583 },
+		chance = 500,
+		creatureId = 208634,
+		sourceText = L["This item can also be purchased from a vendor."],
+		coords = { { m = CONSTANTS.UIMAPIDS.THALDRASZUS } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, dragonflightPets)
