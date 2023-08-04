@@ -1632,6 +1632,20 @@ local dragonflightPets = {
 		},
 		coords = { { x = 42.20, y = 65.17, n = L["Karokta"], m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN } },
 	},
+	["Skaarn"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Skaarn"],
+		itemId = 205152,
+		spellId = 408264,
+		creatureId = 204345,
+		chance = 20,
+		npcs = {
+			203462, -- Kob'rok
+		},
+		coords = { { x = 65.2, y = 55.8, n = L["Kob'rok"], m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, dragonflightPets)
