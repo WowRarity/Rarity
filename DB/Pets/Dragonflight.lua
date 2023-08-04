@@ -1582,6 +1582,119 @@ local dragonflightPets = {
 			{ m = CONSTANTS.UIMAPIDS.THE_PRIMALIST_FUTURE },
 		},
 	},
+	["Ambre"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Ambre"],
+		itemId = 205003,
+		spellId = 407921,
+		creatureId = 204221,
+		chance = 50,
+		npcs = {
+			201673, -- Kretchenwrath
+			203411, -- Shadeisethal
+		},
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 75.6, y = 69.6, n = L["Kretchenwrath"] },
+			{ m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN, x = 58.6, y = 31.8, n = L["Shadeisethal"] },
+		},
+	},
+	["Blaise"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Blaise"],
+		itemId = 205002,
+		spellId = 407918,
+		creatureId = 204217,
+		chance = 50,
+		npcs = {
+			201673, -- Kretchenwrath
+			203411, -- Shadeisethal
+		},
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 75.6, y = 69.6, n = L["Kretchenwrath"] },
+			{ m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN, x = 58.6, y = 31.8, n = L["Shadeisethal"] },
+		},
+	},
+	["Ridged Shalewing"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Ridged Shalewing"],
+		itemId = 205147,
+		spellId = 408251,
+		creatureId = 204339,
+		chance = 20,
+		npcs = {
+			203625, -- Karokta
+		},
+		coords = { { x = 42.20, y = 65.17, n = L["Karokta"], m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN } },
+	},
+	["Skaarn"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Skaarn"],
+		itemId = 205152,
+		spellId = 408264,
+		creatureId = 204345,
+		chance = 20,
+		npcs = {
+			203462, -- Kob'rok
+		},
+		coords = { { x = 65.2, y = 55.8, n = L["Kob'rok"], m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN } },
+	},
+	["Aquapo"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Aquapo"],
+		itemId = 205154,
+		spellId = 408308,
+		creatureId = 204359,
+		chance = 20,
+		npcs = {
+			203468, -- Aquifon
+		},
+		coords = { { x = 48.4, y = 75, n = L["Aquifon"], m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN } },
+	},
+	["Teardrop Moth"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Teardrop Moth"],
+		itemId = 205159,
+		spellId = 408317,
+		creatureId = 204363,
+		chance = 20,
+		npcs = {
+			203593, -- Underlight Queen
+		},
+		coords = { { x = 58, y = 69.2, n = L["Underlight Queen"], m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN } },
+	},
+	["Devourer Lobstrok"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Devourer Lobstrok"],
+		itemId = 205026,
+		spellId = 408039,
+		creatureId = 204269,
+		items = {
+			205367, -- Indebted Researcher's Gift
+			205368, -- Thankful Researcher's Gift
+			205369, -- Appreciative Researcher's Gift
+			205374, -- Thankful Researcher's Scrounged Goods
+			205372, -- Indebted Researcher's Scrounged Goods
+			205371, -- Appreciative Researcher's Scrounged Goods
+			205370, -- Researcher's Gift
+			205373, -- Researcher's Scrounged Goods
+		},
+		chance = 7, -- Average over all the containers (not exactly accurate...)
+		coords = { { m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, dragonflightPets)

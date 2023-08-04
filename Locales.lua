@@ -2,6 +2,16 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Devourer Lobstrok"] = true
+L["Underlight Queen"] = true
+L["Teardrop Moth"] = true
+L["Aquifon"] = true
+L["Aquapo"] = true
+L["Kob'rok"] = true
+L["Skaarn"] = true
+L["Ridged Shalewing"] = true
+L["Blaise"] = true
+L["Ambre"] = true
 L["Disable tracking for ALL mounts. You'll have to enable those that you wish to track manually afterwards."] = true
 L["Untrack all mounts"] = true
 L["Echo of the Cave"] = true
