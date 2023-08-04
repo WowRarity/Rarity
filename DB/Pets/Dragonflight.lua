@@ -1674,6 +1674,27 @@ local dragonflightPets = {
 		},
 		coords = { { x = 58, y = 69.2, n = L["Underlight Queen"], m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN } },
 	},
+	["Devourer Lobstrok"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Devourer Lobstrok"],
+		itemId = 205026,
+		spellId = 408039,
+		creatureId = 204269,
+		items = {
+			205367, -- Indebted Researcher's Gift
+			205368, -- Thankful Researcher's Gift
+			205369, -- Appreciative Researcher's Gift
+			205374, -- Thankful Researcher's Scrounged Goods
+			205372, -- Indebted Researcher's Scrounged Goods
+			205371, -- Appreciative Researcher's Scrounged Goods
+			205370, -- Researcher's Gift
+			205373, -- Researcher's Scrounged Goods
+		},
+		chance = 7, -- Average over all the containers (not exactly accurate...)
+		coords = { { m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, dragonflightPets)
