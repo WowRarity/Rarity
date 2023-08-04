@@ -1646,6 +1646,20 @@ local dragonflightPets = {
 		},
 		coords = { { x = 65.2, y = 55.8, n = L["Kob'rok"], m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN } },
 	},
+	["Aquapo"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Aquapo"],
+		itemId = 205154,
+		spellId = 408308,
+		creatureId = 204359,
+		chance = 20,
+		npcs = {
+			203468, -- Aquifon
+		},
+		coords = { { x = 48.4, y = 75, n = L["Aquifon"], m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, dragonflightPets)
