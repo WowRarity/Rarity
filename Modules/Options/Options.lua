@@ -1616,6 +1616,29 @@ function R:PrepareOptions()
 							end
 						end,
 					},
+					untrackAllMounts = {
+						type = "execute",
+						order = newOrder(),
+						name = L["Untrack all mounts"],
+						desc = L["Disable tracking for ALL mounts. You'll have to enable those that you wish to track manually afterwards."]
+							.. " "
+							.. L["Note: Your existing settings will be overwritten."],
+						func = function(info, val)
+							for index, item in pairs(self.db.profile.groups.mounts) do
+								if type(item) == "table" then
+									item.enabled = false
+									Rarity:Debug(
+										format(
+											"Setting enabled = %s for item %s (key: %s)",
+											tostring(item.enabled),
+											tostring(item.name),
+											index
+										)
+									)
+								end
+							end
+						end,
+					},
 				},
 			},
 			profilingTools = {
