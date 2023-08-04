@@ -174,6 +174,18 @@ local dragonflightPets = {
 		sourceText = L["This item can also be purchased from a vendor."],
 		coords = { { m = CONSTANTS.UIMAPIDS.THALDRASZUS } },
 	},
+	["Shaggy"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Shaggy"],
+		spellId = 371534,
+		itemId = 191915,
+		items = { 204383 },
+		chance = 66,
+		creatureId = 188709,
+		coords = { { m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, dragonflightPets)
