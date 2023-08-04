@@ -1618,6 +1618,20 @@ local dragonflightPets = {
 			{ m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN, x = 58.6, y = 31.8, n = L["Shadeisethal"] },
 		},
 	},
+	["Ridged Shalewing"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Ridged Shalewing"],
+		itemId = 205147,
+		spellId = 408251,
+		creatureId = 204339,
+		chance = 20,
+		npcs = {
+			203625, -- Karokta
+		},
+		coords = { { x = 42.20, y = 65.17, n = L["Karokta"], m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, dragonflightPets)
