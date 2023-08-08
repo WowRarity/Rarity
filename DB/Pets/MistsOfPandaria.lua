@@ -449,7 +449,10 @@ local mopPets = {
 		name = L["Gahz'rooki's Summoning Stone"],
 		spellId = 141789,
 		itemId = 97821,
-		npcs = { 71012, 70997, 71000, 70999, 71001 },
+		npcs = {
+			71012, -- Kor'kron Butcher
+			73590, -- Kor'kron Outrider
+		},
 		chance = 1000,
 		creatureId = 71159,
 		coords = { { m = 10, x = 43.7, y = 47.9 } },
