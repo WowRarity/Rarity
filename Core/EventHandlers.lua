@@ -531,10 +531,6 @@ local islandExpeditionCollectibles = {
 	"Enchanted Soup Stone",
 	"Magic Monkey Banana",
 	"Bad Mojo Banana",
-	---- Not yet implemented?
-	-- "Regenerating Banana Bunch", -- NYI as of 18/01/19
-	-- "Yaungol Oil Stove", -- NYI as of 18/01/19
-	-- "Jinyu Light Globe", -- NYI as of 18/01/19
 
 	-- Mounts
 	---- 8.0

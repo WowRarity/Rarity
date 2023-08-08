@@ -1707,7 +1707,6 @@ L["Nerissa Heartless"] = true
 L["Blisterback Bloodtusk"] = true
 L["Warbringer Mal'Korak"] = true
 L["Armored Bonehoof Tauralus"] = true
--- L["Bonecleaver's Skullboar"] = true // NYI as far as I can tell
 L["Sabriel the Bonecleaver"] = true
 L["Mawsworn Soulhunter"] = true
 L["Gorged Shadehound"] = true
