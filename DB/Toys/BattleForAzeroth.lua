@@ -27,28 +27,6 @@ local bfaToys = {
 		chance = 250,
 		coords = { { m = CONSTANTS.UIMAPIDS.BORALUS }, { m = CONSTANTS.UIMAPIDS.DAZARALOR } },
 	},
-	-- ["Yaungol Oil Stove"] = { -- NYI as of 18/01/19
-	-- cat = CONSTANTS.ITEM_CATEGORIES.BFA,
-	-- type = CONSTANTS.ITEM_TYPES.ITEM,
-	-- isToy = true,
-	-- method = CONSTANTS.DETECTION_METHODS.SPECIAL,
-	-- name = L["Yaungol Oil Stove"],
-	-- itemId = 164371,
-	-- chance = 250,
-	-- groupSize = 3,
-	-- },
-
-	-- ["Jinyu Light Globe"] = { -- NYI as of 18/01/19
-	-- cat = CONSTANTS.ITEM_CATEGORIES.BFA,
-	-- type = CONSTANTS.ITEM_TYPES.ITEM,
-	-- isToy = true,
-	-- method = CONSTANTS.DETECTION_METHODS.SPECIAL,
-	-- name = L["Jinyu Light Globe"],
-	-- itemId = 164372,
-	-- chance = 250,
-	-- groupSize = 3,
-	-- },
-
 	["Enchanted Soup Stone"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
@@ -82,17 +60,6 @@ local bfaToys = {
 		chance = 250,
 		coords = { { m = CONSTANTS.UIMAPIDS.BORALUS }, { m = CONSTANTS.UIMAPIDS.DAZARALOR } },
 	},
-	-- ["Regenerating Banana Bunch"] = { -- NYI as of 18/01/19
-	-- cat = CONSTANTS.ITEM_CATEGORIES.BFA,
-	-- type = CONSTANTS.ITEM_TYPES.ITEM,
-	-- isToy = true,
-	-- method = CONSTANTS.DETECTION_METHODS.SPECIAL,
-	-- name = L["Regenerating Banana Bunch"],
-	-- itemId = 164377,
-	-- chance = 250,
-	-- groupSize = 3,
-	-- },
-
 	["Brazier Cap"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
@@ -292,17 +259,6 @@ local bfaToys = {
 		chance = 10,
 		coords = { { m = CONSTANTS.UIMAPIDS.STORMSONG_VALLEY }, { m = CONSTANTS.UIMAPIDS.ZULDAZAR } },
 	},
-	-- ["Kojo's Master Matching Set"] = { -- Note: NYI as of 19/04/2019
-	-- cat = CONSTANTS.ITEM_CATEGORIES.BFA,
-	-- type = CONSTANTS.ITEM_TYPES.ITEM,
-	-- isToy = true,
-	-- method = CONSTANTS.DETECTION_METHODS.USE,
-	-- name = L["Kojo's Master Matching Set"],
-	-- itemId = 166851,
-	-- items = { 166245 },
-	-- chance = 10,
-	-- },
-
 	["Warbeast Kraal Dinner Bell"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
@@ -336,17 +292,6 @@ local bfaToys = {
 		chance = 10,
 		coords = { { m = CONSTANTS.UIMAPIDS.VOLDUN } },
 	},
-	-- ["Words of Akunda"] = { -- Note: NYI as of 19/04/2019
-	-- cat = CONSTANTS.ITEM_CATEGORIES.BFA,
-	-- type = CONSTANTS.ITEM_TYPES.ITEM,
-	-- isToy = true,
-	-- method = CONSTANTS.DETECTION_METHODS.USE,
-	-- name = L["Words of Akunda"],
-	-- itemId = 165021,
-	-- items = { 166290 },
-	-- chance = 10,
-	-- },
-
 	["Meerah's Jukebox"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
