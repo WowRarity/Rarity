@@ -810,7 +810,6 @@ function R:OnLootFrameClosed(event)
 	Rarity.previousSpell, Rarity.currentSpell = nil, nil
 	Rarity.foundTarget = false
 	self:ScheduleTimer(function()
-		R:Debug("Setting lastNode to nil")
 		Rarity.lastNode = nil
 	end, 1)
 end
@@ -940,9 +939,7 @@ function R:ProcessContainerItems()
 end
 
 function R:ProcessInventoryItems()
-	for itemID, currentInventoryAmount in pairs(Rarity.bagitems) do
-		self:Debug(format("Processing inventory item %s (currentInventoryAmount: %d)", itemID, currentInventoryAmount))
-		-- It's still really bad, but a major rework is probably too risky
+	for itemID, _ in pairs(Rarity.bagitems) do
 		self:ProcessCollectionItem(itemID)
 		self:ProcessOtherItem(itemID)
 	end
