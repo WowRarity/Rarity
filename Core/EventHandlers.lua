@@ -57,6 +57,7 @@ function EventHandlers:Register()
 
 	self:UnregisterAllEvents()
 	self:RegisterBucketEvent("BAG_UPDATE", 0.5, "OnBagUpdate")
+	self:RegisterEvent("SCENARIO_COMPLETED", "OnScenarioCompleted")
 	self:RegisterEvent("LOOT_READY", "OnEvent")
 	self:RegisterEvent("CURRENCY_DISPLAY_UPDATE", "OnCurrencyUpdate")
 	self:RegisterEvent("RESEARCH_ARTIFACT_COMPLETE", "OnResearchArtifactComplete")
@@ -275,6 +276,18 @@ function R:CheckForCoinItem()
 		end
 		self:OutputAttempts(self.lastCoinItem)
 		self.lastCoinItem = nil
+	end
+end
+
+function R:OnScenarioCompleted(_, questID, _, _)
+	local SCALEBANE_KEEP_SCENARIO_COMPLETION = 70867
+	if questID == SCALEBANE_KEEP_SCENARIO_COMPLETION then
+		self:Debug("Completed relevant scenario: 70867 (Scalebane Keep)")
+		local item = self.db.profile.groups.items["Everlasting Horn of Lavaswimming"]
+		if item and type(item) == "table" and item.enabled ~= false and R:IsAttemptAllowed(item) then
+			item.attempts = (item.attempts or 0) + 1
+			R:OutputAttempts(item)
+		end
 	end
 end
 
