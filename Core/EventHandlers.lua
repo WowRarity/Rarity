@@ -428,9 +428,9 @@ function R:OnCombat()
 	end
 end
 
--- Handle quest turnins: Only used to detect world quests used for outdoor world bosses. It's not ideal, but probably more reliable than the loot lockout quest (which may or may not already be completed when the UNIT_DIED event is fired)
-local worldBossQuests = {
+local worldEventQuests = {
 	[52196] = "Slightly Damp Pile of Fur", -- Dunegorger Kraulok
+	[70867] = "Everlasting Horn of Lavaswimming", -- Scalebane Keep (scenario completion)
 }
 
 function R:OnQuestTurnedIn(event, questID, experience, money)
@@ -438,7 +438,7 @@ function R:OnQuestTurnedIn(event, questID, experience, money)
 		"OnQuestTurnedIn triggered with ID = " .. questID .. ", experience = " .. experience .. ", money = " .. money
 	)
 
-	local relevantItem = worldBossQuests[questID]
+	local relevantItem = worldEventQuests[questID]
 	if not relevantItem then
 		return
 	end

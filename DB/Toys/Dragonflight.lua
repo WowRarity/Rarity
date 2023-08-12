@@ -380,6 +380,17 @@ local dragonflightToys = {
 			{ m = CONSTANTS.UIMAPIDS.THE_PRIMALIST_FUTURE },
 		},
 	},
+	["Everlasting Horn of Lavaswimming"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Everlasting Horn of Lavaswimming"],
+		itemId = 200116,
+		chance = 40, --guess
+		sourceText = L["This toy is obtained at the end of the Siege on Dragonbane Keep event."],
+		coords = { { m = CONSTANTS.UIMAPIDS.THE_WAKING_SHORES, x = 24.2, y = 70.1 } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, dragonflightToys)
