@@ -1989,7 +1989,9 @@ L["Combine 50 Leftover Elemental Slime to create the Gooey Snailemental."] = tru
 L["Froststone Vault Primal Storm"] = true
 L["Everlasting Horn of Lavaswimming"] = true
 L["This toy is obtained at the end of the Siege on Dragonbane Keep event."] = true
-
+L["Opera Chest"] = true
+L["Holoviewer: The Lady of Dreams"] = true
+L["Holoviewer: The Timeless One"] = true
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
 					Please go to http://www.wowace.com/projects/rarity/localization/ to update translations.

@@ -1637,6 +1637,23 @@ function R:OnEvent(event, ...)
 			end
 		end
 
+		-- Handle opening Opera Chest (Holoviewers)
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Opera Chest"]) then
+			local names = { "Holoviewer: The Timeless One", "Holoviewer: The Lady of Dreams" }
+			Rarity:Debug("Detected Opening on " .. L["Opera Chest"] .. " (method = SPECIAL)")
+			for _, name in pairs(names) do
+				local v = self.db.profile.groups.items[name]
+				if v and type(v) == "table" and v.enabled ~= false then
+					if v.attempts == nil then
+						v.attempts = 1
+					else
+						v.attempts = v.attempts + 1
+					end
+					self:OutputAttempts(v)
+				end
+			end
+		end
+
 		-- HANDLE FISHING
 		if Rarity.isFishing and Rarity.isOpening == false then
 			if Rarity.isPool then

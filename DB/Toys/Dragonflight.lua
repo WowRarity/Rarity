@@ -391,6 +391,26 @@ local dragonflightToys = {
 		sourceText = L["This toy is obtained at the end of the Siege on Dragonbane Keep event."],
 		coords = { { m = CONSTANTS.UIMAPIDS.THE_WAKING_SHORES, x = 24.2, y = 70.1 } },
 	},
+	["Holoviewer: The Lady of Dreams"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Holoviewer: The Lady of Dreams"],
+		itemId = 204257,
+		chance = 5,
+		coords = { { m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 28.8, y = 52.6 } },
+	},
+	["Holoviewer: The Timeless One"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Holoviewer: The Timeless One"],
+		itemId = 204262,
+		chance = 5,
+		coords = { { m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 28.8, y = 52.6 } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, dragonflightToys)
