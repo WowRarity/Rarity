@@ -2002,6 +2002,32 @@ L["This toy is obtained at the end of the Siege on Dragonbane Keep event. The dr
 L["Opera Chest"] = true
 L["Holoviewer: The Lady of Dreams"] = true
 L["Holoviewer: The Timeless One"] = true
+L["Brightfeather"] = true
+L["Berylmane"] = true
+L["Bunbo"] = true
+L["Chain-Bound Strongbox"] = true
+L["Crystal Basket"] = true
+L["Hardened Chest"] = true
+L["Mindless Slime"] = true
+L["Searing Chest"] = true
+L["Hardened Strongbox"] = true
+L["Cart of Crushed Stone"] = true
+L["Frozen Coffer"] = true
+L["Hardshell Chest"] = true
+L["Titan Coffer"] = true
+L["Void-Bound Strongbox"] = true
+L["Inert Goo"] = true
+L["Mysterious Chest"] = true
+L["Supply Trunk"] = true
+L["Shattered Crystals"] = true
+L["Chest of Ice"] = true
+L["Forgotten Lockbox"] = true
+L["Slimy Goo"] = true
+L["Wind-Bound Strongbox"] = true
+L["Spun Webs"] = true
+L["Obsidian Grand Cache"] = true
+L["Frozen Coffer"] = true
+L["Obsidian Battle Horn"] = true
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
 					Please go to http://www.wowace.com/projects/rarity/localization/ to update translations.

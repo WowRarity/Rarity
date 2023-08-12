@@ -387,6 +387,16 @@ local dragonflightToys = {
 			{ m = CONSTANTS.UIMAPIDS.THE_PRIMALIST_FUTURE },
 		},
 	},
+	["Obsidian Battle Horn"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Obsidian Battle Horn"],
+		itemId = 204687,
+		chance = 50,
+		coords = { { m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 28.8, y = 52.6 } },
+	},
 	["Everlasting Horn of Lavaswimming"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
