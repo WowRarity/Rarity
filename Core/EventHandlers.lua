@@ -578,9 +578,6 @@ function R:OnIslandCompleted(event, mapID, winner)
 	end
 end
 
--------------------------------------------------------------------------------------
--- Criteria in a dungeon completed, currently used for Reins of the Infinite Timereaver detection as a special case
--------------------------------------------------------------------------------------
 local timewalkingCriteriaLUT = {
 	[24801] = "Ozumat", -- Legacy (seems to no longer work? Perhaps the criterion ID was changed...)
 	[34414] = "Ozumat", -- Timewalking difficulty only? (need to test)
@@ -589,12 +586,40 @@ local timewalkingCriteriaLUT = {
 	[34410] = "Taran Zhu", -- [123095] = "Taran Zhu", -- Object: Taran Zhu's Personal Stash
 }
 
+local timeRiftCriteriaLUT = {
+	[60685] = "Gill'dan (Azmerloth)",
+	[60688] = "Freya (Ulderoth)",
+	[60689] = "The Lich King (Azmourne)",
+	[60690] = "Illidan Stormrage (Azewrath)",
+	[60691] = "Fury of N'zoth (Azq'roth)",
+	[60692] = "Varian Wrynn (The Warlands)",
+	[60693] = "Overlord Mechagon (A.Z.E.R.O.T.H.)",
+}
+
+local timeRiftMounts = {
+	"Felstorm Dragon",
+	"Gold-Toed Albatross",
+	"Perfected Juggernaut",
+	"Reins of the Scourgebound Vanquisher",
+	"Sulfur Hound's Leash",
+}
+
+local timeRiftPets = {
+	"Briarhorn Hatchling",
+	"Doomrubble",
+	"Gill'dan",
+	"Jeepers",
+	"Killbot 9000",
+	"N'Ruby",
+	"Obsidian Warwhelp",
+}
+
 function R:OnCriteriaComplete(event, id)
-	local encounterName = timewalkingCriteriaLUT[id]
+	local timewalkingEncounterName = timewalkingCriteriaLUT[id]
+	local timeRiftEncounterName = timeRiftCriteriaLUT[id]
 	R:Debug("Detected achievement criteria completion: " .. tostring(id))
-	if encounterName then -- Is an encounter that can't otherwise be detected
-		-- (due to the mount dropping from an object, and not a lootable NPC)
-		R:Debug("Completed criteria for relevant encounter: " .. tostring(encounterName))
+	if timewalkingEncounterName then
+		R:Debug("Completed criteria for Timewalking encounter: " .. tostring(timewalkingEncounterName))
 		local v = self.db.profile.groups.mounts["Reins of the Infinite Timereaver"]
 		if v and type(v) == "table" and v.enabled ~= false and R:IsAttemptAllowed(v) then
 			if v.attempts == nil then
@@ -604,6 +629,29 @@ function R:OnCriteriaComplete(event, id)
 			end
 			R:OutputAttempts(v)
 		end
+	end
+
+	if timeRiftEncounterName then
+		R:Debug("Completed criteria for Time Rift encounter: " .. timeRiftEncounterName)
+		self:OnTimeRiftCompleted()
+	end
+end
+
+function R:OnTimeRiftCompleted()
+	if self.Caching:IsAlliance() then
+		local itemName = "Reins of the Ravenous Black Gryphon"
+		addAttemptForItem(itemName, "mounts")
+	else
+		local itemName = "Horn of the White War Wolf"
+		addAttemptForItem(itemName, "mounts")
+	end
+
+	for _, itemName in ipairs(timeRiftMounts) do
+		addAttemptForItem(itemName, "mounts")
+	end
+
+	for _, itemName in ipairs(timeRiftPets) do
+		addAttemptForItem(itemName, "pets")
 	end
 end
 
