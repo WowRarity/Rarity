@@ -195,6 +195,32 @@ local dragonflightMounts = {
 		sourceText = L["This item can also be purchased from a vendor."],
 		coords = { { m = CONSTANTS.UIMAPIDS.THALDRASZUS } },
 	},
+	["Reins of the Ravenous Black Gryphon"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Reins of the Ravenous Black Gryphon"],
+		spellId = 414323,
+		itemId = 206674,
+		items = { 207583 },
+		chance = 500,
+		requiresAlliance = true,
+		sourceText = L["This item can also be purchased from a vendor."],
+		coords = { { m = CONSTANTS.UIMAPIDS.THALDRASZUS } },
+	},
+	["Horn of the White War Wolf"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Horn of the White War Wolf"],
+		spellId = 414316,
+		itemId = 206673,
+		items = { 207583 },
+		chance = 500,
+		requiresHorde = true,
+		sourceText = L["This item can also be purchased from a vendor."],
+		coords = { { m = CONSTANTS.UIMAPIDS.THALDRASZUS } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, dragonflightMounts)
