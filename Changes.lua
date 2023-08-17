@@ -1,4 +1,13 @@
 local changes = {
+	["r720"] = {
+		additions = {
+			"Added tracking for most of the missing Dragonflight collectibles",
+			"Added an experimental button that allows untracking all mounts to the Advanced settings",
+			"Opening BFA Island Expedition crates should now add attempts for all relevant collectibles",
+		},
+		fixes = { "Fixed TomTom waypoint labels not displaying Rarity as their source" },
+		contributors = { "cyriun" },
+	},
 	["r719"] = {
 		additions = {
 			"Created a slash command for toggling the progress bar (for use in macros)",
