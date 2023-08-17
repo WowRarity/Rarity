@@ -50,7 +50,7 @@ local dragonflightPets = {
 		creatureId = 189118,
 		groupSize = 5,
 		equalOdds = true,
-		coords = { { m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 43.6, y = 61.0, L["Bonesifter Marwak"] } },
+		coords = { { m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 43.6, y = 61.0, n = L["Bonesifter Marwak"] } },
 	},
 	["Gilded Mechafrog"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
@@ -64,7 +64,7 @@ local dragonflightPets = {
 		sourceText = L["Inside Zskera Vaults, collect Neltharion Gift Tokens for Prototype Tinker-Tron in order to receive Tattered Gift Package, which can drop the Gilded Mechafrog pet."],
 		chance = 25,
 		coords = {
-			{ m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 29.2, y = 53.0, L["Entrance to Zskera Vault"] },
+			{ m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 29.2, y = 53.0, n = L["Entrance to Zskera Vault"] },
 		},
 	},
 	["Dust Spirit"] = {
@@ -78,7 +78,7 @@ local dragonflightPets = {
 		creatureId = 198271,
 		sourceText = L["Collect Encaged Earthen Soul and wait 15min until it turns into Docile Earthen Soul, then open it for a chance at the pet."],
 		chance = 50,
-		coords = { { m = CONSTANTS.UIMAPIDS.THE_WAKING_SHORES, x = 52.8, y = 30.6, L["Earthshatter Elemental"] } },
+		coords = { { m = CONSTANTS.UIMAPIDS.THE_WAKING_SHORES, x = 52.8, y = 30.6, n = L["Earthshatter Elemental"] } },
 	},
 	["Blaze Spirit"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
@@ -91,7 +91,7 @@ local dragonflightPets = {
 		creatureId = 198272,
 		sourceText = L["Collect Encaged Fiery Soul and wait 15min until it turns into Docile Fiery Soul, then open it for a chance at the pet."],
 		chance = 50,
-		coords = { { m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN, x = 79.4, y = 38.2, L["Fire Elemental"] } },
+		coords = { { m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN, x = 79.4, y = 38.2, n = L["Fire Elemental"] } },
 	},
 	["Gale Spirit"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
@@ -104,7 +104,7 @@ local dragonflightPets = {
 		creatureId = 198273,
 		sourceText = L["Collect Encaged Airy Soul and wait 15min until it turns into Docile Airy Soul, then open it for a chance at the pet."],
 		chance = 50,
-		coords = { { m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 23.2, y = 37.6, L["Stormbound Colossus"] } },
+		coords = { { m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 23.2, y = 37.6, n = L["Stormbound Colossus"] } },
 	},
 	["Tide Spirit"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
@@ -117,7 +117,7 @@ local dragonflightPets = {
 		creatureId = 198269,
 		sourceText = L["Collect Encaged Frosty Soul and wait 15min until it turns into Docile Frosty Soul, then open it for a chance at the pet."],
 		chance = 50,
-		coords = { { m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 55.2, y = 76.7, L["Force of the Springs"] } },
+		coords = { { m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 55.2, y = 76.7, n = L["Force of the Springs"] } },
 	},
 	["Scruffles"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,

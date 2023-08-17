@@ -15,10 +15,10 @@ local dragonflightToys = {
 		npcs = { 193210, 193176, 193126, 193241 },
 		chance = 6,
 		coords = {
-			{ m = CONSTANTS.UIMAPIDS.THALDRASZUS, x = 58.4, y = 85.6, L["Phleep"] },
-			{ m = CONSTANTS.UIMAPIDS.THALDRASZUS, x = 37.6, y = 78.0, L["Sandana the Tempest"] },
-			{ m = CONSTANTS.UIMAPIDS.THALDRASZUS, x = 60.6, y = 82.6, L["Innumerable Ruination"] },
-			{ m = CONSTANTS.UIMAPIDS.THALDRASZUS, x = 62.2, y = 81.6, L["Lord Epochbrgl"] },
+			{ m = CONSTANTS.UIMAPIDS.THALDRASZUS, x = 58.4, y = 85.6, n = L["Phleep"] },
+			{ m = CONSTANTS.UIMAPIDS.THALDRASZUS, x = 37.6, y = 78.0, n = L["Sandana the Tempest"] },
+			{ m = CONSTANTS.UIMAPIDS.THALDRASZUS, x = 60.6, y = 82.6, n = L["Innumerable Ruination"] },
+			{ m = CONSTANTS.UIMAPIDS.THALDRASZUS, x = 62.2, y = 81.6, n = L["Lord Epochbrgl"] },
 		},
 	},
 	["Personal Shell"] = {
@@ -31,7 +31,7 @@ local dragonflightToys = {
 		npcs = { 193133 },
 		chance = 2,
 		coords = {
-			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 63.2, y = 48.6, L["Sunscale Behemoth"] },
+			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 63.2, y = 48.6, n = L["Sunscale Behemoth"] },
 		},
 	},
 	["Infected Ichor"] = {
@@ -44,9 +44,9 @@ local dragonflightToys = {
 		npcs = { 193128, 197356, 193178 },
 		chance = 12,
 		coords = {
-			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 90.4, y = 40.0, L["Blightpaw the Depraved"] },
-			{ m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN, x = 16.2, y = 33.6, L["High Shaman Rotknuckle"] },
-			{ m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN, x = 13.4, y = 22.6, L["Blightfur"] },
+			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 90.4, y = 40.0, n = L["Blightpaw the Depraved"] },
+			{ m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN, x = 16.2, y = 33.6, n = L["High Shaman Rotknuckle"] },
+			{ m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN, x = 13.4, y = 22.6, n = L["Blightfur"] },
 		},
 	},
 	["Aquatic Shades"] = {
@@ -59,7 +59,7 @@ local dragonflightToys = {
 		items = { 202102 },
 		chance = 2,
 		coords = {
-			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 82.2, y = 73.2, L["Immaculate Sac of Swog Treasures"] },
+			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 82.2, y = 73.2, n = L["Immaculate Sac of Swog Treasures"] },
 		},
 	},
 	["The Super Shellkhan Gang"] = {
@@ -72,7 +72,7 @@ local dragonflightToys = {
 		npcs = { 191305 },
 		chance = 3,
 		coords = {
-			{ m = CONSTANTS.UIMAPIDS.THALDRASZUS, x = 38.4, y = 68.6, L["The Great Shellkhan"] },
+			{ m = CONSTANTS.UIMAPIDS.THALDRASZUS, x = 38.4, y = 68.6, n = L["The Great Shellkhan"] },
 		},
 	},
 	["Notfar's Favorite Food"] = {
@@ -85,7 +85,7 @@ local dragonflightToys = {
 		npcs = { 198703 },
 		chance = 6,
 		coords = {
-			{ m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN, x = 20.6, y = 49.6, L["Notfar the Unbearable"] },
+			{ m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN, x = 20.6, y = 49.6, n = L["Notfar the Unbearable"] },
 		},
 	},
 	["Talisman of Sargha"] = {
