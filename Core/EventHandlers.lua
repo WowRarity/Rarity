@@ -963,15 +963,21 @@ function R:ProcessContainerItems()
 										and vv.items ~= nil
 										and type(vv.items) == "table"
 									then
-										for kkk, vvv in pairs(vv.items) do
-											if vvv == k then
-												local i = vv
-												if i.attempts == nil then
-													i.attempts = 1
-												else
-													i.attempts = i.attempts + 1
+										local isHordePlayer = R.Caching:IsHorde()
+										local canPlayerObtainFactionSpecificItem = not (
+												vv.requiresHorde and not isHordePlayer
+											) or (vv.requiresAlliance and isHordePlayer)
+										if canPlayerObtainFactionSpecificItem then
+											for kkk, vvv in pairs(vv.items) do
+												if vvv == k then
+													local i = vv
+													if i.attempts == nil then
+														i.attempts = 1
+													else
+														i.attempts = i.attempts + 1
+													end
+													self:OutputAttempts(i)
 												end
-												self:OutputAttempts(i)
 											end
 										end
 									end
