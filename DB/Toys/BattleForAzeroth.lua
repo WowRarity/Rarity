@@ -701,8 +701,6 @@ local bfaToys = {
 		chance = 75,
 		coords = { { m = CONSTANTS.UIMAPIDS.ULDUM, x = 55, y = 51, n = L["Gaze of N'Zoth"] } },
 		sourceText = format(L["Shares a spawn with %s"], L["Foul Observer"]),
-		-- Combine with X to create Y
-		-- Only available during the X assault
 	},
 	["All-Seeing Left Eye"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,

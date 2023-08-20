@@ -223,25 +223,6 @@ local shadowlandsMounts = {
 		requiredCovenantID = CONSTANTS.COVENANT_IDS.NECROLORD,
 		sourceText = L["This item can also be purchased from a vendor."],
 	},
-	-- Note: This appears to not have made it to live, so I'm disabling it until further notice
-	-- ["Bonecleaver's Skullboar"] = {
-	-- 	cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
-	-- 	type = CONSTANTS.ITEM_TYPES.MOUNT,
-	-- 	method = CONSTANTS.DETECTION_METHODS.NPC,
-	-- 	name = L["Bonecleaver's Skullboar"],
-	-- 	itemId = 182083,
-	-- 	spellId = 332482,
-	-- 	npcs = { 168147 },
-	-- 	chance = 100,	-- Estimate
-	-- 	questId = { 58784 },
-	-- 	tooltipNpcs = { 168148 },
-	-- 	groupSize = 5,
-	-- 	equalOdds = true,
-	-- 	coords = {
-	-- 		{ m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 50.67, y = 47.37, n = L["Sabriel the Bonecleaver"] },
-	-- 	},
-	-- },
-
 	["Mawsworn Soulhunter"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
