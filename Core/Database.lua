@@ -37,5 +37,24 @@ function Database:PurgeObsoleteEntries()
 	end
 end
 
+function Database.IsItemAvailableToFactionGroup(item, englishFactionGroupName)
+	local isHorde = (englishFactionGroupName == "Horde")
+	local isAlliance = (englishFactionGroupName == "Alliance")
+
+	if not item.requiresAlliance and not item.requiresHorde then
+		return true
+	end
+
+	if item.requiresAlliance and isAlliance then
+		return true
+	end
+
+	if item.requiresHorde and isHorde then
+		return true
+	end
+
+	return false
+end
+
 Rarity.Database = Database
 return Database
