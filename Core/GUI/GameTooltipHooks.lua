@@ -12,6 +12,7 @@ local lbz = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
 --- WoW API
 local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
 local IsQuestFlaggedCompleted = _G.C_QuestLog.IsQuestFlaggedCompleted
+local UnitFactionGroup = _G.UnitFactionGroup
 --- Addon API
 local CONSTANTS = addonTable.constants
 local colorize = Rarity.Utils.String.Colorize
@@ -378,7 +379,9 @@ local function processItem(id)
 		-- This item is used to obtain another item
 		if Rarity.items_to_items[id] then
 			for k, v in pairs(Rarity.items_to_items[id]) do
-				if v.itemId then
+				local playerFaction = UnitFactionGroup("player")
+				local isItemAvailableToPlayer = Rarity.Database.IsItemAvailableToFactionGroup(v, playerFaction)
+				if v.itemId and isItemAvailableToPlayer then
 					local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
 						GetItemInfo(v.itemId)
 					if itemLink or itemName or v.name then
