@@ -5,7 +5,6 @@ local CONSTANTS = addonTable.constants
 
 local legionMounts = {
 	-- 7.0
-	-- ["Brinedeep Bottom-Feeder"] =                       { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.MOUNT, method = CONSTANTS.DETECTION_METHODS.COLLECTION, name = L["Brinedeep Bottom-Feeder"], spellId = 214791, itemId = 138811, collectedItemId = { 138777, }, chance = 100, },
 	["Cloudwing Hippogryph"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
