@@ -153,6 +153,7 @@ local shadowlandsMounts = {
 		coords = { { m = CONSTANTS.UIMAPIDS.ARDENWEALD, x = 30.4, y = 55.2, n = L["Valfir the Unrelenting"] } },
 		requiresCovenant = true,
 		requiredCovenantID = CONSTANTS.COVENANT_IDS.NIGHT_FAE,
+		sourceText = L["This item can also be purchased from a vendor."],
 	},
 	["Predatory Plagueroc"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
