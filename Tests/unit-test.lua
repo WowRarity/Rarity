@@ -3,6 +3,7 @@ require("Tests.WOWAPI")
 require("Tests.RarityCoreSetup")
 
 local specFiles = {
+	"Tests/test-database.spec.lua",
 	"Tests/test-serialization.spec.lua",
 }
 
