@@ -12,13 +12,11 @@ local GetDate = Rarity.Utils.Time.GetDate
 -- WOW APIs
 local GetItemInfo = GetItemInfo
 local GetTime = GetTime
-local C_Timer = C_Timer
 
 -- Locals
 local inSession = false
 local sessionStarted = 0
 local sessionLast = 0
-local isSessionLocked = false
 local sessionTimer
 
 -- Constants
@@ -145,26 +143,6 @@ function Session:Update()
 	else
 		Rarity.Session:Start()
 	end
-end
-
-function Session:IsLocked()
-	return isSessionLocked
-end
-
-function Session.Unlock()
-	Rarity:Debug("Unlocking session to continue scanning for new LOOT_READY events")
-	isSessionLocked = false
-end
-
-function Session:Lock(delay)
-	delay = delay or 1 -- 1 second seems to be a suitable default value (as both events fire within 0.5-0.8s of each other)
-
-	-- Lock the current session (and set the timer to unlock it again)
-	Rarity:Debug(
-		"Locking session for " .. tostring(delay) .. " second(s) to prevent duplicate attempts from being counted"
-	)
-	isSessionLocked = true
-	C_Timer.After(delay, self.Unlock) -- Unlock via timer
 end
 
 Rarity.Session = Session

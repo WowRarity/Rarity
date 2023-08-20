@@ -1227,14 +1227,6 @@ function R:OnLootReady(event, ...)
 			return
 		end
 
-		-- In 8.0.1, two LOOT_READY events fire when the loot window opens. We'll just ignore subsequent events for a short time to prevent double counting
-		if Rarity.Session:IsLocked() then -- One attempt is already being counted and we don't want another one for this loot event -> Ignore this call
-			Rarity:Debug("Session is locked; ignoring this LOOT_READY event")
-			return
-		else
-			Rarity.Session:Lock(1)
-		end
-
 		local zone = GetRealZoneText()
 		local subzone = GetSubZoneText()
 		local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
