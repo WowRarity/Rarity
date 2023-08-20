@@ -18,6 +18,7 @@ local shadowlandsMounts = {
 		coords = { { m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 46.0, y = 78.5, n = L["Harika the Horrid"] } },
 		requiresCovenant = true,
 		requiredCovenantID = CONSTANTS.COVENANT_IDS.VENTHYR,
+		sourceText = L["This item can also be purchased from a vendor."],
 	},
 	["Bonehoof Tauralus"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
