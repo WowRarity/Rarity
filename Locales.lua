@@ -1410,7 +1410,6 @@ L["Green Helper Box"] = true
 L["Crashin' Thrashin' Flyer Controller"] = true
 L["The Pigskin"] = true
 L["MiniZep Controller"] = true
-L["Foot Ball"] = true
 L["Crashin' Thrashin' Racer Controller"] = true
 L["Safari Lounge Cushion"] = true
 L["Fuzzy Green Lounge Cushion"] = true
