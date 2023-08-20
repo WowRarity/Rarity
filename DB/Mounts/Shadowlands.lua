@@ -18,6 +18,7 @@ local shadowlandsMounts = {
 		coords = { { m = CONSTANTS.UIMAPIDS.REVENDRETH, x = 46.0, y = 78.5, n = L["Harika the Horrid"] } },
 		requiresCovenant = true,
 		requiredCovenantID = CONSTANTS.COVENANT_IDS.VENTHYR,
+		sourceText = L["This item can also be purchased from a vendor."],
 	},
 	["Bonehoof Tauralus"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
@@ -81,8 +82,10 @@ local shadowlandsMounts = {
 		itemId = 180762,
 		chance = 50,
 		questId = { 61688 },
-		sourceText = L["This mount can only drop for Kyrians. Requires channeling anima to Temple of Purity."],
 		coords = { { m = CONSTANTS.UIMAPIDS.BASTION, x = 60.23, y = 78.11, n = L["Penitence of Purity"] } },
+		requiresCovenant = true,
+		requiredCovenantID = CONSTANTS.COVENANT_IDS.KYRIAN,
+		sourceText = L["This item can also be purchased from a vendor."],
 	},
 	["Bulbous Necroray"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
@@ -153,6 +156,7 @@ local shadowlandsMounts = {
 		coords = { { m = CONSTANTS.UIMAPIDS.ARDENWEALD, x = 30.4, y = 55.2, n = L["Valfir the Unrelenting"] } },
 		requiresCovenant = true,
 		requiredCovenantID = CONSTANTS.COVENANT_IDS.NIGHT_FAE,
+		sourceText = L["This item can also be purchased from a vendor."],
 	},
 	["Predatory Plagueroc"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
