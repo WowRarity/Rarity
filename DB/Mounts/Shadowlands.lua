@@ -221,6 +221,7 @@ local shadowlandsMounts = {
 		coords = { { m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 50.67, y = 47.37, n = L["Sabriel the Bonecleaver"] } },
 		requiresCovenant = true,
 		requiredCovenantID = CONSTANTS.COVENANT_IDS.NECROLORD,
+		sourceText = L["This item can also be purchased from a vendor."],
 	},
 	-- Note: This appears to not have made it to live, so I'm disabling it until further notice
 	-- ["Bonecleaver's Skullboar"] = {
