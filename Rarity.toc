@@ -132,7 +132,6 @@ Core\GUI.lua
 Core\Profiling.lua
 Core\Serialization.lua
 Core\Session.lua
-Core\Settings.lua
 Core\Statistics.lua
 Core\Tracking.lua
 Core\Validation.lua
