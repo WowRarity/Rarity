@@ -1745,7 +1745,6 @@ L["Gilded Chest"] = true
 L["Ever-Abundant Hearth"] = true
 L["Enforcer Aegeon"] = true
 L["Phalynx of Humility"] = true
-L["This mount can only drop for Kyrians. Requires channeling anima to Temple of Purity."] = true
 L["Penitence of Purity"] = true
 L["Soothing Vesper"] = true
 L["Broken Bell"] = true
