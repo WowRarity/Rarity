@@ -811,15 +811,6 @@ function R:OnSpellcastSent(event, unit, target, castGUID, spellID)
 	Rarity.foundTarget = false
 	-- ga = "No" -- WTF is this?
 
-	Rarity:Debug(
-		"Detected UNIT_SPELLCAST_SENT for unit = player, spellID = "
-			.. tostring(spellID)
-			.. ", castGUID = "
-			.. tostring(castGUID)
-			.. ", target = "
-			.. tostring(target)
-	) -- TODO: Remove?
-
 	if Rarity.relevantSpells[spellID] then -- An entry exists for this spell in the LUT -> It's one that needs to be tracked
 		Rarity:Debug(
 			"Detected relevant spell: " .. tostring(spellID) .. " ~ " .. tostring(Rarity.relevantSpells[spellID])
@@ -1126,8 +1117,6 @@ end
 
 -- It's an abomination, but without tests I'm not refactoring this any further
 function R:OnBagUpdate()
-	self:Debug("BAG_UPDATE")
-
 	-- Save a copy of your bags before this event
 	R:BackUpInventoryItemAmounts()
 
