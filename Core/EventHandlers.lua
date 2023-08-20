@@ -57,7 +57,7 @@ function EventHandlers:Register()
 
 	self:UnregisterAllEvents()
 	self:RegisterBucketEvent("BAG_UPDATE", 0.5, "OnBagUpdate")
-	self:RegisterEvent("LOOT_READY", "OnEvent")
+	self:RegisterEvent("LOOT_READY", "OnLootReady")
 	self:RegisterEvent("CURRENCY_DISPLAY_UPDATE", "OnCurrencyUpdate")
 	self:RegisterEvent("RESEARCH_ARTIFACT_COMPLETE", "OnResearchArtifactComplete")
 	self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED", "OnCombat") -- Used to detect boss kills that we didn't solo
@@ -1148,17 +1148,84 @@ function R:OnResearchArtifactComplete(event, _)
 	self:ScanArchFragments(event)
 end
 
---[[
-      OBTAIN DETECTION ---------------------------------------------------------------------------------------------------------
-      -- Some easy, some fairly arcane methods to detect when we've obtained something we're looking for
-  ]]
 function R:OnEvent(event, ...)
-	-------------------------------------------------------------------------------------
-	-- You opened a loot window on a corpse or fishing node
-	-------------------------------------------------------------------------------------
-	if event == "LOOT_READY" then
-		-- Detect bank, guild bank, auction house, tradeskill, trade, and mail. This turns off item use detection.
+	if event == "BANKFRAME_OPENED" then
+		Rarity.isBankOpen = true
+	elseif event == "GUILDBANKFRAME_OPENED" then
+		Rarity.isGuildBankOpen = true
+	elseif event == "AUCTION_HOUSE_SHOW" then
+		Rarity.isAuctionHouseOpen = true
+	elseif event == "TRADE_SHOW" then
+		Rarity.isTradeWindowOpen = true
+	elseif event == "TRADE_SKILL_SHOW" then
+		Rarity.isTradeskillOpen = true
+	elseif event == "MAIL_SHOW" then
+		Rarity.isMailboxOpen = true
+	elseif event == "BANKFRAME_CLOSED" then
+		Rarity.isBankOpen = false
+	elseif event == "GUILDBANKFRAME_CLOSED" then
+		Rarity.isGuildBankOpen = false
+	elseif event == "AUCTION_HOUSE_CLOSED" then
+		Rarity.isAuctionHouseOpen = false
+	elseif event == "TRADE_CLOSED" then
+		Rarity.isTradeWindowOpen = false
+	elseif event == "TRADE_SKILL_CLOSE" then
+		Rarity.isTradeskillOpen = false
+	elseif event == "MAIL_CLOSED" then
+		-- Instance lock info updated
+		Rarity.isMailboxOpen = false
+	elseif event == "UPDATE_INSTANCE_INFO" then
+		self:ScanInstanceLocks(event)
+	elseif event == "LFG_UPDATE_RANDOM_INFO" then
+		-- Calendar updated
+		self:ScanInstanceLocks(event)
+	elseif event == "CALENDAR_UPDATE_EVENT_LIST" then
+		-- Toy box updated
+		self:ScanCalendar(event)
+	elseif event == "TOYS_UPDATED" then
+		-- Pets updated
+		Rarity.Collections:ScanExistingItems(event)
+	elseif event == "COMPANION_UPDATE" then
+		-- Logging out; end any open session
+		Rarity.Collections:ScanExistingItems(event)
+	elseif event == "PLAYER_LOGOUT" then
+		if Rarity.Session:IsActive() then
+			Rarity.Session:End()
+		end
+	end
+end
+
+-------------------------------------------------------------------------------------
+-- You opened a loot window on a corpse or fishing node
+-------------------------------------------------------------------------------------
+function R:OnLootReady(event, ...)
+	do
 		self:Debug("LOOT_READY with target: " .. (UnitGUID("target") or "NO TARGET"))
+
+		if Rarity.isBankOpen then
+			Rarity:Debug("Ignoring this LOOT_READY event (bank is open)")
+			return
+		end
+
+		if Rarity.isGuildBankOpen then
+			Rarity:Debug("Ignoring this LOOT_READY event (guild bank is open)")
+			return
+		end
+
+		if Rarity.isMailboxOpen then
+			Rarity:Debug("Ignoring this LOOT_READY event (mailbox is open)")
+			return
+		end
+
+		if Rarity.isAuctionHouseOpen then
+			Rarity:Debug("Ignoring this LOOT_READY event (auction house is open)")
+			return
+		end
+
+		if Rarity.isTradeWindowOpen then
+			Rarity:Debug("Ignoring this LOOT_READY event (trade window is open)")
+			return
+		end
 
 		-- In 8.0.1, two LOOT_READY events fire when the loot window opens. We'll just ignore subsequent events for a short time to prevent double counting
 		if Rarity.Session:IsLocked() then -- One attempt is already being counted and we don't want another one for this loot event -> Ignore this call
@@ -1918,49 +1985,6 @@ function R:OnEvent(event, ...)
 					end
 				end
 			end
-		end
-	elseif event == "BANKFRAME_OPENED" then
-		Rarity.isBankOpen = true
-	elseif event == "GUILDBANKFRAME_OPENED" then
-		Rarity.isGuildBankOpen = true
-	elseif event == "AUCTION_HOUSE_SHOW" then
-		Rarity.isAuctionHouseOpen = true
-	elseif event == "TRADE_SHOW" then
-		Rarity.isTradeWindowOpen = true
-	elseif event == "TRADE_SKILL_SHOW" then
-		Rarity.isTradeskillOpen = true
-	elseif event == "MAIL_SHOW" then
-		Rarity.isMailboxOpen = true
-	elseif event == "BANKFRAME_CLOSED" then
-		Rarity.isBankOpen = false
-	elseif event == "GUILDBANKFRAME_CLOSED" then
-		Rarity.isGuildBankOpen = false
-	elseif event == "AUCTION_HOUSE_CLOSED" then
-		Rarity.isAuctionHouseOpen = false
-	elseif event == "TRADE_CLOSED" then
-		Rarity.isTradeWindowOpen = false
-	elseif event == "TRADE_SKILL_CLOSE" then
-		Rarity.isTradeskillOpen = false
-	elseif event == "MAIL_CLOSED" then
-		-- Instance lock info updated
-		Rarity.isMailboxOpen = false
-	elseif event == "UPDATE_INSTANCE_INFO" then
-		self:ScanInstanceLocks(event)
-	elseif event == "LFG_UPDATE_RANDOM_INFO" then
-		-- Calendar updated
-		self:ScanInstanceLocks(event)
-	elseif event == "CALENDAR_UPDATE_EVENT_LIST" then
-		-- Toy box updated
-		self:ScanCalendar(event)
-	elseif event == "TOYS_UPDATED" then
-		-- Pets updated
-		Rarity.Collections:ScanExistingItems(event)
-	elseif event == "COMPANION_UPDATE" then
-		-- Logging out; end any open session
-		Rarity.Collections:ScanExistingItems(event)
-	elseif event == "PLAYER_LOGOUT" then
-		if Rarity.Session:IsActive() then
-			Rarity.Session:End()
 		end
 	end
 end
