@@ -57,7 +57,7 @@ function EventHandlers:Register()
 
 	self:UnregisterAllEvents()
 	self:RegisterBucketEvent("BAG_UPDATE", 0.5, "OnBagUpdate")
-	self:RegisterEvent("LOOT_READY", "OnLootReady")
+	self:RegisterBucketEvent({ "LOOT_READY", "LOOT_OPENED", "LOOT_READY" }, 0.5, "OnLootReady")
 	self:RegisterEvent("CURRENCY_DISPLAY_UPDATE", "OnCurrencyUpdate")
 	self:RegisterEvent("RESEARCH_ARTIFACT_COMPLETE", "OnResearchArtifactComplete")
 	self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED", "OnCombat") -- Used to detect boss kills that we didn't solo
