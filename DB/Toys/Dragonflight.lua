@@ -29,6 +29,7 @@ local dragonflightToys = {
 		name = L["Personal Shell"],
 		itemId = 198409,
 		npcs = { 193133 },
+		questId = 69837,
 		chance = 2,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 63.2, y = 48.6, n = L["Sunscale Behemoth"] },
@@ -42,6 +43,7 @@ local dragonflightToys = {
 		name = L["Infected Ichor"],
 		itemId = 200178,
 		npcs = { 193128, 197356, 193178 },
+		questId = { 74004, 73869, 74096, 69858, 74058 },
 		chance = 12,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 90.4, y = 40.0, n = L["Blightpaw the Depraved"] },
@@ -69,6 +71,7 @@ local dragonflightToys = {
 		method = CONSTANTS.DETECTION_METHODS.NPC,
 		name = L["The Super Shellkhan Gang"],
 		itemId = 200999,
+		questId = 72121,
 		npcs = { 191305 },
 		chance = 3,
 		coords = {
@@ -84,6 +87,7 @@ local dragonflightToys = {
 		itemId = 200160,
 		npcs = { 198703 },
 		chance = 6,
+		questId = 73887,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN, x = 20.6, y = 49.6, n = L["Notfar the Unbearable"] },
 		},
@@ -322,6 +326,7 @@ local dragonflightToys = {
 			201673, -- Kretchenwrath
 			203411, -- Shadeisethal
 		},
+		questId = 75467,
 		chance = 33,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 75.6, y = 69.6, n = L["Kretchenwrath"] },
@@ -335,6 +340,7 @@ local dragonflightToys = {
 		method = CONSTANTS.DETECTION_METHODS.NPC,
 		name = L["Dinn's Drum"],
 		itemId = 205419,
+		questId = 75352,
 		npcs = {
 			203646, -- Dinn
 		},
@@ -350,6 +356,7 @@ local dragonflightToys = {
 		method = CONSTANTS.DETECTION_METHODS.NPC,
 		name = L["Molten Lava Pack"],
 		itemId = 205796,
+		questId = 75335,
 		npcs = {
 			203627, -- Invoq
 		},
