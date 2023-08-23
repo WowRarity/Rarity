@@ -147,6 +147,9 @@ globals = {
 	"GAME_LOCALE",
 	"SPLASH_LEGION_NEW_7_1_RIGHT_TITLE",
 
+	-- ENUMS
+	"Enum",
+
 	-- API functions
 	"AbandonQuest",
 	"AbandonSkill",
