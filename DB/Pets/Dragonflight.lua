@@ -11,6 +11,7 @@ local dragonflightPets = {
 		name = L["Ohuna Companion"],
 		itemId = 200276,
 		items = { 200468, 200513, 200515 },
+		questId = { 70906, 70009, 71137 },
 		spellId = 389429,
 		creatureId = 189134,
 		chance = 100, -- Guess
@@ -28,6 +29,7 @@ local dragonflightPets = {
 		name = L["Bakar Companion"],
 		itemId = 200290,
 		items = { 200468, 200513, 200515 },
+		questId = { 70906, 70009, 71137 },
 		spellId = 389503,
 		creatureId = 189159,
 		chance = 100, -- Guess
@@ -1015,6 +1017,7 @@ local dragonflightPets = {
 			201673, -- Kretchenwrath
 			203411, -- Shadeisethal
 		},
+		questId = 75467,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 75.6, y = 69.6, n = L["Kretchenwrath"] },
 			{ m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN, x = 58.6, y = 31.8, n = L["Shadeisethal"] },
@@ -1033,6 +1036,7 @@ local dragonflightPets = {
 			201673, -- Kretchenwrath
 			203411, -- Shadeisethal
 		},
+		questId = 75467,
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS, x = 75.6, y = 69.6, n = L["Kretchenwrath"] },
 			{ m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN, x = 58.6, y = 31.8, n = L["Shadeisethal"] },
@@ -1047,6 +1051,7 @@ local dragonflightPets = {
 		spellId = 408251,
 		creatureId = 204339,
 		chance = 20,
+		questId = 75333,
 		npcs = {
 			203625, -- Karokta
 		},
@@ -1061,6 +1066,7 @@ local dragonflightPets = {
 		spellId = 408264,
 		creatureId = 204345,
 		chance = 20,
+		questId = 75266,
 		npcs = {
 			203462, -- Kob'rok
 		},
@@ -1075,6 +1081,7 @@ local dragonflightPets = {
 		spellId = 408308,
 		creatureId = 204359,
 		chance = 20,
+		questId = 75271,
 		npcs = {
 			203468, -- Aquifon
 		},
@@ -1089,6 +1096,7 @@ local dragonflightPets = {
 		spellId = 408317,
 		creatureId = 204363,
 		chance = 20,
+		questId = 75297,
 		npcs = {
 			203593, -- Underlight Queen
 		},

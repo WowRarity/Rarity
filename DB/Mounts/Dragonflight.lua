@@ -25,6 +25,7 @@ local dragonflightMounts = {
 		itemId = 192791,
 		items = { 200468 },
 		chance = 33,
+		questId = { 70906, 70006 },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.THE_WAKING_SHORES },
 			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS },
@@ -120,6 +121,7 @@ local dragonflightMounts = {
 		itemId = 205203,
 		spellId = 408647,
 		npcs = { 203625 },
+		questId = 75333,
 		chance = 100,
 		coords = { { x = 42.20, y = 65.17, n = L["Karokta"], m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN } },
 	},
