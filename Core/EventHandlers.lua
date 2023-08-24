@@ -54,6 +54,7 @@ local DebugCache = Rarity.Utils.DebugCache
 
 function EventHandlers:Register()
 	self = Rarity
+	local WOW_INTERFACE_VER = select(4, GetBuildInfo())
 
 	self:UnregisterAllEvents()
 	self:RegisterBucketEvent("BAG_UPDATE", 0.5, "OnBagUpdate")
@@ -95,6 +96,12 @@ function EventHandlers:Register()
 	self:RegisterBucketEvent("CALENDAR_UPDATE_EVENT_LIST", 1, "OnEvent")
 	self:RegisterBucketEvent("TOYS_UPDATED", 1, "OnEvent")
 	self:RegisterBucketEvent("COMPANION_UPDATE", 1, "OnEvent")
+
+	if WOW_INTERFACE_VER >= 100000 then
+		-- minimum for PLAYER_INTERACTION_MANAGER_FRAME_SHOW/HIDE events
+		self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", "OnEvent")
+		self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_HIDE", "OnEvent")
+	end
 end
 
 -- TODO: Move elsewhere/refactor
@@ -1148,7 +1155,36 @@ function R:OnResearchArtifactComplete(event, _)
 	self:ScanArchFragments(event)
 end
 
+-- 10.x added events PLAYER_INTERACTION_MANAGER_FRAME_HIDE and PLAYER_INTERACTION_MANAGER_FRAME_SHOW
+-- which currently fire either in addition to, or instead of, older events like MAIL_SHOW or MAIL_CLOSED.
+-- This maps new events onto old ones, so there's just one (old-style) event to check against.
+-- (Note many PlayerInteractionTypes are defined but not all are necessarily used; we add the ones most
+-- likely to be relevant here, whether currently being triggered or not.)
+
+local EventRemapping = {
+	["PLAYER_INTERACTION_MANAGER_FRAME_HIDE"] = {
+		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.Banker or ""] = "BANKFRAME_CLOSED",
+		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.GuildBanker or ""] = "GUILDBANKFRAME_CLOSED",
+		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.Auctioneer or ""] = "AUCTION_HOUSE_CLOSED",
+		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.TradePartner or ""] = "TRADE_CLOSED",
+		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.MailInfo or ""] = "MAIL_CLOSED",
+	},
+	["PLAYER_INTERACTION_MANAGER_FRAME_SHOW"] = {
+		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.Banker or ""] = "BANKFRAME_OPENED",
+		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.GuildBanker or ""] = "GUILDBANKFRAME_OPENED",
+		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.Auctioneer or ""] = "AUCTION_HOUSE_SHOW",
+		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.TradePartner or ""] = "TRADE_SHOW",
+		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.MailInfo or ""] = "MAIL_SHOW",
+	},
+}
+
 function R:OnEvent(event, ...)
+	-- do EventRemapping if appropriate
+	local param1 = select(1, ...)
+	if EventRemapping[event] and EventRemapping[event][param1] then
+		event = EventRemapping[event][param1]
+	end
+
 	if event == "BANKFRAME_OPENED" then
 		Rarity.isBankOpen = true
 	elseif event == "GUILDBANKFRAME_OPENED" then
