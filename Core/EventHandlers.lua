@@ -416,7 +416,9 @@ function R:OnCombat()
 					-- Increment attempts counter(s). One NPC might drop multiple things we want, so scan for them all.
 					if Rarity.npcs_to_items[npcid] and type(Rarity.npcs_to_items[npcid]) == "table" then
 						for k, v in pairs(Rarity.npcs_to_items[npcid]) do
-							if v.enabled ~= false and v.method == CONSTANTS.DETECTION_METHODS.BOSS then
+							local isBossDrop = (v.method == CONSTANTS.DETECTION_METHODS.BOSS)
+							local hasKillStatistics = type(v.statisticId) ~= "nil"
+							if v.enabled ~= false and isBossDrop and not hasKillStatistics then
 								if self:IsAttemptAllowed(v) then
 									Rarity.guids[dstGuid] = true
 									if v.attempts == nil then
