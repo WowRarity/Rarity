@@ -663,6 +663,7 @@ local mopPets = {
 		itemId = 104160,
 		npcs = { 71826, 71823 },
 		chance = 1250,
+		questId = 32961,
 		creatureId = 73532,
 		coords = { { m = 554, x = 45.6, y = 74.6 } },
 	},
