@@ -1172,23 +1172,23 @@ function R:OnEvent(event, ...)
 	elseif event == "TRADE_SKILL_CLOSE" then
 		Rarity.isTradeskillOpen = false
 	elseif event == "MAIL_CLOSED" then
-		-- Instance lock info updated
 		Rarity.isMailboxOpen = false
 	elseif event == "UPDATE_INSTANCE_INFO" then
+		-- Instance lock info updated
 		self:ScanInstanceLocks(event)
 	elseif event == "LFG_UPDATE_RANDOM_INFO" then
-		-- Calendar updated
 		self:ScanInstanceLocks(event)
 	elseif event == "CALENDAR_UPDATE_EVENT_LIST" then
-		-- Toy box updated
+		-- Calendar updated
 		self:ScanCalendar(event)
 	elseif event == "TOYS_UPDATED" then
-		-- Pets updated
+		-- Toy box updated
 		Rarity.Collections:ScanExistingItems(event)
 	elseif event == "COMPANION_UPDATE" then
-		-- Logging out; end any open session
+		-- Pets updated
 		Rarity.Collections:ScanExistingItems(event)
 	elseif event == "PLAYER_LOGOUT" then
+		-- Logging out; end any open session
 		if Rarity.Session:IsActive() then
 			Rarity.Session:End()
 		end
