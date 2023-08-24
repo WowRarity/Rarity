@@ -1,4 +1,11 @@
 local changes = {
+	["r721"] = {
+		fixes = {
+			"Fixed an issue that would incorrectly add attempts to faction-specific Time Rift mounts for the opposing faction",
+			"Fixed an issue that would break tracking of container items after the mail box was opened",
+		},
+		contributors = { "Rubio9" },
+	},
 	["r720"] = {
 		additions = {
 			"Added tracking for most of the missing Dragonflight collectibles",
