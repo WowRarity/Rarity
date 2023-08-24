@@ -1,12 +1,8 @@
-**r720:**
-
-Additions:
-> Added tracking for most of the missing Dragonflight collectibles
-<br>Added an experimental button that allows untracking all mounts to the Advanced settings
-<br>Opening BFA Island Expedition crates should now add attempts for all relevant collectibles
+**r721:**
 
 Fixes:
-> Fixed TomTom waypoint labels not displaying Rarity as their source
+> Fixed an issue that would incorrectly add attempts to faction-specific Time Rift mounts for the opposing faction
+<br>Fixed an issue that would break tracking of container items after the mail box was opened
 
 Contributors (in alphabetical order):
-> cyriun
+> Rubio9
