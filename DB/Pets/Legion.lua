@@ -25,6 +25,7 @@ local legionPets = {
 		spellId = 210683,
 		itemId = 136911,
 		items = { 132892, 168740 },
+		questId = { 40753, 56042 },
 		chance = 200,
 		creatureId = 99505,
 		coords = { { m = CONSTANTS.UIMAPIDS.NONE } },
