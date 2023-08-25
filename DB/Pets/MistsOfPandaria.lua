@@ -789,7 +789,7 @@ local mopPets = {
 		items = { 86623, 113258, 168740 },
 		chance = 200,
 		creatureId = 73011,
-		questId = { 31752, 34774 },
+		questId = { 31752, 34774, 40753, 56042 },
 		tooltipNpcs = { 77789, 43929 },
 		coords = { { m = CONSTANTS.UIMAPIDS.NONE } },
 	},
