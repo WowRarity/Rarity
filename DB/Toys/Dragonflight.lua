@@ -394,8 +394,9 @@ local dragonflightToys = {
 		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
 		name = L["Everlasting Horn of Lavaswimming"],
 		itemId = 200116,
-		chance = 40, --guess
-		sourceText = L["This toy is obtained at the end of the Siege on Dragonbane Keep event."],
+		chance = 1000,
+		sourceText = L["This toy is obtained at the end of the Siege on Dragonbane Keep event. The drop rate appears to be much reduced on repeated attempts."],
+		questId = { 70866, 74295 },
 		coords = { { m = CONSTANTS.UIMAPIDS.THE_WAKING_SHORES, x = 24.2, y = 70.1 } },
 	},
 	["Holoviewer: The Lady of Dreams"] = {

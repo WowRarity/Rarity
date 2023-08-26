@@ -1994,7 +1994,8 @@ L["Dropped from the final bosses of Froststone Vault Primal Storm."] = true
 L["Combine 50 Leftover Elemental Slime to create the Gooey Snailemental."] = true
 L["Froststone Vault Primal Storm"] = true
 L["Everlasting Horn of Lavaswimming"] = true
-L["This toy is obtained at the end of the Siege on Dragonbane Keep event."] = true
+L["This toy is obtained at the end of the Siege on Dragonbane Keep event. The drop rate appears to be much reduced on repeated attempts."] =
+	true
 L["Opera Chest"] = true
 L["Holoviewer: The Lady of Dreams"] = true
 L["Holoviewer: The Timeless One"] = true
