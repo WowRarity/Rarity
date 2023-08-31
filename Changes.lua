@@ -1,4 +1,17 @@
 local changes = {
+	["r722"] = {
+		additions = {
+			"Added tracking for collectibles obtainable in the Zskera Vaults (Forbidden Reach)",
+		},
+		changes = {
+			"The estimated luckiness percentage is now being displayed alongside the attempts count for all items",
+		},
+		fixes = {
+			"Fixed an issue that would incorrectly add duplicate attempts for bosses with both kill statistics and NPC loot",
+			"Rolled back a recent change that caused NPC loot to not be registered when using Rarity with fast-loot addons",
+		},
+		contributors = { "cyriun", "Rubio9" },
+	},
 	["r721"] = {
 		fixes = {
 			"Fixed an issue that would incorrectly add attempts to faction-specific Time Rift mounts for the opposing faction",
