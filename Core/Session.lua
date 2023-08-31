@@ -2,7 +2,10 @@ local _, addonTable = ...
 
 --- Session.lua
 -- TODO: LuaDoc
-local Session = {}
+local Session = {
+	lockDurationInSeconds = 1, -- Should be configurable for easier debugging
+	isLocked = false,
+}
 
 -- Globals
 local R = Rarity
@@ -12,6 +15,7 @@ local GetDate = Rarity.Utils.Time.GetDate
 -- WOW APIs
 local GetItemInfo = GetItemInfo
 local GetTime = GetTime
+local C_Timer = C_Timer
 
 -- Locals
 local inSession = false
@@ -143,6 +147,27 @@ function Session:Update()
 	else
 		Rarity.Session:Start()
 	end
+end
+
+function Session:IsLocked()
+	return self.isLocked
+end
+
+function Session.Unlock()
+	Rarity:Debug("Unlocking session to continue scanning for new LOOT_READY events")
+	Session.isLocked = false
+end
+
+function Session:Lock(lockDurationInSeconds)
+	lockDurationInSeconds = lockDurationInSeconds or self.lockDurationInSeconds
+
+	Rarity:Debug(
+		"Locking session for "
+			.. tostring(lockDurationInSeconds)
+			.. " second(s) to prevent duplicate attempts from being counted"
+	)
+	self.isLocked = true
+	C_Timer.After(lockDurationInSeconds, self.Unlock)
 end
 
 Rarity.Session = Session

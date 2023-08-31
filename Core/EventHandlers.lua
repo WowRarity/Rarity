@@ -58,7 +58,7 @@ function EventHandlers:Register()
 
 	self:UnregisterAllEvents()
 	self:RegisterBucketEvent("BAG_UPDATE", 0.5, "OnBagUpdate")
-	self:RegisterBucketEvent("LOOT_READY", 0.5, "OnLootReady")
+	self:RegisterEvent("LOOT_READY", "OnLootReady")
 	self:RegisterEvent("CURRENCY_DISPLAY_UPDATE", "OnCurrencyUpdate")
 	self:RegisterEvent("RESEARCH_ARTIFACT_COMPLETE", "OnResearchArtifactComplete")
 	self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED", "OnCombat") -- Used to detect boss kills that we didn't solo
@@ -1239,6 +1239,14 @@ end
 function R:OnLootReady(event, ...)
 	do
 		self:Debug("LOOT_READY with target: " .. (UnitGUID("target") or "NO TARGET"))
+
+		-- Two LOOT_READY events may trigger when the loot window opens, in which case this prevents double counting
+		if self.Session:IsLocked() then
+			self:Debug("Session is locked; ignoring this LOOT_READY event")
+			return
+		end
+
+		self.Session:Lock()
 
 		if Rarity.isBankOpen then
 			Rarity:Debug("Ignoring this LOOT_READY event (bank is open)")
