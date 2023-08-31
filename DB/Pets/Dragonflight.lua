@@ -1123,6 +1123,39 @@ local dragonflightPets = {
 		chance = 7, -- Average over all the containers (not exactly accurate...)
 		coords = { { m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN } },
 	},
+	["Bunbo"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Bunbo"],
+		itemId = 193363,
+		spellId = 375045,
+		creatureId = 189113,
+		chance = 20,
+		coords = { { m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 28.8, y = 52.6 } },
+	},
+	["Berylmane"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Berylmane"],
+		itemId = 193854,
+		spellId = 375553,
+		creatureId = 191287,
+		chance = 20,
+		coords = { { m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 28.8, y = 52.6 } },
+	},
+	["Brightfeather"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Brightfeather"],
+		itemId = 193835,
+		spellId = 375448,
+		creatureId = 189158,
+		chance = 20,
+		coords = { { m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 28.8, y = 52.6 } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, dragonflightPets)

@@ -1802,6 +1802,48 @@ function R:OnLootReady(event, ...)
 			end
 		end
 
+		-- Handle opening various chests in Zskera Vaults
+		local vaultPets = {
+			"Bunbo",
+			"Berylmane",
+			"Brightfeather",
+		}
+		local vaultToys = {
+			"Obsidian Battle Horn",
+		}
+		local vaultChests = {
+			[L["Chain-Bound Strongbox"]] = true,
+			[L["Crystal Basket"]] = true,
+			[L["Hardened Chest"]] = true,
+			[L["Mindless Slime"]] = true,
+			[L["Searing Chest"]] = true,
+			[L["Hardened Strongbox"]] = true,
+			[L["Cart of Crushed Stone"]] = true,
+			[L["Hardshell Chest"]] = true,
+			[L["Titan Coffer"]] = true,
+			[L["Void-Bound Strongbox"]] = true,
+			[L["Inert Goo"]] = true,
+			[L["Mysterious Chest"]] = true,
+			[L["Supply Trunk"]] = true,
+			[L["Shattered Crystals"]] = true,
+			[L["Chest of Ice"]] = true,
+			[L["Forgotten Lockbox"]] = true,
+			[L["Slimy Goo"]] = true,
+			[L["Wind-Bound Strongbox"]] = true,
+			[L["Spun Webs"]] = true,
+			[L["Obsidian Grand Cache"]] = true,
+			[L["Frozen Coffer"]] = true,
+		}
+		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and vaultChests[Rarity.lastNode] then
+			Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
+			for _, itemName in ipairs(vaultToys) do
+				addAttemptForItem(itemName, "items")
+			end
+			for _, itemName in ipairs(vaultPets) do
+				addAttemptForItem(itemName, "pets")
+			end
+		end
+
 		-- HANDLE FISHING
 		if Rarity.isFishing and Rarity.isOpening == false then
 			if Rarity.isPool then
