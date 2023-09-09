@@ -250,6 +250,19 @@ local holidayEventPets = {
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.LOVE_IS_IN_THE_AIR,
 		coords = { { m = 310, x = 40.8, y = 52.6, i = true } },
 	},
+	["Darkmoon Rabbit"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Darkmoon Rabbit"],
+		spellId = 114090,
+		itemId = 80008,
+		npcs = { 58336 },
+		chance = 10,
+		creatureId = 59358,
+		coords = { { m = CONSTANTS.UIMAPIDS.DARKMOON_ISLAND, x = 75.6, y = 86.8 } },
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.DARKMOON_FAIRE,
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, holidayEventPets)
