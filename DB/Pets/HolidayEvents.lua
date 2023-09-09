@@ -163,7 +163,7 @@ local holidayEventPets = {
 		chance = 17,
 		creatureId = 72160,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.DARKMOON_FAIRE,
-		coords = { { m = 407, x = 39.8, y = 44.4, n = L["Moonfang"] } },
+		coords = { { m = CONSTANTS.UIMAPIDS.DARKMOON_ISLAND, x = 39.8, y = 44.4, n = L["Moonfang"] } },
 	},
 	["Red Helper Box"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
