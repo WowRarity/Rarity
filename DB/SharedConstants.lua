@@ -287,3 +287,4 @@ addonTable.constants = C
 
 -- More consistent with Blizzard's method as of Shadowlands (global Enum table); it's probably easier to use, as well
 Rarity.Enum = C
+return C
