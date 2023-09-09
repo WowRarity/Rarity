@@ -129,6 +129,7 @@ Core\Debugging.lua
 Core\Detection.lua
 Core\EventHandlers.lua
 Core\GUI.lua
+Core\HolidayEvents.lua
 Core\Profiling.lua
 Core\Serialization.lua
 Core\Session.lua
