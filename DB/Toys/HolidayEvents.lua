@@ -214,7 +214,7 @@ local holidayEventToys = {
 		npcs = { 71992 },
 		chance = 5,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.DARKMOON_FAIRE,
-		coords = { { m = 407, x = 39.8, y = 44.4 } },
+		coords = { { m = CONSTANTS.UIMAPIDS.DARKMOON_ISLAND, x = 39.8, y = 44.4 } },
 	},
 	["Moonfang's Paw"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -226,7 +226,7 @@ local holidayEventToys = {
 		npcs = { 71992 },
 		chance = 5,
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.DARKMOON_FAIRE,
-		coords = { { m = 407, x = 39.8, y = 44.4 } },
+		coords = { { m = CONSTANTS.UIMAPIDS.DARKMOON_ISLAND, x = 39.8, y = 44.4 } },
 	},
 	["Pineapple Lounge Cushion"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
