@@ -969,7 +969,7 @@ local function addGroup(group, requiresGroup)
 								end
 							end
 						elseif v.questId and v.holidayTexture then
-							if Rarity.holiday_textures[v.holidayTexture] == nil then
+							if not Rarity.HolidayEvents.IsItemAvailableToday(v) then
 								status = colorize(L["Unavailable"], gray)
 							elseif v.christmasOnly and dt.month == 12 and dt.day < 25 then
 								status = colorize(L["Unavailable"], gray)
@@ -1088,7 +1088,7 @@ local function addGroup(group, requiresGroup)
 									status = colorize(L["Unavailable"], gray)
 								end
 							end
-						elseif v.holidayTexture and Rarity.holiday_textures[v.holidayTexture] == nil then
+						elseif v.holidayTexture and not Rarity.HolidayEvents.IsItemAvailableToday(v) then
 							status = colorize(L["Unavailable"], gray)
 						end
 						if v.pickpocket then

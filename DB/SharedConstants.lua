@@ -188,21 +188,49 @@ C.SORT_METHODS = {
 
 C.COVENANT_IDS = { KYRIAN = 1, VENTHYR = 2, NIGHT_FAE = 3, NECROLORD = 4 }
 
+-- These are now obsolete, but still used for items. TBD: Can move over to a different format or will it break things?
 C.HOLIDAY_TEXTURES = {
 	WINTERS_VEIL = "Calendar_WinterVeil",
 	DARKMOON_FAIRE = "calendar_darkmoonfaireterokkar",
-	DAY_OF_THE_DEAD = "Calendar_DayOfTheDead",
 	BREWFEST = "Calendar_Brewfest",
 	HALLOWS_END = "Calendar_HallowsEnd",
 	PILGRIMS_BOUNTY = "Calendar_HarvestFestival",
-	WOW_ANNIVERSARY = "calendar_anniversary",
 	LOVE_IS_IN_THE_AIR = "Calendar_LoveInTheAir",
-	LUNAR_FESTIVAL = "Calendar_LunarFestival",
-	NOBLEGARDEN = "Calendar_Noblegarden",
-	CHILDRENS_WEEK = "Calendar_ChildrensWeek",
 	MIDSUMMER_FESTIVAL = "Calendar_Midsummer",
-	FIREWORKS = "calendar_fireworks", -- What is this used for?
-	PIRATES_DAY = "Calendar_PiratesDay",
+}
+
+-- Copied from https://www.townlong-yak.com/framexml/live/Helix/ArtTextureID.lua
+C.ART_TEXTURES = {
+	BREWFEST = 235439,
+	BREWFEST_END = 235440,
+	BREWFEST_ONGOING = 235441,
+	BREWFEST_START = 235442,
+	DMF_ELWYNN_END = 235446,
+	DMF_ELWYNN_ONGOING = 235447,
+	DMF_ELWYNN_START = 235448,
+	DMF_MULGORE_END = 235449,
+	DMF_MULGORE_ONGOING = 235450,
+	DMF_MULGORE_START = 235451,
+	DMF_ONGOING = 235452,
+	DMF_TEROKKAR_END = 235453,
+	DMF_TEROKKAR_ONGOING = 235454,
+	DMF_TEROKKAR_START = 235455,
+	HALLOWS_END = 235460,
+	HALLOWS_ONGOING = 235461,
+	HALLOWS_START = 235462,
+	HARVEST_END = 235463,
+	HARVEST_ONGOING = 235464,
+	HARVEST_START = 235465,
+	LOVE_END = 235466,
+	LOVE_ONGOING = 235467,
+	LOVE_START = 235468,
+	MIDSUMMER_END = 235472,
+	MIDSUMMER_ONGOING = 235473,
+	MIDSUMMER_START = 235474,
+	WINTERVEIL_END = 235482,
+	WINTERVEIL_IEND = 235483,
+	WINTERVEIL_ONGOING = 235484,
+	WINTERVEIL_START = 235485,
 }
 
 C.ARCHAEOLOGY_RACES = {
@@ -287,3 +315,4 @@ addonTable.constants = C
 
 -- More consistent with Blizzard's method as of Shadowlands (global Enum table); it's probably easier to use, as well
 Rarity.Enum = C
+return C
