@@ -1,4 +1,12 @@
 local changes = {
+	["r723"] = {
+		additions = {
+			"Added tracking for Darkmoon Rabbit",
+		},
+		fixes = {
+			"Fixed an issue that prevented items requiring world events (e.g., DMF) to be active from being displayed",
+		},
+	},
 	["r722"] = {
 		additions = {
 			"Added tracking for collectibles obtainable in the Zskera Vaults (Forbidden Reach)",
