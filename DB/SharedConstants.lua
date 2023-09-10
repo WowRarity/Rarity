@@ -192,18 +192,11 @@ C.COVENANT_IDS = { KYRIAN = 1, VENTHYR = 2, NIGHT_FAE = 3, NECROLORD = 4 }
 C.HOLIDAY_TEXTURES = {
 	WINTERS_VEIL = "Calendar_WinterVeil",
 	DARKMOON_FAIRE = "calendar_darkmoonfaireterokkar",
-	DAY_OF_THE_DEAD = "Calendar_DayOfTheDead",
 	BREWFEST = "Calendar_Brewfest",
 	HALLOWS_END = "Calendar_HallowsEnd",
 	PILGRIMS_BOUNTY = "Calendar_HarvestFestival",
-	WOW_ANNIVERSARY = "calendar_anniversary",
 	LOVE_IS_IN_THE_AIR = "Calendar_LoveInTheAir",
-	LUNAR_FESTIVAL = "Calendar_LunarFestival",
-	NOBLEGARDEN = "Calendar_Noblegarden",
-	CHILDRENS_WEEK = "Calendar_ChildrensWeek",
 	MIDSUMMER_FESTIVAL = "Calendar_Midsummer",
-	FIREWORKS = "calendar_fireworks", -- What is this used for?
-	PIRATES_DAY = "Calendar_PiratesDay",
 }
 
 -- Copied from https://www.townlong-yak.com/framexml/live/Helix/ArtTextureID.lua
