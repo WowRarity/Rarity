@@ -178,9 +178,8 @@ function Collections:ScanExistingItems(reason)
 		C_PetJournal.AddAllPetTypesFilter()
 		C_PetJournal.AddAllPetSourcesFilter()
 	else -- 7.0+
-		C_PetJournal.SetFilterChecked(_G.LE_PET_JOURNAL_FLAG_COLLECTED, true)
-		C_PetJournal.SetFilterChecked(_G.LE_PET_JOURNAL_FLAG_FAVORITES, false)
-		C_PetJournal.SetFilterChecked(_G.LE_PET_JOURNAL_FLAG_NOT_COLLECTED, true)
+		C_PetJournal.SetFilterChecked(_G.LE_PET_JOURNAL_FILTER_COLLECTED, true)
+		C_PetJournal.SetFilterChecked(_G.LE_PET_JOURNAL_FILTER_NOT_COLLECTED, true)
 		C_PetJournal.SetAllPetTypesChecked(true)
 		C_PetJournal.SetAllPetSourcesChecked(true)
 	end
