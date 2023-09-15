@@ -1921,17 +1921,7 @@ function R:OnLootReady(event, ...)
 
 		--Handle Disgusting vat fishing
 		if Rarity.relevantSpells[405274] == "Disgusting Vat Fishing" and (Rarity.lastNode == L["Disgusting Vat"]) then
-			Rarity:Debug("Detected Fishing on " .. Rarity.lastNode .. " (method = SPECIAL)")
-			Rarity:Debug("Last node: " .. tostring(Rarity.lastNode))
-			local v = self.db.profile.groups.pets["Emmah"]
-			if v.method == CONSTANTS.DETECTION_METHODS.SPECIAL and type(v) == "table" and v.enabled ~= false then
-				if v.attempts == nil then
-					v.attempts = 1
-				else
-					v.attempts = v.attempts + 1
-				end
-				self:OutputAttempts(v)
-			end
+			Rarity:OnDisgustingVatFished()
 		end
 
 		-- Handle mining Elementium
@@ -2070,6 +2060,11 @@ function R:OnLootReady(event, ...)
 			end
 		end
 	end
+end
+
+function Rarity:OnDisgustingVatFished()
+	self:Debug("Detected fishing on Disgusting Vat (method = SPECIAL)")
+	addAttemptForItem("Emmah", "pets")
 end
 
 Rarity.EventHandlers = EventHandlers
