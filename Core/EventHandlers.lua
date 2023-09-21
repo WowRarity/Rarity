@@ -1920,7 +1920,9 @@ function R:OnLootReady(event, ...)
 		Rarity.isPool = false
 
 		--Handle Disgusting vat fishing
-		if Rarity.relevantSpells[405274] == "Disgusting Vat Fishing" and (Rarity.lastNode == L["Disgusting Vat"]) then
+		if -- There's no UNIT_SPELLCAST_SENT, so this will have to do
+			Rarity.lastNode == L["Disgusting Vat"]
+		then
 			Rarity:OnDisgustingVatFished()
 		end
 
