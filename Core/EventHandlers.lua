@@ -1010,28 +1010,19 @@ function R:ProcessCollectionItem(itemID)
 	end
 
 	-- Handle collection items
-	self:Debug(format("Processed item %s is something we're tracking", itemID))
-
 	if not self:IsCollectionItem(item) then
 		return
 	end
 
-	self:Debug("Processed item is a COLLECTION item we're tracking")
-
 	local inventoryItemCount = R:GetInventoryItemCount(itemID)
-	self:Debug(format("Processing collection item with inventoryItemCount %d", inventoryItemCount))
 
 	-- Our items hashtable only saves one item for this collected item, so we have to scan to find them all now.
 	-- Earlier, we pre-built a list of just the items that are COLLECTION items to save some time here.
 	for collectionItemID, collectionItem in pairs(Rarity.collection_items) do
-		self:Debug(format("Checking for new attempts at COLLECTION item %s", collectionItem.name))
-
 		-- This item is a collection of several items; add them all up and check for attempts
 		if self:HasMultipleCollectionItems(collectionItem) then
-			self:Debug(format("Processing aggregate collection item %s", collectionItem.name))
 			self:ProcessCollectionItemAggregate(collectionItem)
 		else
-			self:Debug(format("Processing single collection item %s", collectionItem.name))
 			self:ProcessCollectionItemSingle(collectionItem, itemID)
 		end
 	end
@@ -1101,13 +1092,10 @@ function R:ProcessCollectionItemAggregate(collectionItem)
 		local total = 0
 		local originalCount = (collectionItem.attempts or 0)
 		local goal = (collectionItem.chance or 100)
-		self:Debug(format("Aggregate with total %d, originalCount %d, goal %d", total, originalCount, goal))
 		for kkk, vvv in pairs(collectionItem.collectedItemId) do
 			vvv = tonumber(vvv) -- It's stored as string, but we expect numbers...
-			self:Debug(format("Adding inventoryAmount for item %d (%s)", kkk, vvv))
 			if (Rarity.bagitems[vvv] or 0) > 0 then
 				total = total + Rarity.bagitems[vvv]
-				self:Debug(format("Found %d of these in bags, new total is %d", Rarity.bagitems[vvv], total))
 			end
 		end
 		if total > originalCount then
