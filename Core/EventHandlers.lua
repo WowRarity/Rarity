@@ -1919,6 +1919,13 @@ function R:OnLootReady(event, ...)
 		Rarity.isFishing = false
 		Rarity.isPool = false
 
+		-- Handle Disgusting Vat Fishing
+		if -- There's no UNIT_SPELLCAST_SENT, so this will have to do
+			Rarity.lastNode == L["Disgusting Vat"]
+		then
+			Rarity:OnDisgustingVatFished()
+		end
+
 		-- Handle mining Elementium
 		if
 			Rarity.relevantSpells[Rarity.previousSpell] == "Mining"
@@ -2055,6 +2062,19 @@ function R:OnLootReady(event, ...)
 			end
 		end
 	end
+end
+
+local IsQuestFlaggedCompleted = C_QuestLog.IsQuestFlaggedCompleted
+
+function Rarity:OnDisgustingVatFished()
+	local hasFishedEmmahThisWeek = IsQuestFlaggedCompleted(75488)
+	if hasFishedEmmahThisWeek then
+		self:Debug("Skipping this fishing attempt (loot lockout for Emmah is active)")
+		return
+	end
+
+	self:Debug("Detected fishing on Disgusting Vat (method = SPECIAL)")
+	addAttemptForItem("Emmah", "pets")
 end
 
 Rarity.EventHandlers = EventHandlers

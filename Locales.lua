@@ -3,6 +3,8 @@ L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
 L["Darkmoon Rabbit"] = true
+L["Disgusting Vat"] = true
+L["Fished from Disgusting Vat located within the Zskera Vaults"] = true
 L["Horn of the White War Wolf"] = true
 L["Reins of the Ravenous Black Gryphon"] = true
 L["N'Ruby"] = true
@@ -1966,7 +1968,7 @@ L["Phleep"] = true
 L["A Collection Of Me"] = true
 L["Ashenwing"] = true
 L["Bonesifter Marwak"] = true
-L["Entrance to Zskera Vault"] = true
+L["Entrance to Zskera Vaults"] = true
 L["Gilded Mechafrog"] = true
 L["Inside Zskera Vaults, collect Neltharion Gift Tokens for Prototype Tinker-Tron in order to receive Tattered Gift Package, which can drop the Gilded Mechafrog pet."] =
 	true
@@ -2029,6 +2031,8 @@ L["Spun Webs"] = true
 L["Obsidian Grand Cache"] = true
 L["Frozen Coffer"] = true
 L["Obsidian Battle Horn"] = true
+L["Emmah"] = true
+
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.
 					Please go to http://www.wowace.com/projects/rarity/localization/ to update translations.

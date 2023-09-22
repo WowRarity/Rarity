@@ -66,7 +66,7 @@ local dragonflightPets = {
 		sourceText = L["Inside Zskera Vaults, collect Neltharion Gift Tokens for Prototype Tinker-Tron in order to receive Tattered Gift Package, which can drop the Gilded Mechafrog pet."],
 		chance = 25,
 		coords = {
-			{ m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 29.2, y = 53.0, n = L["Entrance to Zskera Vault"] },
+			{ m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 29.2, y = 53.0, n = L["Entrance to Zskera Vaults"] },
 		},
 	},
 	["Dust Spirit"] = {
@@ -1155,6 +1155,22 @@ local dragonflightPets = {
 		creatureId = 189158,
 		chance = 20,
 		coords = { { m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 28.8, y = 52.6 } },
+	},
+	["Emmah"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Emmah"],
+		zones = { "2151" },
+		spellId = 375511,
+		itemId = 193853,
+		creatureId = 189694,
+		questId = 75488,
+		sourceText = L["Fished from Disgusting Vat located within the Zskera Vaults"],
+		requiresPool = true,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 29.2, y = 53.0, n = L["Entrance to Zskera Vaults"] },
+		},
 	},
 }
 

@@ -954,6 +954,7 @@ globals = {
 	"C_PurchaseAPI.SetDisconnectOnLogout",
 	"C_PurchaseAPI.SetVASProductReady",
 	"C_PvP",
+	"C_QuestLog",
 	"C_Questline",
 	"C_Questline.GetNumAvailableQuestlines",
 	"C_Questline.GetQuestlineInfoByIndex",
