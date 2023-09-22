@@ -2064,7 +2064,15 @@ function R:OnLootReady(event, ...)
 	end
 end
 
+local IsQuestFlaggedCompleted = C_QuestLog.IsQuestFlaggedCompleted
+
 function Rarity:OnDisgustingVatFished()
+	local hasFishedEmmahThisWeek = IsQuestFlaggedCompleted(75488)
+	if hasFishedEmmahThisWeek then
+		self:Debug("Skipping this fishing attempt (loot lockout for Emmah is active)")
+		return
+	end
+
 	self:Debug("Detected fishing on Disgusting Vat (method = SPECIAL)")
 	addAttemptForItem("Emmah", "pets")
 end
