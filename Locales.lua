@@ -1967,7 +1967,7 @@ L["Phleep"] = true
 L["A Collection Of Me"] = true
 L["Ashenwing"] = true
 L["Bonesifter Marwak"] = true
-L["Entrance to Zskera Vault"] = true
+L["Entrance to Zskera Vaults"] = true
 L["Gilded Mechafrog"] = true
 L["Inside Zskera Vaults, collect Neltharion Gift Tokens for Prototype Tinker-Tron in order to receive Tattered Gift Package, which can drop the Gilded Mechafrog pet."] =
 	true
