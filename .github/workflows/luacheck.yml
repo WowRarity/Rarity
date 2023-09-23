@@ -35,4 +35,4 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Perform static analysis
-        run: ./luacheck.sh
+        run: luacheck .
