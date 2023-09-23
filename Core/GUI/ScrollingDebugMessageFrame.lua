@@ -75,6 +75,16 @@ function ScrollingDebugMessageFrame:OnLoad()
 		CopyPastePopup:Show()
 	end)
 
+	frame.Clear = CreateFrame("Button", "$parentClear", frame, "UIPanelButtonTemplate")
+	frame.Clear:SetSize(180, 25)
+	frame.Clear:SetPoint("RIGHT", frame.Select, "LEFT")
+	frame.Clear:SetText("Clear ALL the things")
+	frame.Clear:SetScale(0.85)
+	frame.Clear:SetScript("OnClick", function()
+		DebugCache:Clear()
+		frame.Messages:Clear()
+	end)
+
 	frame:Hide()
 
 	self.frame = frame

@@ -34,7 +34,7 @@ end
 -- Clears the debug stack, deleting all messages
 function DC:Clear()
 	self.messages = {}
-	self.print("Cleared messages")
+	self.print("Cleared all cached debug messages")
 end
 
 -- Prints number of cached debug messages to the output sink
