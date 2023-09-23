@@ -55,6 +55,13 @@ globals = {
 	"READY_CHECK_WAITING_TEXTURE",
 
 	-- FrameXML (Blizzard interface)
+	"BackdropTemplateMixin",
+	"ChatFontNormal",
+	"FauxScrollFrame_GetOffset",
+	"FauxScrollFrame_OnVerticalScroll",
+	"FauxScrollFrame_Update",
+	"SCROLLING_MESSAGE_FRAME_INSERT_MODE_TOP",
+
 	"AchievementFrame",
 	"AchievementFrame_LoadUI",
 	"AchievementShield_SetPoints",
