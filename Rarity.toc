@@ -141,6 +141,7 @@ Core\Waypoints.lua
 # UI
 Core\GUI\AnchoredTrackingBar.lua
 Core\GUI\CopyPastePopup.lua
+Core\GUI\ScrollingDebugMessageFrame.lua
 Core\GUI\DataBrokerDisplay.lua
 Core\GUI\FauxAchievementPopup.lua
 Core\GUI\GameTooltipHooks.lua

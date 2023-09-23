@@ -718,8 +718,7 @@ function R:OnChatCommand(input)
 			self:Print(L["Debug mode ON"])
 		end
 	elseif strlower(input) == "dump" then
-		local numMessages = 50 -- Hardcoded is meh, but it should suffice for the time being
-		DebugCache:PrintMessages(numMessages)
+		self.ScrollingDebugMessageFrame:Toggle()
 	elseif strlower(input) == "validate" then -- Verify the ItemDB
 		self.Validation:ValidateItemDB()
 	elseif strlower(input) == "mapinfo" then

@@ -4,8 +4,11 @@ if not addon then
 end
 
 -- Upvalues
+local date = date
+local format = string.format
 local tostring = tostring
 local type = type
+local tconcat = table.concat
 local tinsert = table.insert
 local tremove = table.remove
 local time = time
@@ -31,7 +34,7 @@ end
 -- Clears the debug stack, deleting all messages
 function DC:Clear()
 	self.messages = {}
-	self.print("Cleared messages")
+	self.print("Cleared all cached debug messages")
 end
 
 -- Prints number of cached debug messages to the output sink
@@ -81,6 +84,25 @@ function DC:AddMessage(text, category)
 		tremove(self.messages, 1)
 	end
 	tinsert(self.messages, message)
+
+	local formattedDate = self:GetHumanReadableDateString(message.timestamp)
+	local formattedLogLine = format("[%s] (%s) %s", formattedDate, message.category, message.text)
+	Rarity.ScrollingDebugMessageFrame:AddMessage(formattedLogLine)
+end
+
+function DC:GetHumanReadableDateString(timestamp)
+	timestamp = timestamp or time()
+	local dateTable = date("*t", timestamp)
+	local formattedDate = format(
+		"%04d-%02d-%02d %02d:%02d:%02d",
+		dateTable.year,
+		dateTable.month,
+		dateTable.day,
+		dateTable.hour,
+		dateTable.min,
+		dateTable.sec
+	)
+	return formattedDate
 end
 
 -- Prints the last X messages (defaults to one message if the 'numMessages' parameter is omitted)
@@ -102,6 +124,31 @@ function DC:PrintMessages(numMessages)
 		local line = "(" .. tostring(i) .. ") - " .. tostring(msg.text)
 		self.print(line, msg.timestamp, msg.category)
 	end
+end
+
+function DC:GetCopyableMessageString(numMessages)
+	numMessages = numMessages or self.cacheSize
+
+	if #self.messages == 0 then
+		return "No messages to display (debug cache is empty)"
+	end
+
+	-- Show at least one message, but no more than are currently cached. Default to one message if no parameter was given
+	numMessages = min(#self.messages, (type(numMessages) == "number" and numMessages > 0) and numMessages or 1)
+
+	-- Show most recent messages first
+	local firstIndex = max(#self.messages - numMessages, 1)
+	local lastIndex = #self.messages
+
+	local formattedLogLines = {}
+	for i = firstIndex, lastIndex do
+		local message = self.messages[i]
+		local formattedDate = self:GetHumanReadableDateString(message.timestamp)
+		local line = format("[%s] (%s) %s", formattedDate, message.category, message.text)
+		tinsert(formattedLogLines, line)
+	end
+
+	return tconcat(formattedLogLines, "\n")
 end
 
 Rarity.Utils.DebugCache = DC

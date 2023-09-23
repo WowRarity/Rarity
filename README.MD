@@ -33,7 +33,7 @@
 <p>For troubleshooting issues:</p>
 <ul>
 <li><strong>/rarity mapinfo</strong> prints the current map name and ID, which can help track zonewide custom items</li>
-<li><strong>/rarity dump</strong> prints the most recent debug log entries (even if the debug mode is disabled)</li>
+<li><strong>/rarity dump</strong> displays the most recent debug log entries (even if the debug mode is disabled)</li>
 <li><strong>/rarity validate</strong> checks the consistency of your item database, including custom items (experimental)</li>
 </ul>
 <h2 id="w-http-www-wowace-com-addons-rarity-comments-http-www"><a href="http://www.wowace.com/addons/rarity/">Comments</a> &amp; <a href="http://www.wowace.com/addons/rarity/tickets/">bug reports</a></h2>
