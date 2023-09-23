@@ -1,4 +1,14 @@
 local changes = {
+	["r724"] = {
+		additions = {
+			"Added tracking for Emmah (Disgusting Vat Fishing, in Zskera Vaults)",
+			"Added a new scrolling message frame for inspecting cached debug messages (via `/rarity dump)`",
+		},
+		fixes = {
+			"Fixed an issue that could cause pets that have already been obtained to not be detected as such",
+		},
+		contributors = { "cyriun" },
+	},
 	["r723"] = {
 		additions = {
 			"Added tracking for Darkmoon Rabbit",
