@@ -106,7 +106,7 @@ end
 
 function ScrollingDebugMessageFrame:UpdateDisplayedMessages()
 	local numMessagesAvailable = self.frame.Messages:GetNumMessages()
-	FauxScrollFrame_Update(self.frame.Scroll, numMessagesAvailable, self.numMessagesToDisplay, 12)
+	FauxScrollFrame_Update(self.frame.Scroll, DebugCache.cacheSize, self.numMessagesToDisplay, 12)
 end
 
 Rarity.ScrollingDebugMessageFrame = ScrollingDebugMessageFrame
