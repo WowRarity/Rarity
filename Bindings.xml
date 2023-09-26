@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="RARITY_DEBUGWINDOWTOGGLE" category="Rarity">
+		Rarity.ScrollingDebugMessageFrame:Toggle()
+	</Binding>
+</Bindings>
