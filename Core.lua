@@ -164,6 +164,10 @@ do
 		self:RegisterChatCommand("rarity", "OnChatCommand")
 		self:RegisterChatCommand("rare", "OnChatCommand")
 
+		-- Register keybind(s): These must match the info from Bindings.xml (and use localized descriptions)
+		_G.BINDING_HEADER_Rarity = "Rarity"
+		_G.BINDING_NAME_RARITY_DEBUGWINDOWTOGGLE = L["Toggle Debug Window"]
+
 		Rarity.GUI:RegisterDataBroker()
 
 		-- Expose private objects
