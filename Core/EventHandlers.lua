@@ -759,6 +759,12 @@ function R:OnItemFound(itemId, item)
 		return
 	end
 
+	local playerClass = select(2, UnitClass("player"))
+	if item.disableForClass and item.disableForClass[playerClass] then
+		Rarity:Debug(format("Ignoring OnItemFound trigger for item %s (disabled for class %s)", item.name, playerClass))
+		return
+	end
+
 	self:Debug("FOUND ITEM %d!", itemId)
 	if item.attempts == nil then
 		item.attempts = 1
