@@ -6,7 +6,6 @@ local Caching = {}
 local IsInitializing = true
 local itemsPrimed = 0
 local itemsToPrime = 100
-local playerClass
 -- Upvalues
 local UnitFactionGroup = UnitFactionGroup
 
@@ -56,14 +55,6 @@ end
 
 function Caching:GetItemsToPrime()
 	return itemsToPrime
-end
-
-function Caching:GetPlayerClass()
-	return playerClass
-end
-
-function Caching:SetPlayerClass(class)
-	playerClass = class
 end
 
 Rarity.Caching = Caching

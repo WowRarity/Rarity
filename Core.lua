@@ -668,11 +668,8 @@ function R:IsAttemptAllowed(item)
 	end
 
 	-- Check disabled classes
-	local playerClass = Rarity.Caching:GetPlayerClass() -- Why is this cached in the first place?
-	if not playerClass then
-		Rarity.Caching:SetPlayerClass(select(2, UnitClass("player")))
-	end
-	if item.disableForClass and type(item.disableForClass) == "table" and item.disableForClass[playerClass] == true then
+	local playerClass = select(2, UnitClass("player"))
+	if item.disableForClass and item.disableForClass[playerClass] then
 		Rarity:Debug(format("Attempts for item %s are disallowed (disabled for class %s)", item.name, playerClass))
 		return false
 	end
