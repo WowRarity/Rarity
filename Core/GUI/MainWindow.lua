@@ -851,14 +851,8 @@ local function addGroup(group, requiresGroup)
 			)
 		then
 			local classGood = true
-			if not Rarity.Caching:GetPlayerClass() then
-				Rarity.Caching:SetPlayerClass(select(2, UnitClass("player")))
-			end
-			if
-				v.disableForClass
-				and type(v.disableForClass == "table")
-				and v.disableForClass[Rarity.Caching:GetPlayerClass()] == true
-			then
+			local playerClass = select(2, UnitClass("player"))
+			if v.disableForClass and v.disableForClass[playerClass] then
 				classGood = false
 			end
 
