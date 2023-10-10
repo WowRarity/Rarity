@@ -680,6 +680,23 @@ function R:IsAttemptAllowed(item)
 		return false
 	end
 
+	local requiredAuraFound = false
+	local auraToCheck = "Elementally Imbued"
+	local auraSpellIdToFind = item.requiredAuraID
+	if item.requiresAura then
+		local unit = "target"
+		AuraUtil.ForEachAura(unit, "HELPFUL", nil, function(name, _, _, _, _, _, _, _, _, spellId)
+			if name == auraToCheck and spellId == auraSpellIdToFind then
+				requiredAuraFound = true
+				Rarity:Debug("Required aura found for item: " .. item.name)
+				return true
+			end
+		end)
+		if not requiredAuraFound then
+			Rarity:Debug("Required aura NOT found for item: " .. item.name)
+		end
+	end
+
 	local activeCovenantID = C_Covenants.GetActiveCovenantID()
 	if item.requiresCovenant and item.requiredCovenantID and activeCovenantID ~= item.requiredCovenantID then
 		local activeCovenantData = C_Covenants.GetCovenantData(activeCovenantID)
