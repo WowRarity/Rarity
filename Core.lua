@@ -694,6 +694,7 @@ function R:IsAttemptAllowed(item)
 		end)
 		if not requiredAuraFound then
 			Rarity:Debug("Required aura NOT found for item: " .. item.name)
+			return false
 		end
 	end
 
