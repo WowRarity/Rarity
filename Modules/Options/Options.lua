@@ -1728,6 +1728,19 @@ function R:CreateGroup(options, group, isUser)
 			end,
 			hidden = not isUser,
 		},
+		searchBar = {
+			type = "input",
+			width = "single",
+			name = L["Search"],
+			get = function(info)
+				return R.searchText
+			end,
+			set = function(info, value)
+				R.searchText = value
+				print("Search Text: " .. value)
+			end,
+			hidden = isUser,
+		},
 	}
 
 	local g = sort(group)
