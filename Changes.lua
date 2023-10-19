@@ -1,4 +1,16 @@
 local changes = {
+	["r725"] = {
+		additions = {
+			"Added a new option for toggling the scrolling debug window to Blizzard's keybinding UI",
+			"Added tracking for Arfus (Hallow's End 2023 update)",
+		},
+		fixes = {
+			"Fixed an issue that would cause the achievement-style popup to always be shown when looting a class-specific item",
+			"Duplicate attempts should no longer be added when using Engineering on Arachnoid Harvester",
+			"Fixed tracking for The Horseman's Reins (Hallow's End 2023 update)",
+		},
+		contributors = { "Alexander Stavitsky (astavitsky)" },
+	},
 	["r724"] = {
 		additions = {
 			"Added tracking for Emmah (Disgusting Vat Fishing, in Zskera Vaults)",

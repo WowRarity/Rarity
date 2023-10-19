@@ -1,11 +1,13 @@
-**r724:**
+**r725:**
 
 Additions:
-> Added tracking for Emmah (Disgusting Vat Fishing, in Zskera Vaults)
-<br>Added a new scrolling message frame for inspecting cached debug messages (via `/rarity dump)`
+> Added a new option for toggling the scrolling debug window to Blizzard's keybinding UI
+<br>Added tracking for Arfus (Hallow's End 2023 update)
 
 Fixes:
-> Fixed an issue that could cause pets that have already been obtained to not be detected as such
+> Fixed an issue that would cause the achievement-style popup to always be shown when looting a class-specific item
+<br>Duplicate attempts should no longer be added when using Engineering on Arachnoid Harvester
+<br>Fixed tracking for The Horseman's Reins (Hallow's End 2023 update)
 
 Contributors (in alphabetical order):
-> cyriun
+> Alexander Stavitsky (astavitsky)
