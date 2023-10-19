@@ -2034,6 +2034,7 @@ L["Obsidian Grand Cache"] = true
 L["Frozen Coffer"] = true
 L["Obsidian Battle Horn"] = true
 L["Emmah"] = true
+L["Box of Rattling Chains"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

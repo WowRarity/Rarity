@@ -674,6 +674,12 @@ function R:IsAttemptAllowed(item)
 		return false
 	end
 
+	local dungeonID = select(10, GetInstanceInfo())
+	if dungeonID and item.requiredDungeons and not item.requiredDungeons[dungeonID] then
+		Rarity:Debug(format("Attempts for item %s are disallowed (not a required dungeon: %d)", item.name, dungeonID))
+		return false
+	end
+
 	local activeCovenantID = C_Covenants.GetActiveCovenantID()
 	if item.requiresCovenant and item.requiredCovenantID and activeCovenantID ~= item.requiredCovenantID then
 		local activeCovenantData = C_Covenants.GetCovenantData(activeCovenantID)
