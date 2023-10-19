@@ -2,6 +2,7 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Arfus"] = true
 L["Toggle Debug Window"] = true
 L["Darkmoon Rabbit"] = true
 L["Disgusting Vat"] = true
