@@ -680,18 +680,204 @@ function R:IsAttemptAllowed(item)
 		return false
 	end
 
+	local buffedNPCS = {
+		184444,
+		184453,
+		184461,
+		185147,
+		185168,
+		185350,
+		185353,
+		185357,
+		185465,
+		186109,
+		186239,
+		186512,
+		186594,
+		186598,
+		186599,
+		186600,
+		186602,
+		186604,
+		186605,
+		186606,
+		186607,
+		186609,
+		186612,
+		186620,
+		186624,
+		186626,
+		186627,
+		186628,
+		186630,
+		186632,
+		186638,
+		186684,
+		186724,
+		186727,
+		186728,
+		186735,
+		186783,
+		186859,
+		187306,
+		187366,
+		187599,
+		187600,
+		187602,
+		187813,
+		187867,
+		187868,
+		187886,
+		187889,
+		187919,
+		187923,
+		187928,
+		187932,
+		188009,
+		188014,
+		188044,
+		190737,
+		190738,
+		190776,
+		190778,
+		190779,
+		190780,
+		190991,
+		190995,
+		190996,
+		191129,
+		191476,
+		191479,
+		191507,
+		191508,
+		191637,
+		191654,
+		191658,
+		191661,
+		191677,
+		191678,
+		191680,
+		191898,
+		191899,
+		191902,
+		191940,
+		192340,
+		192341,
+		192582,
+		192694,
+		192696,
+		192699,
+		192700,
+		192702,
+		192703,
+		193198,
+		193244,
+		193522,
+		193664,
+		193688,
+		193967,
+		194119,
+		194120,
+		194797,
+		194798,
+		194912,
+		195448,
+		195814,
+		195815,
+		195836,
+		195837,
+		195839,
+		196336,
+		196398,
+		196772,
+		196835,
+		196972,
+		196973,
+		197075,
+		197076,
+		197088,
+		197118,
+		197119,
+		197120,
+		197121,
+		197122,
+		197123,
+		197124,
+		197125,
+		197126,
+		197128,
+		197129,
+		197130,
+		197131,
+		197132,
+		197133,
+		197134,
+		197135,
+		197138,
+		197139,
+		197142,
+		197169,
+		197344,
+		197353,
+		197354,
+		197356,
+		198343,
+		199298,
+		201535,
+		201537,
+		201538,
+		201540,
+		201549,
+		201550,
+		201552,
+		201554,
+		201555,
+		201556,
+		201557,
+		201558,
+		201559,
+		203744,
+	}
 	local requiredAuraFound = false
 	local auraToCheck = "Elementally Imbued"
 	local auraSpellIdToFind = item.requiredAuraID
+
 	if item.requiresAura then
 		local unit = "target"
-		AuraUtil.ForEachAura(unit, "HELPFUL", nil, function(name, _, _, _, _, _, _, _, _, spellId)
-			if name == auraToCheck and spellId == auraSpellIdToFind then
-				requiredAuraFound = true
-				Rarity:Debug("Required aura found for item: " .. item.name)
-				return true
+		local npcid = tonumber((select(6, strsplit("-", UnitGUID("target")))) or 0) -- Extract and convert NPC ID
+
+		local buffedNPCMatch = false
+		for _, id in pairs(buffedNPCS) do
+			if id == npcid then
+				buffedNPCMatch = true
+				Rarity:Debug("Buffed NPC ID match")
+				AuraUtil.ForEachAura(unit, "HELPFUL", nil, function(name, _, _, _, _, _, _, _, _, spellId)
+					if name == auraToCheck and spellId == auraSpellIdToFind then
+						Rarity:Debug("Required aura found for item: " .. item.name)
+						requiredAuraFound = true
+					end
+				end)
+				break
 			end
-		end)
+		end
+
+		if not buffedNPCMatch then
+			Rarity:Debug("No NPC ID found for target")
+			local unbuffedNPCMatch = false
+			for _, id in pairs(item.npcs) do
+				if id == npcid then
+					Rarity:Debug("Unbuffed NPC ID match")
+					unbuffedNPCMatch = true
+					requiredAuraFound = true
+					break
+				end
+			end
+
+			if not unbuffedNPCMatch then
+				Rarity:Debug("NPC ID not found in item.npcs")
+			end
+		end
+
 		if not requiredAuraFound then
 			Rarity:Debug("Required aura NOT found for item: " .. item.name)
 			return false
