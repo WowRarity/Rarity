@@ -2035,6 +2035,8 @@ L["Frozen Coffer"] = true
 L["Obsidian Battle Horn"] = true
 L["Emmah"] = true
 L["Box of Rattling Chains"] = true
+L["Sunreaver Micro-Sentry"] = true
+L["Haywire Sunreaver Construct"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

@@ -841,6 +841,20 @@ local mopPets = {
 		creatureId = 73366,
 		coords = { { m = 554 } },
 	},
+	["Sunreaver Micro-Sentry"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Sunreaver Micro-Sentry"],
+		spellId = 138082,
+		itemId = 94124,
+		npcs = { 50358 },
+		chance = 5,
+		creatureId = 69778,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.ISLE_OF_THUNDER, x = 48.4, y = 87.2, n = L["Haywire Sunreaver Construct"] },
+		},
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, mopPets)
