@@ -438,8 +438,7 @@ local dragonflightPets = {
 		spellId = 389384,
 		chance = 1000,
 		creatureId = 189132,
-		requiresAura = true,
-		requiredAuraID = 368380,
+		requiredAura = { [CONSTANTS.AURAS.ELEMENTALLY_IMBUED] = true },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.THE_WAKING_SHORES },
 			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS },
@@ -620,8 +619,7 @@ local dragonflightPets = {
 		spellId = 389378,
 		chance = 1000,
 		creatureId = 189130,
-		requiresAura = true,
-		requiredAuraID = 368380,
+		requiredAura = { [CONSTANTS.AURAS.ELEMENTALLY_IMBUED] = true },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.THE_WAKING_SHORES },
 			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS },
@@ -803,8 +801,7 @@ local dragonflightPets = {
 		spellId = 389363,
 		chance = 1000,
 		creatureId = 189112,
-		requiresAura = true,
-		requiredAuraID = 368380,
+		requiredAura = { [CONSTANTS.AURAS.ELEMENTALLY_IMBUED] = true },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.THE_WAKING_SHORES },
 			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS },
@@ -985,8 +982,7 @@ local dragonflightPets = {
 		spellId = 389143,
 		chance = 1000,
 		creatureId = 192258,
-		requiresAura = true,
-		requiredAuraID = 368380,
+		requiredAura = { [CONSTANTS.AURAS.ELEMENTALLY_IMBUED] = true },
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.THE_WAKING_SHORES },
 			{ m = CONSTANTS.UIMAPIDS.OHN_AHRAN_PLAINS },

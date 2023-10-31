@@ -839,20 +839,18 @@ function R:IsAttemptAllowed(item)
 		203744,
 	}
 	local requiredAuraFound = false
-	local auraToCheck = "Elementally Imbued"
-	local auraSpellIdToFind = item.requiredAuraID
 
-	if item.requiresAura then
+	if item.requiredAura then
 		local unit = "target"
-		local npcid = tonumber((select(6, strsplit("-", UnitGUID("target")))) or 0) -- Extract and convert NPC ID
+		local npcid = tonumber((select(6, strsplit("-", UnitGUID("target")))) or 0)
 
 		local buffedNPCMatch = false
 		for _, id in pairs(buffedNPCS) do
 			if id == npcid then
 				buffedNPCMatch = true
 				Rarity:Debug("Buffed NPC ID match")
-				AuraUtil.ForEachAura(unit, "HELPFUL", nil, function(name, _, _, _, _, _, _, _, _, spellId)
-					if name == auraToCheck and spellId == auraSpellIdToFind then
+				AuraUtil.ForEachAura(unit, "HELPFUL", nil, function(_, _, _, _, _, _, _, _, _, spellId)
+					if item.requiredAura[spellId] then
 						Rarity:Debug("Required aura found for item: " .. item.name)
 						requiredAuraFound = true
 					end
@@ -862,19 +860,13 @@ function R:IsAttemptAllowed(item)
 		end
 
 		if not buffedNPCMatch then
-			Rarity:Debug("No NPC ID found for target")
-			local unbuffedNPCMatch = false
 			for _, id in pairs(item.npcs) do
 				if id == npcid then
 					Rarity:Debug("Unbuffed NPC ID match")
-					unbuffedNPCMatch = true
+
 					requiredAuraFound = true
 					break
 				end
-			end
-
-			if not unbuffedNPCMatch then
-				Rarity:Debug("NPC ID not found in item.npcs")
 			end
 		end
 
