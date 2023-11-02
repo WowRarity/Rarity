@@ -55,6 +55,7 @@ globals = {
 	"READY_CHECK_WAITING_TEXTURE",
 
 	-- FrameXML (Blizzard interface)
+	"AuraUtil",
 	"BackdropTemplateMixin",
 	"ChatFontNormal",
 	"FauxScrollFrame_GetOffset",

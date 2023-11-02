@@ -317,6 +317,10 @@ C.LFG_DUNGEON_IDS = {
 	THE_UPPER_REACHES_LAYER_16 = 2318,
 }
 
+C.AURAS = {
+	ROCKS_ON_THE_ROCKS = 407063,
+}
+
 -- This doesn't really belong here and needs streamlining anyway, but for now this is the best place.
 -- Tooltip Filters (Note: Currently, this system is merely a stub. but more (and custom) filters may be added in the future)
 -- These are used to decide whether the tooltip should be extended to display information about an CONSTANTS.ITEM_TYPES.ITEM for the NPCs listed in its tooltipNpcs table. Useful if we want to draw attention to an CONSTANTS.ITEM_TYPES.ITEM, but not every player can obtain it
