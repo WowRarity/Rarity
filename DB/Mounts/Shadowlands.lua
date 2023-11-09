@@ -333,7 +333,7 @@ local shadowlandsMounts = {
 		spellId = 347536,
 		itemId = 186641,
 		items = { 187028 },
-		chance = 100, -- Blind guess
+		chance = 20,
 		coords = { { m = CONSTANTS.UIMAPIDS.KORTHIA } },
 	},
 	["Chain of Bahmethra"] = {
