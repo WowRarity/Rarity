@@ -429,6 +429,19 @@ local dragonflightToys = {
 		chance = 5,
 		coords = { { m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 28.8, y = 52.6 } },
 	},
+	["Molten Lava Ball"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Molten Lava Ball"],
+		itemId = 205463,
+		npcs = {
+			208658, -- Moltenbinder's Disciple
+		},
+		chance = 5,
+		coords = { { m = CONSTANTS.UIMAPIDS.THE_EMERALD_DREAM, x = 45.8, y = 18.6, n = L["Moltenbinder's Disciple"] } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, dragonflightToys)
