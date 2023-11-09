@@ -121,6 +121,7 @@ C.UIMAPIDS = {
 	ZARALEK_CAVERN = 2133,
 	THE_THROUGHWAY = 2165,
 	CROSSROADS_OF_FATE = 2194, -- Dawn of the Infinite (subzone)
+	THE_EMERALD_DREAM = 2200,
 }
 
 -- Types of items
