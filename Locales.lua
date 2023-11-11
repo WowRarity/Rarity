@@ -2044,6 +2044,14 @@ L["Chest of Massive Gains"] = true
 L["Use %s before opening %s, which spawns after %s is defeated."] = true
 L["Brullo the Strong"] = true
 L["Rocks on the Rocks"] = true
+L["Reins of the Winter Night Dreamsaber"] = true
+L["Reins of the Snowfluff Dreamtalon"] = true
+L["Reins of the Evening Sun Dreamsaber"] = true
+L["Reins of the Blossoming Dreamstag"] = true
+L["Reins of the Springtide Dreamtalon"] = true
+L["Reins of the Morning Flourish Dreamsaber"] = true
+L["Reins of the Rekindled Dreamstag"] = true
+L["Dreamseed Cache"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

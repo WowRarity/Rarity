@@ -276,4 +276,5 @@ R.opennodes = {
 	[L["Spun Webs"]] = true,
 	[L["Obsidian Grand Cache"]] = true,
 	[L["Frozen Coffer"]] = true,
+	[L["Dreamseed Cache"]] = true,
 }
