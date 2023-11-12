@@ -1975,6 +1975,10 @@ function R:OnLootReady(event, ...)
 			end
 		end
 
+		if Rarity.isOpening and Rarity.lastNode == L["Dreamseed Cache"] then
+			Rarity:OnDreamseedCacheOpened()
+		end
+
 		-- Handle herb gathering on Argus (Fel Lasher)
 		if
 			Rarity.relevantSpells[Rarity.previousSpell] == "Herb Gathering" -- Gathered a herbalism node
@@ -2107,6 +2111,23 @@ function Rarity:OnDisgustingVatFished()
 
 	self:Debug("Detected fishing on Disgusting Vat (method = SPECIAL)")
 	addAttemptForItem("Emmah", "pets")
+end
+
+local dreamseedMounts = {
+	"Reins of the Winter Night Dreamsaber",
+	"Reins of the Snowfluff Dreamtalon",
+	"Reins of the Evening Sun Dreamsaber",
+	"Reins of the Blossoming Dreamstag",
+	"Reins of the Springtide Dreamtalon",
+	"Reins of the Morning Flourish Dreamsaber",
+	"Reins of the Rekindled Dreamstag",
+}
+
+function Rarity:OnDreamseedCacheOpened()
+	Rarity:Debug("Detected Opening on Dreamseed Cache")
+	for mount, _ in pairs(dreamseedMounts) do
+		addAttemptForItem(mount, "mounts")
+	end
 end
 
 Rarity.EventHandlers = EventHandlers
