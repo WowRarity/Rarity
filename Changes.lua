@@ -1,4 +1,12 @@
 local changes = {
+	["r726"] = {
+		additions = {
+			"Added tracking for Box of Rattling Chains",
+			"Added tracking for Sunreaver Micro-Sentry",
+			"Added initial tracking for 10.2.0 collectibles",
+		},
+		contributors = { "cyriun" },
+	},
 	["r725"] = {
 		additions = {
 			"Added a new option for toggling the scrolling debug window to Blizzard's keybinding UI",
