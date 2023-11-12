@@ -2039,6 +2039,11 @@ L["Emmah"] = true
 L["Box of Rattling Chains"] = true
 L["Sunreaver Micro-Sentry"] = true
 L["Haywire Sunreaver Construct"] = true
+L["Brul"] = true
+L["Chest of Massive Gains"] = true
+L["Use %s before opening %s, which spawns after %s is defeated."] = true
+L["Brullo the Strong"] = true
+L["Rocks on the Rocks"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

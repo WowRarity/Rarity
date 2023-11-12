@@ -1172,6 +1172,23 @@ local dragonflightPets = {
 			{ m = CONSTANTS.UIMAPIDS.THE_FORBIDDEN_REACH, x = 29.2, y = 53.0, n = L["Entrance to Zskera Vaults"] },
 		},
 	},
+	["Brul"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Brul"],
+		spellId = 408110,
+		itemId = 205114,
+		creatureId = 204303,
+		chance = 35,
+		sourceText = format(
+			L["Use %s before opening %s, which spawns after %s is defeated."],
+			L["Rocks on the Rocks"],
+			L["Chest of Massive Gains"],
+			L["Brullo the Strong"]
+		),
+		coords = { { m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN, x = 41.5, y = 86.2, n = L["Chest of Massive Gains"] } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, dragonflightPets)

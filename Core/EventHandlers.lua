@@ -27,6 +27,7 @@ local UnitGUID = UnitGUID
 local LoadAddOn = LoadAddOn
 local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
 local GetMapInfo = _G.C_Map.GetMapInfo
+local IsQuestFlaggedCompleted = C_QuestLog.IsQuestFlaggedCompleted
 local UnitCanAttack = _G.UnitCanAttack
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitIsDead = _G.UnitIsDead
@@ -1931,6 +1932,10 @@ function R:OnLootReady(event, ...)
 			Rarity:OnDisgustingVatFished()
 		end
 
+		if Rarity.isOpening and Rarity.lastNode == L["Chest of Massive Gains"] then
+			Rarity:OnChestOfMassiveGainsOpened()
+		end
+
 		-- Handle mining Elementium
 		if
 			Rarity.relevantSpells[Rarity.previousSpell] == "Mining"
@@ -2069,7 +2074,29 @@ function R:OnLootReady(event, ...)
 	end
 end
 
-local IsQuestFlaggedCompleted = C_QuestLog.IsQuestFlaggedCompleted
+function Rarity:OnChestOfMassiveGainsOpened()
+	Rarity:Debug("Detected Opening on Chest of Massive Gains")
+
+	local hasOpenedChestToday = IsQuestFlaggedCompleted(75325)
+	if hasOpenedChestToday then
+		Rarity:Debug("Skipping this attempt (loot lockout for Chest of Massive Gains is active)")
+		return
+	end
+
+	local wasRequiredAuraFoundOnPlayer = false
+	AuraUtil.ForEachAura("player", "HELPFUL", nil, function(_, _, _, _, _, _, _, _, _, spellID)
+		if spellID == CONSTANTS.AURAS.ROCKS_ON_THE_ROCKS then
+			wasRequiredAuraFoundOnPlayer = true
+		end
+	end)
+
+	if not wasRequiredAuraFoundOnPlayer then
+		Rarity:Debug(format("Required aura %s NOT found on player", L["Rocks on the Rocks"]))
+		return
+	end
+
+	addAttemptForItem("Brul", "pets")
+end
 
 function Rarity:OnDisgustingVatFished()
 	local hasFishedEmmahThisWeek = IsQuestFlaggedCompleted(75488)
