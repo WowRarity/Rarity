@@ -313,7 +313,7 @@ local dragonflightToys = {
 		chance = 50,
 		statisticId = { 16097 },
 		coords = {
-			{ m = CONSTANTS.UIMAPIDS.CROSSROADS_OF_FATE },
+			{ m = CONSTANTS.UIMAPIDS.CROSSROADS_OF_FATE, i = true },
 		},
 	},
 	["Fyrakk's Frenzy"] = {
