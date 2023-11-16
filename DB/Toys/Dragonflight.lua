@@ -312,8 +312,16 @@ local dragonflightToys = {
 		},
 		chance = 50,
 		statisticId = { 16097 },
+		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Chrono-Lord Deios",
+				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
+			},
+		},
 		coords = {
-			{ m = CONSTANTS.UIMAPIDS.CROSSROADS_OF_FATE },
+			{ m = CONSTANTS.UIMAPIDS.CROSSROADS_OF_FATE, i = true },
 		},
 	},
 	["Fyrakk's Frenzy"] = {
