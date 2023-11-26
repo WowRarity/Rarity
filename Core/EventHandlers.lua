@@ -2125,7 +2125,7 @@ local dreamseedMounts = {
 
 function Rarity:OnDreamseedCacheOpened()
 	Rarity:Debug("Detected Opening on Dreamseed Cache")
-	for mount, _ in pairs(dreamseedMounts) do
+	for _, mount in ipairs(dreamseedMounts) do
 		addAttemptForItem(mount, "mounts")
 	end
 end
