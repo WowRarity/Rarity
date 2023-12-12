@@ -32,7 +32,7 @@ jobs:
         run: mkdir temp && cd temp
 
       - name: Check out Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Perform static analysis
         run: luacheck .
