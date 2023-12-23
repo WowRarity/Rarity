@@ -2,6 +2,7 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Festive Trans-Dimensional Bird Whistle"] = true
 L["Moltenbinder's Disciple"] = true
 L["Molten Lava Ball"] = true
 L["Arfus"] = true

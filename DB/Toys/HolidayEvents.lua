@@ -441,6 +441,19 @@ local holidayEventToys = {
 		questId = { 8788, 8767 },
 		coords = { { m = 86, x = 49.1, y = 78.2, h = true }, { m = 87, x = 33.4, y = 65.9, a = true } },
 	},
+	["Festive Trans-Dimensional Bird Whistle"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Festive Trans-Dimensional Bird Whistle"],
+		itemId = 209859,
+		items = { 116762 },
+		chance = 4,
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		questId = { 6983, 7043 },
+		coords = { { m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6 } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, holidayEventToys)
