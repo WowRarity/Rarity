@@ -1,9 +1,7 @@
-**r726:**
+**r727:**
 
 Additions:
-> Added tracking for Box of Rattling Chains
-<br>Added tracking for Sunreaver Micro-Sentry
-<br>Added initial tracking for 10.2.0 collectibles
+> Added tracking for several missing Winter Veil rewards
 
-Contributors (in alphabetical order):
-> cyriun
+Fixes:
+> Fixed an issue that would prevent attempts for Dreamseed Cache items from being tracked correctly

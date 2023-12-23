@@ -1,4 +1,12 @@
 local changes = {
+	["r727"] = {
+		additions = {
+			"Added tracking for several missing Winter Veil rewards",
+		},
+		fixes = {
+			"Fixed an issue that would prevent attempts for Dreamseed Cache items from being tracked correctly",
+		},
+	},
 	["r726"] = {
 		additions = {
 			"Added tracking for Box of Rattling Chains",
