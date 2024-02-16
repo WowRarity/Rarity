@@ -35,6 +35,7 @@ local Item = {
 		worldQuestId = false,
 		pickpocket = false,
 		requiresCompletedQuestId = false,
+		requiredAura = false,
 		-- Populated fields (SavedVariables)
 		attempts = false,
 		lastAttempts = false,
