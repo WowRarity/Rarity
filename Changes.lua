@@ -1,4 +1,9 @@
 local changes = {
+	["r728"] = {
+		additions = {
+			"Added tracking for Clayscale Hornstrider",
+		},
+	},
 	["r727"] = {
 		additions = {
 			"Added tracking for several missing Winter Veil rewards",
