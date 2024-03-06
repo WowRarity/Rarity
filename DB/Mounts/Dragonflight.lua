@@ -300,6 +300,18 @@ local dragonflightMounts = {
 		sourceText = L["This item can also be purchased from a vendor."],
 		coords = { { m = CONSTANTS.UIMAPIDS.THE_EMERALD_DREAM } },
 	},
+	-- 10.2.5
+	["Clayscale Hornstrider"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Clayscale Hornstrider"],
+		spellId = 432610,
+		itemId = 212645,
+		npcs = { 208029 },
+		chance = 200,
+		coords = { { m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, dragonflightMounts)
