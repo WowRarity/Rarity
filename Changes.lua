@@ -1,4 +1,9 @@
 local changes = {
+	["r729"] = {
+		additions = {
+			"Added tracking for Noble Flying Carpet",
+		},
+	},
 	["r728"] = {
 		additions = {
 			"Added tracking for Clayscale Hornstrider",
