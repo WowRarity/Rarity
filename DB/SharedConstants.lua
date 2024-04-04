@@ -19,8 +19,10 @@ C.UIMAPIDS = {
 	-- Dummy Zone (For items that can be obtained anywhere.)
 	NONE = 0,
 	-- Classic Zones
+	DUROTAR = 1,
 	ARATHI_HIGHLANDS = 14,
 	HILLSBRAD_FOOTHILLS = 25,
+	ELWYNN_FOREST = 37,
 	DARKSHORE = 62,
 	SILITHUS = 81,
 	-- Wrath of the Lich King Zones
@@ -199,6 +201,7 @@ C.HOLIDAY_TEXTURES = {
 	PILGRIMS_BOUNTY = "Calendar_HarvestFestival",
 	LOVE_IS_IN_THE_AIR = "Calendar_LoveInTheAir",
 	MIDSUMMER_FESTIVAL = "Calendar_Midsummer",
+	NOBLEGARDEN = "Calendar_Noblegarden",
 }
 
 -- Copied from https://www.townlong-yak.com/framexml/live/Helix/ArtTextureID.lua
@@ -229,6 +232,9 @@ C.ART_TEXTURES = {
 	MIDSUMMER_END = 235472,
 	MIDSUMMER_ONGOING = 235473,
 	MIDSUMMER_START = 235474,
+	NOBLEGARDEN_END = 235475,
+	NOBLEGARDEN_ONGOING = 235476,
+	NOBLEGARDEN_START = 235477,
 	WINTERVEIL_END = 235482,
 	WINTERVEIL_IEND = 235483,
 	WINTERVEIL_ONGOING = 235484,
