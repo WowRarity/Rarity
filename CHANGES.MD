@@ -1,4 +1,5 @@
-**r729:**
+**r730:**
 
-Additions:
-> Added tracking for Noble Flying Carpet
+Fixes:
+> Fixed an oversight that would prevent attempts for Quantum Courser from being tracked correctly
+<br>Using Pick Pocket on an enemy should no longer prevent regular loot events from being counted

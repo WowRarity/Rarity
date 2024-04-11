@@ -1,4 +1,10 @@
 local changes = {
+	["r730"] = {
+		fixes = {
+			"Fixed an oversight that would prevent attempts for Quantum Courser from being tracked correctly",
+			"Using Pick Pocket on an enemy should no longer prevent regular loot events from being counted",
+		},
+	},
 	["r729"] = {
 		additions = {
 			"Added tracking for Noble Flying Carpet",
