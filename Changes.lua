@@ -1,4 +1,9 @@
 local changes = {
+	["r731"] = {
+		additions = {
+			"Added support for Blizzard's addon compartment",
+		},
+	},
 	["r730"] = {
 		fixes = {
 			"Fixed an oversight that would prevent attempts for Quantum Courser from being tracked correctly",
