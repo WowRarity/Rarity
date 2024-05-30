@@ -272,11 +272,11 @@ local dragonflightPets = {
 		method = CONSTANTS.DETECTION_METHODS.NPC,
 		name = L["Echo of the Heights"],
 		npcs = {
-			203746,
-			203744,
-			203743,
-			203745,
-			203747,
+			203743, -- Air Revenant
+			203744, -- Primalist Galewarden
+			203745, -- Primalist Stormchanter
+			203746, -- Primalist Stormslinger
+			203747, -- Water Elemental
 			193967,
 			201556,
 			194119,
@@ -412,9 +412,7 @@ local dragonflightPets = {
 			187923,
 			195448,
 			186604,
-			203754,
 			188044,
-			203755,
 			188009,
 			187928,
 			186612,
@@ -428,15 +426,10 @@ local dragonflightPets = {
 			186628,
 			186624,
 			197139,
-			203748,
-			203753,
 			196772,
 			186783,
 			190991,
-			203756,
-			203750,
 			195837,
-			203741,
 			195814,
 			186638,
 			187889,
@@ -445,7 +438,6 @@ local dragonflightPets = {
 			191637,
 			186626,
 			186684,
-			203740,
 			186109,
 			186792,
 		},
@@ -467,10 +459,10 @@ local dragonflightPets = {
 		method = CONSTANTS.DETECTION_METHODS.NPC,
 		name = L["Echo of the Depths"],
 		npcs = {
-			203750,
-			203752,
-			203748,
-			203747,
+			203747, -- Water Elemental
+			203748, -- Primalist Flowbreaker
+			203750, -- Primalist Iceslinger
+			203752, -- Ice Elemental
 			197169,
 			201540,
 			192334,
@@ -579,7 +571,6 @@ local dragonflightPets = {
 			201557,
 			186620,
 			197902,
-			203757,
 			190780,
 			187600,
 			190776,
@@ -625,15 +616,9 @@ local dragonflightPets = {
 			186628,
 			186624,
 			186626,
-			203745,
 			188044,
-			203756,
 			197356,
-			203754,
-			203753,
 			203744,
-			203743,
-			203742,
 			187928,
 			186239,
 			188014,
@@ -642,7 +627,6 @@ local dragonflightPets = {
 			191479,
 			197139,
 			186684,
-			203739,
 			186109,
 		},
 		itemId = 200260,
@@ -663,11 +647,11 @@ local dragonflightPets = {
 		method = CONSTANTS.DETECTION_METHODS.NPC,
 		name = L["Echo of the Inferno"],
 		npcs = {
-			203753,
-			203755,
-			203756,
-			203757,
-			203754,
+			203753, -- Primalist Flamestriker
+			203754, -- Primalist Fireslinger
+			203755, -- Lava Fury
+			203756, -- Fire Revenant
+			203757, -- Lava Elemental
 			186859,
 			192696,
 			191507,
@@ -804,9 +788,7 @@ local dragonflightPets = {
 			187923,
 			195448,
 			207337,
-			203747,
 			194798,
-			203741,
 			191363,
 			195815,
 			197136,
@@ -818,14 +800,10 @@ local dragonflightPets = {
 			197139,
 			186626,
 			191637,
-			203739,
 			203744,
-			203750,
-			203745,
 			186638,
 			192371,
 			186792,
-			203743,
 			186599,
 			191672,
 			185350,
@@ -853,10 +831,10 @@ local dragonflightPets = {
 		method = CONSTANTS.DETECTION_METHODS.NPC,
 		name = L["Echo of the Cave"],
 		npcs = {
-			203741,
-			203739,
-			203740,
-			203742,
+			203739, -- Primalist Earthrazer
+			203740, -- Primalist Landshaker
+			203741, -- Stone Elemental
+			203742, -- Earth Revenant
 			197092,
 			197091,
 			197169,
@@ -1016,17 +994,10 @@ local dragonflightPets = {
 			203744,
 			191479,
 			186684,
-			203748,
-			203752,
-			203754,
-			203750,
-			203747,
-			203743,
 			197356,
 			186624,
 			188014,
 			199298,
-			203753,
 			186109,
 			186792,
 		},
