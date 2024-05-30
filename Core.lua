@@ -719,6 +719,11 @@ function R:IsAttemptAllowed(item)
 		end
 	end
 
+	if not Rarity.AreaPOIs.HasActiveAreaPOIs(item.requiredAreaPOIs) then
+		Rarity:Debug(format("Attempts for item %s are disallowed (requires active area POIs)", item.name))
+		return false
+	end
+
 	-- No valid instance difficulty configuration; allow (this needs to be the second-to-last check)
 	if
 		item.instanceDifficulties == nil

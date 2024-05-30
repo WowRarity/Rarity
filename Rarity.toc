@@ -124,6 +124,7 @@ Core\Interoperability\WoWUnit\Testing.lua
 
 # Wrappers for the WOW API (to provide a consistent API)
 Core\Interoperability\Blizzard\AddonCompartment.lua
+Core\Interoperability\Blizzard\AreaPOIs.lua
 Core\Interoperability\Blizzard\MapInfo.lua
 
 # Addon Core
