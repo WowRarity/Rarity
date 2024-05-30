@@ -441,6 +441,19 @@ local dragonflightPets = {
 			186109,
 			186792,
 		},
+		requiredAreaPOIs = {
+			7221, -- Elemental Storm (Air) - Nokhuud Hold
+			7225, -- Elemental Storm (Air) - Ohn'iri Springs
+			7229, -- Elemental Storm (Air) - Brackenhide Hollow
+			7233, -- Elemental Storm (Air) - Cobalt Assembly
+			7237, -- Elemental Storm (Air) - Imbu
+			7241, -- Elemental Storm (Air) - Unnamed Area
+			7245, -- Elemental Storm (Air) - Tyrhold
+			7249, -- Elemental Storm (Air) - Dragonbane Keep
+			7253, -- Elemental Storm (Air) - Slagmire
+			7257, -- Elemental Storm (Air) - Scalecracker Keep
+			7298, -- Elemental Storm (Air) - Primalist Future
+		},
 		itemId = 200263,
 		spellId = 389384,
 		chance = 1000,
@@ -629,6 +642,19 @@ local dragonflightPets = {
 			186684,
 			186109,
 		},
+		requiredAreaPOIs = {
+			7224, -- Elemental Storm (Water) - Nokhuud Hold
+			7228, -- Elemental Storm (Water) - Ohn'iri Springs
+			7232, -- Elemental Storm (Water) - Brackenhide Hollow
+			7236, -- Elemental Storm (Water) - Cobalt Assembly
+			7240, -- Elemental Storm (Water) - Imbu
+			7244, -- Elemental Storm (Water) - Unnamed Area
+			7248, -- Elemental Storm (Water) - Tyrhold
+			7252, -- Elemental Storm (Water) - Dragonbane Keep
+			7256, -- Elemental Storm (Water) - Slagmire
+			7260, -- Elemental Storm (Water) - Scalecracker Keep
+			7301, -- Elemental Storm (Water) - Primalist Future
+		},
 		itemId = 200260,
 		spellId = 389378,
 		chance = 1000,
@@ -812,6 +838,19 @@ local dragonflightPets = {
 			186624,
 			186684,
 			191479,
+		},
+		requiredAreaPOIs = {
+			7223, -- Elemental Storm (Fire) - Nokhuud Hold
+			7227, -- Elemental Storm (Fire) - Ohn'iri Springs
+			7231, -- Elemental Storm (Fire) - Brackenhide Hollow
+			7235, -- Elemental Storm (Fire) - Cobalt Assembly
+			7239, -- Elemental Storm (Fire) - Imbu
+			7243, -- Elemental Storm (Fire) - Unnamed Area
+			7247, -- Elemental Storm (Fire) - Tyrhold
+			7251, -- Elemental Storm (Fire) - Dragonbane Keep
+			7255, -- Elemental Storm (Fire) - Slagmire
+			7259, -- Elemental Storm (Fire) - Scalecracker Keep
+			7300, -- Elemental Storm (Fire) - Primalist Future
 		},
 		itemId = 200255,
 		spellId = 389363,
@@ -1000,6 +1039,19 @@ local dragonflightPets = {
 			199298,
 			186109,
 			186792,
+		},
+		requiredAreaPOIs = {
+			7222, -- Elemental Storm (Earth) - Nokhuud Hold
+			7226, -- Elemental Storm (Earth) - Ohn'iri Springs
+			7230, -- Elemental Storm (Earth) - Brackenhide Hollow
+			7234, -- Elemental Storm (Earth) - Cobalt Assembly
+			7238, -- Elemental Storm (Earth) - Imbu
+			7242, -- Elemental Storm (Earth) - Unnamed Area
+			7246, -- Elemental Storm (Earth) - Tyrhold
+			7250, -- Elemental Storm (Earth) - Dragonbane Keep
+			7254, -- Elemental Storm (Earth) - Slagmire
+			7258, -- Elemental Storm (Earth) - Scalecracker Keep
+			7299, -- Elemental Storm (Earth) - Primalist Future
 		},
 		itemId = 200183,
 		spellId = 389143,
