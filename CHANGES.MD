@@ -1,4 +1,5 @@
-**r731:**
+**r732:**
 
-Additions:
-> Added support for Blizzard's addon compartment
+Fixes:
+> Implemented a more accurate (though not perfect) detection mechanism for Primal Storms
+<br>Pick Pocket should no longer cause duplicate attempts if there were multiple items in the loot window

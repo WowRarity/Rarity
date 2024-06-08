@@ -1,4 +1,10 @@
 local changes = {
+	["r732"] = {
+		fixes = {
+			"Implemented a more accurate (though not perfect) detection mechanism for Primal Storms",
+			"Pick Pocket should no longer cause duplicate attempts if there were multiple items in the loot window",
+		},
+	},
 	["r731"] = {
 		additions = {
 			"Added support for Blizzard's addon compartment",
