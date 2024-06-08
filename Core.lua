@@ -719,7 +719,7 @@ function R:IsAttemptAllowed(item)
 		end
 	end
 
-	if not Rarity.AreaPOIs.HasActiveAreaPOIs(item.requiredAreaPOIs) then
+	if item.requiredAreaPOIs and not Rarity.AreaPOIs.HasActiveAreaPOIs(item.requiredAreaPOIs) then
 		Rarity:Debug(format("Attempts for item %s are disallowed (requires active area POIs)", item.name))
 		return false
 	end
