@@ -798,10 +798,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
 		return
 	end
 
-	if not requiresPickpocket then
-		-- Pick Pocket triggers the same loot events, but it shouldn't prevent kills from counting afterwards
-		Rarity.guids[guid] = true
-	end
+	Rarity.guids[guid] = true
 
 	-- Increment attempt counter(s). One NPC might drop multiple things we want, so scan for them all.
 	if Rarity.npcs_to_items[npcid] and type(Rarity.npcs_to_items[npcid]) == "table" then

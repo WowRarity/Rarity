@@ -2075,6 +2075,11 @@ function R:OnLootReady(event, ...)
 				end
 			end
 		end
+
+		if requiresPickpocket then
+			-- Pick Pocket triggers the same loot events, but it shouldn't prevent kills from counting afterwards
+			Rarity.guids[guid] = false
+		end
 	end
 end
 
