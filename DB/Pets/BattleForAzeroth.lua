@@ -838,8 +838,6 @@ local bfaPets = {
 		lockBossName = "Conclave of the Chosen",
 		chance = 20,
 		statisticId = { 13366 },
-		groupSize = 5,
-		equalOdds = true,
 		coords = { { m = 1364, i = true } },
 	},
 	["Thundering Scale of Akunda"] = {
@@ -855,8 +853,6 @@ local bfaPets = {
 		lockBossName = "Conclave of the Chosen",
 		chance = 20,
 		statisticId = { 13364, 13365, 13366 },
-		groupSize = 5,
-		equalOdds = true,
 		coords = { { m = 1364, i = true } },
 	},
 	["Enchanted Talon of Pa'ku"] = {
@@ -872,8 +868,6 @@ local bfaPets = {
 		lockBossName = "Conclave of the Chosen",
 		chance = 50,
 		statisticId = { 13364, 13365, 13366 },
-		groupSize = 5,
-		equalOdds = true,
 		coords = { { m = 1364, i = true } },
 	},
 	["Baby Stonehide"] = {
@@ -1394,8 +1388,6 @@ local bfaPets = {
 		creatureId = 154833,
 		npcs = { 99999 },
 		tooltipNpcs = { 154986, 150653 },
-		groupSize = 5,
-		equalOdds = true,
 		statisticId = { 13591, 13592, 13593, 13594 },
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
@@ -1435,8 +1427,6 @@ local bfaPets = {
 		creatureId = 154831,
 		npcs = { 99999 },
 		tooltipNpcs = { 153142, 152236 },
-		groupSize = 5,
-		equalOdds = true,
 		statisticId = { 13600, 13601, 13602, 13603 },
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
@@ -1476,8 +1466,6 @@ local bfaPets = {
 		creatureId = 154819,
 		npcs = { 99999 },
 		tooltipNpcs = { 155126 },
-		groupSize = 5,
-		equalOdds = true,
 		statisticId = { 13616, 13617, 13618, 13619 },
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
@@ -1823,8 +1811,6 @@ local bfaPets = {
 		creatureId = 154835,
 		npcs = { 99999 },
 		tooltipNpcs = { 150859 },
-		groupSize = 5,
-		equalOdds = true,
 		statisticId = { 13612, 13613, 13614, 13615 },
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
@@ -2151,8 +2137,6 @@ local bfaPets = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
 		},
 		chance = 10, -- Blind guess (no data)
-		groupSize = 5,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.NYALOTHA, i = true } },
 	},
 	["Void-Scarred Anubisath"] = {
@@ -2189,8 +2173,6 @@ local bfaPets = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
 		},
 		chance = 8,
-		groupSize = 5,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.NYALOTHA, i = true } },
 	},
 	["Fractured Obsidian Claw"] = {
@@ -2227,8 +2209,6 @@ local bfaPets = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
 		},
 		chance = 5,
-		groupSize = 5,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.NYALOTHA, i = true } },
 	},
 	["Aqir Hivespawn"] = {
@@ -2268,8 +2248,7 @@ local bfaPets = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
 		},
 		chance = 10,
-		groupSize = 5,
-		equalOdds = true,
+
 		coords = { { m = CONSTANTS.UIMAPIDS.NYALOTHA, i = true } },
 	},
 	["Ra'kim"] = {
@@ -2309,8 +2288,6 @@ local bfaPets = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
 		},
 		chance = 10, -- Blind guess (no data)
-		groupSize = 5,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.NYALOTHA, i = true } },
 	},
 	["Bottle of Gloop"] = {
