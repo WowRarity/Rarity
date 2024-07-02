@@ -264,6 +264,15 @@ local shadowlandsMounts = {
 		chance = 100,
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 		coords = { { m = CONSTANTS.UIMAPIDS.THE_NECROTIC_WAKE } },
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Nalthor the Rimebinder",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true,
+				},
+			},
+		},
 	},
 	["Impressionable Gorger Spawn"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
@@ -603,6 +612,15 @@ local shadowlandsMounts = {
 		equalOdds = true,
 		statisticId = { 15176 },
 		coords = { { m = CONSTANTS.UIMAPIDS.SANCTUM_OF_DOMINATION, i = true } },
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "Lady Sylvanas Windrunner",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+				},
+			},
+		},
 	},
 	["Fractal Cypher of the Zereth Overseer"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
@@ -620,6 +638,15 @@ local shadowlandsMounts = {
 		equalOdds = true,
 		statisticId = { 15467 },
 		coords = { { m = CONSTANTS.UIMAPIDS.SEPULCHER_OF_THE_FIRST_ONES, i = true } },
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "The Jailer",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+				},
+			},
+		},
 	},
 }
 
