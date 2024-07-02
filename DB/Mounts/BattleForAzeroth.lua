@@ -805,6 +805,15 @@ local bfaMounts = {
 		wasGuaranteed = true,
 		statisticId = { 14138 },
 		coords = { { m = CONSTANTS.UIMAPIDS.NYALOTHA, i = true } },
+		lockoutDetails = {
+			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
+			{
+				encounterName = "N'Zoth the Corruptor",
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+				},
+			},
+		},
 	},
 }
 
