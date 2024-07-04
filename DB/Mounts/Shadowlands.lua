@@ -615,7 +615,7 @@ local shadowlandsMounts = {
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
 			{
-				encounterName = "Lady Sylvanas Windrunner",
+				encounterName = "Sylvanas Windrunner",
 				instanceDifficulties = {
 					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
 				},
