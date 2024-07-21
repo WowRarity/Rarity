@@ -1416,7 +1416,8 @@ function R:ShowTooltip(hidden)
 	showedHolidayReminderOverflow = false
 	local delay
 	if self.db.profile.tooltipHideDelay <= 0 then
-		delay = 0.01
+		local hideOnClick = (Rarity.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_CLICK)
+		delay = hideOnClick and 0 or 0.01 -- Hiding manually is only possible when not in hover mode
 	else
 		delay = self.db.profile.tooltipHideDelay or 0.6
 	end
