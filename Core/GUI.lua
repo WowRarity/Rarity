@@ -28,10 +28,10 @@ local date = date
 local time = time
 
 -- WOW APIs
-local GetItemInfo = GetItemInfo
+local GetItemInfo = C_Item.GetItemInfo
 local IsShiftKeyDown = IsShiftKeyDown
 local IsControlKeyDown = IsControlKeyDown
-local LoadAddOn = LoadAddOn
+local LoadAddOn = C_AddOns.LoadAddOn
 local UnitClass = UnitClass
 local GetMapInfo = C_Map.GetMapInfo
 local GetTime = GetTime
@@ -45,7 +45,7 @@ local UnitIsPVP = UnitIsPVP
 local GetAchievementLink = GetAchievementLink
 local GetRealZoneText = GetRealZoneText
 local GetSubZoneText = GetSubZoneText
-local GetContainerItemID = GetContainerItemID
+local GetContainerItemID = C_Container.GetContainerItemID
 local RequestRaidInfo = RequestRaidInfo
 local RequestLFDPlayerLockInfo = RequestLFDPlayerLockInfo
 

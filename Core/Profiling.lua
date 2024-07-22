@@ -2,8 +2,8 @@ local _, addonTable = ...
 
 -- Upvalues
 --- WOW API
-local IsAddOnLoaded = IsAddOnLoaded
-local LoadAddOn = LoadAddOn
+local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
+local LoadAddOn = C_AddOns.LoadAddOn
 --- Lua API
 local table_wipe = table.wipe
 local pairs = pairs

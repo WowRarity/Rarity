@@ -9,8 +9,8 @@ local Testing = {
 --- Externals
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity", false)
 --- WOW API
-local IsAddOnLoaded = IsAddOnLoaded
-local LoadAddOn = LoadAddOn
+local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
+local LoadAddOn = C_AddOns.LoadAddOn
 
 function Testing:RunIntegrationTests()
 	Rarity:Debug("Attempting to run the full integration test suite")

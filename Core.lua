@@ -93,7 +93,7 @@ local UnitIsDead = _G.UnitIsDead
 local GetNumLootItems = _G.GetNumLootItems
 local GetLootSlotInfo = _G.GetLootSlotInfo
 local GetLootSlotLink = _G.GetLootSlotLink
-local GetItemInfo_Blizzard = _G.GetItemInfo
+local GetItemInfo_Blizzard = _G.C_Item.GetItemInfo
 local GetItemInfo = function(id)
 	return R:GetItemInfo(id)
 end

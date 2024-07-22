@@ -5,6 +5,8 @@ local R = Rarity
 local GUI = Rarity.GUI
 local CONSTANTS = addonTable.constants
 
+--- WoW API
+local GetItemInfo = _G.C_Item.GetItemInfo
 local GetBestMapForUnit = C_Map.GetBestMapForUnit
 local IsWorldQuestActive = C_TaskQuest.IsActive
 local IsQuestFlaggedCompleted = _G.C_QuestLog.IsQuestFlaggedCompleted

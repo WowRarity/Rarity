@@ -1,14 +1,15 @@
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 
+--- WoW API
+local LoadAddOn = _G.C_AddOns.LoadAddOn
+
 local AddonCompartment = {}
 
 function AddonCompartment.OnClick()
 	-- Should behave the same as the default /rarity slash command (copy/pasted for now) - improve UX later?
 	LoadAddOn("Rarity_Options")
 	if Rarity.optionsFrame then
-		-- Thanks, Blizzard (https://www.wowinterface.com/forums/showthread.php?t=54599)
-		InterfaceOptionsFrame_OpenToCategory(Rarity.optionsFrame)
-		InterfaceOptionsFrame_OpenToCategory(Rarity.optionsFrame)
+		Settings.OpenToCategory("Rarity")
 	else
 		Rarity:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
 	end

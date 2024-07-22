@@ -24,7 +24,7 @@ local format = _G.format
 local GetCurrencyInfo = _G.C_CurrencyInfo.GetCurrencyInfo
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
 local UnitGUID = UnitGUID
-local LoadAddOn = LoadAddOn
+local LoadAddOn = _G.C_AddOns.LoadAddOn
 local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
 local GetMapInfo = _G.C_Map.GetMapInfo
 local IsQuestFlaggedCompleted = C_QuestLog.IsQuestFlaggedCompleted
@@ -34,7 +34,7 @@ local UnitIsDead = _G.UnitIsDead
 local GetNumLootItems = _G.GetNumLootItems
 local GetLootSlotInfo = _G.GetLootSlotInfo
 local GetLootSlotLink = _G.GetLootSlotLink
-local GetItemInfo_Blizzard = _G.GetItemInfo
+local GetItemInfo_Blizzard = _G.C_Item.GetItemInfo
 local GetItemInfo = function(id)
 	return R:GetItemInfo(id)
 end
@@ -178,7 +178,7 @@ local TYPE_IDENTIFIER_ITEM = "item" -- What others do they have? currency? gold?
 
 -- Upvalues
 --- WOW API
-local GetItemInfoInstant = GetItemInfoInstant
+local GetItemInfoInstant = _G.C_Item.GetItemInfoInstant
 
 function R:OnShowLootToast(
 	event,
@@ -746,9 +746,7 @@ function R:OnChatCommand(input)
 	else
 		LoadAddOn("Rarity_Options")
 		if R.optionsFrame then
-			-- Thanks, Blizzard (https://www.wowinterface.com/forums/showthread.php?t=54599)
-			InterfaceOptionsFrame_OpenToCategory(R.optionsFrame)
-			InterfaceOptionsFrame_OpenToCategory(R.optionsFrame)
+			Settings.OpenToCategory("Rarity")
 		else
 			self:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
 		end

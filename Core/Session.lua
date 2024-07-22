@@ -13,7 +13,7 @@ local R = Rarity
 local FormatTime = Rarity.Utils.PrettyPrint.FormatTime -- Utils are loaded before Core modules, so this should be fine
 local GetDate = Rarity.Utils.Time.GetDate
 -- WOW APIs
-local GetItemInfo = GetItemInfo
+local GetItemInfo = C_Item.GetItemInfo
 local GetTime = GetTime
 local C_Timer = C_Timer
 
