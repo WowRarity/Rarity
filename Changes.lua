@@ -1,4 +1,13 @@
 local changes = {
+	["r733"] = {
+		fixes = {
+			"Fixed errors due to WOW API changes introduced in patch 11.0.2",
+		},
+		changes = {
+			"Setting the auto-hide delay to zero will now keep the main window open until manually closed (in click activation mode only)",
+		},
+		contributors = { "DakJaniels" },
+	},
 	["r732"] = {
 		fixes = {
 			"Implemented a more accurate (though not perfect) detection mechanism for Primal Storms",

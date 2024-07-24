@@ -1,5 +1,10 @@
-**r732:**
+**r733:**
+
+Changes:
+> Setting the auto-hide delay to zero will now keep the main window open until manually closed (in click activation mode only)
 
 Fixes:
-> Implemented a more accurate (though not perfect) detection mechanism for Primal Storms
-<br>Pick Pocket should no longer cause duplicate attempts if there were multiple items in the loot window
+> Fixed errors due to WOW API changes introduced in patch 11.0.2
+
+Contributors (in alphabetical order):
+> DakJaniels
