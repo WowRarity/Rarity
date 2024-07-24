@@ -9,8 +9,8 @@ local AuctionDB = {}
 -- Lua APIs
 local format = string.format
 
--- WOW APIs
-local GetItemInfo = GetItemInfo
+--- WoW API
+local GetItemInfo = _G.C_Item.GetItemInfo
 
 --- Attempts to determine whether or not the TSM_API can safely be used (it's probably not perfect)
 -- @return True if the required functionality appears to be loaded; false (nil) otherwise

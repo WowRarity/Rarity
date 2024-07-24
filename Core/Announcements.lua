@@ -11,6 +11,9 @@ local Output = Rarity.Output
 -- Upvalues
 local CONSTANTS = addonTable.constants
 
+--- WoW API
+local GetItemInfo = _G.C_Item.GetItemInfo
+
 function Announcements:AnnounceAttemptForItem(item)
 	local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
 		GetItemInfo(item.itemId)

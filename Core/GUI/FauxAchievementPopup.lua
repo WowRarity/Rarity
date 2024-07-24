@@ -2,6 +2,7 @@ local _, addonTable = ...
 local CONSTANTS = addonTable.constants
 
 -- WOW API
+local GetItemInfo = _G.C_Item.GetItemInfo
 local TextureKitConstants = _G.TextureKitConstants
 local GetAchievementInfo = _G.GetAchievementInfo
 

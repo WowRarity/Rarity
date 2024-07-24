@@ -13,6 +13,7 @@ local lbz = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
 local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
 local IsQuestFlaggedCompleted = _G.C_QuestLog.IsQuestFlaggedCompleted
 local UnitFactionGroup = _G.UnitFactionGroup
+local GetItemInfo = _G.C_Item.GetItemInfo
 --- Addon API
 local CONSTANTS = addonTable.constants
 local colorize = Rarity.Utils.String.Colorize
