@@ -514,14 +514,14 @@ end
 ---@param tooltip GameTooltip
 ---@param tooltipData TooltipData
 local function onTooltipSetItem(tooltip, tooltipData)
-    if tooltip ~= _G.GameTooltip and tooltip ~= _G.ItemRefTooltip then
-        return
-    end
+	if tooltip ~= _G.GameTooltip and tooltip ~= _G.ItemRefTooltip then
+		return
+	end
 
-    local _, itemLink = tooltip:GetItem()
-    if not itemLink or type(itemLink) ~= "string" then
-        return
-    end
+	local _, itemLink = tooltip:GetItem()
+	if not itemLink or type(itemLink) ~= "string" then
+		return
+	end
 
 	local id = itemLink:match("item:(%d+):")
 	processItem(tonumber(id), tooltip)
@@ -563,10 +563,10 @@ end)
 -- TOOLTIP: EMISSARY QUEST REWARD
 
 -- hooksecurefunc("GameTooltip_AddQuestRewardsToTooltip", function(self, questID)
---    if GetNumQuestLogRewards(questID) > 0 then
---        local _, _, _, _, _, id = GetQuestLogRewardInfo(1, questID)
---        if id then
---            processItem(id)
---        end
---    end
+--	if GetNumQuestLogRewards(questID) > 0 then
+--		local _, _, _, _, _, id = GetQuestLogRewardInfo(1, questID)
+--		if id then
+--			processItem(id)
+--		end
+--	end
 -- end)
