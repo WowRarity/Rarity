@@ -406,8 +406,6 @@ local bfaMounts = {
 		itemId = 168826,
 		npcs = { 150190 },
 		chance = 200,
-		groupSize = 5,
-		equalOdds = true,
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
