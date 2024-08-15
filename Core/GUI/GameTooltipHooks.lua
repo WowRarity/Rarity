@@ -510,9 +510,6 @@ local function processItem(id, tooltip)
 	end
 end
 
---- Handles updating an item tooltip to add additional information about attempts
----@param tooltip GameTooltip
----@param tooltipData TooltipData
 local function onTooltipSetItem(tooltip, tooltipData)
 	if tooltip ~= _G.GameTooltip and tooltip ~= _G.ItemRefTooltip then
 		return
@@ -563,10 +560,10 @@ end)
 -- TOOLTIP: EMISSARY QUEST REWARD
 
 -- hooksecurefunc("GameTooltip_AddQuestRewardsToTooltip", function(self, questID)
---	if GetNumQuestLogRewards(questID) > 0 then
---		local _, _, _, _, _, id = GetQuestLogRewardInfo(1, questID)
---		if id then
---			processItem(id)
---		end
---	end
+--    if GetNumQuestLogRewards(questID) > 0 then
+--        local _, _, _, _, _, id = GetQuestLogRewardInfo(1, questID)
+--        if id then
+--            processItem(id)
+--        end
+--    end
 -- end)
