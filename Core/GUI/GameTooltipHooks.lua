@@ -519,7 +519,7 @@ local function onTooltipSetItem(tooltip, tooltipData)
 	end
 
 	local _, itemLink = tooltip:GetItem()
-	if not itemLink or type(itemLink) ~= "string" then
+	if type(itemLink) ~= "string" then
 		return
 	end
 
