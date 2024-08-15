@@ -521,6 +521,7 @@ local function onTooltipSetItem(tooltip, tooltipData)
 	end
 
 	local id = itemLink:match("item:(%d+):")
+	assert(id, "Failed to extract item ID from item link (format might have changed?)")
 	processItem(tonumber(id), tooltip)
 end
 
