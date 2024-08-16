@@ -9,4 +9,6 @@
 ## X-LoadOn-Slash: /rarity, /rare
 ## X-LoadOn-InterfaceOptions: Rarity
 
+## IconTexture: Interface\Icons\spell_nature_forceofnature.blp
+
 Options.lua
