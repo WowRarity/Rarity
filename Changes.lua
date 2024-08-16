@@ -1,4 +1,10 @@
 local changes = {
+	["r734"] = {
+		fixes = {
+			"Improved performance for tooltip hooks",
+		},
+		contributors = { "Fillip H." },
+	},
 	["r733"] = {
 		fixes = {
 			"Fixed errors due to WOW API changes introduced in patch 11.0.2",
