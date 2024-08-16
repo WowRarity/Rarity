@@ -1,10 +1,7 @@
-**r733:**
-
-Changes:
-> Setting the auto-hide delay to zero will now keep the main window open until manually closed (in click activation mode only)
+**r734:**
 
 Fixes:
-> Fixed errors due to WOW API changes introduced in patch 11.0.2
+> Improved performance for tooltip hooks
 
 Contributors (in alphabetical order):
-> DakJaniels
+> Fillip H.
