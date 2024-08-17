@@ -511,18 +511,24 @@ local function processItem(id, tooltip)
 end
 
 local function onTooltipSetItem(tooltip, tooltipData)
-	if tooltip ~= _G.GameTooltip and tooltip ~= _G.ItemRefTooltip then
-		return
-	end
+    if tooltip ~= _G.GameTooltip and tooltip ~= _G.ItemRefTooltip then
+        return
+    end
 
-	local _, itemLink = tooltip:GetItem()
-	if type(itemLink) ~= "string" then
-		return
-	end
+    local name, link = tooltip:GetItem()
+    if type(link) ~= "string" or not name then
+        return
+    end
 
-	local id = itemLink:match("item:(%d+):")
-	assert(id, "Failed to extract item ID from item link (format might have changed?)")
-	processItem(tonumber(id), tooltip)
+    local id = link:match("item:(%d*)")
+    assert(id, "Failed to extract item ID from item link (format might have changed?)")
+    processItem(tonumber(id), tooltip)
 end
 
-_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Item, onTooltipSetItem)
+local function onTooltipSetItemFunction(tooltip, tooltipData)
+    if tooltip == _G.GameTooltip or tooltip == _G.ItemRefTooltip then
+        onTooltipSetItem(tooltip, tooltipData)
+    end
+end
+
+_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Item, onTooltipSetItemFunction)
