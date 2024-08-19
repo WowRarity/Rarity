@@ -515,7 +515,7 @@ local function onTooltipSetItem(tooltip, tooltipData)
 		return
 	end
 
-	local _, itemLink = tooltip:GetItem()
+	local itemLink = tooltipData.hyperlink
 	if type(itemLink) ~= "string" then
 		return
 	end
