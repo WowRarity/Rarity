@@ -1,7 +1,7 @@
-**r734:**
+**r735:**
 
-Fixes:
-> Improved performance for tooltip hooks
+Additions:
+> Added a number of TWW collectibles to the database (the drop rates are placeholders)
 
-Contributors (in alphabetical order):
-> Fillip H.
+Changes:
+> Replaced the Shadowlands category icon with a brighter version that should be easier to see
