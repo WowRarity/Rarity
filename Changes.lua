@@ -1,9 +1,17 @@
 local changes = {
+	["r735"] = {
+		additions = {
+			"Added a number of TWW collectibles to the database (the drop rates are placeholders)",
+		},
+		changes = {
+			"Replaced the Shadowlands category icon with a brighter version that should be easier to see",
+		},
+	},
 	["r734"] = {
 		fixes = {
 			"Improved performance for tooltip hooks",
 		},
-		contributors = { "Fillip H." },
+		contributors = { "Fillip H.", "DakJaniels" },
 	},
 	["r733"] = {
 		fixes = {
