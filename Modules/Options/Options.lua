@@ -34,6 +34,7 @@ local LEGION = "LEGION"
 local BFA = "BFA"
 local SHADOWLANDS = "SHADOWLANDS"
 local DRAGONFLIGHT = "DRAGONFLIGHT"
+local TWW = "TWW"
 local HOLIDAY = "HOLIDAY"
 
 -- Methods of obtaining
@@ -867,6 +868,18 @@ function R:PrepareOptions()
 								end,
 								set = function(info, val)
 									self.db.profile.cats[DRAGONFLIGHT] = val
+									Rarity.GUI:UpdateText()
+								end,
+							},
+							theWarWithin = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["The War Within"],
+								get = function()
+									return self.db.profile.cats[TWW]
+								end,
+								set = function(info, val)
+									self.db.profile.cats[TWW] = val
 									Rarity.GUI:UpdateText()
 								end,
 							},

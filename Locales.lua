@@ -2,6 +2,18 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Malfunctioning Mechsuit"] = true
+L["Dauntless Imperial Lynx"] = true
+L["Bop"] = true
+L["Dropped by any mob in Isle of Dorn (except minor mobs). 10 of these can be combined to pierce Alunira's shield, allowing combat and a guaranteed drop of Alunira."] =
+	true
+L["Crackling Shard"] = true
+L["Alunira"] = true
+L["Wick's Lead"] = true
+L["Regurgitated Mole Reins"] = true
+L["Beledar's Spawn"] = true
+L["Reins of the Sureki Skyrazor"] = true
+L["The War Within"] = true
 L["Noble Flying Carpet"] = true
 L["Clayscale Hornstrider"] = true
 L["Falling Star Catcher"] = true
