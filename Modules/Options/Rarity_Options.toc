@@ -5,7 +5,7 @@
 ## Title: Rarity [|caaedc99fOptions|r]
 ## Dependencies: Rarity
 ## X-Part-Of: Rarity
-## LoadManagers: AddonLoader
+## LoadOnDemand: 1
 ## X-LoadOn-Slash: /rarity, /rare
 ## X-LoadOn-InterfaceOptions: Rarity
 

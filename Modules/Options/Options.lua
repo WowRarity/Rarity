@@ -105,9 +105,7 @@ do
 		R.modulesEnabled.options = true
 
 		R:PrepareOptions()
-		if AddonLoader and AddonLoader.RemoveInterfaceOptions then
-			AddonLoader:RemoveInterfaceOptions("Rarity")
-		end
+
 		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity", R.options)
 		R.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity", "Rarity")
 		R.profileOptions = LibStub("AceDBOptions-3.0"):GetOptionsTable(R.db)
