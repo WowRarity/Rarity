@@ -2,6 +2,8 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["When enabled, Rarity will not add tooltip information for items that aren't being tracked."] = true
+L["Hide untracked items in tooltips"] = true
 L["Reins of Anu'relos, Flame's Guidance"] = true
 L["Awakened Cache"] = true
 L["Machine Defense Unit 1-11"] = true
