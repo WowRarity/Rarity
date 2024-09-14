@@ -124,6 +124,7 @@ C.UIMAPIDS = {
 	THE_THROUGHWAY = 2165,
 	CROSSROADS_OF_FATE = 2194, -- Dawn of the Infinite (subzone)
 	THE_EMERALD_DREAM = 2200,
+	AMIRDRASSIL_RAID = 2232,
 
 	-- The War Within zones
 	THE_RINGING_DEEPS = 2214,
