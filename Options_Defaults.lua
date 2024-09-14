@@ -81,6 +81,7 @@ function R:PrepareDefaults()
 			blankLineBeforeTooltipAdditions = true,
 			tooltipAttempts = true,
 			hideKnownItemsInTooltip = false,
+			hideUntrackedItemsInTooltip = false,
 			takeScreenshot = true,
 			hideUnavailable = true,
 			hideDefeated = false,

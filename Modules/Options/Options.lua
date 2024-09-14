@@ -724,6 +724,20 @@ function R:PrepareOptions()
 									Rarity.GUI:UpdateText()
 								end,
 							},
+							hideUntrackedItemsInTooltip = {
+								type = "toggle",
+								order = newOrder(),
+								width = "double",
+								name = L["Hide untracked items in tooltips"],
+								desc = L["When enabled, Rarity will not add tooltip information for items that aren't being tracked."],
+								get = function()
+									return self.db.profile.hideUntrackedItemsInTooltip
+								end,
+								set = function(info, val)
+									self.db.profile.hideUntrackedItemsInTooltip = val
+									Rarity.GUI:UpdateText()
+								end,
+							},
 						}, -- args
 					}, -- worldTooltips
 					contentCategory = {
