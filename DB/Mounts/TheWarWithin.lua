@@ -77,6 +77,16 @@ local twwMounts = {
 		chance = 100, -- No data available
 		coords = { { m = CONSTANTS.UIMAPIDS.HALLOWFALL } },
 	},
+	["Machine Defense Unit 1-11"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Machine Defense Unit 1-11"],
+		itemId = 223269,
+		spellId = 448188,
+		chance = 5,
+		coords = { { m = CONSTANTS.UIMAPIDS.THE_RINGING_DEEPS } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, twwMounts)
