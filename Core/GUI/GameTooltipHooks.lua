@@ -94,7 +94,10 @@ local function onTooltipSetUnit(tooltip, data)
 					local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
 						GetItemInfo(v.itemId)
 					if itemLink or itemName or v.name then
-						if v.known and R.db.profile.hideKnownItemsInTooltip then
+						if
+							(v.known and R.db.profile.hideKnownItemsInTooltip)
+							or (not v.enabled and R.db.profile.hideUntrackedItemsInTooltip)
+						then
 							GameTooltip:Show()
 						else
 							if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
@@ -317,7 +320,10 @@ local function onTooltipSetUnit(tooltip, data)
 								local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
 									GetItemInfo(vv.itemId)
 								if itemLink or itemName or vv.name then
-									if vv.known and R.db.profile.hideKnownItemsInTooltip then
+									if
+										(vv.known and R.db.profile.hideKnownItemsInTooltip)
+										or (not vv.enabled and R.db.profile.hideUntrackedItemsInTooltip)
+									then
 										GameTooltip:Show()
 									else
 										if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
@@ -386,7 +392,10 @@ local function processItem(id, tooltip)
 					local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
 						GetItemInfo(v.itemId)
 					if itemLink or itemName or v.name then
-						if v.known and R.db.profile.hideKnownItemsInTooltip then
+						if
+							(v.known and R.db.profile.hideKnownItemsInTooltip)
+							or (not v.enabled and R.db.profile.hideUntrackedItemsInTooltip)
+						then
 							tooltip:Show()
 						else
 							if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
@@ -448,7 +457,10 @@ local function processItem(id, tooltip)
 											itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
 												GetItemInfo(vv.itemId)
 											if itemLink or itemName or vv.name then
-												if vv.known and R.db.profile.hideKnownItemsInTooltip then
+												if
+													(vv.known and R.db.profile.hideKnownItemsInTooltip)
+													or (not vv.enabled and R.db.profile.hideUntrackedItemsInTooltip)
+												then
 													tooltip:Show()
 												else
 													if
