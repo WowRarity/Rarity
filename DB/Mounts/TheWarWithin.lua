@@ -75,7 +75,7 @@ local twwMounts = {
 		spellId = 448979,
 		items = { 228741 },
 		chance = 100, -- No data available
-		coords = { { i = true, m = CONSTANTS.UIMAPIDS.HALLOWFALL } },
+		coords = { { m = CONSTANTS.UIMAPIDS.HALLOWFALL } },
 	},
 }
 
