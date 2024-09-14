@@ -300,6 +300,26 @@ local dragonflightMounts = {
 		sourceText = L["This item can also be purchased from a vendor."],
 		coords = { { m = CONSTANTS.UIMAPIDS.THE_EMERALD_DREAM } },
 	},
+	["Reins of Anu'relos, Flame's Guidance."] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		name = L["Reins of Anu'relos, Flame's Guidance"],
+		spellId = 428195,
+		itemId = 210061,
+		npcs = { 99999 },
+		tooltipNpcs = { 204931 },
+		chance = 100,
+		statisticId = { 19386 },
+		lockBossName = "Fyrakk",
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+		},
+		groupSize = 5,
+		equalOdds = true,
+		coords = { { m = CONSTANTS.UIMAPIDS.AMIRDRASSIL_RAID, i = true } },
+		wasGuaranteed = true,
+	},
 	-- 10.2.5
 	["Clayscale Hornstrider"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
