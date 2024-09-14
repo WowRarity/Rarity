@@ -1777,6 +1777,11 @@ function R:OnLootReady(event, ...)
 			end
 		end
 
+		if Rarity.isOpening and Rarity.lastNode and Rarity.lastNode == L["Awakened Cache"] then
+			Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
+			addAttemptForItem("Machine Defense Unit 1-11", "mounts")
+		end
+
 		-- Handle opening Opera Chest (Holoviewers)
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Opera Chest"]) then
 			local names = { "Holoviewer: The Timeless One", "Holoviewer: The Lady of Dreams" }
