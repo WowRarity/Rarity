@@ -20,6 +20,16 @@ local twwPets = {
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 		coords = { { m = CONSTANTS.UIMAPIDS.CINDERBREW_MEADERY, i = true } },
 	},
+	["Writhing Transmutagen"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Writhing Transmutagen"],
+		itemId = 223487,
+		spellId = 446059,
+		chance = 20, -- No data available
+		creatureId = 222359,
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, twwPets)
