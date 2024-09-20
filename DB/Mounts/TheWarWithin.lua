@@ -16,7 +16,6 @@ local twwMounts = {
 		groupSize = 5,
 		equalOdds = true,
 		chance = 100, -- No data available
-		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 		coords = { { i = true, m = CONSTANTS.UIMAPIDS.NERUBAR_PALACE } },
 	},
 	["Beledar's Spawn"] = {
