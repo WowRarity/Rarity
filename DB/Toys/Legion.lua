@@ -289,6 +289,7 @@ local legionToys = {
 			["SHAMAN"] = true,
 			["WARLOCK"] = true,
 			["WARRIOR"] = true,
+			["EVOKER"] = true,
 		},
 		coords = { { m = 772, i = true } },
 	},
