@@ -1,5 +1,5 @@
 ## Author: Allara
-## Interface: 110005
+## Interface: 110005, 110000, 110002
 ## X-Min-Interface: 110005
 ## Title: Rarity
 ## Version: 1.0 (@project-version@)
