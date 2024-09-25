@@ -62,6 +62,7 @@ local wodToys = {
 			["SHAMAN"] = true,
 			["WARLOCK"] = true,
 			["WARRIOR"] = true,
+			["EVOKER"] = true,
 		},
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
