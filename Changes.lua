@@ -1,4 +1,14 @@
 local changes = {
+	["r737"] = {
+		additions = {
+			"Added tracking for Writhing Transmutagen (Khaz Algar Thaumaturgy)",
+			"Added tracking for TWW achievement rares",
+		},
+		fixes = {
+			"Fixed an issue that would prevent attempts from being registered for Sureki Skyrazor",
+			"Dracthyr Evokers should no longer see attempts for Fandral's Seed Pouch and Skull of Corruption",
+		},
+	},
 	["r736"] = {
 		additions = {
 			"Added tracking for Anu'relos (which is now a rare drop from the Mythic Fyrakk encounter)",
