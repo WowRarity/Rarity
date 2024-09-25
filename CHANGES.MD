@@ -1,14 +1,9 @@
-**r736:**
+**r737:**
 
 Additions:
-> Added tracking for Anu'relos (which is now a rare drop from the Mythic Fyrakk encounter)
-<br>Added tracking for Awakened Caches (may contain Machine Defense Unit 1-11)
-
-Changes:
-> Replaced the old AddonLoader mechanism with Blizzard's built-in system to lazy-load the Options module
+> Added tracking for Writhing Transmutagen (Khaz Algar Thaumaturgy)
+<br>Added tracking for TWW achievement rares
 
 Fixes:
-> Fixed tracking for a number of TWW collectibles that drop from dungeon bosses
-
-Contributors (in alphabetical order):
-> DakJaniels
+> Fixed an issue that would prevent attempts from being registered for Sureki Skyrazor
+<br>Dracthyr Evokers should no longer see attempts for Fandral's Seed Pouch and Skull of Corruption
