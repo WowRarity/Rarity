@@ -89,5 +89,4 @@ ignore:
  - Tests
  - README.MD
  - Changes.lua
- - .luacheckrc
  - autoformat.sh
