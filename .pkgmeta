@@ -86,6 +86,7 @@ move-folders:
     Rarity/Modules/Options: Rarity_Options
 
 ignore:
+ - Tests
  - README.MD
  - Changes.lua
  - .luacheckrc
