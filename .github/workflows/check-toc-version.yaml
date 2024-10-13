@@ -8,11 +8,22 @@ on:
 jobs:
   toc:
     name: Check interface versions
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v4
 
-      - name: Check for outdated interface versions
+      - name: Install Lua runtime # May be overkill, but removes the need for complex shell scripting
+        uses: evo-lua/evo-setup-action@main
+        with:
+          version: 'v0.0.19'
+
+      - name: Check out Git repository
         run: .github/check-interface-versions.sh
+
+      - name: Fetch CDN response # US region is considered authoritative since it should be the first to update
+        run: curl --silent --show-error https://us.version.battle.net/v2/products/wow/versions > .github/cdn-response.txt
+
+      - name: Check for outdated interface versions
+        run: evo .github/check-interface-versions.lua .github/cdn-response.txt
