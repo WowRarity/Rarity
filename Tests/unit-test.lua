@@ -6,6 +6,7 @@ local specFiles = {
 	"Tests/test-database.spec.lua",
 	"Tests/test-holiday-events.spec.lua",
 	"Tests/test-serialization.spec.lua",
+	"Tests/test-toc.spec.lua",
 }
 
 local numFailedSections = C_Runtime.RunDetailedTests(specFiles)

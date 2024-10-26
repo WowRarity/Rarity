@@ -8,11 +8,16 @@ on:
 jobs:
   toc:
     name: Check interface versions
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v4
+
+      - name: Install Lua runtime # May be overkill, but removes the need for complex shell scripting
+        uses: evo-lua/evo-setup-action@main
+        with:
+          version: 'v0.0.20'
 
       - name: Check for outdated interface versions
         run: .github/check-interface-versions.sh
