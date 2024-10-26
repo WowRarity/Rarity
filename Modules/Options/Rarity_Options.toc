@@ -1,7 +1,7 @@
 ## Author: Allara
-## Interface: 110002
-## X-Min-Interface: 110002
 ## Notes: Rarity configuration. Use AddonLoader to load this on demand.
+## Interface: 110005
+## X-Min-Interface: 110005
 ## Title: Rarity [|caaedc99fOptions|r]
 ## Dependencies: Rarity
 ## X-Part-Of: Rarity
