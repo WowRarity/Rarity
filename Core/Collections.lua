@@ -10,6 +10,7 @@ local R = Rarity
 local CONSTANTS = addonTable.constants
 
 -- Lua APIs
+local _G = getfenv(0)
 local pairs = pairs
 local type = type
 local select = select
@@ -370,12 +371,15 @@ function R:ScanArchProjects(reason)
 		return
 	end
 	for race_id = 1, GetNumArchaeologyRaces() do
-		local name = GetActiveArtifactByRace(race_id)
-		if Rarity.architems[name] then
-			-- We started a project we were looking for!
-			local id = Rarity.architems[name].itemId
-			if id then
-				self:OnItemFound(id, Rarity.items[id])
+		local num_artifacts = GetNumArtifactsByRace(race_id)
+		for artifact_id = 1, num_artifacts do
+			local name = GetActiveArtifactByRace(race_id, artifact_id)
+			if Rarity.architems[name] then
+				-- We started a project we were looking for!
+				local id = Rarity.architems[name].itemId
+				if id then
+					self:OnItemFound(id, Rarity.items[id])
+				end
 			end
 		end
 	end
