@@ -453,7 +453,7 @@ function R:GetDistanceToItem(item)
 				local map = v.m
 				local x = (v.x or 50) / 100
 				local y = (v.y or 50) / 100
-				local itemWorldX, itemWorldY = hbd:GetWorldCoordinatesFromZone(x, y, map, v.f or 1)
+				local itemWorldX, itemWorldY = hbd:GetWorldCoordinatesFromZone(x, y, map)
 				if itemWorldX ~= nil then -- Library returns nil for instances
 					local thisDistance =
 						hbd:GetWorldDistance(instance, itemWorldX, itemWorldY, playerWorldX, playerWorldY)
@@ -474,7 +474,7 @@ end
 -- Prepares a set of lookup tables to let us quickly determine if we're interested in various things.
 -- Many of the events we handle fire quite frequently, so speed is of the essence.
 -- Any item that is not enabled for tracking won't show up in these lists.
-function R:UpdateInterestingThings()
+function R:UpdateInterestingThings(...)
 	self:Debug("Updating interesting things tables")
 
 	-- Store an internal table listing every MapID
