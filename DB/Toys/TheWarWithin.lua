@@ -21,12 +21,14 @@ local twwToysAndItems = {
 	["Malfunctioning Mechsuit"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
 		name = L["Malfunctioning Mechsuit"],
-		npcs = { 219440, 213119 },
+		npcs = { 99999 },
+		tooltipNpcs = { 219440, 213119 },
+		statisticId = { 40722 },
 		itemId = 226683,
 		spellId = 442358,
-		chance = 1, -- No data available
+		chance = 200,
 		groupSize = 5,
 		equalOdds = true,
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
