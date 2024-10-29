@@ -168,8 +168,6 @@ local shadowlandsMounts = {
 		npcs = { 162741 },
 		chance = 33,
 		questId = { 58872 },
-		groupSize = 5,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.MALDRAXXUS, x = 31.4, y = 35.6, n = L["Gieger"] } },
 		requiresCovenant = true,
 		requiredCovenantID = CONSTANTS.COVENANT_IDS.NECROLORD,
@@ -296,8 +294,6 @@ local shadowlandsMounts = {
 		chance = 20,
 		tooltipNpcs = { 170834, 170835, 170833, 170832, 170836 },
 		questId = { 60933 },
-		groupSize = 5,
-		equalOdds = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.BASTION, x = 53.50, y = 88.37, n = L["Cache of the Ascended"] } },
 	},
 	-- 9.1 Mounts
@@ -413,8 +409,6 @@ local shadowlandsMounts = {
 		itemId = 186638,
 		npcs = { 180863 },
 		chance = 50,
-		groupSize = 5,
-		equalOdds = true,
 		statisticId = { 15168 },
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 		lockoutDetails = {
@@ -436,8 +430,6 @@ local shadowlandsMounts = {
 		npcs = { 99999 },
 		tooltipNpcs = { 178738 },
 		chance = 100,
-		groupSize = 10,
-		equalOdds = true,
 		statisticId = { 15145, 15144, 15147, 15146 },
 		lockoutDetails = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
@@ -608,8 +600,6 @@ local shadowlandsMounts = {
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true },
 		chance = 100,
 		wasGuaranteed = true,
-		groupSize = 10,
-		equalOdds = true,
 		statisticId = { 15176 },
 		coords = { { m = CONSTANTS.UIMAPIDS.SANCTUM_OF_DOMINATION, i = true } },
 		lockoutDetails = {
@@ -634,8 +624,6 @@ local shadowlandsMounts = {
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true },
 		chance = 100,
 		wasGuaranteed = true,
-		groupSize = 10,
-		equalOdds = true,
 		statisticId = { 15467 },
 		coords = { { m = CONSTANTS.UIMAPIDS.SEPULCHER_OF_THE_FIRST_ONES, i = true } },
 		lockoutDetails = {
