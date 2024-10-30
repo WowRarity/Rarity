@@ -287,6 +287,49 @@ local wodMounts = {
 		itemId = 133543,
 		npcs = {
 			-- NPCs marked with * can't be looted; they use a workaround and are detected via checking their achievement criteria. The entry here is mostly for the tooltip display....
+			-- Classic Dungeons
+			---- Deadmines
+			644, -- Rhahk'Zor
+			643, -- Sneed
+			1763, -- Gilnid
+			646, -- Mr. Smite
+			647, -- Captain Greenskin
+			639, -- Edwin VanCleef
+			645, -- Cookie
+			---- Dire Maul (Capital Gardens)
+			11489, -- Tendris Warpwood
+			11487, -- Magister Kalendris
+			11488, -- Illyanna Ravenoak
+			11496, --Immol'thar
+			11486, -- Prince Tortheldrin
+			---- Dire Maul (Warpwood Quarters)
+			14327, -- Lethtendris
+			13280, -- Hydrospawn
+			11490, -- Zevrim Thornhoof
+			11492, -- Alzzin the Wildshaper
+			---- Zul Farrak
+			7272, -- Theka the Martyr
+			7795, -- Hydromancer Velratha
+			8127, -- Antu'sul
+			7271, -- Witch Doctor Zum'rah
+			7273, -- Gahz'rilla
+			7275, -- Nekrum & Sezz'ziz
+			7267, -- Chief Ukorz Sandscalp
+			---- Stratholme (Main Gate)
+			10813, -- Balnazzar
+			10516, -- The Unforgiven
+			10558, -- Hearthsinger Forresten
+			10808, -- Timmy the Cruel
+			11143, -- Postmaster Malown
+			11032, -- Commander Malor
+			10997, -- Willey Hopebreaker
+			10811, -- Instructor Galford
+			---- Stratholme (Service Entrance)
+			10436, -- Baroness Anastari
+			10437, -- Nerub'enkan
+			10438, -- Maleki the Pallid
+			10435, -- Magistrate Barthilas
+			10439, -- Ramstein the Gorger
 			-- TBC Dungeons
 			---- Magister's Terrace
 			24723, -- Selin Fireheart
