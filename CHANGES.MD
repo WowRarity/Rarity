@@ -1,9 +1,10 @@
-**r737:**
+**r738:**
 
 Additions:
-> Added tracking for Writhing Transmutagen (Khaz Algar Thaumaturgy)
-<br>Added tracking for TWW achievement rares
+> Added tracking for Classic Timewalking dungeons (Infinite Timereaver)
 
 Fixes:
-> Fixed an issue that would prevent attempts from being registered for Sureki Skyrazor
-<br>Dracthyr Evokers should no longer see attempts for Fandral's Seed Pouch and Skull of Corruption
+> Attempts for Malfunctioning Mechsuit should now be tracked in Mythic keystone dungeons
+
+Contributors (in alphabetical order):
+> DakJaniels

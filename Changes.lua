@@ -1,4 +1,13 @@
 local changes = {
+	["r738"] = {
+		additions = {
+			"Added tracking for Classic Timewalking dungeons (Infinite Timereaver)",
+		},
+		fixes = {
+			"Attempts for Malfunctioning Mechsuit should now be tracked in Mythic keystone dungeons",
+		},
+		contributors = { "DakJaniels" },
+	},
 	["r737"] = {
 		additions = {
 			"Added tracking for Writhing Transmutagen (Khaz Algar Thaumaturgy)",
