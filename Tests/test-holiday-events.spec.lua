@@ -11,6 +11,13 @@ describe("HolidayEvents", function()
 			holidayTexture = SharedConstants.HOLIDAY_TEXTURES.DARKMOON_FAIRE,
 		}
 		local ITEM_WITHOUT_HOLIDAY_TEXTURE = {}
+		local ITEM_WITH_MULTIPLE_HOLIDAY_TEXTURES = {
+			holidayTexture = {
+				[SharedConstants.ART_TEXTURES.TWENTIETH_ANNIVERSARY_START] = true,
+				[SharedConstants.ART_TEXTURES.TWENTIETH_ANNIVERSARY_ONGOING] = true,
+				[SharedConstants.ART_TEXTURES.TWENTIETH_ANNIVERSARY_END] = true,
+			},
+		}
 
 		it("should return true if the item requires an active holiday event that is currently enabled", function()
 			Rarity.holiday_textures[SharedConstants.ART_TEXTURES.DMF_ONGOING] = true
@@ -37,6 +44,15 @@ describe("HolidayEvents", function()
 
 		it("should return true if the item doesn't require any holiday event to be active", function()
 			assertTrue(HolidayEvents.IsItemAvailableToday(ITEM_WITHOUT_HOLIDAY_TEXTURE))
+		end)
+
+		it("should return true if the item uses file data IDs and the holiday event is active", function()
+			Rarity.holiday_textures[SharedConstants.ART_TEXTURES.TWENTIETH_ANNIVERSARY_ONGOING] = true
+			assertTrue(HolidayEvents.IsItemAvailableToday(ITEM_WITH_MULTIPLE_HOLIDAY_TEXTURES))
+		end)
+
+		it("should return false if the item uses file data IDs and the holiday event is inactive", function()
+			assertFalse(HolidayEvents.IsItemAvailableToday(ITEM_WITH_MULTIPLE_HOLIDAY_TEXTURES))
 		end)
 	end)
 end)

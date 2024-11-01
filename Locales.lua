@@ -2,6 +2,7 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Lil'Kaz's Hilt"] = true
 L["Writhing Transmutagen"] = true
 L["When enabled, Rarity will not add tooltip information for items that aren't being tracked."] = true
 L["Hide untracked items in tooltips"] = true

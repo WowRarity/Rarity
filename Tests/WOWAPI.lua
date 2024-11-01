@@ -36,13 +36,16 @@ _G.CreateFrame = function(...)
 	return createDummyFrame()
 end
 
-_G.EnableAddOn = function(...)
+local C_AddOns = {}
+C_AddOns.EnableAddOn = function(...)
 	print("[EnableAddOn] NYI", ...)
 end
 
 _G.IsAddOnLoaded = function(...)
 	print("[IsAddOnLoaded] NYI", ...)
 end
+
+_G.C_AddOns = C_AddOns
 
 _G.GetChannelList = function(...)
 	print("[GetChannelList] NYI", ...)

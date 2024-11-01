@@ -59,6 +59,12 @@ function HolidayEvents.IsItemAvailableToday(item)
 		if isRequiredHolidayEventActive then
 			return true
 		end
+
+		if type(item.holidayTexture) == "table" then -- Modern file data ID format: Supports multiple textures per item
+			if item.holidayTexture[artTextureID] then
+				return true
+			end
+		end
 	end
 
 	return false

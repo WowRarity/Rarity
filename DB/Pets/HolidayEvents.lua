@@ -280,6 +280,29 @@ local holidayEventPets = {
 		coords = { { m = 435, i = true } },
 		sourceText = L["Can be contained in Loot-Filled Pumpkin, rewarded for defeating the World Event Dungeon during Hallow's End."],
 	},
+	["Lil'Kaz's Hilt"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC, -- LOOT_TOAST ... ?
+		name = L["Lil'Kaz's Hilt"],
+		spellId = 466576,
+		itemId = 230011,
+		npcs = { 121818 },
+		chance = 10, -- No data available
+		creatureId = 231841,
+		coords = { { m = CONSTANTS.UIMAPIDS.BLASTED_LANDS, x = 32.8, y = 47.7 } },
+		-- TODO migrate all entries to this format? (check if Custom items/SV would be affected first...)
+		holidayTexture = {
+			[CONSTANTS.ART_TEXTURES.TWENTIETH_ANNIVERSARY_START] = true,
+			[CONSTANTS.ART_TEXTURES.TWENTIETH_ANNIVERSARY_ONGOING] = true,
+			[CONSTANTS.ART_TEXTURES.TWENTIETH_ANNIVERSARY_END] = true,
+		},
+		groupSize = 5,
+		equalOdds = true,
+		-- TODO defeat detection (daily loot lockout vs. 1st attempt bonus? check wowhead comments)
+		-- daily bonus: ?
+		-- loot lockout: 47461
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, holidayEventPets)
