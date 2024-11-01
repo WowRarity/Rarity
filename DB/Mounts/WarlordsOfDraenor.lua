@@ -523,6 +523,11 @@ local wodMounts = {
 		equalOdds = true,
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.TIMEWALKING_DUNGEON] = true },
 		coords = {
+			{ m = CONSTANTS.UIMAPIDS.THE_DEADMINES, i = true },
+			{ m = CONSTANTS.UIMAPIDS.DIREMAUL_CAPITAL_GARDENS, i = true },
+			{ m = CONSTANTS.UIMAPIDS.DIREMAUL_WARPWOOD_QUARTER, i = true },
+			{ m = CONSTANTS.UIMAPIDS.ZUL_FARRAK, i = true },
+			{ m = CONSTANTS.UIMAPIDS.STRATHOLME, i = true },
 			{ m = 348, i = true },
 			{ m = 265, i = true },
 			{ m = 246, i = true },
