@@ -1,6 +1,6 @@
 ## Author: Allara
-## Interface: 110005
-## X-Min-Interface: 110005
+## Interface: 110007
+## X-Min-Interface: 110007
 ## Title: Rarity
 ## Version: 1.0 (@project-version@)
 ## X-Curse-Project-ID: 30801
