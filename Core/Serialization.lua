@@ -298,10 +298,11 @@ end
 
 function Serialization:DeserializeItemString(compressedEncodedItemString)
 	local decodedItemString = self:DecodeBase64(compressedEncodedItemString)
-	local decompressedItemString = self:Decompress(decodedItemString)
-	local success, deserializedItemEntry = R:Deserialize(decompressedItemString)
-	assert(success, "Failed to deserialize item string")
-	return deserializedItemEntry
+	local decompressedItemString, errorMessage = self:Decompress(decodedItemString)
+	assert(decompressedItemString, tostring(errorMessage))
+	local success, resultOrError = R:Deserialize(decompressedItemString)
+	assert(success, tostring(resultOrError))
+	return resultOrError
 end
 
 Serialization.Decode = R.Decode

@@ -5,6 +5,7 @@ exclude_files = {
 	"Changes.lua",
 	"Libs",
 	"Tests", -- Lots of warnings here thanks to LuaUnit, but we'll pretend they don't exist since it's run offline only
+	"Tools", -- Not part of the actual addon code, so warnings can be ignored (for now)
 }
 ignore = {
 	--"11./SLASH_.*", -- Setting an undefined (Slash handler) global variable
