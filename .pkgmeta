@@ -87,6 +87,7 @@ move-folders:
 
 ignore:
  - Tests
+ - Tools
  - README.MD
  - Changes.lua
  - autoformat.sh
