@@ -48,6 +48,7 @@ local twwToysAndItems = {
 			227550, -- Shardsong
 		},
 		chance = 10,
+		coords = { { m = CONSTANTS.UIMAPIDS.THE_FORGOTTEN_VAULT } },
 	},
 	["Cyclonic Runekey"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
@@ -59,6 +60,7 @@ local twwToysAndItems = {
 			231357, -- Zek'ul the Shipbreaker
 		},
 		chance = 100,
+		coords = { { m = CONSTANTS.UIMAPIDS.THE_FORGOTTEN_VAULT } },
 	},
 }
 

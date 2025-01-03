@@ -41,6 +41,7 @@ local twwPets = {
 		name = L["Crackleroar"],
 		npcs = { 230827, 231353 },
 		spellId = 1213821,
+		coords = { { m = CONSTANTS.UIMAPIDS.SIREN_ISLE } },
 	},
 	["Proper Parrot"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
@@ -52,6 +53,7 @@ local twwPets = {
 		name = L["Proper Parrot"],
 		npcs = { 229169, 227644, 229189, 229171, 228582, 229168, 228583, 228580, 229190 },
 		spellId = 288054,
+		coords = { { m = CONSTANTS.UIMAPIDS.SIREN_ISLE } },
 	},
 }
 
