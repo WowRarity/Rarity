@@ -2,6 +2,11 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Cyclonic Runekey"] = true
+L["Glittering Vault Shard"] = true
+L["Proper Parrot"] = true
+L["Crackleroar"] = true
+L["Grunch"] = true
 L["Writhing Transmutagen"] = true
 L["When enabled, Rarity will not add tooltip information for items that aren't being tracked."] = true
 L["Hide untracked items in tooltips"] = true
