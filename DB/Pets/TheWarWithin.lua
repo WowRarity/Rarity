@@ -30,6 +30,18 @@ local twwPets = {
 		chance = 20, -- No data available
 		creatureId = 222359,
 	},
+	-- 11.0.7 pets
+	["Crackleroar"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		chance = 100,
+		creatureId = 235124,
+		itemId = 234379,
+		name = L["Crackleroar"],
+		npcs = { 230827, 231353 },
+		spellId = 1213821,
+	}
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, twwPets)
