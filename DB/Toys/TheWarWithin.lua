@@ -49,6 +49,17 @@ local twwToysAndItems = {
 		},
 		chance = 10,
 	},
+	["Cyclonic Runekey"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Cyclonic Runekey"],
+		itemId = 232569,
+		npcs = {
+			231357, -- Zek'ul the Shipbreaker
+		},
+		chance = 100,
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, twwToysAndItems)
