@@ -34,6 +34,21 @@ local twwToysAndItems = {
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 		coords = { { m = CONSTANTS.UIMAPIDS.THE_STONEVAULT, i = true } },
 	},
+	-- 11,0.7 items and toys
+	["Glittering Vault Shard"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		isToy = true,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Glittering Vault Shard"],
+		itemId = 235017,
+		npcs = {
+			228159, -- Gunnlod the Sea-Drinker
+			231368, -- Ksvir the Forgotten
+			227550, -- Shardsong
+		},
+		chance = 10,
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, twwToysAndItems)
