@@ -46,7 +46,7 @@ end
 
 --- Prints timestamps in a human-readable fashion?
 -- TODO: LuaDoc
-function PP:FormatTime(t)
+function PP.FormatTime(t)
 	if not t then
 		return "0:00"
 	end
