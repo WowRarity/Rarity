@@ -30,7 +30,7 @@ jobs:
       - name: Download test runner
         uses: evo-lua/evo-setup-action@main
         with:
-          version: 'v0.0.9'
+          version: 'v0.0.20'
 
       - name: Run unit tests
         run: evo Tests/unit-test.lua
