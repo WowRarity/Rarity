@@ -1,4 +1,16 @@
 local changes = {
+	["r739"] = {
+		additions = {
+			"Added Siren Isle collectibles to the database",
+		},
+		fixes = {
+			"Recorded times should once again be displayed correctly in the main window",
+		},
+		changes = {
+			"Rarity now uses kill statistics for Queen Ansurek (Reins of the Sureki Skyrazor)",
+		},
+		contributors = { "Protuhj", "Ellezanor" },
+	},
 	["r738"] = {
 		additions = {
 			"Added tracking for Classic Timewalking dungeons (Infinite Timereaver)",
