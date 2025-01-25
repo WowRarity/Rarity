@@ -1,25 +1,10 @@
 --@curseforge-project-slug: libsink-2-0@
---[[
-Name: Sink-2.0
-Revision: $Rev: 155 $
-Author(s): Funkydude
-Description: Library that handles chat output.
-Dependencies: LibStub, SharedMedia-3.0 (optional)
-License: CC-BY-NC-SA 3.0
-]]
-
---[[
-Copyright (C) 2008-2015
-For the attribution bit of the license, as long as you distribute the library unmodified,
-no attribution is required.
-If you derive from the library or change it in any way, you are required to contact the author(s).
-]]
 
 -----------------------------------------------------------------------
 -- Sink-2.0
 
 local SINK20 = "LibSink-2.0"
-local SINK20_MINOR = 100001
+local SINK20_MINOR = 110002
 
 local sink = LibStub:NewLibrary(SINK20, SINK20_MINOR)
 if not sink then return end
@@ -44,32 +29,15 @@ local format, gsub, wipe, next, select = string.format, string.gsub, table.wipe,
 local IsInRaid, IsInGroup, SendChatMessage = IsInRaid, IsInGroup, SendChatMessage
 
 -- Make sure FCT is loaded
+local EnableAddOn = C_AddOns.EnableAddOn or EnableAddOn
+local IsAddOnLoaded = C_AddOns.IsAddOnLoaded or IsAddOnLoaded
+local LoadAddOn = C_AddOns.LoadAddOn or LoadAddOn
 EnableAddOn("Blizzard_CombatText")
 local loadFCT = nil
-if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then -- Retail
-	if not IsAddOnLoaded("Blizzard_CombatText") then
-		loadFCT = function()
-			loadFCT = nil
-			LoadAddOn("Blizzard_CombatText")
-		end
-	end
-else
-	if GetCVar("enableFloatingCombatText") == "0" then
-		loadFCT = function()
-			loadFCT = nil
-			if not IsAddOnLoaded("Blizzard_CombatText") then
-				if SHOW_COMBAT_TEXT and SHOW_COMBAT_TEXT == "0" then -- Classic
-					SHOW_COMBAT_TEXT = "1" -- Must be set to 1 for OnLoad to properly initialize
-					LoadAddOn("Blizzard_CombatText")
-					SHOW_COMBAT_TEXT = "0"
-				else
-					SetCVar("enableFloatingCombatText", "1") -- Must be set to 1 for OnLoad to properly initialize
-					LoadAddOn("Blizzard_CombatText")
-					SetCVar("enableFloatingCombatText", "0")
-				end
-				CombatText_UpdateDisplayedMessages()
-			end
-		end
+if not IsAddOnLoaded("Blizzard_CombatText") then
+	loadFCT = function()
+		loadFCT = nil
+		LoadAddOn("Blizzard_CombatText")
 	end
 end
 
@@ -472,12 +440,12 @@ local function channel(addon, text)
 end
 
 -- |TTexturePath:size1:size2:xoffset:yoffset:dimx:dimy:coordx1:coordx2:coordy1:coordy2:red:green:blue|t
-local function chat(addon, text, r, g, b, _, _, _, _, _, icon)
+local function chat(_, text, r, g, b, _, _, _, _, _, icon)
 	if icon then text = "\124T"..icon..":15:15:0:0:64:64:4:60:4:60\124t"..text end
 	DEFAULT_CHAT_FRAME:AddMessage(text, r, g, b)
 end
 
-local function uierror(addon, text, r, g, b, _, _, _, _, _, icon)
+local function uierror(_, text, r, g, b, _, _, _, _, _, icon)
 	if icon then text = "\124T"..icon..":15:15:0:0:64:64:4:60:4:60\124t "..text end
 	UIErrorsFrame:AddMessage(text, r, g, b, 1.0)
 end
@@ -485,7 +453,7 @@ end
 local rw
 do
 	local white = {r = 1, g = 1, b = 1}
-	function rw(addon, text, r, g, b, _, _, _, _, _, icon)
+	function rw(_, text, r, g, b, _, _, _, _, _, icon)
 		if r or g or b then
 			text = format("\124cff%02x%02x%02x%s\124r", (r or 0) * 255, (g or 0) * 255, (b or 0) * 255, text)
 		end
@@ -514,11 +482,12 @@ local function getPrioritizedSink()
 			return sink.handlers[currentHandler]
 		end
 	end
-	for i, v in next, handlerPriority do
-		local check = customHandlersEnabled[v]
+	for i = 1, #handlerPriority do
+		local handler = handlerPriority[i]
+		local check = customHandlersEnabled[handler]
 		if check and check() then
-			currentHandler = v
-			return sink.handlers[v]
+			currentHandler = handler
+			return sink.handlers[handler]
 		end
 	end
 	return blizzard
@@ -571,7 +540,7 @@ do
 		if addon == "MikSBT" then
 			if not msbtFrames then
 				msbtFrames = {}
-				for key, name in MikSBT.IterateScrollAreas() do
+				for _, name in MikSBT.IterateScrollAreas() do
 					msbtFrames[#msbtFrames+1] = name
 				end
 			end
@@ -829,7 +798,7 @@ do
 		end
 		sink.stickyAddons[shortName] = hasSticky and true or nil
 
-		for k, v in next, sinkOptionGenerators do
+		for _, v in next, sinkOptionGenerators do
 			v(shortName, sinks[shortName])
 		end
 	end

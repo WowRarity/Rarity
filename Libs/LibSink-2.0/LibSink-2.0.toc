@@ -1,5 +1,5 @@
-## Interface: 100105
-## Version: v10.1.1
+## Interface: 11504, 11505, 20504, 30403, 40400, 40401, 110005, 110007, 110002
+## Version: v11.0.1
 ## LoadOnDemand: 1
 ## Title: Lib: Sink-2.0
 ## Notes: Library that handles chat output.
