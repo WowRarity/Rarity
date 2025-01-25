@@ -280,6 +280,21 @@ local holidayEventPets = {
 		coords = { { m = 435, i = true } },
 		sourceText = L["Can be contained in Loot-Filled Pumpkin, rewarded for defeating the World Event Dungeon during Hallow's End."],
 	},
+	["Grunch"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		spellId = 471121,
+		items = { 116762 },
+		itemId = 232531,
+		creatureId = 233564,
+		chance = 150,
+		name = L["Grunch"],
+		sourceText = L["Available starting December 25th"],
+		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		questId = { 6983, 7043 },
+		coords = { { m = 87, x = 33.2, y = 67.8 }, { m = 25, x = 42.4, y = 41 }, { m = 86, x = 54.4, y = 77 } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, holidayEventPets)
