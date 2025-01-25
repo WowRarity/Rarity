@@ -1,10 +1,14 @@
-**r738:**
+**r739:**
 
 Additions:
-> Added tracking for Classic Timewalking dungeons (Infinite Timereaver)
+> Added Siren Isle collectibles to the database
+
+Changes:
+> Rarity now uses kill statistics for Queen Ansurek (Reins of the Sureki Skyrazor)
 
 Fixes:
-> Attempts for Malfunctioning Mechsuit should now be tracked in Mythic keystone dungeons
+> Recorded times should once again be displayed correctly in the main window
 
 Contributors (in alphabetical order):
-> DakJaniels
+> Protuhj
+<br>Ellezanor
