@@ -801,5 +801,6 @@ local wodPets = {
 		coords = { { m = CONSTANTS.UIMAPIDS.LUNARFALL_GARRISON }, { m = CONSTANTS.UIMAPIDS.FROSTWALL_GARRISON } },
 	},
 }
-
-Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, wodPets)
+if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+	Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, wodPets)
+end

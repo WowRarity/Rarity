@@ -856,5 +856,6 @@ local mopPets = {
 		},
 	},
 }
-
-Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, mopPets)
+if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+	Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, mopPets)
+end

@@ -266,5 +266,6 @@ local mopMounts = {
 		coords = { { m = 508, x = 26.8, y = 78.7, i = true } },
 	},
 }
-
-Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, mopMounts)
+if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+	Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, mopMounts)
+end

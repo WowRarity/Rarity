@@ -333,5 +333,6 @@ local dragonflightMounts = {
 		coords = { { m = CONSTANTS.UIMAPIDS.THE_AZURE_SPAN } },
 	},
 }
-
-Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, dragonflightMounts)
+if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+	Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, dragonflightMounts)
+end

@@ -1251,5 +1251,6 @@ local dragonflightPets = {
 		coords = { { m = CONSTANTS.UIMAPIDS.ZARALEK_CAVERN, x = 41.5, y = 86.2, n = L["Chest of Massive Gains"] } },
 	},
 }
-
-Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, dragonflightPets)
+if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+	Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, dragonflightPets)
+end

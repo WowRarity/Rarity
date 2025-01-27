@@ -87,5 +87,6 @@ local twwMounts = {
 		coords = { { m = CONSTANTS.UIMAPIDS.THE_RINGING_DEEPS } },
 	},
 }
-
-Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, twwMounts)
+if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+	Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, twwMounts)
+end

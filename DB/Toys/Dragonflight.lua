@@ -451,5 +451,6 @@ local dragonflightToys = {
 		coords = { { m = CONSTANTS.UIMAPIDS.THE_EMERALD_DREAM, x = 45.8, y = 18.6, n = L["Moltenbinder's Disciple"] } },
 	},
 }
-
-Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, dragonflightToys)
+if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+	Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, dragonflightToys)
+end

@@ -752,5 +752,6 @@ local bfaToys = {
 		sourceText = L["Will hatch into Nightwreathed Watcher pet after five days."],
 	},
 }
-
-Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, bfaToys)
+if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+	Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, bfaToys)
+end

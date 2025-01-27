@@ -938,5 +938,6 @@ local shadowlandsPets = {
 		coords = { { m = CONSTANTS.UIMAPIDS.ZERETH_MORTIS } },
 	},
 }
-
-Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)
+if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+	Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)
+end
