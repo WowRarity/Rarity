@@ -100,11 +100,8 @@ function EventHandlers:Register()
 	self:RegisterBucketEvent("TOYS_UPDATED", 1, "OnEvent")
 	self:RegisterBucketEvent("COMPANION_UPDATE", 1, "OnEvent")
 
-	-- if WOW_INTERFACE_VER >= 100000 then
-		-- minimum for PLAYER_INTERACTION_MANAGER_FRAME_SHOW/HIDE events
-		self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", "OnEvent")
-		self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_HIDE", "OnEvent")
-	-- end
+	self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", "OnEvent")
+	self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_HIDE", "OnEvent")
 end
 
 -- TODO: Move elsewhere/refactor
