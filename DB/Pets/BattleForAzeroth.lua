@@ -2304,6 +2304,5 @@ local bfaPets = {
 		coords = { { m = CONSTANTS.UIMAPIDS.ULDUM }, { m = CONSTANTS.UIMAPIDS.VALE_OF_ETERNAL_BLOSSOMS } },
 	},
 }
-if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
-	Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, bfaPets)
-end
+
+Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, bfaPets)

@@ -421,6 +421,5 @@ local legionMounts = {
 	},
 }
 
-if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
-	Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, legionMounts)
-end
+
+Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, legionMounts)

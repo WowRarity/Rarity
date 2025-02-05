@@ -540,6 +540,5 @@ local shadowlandsToys = {
 		},
 	},
 }
-if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
-	Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)
-end
+
+Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)

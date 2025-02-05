@@ -56,6 +56,5 @@ local twwPets = {
 		coords = { { m = CONSTANTS.UIMAPIDS.SIREN_ISLE } },
 	},
 }
-if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
-	Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, twwPets)
-end
+
+Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, twwPets)

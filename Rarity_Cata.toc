@@ -1,0 +1,142 @@
+## Author: Napu
+## Interface: 40401
+## X-Min-Interface: 110007
+## Title: Rarity
+## Version: 1.0 (@project-version@)
+## X-Curse-Project-ID: 30801
+
+## Notes: Tracks rare drops, including companions and mounts
+## Notes-ruRU: @localization(locale="ruRU", key="Notes", namespace="ToC - Table of Contents")@
+## Notes-deDE: @localization(locale="deDE", key="Notes", namespace="ToC - Table of Contents")@
+## Notes-koKR: @localization(locale="koKR", key="Notes", namespace="ToC - Table of Contents")@
+## Notes-esMX: @localization(locale="esMX", key="Notes", namespace="ToC - Table of Contents")@
+## Notes-esES: @localization(locale="esES", key="Notes", namespace="ToC - Table of Contents")@
+## Notes-ptBR: @localization(locale="ptBR", key="Notes", namespace="ToC - Table of Contents")@
+## Notes-zhCN: @localization(locale="zhCN", key="Notes", namespace="ToC - Table of Contents")@
+## Notes-zhTW: @localization(locale="zhTW", key="Notes", namespace="ToC - Table of Contents")@
+## Notes-itIT: @localization(locale="itIT", key="Notes", namespace="ToC - Table of Contents")@
+## Notes-frFR: @localization(locale="frFR", key="Notes", namespace="ToC - Table of Contents")@
+
+## AddonCompartmentFunc: Rarity_OnAddonCompartmentClick
+## AddonCompartmentFuncOnEnter: Rarity_OnAddonCompartmentEnter
+## AddonCompartmentFuncOnLeave: Rarity_OnAddonCompartmentLeave
+## IconTexture: Interface\Icons\spell_nature_forceofnature.blp
+
+## OptionalDeps: Ace3,LibDualSpec-1.0,LibQTip-1.0,LibDBIcon-1.0,LibBabble-Zone-3.0,LibSink-2.0,LibBabble-SubZone-3.0,LibSharedMedia-3.0,AceGUI-3.0-SharedMediaWidgets,LibBabble-CreatureType-3.0,LibBabble-Boss-3.0,HereBeDragons
+## SavedVariables: RarityDB
+## X-LoadOn-Always: delayed
+#@no-lib-strip@
+Libs\LibStub\LibStub.lua
+Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
+Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
+Libs\AceAddon-3.0\AceAddon-3.0.xml
+Libs\AceBucket-3.0\AceBucket-3.0.xml
+Libs\AceGUI-3.0\AceGUI-3.0.xml
+Libs\AceConfig-3.0\AceConfig-3.0.xml
+Libs\AceConsole-3.0\AceConsole-3.0.xml
+Libs\AceDB-3.0\AceDB-3.0.xml
+Libs\AceDBOptions-3.0\AceDBOptions-3.0.xml
+Libs\AceEvent-3.0\AceEvent-3.0.xml
+Libs\AceLocale-3.0\AceLocale-3.0.xml
+Libs\AceTimer-3.0\AceTimer-3.0.xml
+Libs\AceSerializer-3.0\AceSerializer-3.0.xml
+Libs\LibQTip-1.0\lib.xml
+Libs\LibDBIcon-1.0\LibDBIcon-1.0.lua
+Libs\LibBabble-Zone-3.0\lib.xml
+Libs\LibBabble-SubZone-3.0\lib.xml
+Libs\LibSink-2.0\LibSink-2.0\lib.xml
+Libs\LibSharedMedia-3.0\lib.xml
+Libs\AceGUI-3.0-SharedMediaWidgets\widget.xml
+Libs\LibBabble-CreatureType-3.0\lib.xml
+Libs\LibBabble-Boss-3.0\lib.xml
+Libs\HereBeDragons-2.0\HereBeDragons-2.0.lua
+Libs\LibCompress\lib.xml
+#@end-no-lib-strip@
+Libs\LibBars-1.0\lib.xml
+
+# This must be loaded first
+Locales.lua
+Core\Init.lua
+
+# Database
+DB\Nodes.lua
+DB\SharedConstants.lua
+DB\Spells.lua
+
+# Collectibles Database (makes use of the shared constants, so load those first)
+DB\Item.lua
+DB\Schema.lua
+DB\ItemDB.lua
+
+## Mounts
+DB\Mounts\HolidayEvents.lua
+DB\Mounts\Classic.lua
+DB\Mounts\TheBurningCrusade.lua
+DB\Mounts\WrathOfTheLichKing.lua
+DB\Mounts\Cataclysm.lua
+
+## Pets
+DB\Pets\HolidayEvents.lua
+DB\Pets\Classic.lua
+DB\Pets\TheBurningCrusade.lua
+DB\Pets\WrathOfTheLichKing.lua
+DB\Pets\Cataclysm.lua
+
+## Toys (and other items, for now...)
+DB\Toys\HolidayEvents.lua
+DB\Toys\Classic.lua
+DB\Toys\TheBurningCrusade.lua
+DB\Toys\WrathOfTheLichKing.lua
+DB\Toys\Cataclysm.lua
+
+# Utility/Helpers
+Utils\DebugCache.lua
+Utils\PrettyPrint.lua
+Utils\Sorting.lua
+Utils\String.lua
+Utils\Table.lua
+Utils\Time.lua
+
+# Wrappers for external libraries (to provide a consistent API)
+Core\Interoperability\LibQTip\Tooltips.lua
+Core\Interoperability\LibSink\Output.lua
+Core\Interoperability\TradeSkillMaster\AuctionDB.lua
+Core\Interoperability\WoWUnit\Testing.lua
+
+# Wrappers for the WOW API (to provide a consistent API)
+Core\Interoperability\Blizzard\AddonCompartment.lua
+Core\Interoperability\Blizzard\AreaPOIs.lua
+Core\Interoperability\Blizzard\MapInfo.lua
+
+# Addon Core
+Core\Announcements.lua
+Core\Caching.lua
+Core\Collections.lua
+Core\Database.lua
+Core\Debugging.lua
+Core\Detection.lua
+Core\EventHandlers.lua
+Core\GUI.lua
+Core\HolidayEvents.lua
+Core\Profiling.lua
+Core\Serialization.lua
+Core\Session.lua
+Core\Statistics.lua
+Core\Tracking.lua
+Core\Validation.lua
+Core\Waypoints.lua
+
+# UI
+Core\GUI\AnchoredTrackingBar.lua
+Core\GUI\CopyPastePopup.lua
+Core\GUI\ScrollingDebugMessageFrame.lua
+Core\GUI\DataBrokerDisplay.lua
+Core\GUI\FauxAchievementPopup.lua
+Core\GUI\GameTooltipHooks.lua
+Core\GUI\MainWindow.lua
+
+# Addon loader
+Core.lua
+
+# Initialization for the config UI
+Options_Defaults.lua

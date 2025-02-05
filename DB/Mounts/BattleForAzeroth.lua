@@ -814,6 +814,5 @@ local bfaMounts = {
 		},
 	},
 }
-if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
-	Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, bfaMounts)
-end
+
+Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, bfaMounts)

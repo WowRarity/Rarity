@@ -63,6 +63,5 @@ local twwToysAndItems = {
 		coords = { { m = CONSTANTS.UIMAPIDS.THE_FORGOTTEN_VAULT } },
 	},
 }
-if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
-	Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, twwToysAndItems)
-end
+
+Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, twwToysAndItems)

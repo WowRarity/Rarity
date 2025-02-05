@@ -107,6 +107,5 @@ local wodToys = {
 		coords = { { m = CONSTANTS.UIMAPIDS.NAGRAND_DRAENOR } },
 	},
 }
-if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
-	Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, wodToys)
-end
+
+Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, wodToys)
