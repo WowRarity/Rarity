@@ -48,8 +48,11 @@ local GetStatistic = _G.GetStatistic
 local GetLootSourceInfo = _G.GetLootSourceInfo
 local C_Timer = _G.C_Timer
 local IsSpellKnown = _G.IsSpellKnown
+local GetCurrentRenownLevel = function()
+	return 0
+end -- TODO: Fix properly (shouldn't this error on classic if the API is missing?)
 if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
-	local GetCurrentRenownLevel = C_MajorFactions.GetCurrentRenownLevel
+	GetCurrentRenownLevel = C_MajorFactions.GetCurrentRenownLevel
 end
 
 -- Addon APIs
