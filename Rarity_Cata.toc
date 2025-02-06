@@ -69,21 +69,27 @@ DB\Schema.lua
 DB\ItemDB.lua
 
 ## Mounts
-DB\Mounts\HolidayEvents.lua
+DB\Mounts\HolidayEvents_TheBurningCrusade.lua
+DB\Mounts\HolidayEvents_Wrath.lua
 DB\Mounts\Classic.lua
 DB\Mounts\TheBurningCrusade.lua
 DB\Mounts\WrathOfTheLichKing.lua
 DB\Mounts\Cataclysm.lua
 
 ## Pets
-DB\Pets\HolidayEvents.lua
+DB\Pets\HolidayEvents_Classic.lua
+DB\Pets\HolidayEvents_TheBurningCrusade.lua
+DB\Pets\HolidayEvents_Wrath.lua
+DB\Pets\HolidayEvents_Cataclysm.lua
 DB\Pets\Classic.lua
 DB\Pets\TheBurningCrusade.lua
 DB\Pets\WrathOfTheLichKing.lua
 DB\Pets\Cataclysm.lua
 
 ## Toys (and other items, for now...)
-DB\Toys\HolidayEvents.lua
+DB\Toys\HolidayEvents_TheBurningCrusade.lua
+DB\Toys\HolidayEvents_Wrath.lua
+DB\Toys\HolidayEvents_Cataclysm.lua
 DB\Toys\Classic.lua
 DB\Toys\TheBurningCrusade.lua
 DB\Toys\WrathOfTheLichKing.lua
