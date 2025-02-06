@@ -84,7 +84,6 @@ local holidayEventPetsClassic = {
 		},
 		christmasOnly = true,
 	},
-	
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, holidayEventPetsClassic)

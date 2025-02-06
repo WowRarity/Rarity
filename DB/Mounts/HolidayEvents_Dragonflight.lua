@@ -19,7 +19,6 @@ local holidayEventMountsDragonflight = {
 			{ m = CONSTANTS.UIMAPIDS.ELWYNN_FOREST },
 		},
 	},
-	
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, holidayEventMountsDragonflight)

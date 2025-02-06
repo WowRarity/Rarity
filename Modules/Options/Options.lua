@@ -72,9 +72,9 @@ local classes = {
 	["WARRIOR"] = "|c" .. RAID_CLASS_COLORS["WARRIOR"]["colorStr"] .. L["Warrior"] .. "|r",
 }
 if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
-	classes["EVOKER"] = "|c" .. RAID_CLASS_COLORS["EVOKER"]["colorStr"] .. L["Evoker"] .. "|r";
-	classes["DEMONHUNTER"] = "|c" .. RAID_CLASS_COLORS["DEMONHUNTER"]["colorStr"] .. L["Demon Hunter"] .. "|r";
-	classes["MONK"] = "|c" .. RAID_CLASS_COLORS["MONK"]["colorStr"] .. L["Monk"] .. "|r";
+	classes["EVOKER"] = "|c" .. RAID_CLASS_COLORS["EVOKER"]["colorStr"] .. L["Evoker"] .. "|r"
+	classes["DEMONHUNTER"] = "|c" .. RAID_CLASS_COLORS["DEMONHUNTER"]["colorStr"] .. L["Demon Hunter"] .. "|r"
+	classes["MONK"] = "|c" .. RAID_CLASS_COLORS["MONK"]["colorStr"] .. L["Monk"] .. "|r"
 end
 
 local red = Rarity.Enum.Colors.Red

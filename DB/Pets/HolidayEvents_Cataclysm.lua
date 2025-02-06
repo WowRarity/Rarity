@@ -32,7 +32,6 @@ local holidayEventPetsCataclysm = {
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.DARKMOON_FAIRE,
 		coords = { { m = 407 } },
 	},
-	
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, holidayEventPetsCataclysm)

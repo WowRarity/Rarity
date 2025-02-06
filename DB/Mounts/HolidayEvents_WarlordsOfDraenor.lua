@@ -16,7 +16,6 @@ local holidayEventMountsWoD = {
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
 		coords = { { m = CONSTANTS.UIMAPIDS.LUNARFALL_GARRISON }, { m = CONSTANTS.UIMAPIDS.FROSTWALL_GARRISON } },
 	},
-	
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, holidayEventMountsWoD)

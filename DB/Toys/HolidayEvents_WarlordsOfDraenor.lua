@@ -173,7 +173,6 @@ local holidayEventToysWoD = {
 		questId = { 8788, 8767 },
 		coords = { { m = 86, x = 49.1, y = 78.2, h = true }, { m = 87, x = 33.4, y = 65.9, a = true } },
 	},
-	
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, holidayEventToysWoD)

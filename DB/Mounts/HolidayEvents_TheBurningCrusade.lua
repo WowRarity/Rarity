@@ -52,7 +52,6 @@ local holidayEventMountsTBC = {
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.HALLOWS_END,
 		coords = { { m = 435, i = true } },
 	},
-	
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, holidayEventMountsTBC)

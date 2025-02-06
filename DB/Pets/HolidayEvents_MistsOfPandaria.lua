@@ -59,7 +59,6 @@ local holidayEventPetsMoP = {
 		coords = { { m = CONSTANTS.UIMAPIDS.DARKMOON_ISLAND, x = 75.6, y = 86.8 } },
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.DARKMOON_FAIRE,
 	},
-	
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, holidayEventPetsMoP)

@@ -54,7 +54,6 @@ local holidayEventPetsWoD = {
 		questId = 36471,
 		coords = { { m = 407, x = 47.4, y = 62.2, n = L["Christoph VonFeasel"] } },
 	},
-	
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, holidayEventPetsWoD)

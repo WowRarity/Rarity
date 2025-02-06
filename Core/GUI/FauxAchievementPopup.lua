@@ -104,7 +104,9 @@ local RarityAchievementAlertSystem =
 	AlertFrame:AddQueuedAlertFrameSubSystem("AchievementAlertFrameTemplate", RarityAchievementAlertFrame_SetUp, 2, 6)
 RarityAchievementAlertSystem:SetCanShowMoreConditionFunc(function()
 	local returnBool = false
-	if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then returnBool = C_PetBattles.IsInBattle() end
+	if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+		returnBool = C_PetBattles.IsInBattle()
+	end
 	return not returnBool
 end)
 

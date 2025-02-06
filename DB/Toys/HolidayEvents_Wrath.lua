@@ -20,7 +20,6 @@ local holidayEventToysWrath = {
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.LOVE_IS_IN_THE_AIR,
 		coords = { { m = 310, x = 40, y = 52.6, i = true } },
 	},
-	
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, holidayEventToysWrath)

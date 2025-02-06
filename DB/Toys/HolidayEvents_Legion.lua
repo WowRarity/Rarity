@@ -86,7 +86,6 @@ local holidayEventToysLegion = {
 		requiresAlliance = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6 } },
 	},
-	
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, holidayEventToysLegion)

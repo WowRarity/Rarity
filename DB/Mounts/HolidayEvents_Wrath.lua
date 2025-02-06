@@ -20,7 +20,6 @@ local holidayEventMountsWrath = {
 		lockDungeonId = 288,
 		coords = { { m = 310, x = 40.8, y = 52.6, i = true } },
 	},
-	
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, holidayEventMountsWrath)
