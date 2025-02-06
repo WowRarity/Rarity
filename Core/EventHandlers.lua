@@ -252,7 +252,7 @@ function R:OnCurrencyUpdate(event)
 
 	-- Check if any coins were used
 	for k, v in pairs(self.coins) do
-		local currency = C_CurrencyInfo.GetCurrencyInfo(k)
+		local currency = GetCurrencyInfo(k)
 		if currency == nil then
 			return
 		end
