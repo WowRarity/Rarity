@@ -60,6 +60,13 @@ globals = {
 	"C_Container",
 	"C_Item",
 	"Settings",
+	"WOW_PROJECT_BURNING_CRUSADE_CLASSIC",
+	"WOW_PROJECT_CATACLYSM_CLASSIC",
+	"WOW_PROJECT_CLASSIC",
+	"WOW_PROJECT_ID",
+	"WOW_PROJECT_MAINLINE",
+	"WOW_PROJECT_WOWLABS",
+	"WOW_PROJECT_WRATH_CLASSIC",
 
 	"AuraUtil",
 	"BackdropTemplateMixin",
