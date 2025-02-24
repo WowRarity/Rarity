@@ -1093,11 +1093,12 @@ local function addGroup(group, requiresGroup)
 								status = colorize(L["Unavailable"], gray)
 							end
 						end
-
-						if v.requiresCovenant and v.requiredCovenantID ~= nil then
-							local activeCovenantID = C_Covenants.GetActiveCovenantID()
-							if activeCovenantID ~= v.requiredCovenantID then
-								status = colorize(L["Unavailable"], gray)
+						if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+							if v.requiresCovenant and v.requiredCovenantID ~= nil then
+								local activeCovenantID = C_Covenants.GetActiveCovenantID()
+								if activeCovenantID ~= v.requiredCovenantID then
+									status = colorize(L["Unavailable"], gray)
+								end
 							end
 						end
 

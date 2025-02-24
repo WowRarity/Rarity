@@ -48,7 +48,12 @@ local GetStatistic = _G.GetStatistic
 local GetLootSourceInfo = _G.GetLootSourceInfo
 local C_Timer = _G.C_Timer
 local IsSpellKnown = _G.IsSpellKnown
-local GetCurrentRenownLevel = C_MajorFactions.GetCurrentRenownLevel
+local GetCurrentRenownLevel = function()
+	return 0
+end -- TODO: Fix properly (shouldn't this error on classic if the API is missing?)
+if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+	GetCurrentRenownLevel = C_MajorFactions.GetCurrentRenownLevel
+end
 
 -- Addon APIs
 local DebugCache = Rarity.Utils.DebugCache
@@ -91,18 +96,17 @@ function EventHandlers:Register()
 	self:RegisterEvent("ISLAND_COMPLETED", "OnIslandCompleted")
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", "OnSpellcastSucceeded")
 	self:RegisterEvent("QUEST_TURNED_IN", "OnQuestTurnedIn")
-	self:RegisterEvent("SHOW_LOOT_TOAST", "OnShowLootToast")
+	if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+		self:RegisterEvent("SHOW_LOOT_TOAST", "OnShowLootToast")
+	end
 	self:RegisterBucketEvent("UPDATE_INSTANCE_INFO", 1, "OnEvent")
 	self:RegisterBucketEvent("LFG_UPDATE_RANDOM_INFO", 1, "OnEvent")
 	self:RegisterBucketEvent("CALENDAR_UPDATE_EVENT_LIST", 1, "OnEvent")
 	self:RegisterBucketEvent("TOYS_UPDATED", 1, "OnEvent")
 	self:RegisterBucketEvent("COMPANION_UPDATE", 1, "OnEvent")
 
-	if WOW_INTERFACE_VER >= 100000 then
-		-- minimum for PLAYER_INTERACTION_MANAGER_FRAME_SHOW/HIDE events
-		self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", "OnEvent")
-		self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_HIDE", "OnEvent")
-	end
+	self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", "OnEvent")
+	self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_HIDE", "OnEvent")
 end
 
 -- TODO: Move elsewhere/refactor
@@ -249,6 +253,9 @@ function R:OnCurrencyUpdate(event)
 	-- Check if any coins were used
 	for k, v in pairs(self.coins) do
 		local currency = GetCurrencyInfo(k)
+		if currency == nil then
+			return
+		end
 		local name, currencyAmount = currency.name, currency.quantity
 		local diff = currencyAmount - (coinamounts[k] or 0)
 		coinamounts[k] = currencyAmount
