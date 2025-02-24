@@ -70,8 +70,7 @@ local classes = {
 	["WARLOCK"] = "|c" .. RAID_CLASS_COLORS["WARLOCK"]["colorStr"] .. L["Warlock"] .. "|r",
 	["WARRIOR"] = "|c" .. RAID_CLASS_COLORS["WARRIOR"]["colorStr"] .. L["Warrior"] .. "|r",
 }
-if 	WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC
-and WOW_PROJECT_ID ~= WOW_PROJECT_BURNING_CRUSADE_CLASSIC then
+if WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC and WOW_PROJECT_ID ~= WOW_PROJECT_BURNING_CRUSADE_CLASSIC then
 	classes["DEATHKNIGHT"] = "|c" .. RAID_CLASS_COLORS["DEATHKNIGHT"]["colorStr"] .. L["Death Knight"] .. "|r"
 end
 if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
