@@ -50,7 +50,7 @@ local GetStatistic = _G.GetStatistic
 local GetLootSourceInfo = _G.GetLootSourceInfo
 local C_Timer = _G.C_Timer
 local IsSpellKnown = _G.IsSpellKnown
-local GetCurrentRenownLevel = C_MajorFactions.GetCurrentRenownLevel
+local GetCurrentRenownLevel = C_MajorFactions and C_MajorFactions.GetCurrentRenownLevel
 
 -- Addon APIs
 local DebugCache = Rarity.Utils.DebugCache
@@ -83,7 +83,11 @@ function EventHandlers:Register()
 	self:RegisterEvent("ISLAND_COMPLETED", "OnIslandCompleted")
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", "OnSpellcastSucceeded")
 	self:RegisterEvent("QUEST_TURNED_IN", "OnQuestTurnedIn")
-	self:RegisterEvent("SHOW_LOOT_TOAST", "OnShowLootToast")
+
+	if LE_EXPANSION_LEVEL_CURRENT >= LE_EXPANSION_MISTS_OF_PANDARIA then
+		self:RegisterEvent("SHOW_LOOT_TOAST", "OnShowLootToast")
+	end
+
 	self:RegisterBucketEvent("UPDATE_INSTANCE_INFO", 1, "OnEvent")
 	self:RegisterBucketEvent("LFG_UPDATE_RANDOM_INFO", 1, "OnEvent")
 	self:RegisterBucketEvent("CALENDAR_UPDATE_EVENT_LIST", 1, "OnEvent")
@@ -238,6 +242,9 @@ function R:OnCurrencyUpdate(event)
 	-- Check if any coins were used
 	for k, v in pairs(self.coins) do
 		local currency = GetCurrencyInfo(k)
+		if currency == nil then
+			return
+		end
 		local name, currencyAmount = currency.name, currency.quantity
 		local diff = currencyAmount - (coinamounts[k] or 0)
 		coinamounts[k] = currencyAmount
