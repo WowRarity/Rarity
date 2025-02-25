@@ -41,6 +41,7 @@ local function parseNextLine(response, line)
 		return
 	end
 
+	line = line:gsub("||", "|nil|") -- It's not stupid if it works :3
 	local tokens = string_explode(line, "|")
 
 	-- Parse header (first line)
