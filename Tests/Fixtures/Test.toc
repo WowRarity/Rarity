@@ -1,0 +1,5 @@
+## Author: Anonymous
+## Interface: 12345
+## X-Min-Interface: 12345
+## Title: AddonName
+## Version: 0.1 (@project-version@)
