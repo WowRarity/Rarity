@@ -330,6 +330,20 @@ function R:PrepareOptions()
 									self:Update("OPTIONS")
 								end,
 							}, -- minimap
+							progressBar = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Show progress bar"],
+								desc = L["Click to toggle the progress bar"] .. ".",
+								get = function()
+									return self.db.profile.bar.visible
+								end,
+								set = function(info, val)
+									self.db.profile.bar.visible = val
+									Rarity.GUI:UpdateBar()
+									Rarity.GUI:UpdateText()
+								end,
+							}, -- progressBar
 							holidayReminder = {
 								type = "toggle",
 								order = newOrder(),
