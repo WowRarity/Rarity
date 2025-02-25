@@ -98,11 +98,8 @@ function EventHandlers:Register()
 	self:RegisterBucketEvent("TOYS_UPDATED", 1, "OnEvent")
 	self:RegisterBucketEvent("COMPANION_UPDATE", 1, "OnEvent")
 
-	if WOW_INTERFACE_VER >= 100000 then
-		-- minimum for PLAYER_INTERACTION_MANAGER_FRAME_SHOW/HIDE events
-		self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", "OnEvent")
-		self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_HIDE", "OnEvent")
-	end
+	self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", "OnPlayerInteractionFrameShow")
+	self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_HIDE", "OnPlayerInteractionFrameHide")
 end
 
 -- TODO: Move elsewhere/refactor
@@ -1153,60 +1150,11 @@ function R:OnResearchArtifactComplete(event, _)
 	self:ScanArchFragments(event)
 end
 
--- 10.x added events PLAYER_INTERACTION_MANAGER_FRAME_HIDE and PLAYER_INTERACTION_MANAGER_FRAME_SHOW
--- which currently fire either in addition to, or instead of, older events like MAIL_SHOW or MAIL_CLOSED.
--- This maps new events onto old ones, so there's just one (old-style) event to check against.
--- (Note many PlayerInteractionTypes are defined but not all are necessarily used; we add the ones most
--- likely to be relevant here, whether currently being triggered or not.)
-
-local EventRemapping = {
-	["PLAYER_INTERACTION_MANAGER_FRAME_HIDE"] = {
-		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.Banker or ""] = "BANKFRAME_CLOSED",
-		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.GuildBanker or ""] = "GUILDBANKFRAME_CLOSED",
-		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.Auctioneer or ""] = "AUCTION_HOUSE_CLOSED",
-		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.TradePartner or ""] = "TRADE_CLOSED",
-		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.MailInfo or ""] = "MAIL_CLOSED",
-	},
-	["PLAYER_INTERACTION_MANAGER_FRAME_SHOW"] = {
-		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.Banker or ""] = "BANKFRAME_OPENED",
-		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.GuildBanker or ""] = "GUILDBANKFRAME_OPENED",
-		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.Auctioneer or ""] = "AUCTION_HOUSE_SHOW",
-		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.TradePartner or ""] = "TRADE_SHOW",
-		[Enum and Enum.PlayerInteractionType and Enum.PlayerInteractionType.MailInfo or ""] = "MAIL_SHOW",
-	},
-}
-
 function R:OnEvent(event, ...)
-	-- do EventRemapping if appropriate
-	local param1 = select(1, ...)
-	if EventRemapping[event] and EventRemapping[event][param1] then
-		event = EventRemapping[event][param1]
-	end
-
-	if event == "BANKFRAME_OPENED" then
-		Rarity.isBankOpen = true
-	elseif event == "GUILDBANKFRAME_OPENED" then
-		Rarity.isGuildBankOpen = true
-	elseif event == "AUCTION_HOUSE_SHOW" then
-		Rarity.isAuctionHouseOpen = true
-	elseif event == "TRADE_SHOW" then
-		Rarity.isTradeWindowOpen = true
-	elseif event == "TRADE_SKILL_SHOW" then
+	if event == "TRADE_SKILL_SHOW" then
 		Rarity.isTradeskillOpen = true
-	elseif event == "MAIL_SHOW" then
-		Rarity.isMailboxOpen = true
-	elseif event == "BANKFRAME_CLOSED" then
-		Rarity.isBankOpen = false
-	elseif event == "GUILDBANKFRAME_CLOSED" then
-		Rarity.isGuildBankOpen = false
-	elseif event == "AUCTION_HOUSE_CLOSED" then
-		Rarity.isAuctionHouseOpen = false
-	elseif event == "TRADE_CLOSED" then
-		Rarity.isTradeWindowOpen = false
 	elseif event == "TRADE_SKILL_CLOSE" then
 		Rarity.isTradeskillOpen = false
-	elseif event == "MAIL_CLOSED" then
-		Rarity.isMailboxOpen = false
 	elseif event == "UPDATE_INSTANCE_INFO" then
 		-- Instance lock info updated
 		self:ScanInstanceLocks(event)
@@ -2139,6 +2087,34 @@ function Rarity:OnDreamseedCacheOpened()
 	Rarity:Debug("Detected Opening on Dreamseed Cache")
 	for _, mount in ipairs(dreamseedMounts) do
 		addAttemptForItem(mount, "mounts")
+	end
+end
+
+function R:OnPlayerInteractionFrameShow(event, playerInteractionTypeID)
+	if playerInteractionTypeID == Enum.PlayerInteractionType.Banker then
+		Rarity.isBankOpen = true
+	elseif playerInteractionTypeID == Enum.PlayerInteractionType.GuildBanker then
+		Rarity.isGuildBankOpen = true
+	elseif playerInteractionTypeID == Enum.PlayerInteractionType.Auctioneer then
+		Rarity.isAuctionHouseOpen = true
+	elseif playerInteractionTypeID == Enum.PlayerInteractionType.TradePartner then
+		Rarity.isTradeWindowOpen = true
+	elseif playerInteractionTypeID == Enum.PlayerInteractionType.MailInfo then
+		Rarity.isMailboxOpen = true
+	end
+end
+
+function R:OnPlayerInteractionFrameHide(event, playerInteractionTypeID)
+	if playerInteractionTypeID == Enum.PlayerInteractionType.Banker then
+		Rarity.isBankOpen = false
+	elseif playerInteractionTypeID == Enum.PlayerInteractionType.GuildBanker then
+		Rarity.isGuildBankOpen = false
+	elseif playerInteractionTypeID == Enum.PlayerInteractionType.Auctioneer then
+		Rarity.isAuctionHouseOpen = false
+	elseif playerInteractionTypeID == Enum.PlayerInteractionType.TradePartner then
+		Rarity.isTradeWindowOpen = false
+	elseif playerInteractionTypeID == Enum.PlayerInteractionType.MailInfo then
+		Rarity.isMailboxOpen = false
 	end
 end
 
