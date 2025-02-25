@@ -2,6 +2,7 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Show progress bar"] = true
 L["Cyclonic Runekey"] = true
 L["Glittering Vault Shard"] = true
 L["Proper Parrot"] = true
