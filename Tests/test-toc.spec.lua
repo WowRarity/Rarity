@@ -1,11 +1,15 @@
 local BlizzardTOC = require("Tests.TOC.BlizzardTOC")
 local CDN = require("Tests.TOC.CDN")
 
+local uv = require("uv")
+
 local VALID_RESPONSE_FILE = path.join("Tests", "Fixtures", "cdn-response-example.txt")
 local VALID_RESPONSE_TEXT = C_FileSystem.ReadFile(VALID_RESPONSE_FILE)
 local INVALID_RESPONSE_FILE = path.join("Tests", "Fixtures", "cdn-response-malformed-header.txt")
 local INVALID_RESPONSE_TEXT = C_FileSystem.ReadFile(INVALID_RESPONSE_FILE)
 
+local EXAMPLE_TOC_PATH = path.join(uv.cwd(), "Tests", "Fixtures", "Test.toc")
+local EXAMPLE_TOC_FILE = C_FileSystem.ReadFile(EXAMPLE_TOC_PATH)
 local RARITY_CORE_TOC = C_FileSystem.ReadFile("Rarity.toc")
 local RARITY_OPTIONS_TOC = C_FileSystem.ReadFile(path.join("Modules", "Options", "Rarity_Options.toc"))
 
@@ -19,20 +23,31 @@ local EXAMPLE_PRODUCT_INFO = {
 	VersionsName = "11.0.5.57212",
 }
 
+local NUM_SUPPORTED_PRODUCT_LINES = 3
+
 describe("TOC", function()
 	describe("BlizzardTOC", function()
 		describe("DecodeFileContents", function()
-			it("should be able to load valid TOC files", function()
+			it("should be able to load valid TOC files using a single interface version", function()
+				local toc = BlizzardTOC:DecodeFileContents(EXAMPLE_TOC_FILE)
+				assertEquals(toc["Title"], "AddonName")
+				assertEquals(toc["Author"], "Anonymous")
+				assertEquals(toc["Interface"], { 12345 })
+			end)
+
+			it("should be able to load valid TOC files using multiple interface versions", function()
 				local RarityCoreTOC = BlizzardTOC:DecodeFileContents(RARITY_CORE_TOC)
 				local RarityOptionsTOC = BlizzardTOC:DecodeFileContents(RARITY_OPTIONS_TOC)
 
 				-- For now, only parse the header (other fields can be added as needed)
 				assertEquals(RarityCoreTOC["Title"], "Rarity")
 				assertEquals(RarityCoreTOC["Author"], "Allara")
-				assertTrue(RarityCoreTOC["Interface"] > 0)
-				assertEquals(type(RarityCoreTOC["X-Min-Interface"]), "number")
 				assertEquals(RarityCoreTOC["X-Curse-Project-ID"], 30801)
-				assertEquals(RarityCoreTOC["Interface"], RarityCoreTOC["X-Min-Interface"])
+				assertTrue(#RarityCoreTOC["Interface"] == NUM_SUPPORTED_PRODUCT_LINES)
+				assertTrue(#RarityCoreTOC["X-Min-Interface"] == NUM_SUPPORTED_PRODUCT_LINES)
+				assertEquals(RarityCoreTOC["Interface"][1], RarityCoreTOC["X-Min-Interface"][1])
+				assertEquals(RarityCoreTOC["Interface"][2], RarityCoreTOC["X-Min-Interface"][2])
+				assertEquals(RarityCoreTOC["Interface"][3], RarityCoreTOC["X-Min-Interface"][3])
 
 				assertEquals(RarityOptionsTOC["Title"], "Rarity [|caaedc99fOptions|r]")
 				assertEquals(RarityOptionsTOC["Dependencies"], "Rarity")
