@@ -36,4 +36,4 @@ _G.Rarity = aceAddonObject
 dofile("Locales.lua")
 dofile("Utils/PrettyPrint.lua")
 
-return addonName, addonTable
+return { addonName, addonTable }

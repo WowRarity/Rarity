@@ -1,6 +1,12 @@
 require("Tests.Globals")
 require("Tests.WOWAPI")
-require("Tests.RarityCoreSetup")
+
+-- Mimicking the WOW client's behavior doesn't work well with the current setup (improve later)
+local addonName, addonTable = unpack(require("Tests.RarityCoreSetup"))
+_G.RARITY_ADDON_NAME = addonName
+_G.RARITY_ADDON_TABLE = addonTable
+assert(_G.RARITY_ADDON_NAME == "Rarity", "Unexpected addon name")
+assert(_G.RARITY_ADDON_TABLE, "Uninitialized addon table")
 
 local specFiles = {
 	"Tests/test-database.spec.lua",
