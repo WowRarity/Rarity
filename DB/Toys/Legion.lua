@@ -3,6 +3,10 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_LEGION then
+	return {}
+end
+
 local legionToys = {
 	["Arcano-Shower"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,

@@ -3,23 +3,19 @@ local BlizzardTOC = require("Tests.TOC.BlizzardTOC")
 local RARITY_CORE_TOC = C_FileSystem.ReadFile("Rarity.toc")
 local RarityCoreTOC = BlizzardTOC:DecodeFileContents(RARITY_CORE_TOC)
 
--- It's not currently possible to load all TOC files in order (due to the various Libs/WOW APIs involved)
--- For now, simulate loading the item DB manually and ignore the distinct lack of robustness here
-local loadedDatabaseModules = {}
-for index, fileSystemPath in ipairs(RarityCoreTOC.Files) do
-	if fileSystemPath:find("^DB") then
-		local chunk = assert(loadfile(fileSystemPath))
-		local module = chunk and chunk(_G.RARITY_ADDON_NAME, _G.RARITY_ADDON_TABLE)
-		assert(type(module) == "table", format("Module %s didn't return a table value", fileSystemPath))
-		loadedDatabaseModules[fileSystemPath] = module
-	end
-end
-
-local function countItems(fileSystemPath)
-	local module = loadedDatabaseModules[fileSystemPath]
-	assert(module, format("Invalid database module: %s", fileSystemPath))
-	return table.count(module)
-end
+local expansionNamesByLevel = {
+	[LE_EXPANSION_CLASSIC] = "LE_EXPANSION_CLASSIC",
+	[LE_EXPANSION_BURNING_CRUSADE] = "LE_EXPANSION_BURNING_CRUSADE",
+	[LE_EXPANSION_WRATH_OF_THE_LICH_KING] = "LE_EXPANSION_WRATH_OF_THE_LICH_KING",
+	[LE_EXPANSION_CATACLYSM] = "LE_EXPANSION_CATACLYSM",
+	[LE_EXPANSION_MISTS_OF_PANDARIA] = "LE_EXPANSION_MISTS_OF_PANDARIA",
+	[LE_EXPANSION_WARLORDS_OF_DRAENOR] = "LE_EXPANSION_WARLORDS_OF_DRAENOR",
+	[LE_EXPANSION_LEGION] = "LE_EXPANSION_LEGION",
+	[LE_EXPANSION_BATTLE_FOR_AZEROTH] = "LE_EXPANSION_BATTLE_FOR_AZEROTH",
+	[LE_EXPANSION_SHADOWLANDS] = "LE_EXPANSION_SHADOWLANDS",
+	[LE_EXPANSION_DRAGONFLIGHT] = "LE_EXPANSION_DRAGONFLIGHT",
+	[LE_EXPANSION_WAR_WITHIN] = "LE_EXPANSION_WAR_WITHIN",
+}
 
 -- These could probably be obtained from the DBC files, but it's not worth the effort
 -- They aren't currently exported as shared constants (would increase memory usage)
@@ -33,14 +29,78 @@ local bonusRollCurrencies = {
 	SEAL_OF_WARTORN_FATE = 1580,
 }
 
-local function table_sum(values)
-	local sum = 0
+local currentExpansionLevel = LE_EXPANSION_LEVEL_CURRENT
+local function resetSimulatedExpansionLevel()
+	LE_EXPANSION_LEVEL_CURRENT = currentExpansionLevel
+end
 
-	for key, count in pairs(values) do
-		sum = sum + count
+-- It's not currently possible to load all TOC files in order (due to the various Libs/WOW APIs involved)
+-- For now, simulate loading the item DB manually and ignore the distinct lack of robustness here
+local loadedDatabaseModules = {}
+local function loadAddonFile(fileSystemPath)
+	-- Can't use dofile or require because the WOW client passes the addon table using varargs
+	local chunk = assert(loadfile(fileSystemPath))
+	local module = chunk and chunk(_G.RARITY_ADDON_NAME, _G.RARITY_ADDON_TABLE)
+	assert(type(module) == "table", format("Module %s didn't return a table value", fileSystemPath))
+
+	return module
+end
+
+for index, fileSystemPath in ipairs(RarityCoreTOC.Files) do
+	if fileSystemPath:find("^DB") then
+		local module = loadAddonFile(fileSystemPath)
+		loadedDatabaseModules[fileSystemPath] = module
 	end
+end
 
-	return sum
+local function registerCleanupHooksForCategory(categoryName)
+	before(function()
+		table.clear(Rarity.ItemDB[categoryName:lower()])
+	end)
+	after(function()
+		table.clear(Rarity.ItemDB[categoryName:lower()])
+		resetSimulatedExpansionLevel()
+	end)
+end
+
+local function assertModuleExportsNothingTo(moduleName, destination)
+	loadAddonFile(moduleName)
+
+	local expected = {}
+	local actual = table.keys(destination)
+
+	assertEquals(actual, expected)
+end
+
+local function assertModuleExportsEverythingTo(moduleName, destination)
+	loadAddonFile(moduleName)
+
+	local expected = {}
+	local actual = table.keys(destination)
+
+	local expected = table.keys(loadedDatabaseModules[moduleName])
+	local actual = table.keys(destination)
+
+	table.sort(actual)
+	table.sort(expected)
+
+	assertEquals(actual, expected)
+end
+
+local function expectNoExportsForExpansionGroup(modulePath, expansionLevel, group)
+	local expansionID = expansionNamesByLevel[expansionLevel]
+	it("should export NO items if the current expansion level is " .. expansionID, function()
+		LE_EXPANSION_LEVEL_CURRENT = expansionLevel
+		assertModuleExportsNothingTo(modulePath, group)
+	end)
+end
+
+local function expectAllExportsForExpansionGroup(modulePath, expansionLevel, group)
+	local expansionID = expansionNamesByLevel[expansionLevel]
+	it("should export ALL items if the current expansion level is " .. expansionID, function()
+		LE_EXPANSION_LEVEL_CURRENT = expansionLevel
+		assertModuleExportsEverythingTo(modulePath, group)
+	end)
 end
 
 describe("ItemDB", function()
@@ -88,93 +148,939 @@ describe("ItemDB", function()
 		end)
 	end)
 
-	local expectedItemCountsByExpansion = {
-		mounts = {
-			HolidayEvents_TheBurningCrusade = countItems("DB/Mounts/HolidayEvents_TheBurningCrusade.lua"),
-			HolidayEvents_WrathOfTheLichKing = countItems("DB/Mounts/HolidayEvents_WrathOfTheLichKing.lua"),
-			HolidayEvents_WarlordsOfDraenor = countItems("DB/Mounts/HolidayEvents_WarlordsOfDraenor.lua"),
-			HolidayEvents_Dragonflight = countItems("DB/Mounts/HolidayEvents_Dragonflight.lua"),
-
-			Classic = countItems("DB/Mounts/Classic.lua"),
-			TheBurningCrusade = countItems("DB/Mounts/TheBurningCrusade.lua"),
-			WrathOfTheLichKing = countItems("DB/Mounts/WrathOfTheLichKing.lua"),
-			Cataclysm = countItems("DB/Mounts/Cataclysm.lua"),
-			MistsOfPandaria = countItems("DB/Mounts/MistsOfPandaria.lua"),
-			WarlordsOfDraenor = countItems("DB/Mounts/WarlordsOfDraenor.lua"),
-			Legion = countItems("DB/Mounts/Legion.lua"),
-			BattleForAzeroth = countItems("DB/Mounts/BattleForAzeroth.lua"),
-			Shadowlands = countItems("DB/Mounts/Shadowlands.lua"),
-			Dragonflight = countItems("DB/Mounts/Dragonflight.lua"),
-			TheWarWithin = countItems("DB/Mounts/TheWarWithin.lua"),
-		},
-		pets = {
-			HolidayEvents_Classic = countItems("DB/Pets/HolidayEvents_Classic.lua"),
-			HolidayEvents_TheBurningCrusade = countItems("DB/Pets/HolidayEvents_TheBurningCrusade.lua"),
-			HolidayEvents_WrathOfTheLichKing = countItems("DB/Pets/HolidayEvents_WrathOfTheLichKing.lua"),
-			HolidayEvents_Cataclysm = countItems("DB/Pets/HolidayEvents_Cataclysm.lua"),
-			HolidayEvents_MistsOfPandaria = countItems("DB/Pets/HolidayEvents_MistsOfPandaria.lua"),
-			HolidayEvents_WarlordsOfDraenor = countItems("DB/Pets/HolidayEvents_WarlordsOfDraenor.lua"),
-			HolidayEvents_Dragonflight = countItems("DB/Pets/HolidayEvents_Dragonflight.lua"),
-			HolidayEvents_TheWarWithin = countItems("DB/Pets/HolidayEvents_TheWarWithin.lua"),
-
-			Classic = countItems("DB/Pets/Classic.lua"),
-			TheBurningCrusade = countItems("DB/Pets/TheBurningCrusade.lua"),
-			WrathOfTheLichKing = countItems("DB/Pets/WrathOfTheLichKing.lua"),
-			Cataclysm = countItems("DB/Pets/Cataclysm.lua"),
-			MistsOfPandaria = countItems("DB/Pets/MistsOfPandaria.lua"),
-			WarlordsOfDraenor = countItems("DB/Pets/WarlordsOfDraenor.lua"),
-			Legion = countItems("DB/Pets/Legion.lua"),
-			BattleForAzeroth = countItems("DB/Pets/BattleForAzeroth.lua"),
-			Shadowlands = countItems("DB/Pets/Shadowlands.lua"),
-			Dragonflight = countItems("DB/Pets/Dragonflight.lua"),
-			TheWarWithin = countItems("DB/Pets/TheWarWithin.lua"),
-		},
-		toys = {
-			HolidayEvents_TheBurningCrusade = countItems("DB/Toys/HolidayEvents_TheBurningCrusade.lua"),
-			HolidayEvents_WrathOfTheLichKing = countItems("DB/Toys/HolidayEvents_WrathOfTheLichKing.lua"),
-			HolidayEvents_Cataclysm = countItems("DB/Toys/HolidayEvents_Cataclysm.lua"),
-			HolidayEvents_MistsOfPandaria = countItems("DB/Toys/HolidayEvents_MistsOfPandaria.lua"),
-			HolidayEvents_WarlordsOfDraenor = countItems("DB/Toys/HolidayEvents_WarlordsOfDraenor.lua"),
-			HolidayEvents_Legion = countItems("DB/Toys/HolidayEvents_Legion.lua"),
-			HolidayEvents_BattleForAzeroth = countItems("DB/Toys/HolidayEvents_BattleForAzeroth.lua"),
-			HolidayEvents_Shadowlands = countItems("DB/Toys/HolidayEvents_Shadowlands.lua"),
-			HolidayEvents_Dragonflight = countItems("DB/Toys/HolidayEvents_Dragonflight.lua"),
-
-			Classic = countItems("DB/Toys/Classic.lua"),
-			TheBurningCrusade = countItems("DB/Toys/TheBurningCrusade.lua"),
-			WrathOfTheLichKing = countItems("DB/Toys/WrathOfTheLichKing.lua"),
-			Cataclysm = countItems("DB/Toys/Cataclysm.lua"),
-			MistsOfPandaria = countItems("DB/Toys/MistsOfPandaria.lua"),
-			WarlordsOfDraenor = countItems("DB/Toys/WarlordsOfDraenor.lua"),
-			Legion = countItems("DB/Toys/Legion.lua"),
-			BattleForAzeroth = countItems("DB/Toys/BattleForAzeroth.lua"),
-			Shadowlands = countItems("DB/Toys/Shadowlands.lua"),
-			Dragonflight = countItems("DB/Toys/Dragonflight.lua"),
-			TheWarWithin = countItems("DB/Toys/TheWarWithin.lua"),
-		},
-	}
-	local expectedItemCounts = {
-		-- The group name is an entry of its own (not sure if that can safely be changed now)
-		mounts = table_sum(expectedItemCountsByExpansion.mounts) + 1,
-		pets = table_sum(expectedItemCountsByExpansion.pets) + 1,
-		toys = table_sum(expectedItemCountsByExpansion.toys) + 1,
-	}
-
 	describe("Mounts", function()
-		it("should register all recognized items by default", function()
-			assertEquals(table.count(Rarity.ItemDB.mounts), expectedItemCounts.mounts)
+		local caseSensitiveCategoryName = "Mounts"
+		local lowerCaseCategoryName = caseSensitiveCategoryName:lower()
+		local group = Rarity.ItemDB[lowerCaseCategoryName]
+
+		describe("Classic", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/Classic.lua", caseSensitiveCategoryName)
+
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("TheBurningCrusade", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/TheBurningCrusade.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_TheBurningCrusade", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_TheBurningCrusade.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("WrathOfTheLichKing", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/WrathOfTheLichKing.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_WrathOfTheLichKing", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_WrathOfTheLichKing.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("Cataclysm", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/Cataclysm.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("MistsOfPandaria", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/MistsOfPandaria.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("WarlordsOfDraenor", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/WarlordsOfDraenor.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_WarlordsOfDraenor", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_WarlordsOfDraenor.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("Legion", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/Legion.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("BattleForAzeroth", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/BattleForAzeroth.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("Shadowlands", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/Shadowlands.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("Dragonflight", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/Dragonflight.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_Dragonflight", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_Dragonflight.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("TheWarWithin", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/TheWarWithin.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
 		end)
 	end)
 
 	describe("Pets", function()
-		it("should register all recognized items by default", function()
-			assertEquals(table.count(Rarity.ItemDB.pets), expectedItemCounts.pets)
+		local caseSensitiveCategoryName = "Pets"
+		local lowerCaseCategoryName = caseSensitiveCategoryName:lower()
+		local group = Rarity.ItemDB[lowerCaseCategoryName]
+
+		describe("Classic", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/Classic.lua", caseSensitiveCategoryName)
+
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_Classic", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_Classic.lua", caseSensitiveCategoryName)
+
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("TheBurningCrusade", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/TheBurningCrusade.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_TheBurningCrusade", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_TheBurningCrusade.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("WrathOfTheLichKing", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/WrathOfTheLichKing.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_WrathOfTheLichKing", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_WrathOfTheLichKing.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("Cataclysm", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/Cataclysm.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_Cataclysm", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_Cataclysm.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("MistsOfPandaria", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/MistsOfPandaria.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_MistsOfPandaria", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_MistsOfPandaria.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("WarlordsOfDraenor", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/WarlordsOfDraenor.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_WarlordsOfDraenor", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_WarlordsOfDraenor.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("Legion", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/Legion.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("BattleForAzeroth", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/BattleForAzeroth.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("Shadowlands", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/Shadowlands.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("Dragonflight", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/Dragonflight.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_Dragonflight", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_Dragonflight.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("TheWarWithin", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/TheWarWithin.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_TheWarWithin", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_TheWarWithin.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
 		end)
 	end)
 
 	describe("Toys", function()
-		it("should register all recognized items by default", function()
-			assertEquals(table.count(Rarity.ItemDB.toys), expectedItemCounts.toys)
+		local caseSensitiveCategoryName = "Toys"
+		local lowerCaseCategoryName = caseSensitiveCategoryName:lower()
+		local group = Rarity.ItemDB[lowerCaseCategoryName]
+
+		describe("Classic", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/Classic.lua", caseSensitiveCategoryName)
+
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("TheBurningCrusade", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/TheBurningCrusade.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_TheBurningCrusade", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_TheBurningCrusade.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("WrathOfTheLichKing", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/WrathOfTheLichKing.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_WrathOfTheLichKing", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_WrathOfTheLichKing.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("Cataclysm", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/Cataclysm.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_Cataclysm", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_Cataclysm.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("MistsOfPandaria", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/MistsOfPandaria.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_MistsOfPandaria", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_MistsOfPandaria.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("WarlordsOfDraenor", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/WarlordsOfDraenor.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_WarlordsOfDraenor", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_WarlordsOfDraenor.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("Legion", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/Legion.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_Legion", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_Legion.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("BattleForAzeroth", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/BattleForAzeroth.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_BattleForAzeroth", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_BattleForAzeroth.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("Shadowlands", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/Shadowlands.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_Shadowlands", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_Shadowlands.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("Dragonflight", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/Dragonflight.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("HolidayEvents_Dragonflight", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/HolidayEvents_Dragonflight.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
+		end)
+
+		describe("TheWarWithin", function()
+			registerCleanupHooksForCategory(caseSensitiveCategoryName)
+			local modulePath = format("DB/%s/TheWarWithin.lua", caseSensitiveCategoryName)
+
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CLASSIC, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BURNING_CRUSADE, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WRATH_OF_THE_LICH_KING, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_CATACLYSM, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_MISTS_OF_PANDARIA, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_WARLORDS_OF_DRAENOR, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_LEGION, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_BATTLE_FOR_AZEROTH, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_SHADOWLANDS, group)
+			expectNoExportsForExpansionGroup(modulePath, LE_EXPANSION_DRAGONFLIGHT, group)
+			expectAllExportsForExpansionGroup(modulePath, LE_EXPANSION_WAR_WITHIN, group)
 		end)
 	end)
 end)

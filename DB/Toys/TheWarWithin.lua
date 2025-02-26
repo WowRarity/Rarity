@@ -3,6 +3,10 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_WAR_WITHIN then
+	return {}
+end
+
 local twwToysAndItems = {
 	-- 11.0 items and toys
 	["Crackling Shard"] = {

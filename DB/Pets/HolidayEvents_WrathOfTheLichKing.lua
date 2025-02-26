@@ -3,6 +3,10 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_WRATH_OF_THE_LICH_KING then
+	return {}
+end
+
 local holidayEventPetsWrath = {
 	["Ice Chip"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,

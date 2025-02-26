@@ -3,6 +3,10 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_SHADOWLANDS then
+	return {}
+end
+
 local holidayEventToysShadowlands = {
 	["Rockin' Rollin' Racer Customizer 19.9.3"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
