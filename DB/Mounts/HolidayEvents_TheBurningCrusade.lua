@@ -3,35 +3,7 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
-local holidayEventMounts = {
-	["Big Love Rocket"] = {
-		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
-		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.USE,
-		name = L["Big Love Rocket"],
-		spellId = 71342,
-		itemId = 50250,
-		items = { 54537 },
-		chance = 3333,
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.LOVE_IS_IN_THE_AIR,
-		groupSize = 5,
-		equalOdds = true,
-		sourceText = L["Can be contained in Heart-Shaped Box, rewarded for defeating the World Event Dungeon during Love is in the Air."],
-		lockDungeonId = 288,
-		coords = { { m = 310, x = 40.8, y = 52.6, i = true } },
-	},
-	["Minion of Grumpus"] = {
-		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
-		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.USE,
-		name = L["Minion of Grumpus"],
-		spellId = 191314,
-		itemId = 128671,
-		items = { 128670 },
-		chance = 100,
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
-		coords = { { m = CONSTANTS.UIMAPIDS.LUNARFALL_GARRISON }, { m = CONSTANTS.UIMAPIDS.FROSTWALL_GARRISON } },
-	},
+local holidayEventMountsTBC = {
 	["Great Brewfest Kodo"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
@@ -80,21 +52,6 @@ local holidayEventMounts = {
 		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.HALLOWS_END,
 		coords = { { m = 435, i = true } },
 	},
-	["Noble Flying Carpet"] = {
-		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
-		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.USE,
-		name = L["Noble Flying Carpet"],
-		spellId = 432455,
-		itemId = 212599,
-		items = { 216874 },
-		chance = 100, -- Might be higher after the adjustment? (Needs more data)
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.NOBLEGARDEN,
-		coords = {
-			{ m = CONSTANTS.UIMAPIDS.DUROTAR },
-			{ m = CONSTANTS.UIMAPIDS.ELWYNN_FOREST },
-		},
-	},
 }
 
-Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, holidayEventMounts)
+Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, holidayEventMountsTBC)
