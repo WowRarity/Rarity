@@ -1,7 +1,9 @@
 local BlizzardTOC = {}
 
 function BlizzardTOC:DecodeFileContents(fileContents)
-	local toc = {}
+	local toc = {
+		Files = {},
+	}
 
 	local lines = string.explode(fileContents, "\n")
 	for _, line in ipairs(lines) do
@@ -14,6 +16,8 @@ function BlizzardTOC:DecodeFileContents(fileContents)
 			or tonumber(line:match("^## X%-Curse%-Project%-ID: (%d+)"))
 		toc["Dependencies"] = toc["Dependencies"] or line:match("^## Dependencies: (.+)")
 		toc["X-Part-Of"] = toc["X-Part-Of"] or line:match("^## X%-%Part%-Of: (.+)")
+
+		table.insert(toc.Files, line:match("^(.+%.lua)$"))
 	end
 
 	toc["Interface"] = toc["Interface"]:gsub(",", "")
