@@ -17,7 +17,11 @@ function BlizzardTOC:DecodeFileContents(fileContents)
 		toc["Dependencies"] = toc["Dependencies"] or line:match("^## Dependencies: (.+)")
 		toc["X-Part-Of"] = toc["X-Part-Of"] or line:match("^## X%-%Part%-Of: (.+)")
 
-		table.insert(toc.Files, line:match("^(.+%.lua)$"))
+		local filePath = line:match("^(.+%.lua)$")
+		if filePath then
+			filePath = filePath:gsub("%" .. path.win32.separator, "%" .. path.posix.separator)
+			table.insert(toc.Files, filePath)
+		end
 	end
 
 	toc["Interface"] = toc["Interface"]:gsub(",", "")
