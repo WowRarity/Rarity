@@ -422,3 +422,4 @@ local legionMounts = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, legionMounts)
+return legionMounts

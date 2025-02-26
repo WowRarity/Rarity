@@ -84,3 +84,4 @@ local tbcToys = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, tbcToys)
+return tbcToys

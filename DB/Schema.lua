@@ -115,3 +115,4 @@ function DatabaseSchema:IsValidMount(entry)
 end
 
 Rarity.DatabaseSchema = DatabaseSchema
+return DatabaseSchema

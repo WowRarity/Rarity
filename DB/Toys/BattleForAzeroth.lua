@@ -754,3 +754,4 @@ local bfaToys = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, bfaToys)
+return bfaToys

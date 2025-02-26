@@ -62,3 +62,4 @@ local cataclysmPets = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, cataclysmPets)
+return cataclysmPets

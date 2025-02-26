@@ -2306,3 +2306,4 @@ local bfaPets = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, bfaPets)
+return bfaPets

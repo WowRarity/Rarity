@@ -803,3 +803,4 @@ local wodPets = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, wodPets)
+return wodPets

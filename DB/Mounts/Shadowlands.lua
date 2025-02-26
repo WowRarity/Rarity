@@ -639,3 +639,4 @@ local shadowlandsMounts = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)
+return shadowlandsMounts

@@ -1253,3 +1253,4 @@ local dragonflightPets = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, dragonflightPets)
+return dragonflightPets

@@ -542,3 +542,4 @@ local shadowlandsToys = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, shadowlandsToys)
+return shadowlandsToys

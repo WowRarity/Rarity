@@ -109,3 +109,4 @@ local wodToys = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, wodToys)
+return wodToys

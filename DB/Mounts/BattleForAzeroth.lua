@@ -816,3 +816,4 @@ local bfaMounts = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, bfaMounts)
+return bfaMounts

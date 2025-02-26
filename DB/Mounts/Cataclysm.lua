@@ -281,3 +281,4 @@ local cataclysmMounts = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, cataclysmMounts)
+return cataclysmMounts

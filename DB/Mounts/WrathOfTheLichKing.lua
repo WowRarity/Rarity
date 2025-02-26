@@ -245,3 +245,4 @@ local wotlkMounts = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, wotlkMounts)
+return wotlkMounts

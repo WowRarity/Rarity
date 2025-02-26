@@ -9,10 +9,16 @@ local loadedDatabaseModules = {}
 for index, fileSystemPath in ipairs(RarityCoreTOC.Files) do
 	if fileSystemPath:find("^DB") then
 		local chunk = assert(loadfile(fileSystemPath))
-		-- All modules should return a table (fix later)
-		local module = chunk and chunk(_G.RARITY_ADDON_NAME, _G.RARITY_ADDON_TABLE) or {}
+		local module = chunk and chunk(_G.RARITY_ADDON_NAME, _G.RARITY_ADDON_TABLE)
+		assert(type(module) == "table", format("Module %s didn't return a table value", fileSystemPath))
 		loadedDatabaseModules[fileSystemPath] = module
 	end
+end
+
+local function countItems(fileSystemPath)
+	local module = loadedDatabaseModules[fileSystemPath]
+	assert(module, format("Invalid database module: %s", fileSystemPath))
+	return table.count(module)
 end
 
 -- These could probably be obtained from the DBC files, but it's not worth the effort
@@ -82,62 +88,92 @@ describe("ItemDB", function()
 		end)
 	end)
 
-	describe("Mounts", function()
-		-- These should be derived automatically, but not yet (DNT the DB to avoid merge conflicts)
-		local expectedItemCountsByExpansion = {
-			mounts = {
-				["DB\\Mounts\\HolidayEvents.lua"] = 6,
-				["DB\\Mounts\\Classic.lua"] = 2,
-				["DB\\Mounts\\TheBurningCrusade.lua"] = 4,
-				["DB\\Mounts\\WrathOfTheLichKing.lua"] = 11,
-				["DB\\Mounts\\Cataclysm.lua"] = 13,
-				["DB\\Mounts\\MistsOfPandaria.lua"] = 13,
-				["DB\\Mounts\\WarlordsOfDraenor.lua"] = 16,
-				["DB\\Mounts\\Legion.lua"] = 27,
-				["DB\\Mounts\\BattleForAzeroth.lua"] = 46,
-				["DB\\Mounts\\Shadowlands.lua"] = 44,
-				["DB\\Mounts\\Dragonflight.lua"] = 23,
-				["DB\\Mounts\\TheWarWithin.lua"] = 7,
-			},
-			pets = {
-				["DB\\Pets\\HolidayEvents.lua"] = 18,
-				["DB\\Pets\\Classic.lua"] = 8,
-				["DB\\Pets\\TheBurningCrusade.lua"] = 8,
-				["DB\\Pets\\WrathOfTheLichKing.lua"] = 4,
-				["DB\\Pets\\Cataclysm.lua"] = 4,
-				["DB\\Pets\\MistsOfPandaria.lua"] = 62,
-				["DB\\Pets\\WarlordsOfDraenor.lua"] = 41,
-				["DB\\Pets\\Legion.lua"] = 57,
-				["DB\\Pets\\BattleForAzeroth.lua"] = 132,
-				["DB\\Pets\\Shadowlands.lua"] = 63,
-				["DB\\Pets\\Dragonflight.lua"] = 35,
-				["DB\\Pets\\TheWarWithin.lua"] = 4,
-			},
-			toys = {
-				["DB\\Toys\\HolidayEvents.lua"] = 35,
-				["DB\\Toys\\Classic.lua"] = 1,
-				["DB\\Toys\\TheBurningCrusade.lua"] = 5,
-				["DB\\Toys\\WrathOfTheLichKing.lua"] = 4,
-				["DB\\Toys\\Cataclysm.lua"] = 1,
-				["DB\\Toys\\MistsOfPandaria.lua"] = 20,
-				["DB\\Toys\\WarlordsOfDraenor.lua"] = 6,
-				["DB\\Toys\\Legion.lua"] = 37,
-				["DB\\Toys\\BattleForAzeroth.lua"] = 50,
-				["DB\\Toys\\Shadowlands.lua"] = 40,
-				["DB\\Toys\\Dragonflight.lua"] = 20,
-				["DB\\Toys\\TheWarWithin.lua"] = 4,
-			},
-		}
-		local expectedItemCounts = {
-			-- The group name is an entry of its own (not sure if that can safely be changed now)
-			mounts = table_sum(expectedItemCountsByExpansion.mounts) + 1,
-			pets = table_sum(expectedItemCountsByExpansion.pets) + 1,
-			toys = table_sum(expectedItemCountsByExpansion.toys) + 1,
-		}
+	local expectedItemCountsByExpansion = {
+		mounts = {
+			HolidayEvents_TheBurningCrusade = countItems("DB/Mounts/HolidayEvents_TheBurningCrusade.lua"),
+			HolidayEvents_WrathOfTheLichKing = countItems("DB/Mounts/HolidayEvents_WrathOfTheLichKing.lua"),
+			HolidayEvents_WarlordsOfDraenor = countItems("DB/Mounts/HolidayEvents_WarlordsOfDraenor.lua"),
+			HolidayEvents_Dragonflight = countItems("DB/Mounts/HolidayEvents_Dragonflight.lua"),
 
+			Classic = countItems("DB/Mounts/Classic.lua"),
+			TheBurningCrusade = countItems("DB/Mounts/TheBurningCrusade.lua"),
+			WrathOfTheLichKing = countItems("DB/Mounts/WrathOfTheLichKing.lua"),
+			Cataclysm = countItems("DB/Mounts/Cataclysm.lua"),
+			MistsOfPandaria = countItems("DB/Mounts/MistsOfPandaria.lua"),
+			WarlordsOfDraenor = countItems("DB/Mounts/WarlordsOfDraenor.lua"),
+			Legion = countItems("DB/Mounts/Legion.lua"),
+			BattleForAzeroth = countItems("DB/Mounts/BattleForAzeroth.lua"),
+			Shadowlands = countItems("DB/Mounts/Shadowlands.lua"),
+			Dragonflight = countItems("DB/Mounts/Dragonflight.lua"),
+			TheWarWithin = countItems("DB/Mounts/TheWarWithin.lua"),
+		},
+		pets = {
+			HolidayEvents_Classic = countItems("DB/Pets/HolidayEvents_Classic.lua"),
+			HolidayEvents_TheBurningCrusade = countItems("DB/Pets/HolidayEvents_TheBurningCrusade.lua"),
+			HolidayEvents_WrathOfTheLichKing = countItems("DB/Pets/HolidayEvents_WrathOfTheLichKing.lua"),
+			HolidayEvents_Cataclysm = countItems("DB/Pets/HolidayEvents_Cataclysm.lua"),
+			HolidayEvents_MistsOfPandaria = countItems("DB/Pets/HolidayEvents_MistsOfPandaria.lua"),
+			HolidayEvents_WarlordsOfDraenor = countItems("DB/Pets/HolidayEvents_WarlordsOfDraenor.lua"),
+			HolidayEvents_Dragonflight = countItems("DB/Pets/HolidayEvents_Dragonflight.lua"),
+			HolidayEvents_TheWarWithin = countItems("DB/Pets/HolidayEvents_TheWarWithin.lua"),
+
+			Classic = countItems("DB/Pets/Classic.lua"),
+			TheBurningCrusade = countItems("DB/Pets/TheBurningCrusade.lua"),
+			WrathOfTheLichKing = countItems("DB/Pets/WrathOfTheLichKing.lua"),
+			Cataclysm = countItems("DB/Pets/Cataclysm.lua"),
+			MistsOfPandaria = countItems("DB/Pets/MistsOfPandaria.lua"),
+			WarlordsOfDraenor = countItems("DB/Pets/WarlordsOfDraenor.lua"),
+			Legion = countItems("DB/Pets/Legion.lua"),
+			BattleForAzeroth = countItems("DB/Pets/BattleForAzeroth.lua"),
+			Shadowlands = countItems("DB/Pets/Shadowlands.lua"),
+			Dragonflight = countItems("DB/Pets/Dragonflight.lua"),
+			TheWarWithin = countItems("DB/Pets/TheWarWithin.lua"),
+		},
+		toys = {
+			HolidayEvents_TheBurningCrusade = countItems("DB/Toys/HolidayEvents_TheBurningCrusade.lua"),
+			HolidayEvents_WrathOfTheLichKing = countItems("DB/Toys/HolidayEvents_WrathOfTheLichKing.lua"),
+			HolidayEvents_Cataclysm = countItems("DB/Toys/HolidayEvents_Cataclysm.lua"),
+			HolidayEvents_MistsOfPandaria = countItems("DB/Toys/HolidayEvents_MistsOfPandaria.lua"),
+			HolidayEvents_WarlordsOfDraenor = countItems("DB/Toys/HolidayEvents_WarlordsOfDraenor.lua"),
+			HolidayEvents_Legion = countItems("DB/Toys/HolidayEvents_Legion.lua"),
+			HolidayEvents_BattleForAzeroth = countItems("DB/Toys/HolidayEvents_BattleForAzeroth.lua"),
+			HolidayEvents_Shadowlands = countItems("DB/Toys/HolidayEvents_Shadowlands.lua"),
+			HolidayEvents_Dragonflight = countItems("DB/Toys/HolidayEvents_Dragonflight.lua"),
+
+			Classic = countItems("DB/Toys/Classic.lua"),
+			TheBurningCrusade = countItems("DB/Toys/TheBurningCrusade.lua"),
+			WrathOfTheLichKing = countItems("DB/Toys/WrathOfTheLichKing.lua"),
+			Cataclysm = countItems("DB/Toys/Cataclysm.lua"),
+			MistsOfPandaria = countItems("DB/Toys/MistsOfPandaria.lua"),
+			WarlordsOfDraenor = countItems("DB/Toys/WarlordsOfDraenor.lua"),
+			Legion = countItems("DB/Toys/Legion.lua"),
+			BattleForAzeroth = countItems("DB/Toys/BattleForAzeroth.lua"),
+			Shadowlands = countItems("DB/Toys/Shadowlands.lua"),
+			Dragonflight = countItems("DB/Toys/Dragonflight.lua"),
+			TheWarWithin = countItems("DB/Toys/TheWarWithin.lua"),
+		},
+	}
+	local expectedItemCounts = {
+		-- The group name is an entry of its own (not sure if that can safely be changed now)
+		mounts = table_sum(expectedItemCountsByExpansion.mounts) + 1,
+		pets = table_sum(expectedItemCountsByExpansion.pets) + 1,
+		toys = table_sum(expectedItemCountsByExpansion.toys) + 1,
+	}
+
+	describe("Mounts", function()
 		it("should register all recognized items by default", function()
 			assertEquals(table.count(Rarity.ItemDB.mounts), expectedItemCounts.mounts)
+		end)
+	end)
+
+	describe("Pets", function()
+		it("should register all recognized items by default", function()
 			assertEquals(table.count(Rarity.ItemDB.pets), expectedItemCounts.pets)
+		end)
+	end)
+
+	describe("Toys", function()
+		it("should register all recognized items by default", function()
 			assertEquals(table.count(Rarity.ItemDB.toys), expectedItemCounts.toys)
 		end)
 	end)

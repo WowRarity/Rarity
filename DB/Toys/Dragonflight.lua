@@ -453,3 +453,4 @@ local dragonflightToys = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, dragonflightToys)
+return dragonflightToys

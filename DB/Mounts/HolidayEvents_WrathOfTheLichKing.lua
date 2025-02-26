@@ -23,3 +23,4 @@ local holidayEventMountsWrath = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, holidayEventMountsWrath)
+return holidayEventMountsWrath

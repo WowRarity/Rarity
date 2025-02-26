@@ -59,3 +59,4 @@ local holidayEventToysShadowlands = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, holidayEventToysShadowlands)
+return holidayEventToysShadowlands

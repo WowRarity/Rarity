@@ -74,3 +74,4 @@ local tbcMounts = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, tbcMounts)
+return tbcMounts

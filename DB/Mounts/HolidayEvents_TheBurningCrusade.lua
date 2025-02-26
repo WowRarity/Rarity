@@ -55,3 +55,4 @@ local holidayEventMountsTBC = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, holidayEventMountsTBC)
+return holidayEventMountsTBC

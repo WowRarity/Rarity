@@ -491,3 +491,4 @@ local legionToys = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, legionToys)
+return legionToys

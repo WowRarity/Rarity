@@ -17,3 +17,4 @@ function ItemDB.MergeItems(sourceTable, items)
 end
 
 Rarity.ItemDB = ItemDB
+return ItemDB

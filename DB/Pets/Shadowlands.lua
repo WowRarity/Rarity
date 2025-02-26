@@ -940,3 +940,4 @@ local shadowlandsPets = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)
+return shadowlandsPets

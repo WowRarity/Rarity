@@ -557,3 +557,4 @@ local wodMounts = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, wodMounts)
+return wodMounts

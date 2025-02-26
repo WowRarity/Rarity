@@ -858,3 +858,4 @@ local mopPets = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, mopPets)
+return mopPets

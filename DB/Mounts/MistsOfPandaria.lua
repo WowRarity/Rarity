@@ -268,3 +268,4 @@ local mopMounts = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, mopMounts)
+return mopMounts
