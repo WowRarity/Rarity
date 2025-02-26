@@ -39,6 +39,10 @@ describe("TOC", function()
 				assertEquals(toc["Title"], "AddonName")
 				assertEquals(toc["Author"], "Anonymous")
 				assertEquals(toc["Interface"], { 12345 })
+
+				assertEquals(table.count(toc["Files"]), 2)
+				assertEquals(toc["Files"][1], "Locales.lua")
+				assertEquals(toc["Files"][2], "Relative/Windows/Path/File.lua")
 			end)
 
 			it("should be able to load valid TOC files using multiple interface versions", function()

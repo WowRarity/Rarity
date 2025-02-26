@@ -1,5 +1,5 @@
-local SharedConstants = loadfile("DB/SharedConstants.lua")("Rarity", {})
-local HolidayEvents = loadfile("Core/HolidayEvents.lua")("Rarity", {})
+local SharedConstants = loadfile("DB/SharedConstants.lua")(_G.RARITY_ADDON_NAME, _G.RARITY_ADDON_TABLE)
+local HolidayEvents = loadfile("Core/HolidayEvents.lua")(_G.RARITY_ADDON_NAME, _G.RARITY_ADDON_TABLE)
 
 describe("HolidayEvents", function()
 	describe("IsItemAvailableToday", function()

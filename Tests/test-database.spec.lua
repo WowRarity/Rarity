@@ -1,4 +1,4 @@
-local Database = loadfile("Core/Database.lua")("Rarity", {})
+local Database = loadfile("Core/Database.lua")(_G.RARITY_ADDON_NAME, _G.RARITY_ADDON_TABLE)
 
 local ITEM_THAT_REQUIRES_ALLIANCE = {
 	requiresAlliance = true,
