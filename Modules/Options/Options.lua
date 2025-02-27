@@ -60,20 +60,32 @@ local TIP_HIDDEN = "TIP_HIDDEN"
 
 -- Classes
 local classes = {
-	["DEATHKNIGHT"] = "|c" .. RAID_CLASS_COLORS["DEATHKNIGHT"]["colorStr"] .. L["Death Knight"] .. "|r",
-	["DEMONHUNTER"] = "|c" .. RAID_CLASS_COLORS["DEMONHUNTER"]["colorStr"] .. L["Demon Hunter"] .. "|r",
 	["DRUID"] = "|c" .. RAID_CLASS_COLORS["DRUID"]["colorStr"] .. L["Druid"] .. "|r",
 	["HUNTER"] = "|c" .. RAID_CLASS_COLORS["HUNTER"]["colorStr"] .. L["Hunter"] .. "|r",
 	["MAGE"] = "|c" .. RAID_CLASS_COLORS["MAGE"]["colorStr"] .. L["Mage"] .. "|r",
-	["MONK"] = "|c" .. RAID_CLASS_COLORS["MONK"]["colorStr"] .. L["Monk"] .. "|r",
 	["PALADIN"] = "|c" .. RAID_CLASS_COLORS["PALADIN"]["colorStr"] .. L["Paladin"] .. "|r",
 	["PRIEST"] = "|c" .. RAID_CLASS_COLORS["PRIEST"]["colorStr"] .. L["Priest"] .. "|r",
 	["ROGUE"] = "|c" .. RAID_CLASS_COLORS["ROGUE"]["colorStr"] .. L["Rogue"] .. "|r",
 	["SHAMAN"] = "|c" .. RAID_CLASS_COLORS["SHAMAN"]["colorStr"] .. L["Shaman"] .. "|r",
 	["WARLOCK"] = "|c" .. RAID_CLASS_COLORS["WARLOCK"]["colorStr"] .. L["Warlock"] .. "|r",
 	["WARRIOR"] = "|c" .. RAID_CLASS_COLORS["WARRIOR"]["colorStr"] .. L["Warrior"] .. "|r",
-	["EVOKER"] = "|c" .. RAID_CLASS_COLORS["EVOKER"]["colorStr"] .. L["Evoker"] .. "|r",
 }
+
+if LE_EXPANSION_LEVEL_CURRENT >= LE_EXPANSION_WRATH_OF_THE_LICH_KING then
+	classes["DEATHKNIGHT"] = "|c" .. RAID_CLASS_COLORS["DEATHKNIGHT"]["colorStr"] .. L["Death Knight"] .. "|r"
+end
+
+if LE_EXPANSION_LEVEL_CURRENT >= LE_EXPANSION_DRAGONFLIGHT then
+	classes["EVOKER"] = "|c" .. RAID_CLASS_COLORS["EVOKER"]["colorStr"] .. L["Evoker"] .. "|r"
+end
+
+if LE_EXPANSION_LEVEL_CURRENT >= LE_EXPANSION_LEGION then
+	classes["DEMONHUNTER"] = "|c" .. RAID_CLASS_COLORS["DEMONHUNTER"]["colorStr"] .. L["Demon Hunter"] .. "|r"
+end
+
+if LE_EXPANSION_LEVEL_CURRENT >= LE_EXPANSION_MISTS_OF_PANDARIA then
+	classes["MONK"] = "|c" .. RAID_CLASS_COLORS["MONK"]["colorStr"] .. L["Monk"] .. "|r"
+end
 
 local red = Rarity.Enum.Colors.Red
 local blue = Rarity.Enum.Colors.Blue

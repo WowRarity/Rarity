@@ -3,6 +3,10 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_LEGION then
+	return {}
+end
+
 local legionPets = {
 	-- 7.0
 	["Eye of Inquisition"] = {
@@ -852,3 +856,4 @@ local legionPets = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, legionPets)
+return legionPets

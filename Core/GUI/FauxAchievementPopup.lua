@@ -100,10 +100,15 @@ local function RarityAchievementAlertFrame_SetUp(frame, itemId, attempts)
 	return true
 end
 
+local FUNCTION_NEVER = function()
+	return false
+end
+local IsInPetBattle = C_PetBattles and C_PetBattles.IsInBattle or FUNCTION_NEVER
+
 local RarityAchievementAlertSystem =
 	AlertFrame:AddQueuedAlertFrameSubSystem("AchievementAlertFrameTemplate", RarityAchievementAlertFrame_SetUp, 2, 6)
 RarityAchievementAlertSystem:SetCanShowMoreConditionFunc(function()
-	return not C_PetBattles.IsInBattle()
+	return not IsInPetBattle()
 end)
 
 local Output = Rarity.Output

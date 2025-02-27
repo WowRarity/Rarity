@@ -3,6 +3,10 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_DRAGONFLIGHT then
+	return {}
+end
+
 local dragonflightMounts = {
 	-- 10.0 mounts
 	["Reins of the Liberated Slyvern"] = {
@@ -335,3 +339,4 @@ local dragonflightMounts = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, dragonflightMounts)
+return dragonflightMounts

@@ -3,6 +3,10 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_DRAGONFLIGHT then
+	return {}
+end
+
 local dragonflightPets = {
 	["Ohuna Companion"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT,
@@ -1253,3 +1257,4 @@ local dragonflightPets = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, dragonflightPets)
+return dragonflightPets

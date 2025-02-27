@@ -3,6 +3,10 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_BURNING_CRUSADE then
+	return {}
+end
+
 local tbcPets = {
 	-- 2.x
 	["Azure Whelpling"] = {
@@ -119,3 +123,4 @@ local tbcPets = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, tbcPets)
+return tbcPets

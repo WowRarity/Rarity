@@ -3,6 +3,10 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_SHADOWLANDS then
+	return {}
+end
+
 local shadowlandsPets = {
 	-- 9.0 Pets
 	["Feasting Larva"] = {
@@ -940,3 +944,4 @@ local shadowlandsPets = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, shadowlandsPets)
+return shadowlandsPets

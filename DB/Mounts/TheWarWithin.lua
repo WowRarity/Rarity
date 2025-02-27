@@ -3,6 +3,10 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_WAR_WITHIN then
+	return {}
+end
+
 local twwMounts = {
 	-- 11.0 mounts
 	["Reins of the Sureki Skyrazor"] = {
@@ -91,3 +95,4 @@ local twwMounts = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, twwMounts)
+return twwMounts

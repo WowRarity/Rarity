@@ -182,3 +182,4 @@ local classicPets = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, classicPets)
+return classicPets

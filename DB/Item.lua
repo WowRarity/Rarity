@@ -265,3 +265,4 @@ function Rarity:IsValidWaypoint(waypointData)
 end
 
 Rarity.Item = Item
+return Item

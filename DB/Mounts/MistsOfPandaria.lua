@@ -3,6 +3,10 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_MISTS_OF_PANDARIA then
+	return {}
+end
+
 local mopMounts = {
 	-- 5.x
 	["Clutch of Ji-Kun"] = {
@@ -268,3 +272,4 @@ local mopMounts = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, mopMounts)
+return mopMounts

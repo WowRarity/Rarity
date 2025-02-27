@@ -3,6 +3,10 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_LEGION then
+	return {}
+end
+
 local legionMounts = {
 	-- 7.0
 	["Cloudwing Hippogryph"] = {
@@ -422,3 +426,4 @@ local legionMounts = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, legionMounts)
+return legionMounts

@@ -279,3 +279,5 @@ R.opennodes = {
 	[L["Dreamseed Cache"]] = true,
 	[L["Awakened Cache"]] = true,
 }
+
+return { R.coins, R.fishnodes, R.miningnodes, R.opennodes }

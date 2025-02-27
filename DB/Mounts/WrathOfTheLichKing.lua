@@ -3,6 +3,10 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_WRATH_OF_THE_LICH_KING then
+	return {}
+end
+
 local wotlkMounts = {
 	-- 3.x
 	["Invincible's Reins"] = {
@@ -245,3 +249,4 @@ local wotlkMounts = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, wotlkMounts)
+return wotlkMounts

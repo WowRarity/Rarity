@@ -3,6 +3,10 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_MISTS_OF_PANDARIA then
+	return {}
+end
+
 local mopPets = {
 	-- 5.0
 	["Hollow Reed"] = {
@@ -858,3 +862,4 @@ local mopPets = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, mopPets)
+return mopPets

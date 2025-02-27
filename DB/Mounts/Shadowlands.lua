@@ -3,6 +3,10 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_SHADOWLANDS then
+	return {}
+end
+
 local shadowlandsMounts = {
 	-- 9.0 Mounts
 	["Horrid Dredwing"] = {
@@ -639,3 +643,4 @@ local shadowlandsMounts = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, shadowlandsMounts)
+return shadowlandsMounts

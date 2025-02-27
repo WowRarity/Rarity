@@ -3,6 +3,10 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_BATTLE_FOR_AZEROTH then
+	return {}
+end
+
 local bfaMounts = {
 	--- 8.0
 	["Witherbark Direwing"] = {
@@ -816,3 +820,4 @@ local bfaMounts = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, bfaMounts)
+return bfaMounts

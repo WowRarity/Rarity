@@ -81,3 +81,5 @@ Rarity.relevantSpells = {
 	-- Not tested (and disabled until they are needed)
 	-- [1804] = "Pick Lock",
 }
+
+return Rarity.relevantSpells

@@ -3,6 +3,10 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_WARLORDS_OF_DRAENOR then
+	return {}
+end
+
 local wodMounts = {
 	-- 6.x
 	["Armored Razorback"] = {
@@ -557,3 +561,4 @@ local wodMounts = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, wodMounts)
+return wodMounts

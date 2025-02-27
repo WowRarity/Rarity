@@ -3,6 +3,10 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_BURNING_CRUSADE then
+	return {}
+end
+
 local tbcMounts = {
 	-- 2.x
 	["Ashes of Al'ar"] = {
@@ -74,3 +78,4 @@ local tbcMounts = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, tbcMounts)
+return tbcMounts

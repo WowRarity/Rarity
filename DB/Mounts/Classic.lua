@@ -33,3 +33,4 @@ local classicMounts = {
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, classicMounts)
+return classicMounts
