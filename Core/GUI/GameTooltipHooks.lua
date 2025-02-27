@@ -375,7 +375,11 @@ local function onTooltipSetUnit(tooltip, data)
 	end
 end
 
-_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Unit, onTooltipSetUnit)
+if not _G.TooltipDataProcessor then
+	-- Blizzard hasn't ported the tooltip changes to their classic client, yet?
+else
+	_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Unit, onTooltipSetUnit)
+end
 
 local function processItem(id, tooltip)
 	local blankAdded = false
@@ -537,4 +541,8 @@ local function onTooltipSetItem(tooltip, tooltipData)
 	processItem(tonumber(id), tooltip)
 end
 
-_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Item, onTooltipSetItem)
+if not _G.TooltipDataProcessor then
+	-- Blizzard hasn't ported the tooltip changes to their classic client, yet?
+else
+	_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Item, onTooltipSetItem)
+end

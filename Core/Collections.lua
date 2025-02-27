@@ -24,7 +24,9 @@ local C_PetJournal = C_PetJournal
 local GetNumCompanions = GetNumCompanions
 local GetCompanionInfo = GetCompanionInfo
 local GetAchievementInfo = GetAchievementInfo
-local GetNumArchaeologyRaces = GetNumArchaeologyRaces
+local GetNumArchaeologyRaces = GetNumArchaeologyRaces or function()
+	return 0
+end
 local GetNumArtifactsByRace = GetNumArtifactsByRace
 local GetArtifactInfoByRace = GetArtifactInfoByRace
 local IsQuestComplete = _G.C_QuestLog.IsComplete
@@ -53,6 +55,12 @@ function Collections:ScanTransmog(reason)
 end
 
 function Collections:ScanToys(reason)
+	if C_ToyBox.GetNumToys() == 0 then
+		-- Can't load Blizzard_Collections since it's broken in Classic Era
+		-- Toys are actually regular items here, so tracking should still work
+		return
+	end
+
 	self = Rarity
 	self:Debug("Scanning toys (" .. (reason or "") .. ")")
 
@@ -154,7 +162,7 @@ function Collections:ScanExistingItems(reason)
 	end
 
 	-- Companions that this character learned
-	for id = 1, GetNumCompanions("CRITTER") do
+	for id = 1, GetNumCompanions("CRITTER") or 0 do
 		local spellId = select(3, GetCompanionInfo("CRITTER", id))
 		for k, v in pairs(R.db.profile.groups) do
 			if type(v) == "table" then

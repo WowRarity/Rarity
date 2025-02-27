@@ -42,7 +42,9 @@ local GetRealZoneText = _G.GetRealZoneText
 local GetContainerNumSlots = _G.C_Container.GetContainerNumSlots
 local GetContainerItemID = _G.C_Container.GetContainerItemID
 local GetContainerItemInfo = _G.C_Container.GetContainerItemInfo
-local GetNumArchaeologyRaces = _G.GetNumArchaeologyRaces
+local GetNumArchaeologyRaces = _G.GetNumArchaeologyRaces or function()
+	return 0
+end
 local GetArchaeologyRaceInfo = _G.GetArchaeologyRaceInfo
 local GetStatistic = _G.GetStatistic
 local GetLootSourceInfo = _G.GetLootSourceInfo
