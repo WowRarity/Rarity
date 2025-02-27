@@ -266,7 +266,7 @@ function R:ScanStatistics(reason)
 	table.wipe(Rarity.ach_npcs_isKilled)
 	table.wipe(Rarity.ach_npcs_achId)
 	for k, v in pairs(self.db.profile.achNpcs) do
-		local count = GetAchievementNumCriteria(v)
+		local count = GetAchievementNumCriteria(v) or 0
 		for i = 1, count do
 			local description, type, completed = GetAchievementCriteriaInfo(v, i)
 			Rarity.ach_npcs_achId[description] = v
