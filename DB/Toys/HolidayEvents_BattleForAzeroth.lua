@@ -8,7 +8,7 @@ if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_BATTLE_FOR_AZEROTH then
 end
 
 local holidayEventToysBfA = {
-	["Crashin' Thrashin' Battleship"] = {
+	["Crashin' Thrashin' Battleship)"] = { --Do not fix this typo until attempts can safely be migrated (see #824)
 		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
 		isToy = true,
