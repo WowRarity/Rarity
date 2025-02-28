@@ -99,6 +99,11 @@ function R:PrepareDefaults()
 			blankLineAfterRarity = false,
 			hideOutsideZone = false,
 			showAchievementToast = true,
+
+			-- Since 10.0 the default channel used by LibSink is Blizzard's Floating Combat Text
+			-- This isn't what people have come to expect of Rarity, so let's just change it back
+			sink20OutputSink = "ChatFrame",
+
 			tooltipShowDelay = 0.1,
 
 			trackedGroup = "pets",
