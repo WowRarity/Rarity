@@ -80,7 +80,6 @@ externals:
 
 tools-used:
     - libdatabroker-1-1
-    - addon-loader
 
 move-folders:
     Rarity/Modules/Options: Rarity_Options
