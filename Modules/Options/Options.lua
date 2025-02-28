@@ -812,6 +812,9 @@ function R:PrepareOptions()
 									self.db.profile.cats[TBC] = val
 									Rarity.GUI:UpdateText()
 								end,
+								hidden = function()
+									return LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_BURNING_CRUSADE
+								end,
 							},
 							wotlk = {
 								type = "toggle",
@@ -823,6 +826,9 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.cats[WOTLK] = val
 									Rarity.GUI:UpdateText()
+								end,
+								hidden = function()
+									return LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_WRATH_OF_THE_LICH_KING
 								end,
 							},
 							cata = {
@@ -836,6 +842,9 @@ function R:PrepareOptions()
 									self.db.profile.cats[CATA] = val
 									Rarity.GUI:UpdateText()
 								end,
+								hidden = function()
+									return LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_CATACLYSM
+								end,
 							},
 							mop = {
 								type = "toggle",
@@ -847,6 +856,9 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.cats[MOP] = val
 									Rarity.GUI:UpdateText()
+								end,
+								hidden = function()
+									return LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_MISTS_OF_PANDARIA
 								end,
 							},
 							wod = {
@@ -860,6 +872,9 @@ function R:PrepareOptions()
 									self.db.profile.cats[WOD] = val
 									Rarity.GUI:UpdateText()
 								end,
+								hidden = function()
+									return LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_WARLORDS_OF_DRAENOR
+								end,
 							},
 							legion = {
 								type = "toggle",
@@ -871,6 +886,9 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.cats[LEGION] = val
 									Rarity.GUI:UpdateText()
+								end,
+								hidden = function()
+									return LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_LEGION
 								end,
 							},
 							vfa = {
@@ -884,6 +902,9 @@ function R:PrepareOptions()
 									self.db.profile.cats[BFA] = val
 									Rarity.GUI:UpdateText()
 								end,
+								hidden = function()
+									return LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_BATTLE_FOR_AZEROTH
+								end,
 							},
 							shadowlands = {
 								type = "toggle",
@@ -895,6 +916,9 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.cats[SHADOWLANDS] = val
 									Rarity.GUI:UpdateText()
+								end,
+								hidden = function()
+									return LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_SHADOWLANDS
 								end,
 							},
 							dragonflight = {
@@ -908,6 +932,9 @@ function R:PrepareOptions()
 									self.db.profile.cats[DRAGONFLIGHT] = val
 									Rarity.GUI:UpdateText()
 								end,
+								hidden = function()
+									return LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_DRAGONFLIGHT
+								end,
 							},
 							theWarWithin = {
 								type = "toggle",
@@ -919,6 +946,9 @@ function R:PrepareOptions()
 								set = function(info, val)
 									self.db.profile.cats[TWW] = val
 									Rarity.GUI:UpdateText()
+								end,
+								hidden = function()
+									return LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_WAR_WITHIN
 								end,
 							},
 						}, -- args
