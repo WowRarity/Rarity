@@ -2,6 +2,18 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Personalized Goblin S.C.R.A.Per"] = true
+L["Bronze Goblin Waveshredder"] = true
+L["Darkfuse Precipitant"] = true
+L["Darkfuse Spy-Eye"] = true
+L["Prototype A.S.M.R."] = true
+L["Angelo Rustbin"] = true
+L["Viridian Mechasaur"] = true
+L["Craboom"] = true
+L["Explosive Hearthstone"] = true
+L["Darkfuse Spy-Eye"] = true
+L["Gallagio Garbage"] = true
+L["Salvaged Goblin Gazillionaire's Flying Machine"] = true
 L["Show progress bar"] = true
 L["Cyclonic Runekey"] = true
 L["Glittering Vault Shard"] = true

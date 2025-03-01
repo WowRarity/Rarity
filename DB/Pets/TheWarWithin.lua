@@ -59,6 +59,33 @@ local twwPets = {
 		spellId = 288054,
 		coords = { { m = CONSTANTS.UIMAPIDS.SIREN_ISLE } },
 	},
+	-- 11.1 pets
+	["Craboom"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		name = L["Craboom"],
+		chance = 5,
+		creatureId = 238393,
+		itemId = 236768,
+		npcs = { 226396 },
+		spellId = 1220834,
+		coords = { { m = CONSTANTS.UIMAPIDS.OPERATION_FLOODGATE } },
+		groupSize = 5,
+		equalOdds = true,
+	},
+	["Viridian Mechasaur"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		chance = 50,
+		creatureId = 231456,
+		name = L["Viridian Mechasaur"],
+		itemId = 232838,
+		items = { 233557 },
+		spellId = 471944,
+		coords = { { m = CONSTANTS.UIMAPIDS.UNDERMINE, x = 25.6, y = 38.2, n = L["Angelo Rustbin"] } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, twwPets)
