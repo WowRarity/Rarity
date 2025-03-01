@@ -66,6 +66,26 @@ local twwToysAndItems = {
 		chance = 100,
 		coords = { { m = CONSTANTS.UIMAPIDS.THE_FORGOTTEN_VAULT } },
 	},
+	-- 11.1 toys
+	["Explosive Hearthstone"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		name = L["Explosive Hearthstone"],
+		itemId = 236687,
+		chance = 25,
+		npcs = { 99999 },
+		tooltipNpcs = { 230322 },
+		lockBossName = "Stix Bunkjunker",
+		statisticId = { 41311, 41312, 41313, 41314 },
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+		},
+		coords = { { i = true, m = CONSTANTS.UIMAPIDS.LIBERATION_OF_UNDERMINE } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, twwToysAndItems)
