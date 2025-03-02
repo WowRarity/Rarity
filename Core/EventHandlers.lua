@@ -754,7 +754,7 @@ function R:OnChatCommand(input)
 		Rarity.Profiling:InspectAccumulatedTimes()
 	else
 		Rarity:LazyLoadOptions()
-		if R.optionsFrame then
+		if R.options then
 			Rarity.Profiling:StartTimer("RarityOptions: OpenToCategory")
 			Settings.OpenToCategory("Rarity")
 			Rarity.Profiling:EndTimer("RarityOptions: OpenToCategory")

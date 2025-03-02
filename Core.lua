@@ -151,6 +151,7 @@ do
 		-- However, players can only see the menu entry once AceConfig has registered it
 		-- Workaround: Register a generator (function) that handles the loading once
 		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity", R.LazyLoadOptions)
+		R.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity", "Rarity")
 	end
 
 	function R:DoEnable()

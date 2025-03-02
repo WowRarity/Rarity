@@ -64,7 +64,7 @@ function dataobj:OnClick(button)
 		-- Show options
 		Rarity:Debug("Loading Rarity_Options addon")
 		LoadAddOn("Rarity_Options")
-		if R.optionsFrame then
+		if R.options then
 			Settings.OpenToCategory("Rarity")
 		else
 			R:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])

@@ -10,7 +10,7 @@ function AddonCompartment.OnClick()
 
 	-- Should behave the same as the default /rarity slash command (copy/pasted for now) - improve UX later?
 	LoadAddOn("Rarity_Options")
-	if Rarity.optionsFrame then
+	if Rarity.options then
 		Settings.OpenToCategory("Rarity")
 	else
 		Rarity:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
