@@ -749,9 +749,14 @@ function R:OnChatCommand(input)
 	elseif strlower(input) == "tinspect" then --  TODO Document it?
 		Rarity.Profiling:InspectAccumulatedTimes()
 	else
+		-- TBD memory usage? Retail = 14 MB,Cata = TBD, Era = TBD
+		Rarity.Profiling:StartTimer("RarityOptions: LoadAddon (CLI)")
 		LoadAddOn("Rarity_Options")
+		Rarity.Profiling:EndTimer("RarityOptions: LoadAddon (CLI)"")	
 		if R.optionsFrame then
+			Rarity.Profiling:StartTimer("RarityOptions: OpenToCategory (CLI)")	
 			Settings.OpenToCategory("Rarity")
+			Rarity.Profiling:EndTimer("RarityOptions: OpenToCategory (CLI)")	
 		else
 			self:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
 		end
