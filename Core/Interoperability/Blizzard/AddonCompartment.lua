@@ -6,6 +6,8 @@ local LoadAddOn = _G.C_AddOns.LoadAddOn
 local AddonCompartment = {}
 
 function AddonCompartment.OnClick()
+	-- TODO: LazyLoadOptions
+
 	-- Should behave the same as the default /rarity slash command (copy/pasted for now) - improve UX later?
 	LoadAddOn("Rarity_Options")
 	if Rarity.optionsFrame then

@@ -60,6 +60,7 @@ function dataobj:OnClick(button)
 	local isLeftButton = button == "LeftButton"
 
 	if IsShiftKeyDown() and isLeftButton then
+		-- TODO: LazyLoadOptions
 		-- Show options
 		Rarity:Debug("Loading Rarity_Options addon")
 		LoadAddOn("Rarity_Options")

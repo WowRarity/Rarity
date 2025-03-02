@@ -147,6 +147,10 @@ do
 
 	function R:OnEnable()
 		self:DoEnable()
+		-- The Options module is disabled to reduce memory usage and loading time
+		-- However, players can only see the menu entry once AceConfig has registered it
+		-- Workaround: Register a generator (function) that handles the loading once
+		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity", R.LazyLoadOptions)
 	end
 
 	function R:DoEnable()
@@ -328,6 +332,22 @@ do
 			self.Validation:ValidateItemDB()
 		end
 	end
+end
+
+function Rarity:LazyLoadOptions()
+	if type(R.options) == "table" then
+		return R.options -- Options were previously generated (fast path; upfront cost was already paid)
+	end
+
+	-- TBD: Skip runtime validation in AceConfigRegistry (not exposed to API) -> Measure impact first
+	-- This will be expensive and slow, but there's really no way around it
+	-- TBD memory usage? Retail = 14 MB,Cata = TBD, Era = TBD
+	Rarity.Profiling:StartTimer("RarityOptions: LoadAddon")
+	LoadAddOn("Rarity_Options")
+	Rarity.Profiling:EndTimer("RarityOptions: LoadAddon")
+	assert(type(R.options) == "table", "LazyLoadOptions called LoadAddon but it failed - check for script errors?")
+
+	return R.options
 end
 
 function R:DelayedInit()

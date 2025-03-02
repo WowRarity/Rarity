@@ -710,7 +710,7 @@ function R:OnProfileChanged(event, database, newProfileKey)
 end
 
 local MAX_CLI_ARG_COUNT = 2 -- Do we need more? Probably not...
-local ACECONSOLE_EOF_CURSOR = 1e9  -- Who is this Mr. Ace and where do I find him?
+local ACECONSOLE_EOF_CURSOR = 1e9 -- Who is this Mr. Ace and where do I find him?
 function R:OnChatCommand(input)
 	local command, option = self:GetArgs(input, MAX_CLI_ARG_COUNT)
 	command = command or ""
@@ -734,7 +734,7 @@ function R:OnChatCommand(input)
 		local mapID = option or C_Map.GetBestMapForUnit("player")
 		local mapInfo = C_Map.GetMapInfo(mapID)
 		local mapName = mapInfo and mapInfo.name or "Unknown"
-		self:Print("Current map: " .. mapID .. " ~ " .. mapName)
+		self:Print("UI Map Info: " .. mapID .. " ~ " .. mapName)
 		DevTools_Dump(mapInfo)
 	elseif strlower(command) == "purge" then -- TODO: This should be done automatically, no?
 		self.Database:PurgeObsoleteEntries()
@@ -753,15 +753,12 @@ function R:OnChatCommand(input)
 	elseif strlower(command) == "tinspect" then --  TODO Document it?
 		Rarity.Profiling:InspectAccumulatedTimes()
 	else
-		-- TBD memory usage? Retail = 14 MB,Cata = TBD, Era = TBD
-		Rarity.Profiling:StartTimer("RarityOptions: LoadAddon (CLI)")
-		LoadAddOn("Rarity_Options")
-		Rarity.Profiling:EndTimer("RarityOptions: LoadAddon (CLI)")
+		Rarity:LazyLoadOptions()
 		if R.optionsFrame then
-			Rarity.Profiling:StartTimer("RarityOptions: OpenToCategory (CLI)")
+			Rarity.Profiling:StartTimer("RarityOptions: OpenToCategory")
 			Settings.OpenToCategory("Rarity")
-			Rarity.Profiling:EndTimer("RarityOptions: OpenToCategory (CLI)")
-		else
+			Rarity.Profiling:EndTimer("RarityOptions: OpenToCategory")
+		else -- Should never happen? (Test CLI vs AceConfig UI)
 			self:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
 		end
 	end

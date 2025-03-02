@@ -118,7 +118,6 @@ do
 
 		R:PrepareOptions()
 
-		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity", R.options)
 		R.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity", "Rarity")
 		R.profileOptions = LibStub("AceDBOptions-3.0"):GetOptionsTable(R.db)
 		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity-Profiles", R.profileOptions)
