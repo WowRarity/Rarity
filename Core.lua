@@ -96,6 +96,7 @@ local GetItemInfo_Blizzard = _G.C_Item.GetItemInfo
 local GetItemInfo = function(id)
 	return R:GetItemInfo(id)
 end
+
 local GetRealZoneText = _G.GetRealZoneText
 local GetContainerNumSlots = _G.C_Container.GetContainerNumSlots
 local GetContainerItemID = _G.C_Container.GetContainerItemID
@@ -111,6 +112,7 @@ local IsSpellKnown = _G.IsSpellKnown
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
 local IsQuestFlaggedCompleted = _G.C_QuestLog.IsQuestFlaggedCompleted
 local C_Covenants = _G.C_Covenants
+local LoadAddOn = _G.C_AddOns.LoadAddOn
 
 local COMBATLOG_OBJECT_AFFILIATION_MINE = _G.COMBATLOG_OBJECT_AFFILIATION_MINE
 local COMBATLOG_OBJECT_AFFILIATION_PARTY = _G.COMBATLOG_OBJECT_AFFILIATION_PARTY
