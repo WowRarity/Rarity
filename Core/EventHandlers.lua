@@ -710,11 +710,14 @@ function R:OnProfileChanged(event, database, newProfileKey)
 end
 
 local MAX_CLI_ARG_COUNT = 2 -- Do we need more? Probably not...
+local ACECONSOLE_EOF_CURSOR = 1e9  -- Who is this Mr. Ace and where do I find him?
 function R:OnChatCommand(input)
-	local args = { self:GetArgs(input, MAX_CLI_ARG_COUNT) }
-	local input = table.remove(args, 1) or ""
+	local command, option = self:GetArgs(input, MAX_CLI_ARG_COUNT) }
+	if option == ACECONSOLE_EOF_CURSOR then
+		option = nil
+	end
 
-	if strlower(input) == "debug" then
+	if strlower(command) == "debug" then
 		if self.db.profile.debugMode then
 			self.db.profile.debugMode = false
 			self:Print(L["Debug mode OFF"])
@@ -722,23 +725,23 @@ function R:OnChatCommand(input)
 			self.db.profile.debugMode = true
 			self:Print(L["Debug mode ON"])
 		end
-	elseif strlower(input) == "dump" then
+	elseif strlower(command) == "dump" then
 		self.ScrollingDebugMessageFrame:Toggle()
-	elseif strlower(input) == "validate" then -- Verify the ItemDB
+	elseif strlower(command) == "validate" then -- Verify the ItemDB
 		self.Validation:ValidateItemDB()
-	elseif strlower(input) == "mapinfo" then
+	elseif strlower(command) == "mapinfo" then
 		local mapID = table.remove(1) or C_Map.GetBestMapForUnit("player")
 		local mapInfo = C_Map.GetMapInfo(mapID)
 		local mapName = mapInfo and mapInfo.name or "Unknown"
 		self:Print("Current map: " .. mapID .. " ~ " .. mapName)
 		DevTools_Dump(mapInfo)
-	elseif strlower(input) == "purge" then -- TODO: This should be done automatically, no?
+	elseif strlower(command) == "purge" then -- TODO: This should be done automatically, no?
 		self.Database:PurgeObsoleteEntries()
-	elseif strlower(input) == "progress" then
+	elseif strlower(command) == "progress" then
 		self.GUI:ToggleProgressBar()
-	elseif strlower(input) == "test" then
+	elseif strlower(command) == "test" then
 		self.Testing:RunIntegrationTests()
-	elseif strlower(input) == "profiling" then
+	elseif strlower(command) == "profiling" then
 		if self.db.profile.enableProfiling then
 			self.db.profile.enableProfiling = false
 			self:Print(L["Profiling OFF"])
@@ -746,7 +749,7 @@ function R:OnChatCommand(input)
 			self.db.profile.enableProfiling = true
 			self:Print(L["Profiling ON"])
 		end
-	elseif strlower(input) == "tinspect" then --  TODO Document it?
+	elseif strlower(command) == "tinspect" then --  TODO Document it?
 		Rarity.Profiling:InspectAccumulatedTimes()
 	else
 		-- TBD memory usage? Retail = 14 MB,Cata = TBD, Era = TBD
