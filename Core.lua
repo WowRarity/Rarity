@@ -149,9 +149,28 @@ do
 		self:DoEnable()
 		-- The Options module is disabled to reduce memory usage and loading time
 		-- However, players can only see the menu entry once AceConfig has registered it
-		-- Workaround: Register a generator (function) that handles the loading once
+		-- Workaround: Register a generator (function) that creates the UI only when needed
 		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity", R.LazyLoadOptions)
 		R.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity", "Rarity")
+
+		assert(R.optionsFrame, "R.optionsFrame couldn't be created (?)")
+		assert(R.db, "Addon database unavailable even though DoEnable has finished (?)")
+		R.profileOptions = LibStub("AceDBOptions-3.0"):GetOptionsTable(R.db) --  Can this be unavailable here?
+		assert(R.profileOptions, "R.profileOptions couldn't be created (?)")
+		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity-Profiles", R.profileOptions)
+		R.profileFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity-Profiles", "Profiles", "Rarity")
+		assert(R.profileFrame, "R.profileFrame couldn't be created (?)")
+
+		-- It's probably fine to defer creating the whole tree (players can see the root node right away)
+		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity-Advanced", R.LazyLoadAdvancedSettings)
+		R.advancedSettingsFrame =
+			LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity-Advanced", "Advanced", "Rarity")
+
+		-- -- Notify AceConfig that the tree has been changed from outside its confines
+		-- -- If this isn't done, only the main menu will be displayed until players refresh or re-open the settings
+		-- LibStub("AceConfigRegistry-3.0"):NotifyChange("Rarity-Advanced") -- All submenus should now be visible
+		-- LibStub("AceConfigRegistry-3.0"):NotifyChange("Rarity-Profiles") -- All submenus should now be visible
+		-- LibStub("AceConfigRegistry-3.0"):NotifyChange("Rarity") -- All submenus should now be visible
 	end
 
 	function R:DoEnable()
@@ -336,19 +355,38 @@ do
 end
 
 function Rarity:LazyLoadOptions()
+	R:Debug("LazyLoadOptions")
 	if type(R.options) == "table" then
 		return R.options -- Options were previously generated (fast path; upfront cost was already paid)
 	end
 
 	-- TBD: Skip runtime validation in AceConfigRegistry (not exposed to API) -> Measure impact first
 	-- This will be expensive and slow, but there's really no way around it
-	-- TBD memory usage? Retail = 14 MB,Cata = TBD, Era = TBD
+	R:Debug("LazyLoadOptions requires LoadAddon (this may take some time)")
 	Rarity.Profiling:StartTimer("RarityOptions: LoadAddon")
 	LoadAddOn("Rarity_Options")
 	Rarity.Profiling:EndTimer("RarityOptions: LoadAddon")
 	assert(type(R.options) == "table", "LazyLoadOptions called LoadAddon but it failed - check for script errors?")
 
 	return R.options
+end
+
+function Rarity:LazyLoadAdvancedSettings() -- TODO merge with the above (parametrized)
+	R:Debug("LazyLoadAdvancedSettings")
+	if type(R.advancedSettings) == "table" then -- Kind of silly, because the options should already load this UI as well?
+		return R.advancedSettings
+	end
+
+	R:Debug("LazyLoadAdvancedSettings -> LoadAddon is still needed (why?)")
+	Rarity.Profiling:StartTimer("RarityOptions: LazyLoadAdvancedSettings")
+	LoadAddOn("Rarity_Options")
+	Rarity.Profiling:EndTimer("RarityOptions: LazyLoadAdvancedSettings")
+	assert(
+		type(R.advancedSettings) == "table",
+		"LazyLoadAdvancedSettings called LoadAddon but it failed - check for script errors?"
+	)
+
+	return R.advancedSettings
 end
 
 function R:DelayedInit()
