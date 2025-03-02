@@ -362,8 +362,6 @@ function Rarity:LazyLoadOptions()
 		return R.options -- Options were previously generated (fast path; upfront cost was already paid)
 	end
 
-	-- TBD: Skip runtime validation in AceConfigRegistry (not exposed to API) -> Measure impact first
-	-- This will be expensive and slow, but there's really no way around it
 	R:Debug("LazyLoadOptions requires LoadAddon (this may take some time)")
 	Rarity.Profiling:StartTimer("RarityOptions: LoadAddon")
 	LoadAddOn("Rarity_Options")
