@@ -709,7 +709,11 @@ function R:OnProfileChanged(event, database, newProfileKey)
 	self.db.profile.lastRevision = R.MINOR_VERSION
 end
 
+local MAX_CLI_ARG_COUNT = 2 -- Do we need more? Probably not...
 function R:OnChatCommand(input)
+	local args = { self:GetArgs(input, MAX_CLI_ARG_COUNT) }
+	local input = table.remove(args, 1) or ""
+
 	if strlower(input) == "debug" then
 		if self.db.profile.debugMode then
 			self.db.profile.debugMode = false
@@ -723,7 +727,7 @@ function R:OnChatCommand(input)
 	elseif strlower(input) == "validate" then -- Verify the ItemDB
 		self.Validation:ValidateItemDB()
 	elseif strlower(input) == "mapinfo" then
-		local mapID = C_Map.GetBestMapForUnit("player")
+		local mapID = table.remove(1) or C_Map.GetBestMapForUnit("player")
 		local mapInfo = C_Map.GetMapInfo(mapID)
 		local mapName = mapInfo and mapInfo.name or "Unknown"
 		self:Print("Current map: " .. mapID .. " ~ " .. mapName)
