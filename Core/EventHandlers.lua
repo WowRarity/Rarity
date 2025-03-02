@@ -730,7 +730,7 @@ function R:OnChatCommand(input)
 	elseif strlower(command) == "validate" then -- Verify the ItemDB
 		self.Validation:ValidateItemDB()
 	elseif strlower(command) == "mapinfo" then
-		local mapID = table.remove(1) or C_Map.GetBestMapForUnit("player")
+		local mapID = option or C_Map.GetBestMapForUnit("player")
 		local mapInfo = C_Map.GetMapInfo(mapID)
 		local mapName = mapInfo and mapInfo.name or "Unknown"
 		self:Print("Current map: " .. mapID .. " ~ " .. mapName)
