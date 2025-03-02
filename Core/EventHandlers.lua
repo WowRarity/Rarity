@@ -752,7 +752,7 @@ function R:OnChatCommand(input)
 		-- TBD memory usage? Retail = 14 MB,Cata = TBD, Era = TBD
 		Rarity.Profiling:StartTimer("RarityOptions: LoadAddon (CLI)")
 		LoadAddOn("Rarity_Options")
-		Rarity.Profiling:EndTimer("RarityOptions: LoadAddon (CLI)"")	
+		Rarity.Profiling:EndTimer("RarityOptions: LoadAddon (CLI)")	
 		if R.optionsFrame then
 			Rarity.Profiling:StartTimer("RarityOptions: OpenToCategory (CLI)")	
 			Settings.OpenToCategory("Rarity")
