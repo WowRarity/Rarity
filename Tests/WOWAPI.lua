@@ -55,3 +55,8 @@ end
 _G.GetLocale = function()
 	return "enUS" -- For now...
 end
+
+-- Don't need a custom one; it just has to fail the tests when executed
+_G.geterrorhandler = function()
+	return error
+end
