@@ -23,6 +23,7 @@ local twwMounts = {
 		equalOdds = true,
 		chance = 100, -- No data available
 		coords = { { i = true, m = CONSTANTS.UIMAPIDS.NERUBAR_PALACE } },
+		lockBossName = "Queen Ansurek",
 	},
 	["Beledar's Spawn"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
