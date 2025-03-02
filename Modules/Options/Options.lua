@@ -106,9 +106,11 @@ do
 			return
 		end
 
+		-- Is this async? Doesn't look right -> Investigate later (let's not get sidetracked here)
+		assert(R.db, "Trying to enable RarityOptions, but the addon database hasn't finished loading (?)")
 		if R.db == nil then
 			R:ScheduleTimer(function()
-				R:Options_DoEnable()
+				R:Options_DoEnable() -- Really? There's got to be a better way
 			end, 1.0)
 			return
 		end
@@ -117,15 +119,6 @@ do
 		R.modulesEnabled.options = true
 
 		R:PrepareOptions()
-
-		-- TBD lazy load these also?
-		R.profileOptions = LibStub("AceDBOptions-3.0"):GetOptionsTable(R.db)
-		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity-Profiles", R.profileOptions)
-		R.profileFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity-Profiles", "Profiles", "Rarity")
-
-		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity-Advanced", R.advancedSettings)
-		R.advancedSettingsFrame =
-			LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity-Advanced", "Advanced", "Rarity")
 	end
 end
 
