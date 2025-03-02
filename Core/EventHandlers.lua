@@ -712,7 +712,7 @@ end
 local MAX_CLI_ARG_COUNT = 2 -- Do we need more? Probably not...
 local ACECONSOLE_EOF_CURSOR = 1e9  -- Who is this Mr. Ace and where do I find him?
 function R:OnChatCommand(input)
-	local command, option = self:GetArgs(input, MAX_CLI_ARG_COUNT) }
+	local command, option = self:GetArgs(input, MAX_CLI_ARG_COUNT)
 	if option == ACECONSOLE_EOF_CURSOR then
 		option = nil
 	end
