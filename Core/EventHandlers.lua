@@ -713,6 +713,7 @@ local MAX_CLI_ARG_COUNT = 2 -- Do we need more? Probably not...
 local ACECONSOLE_EOF_CURSOR = 1e9  -- Who is this Mr. Ace and where do I find him?
 function R:OnChatCommand(input)
 	local command, option = self:GetArgs(input, MAX_CLI_ARG_COUNT)
+	command = command or ""
 	if option == ACECONSOLE_EOF_CURSOR then
 		option = nil
 	end
@@ -755,11 +756,11 @@ function R:OnChatCommand(input)
 		-- TBD memory usage? Retail = 14 MB,Cata = TBD, Era = TBD
 		Rarity.Profiling:StartTimer("RarityOptions: LoadAddon (CLI)")
 		LoadAddOn("Rarity_Options")
-		Rarity.Profiling:EndTimer("RarityOptions: LoadAddon (CLI)")	
+		Rarity.Profiling:EndTimer("RarityOptions: LoadAddon (CLI)")
 		if R.optionsFrame then
-			Rarity.Profiling:StartTimer("RarityOptions: OpenToCategory (CLI)")	
+			Rarity.Profiling:StartTimer("RarityOptions: OpenToCategory (CLI)")
 			Settings.OpenToCategory("Rarity")
-			Rarity.Profiling:EndTimer("RarityOptions: OpenToCategory (CLI)")	
+			Rarity.Profiling:EndTimer("RarityOptions: OpenToCategory (CLI)")
 		else
 			self:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
 		end
