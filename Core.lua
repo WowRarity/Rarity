@@ -361,6 +361,17 @@ function Rarity:LazyLoadOptions(which)
 	return R[which]
 end
 
+function Rarity:TryShowOptionsUI()
+	Rarity:LazyLoadOptions()
+	if R.options then
+		Rarity.Profiling:StartTimer("RarityOptions: OpenToCategory")
+		Settings.OpenToCategory("Rarity")
+		Rarity.Profiling:EndTimer("RarityOptions: OpenToCategory")
+	else
+		self:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
+	end
+end
+
 function R:DelayedInit()
 	self:ScanStatistics("DELAYED INIT")
 	self:ScanCalendar("DELAYED INIT")
