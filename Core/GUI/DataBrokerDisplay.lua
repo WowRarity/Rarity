@@ -60,14 +60,7 @@ function dataobj:OnClick(button)
 	local isLeftButton = button == "LeftButton"
 
 	if IsShiftKeyDown() and isLeftButton then
-		-- Show options
-		Rarity:Debug("Loading Rarity_Options addon")
-		LoadAddOn("Rarity_Options")
-		if R.optionsFrame then
-			Settings.OpenToCategory("Rarity")
-		else
-			R:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
-		end
+		Rarity:TryShowOptionsUI()
 	elseif IsControlKeyDown() and isLeftButton then
 		Rarity.GUI:SelectNextSortOrder()
 	elseif

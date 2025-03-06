@@ -744,12 +744,7 @@ function R:OnChatCommand(input)
 	elseif strlower(input) == "tinspect" then --  TODO Document it?
 		Rarity.Profiling:InspectAccumulatedTimes()
 	else
-		LoadAddOn("Rarity_Options")
-		if R.optionsFrame then
-			Settings.OpenToCategory("Rarity")
-		else
-			self:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
-		end
+		Rarity:TryShowOptionsUI()
 	end
 end
 

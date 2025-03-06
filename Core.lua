@@ -111,6 +111,10 @@ local IsSpellKnown = _G.IsSpellKnown
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
 local IsQuestFlaggedCompleted = _G.C_QuestLog.IsQuestFlaggedCompleted
 local C_Covenants = _G.C_Covenants
+local EnableAddOn = C_AddOns.EnableAddOn
+local IsAddOnLoadable = C_AddOns.IsAddOnLoadable
+local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
+local LoadAddOn = _G.C_AddOns.LoadAddOn
 
 local COMBATLOG_OBJECT_AFFILIATION_MINE = _G.COMBATLOG_OBJECT_AFFILIATION_MINE
 local COMBATLOG_OBJECT_AFFILIATION_PARTY = _G.COMBATLOG_OBJECT_AFFILIATION_PARTY
@@ -147,6 +151,22 @@ do
 
 	function R:OnEnable()
 		self:DoEnable()
+		-- The Options module is disabled to reduce memory usage and loading time
+		-- However, players can only see the menu entry once AceConfig has registered it
+		-- Workaround: Provide a generator (function) that creates the UI only when needed
+		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity", function()
+			return R:LazyLoadOptions("options")
+		end)
+		R.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity", "Rarity")
+		R.profileOptions = LibStub("AceDBOptions-3.0"):GetOptionsTable(R.db)
+		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity-Profiles", R.profileOptions)
+		R.profileFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity-Profiles", "Profiles", "Rarity")
+
+		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity-Advanced", function()
+			return R:LazyLoadOptions("advancedSettings")
+		end)
+		R.advancedSettingsFrame =
+			LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity-Advanced", "Advanced", "Rarity")
 	end
 
 	function R:DoEnable()
@@ -328,6 +348,53 @@ do
 			self.Validation:ValidateItemDB()
 		end
 	end
+end
+
+local fallbackOptionsTable = {
+	type = "group",
+	name = L["Rarity"],
+	width = "full",
+	args = {
+		enable = {
+			name = L["Attempt to enable the Options module"],
+			type = "execute",
+			width = "full",
+			func = function(info, val)
+				EnableAddOn("Rarity_Options")
+			end,
+		},
+	},
+}
+
+function Rarity:LazyLoadOptions(which)
+	local options = R[which]
+	if type(options) == "table" then
+		-- This UI tree was previously generated (fast path; upfront cost already paid)
+		return options
+	end
+
+	Rarity.Profiling:StartTimer("RarityOptions: LoadAddon")
+	local didLoad, errorMessage = LoadAddOn("Rarity_Options")
+	if not didLoad then
+		Rarity:Debug("Options failed to load? Reason: " .. errorMessage or "nil")
+		return fallbackOptionsTable
+	end
+	Rarity.Profiling:EndTimer("RarityOptions: LoadAddon")
+
+	return R[which]
+end
+
+function Rarity:TryShowOptionsUI()
+	local canLoadOptions, reason = IsAddOnLoadable("Rarity_Options")
+	if not canLoadOptions and reason == "DISABLED" then
+		self:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
+		return
+	end
+
+	Rarity:LazyLoadOptions()
+	Rarity.Profiling:StartTimer("RarityOptions: OpenToCategory")
+	Settings.OpenToCategory("Rarity")
+	Rarity.Profiling:EndTimer("RarityOptions: OpenToCategory")
 end
 
 function R:DelayedInit()
