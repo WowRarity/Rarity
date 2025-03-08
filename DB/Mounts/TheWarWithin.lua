@@ -147,6 +147,7 @@ local twwMounts = {
 		itemId = 229955,
 		chance = 20,
 		coords = { { m = CONSTANTS.UIMAPIDS.UNDERMINE, x = 41.2, y = 41.2, n = L["Darkfuse Precipitant"] } },
+		questId = 85010,
 	},
 	["Bronze Goblin Waveshredder"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
