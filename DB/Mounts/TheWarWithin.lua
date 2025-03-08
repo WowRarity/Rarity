@@ -145,7 +145,7 @@ local twwMounts = {
 		spellId = 466027,
 		npcs = { 231310 },
 		itemId = 229955,
-		chance = 5,
+		chance = 20,
 		coords = { { m = CONSTANTS.UIMAPIDS.UNDERMINE, x = 41.2, y = 41.2, n = L["Darkfuse Precipitant"] } },
 	},
 	["Bronze Goblin Waveshredder"] = {
