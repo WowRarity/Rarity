@@ -2,6 +2,9 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Venture Co-ordinator"] = true
+L["Blackwater Bonecrusher"] = true
+L["Bilgewater Bombardier"] = true
 L["Attempt to enable the Options module"] = true
 L["Personalized Goblin S.C.R.A.Per"] = true
 L["Bronze Goblin Waveshredder"] = true

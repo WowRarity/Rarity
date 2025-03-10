@@ -171,6 +171,39 @@ local twwMounts = {
 		chance = 20,
 		coords = { { m = CONSTANTS.UIMAPIDS.UNDERMINE, x = 25.6, y = 38.2, n = L["Angelo Rustbin"] } },
 	},
+	["Bilgewater Bombardier"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Bilgewater Bombardier"],
+		itemId = 229957,
+		spellId = 466024,
+		items = { 237132 },
+		chance = 20, -- No data available
+		coords = { { m = CONSTANTS.UIMAPIDS.UNDERMINE } },
+	},
+	["Blackwater Bonecrusher"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Blackwater Bonecrusher"],
+		itemId = 229937,
+		spellId = 466001,
+		items = { 237135 },
+		chance = 20, -- No data available
+		coords = { { m = CONSTANTS.UIMAPIDS.UNDERMINE } },
+	},
+	["Venture Co-ordinator"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Venture Co-ordinator"],
+		itemId = 229951,
+		spellId = 466022,
+		items = { 237133 },
+		chance = 20, -- No data available
+		coords = { { m = CONSTANTS.UIMAPIDS.UNDERMINE } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, twwMounts)
