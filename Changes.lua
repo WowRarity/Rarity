@@ -1,4 +1,18 @@
 local changes = {
+	["r741"] = {
+		additions = {
+			"Added 3/4 Undermine paragon mounts to the database",
+			"Enabled defeat detection for Darkfuse Spy-Eye",
+		},
+		changes = {
+			"The options module can now be loaded directly from within the settings menu",
+		},
+		fixes = {
+			"Attempts for Wick's Lead should be detected in Mythic keystone dungeons",
+			"Rarity's options should always be accessible from Blizzard's settings UI, without needing to be opened manually first",
+		},
+		contributors = { "Ellezanor" },
+	},
 	["r740"] = {
 		additions = {
 			"Added Undermine collectibles to the database",
