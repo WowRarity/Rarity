@@ -16,7 +16,7 @@ local classicPets = {
 		chance = 10000,
 		creatureId = 7383,
 		blackMarket = true,
-		coords = { { m = 25 } },
+		coords = { { m = 1424 } },
 	},
 	["Dark Whelpling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.CLASSIC,

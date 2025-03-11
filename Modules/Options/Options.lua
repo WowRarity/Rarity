@@ -9,11 +9,34 @@ local lbsz = LibStub("LibBabble-SubZone-3.0")
 local media = LibStub("LibSharedMedia-3.0")
 local compress = LibStub("LibCompress")
 
+local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
+local LoadAddOn = C_AddOns.LoadAddOn
+
 local GetItemInfo = function(id)
 	if not Rarity.Caching:IsReady() then
 		return nil
 	end
 	return R:GetItemInfo(id)
+end
+
+local function getZoneNamesForItem(item)
+	if item.zones and type(item.zones) == "table" then
+		local zone = type(item.zones) == "table" and unpack(item.zones) or item.zones -- ID or name?
+		local s = ""
+		for k, zoneNameOrID in pairs(item.zones) do
+			local mapID = tonumber(zoneNameOrID)
+			-- local mapName = mapID and assert(Rarity.MapInfo.GetMapNameByID(mapID)) .. " (" .. zoneNameOrID .. ")"
+			local mapName = mapID and (Rarity.MapInfo.GetMapNameByID(mapID) or "Unknown") .. " (" .. zoneNameOrID .. ")"
+				or zoneNameOrID -- TODO L
+			if strlen(s) > 0 then
+				s = s .. ", "
+			end
+			s = s .. mapName
+		end
+		return s
+	else
+		return ""
+	end
 end
 
 local C = R.CONSTANTS
@@ -1188,6 +1211,7 @@ function R:PrepareOptions()
 								type = "toggle",
 								order = newOrder(),
 								name = L["Only announce when found"],
+								width = "double",
 								desc = L["Announcements will only be triggered when the item is found. When this is off, Rarity will announce every attempt and when the item is found."],
 								get = function()
 									return self.db.profile.onlyAnnounceFound
@@ -1624,13 +1648,39 @@ function R:PrepareOptions()
 					clearAccountwideStatistics = {
 						type = "execute",
 						order = newOrder(),
-						width = "full",
+						width = "double",
 						name = L["Clear accountwide statistics"],
 						desc = L["Clears the accountwide statistics saved for all characters. You can use this to remove the attempts stored for characters that no longer exist in their original form, e.g., after a server transfer, realm merge, or name change. After clearing this cached data, you will have to log into each character once so attempts can be updated from their statistics again."],
 						func = function(info, value) -- What are these parameters?
 							Rarity.db.profile.accountWideStatisticsBackup = Rarity.db.profile.accountWideStatistics -- There's no way to restore it automatically, for now, but it's still better to be safe rather than sorry
 							Rarity.db.profile.accountWideStatistics = {}
 							Rarity:Print(L["Cleared accountwide statistics"])
+						end,
+					},
+					-- TODO dry (profiling module)
+					-- TODO: If clicked multiple times, it will open a new instance. But I guess we don't really care to fix this?
+					inspectMapDisplayNames = { -- TODO check fishingzones table and saved variables also - as well as other internal bookkeeping tables that might need fixups on Classic
+						type = "execute",
+						order = newOrder(),
+						width = "double",
+						name = "Inspect UI Map Cache", --L["Clear accountwide statistics"],
+						desc = "You can use this to check that all database entries are using valid map IDs", -- L["Clears the accountwide statistics saved for all characters. You can use this to remove the attempts stored for characters that no longer exist in their original form, e.g., after a server transfer, realm merge, or name change. After clearing this cached data, you will have to log into each character once so attempts can be updated from their statistics again."],
+						func = function(info, value) -- What are these parameters?
+							local isLoading, isLoaded = IsAddOnLoaded("Blizzard_DebugTools")
+							if not isLoaded then
+								Rarity:Debug("Loading Blizzard_DebugTools (required to use the Table Inspector)")
+								local success, reason = LoadAddOn("Blizzard_DebugTools")
+								if not success then
+									Rarity:Debug(
+										"Failed to open Table Inspector (Blizzard_DebugTools could not be loaded)"
+									)
+									return
+								end
+							end
+							-- This can't be cached as the addon isn't loaded automatically, and the global DisplayTableInspectorWindow won't be available
+							local tableInspectorInstance =
+								_G["DisplayTableInspectorWindow"](Rarity.MapInfo, "Rarity UI Map Cache")
+							-- tableInspectorInstance:SetDynamicUpdates(true)
 						end,
 					},
 				},
@@ -2195,11 +2245,31 @@ function R:CreateGroup(options, group, isUser)
 						return item.method ~= ARCH
 					end,
 				},
+				-- zoneDisplayNames = {
+				-- 	type = "description",
+				-- 	order = newOrder(),
+				-- 	name = function() return getZoneNamesForItem(item) end,
+				-- 	width = "double",
+				-- 	-- inline = true,
+				-- 	get = function(into)
+				-- 		return getZoneNamesForItem(item)
+				-- 	end,
+				-- 	hidden = function()
+				-- 		if item.method == ZONE or item.method == FISHING then
+				-- 			return false
+				-- 		else
+				-- 			return true
+				-- 		end
+				-- 	end,
+				-- 	-- disabled = true,
+				-- },
 				zones = {
 					type = "input",
 					order = newOrder(),
 					width = "double",
-					name = L["Zones"],
+					name = function()
+						return L["Zones"] .. ": " .. getZoneNamesForItem(item)
+					end,
 					desc = L["A comma-separated list of the zones or sub-zones this item can be found in. For zones, you can enter either the Map ID (i.e. 811 is Vale of Eternal Blossoms), or the full name of the zone. For sub-zones, you must enter the full name of the sub-zone.\n\nEnter zone names with proper spelling, capitalization, and punctuation. They can be entered either in US English or your client's local language. Use WowHead or a similar service to make sure you're entering the zone names perfectly.\n\nPLEASE NOTE: Zone translations may not be correct. For zones, it is highly recommended that you use the Map ID instead of the name. For sub-zones, you must enter the name. If sub-zone detection isn't working for you, please visit the LibBabble-SubZone-3.0 library page on wowace.com and update the translations for your language."],
 					set = function(info, val)
 						if strtrim(val) == "" then
@@ -2246,6 +2316,7 @@ function R:CreateGroup(options, group, isUser)
 							end
 						end
 						self:Update("OPTIONS")
+						-- self:Update
 					end,
 					get = function(into)
 						if item.zones and type(item.zones) == "table" then
@@ -2270,6 +2341,7 @@ function R:CreateGroup(options, group, isUser)
 					end,
 					disabled = not isUser,
 				},
+
 				items = {
 					type = "input",
 					order = newOrder(),

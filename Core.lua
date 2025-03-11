@@ -514,16 +514,16 @@ function R:UpdateInterestingThings()
 	self:Debug("Updating interesting things tables")
 
 	-- Store an internal table listing every MapID
-	if self.db.profile.mapIds == nil then
-		self.db.profile.mapIds = {}
-	else
-		table.wipe(self.db.profile.mapIds)
-	end
-	for map_id = 1, 5000 do -- 5000 seems arbitrarily high; right now (8.0.1) there are barely 100 uiMapIDs... but it shouldn't matter if the misses are skipped
-		if GetMapNameByID(map_id) ~= nil then
-			self.db.profile.mapIds[map_id] = GetMapNameByID(map_id)
-		end
-	end
+	-- if self.db.profile.mapIds == nil then -- TODO how long does this take? Caching without invalidation = bad idea if map IDs change? (also, not versioned...)
+	-- self.db.profile.mapIds = {}
+	-- else
+	-- table.wipe(self.db.profile.mapIds)
+	-- end
+	-- for map_id = 1, 5000 do -- 5000 seems arbitrarily high; right now (8.0.1) there are barely 100 uiMapIDs... but it shouldn't matter if the misses are skipped -- TODO check SVN blame log for this part
+	-- 	if GetMapNameByID(map_id) ~= nil then
+	-- 		self.db.profile.mapIds[map_id] = GetMapNameByID(map_id)
+	-- 	end
+	-- end
 
 	table.wipe(npcs)
 	table.wipe(Rarity.bosses)
@@ -533,7 +533,7 @@ function R:UpdateInterestingThings()
 	table.wipe(Rarity.npcs_to_items)
 	table.wipe(Rarity.items_to_items)
 	table.wipe(Rarity.used)
-	table.wipe(Rarity.fishzones)
+	table.wipe(Rarity.fishzones) -- TODO streamline or remove?
 	table.wipe(Rarity.architems)
 	table.wipe(Rarity.stats_to_scan)
 	table.wipe(Rarity.items_with_stats)
