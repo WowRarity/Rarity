@@ -105,7 +105,6 @@ local GetArchaeologyRaceInfo = _G.GetArchaeologyRaceInfo
 local GetStatistic = _G.GetStatistic
 local GetLootSourceInfo = _G.GetLootSourceInfo
 local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
-local GetMapInfo = _G.C_Map.GetMapInfo
 local C_Timer = _G.C_Timer
 local IsSpellKnown = _G.IsSpellKnown
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
@@ -113,7 +112,6 @@ local IsQuestFlaggedCompleted = _G.C_QuestLog.IsQuestFlaggedCompleted
 local C_Covenants = _G.C_Covenants
 local EnableAddOn = C_AddOns.EnableAddOn
 local IsAddOnLoadable = C_AddOns.IsAddOnLoadable
-local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 local LoadAddOn = _G.C_AddOns.LoadAddOn
 
 local COMBATLOG_OBJECT_AFFILIATION_MINE = _G.COMBATLOG_OBJECT_AFFILIATION_MINE
