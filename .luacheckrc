@@ -59,6 +59,7 @@ globals = {
 	"C_AddOns",
 	"C_Container",
 	"C_Item",
+	"DevTools_Dump",
 	"Settings",
 	"LE_EXPANSION_LEVEL_CURRENT",
 	"LE_EXPANSION_CLASSIC",
