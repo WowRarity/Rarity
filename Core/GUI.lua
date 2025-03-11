@@ -33,7 +33,6 @@ local IsShiftKeyDown = IsShiftKeyDown
 local IsControlKeyDown = IsControlKeyDown
 local LoadAddOn = C_AddOns.LoadAddOn
 local UnitClass = UnitClass
-local GetMapInfo = C_Map.GetMapInfo
 local GetTime = GetTime
 local IsQuestFlaggedCompleted = _G.C_QuestLog.IsQuestFlaggedCompleted
 local InCombatLockdown = InCombatLockdown
