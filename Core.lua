@@ -429,7 +429,7 @@ function R:PrimeItemCache()
 	end
 
 	-- Prime the items
-	self:Debug("Loading " .. Rarity.Caching:GetItemsToPrime() .. " item(s) from server...")
+	-- self:Debug("Loading " .. Rarity.Caching:GetItemsToPrime() .. " item(s) from server...")
 	initTimer = self:ScheduleRepeatingTimer(function()
 		if Rarity.Caching:GetPrimedItems() <= 0 then
 			Rarity.Caching:SetPrimedItems(1)
@@ -461,7 +461,7 @@ function R:PrimeItemCache()
 				totalNeeded = totalNeeded + 1
 			end
 			if got < totalNeeded then
-				self:Debug("Initialization failed to retrieve " .. (totalNeeded - got) .. " item(s)")
+				-- self:Debug("Initialization failed to retrieve " .. (totalNeeded - got) .. " item(s)")
 				self:ScheduleTimer(function()
 					self:PrimeItemCache()
 				end, 5)
