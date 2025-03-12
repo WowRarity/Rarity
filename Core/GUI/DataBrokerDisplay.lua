@@ -167,7 +167,11 @@ function GUI:UpdateText()
 			end
 		end
 	end
-
+	ShowTrackedItemList()
+	if true then return end
+	
+	
+	--ALL CODE BELOW IS DEPRECATED AND IS RUN IN THE ShowTrackedItemList() FUNCTION INSTEAD
 	-- Bar 1
 	if not chance then
 		chance = 0
@@ -270,4 +274,90 @@ function GUI:UpdateText()
 		end
 	end
 	self.Profiling:EndTimer("GUI.UpdateText")
+end
+
+function ShowTrackedItemList()
+	--Rarity:Debug("Showing entire tracked item list")
+	local trackedItems = Rarity.Tracking:GetTrackedItemList()
+	--Rarity:Debug("Retreived the tracking list")
+	if not trackedItems then 
+		return
+	end
+	for key, value in pairs(trackedItems) do
+		local currentItem = value
+		--Rarity:Debug("Current item: %s", key)
+
+		if currentItem == nil or currentItem.itemId == nil then
+			--Rarity:Debug("Current item doesn't exist, ending here")
+			self.barGroup:RemoveBar(key)
+		else
+			_, -- itemName,
+			itemLink,
+			itemRarity,
+			itemLevel,
+			itemMinLevel,
+			itemType,
+			itemSubType,
+			itemStackCount,
+			itemEquipLoc,
+			itemTexture,
+			itemSellPrice =
+			GetItemInfo(currentItem.itemId)
+			--Rarity:Debug("Retrieved item information from WowAPI")
+			attempts = 0
+			if currentItem.attempts then
+				attempts = currentItem.attempts
+			end
+			if currentItem.lastAttempts then
+				attempts = attempts - currentItem.lastAttempts
+			end
+			if currentItem.realAttempts and currentItem.found and not currentItem.repeatable then
+				attempts = currentItem.realAttempts
+			end
+			if currentItem.found and not currentItem.repeatable then
+				chance = 100.0
+			else
+				if currentItem.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
+					chance = (currentItem.attempts or 0) / (currentItem.chance or 100)
+					if chance < 0 then
+						chance = 0
+					end
+					if chance > 1 then
+						chance = 1
+					end
+					chance = chance * 100
+				else
+					dropChance = Rarity.Statistics.GetRealDropPercentage(currentItem)
+					chance = 100 * (1 - math.pow(1 - dropChance, attempts))
+				end
+			end
+			if not chance then
+				chance = 0
+			end
+			if chance > 100 then
+				chance = 100
+			end
+			if chance < 0 then
+				chance = 0
+			end
+			text = format("%s: %d (%.2f%%)", itemLink or "", attempts, chance)
+			if currentItem.found and not currentItem.repeatable then
+				text = format("%s: Found in %d attempts!", itemLink or "", attempts)
+			end
+			local currentBar = Rarity.barGroup:GetBar(key)
+			if not currentBar then
+				currentBar = Rarity.barGroup:NewCounterBar(
+					key .. "",
+					text,
+					chance,
+					100,
+					itemTexture or [[Interface\Icons\spell_nature_forceofnature]]
+				)
+			else
+				currentBar:SetIcon(itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
+				currentBar:SetLabel(text)
+				currentBar:SetValue(chance, 100)
+			end
+		end
+	end
 end
