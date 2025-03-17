@@ -527,6 +527,10 @@ local function processItem(id, tooltip)
 end
 
 local function onTooltipSetItem(tooltip, tooltipData)
+	if not R.db or R.db.profile.enableTooltipAdditions == false then
+		return
+	end
+
 	if tooltip ~= _G.GameTooltip and tooltip ~= _G.ItemRefTooltip then
 		return
 	end
