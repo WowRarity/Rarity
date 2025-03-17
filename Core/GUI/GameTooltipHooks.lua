@@ -531,14 +531,13 @@ local function onTooltipSetItem(tooltip, tooltipData)
 		return
 	end
 
-	local itemLink = tooltipData.hyperlink
-	if type(itemLink) ~= "string" then
+	local itemID = tooltipData.id
+	if not itemID then
+		Rarity:Debug("Failed to set GameTooltip text (the provided data doesn't include an item ID)")
 		return
 	end
 
-	local id = itemLink:match("item:(%d+):")
-	assert(id, "Failed to extract item ID from item link (format might have changed?)")
-	processItem(tonumber(id), tooltip)
+	processItem(itemID, tooltip)
 end
 
 if not _G.TooltipDataProcessor then
