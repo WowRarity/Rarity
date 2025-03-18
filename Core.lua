@@ -347,6 +347,8 @@ do
 		if self.db.profile.verifyDatabaseOnLogin then
 			self.Validation:ValidateItemDB()
 		end
+
+		Rarity.GUI.DebugMenuFrame:Update()
 	end
 end
 

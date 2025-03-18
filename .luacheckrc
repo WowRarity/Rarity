@@ -75,11 +75,17 @@ globals = {
 
 	"AuraUtil",
 	"BackdropTemplateMixin",
+	"ButtonFrameTemplate_HidePortrait",
 	"ChatFontNormal",
 	"FauxScrollFrame_GetOffset",
 	"FauxScrollFrame_OnVerticalScroll",
 	"FauxScrollFrame_Update",
+	"PanelTemplates_DisableTab",
+	"PanelTemplates_SetNumTabs",
+	"PanelTemplates_SetTab",
+	"PanelTemplates_Tab_OnClick",
 	"SCROLLING_MESSAGE_FRAME_INSERT_MODE_TOP",
+	"SOUNDKIT",
 
 	"AchievementFrame",
 	"AchievementFrame_LoadUI",

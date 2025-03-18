@@ -84,6 +84,10 @@ function EventHandlers:Register()
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", "OnSpellcastSucceeded")
 	self:RegisterEvent("QUEST_TURNED_IN", "OnQuestTurnedIn")
 
+	self:RegisterEvent("ZONE_CHANGED", "ZONE_CHANGED")
+	self:RegisterEvent("ZONE_CHANGED_INDOORS", "ZONE_CHANGED")
+	self:RegisterEvent("ZONE_CHANGED_NEW_AREA", "ZONE_CHANGED")
+
 	if LE_EXPANSION_LEVEL_CURRENT >= LE_EXPANSION_MISTS_OF_PANDARIA then
 		self:RegisterEvent("SHOW_LOOT_TOAST", "OnShowLootToast")
 	end
@@ -96,6 +100,11 @@ function EventHandlers:Register()
 
 	self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", "OnPlayerInteractionFrameShow")
 	self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_HIDE", "OnPlayerInteractionFrameHide")
+end
+
+function Rarity:ZONE_CHANGED(...)
+	Rarity:Debug("ZONE_CHANGED")
+	Rarity.GUI.DebugMenuFrame:OnEvent(...)
 end
 
 -- TODO: Move elsewhere/refactor
@@ -733,6 +742,7 @@ function R:OnChatCommand(input)
 			self.db.profile.debugMode = true
 			self:Print(L["Debug mode ON"])
 		end
+		Rarity.GUI.DebugMenuFrame:Update()
 	elseif strlower(input) == "dump" then
 		self.ScrollingDebugMessageFrame:Toggle()
 	elseif strlower(input) == "validate" then -- Verify the ItemDB

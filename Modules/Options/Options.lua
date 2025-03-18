@@ -417,6 +417,7 @@ function R:PrepareOptions()
 									else
 										self:Print(L["Debug mode OFF"])
 									end
+									Rarity.GUI.DebugMenuFrame:Update()
 								end,
 							}, -- debug
 							enableProfiling = {
