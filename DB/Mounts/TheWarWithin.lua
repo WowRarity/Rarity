@@ -46,6 +46,7 @@ local twwMounts = {
 		spellId = 449258,
 		npcs = { 220285 },
 		chance = 100, -- No data available
+		questId = { 81633 },
 		coords = { { m = CONSTANTS.UIMAPIDS.THE_RINGING_DEEPS } },
 	},
 	["Wick's Lead"] = {
