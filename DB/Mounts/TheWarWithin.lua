@@ -35,6 +35,7 @@ local twwMounts = {
 		npcs = { 207802 },
 		chance = 100, -- No data available
 		coords = { { m = CONSTANTS.UIMAPIDS.HALLOWFALL } },
+		questId = 81763,
 	},
 	["Regurgitated Mole Reins"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
