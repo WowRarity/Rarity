@@ -21,34 +21,7 @@ function R:Debug(s, ...)
 end
 
 local start1, stop1, start2, stop2
-
-function R:ProfileStart()
-	if self.db.profile.enableProfiling then
-		start1 = debugprofilestop()
-	end
-end
-
-function R:ProfileStart2()
-	if self.db.profile.enableProfiling then
-		start2 = debugprofilestop()
-	end
-end
-
-function R:ProfileStop(s)
-	if self.db.profile.enableProfiling then
-		stop1 = debugprofilestop()
-		R:Print(format(s, stop1 - start1))
-	end
-end
-
-function R:ProfileStop2(s)
-	if self.db.profile.enableProfiling then
-		stop2 = debugprofilestop()
-		R:Print(format(s, stop2 - start2))
-	end
-end
-
-function R:ProfileDebug(s)
+function R:ProfileDebug(s) -- TODO move
 	if self.db.profile.enableProfiling then
 		R:Print(s)
 	end
