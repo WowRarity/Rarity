@@ -395,6 +395,8 @@ end
 -- This event also handles some special cases.
 -------------------------------------------------------------------------------------
 function R:OnCombat()
+	self.Profiling:StartTimer("EventHandlers.OnCombat")
+
 	-- Extract event payload (it's no longer being passed by the event iself as of 8.0.1)
 	local timestamp, eventType, hideCaster, srcGuid, srcName, srcFlags, srcRaidFlags, dstGuid, dstName, dstFlags, dstRaidFlags, spellId, spellName, spellSchool, auraType =
 		CombatLogGetCurrentEventInfo()
@@ -411,6 +413,7 @@ function R:OnCombat()
 				if not Rarity.guids[dstGuid] then
 					if not UnitAffectingCombat("player") and not UnitIsDead("player") then
 						Rarity:Debug("Ignoring this UNIT_DIED event because the player is alive, but not in combat")
+						self.Profiling:EndTimer("EventHandlers.OnCombat")
 						return
 					end
 
@@ -436,6 +439,7 @@ function R:OnCombat()
 			end
 		end
 	end
+	self.Profiling:EndTimer("EventHandlers.OnCombat")
 end
 
 local worldEventQuests = {
@@ -670,8 +674,18 @@ end
 -------------------------------------------------------------------------------------
 
 function R:OnMouseOver(event)
+	self.Profiling:StartTimer("EventHandlers.OnMouseOver")
+
 	local guid = UnitGUID("mouseover")
 	local npcid = self:GetNPCIDFromGUID(guid)
+
+	Rarity:Debug("OnMouseOver")
+	if not npcid then
+		self.Profiling:EndTimer("EventHandlers.OnMouseOver")
+
+		return
+	end
+	Rarity:Debug("UnitGUID: " .. tostring(npcid))
 
 	if npcid == 50409 or npcid == 50410 then
 		if not Rarity.guids[guid] then
@@ -687,6 +701,7 @@ function R:OnMouseOver(event)
 			end
 		end
 	end
+	self.Profiling:EndTimer("EventHandlers.OnMouseOver")
 end
 
 function R:OnProfileChanged(event, database, newProfileKey)
@@ -816,6 +831,8 @@ function R:OnSpellcastSent(event, unit, target, castGUID, spellID)
 	if unit ~= "player" then
 		return
 	end
+	self.Profiling:StartTimer("EventHandlers.OnSpellcastSent")
+
 	Rarity.foundTarget = false
 	-- ga = "No" -- WTF is this?
 
@@ -843,6 +860,8 @@ function R:OnSpellcastSent(event, unit, target, castGUID, spellID)
 	else
 		Rarity.previousSpell, Rarity.currentSpell = nil, nil
 	end
+
+	self.Profiling:EndTimer("EventHandlers.OnSpellcastSent")
 end
 
 function R:OnFishingEnded()
@@ -877,6 +896,7 @@ function R:OnCursorChanged(event)
 	if MinimapCluster:IsMouseOver() then
 		return
 	end
+	self.Profiling:StartTimer("EventHandlers.OnCursorChanged")
 	local t = stripColorCode(tooltipLeftText1:GetText())
 	if self.miningnodes[t] or self.fishnodes[t] or self.opennodes[t] then
 		Rarity.lastNode = t
@@ -885,6 +905,7 @@ function R:OnCursorChanged(event)
 	if Rarity.relevantSpells[Rarity.previousSpell] then
 		self:GetWorldTarget()
 	end
+	self.Profiling:EndTimer("EventHandlers.OnCursorChanged")
 end
 
 -- Doesn't really belong here, but no idea where to put it right now. Later...
@@ -895,6 +916,9 @@ function R:GetWorldTarget()
 	if MinimapCluster:IsMouseOver() then
 		return
 	end
+
+	self.Profiling:StartTimer("EventHandlers.GetWorldTarget")
+
 	local t = tooltipLeftText1:GetText()
 	Rarity:Debug("Getting world target " .. tostring(t))
 	if t and Rarity.previousSpell and t ~= Rarity.previousSpell and R.fishnodes[t] then
@@ -907,16 +931,22 @@ function R:GetWorldTarget()
 		Rarity.fishingTimer = self:ScheduleTimer(Rarity.OnFishingEnded, FISHING_DELAY)
 		Rarity.foundTarget = true
 	end
+
+	self.Profiling:EndTimer("EventHandlers.GetWorldTarget")
 end
 
 function R:OnSpellcastStopped(event, unit)
 	if unit ~= "player" then
 		return
 	end
+
+	self.Profiling:StartTimer("EventHandlers.OnSpellcastStopped")
+
 	if Rarity.relevantSpells[Rarity.previousSpell] then
 		self:GetWorldTarget()
 	end
 	Rarity.previousSpell, Rarity.currentSpell = Rarity.currentSpell, Rarity.currentSpell
+	self.Profiling:EndTimer("EventHandlers.OnSpellcastStopped")
 end
 
 function R:OnSpellcastFailed(event, unit)
@@ -992,10 +1022,14 @@ function R:ProcessContainerItems()
 end
 
 function R:ProcessInventoryItems()
+	self.Profiling:StartTimer("EventHandlers.ProcessInventoryItems")
+
 	for itemID, _ in pairs(Rarity.bagitems) do
 		self:ProcessCollectionItem(itemID)
 		self:ProcessOtherItem(itemID)
 	end
+
+	self.Profiling:EndTimer("EventHandlers.ProcessInventoryItems")
 end
 
 function R:ProcessCollectionItem(itemID)
@@ -1145,6 +1179,8 @@ function R:OnResearchArtifactComplete(event, _)
 end
 
 function R:OnEvent(event, ...)
+	self.Profiling:StartTimer("EventHandlers.OnEvent")
+
 	if event == "TRADE_SKILL_SHOW" then
 		Rarity.isTradeskillOpen = true
 	elseif event == "TRADE_SKILL_CLOSE" then
@@ -1169,6 +1205,8 @@ function R:OnEvent(event, ...)
 			Rarity.Session:End()
 		end
 	end
+
+	self.Profiling:EndTimer("EventHandlers.OnEvent")
 end
 
 -------------------------------------------------------------------------------------

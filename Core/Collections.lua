@@ -101,7 +101,7 @@ function Collections:ScanExistingItems(reason)
 	end
 
 	self:Debug("Scanning for existing items (" .. reason .. ")")
-	self:ProfileStart()
+	self.Profiling:StartTimer("Collections.ScanExistingItems")
 
 	-- Scans need to index by spellId, creatureId, achievementId, raceId, itemId (for toys), statisticId (which is a table; for stats)
 
@@ -281,28 +281,28 @@ function Collections:ScanExistingItems(reason)
 		end
 	end
 
-	self:ProfileStop("ScanExistingItems: Mounts/Pets/Achievements/Archaeology took %fms")
-
 	-- Other scans
+	self.Profiling:StartTimer("Collections.ScanStatistics")
 	self:ScanStatistics(reason)
-	self:ProfileStart2() -- Statistics does its own profiling
+	self.Profiling:EndTimer("Collections.ScanStatistics")
 
+	self.Profiling:StartTimer("Collections.ScanToys")
 	Rarity.Collections:ScanToys(reason)
-	self:ProfileStop2("Toys took %fms")
-	self:ProfileStart2()
+	self.Profiling:EndTimer("Collections.ScanToys")
 
+	self.Profiling:StartTimer("Collections.ScanTransmog")
 	Rarity.Collections:ScanTransmog(reason)
-	self:ProfileStop2("Transmog took %fms")
-	self:ProfileStart2()
+	self.Profiling:EndTimer("Collections.ScanTransmog")
 
+	self.Profiling:StartTimer("Collections.ScanCalendar")
 	self:ScanCalendar(reason)
-	self:ProfileStop2("Calendar took %fms")
-	self:ProfileStart2()
+	self.Profiling:EndTimer("Collections.ScanCalendar")
 
+	self.Profiling:StartTimer("Collections.ScanInstanceLocks")
 	self:ScanInstanceLocks(reason)
-	self:ProfileStop2("Instances took %fms")
+	self.Profiling:EndTimer("Collections.ScanInstanceLocks")
 
-	self:ProfileStop("ScanExistingItems: Total time %fms")
+	self.Profiling:EndTimer("Collections.ScanExistingItems")
 end
 
 -------------------------------------------------------------------------------------
