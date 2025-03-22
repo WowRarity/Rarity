@@ -17,8 +17,8 @@ function R:Debug(s, ...)
 	DebugCache:AddMessage(format(s, ...))
 end
 
-	if self.db.profile.enableProfiling then
 function R:ProfileDebug(s)
+	if self.db.profile.enableProfiling and self.db.profile.debugMode then
 		R:Print(s)
 	end
 end
