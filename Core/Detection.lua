@@ -145,8 +145,8 @@ end
 
 -- TODO: Does this really belong here? I don't think so...
 function R:BuildStatistics(reason)
-	self:ProfileStart2()
-	-- self:Debug("Building statistics table ("..reason..")")
+	self.Profiling:StartTimer("Collections.BuildStatistics." .. reason or "UnknownReason")
+	self:Debug("Building statistics table (" .. reason .. ")")
 
 	local tbl = {}
 	Rarity.lastStatCount = 0
@@ -173,7 +173,7 @@ function R:BuildStatistics(reason)
 		Rarity.lastStatCount = Rarity.lastStatCount + 1
 	end
 
-	self:ProfileStop2("BuildStatistics: %fms")
+	self.Profiling:EndTimer("Collections.BuildStatistics" .. reason or "UnknownReason")
 	return tbl
 end
 
@@ -182,8 +182,7 @@ function R:ScanStatistics(reason)
 		return
 	end -- Don't do this during combat as it has a tendency to run too long
 
-	self:ProfileStart2()
-	-- self:Debug("Scanning statistics ("..reason..")")
+	self.Profiling:StartTimer("Collections.ScanStatistics." .. reason or "UnknownReason")
 
 	if rarity_stats == nil or (Rarity.lastStatCount or 0) <= 0 then
 		self:Debug("Building initial statistics table")
@@ -276,5 +275,5 @@ function R:ScanStatistics(reason)
 		end
 	end
 
-	self:ProfileStop2("ScanStatistics: %fms")
+	self.Profiling:EndTimer("Collections.ScanStatistics" .. reason or "UnknownReason")
 end

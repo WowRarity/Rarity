@@ -91,7 +91,7 @@ function GUI:UpdateText()
 		return
 	end
 
-	self:ProfileStart()
+	self.Profiling:StartTimer("GUI.UpdateText")
 	local attempts, dropChance, chance
 
 	local trackedItem = Rarity.Tracking:GetTrackedItem(1)
@@ -269,5 +269,5 @@ function GUI:UpdateText()
 			self.bar2:SetValue(chance, 100)
 		end
 	end
-	self:ProfileStop("UpdateText: %fms")
+	self.Profiling:EndTimer("GUI.UpdateText")
 end
