@@ -7,12 +7,16 @@ local Tracking = {}
 -- Globals
 local R = Rarity
 -- Locals
+local trackedItemList = {}
+local trackedItemOrder = {}
+local trackedItemCount = 0
 local trackedItems = {}
 local lastAttemptItem
 local lastAttemptTime
 -- WOW APIs
 local format = format
 local GetTime = GetTime
+local GetItemInfo = C_Item.GetItemInfo
 -- Constants
 local DUAL_TRACK_THRESHOLD = 5 -- TODO: No idea what this number is supposed to mean...
 Tracking.DUAL_TRACK_THRESHOLD = DUAL_TRACK_THRESHOLD
@@ -41,7 +45,7 @@ function Tracking:SetTrackedItem(item, index)
 	local itemID = item.itemId
 	local itemName = item.name
 	Rarity:Debug("Setting tracked item to " .. tostring(itemID) .. " (" .. tostring(itemName) .. ")")
-
+	Tracking:AddTrackedItem(item)
 	trackedItems[index] = item
 end
 
@@ -102,7 +106,7 @@ end
 -- TODO: What's up with the Hyacinth Macaw? Leaving it at "None" might be a better default?
 function Tracking:FindTrackedItem()
 	self = Rarity
-	Rarity.Tracking:SetTrackedItem(self.db.profile.groups.pets["Parrot Cage (Hyacinth Macaw)"])
+	Rarity.Tracking:SetTrackedItem(self.db.profile.groups.pets["None"])
 
 	local trackedItem = Rarity.Tracking:GetTrackedItem()
 	if self.db.profile.trackedGroup and self.db.profile.groups[self.db.profile.trackedGroup] then
@@ -120,6 +124,47 @@ function Tracking:FindTrackedItem()
 		end
 	end
 end
+
+
+
+function Tracking:AddTrackedItem(item)
+	if not item then -- Make sure the parameter is set.
+		Rarity:Debug("item parameter needs to be set")
+		return
+	end
+	local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(item.itemId)
+	if not trackedItemList[item.itemId] then
+		Rarity:Debug("Adding %s to tracked item list", itemLink or "ITEM_LINK_UNAVAILABLE")
+		table.insert(trackedItemOrder, item.itemId)
+		trackedItemList[item.itemId] = item
+		trackedItemCount = trackedItemCount + 1
+		Rarity:Debug("Tracked item count: %s", trackedItemCount)
+		Rarity:Debug("Max tracked items: %s", Rarity.db.profile.bar.maxElements)
+		if trackedItemCount > Rarity.db.profile.bar.maxElements then
+			local removedItem = table.remove(trackedItemOrder,1)
+			Rarity:Debug("Max tracked items has been exceeded, removing first one: %s", removedItem)
+			trackedItemList[removedItem] = nil
+			Rarity.barGroup:RemoveBar(removedItem .. "")
+			--Rarity:Debug("removed: %s", removedItemObj)
+			trackedItemCount = trackedItemCount - 1
+		end
+		
+		Rarity:Debug("List now consists of:")
+		for k, v in pairs(trackedItemList) do
+			local _, trackedItemLink, _, _, _, _, _, _, _, _, _ = GetItemInfo(v.itemId)
+			Rarity:Debug("%s: %s", k, trackedItemLink or "ITEM_NOT_FOUND")
+		end
+	else
+		Rarity:Debug("%s is already on the tracking list", itemLink or "ITEM_LINK_UNAVAILABLE")
+	end
+end
+
+function Tracking:GetTrackedItemList()
+	return trackedItemList
+end
+
+
+
 
 Rarity.Tracking = Tracking
 return Tracking
