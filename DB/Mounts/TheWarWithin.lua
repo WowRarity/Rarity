@@ -206,6 +206,17 @@ local twwMounts = {
 		chance = 20, -- No data available
 		coords = { { m = CONSTANTS.UIMAPIDS.UNDERMINE } },
 	},
+	["Steamwheedle Supplier"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Steamwheedle Supplier"],
+		itemId = 229943,
+		spellId = 466014,
+		items = { 237134 },
+		chance = 20, -- No data available
+		coords = { { m = CONSTANTS.UIMAPIDS.UNDERMINE } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, twwMounts)
