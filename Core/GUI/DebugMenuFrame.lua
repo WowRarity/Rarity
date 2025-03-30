@@ -68,9 +68,50 @@ function DebugMenuFrame:OnLoad()
 	self.header = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
 	self.header:SetJustifyH("LEFT")
 	self.header:SetJustifyV("TOP")
-	self.header:SetPoint("TOPLEFT", 16, -32 - 32)
-	self.header:SetText("")
+	self.header:SetPoint("TOPLEFT", 16, -32 - 32) -- TBD 16 ???
+	self.header:SetText("HEADER TEXT TODO REMOVE")
 	self.frame = frame
+
+
+	local tabButton =	CreateFrame("Button", "$parentTabButton1", frame, "CharacterFrameTabTemplate")
+	tabButton:SetPoint("TOPLEFT", frame, "BOTTOMLEFT", 11, 2)
+	tabButton:SetText("Map Info")
+
+
+	local tabButton =	CreateFrame("Button", "$parentTabButton2", frame, "CharacterFrameTabTemplate")
+	tabButton:SetPoint("TOPLEFT", frame, "BOTTOMLEFT", 11, 2)
+	tabButton:SetText("Spell Tracking")
+
+	PanelTemplates_SetNumTabs(frame, 2);
+	PanelTemplates_SetTab(frame, 1);
+	-- TODO add this
+	-- function CharacterFrameTabButtonMixin:OnClick(button)
+	-- 	PanelTemplates_Tab_OnClick(self, CharacterFrame);
+
+	-- 	local name = self:GetName();
+	-- 	if ( name == "CharacterFrameTab1" ) then
+	-- 		ToggleCharacter("PaperDollFrame");
+	-- 	elseif ( name == "CharacterFrameTab2" ) then
+	-- 		ToggleCharacter("ReputationFrame");
+	-- 	elseif ( name == "CharacterFrameTab3" ) then
+	-- 		CharacterFrame:ToggleTokenFrame();
+	-- 	end
+	-- 	PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB);
+	-- end
+
+	-- local tabButton =	CreateFrame("Button", "$parentTabButton", frame, "TabSystemButtonTemplate,TabSystemTemplate")
+-- self.tabButton = tabButton
+-- tabButton:SetSize(10, 32)
+-- tabButton:SetText("I hate this")
+-- tabButton:Init("TabID", "TabText")
+-- 	<Button name="TabSystemButtonTemplate" inherits="TabSystemButtonArtTemplate" mixin="TabSystemButtonMixin" motionScriptsWhileDisabled="true" virtual="true">
+-- 	<Size x="10" y="32"/>
+-- 	<Scripts>
+-- 		<OnEnter method="OnEnter"/>
+-- 		<OnLeave method="OnLeave"/>
+-- 		<OnClick method="OnClick"/>
+-- 	</Scripts>
+-- </Button>
 end
 function DebugMenuFrame.OnEvent(event, ...)
 	-- Rarity:Debug("DebugMenuFrame.OnEvent: " .. tostring(event))
