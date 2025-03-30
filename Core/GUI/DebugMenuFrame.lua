@@ -72,8 +72,7 @@ function DebugMenuFrame:OnLoad()
 	self.header:SetText("HEADER TEXT TODO REMOVE")
 	self.frame = frame
 
-
-	local tabButton =	CreateFrame("Button", "$parentTabButton1", frame, "CharacterFrameTabTemplate")
+	local tabButton = CreateFrame("Button", "$parentTabButton1", frame, "CharacterFrameTabTemplate")
 	tabButton:SetPoint("TOPLEFT", frame, "BOTTOMLEFT", 11, 2)
 	tabButton:SetText("Map Info")
 	tabButton:SetScript("OnClick", function(self, button)
@@ -83,7 +82,7 @@ function DebugMenuFrame:OnLoad()
 		PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
 	end)
 
-	local tabButton =	CreateFrame("Button", "$parentTabButton2", frame, "CharacterFrameTabTemplate")
+	local tabButton = CreateFrame("Button", "$parentTabButton2", frame, "CharacterFrameTabTemplate")
 	-- tabButton:SetPoint("TOPLEFT", frame, "BOTTOMLEFT", 11, 2) -- TBD anchor to previous tab, with offset 1,0 ?
 	tabButton:SetText("Spell Tracking")
 	tabButton:SetScript("OnClick", function(self, button)
@@ -93,7 +92,7 @@ function DebugMenuFrame:OnLoad()
 		PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
 	end)
 
-	local tabButton =	CreateFrame("Button", "$parentTabButton3", frame, "CharacterFrameTabTemplate")
+	local tabButton = CreateFrame("Button", "$parentTabButton3", frame, "CharacterFrameTabTemplate")
 	-- tabButton:SetPoint("TOPLEFT", frame, "BOTTOMLEFT", 11, 2) -- TBD anchor to previous tab, with offset 1,0 ?
 	tabButton:SetText("Defeat Detection")
 	tabButton:SetScript("OnClick", function(self, button)
@@ -103,7 +102,7 @@ function DebugMenuFrame:OnLoad()
 		PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
 	end)
 
-	local tabButton =	CreateFrame("Button", "$parentTabButton4", frame, "CharacterFrameTabTemplate")
+	local tabButton = CreateFrame("Button", "$parentTabButton4", frame, "CharacterFrameTabTemplate")
 	-- tabButton:SetPoint("TOPLEFT", frame, "BOTTOMLEFT", 11, 2) -- TBD anchor to previous tab, with offset 1,0 ?
 	tabButton:SetText("Attempts")
 	tabButton:SetScript("OnClick", function(self, button)
@@ -113,8 +112,8 @@ function DebugMenuFrame:OnLoad()
 		PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
 	end)
 
-	PanelTemplates_SetNumTabs(frame, 4);
-	PanelTemplates_SetTab(frame, 2);
+	PanelTemplates_SetNumTabs(frame, 4)
+	PanelTemplates_SetTab(frame, 2)
 
 	-- PanelTemplates_DisableTab(2)
 	-- PanelTemplates_DisableTab(3)
@@ -135,18 +134,18 @@ function DebugMenuFrame:OnLoad()
 	-- end
 
 	-- local tabButton =	CreateFrame("Button", "$parentTabButton", frame, "TabSystemButtonTemplate,TabSystemTemplate")
--- self.tabButton = tabButton
--- tabButton:SetSize(10, 32)
--- tabButton:SetText("I hate this")
--- tabButton:Init("TabID", "TabText")
--- 	<Button name="TabSystemButtonTemplate" inherits="TabSystemButtonArtTemplate" mixin="TabSystemButtonMixin" motionScriptsWhileDisabled="true" virtual="true">
--- 	<Size x="10" y="32"/>
--- 	<Scripts>
--- 		<OnEnter method="OnEnter"/>
--- 		<OnLeave method="OnLeave"/>
--- 		<OnClick method="OnClick"/>
--- 	</Scripts>
--- </Button>
+	-- self.tabButton = tabButton
+	-- tabButton:SetSize(10, 32)
+	-- tabButton:SetText("I hate this")
+	-- tabButton:Init("TabID", "TabText")
+	-- 	<Button name="TabSystemButtonTemplate" inherits="TabSystemButtonArtTemplate" mixin="TabSystemButtonMixin" motionScriptsWhileDisabled="true" virtual="true">
+	-- 	<Size x="10" y="32"/>
+	-- 	<Scripts>
+	-- 		<OnEnter method="OnEnter"/>
+	-- 		<OnLeave method="OnLeave"/>
+	-- 		<OnClick method="OnClick"/>
+	-- 	</Scripts>
+	-- </Button>
 end
 function DebugMenuFrame.OnEvent(event, ...)
 	-- Rarity:Debug("DebugMenuFrame.OnEvent: " .. tostring(event))
