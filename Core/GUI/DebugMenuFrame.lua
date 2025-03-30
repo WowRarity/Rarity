@@ -76,21 +76,49 @@ function DebugMenuFrame:OnLoad()
 	local tabButton =	CreateFrame("Button", "$parentTabButton1", frame, "CharacterFrameTabTemplate")
 	tabButton:SetPoint("TOPLEFT", frame, "BOTTOMLEFT", 11, 2)
 	tabButton:SetText("Map Info")
+	tabButton:SetScript("OnClick", function(self, button)
+		Rarity:Print("PanelTemplates_Tab_OnClick")
+		PanelTemplates_Tab_OnClick(self, frame)
+		PanelTemplates_SetTab(frame, 1)
+		PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
+	end)
 
 	local tabButton =	CreateFrame("Button", "$parentTabButton2", frame, "CharacterFrameTabTemplate")
 	-- tabButton:SetPoint("TOPLEFT", frame, "BOTTOMLEFT", 11, 2) -- TBD anchor to previous tab, with offset 1,0 ?
 	tabButton:SetText("Spell Tracking")
+	tabButton:SetScript("OnClick", function(self, button)
+		Rarity:Print("PanelTemplates_Tab_OnClick")
+		PanelTemplates_Tab_OnClick(self, frame)
+		PanelTemplates_SetTab(frame, 2)
+		PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
+	end)
 
 	local tabButton =	CreateFrame("Button", "$parentTabButton3", frame, "CharacterFrameTabTemplate")
 	-- tabButton:SetPoint("TOPLEFT", frame, "BOTTOMLEFT", 11, 2) -- TBD anchor to previous tab, with offset 1,0 ?
 	tabButton:SetText("Defeat Detection")
+	tabButton:SetScript("OnClick", function(self, button)
+		Rarity:Print("PanelTemplates_Tab_OnClick")
+		PanelTemplates_Tab_OnClick(self, frame)
+		PanelTemplates_SetTab(frame, 3)
+		PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
+	end)
 
 	local tabButton =	CreateFrame("Button", "$parentTabButton4", frame, "CharacterFrameTabTemplate")
 	-- tabButton:SetPoint("TOPLEFT", frame, "BOTTOMLEFT", 11, 2) -- TBD anchor to previous tab, with offset 1,0 ?
 	tabButton:SetText("Attempts")
+	tabButton:SetScript("OnClick", function(self, button)
+		Rarity:Print("PanelTemplates_Tab_OnClick")
+		PanelTemplates_Tab_OnClick(self, frame)
+		PanelTemplates_SetTab(frame, 4)
+		PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
+	end)
 
 	PanelTemplates_SetNumTabs(frame, 4);
-	PanelTemplates_SetTab(frame, 1);
+	PanelTemplates_SetTab(frame, 2);
+
+	-- PanelTemplates_DisableTab(2)
+	-- PanelTemplates_DisableTab(3)
+	PanelTemplates_DisableTab(frame, 4)
 	-- TODO add this
 	-- function CharacterFrameTabButtonMixin:OnClick(button)
 	-- 	PanelTemplates_Tab_OnClick(self, CharacterFrame);
