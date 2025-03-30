@@ -77,12 +77,19 @@ function DebugMenuFrame:OnLoad()
 	tabButton:SetPoint("TOPLEFT", frame, "BOTTOMLEFT", 11, 2)
 	tabButton:SetText("Map Info")
 
-
 	local tabButton =	CreateFrame("Button", "$parentTabButton2", frame, "CharacterFrameTabTemplate")
-	tabButton:SetPoint("TOPLEFT", frame, "BOTTOMLEFT", 11, 2)
+	-- tabButton:SetPoint("TOPLEFT", frame, "BOTTOMLEFT", 11, 2) -- TBD anchor to previous tab, with offset 1,0 ?
 	tabButton:SetText("Spell Tracking")
 
-	PanelTemplates_SetNumTabs(frame, 2);
+	local tabButton =	CreateFrame("Button", "$parentTabButton3", frame, "CharacterFrameTabTemplate")
+	-- tabButton:SetPoint("TOPLEFT", frame, "BOTTOMLEFT", 11, 2) -- TBD anchor to previous tab, with offset 1,0 ?
+	tabButton:SetText("Defeat Detection")
+
+	local tabButton =	CreateFrame("Button", "$parentTabButton4", frame, "CharacterFrameTabTemplate")
+	-- tabButton:SetPoint("TOPLEFT", frame, "BOTTOMLEFT", 11, 2) -- TBD anchor to previous tab, with offset 1,0 ?
+	tabButton:SetText("Attempts")
+
+	PanelTemplates_SetNumTabs(frame, 4);
 	PanelTemplates_SetTab(frame, 1);
 	-- TODO add this
 	-- function CharacterFrameTabButtonMixin:OnClick(button)
