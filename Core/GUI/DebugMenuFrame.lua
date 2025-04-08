@@ -180,6 +180,10 @@ DebugMenuFrame.tabs = {
 		displayText = "Caching",
 		disabled = true,
 	},
+	{
+		displayText = "Logs",
+		disabled = true,
+	},
 }
 
 Rarity.GUI.DebugMenuFrame = DebugMenuFrame
