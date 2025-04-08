@@ -1,14 +1,13 @@
-local DebugMenuFrame = {}
-
+local DebugMenuFrame = {
+	minPanelWidth = 640,
+	minPanelHeight = 240,
+	defaultPanelWidth = 640,
+	defaultPanelHeight = 240,
+}
 function DebugMenuFrame:OnLoad()
-	local MinPanelWidth = 715
-	local MinPanelHeight = 210
-	local DefaultPanelWidth = MinPanelWidth
-	local DefaultPanelHeight = 400
-
-	local frame = CreateFrame("Frame", "RarityDebugMenuFrame", UIParent, "ButtonFrameTemplate")
+	local frame = CreateFrame("Frame", "RarityDebugMenuFramec", UIParent, "ButtonFrameTemplate")
 	ButtonFrameTemplate_HidePortrait(frame)
-	frame:SetSize(DefaultPanelWidth, DefaultPanelHeight)
+	frame:SetSize(self.defaultPanelWidth, self.defaultPanelHeight)
 	frame:SetPoint("CENTER")
 	frame:SetToplevel(true)
 	frame:SetMovable(true)
@@ -28,7 +27,7 @@ function DebugMenuFrame:OnLoad()
 
 	frame.ResizeButton = CreateFrame("Button", "$parentResizeButton", frame, "PanelResizeButtonTemplate")
 	frame.ResizeButton:SetPoint("BOTTOMRIGHT")
-	frame.ResizeButton:Init(frame, MinPanelWidth, MinPanelHeight)
+	frame.ResizeButton:Init(frame, self.minPanelWidth, self.minPanelHeight)
 
 	frame.Close = CreateFrame("Button", "$parentClose", frame, BackdropTemplateMixin and "UIPanelCloseButtonNoScripts")
 
