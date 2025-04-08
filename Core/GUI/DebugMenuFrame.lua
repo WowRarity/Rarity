@@ -25,11 +25,18 @@ function DebugMenuFrame:OnLoad()
 	frame.Title:SetPoint("TOPRIGHT")
 	frame.Title:Init(frame)
 
+	frame.ReloadButton = CreateFrame("Button", "$parentReloadButton", frame, "UIPanelButtonTemplate")
+	frame.ReloadButton:SetPoint("TOPLEFT", 16 -6, -32 + 6)
+	frame.ReloadButton:SetSize(80, 32)
+	frame.ReloadButton:RegisterForClicks("AnyDown", "AnyUp")
+	frame.ReloadButton:SetText("Reload UI")
+	frame.ReloadButton:SetScript("OnClick", function() ReloadUI() end)
+
 	frame.ResizeButton = CreateFrame("Button", "$parentResizeButton", frame, "PanelResizeButtonTemplate")
 	frame.ResizeButton:SetPoint("BOTTOMRIGHT")
 	frame.ResizeButton:Init(frame, self.minPanelWidth, self.minPanelHeight)
 
-	frame.Close = CreateFrame("Button", "$parentClose", frame, BackdropTemplateMixin and "UIPanelCloseButtonNoScripts")
+	frame.Close = CreateFrame("Button", "$parentCloseButton", frame, BackdropTemplateMixin and "UIPanelCloseButtonNoScripts")
 
 	self.innerText = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight") -- TBD content, not header?
 	self.innerText:SetJustifyH("LEFT")
