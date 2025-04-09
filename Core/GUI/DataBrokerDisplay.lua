@@ -169,8 +169,8 @@ function GUI:UpdateText()
 	end
 	ShowTrackedItemList()
 	if true then return end
-	
-	
+
+
 	--ALL CODE BELOW IS DEPRECATED AND IS RUN IN THE ShowTrackedItemList() FUNCTION INSTEAD
 	-- Bar 1
 	if not chance then
@@ -273,14 +273,14 @@ function GUI:UpdateText()
 			self.bar2:SetValue(chance, 100)
 		end
 	end
-	self.Profiling:EndTimer("GUI.UpdateText")
+	self:ProfileStop("UpdateText: %fms")
 end
 
 function ShowTrackedItemList()
 	--Rarity:Debug("Showing entire tracked item list")
 	local trackedItems = Rarity.Tracking:GetTrackedItemList()
 	--Rarity:Debug("Retreived the tracking list")
-	if not trackedItems then 
+	if not trackedItems then
 		return
 	end
 	for key, value in pairs(trackedItems) do
@@ -342,7 +342,11 @@ function ShowTrackedItemList()
 			end
 			text = format("%s: %d (%.2f%%)", itemLink or "", attempts, chance)
 			if currentItem.found and not currentItem.repeatable then
-				text = format("%s: Found in %d attempts!", itemLink or "", attempts)
+				if attempts == 1 then
+					text = format(L["%s: Found on the first attempt!"], itemLink or "")
+				else
+					text = format(L["%s: Found after %d attempts!"], itemLink or "", attempts)
+				end
 			end
 			local currentBar = Rarity.barGroup:GetBar(key)
 			if not currentBar then
