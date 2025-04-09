@@ -4,6 +4,7 @@ local DebugMenuFrame = {
 	defaultPanelWidth = 640,
 	defaultPanelHeight = 240,
 }
+
 function DebugMenuFrame:OnLoad()
 	local frame = CreateFrame("Frame", "RarityDebugMenuFramec", UIParent, "ButtonFrameTemplate")
 	ButtonFrameTemplate_HidePortrait(frame)
@@ -17,8 +18,6 @@ function DebugMenuFrame:OnLoad()
 	frame:SetTitle("Rarity: Debug Menu")
 	frame:SetFrameStrata("DIALOG")
 
-	frame:SetScript("OnEvent", DebugMenuFrame.OnEvent)
-
 	frame.Title = CreateFrame("Frame", "$parentTitle", frame, "PanelDragBarTemplate")
 	frame.Title:SetHeight(32)
 	frame.Title:SetPoint("TOPLEFT")
@@ -26,17 +25,20 @@ function DebugMenuFrame:OnLoad()
 	frame.Title:Init(frame)
 
 	frame.ReloadButton = CreateFrame("Button", "$parentReloadButton", frame, "UIPanelButtonTemplate")
-	frame.ReloadButton:SetPoint("TOPLEFT", 16 -6, -32 + 6)
+	frame.ReloadButton:SetPoint("TOPLEFT", 16 - 6, -32 + 6)
 	frame.ReloadButton:SetSize(80, 32)
 	frame.ReloadButton:RegisterForClicks("AnyDown", "AnyUp")
 	frame.ReloadButton:SetText("Reload UI")
-	frame.ReloadButton:SetScript("OnClick", function() ReloadUI() end)
+	frame.ReloadButton:SetScript("OnClick", function()
+		ReloadUI()
+	end)
 
 	frame.ResizeButton = CreateFrame("Button", "$parentResizeButton", frame, "PanelResizeButtonTemplate")
 	frame.ResizeButton:SetPoint("BOTTOMRIGHT")
 	frame.ResizeButton:Init(frame, self.minPanelWidth, self.minPanelHeight)
 
-	frame.Close = CreateFrame("Button", "$parentCloseButton", frame, BackdropTemplateMixin and "UIPanelCloseButtonNoScripts")
+	frame.Close =
+		CreateFrame("Button", "$parentCloseButton", frame, BackdropTemplateMixin and "UIPanelCloseButtonNoScripts")
 
 	self.innerText = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight") -- TBD content, not header?
 	self.innerText:SetJustifyH("LEFT")
@@ -103,7 +105,15 @@ function DebugMenuFrame:Update()
 	self.frame:Hide()
 end
 
-function DebugMenuFrame.OnEvent(event, ...)
+function DebugMenuFrame.PLAYER_ENTERING_WORLD(event, ...)
+	if Rarity.db.profile.debugMode ~= true then
+		return
+	end
+
+	DebugMenuFrame:UpdateMapInfo()
+end
+
+function DebugMenuFrame.ZONE_CHANGED(event, ...)
 	DebugMenuFrame:UpdateMapInfo()
 end
 
@@ -112,7 +122,7 @@ function DebugMenuFrame:UpdateMapInfo()
 	local green = Rarity.Enum.Colors.Green
 	local red = Rarity.Enum.Colors.Red
 	local blue = Rarity.Enum.Colors.Blue
-	Rarity:Debug("ZONE_CHANGED")
+	Rarity:Debug("UpdateMapInfo") -- TODO remove
 
 	local mapID = C_Map.GetBestMapForUnit("player")
 	local mapInfo = mapID and C_Map.GetMapInfo(mapID) or nil
