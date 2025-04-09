@@ -1,4 +1,14 @@
 local changes = {
+	["r742"] = {
+		additions = {
+			"Enabled defeat detection for Beledar's Spawn and Regurgitated Mole Reins",
+		},
+		fixes = {
+			"Rarity's tooltip additions should once again be displayed for container items",
+			"Disabling the tooltip additions should work as expected for items, and not just units",
+		},
+		contributors = {},
+	},
 	["r741"] = {
 		additions = {
 			"Added 3/4 Undermine paragon mounts to the database",
