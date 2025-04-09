@@ -412,6 +412,8 @@ function R:PrepareOptions()
 								end,
 								set = function(info, val)
 									self.db.profile.debugMode = val
+									-- Rarity:EnterDebugMode() -> create debug UI (first time only) -> show debug window -> register debug events -> print msg
+									-- Rarity:ExitDebugMode() -> unregister debug events -> print msg
 									if self.db.profile.debugMode then
 										self:Print(L["Debug mode ON"])
 									else
