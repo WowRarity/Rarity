@@ -163,10 +163,11 @@ DebugMenuFrame.tabs = {
 	{
 		displayText = "Map Info",
 		action = DebugMenuFrame.UpdateMapInfo,
+		disabled = false,
 	},
 	{
 		displayText = "Spell Tracking",
-		disabled = true,
+		disabled = false,
 	},
 	{
 		displayText = "Defeat Detection",
