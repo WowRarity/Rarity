@@ -57,7 +57,7 @@ local DebugCache = Rarity.Utils.DebugCache
 
 function EventHandlers:Register()
 	self = Rarity
-	local WOW_INTERFACE_VER = select(4, GetBuildInfo())
+	local WOW_INTERFACE_VER = select(4, GetBuildInfo()) -- TODO remove
 
 	self:UnregisterAllEvents()
 	self:RegisterBucketEvent("BAG_UPDATE", 0.5, "OnBagUpdate")
@@ -77,7 +77,7 @@ function EventHandlers:Register()
 	self:RegisterEvent("UPDATE_MOUSEOVER_UNIT", "OnMouseOver")
 	self:RegisterEvent("CRITERIA_COMPLETE", "OnCriteriaComplete")
 	self:RegisterEvent("ENCOUNTER_END", "OnEncounterEnd")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "OnCombatEnded")
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "OnCombatEnded") -- TODO use combat event
 	self:RegisterEvent("PET_BATTLE_OPENING_START", "OnPetBattleStart")
 	self:RegisterEvent("PET_BATTLE_CLOSE", "OnPetBattleEnd")
 	self:RegisterEvent("ISLAND_COMPLETED", "OnIslandCompleted")
@@ -87,6 +87,7 @@ function EventHandlers:Register()
 	self:RegisterEvent("ZONE_CHANGED", "ZONE_CHANGED")
 	self:RegisterEvent("ZONE_CHANGED_INDOORS", "ZONE_CHANGED")
 	self:RegisterEvent("ZONE_CHANGED_NEW_AREA", "ZONE_CHANGED")
+	self:RegisterEvent("PLAYER_ENTERING_WORLD", "PLAYER_ENTERING_WORLD")
 
 	if LE_EXPANSION_LEVEL_CURRENT >= LE_EXPANSION_MISTS_OF_PANDARIA then
 		self:RegisterEvent("SHOW_LOOT_TOAST", "OnShowLootToast")
@@ -102,9 +103,12 @@ function EventHandlers:Register()
 	self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_HIDE", "OnPlayerInteractionFrameHide")
 end
 
+function Rarity:PLAYER_ENTERING_WORLD(...)
+	Rarity.GUI.DebugMenuFrame:PLAYER_ENTERING_WORLD(...)
+end
+
 function Rarity:ZONE_CHANGED(...)
-	Rarity:Debug("ZONE_CHANGED")
-	Rarity.GUI.DebugMenuFrame:OnEvent(...)
+	Rarity.GUI.DebugMenuFrame:ZONE_CHANGED(...)
 end
 
 -- TODO: Move elsewhere/refactor
