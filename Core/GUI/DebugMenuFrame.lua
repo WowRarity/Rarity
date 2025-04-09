@@ -181,7 +181,7 @@ DebugMenuFrame.tabs = {
 		disabled = true,
 	},
 	{
-		displayText = "Logs",
+		displayText = "Logging",
 		disabled = true,
 	},
 }
