@@ -52,7 +52,7 @@ end
 function Tracking:Update(item)
 	self = Rarity
 	local trackedItem2 = Rarity.Tracking:GetTrackedItem(2)
-	self.Profiling:StartTimer("Tracking.Update")
+	self:ProfileStart2()
 	if not item or not item.itemId then
 		return
 	end
@@ -87,7 +87,7 @@ function Tracking:Update(item)
 	end
 	Rarity.GUI:UpdateText()
 	-- if self:InTooltip() then self:ShowTooltip() end
-	self.Profiling:EndTimer("Tracking.Update")
+	self:ProfileStop2("UpdateTrackedItem: %fms")
 end
 
 function Tracking:SetLastAttemptItem(item)

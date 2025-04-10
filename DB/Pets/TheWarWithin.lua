@@ -31,7 +31,7 @@ local twwPets = {
 		name = L["Writhing Transmutagen"],
 		itemId = 223487,
 		spellId = 446059,
-		chance = 1000,
+		chance = 20, -- No data available
 		creatureId = 222359,
 	},
 	-- 11.0.7 pets
@@ -78,7 +78,7 @@ local twwPets = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
 		type = CONSTANTS.ITEM_TYPES.PET,
 		method = CONSTANTS.DETECTION_METHODS.USE,
-		chance = 33,
+		chance = 50,
 		creatureId = 231456,
 		name = L["Viridian Mechasaur"],
 		itemId = 232838,
