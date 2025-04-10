@@ -527,21 +527,18 @@ local function processItem(id, tooltip)
 end
 
 local function onTooltipSetItem(tooltip, tooltipData)
-	if not R.db or R.db.profile.enableTooltipAdditions == false then
-		return
-	end
-
 	if tooltip ~= _G.GameTooltip and tooltip ~= _G.ItemRefTooltip then
 		return
 	end
 
-	local itemID = tooltipData.id
-	if not itemID then
-		Rarity:Debug("Failed to set GameTooltip text (the provided data doesn't include an item ID)")
+	local itemLink = tooltipData.hyperlink
+	if type(itemLink) ~= "string" then
 		return
 	end
 
-	processItem(itemID, tooltip)
+	local id = itemLink:match("item:(%d+):")
+	assert(id, "Failed to extract item ID from item link (format might have changed?)")
+	processItem(tonumber(id), tooltip)
 end
 
 if not _G.TooltipDataProcessor then
