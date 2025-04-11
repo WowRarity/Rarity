@@ -819,7 +819,7 @@ end
 local function addGroup(group, requiresGroup)
 	local trackedItem = Rarity.Tracking:GetTrackedItem()
 
-	R.Profiling:StartTimer("GUI.MainWindow.AddGroup." .. group.name)
+	R:ProfileStart2()
 
 	local addGroupStart = debugprofilestop()
 
@@ -1340,7 +1340,20 @@ local function addGroup(group, requiresGroup)
 
 	local addGroupEnd = debugprofilestop()
 
-	R.Profiling:EndTimer("GUI.MainWindow.AddGroup." .. group.name)
+	R:ProfileStop2(
+		"addGroup("
+			.. group.name
+			.. ", "
+			.. tostring(requiresGroup)
+			.. ") took %fms"
+			.. format(
+				" (Total: %f, Sort: %f, Iteration: %f, Tooltip: %f",
+				(addGroupEnd - addGroupStart),
+				(addGroupSortEnd - addGroupSortStart),
+				(addGroupIterationEnd - addGroupSortEnd),
+				(addGroupEnd - addGroupIterationEnd)
+			)
+	)
 
 	return added, itemsExistInThisGroup
 end
@@ -1398,8 +1411,6 @@ function R:ShowTooltip(hidden)
 		-- intentionally one column more than we need to avoid text clipping
 		tooltip:SetScale(self.db.profile.tooltipScale or 1)
 	end
-
-	self.Profiling:StartTimer("GUI.MainWindow.ShowTooltip")
 
 	table.wipe(headers)
 	local addedLast
@@ -1475,6 +1486,7 @@ function R:ShowTooltip(hidden)
 	tooltip:SetLineScript(line, "OnMouseUp", OnHeaderClicked)
 
 	-- Item groups
+	R:ProfileStart()
 
 	local somethingAdded = false
 
@@ -1586,6 +1598,21 @@ function R:ShowTooltip(hidden)
 		)
 	end
 
+	R:ProfileStop(
+		"Tooltip rendering took %fms"
+			.. format(
+				" (%f, %f, %f, %f, %f, %f, %f, %f)",
+				(group1end - group1start),
+				(group2end - group2start),
+				(group3end - group3start),
+				(group4end - group4start),
+				(group5end - group5start),
+				(group6end - group6start),
+				(group7end - group7start),
+				(group8end - group8start)
+			)
+	)
+
 	-- Footer
 	line = tooltip:AddLine()
 	tooltip:SetCell(line, 1, colorize(L["Click to toggle the progress bar"], gray), nil, nil, 3)
@@ -1605,9 +1632,6 @@ function R:ShowTooltip(hidden)
 			)
 		end
 	end
-
-	self.Profiling:EndTimer("GUI.MainWindow.ShowTooltip")
-
 	if hidden == true or Rarity.frame == nil then
 		renderingTip = false
 		return

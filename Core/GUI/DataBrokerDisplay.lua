@@ -91,7 +91,7 @@ function GUI:UpdateText()
 		return
 	end
 
-	self.Profiling:StartTimer("GUI.UpdateText")
+	self:ProfileStart()
 	local attempts, dropChance, chance
 
 	local trackedItem = Rarity.Tracking:GetTrackedItem(1)
@@ -167,47 +167,28 @@ function GUI:UpdateText()
 			end
 		end
 	end
+	ShowTrackedItemList()
+	
+	self:ProfileStop("UpdateText: %fms")
+end
 
-	-- Bar 1
-	if not chance then
-		chance = 0
+function ShowTrackedItemList()
+	--Rarity:Debug("Showing entire tracked item list")
+	local trackedItems = Rarity.Tracking:GetTrackedItemList()
+	--Rarity:Debug("Retreived the tracking list")
+	if not trackedItems then 
+		return
 	end
-	if chance > 100 then
-		chance = 100
-	end
-	if chance < 0 then
-		chance = 0
-	end
-	local text = format("%s: %d (%.2f%%)", itemName or trackedItem.name, attempts, chance)
-	if not self.bar then
-		self.bar = self.barGroup:NewCounterBar(
-			"Track",
-			text,
-			chance,
-			100,
-			itemTexture or [[Interface\Icons\spell_nature_forceofnature]]
-		)
-	else
-		self.bar:SetIcon(itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
-		self.bar:SetLabel(text)
-		self.bar:SetValue(chance, 100)
-	end
-	if self.hadBarTwo then -- If we've transitioning from 2 bars to 1, hiding/showing the bars collapses them
-		self.barGroup:Hide()
-		if self.db.profile.bar.visible then
-			self.barGroup:Show()
-		end
-	end
+	for key, value in pairs(trackedItems) do
+		local currentItem = value
+		--Rarity:Debug("Current item: %s", key)
 
-	-- Bar 2
-	local trackedItem2 = Rarity.Tracking:GetTrackedItem(2)
-	if trackedItem2 == nil or trackedItem2.itemId == nil then
-		self.barGroup:RemoveBar("Track2")
-		self.bar2 = nil
-	else
-		self.hadBarTwo = true
-		_, -- itemName,
-			_, -- itemLink,
+		if currentItem == nil or currentItem.itemId == nil then
+			--Rarity:Debug("Current item doesn't exist, ending here")
+			self.barGroup:RemoveBar(key)
+		else
+			_, -- itemName,
+			itemLink,
 			itemRarity,
 			itemLevel,
 			itemMinLevel,
@@ -217,57 +198,67 @@ function GUI:UpdateText()
 			itemEquipLoc,
 			itemTexture,
 			itemSellPrice =
-			GetItemInfo(trackedItem2.itemId)
-		attempts = 0
-		if trackedItem2.attempts then
-			attempts = trackedItem2.attempts
-		end
-		if trackedItem2.lastAttempts then
-			attempts = attempts - trackedItem2.lastAttempts
-		end
-		if trackedItem2.realAttempts and trackedItem2.found and not trackedItem2.repeatable then
-			attempts = trackedItem2.realAttempts
-		end
-		if trackedItem2.found and not trackedItem2.repeatable then
-			chance = 1.0
-		else
-			if trackedItem2.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
-				chance = (trackedItem2.attempts or 0) / (trackedItem2.chance or 100)
-				if chance < 0 then
-					chance = 0
-				end
-				if chance > 1 then
-					chance = 1
-				end
-				chance = chance * 100
+			GetItemInfo(currentItem.itemId)
+			--Rarity:Debug("Retrieved item information from WowAPI")
+			attempts = 0
+			if currentItem.attempts then
+				attempts = currentItem.attempts
+			end
+			if currentItem.lastAttempts then
+				attempts = attempts - currentItem.lastAttempts
+			end
+			if currentItem.realAttempts and currentItem.found and not currentItem.repeatable then
+				attempts = currentItem.realAttempts
+			end
+			if currentItem.found and not currentItem.repeatable then
+				chance = 100.0
 			else
-				dropChance = Rarity.Statistics.GetRealDropPercentage(trackedItem2)
-				chance = 100 * (1 - math.pow(1 - dropChance, attempts))
+				if currentItem.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
+					chance = (currentItem.attempts or 0) / (currentItem.chance or 100)
+					if chance < 0 then
+						chance = 0
+					end
+					if chance > 1 then
+						chance = 1
+					end
+					chance = chance * 100
+				else
+					dropChance = Rarity.Statistics.GetRealDropPercentage(currentItem)
+					chance = 100 * (1 - math.pow(1 - dropChance, attempts))
+				end
+			end
+			if not chance then
+				chance = 0
+			end
+			if chance > 100 then
+				chance = 100
+			end
+			if chance < 0 then
+				chance = 0
+			end
+			text = format("%s: %d (%.2f%%)", itemLink or "", attempts, chance)
+			if currentItem.found and not currentItem.repeatable then
+				if attempts == 1 then
+					text = format(L["%s: Found on the first attempt!"], itemLink or "")
+				else
+					text = format(L["%s: Found after %d attempts!"], itemLink or "", attempts)
+				end
+			end
+			local currentBar = Rarity.barGroup:GetBar(key)
+			if not currentBar then
+				currentBar = Rarity.barGroup:NewCounterBar(
+					key .. "",
+					text,
+					chance,
+					100,
+					itemTexture or [[Interface\Icons\spell_nature_forceofnature]]
+				)
+			else
+				currentBar:SetIcon(itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
+				currentBar:SetLabel(text)
+				currentBar:SetValue(chance, 100)
 			end
 		end
-		if not chance then
-			chance = 0
-		end
-		if chance > 100 then
-			chance = 100
-		end
-		if chance < 0 then
-			chance = 0
-		end
-		text = format("%s: %d (%.2f%%)", trackedItem2.name or "", attempts, chance)
-		if not self.bar2 then
-			self.bar2 = self.barGroup:NewCounterBar(
-				"Track2",
-				text,
-				chance,
-				100,
-				itemTexture or [[Interface\Icons\spell_nature_forceofnature]]
-			)
-		else
-			self.bar2:SetIcon(itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
-			self.bar2:SetLabel(text)
-			self.bar2:SetValue(chance, 100)
-		end
 	end
+
 	self.Profiling:EndTimer("GUI.UpdateText")
-end

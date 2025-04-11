@@ -17,7 +17,7 @@ local twwToysAndItems = {
 		itemId = 224025,
 		spellId = 450842, -- Irrelevant
 		zones = { tostring(CONSTANTS.UIMAPIDS.ISLE_OF_DORN) },
-		chance = 1000,
+		chance = 2000,
 		sourceText = L["Dropped by any mob in Isle of Dorn (except minor mobs). 10 of these can be combined to pierce Alunira's shield, allowing combat and a guaranteed drop of Alunira."],
 		coords = { { m = CONSTANTS.UIMAPIDS.ISLE_OF_DORN } },
 		repeatable = true,
