@@ -2,6 +2,7 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Max Elements"] = true
 L["Steamwheedle Supplier"] = true
 L["Venture Co-ordinator"] = true
 L["Blackwater Bonecrusher"] = true
@@ -787,7 +788,6 @@ L["This causes Rarity to put a blank line above its tooltip additions."] = true
 L["Font"] = true
 L["Texture"] = true
 L["Font Size"] = true
-L["Max Elements"] = true
 L["Right-Aligned"] = true
 L["Show Icon"] = true
 L["Show Text"] = true
@@ -2183,7 +2183,7 @@ BEACHTE: Übersetzungen der Gebiete können unter Umständen nicht korrekt sein.
 Enter zone names with proper spelling, capitalization, and punctuation. They can be entered either in US English or your client's local language. Use WowHead or a similar service to make sure you're entering the zone names perfectly.
 
 PLEASE NOTE: Zone translations may not be correct. For zones, it is highly recommended that you use the Map ID instead of the name. For sub-zones, you must enter the name. If sub-zone detection isn't working for you, please visit the LibBabble-SubZone-3.0 library page on wowace.com and update the translations for your language.]=] ] =
-		[=[Eine Komma-Separierte Liste der Zonen oder Unterzonen in welchen dieser Gegenstand gefunden werden kann. Für Zonen kannst du die Map ID (z.B. 811 entspricht dem Tal der ewigen Blüten) oder den vollen Name der Zone eingeben. Für Unterzonen musst du den vollen Namen der Unterzone eingeben. Gebe den Zonennamen unter Beachtung der korrekten Schreibweise, Groß- und Kleinschreibung sowie Zeichensetzung ein. Sie können entweder in US-Englisch oder der Spielclientsprache eingegeben werden. Verwende WoWHead oder einen ähnlichen Anbieter, um sicherzustellen, dass du den Zonennamen korrekt eingibst. 
+		[=[Eine Komma-Separierte Liste der Zonen oder Unterzonen in welchen dieser Gegenstand gefunden werden kann. Für Zonen kannst du die Map ID (z.B. 811 entspricht dem Tal der ewigen Blüten) oder den vollen Name der Zone eingeben. Für Unterzonen musst du den vollen Namen der Unterzone eingeben. Gebe den Zonennamen unter Beachtung der korrekten Schreibweise, Groß- und Kleinschreibung sowie Zeichensetzung ein. Sie können entweder in US-Englisch oder der Spielclientsprache eingegeben werden. Verwende WoWHead oder einen ähnlichen Anbieter, um sicherzustellen, dass du den Zonennamen korrekt eingibst.
 
 BITTE BEACHTEN: Zonenübersetzungen sind möglicherweise nicht korrekt. Es wird ausdrücklich empfohlen, für Zonen die Map ID anstelle des Namens zu verwenden. Für Unterzonen muss der Name eingegeben werden.
 
@@ -2778,7 +2778,7 @@ If you specified a Statistic ID for this item, the Instance Difficulty is probab
 You can check multiple items in this list at once.]=] ] =
 		[=[Bestimmt auf welcher Instanz-Schwierigkeitsstufe der Gegenstand erhalten werden kann. Wähle nicht aus, wenn die Schwierigkeitsstufe egal ist.
 
-Wenn du eine Statistik-ID für diesen Gegenstand definierst, ist die Schwierigkeitsstufe wahrscheinlich egal, weil alle modernen Statistik-IDs die Schwierigkeit bereits beinhalten. 
+Wenn du eine Statistik-ID für diesen Gegenstand definierst, ist die Schwierigkeitsstufe wahrscheinlich egal, weil alle modernen Statistik-IDs die Schwierigkeit bereits beinhalten.
 
 Du kannst mehrere Einträge in dieser Liste auf einmal markieren.]=]
 	--[[Translation missing --]]
@@ -5514,7 +5514,7 @@ PLEASE NOTE: Zone translations may not be correct. For zones, it is highly recom
 	L["Barnaby"] = true
 	L["Barrier Generator"] = "Generador de barrera"
 	L["Basten"] = true
-	L["Battle for Azeroth"] = [=[-Battle for Azeroth 
+	L["Battle for Azeroth"] = [=[-Battle for Azeroth
 -Bfa
 -Batalla por Azeroth]=]
 	L["Battle Horn"] = "Cuerno de batalla"
@@ -5896,8 +5896,8 @@ This checkbox is provided by Rarity. You can hide the checkbox in Rarity options
 	L["Controls on which side the secondary tooltip appears when you hover over an item in the main tooltip. If the main tooltip is on the right side of your screen, change this to Left. Otherwise, choose Right. You can also hide the status tooltip completely."] =
 		"Controls on which side the secondary tooltip appears when you hover over an item in the main tooltip. If the main tooltip is on the right side of your screen, change this to Left. Otherwise, choose Right. You can also hide the status tooltip completely."
 	L["Controls what type of text is shown in Rarity's LDB feed. Minimal shows just the number of attempts. Normal adds the likelihood percent, and verbose adds the item link."] =
-		[=[Revisa el tipo de texto se muestra en el feed LDB de Rarirty. 
-En mínimo, solo se muestra sólo el número de intentos. 
+		[=[Revisa el tipo de texto se muestra en el feed LDB de Rarirty.
+En mínimo, solo se muestra sólo el número de intentos.
 En normal, se incluye el porcentaje estimado y se agrega un enlace para el detalle del ítem.]=]
 	L["Copper Vein"] = "Filón de cobre"
 	--[[Translation missing --]]
@@ -13506,7 +13506,7 @@ This checkbox is provided by Rarity. You can hide the checkbox in Rarity options
 	L["Contained in Cracked Egg, which is obtained by becoming Revered with The Oracles, purchasing a Mysterious Egg from their reputation vendor, and waiting three days. The mount has a 5% chance to appear in the Cracked Egg."] =
 		"Cette monture a 5% de chance d'apparaitre dans l'Oeuf brisé, lequel est obtenu en devant Révéré auprès des Oracles, en achetant un Oeuf mystérieux auprès de leur intendant, puis en attendant trois jours."
 	L["Contained in Cracked Fel-Spotted Egg, which is obtained by defeating any of the panthara rares on Argus, looting a Fel-Spotted Egg from them, and waiting five days. Each mount has a 6% chance to appear in the Cracked Fel-Spotted Egg, and each pet has a 20% chance to appear in it."] =
-		[=[Contenu dans un Œuf taché par la corruption fêlé, qui est obtenu en ramassant un Œuf taché par la corruption en tuant n'importe quel Panthara rare sur Argus, ensuite il faut patienter cinq jours. 
+		[=[Contenu dans un Œuf taché par la corruption fêlé, qui est obtenu en ramassant un Œuf taché par la corruption en tuant n'importe quel Panthara rare sur Argus, ensuite il faut patienter cinq jours.
 Une fois éclos, vous avez 5% de chance d'avoir une monture et 25% pour les mascottes.]=]
 	L["Contained in Hyldnir Spoils, which is rewarded for completing daily quests given by Gretta the Arbiter in Brunnhildar Village, Storm Peaks. The mount has a 3% chance to appear in Hyldnir Spoils."] =
 		"Cette monture a 3% de chance d'apparaitre dans le Butin hyldnir, lequel est obtenu en récompense des quêtes journalières données par Gretta la Médiatrice à Brunnhildar dans les pics Foudroyés."
@@ -16265,7 +16265,7 @@ If you specified a Statistic ID for this item, the Instance Difficulty is probab
 You can check multiple items in this list at once.]=] ] =
 		[=[이 항목에서 획득할 수 있는 던전 난이도를 결정합니다. 던전 난이도가 중요하지 않다면 모두 선택하지 않고 남겨둡니다.
 
-이 아이템에 대한 통계 ID를 지정하면, 현재 모든 통계에는 이미 난이도가 포함되어 있기 때문에 던전 난이도는 아마 의미가 없을 것입니다. 
+이 아이템에 대한 통계 ID를 지정하면, 현재 모든 통계에는 이미 난이도가 포함되어 있기 때문에 던전 난이도는 아마 의미가 없을 것입니다.
 
 한 번에 이 목록에서 여러 항목을 선택할 수 있습니다.]=]
 	--[[Translation missing --]]
@@ -19508,7 +19508,7 @@ This checkbox is provided by Rarity. You can hide the checkbox in Rarity options
 	L[ [=[Copy the generated Rarity Export String below using Ctrl-C. You can then paste it elsewhere using Ctrl-V.
 
 Feel free to post it on Curse, GitHub, or Discord to share your Item Pack. We will publish the best ones to the main add-on page.]=] ] =
-		[=[Скопируйте сгенерированную ниже Rarity строку экспорта используя Ctrl-C. Далее вы можете вставить скопированную строку используя Ctrl-V. 
+		[=[Скопируйте сгенерированную ниже Rarity строку экспорта используя Ctrl-C. Далее вы можете вставить скопированную строку используя Ctrl-V.
 
 Также вы можете делиться своими сборками предметов в Curse, GitHub, или Discord. Мы будет публиковать лучшие на главной странице аддона. ]=]
 	L[ [=[Copy the generated Rarity Export String below using Ctrl-C. You can then paste it elsewhere using Ctrl-V.
@@ -20449,7 +20449,7 @@ one or more options turned on which hide things from the tooltip.]=] ] =
 	L["Obtained by using an item or opening a container"] =
 		"Получается через использование предмета или открытие сумки"
 	L["Obtained On Your First Attempt"] = "Получен с первой попытки!"
-	L["Obtained Quest ID"] = [=[Полученный квест ID 
+	L["Obtained Quest ID"] = [=[Полученный квест ID
 
 ]=]
 	L["Obtained very rarely by fishing in pools located in any expansion zone (not Classic zones)"] =
@@ -21380,7 +21380,7 @@ You can't change this name after you create the item, so choose it well.]=] ] =
 	L["When you move your mouse out of the Rarity tooltip, it will take this long before it automatically hides itself."] =
 		"Длительность задержки перед автоматическим скрытием подсказки, после перемещения курсора мышки. "
 	L["When you move your mouse over the Rarity minimap icon, it will take this long before the GUI opens."] =
-		[=[Данная настройка определяет задержку в секундах между наведением курсора мыши на значок аддона и открытием главного окна.  
+		[=[Данная настройка определяет задержку в секундах между наведением курсора мыши на значок аддона и открытием главного окна.
 ]=]
 	L["Whiskerwax Candle"] = "Свеча из воска для усов"
 	L["Whistle of Chromatic Bone"] = "Костяной свисток"
@@ -21438,7 +21438,7 @@ PS: У нас есть печеньки.]=]
 	L[ [=[You can ask questions, follow the latest Rarity news and share the excitement of finally getting that one elusive drop with your fellow collectors in our Discord server.
 
 PS: We have cookies.]=] ] =
-		[=[Вы можете задавать вопросы, следить за свежими новостями о Rarity и ​​делиться радостью от получения своих редкостях с другими коллекционерами на нашем Discord сервере. 
+		[=[Вы можете задавать вопросы, следить за свежими новостями о Rarity и ​​делиться радостью от получения своих редкостях с другими коллекционерами на нашем Discord сервере.
 PS: у нас имеются печеньки.]=]
 	L["You can follow the development process or contribute to the project on our public GitHub repository. What could be more fun than browsing a gigantic backlog of unresolved issues?"] =
 		"Вы можете следить за процессом разработки или внести свой вклад в проект в нашем общедоступной репозитории GitHub. Что может быть веселее, чем просматривать гигантский список нерешенных проблем?"
@@ -22779,7 +22779,7 @@ You can check multiple items in this list at once.]=] ] =
 	L["Nimar the Slayer"] = "屠戮者尼玛尔"
 	L[ [=[No items to display! Either you've obtained every item, or you have
 one or more options turned on which hide things from the tooltip.]=] ] =
-		[=[没有要显示的项目！ 
+		[=[没有要显示的项目！
 你已经获得了每件物品，或者你已经了打开了一个或多个选项隐藏了工具提示中的内容。]=]
 	L[ [=[No items to display! Either you've obtained every item, or you have
 one or more options turned on which hide things from the tooltip.]=] ] =
