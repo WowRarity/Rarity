@@ -727,11 +727,9 @@ end
 function R:OnChatCommand(input)
 	if strlower(input) == "debug" then
 		if self.db.profile.debugMode then
-			self.db.profile.debugMode = false
-			self:Print(L["Debug mode OFF"])
+			Rarity.Debugging.ExitDebugMode()
 		else
-			self.db.profile.debugMode = true
-			self:Print(L["Debug mode ON"])
+			Rarity.Debugging.EnterDebugMode()
 		end
 	elseif strlower(input) == "dump" then
 		self.ScrollingDebugMessageFrame:Toggle()

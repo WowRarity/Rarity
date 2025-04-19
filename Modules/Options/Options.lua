@@ -411,11 +411,10 @@ function R:PrepareOptions()
 									return self.db.profile.debugMode
 								end,
 								set = function(info, val)
-									self.db.profile.debugMode = val
 									if self.db.profile.debugMode then
-										self:Print(L["Debug mode ON"])
+										Rarity.Debugging.ExitDebugMode()
 									else
-										self:Print(L["Debug mode OFF"])
+										Rarity.Debugging.EnterDebugMode()
 									end
 								end,
 							}, -- debug
