@@ -168,8 +168,9 @@ function GUI:UpdateText()
 		end
 	end
 	ShowTrackedItemList()
-	if true then return end
-
+	if true then
+		return
+	end
 
 	--ALL CODE BELOW IS DEPRECATED AND IS RUN IN THE ShowTrackedItemList() FUNCTION INSTEAD
 	-- Bar 1
@@ -292,17 +293,17 @@ function ShowTrackedItemList()
 			self.barGroup:RemoveBar(key)
 		else
 			_, -- itemName,
-			itemLink,
-			itemRarity,
-			itemLevel,
-			itemMinLevel,
-			itemType,
-			itemSubType,
-			itemStackCount,
-			itemEquipLoc,
-			itemTexture,
-			itemSellPrice =
-			GetItemInfo(currentItem.itemId)
+				itemLink,
+				itemRarity,
+				itemLevel,
+				itemMinLevel,
+				itemType,
+				itemSubType,
+				itemStackCount,
+				itemEquipLoc,
+				itemTexture,
+				itemSellPrice =
+				GetItemInfo(currentItem.itemId)
 			--Rarity:Debug("Retrieved item information from WowAPI")
 			attempts = 0
 			if currentItem.attempts then
