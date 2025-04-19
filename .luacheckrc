@@ -58,6 +58,7 @@ globals = {
 	-- FrameXML (Blizzard interface)
 	"C_AddOns",
 	"C_Container",
+	"C_EditMode",
 	"C_Item",
 	"Settings",
 	"LE_EXPANSION_LEVEL_CURRENT",
@@ -75,11 +76,16 @@ globals = {
 
 	"AuraUtil",
 	"BackdropTemplateMixin",
+	"ButtonFrameTemplate_HidePortrait",
 	"ChatFontNormal",
 	"FauxScrollFrame_GetOffset",
 	"FauxScrollFrame_OnVerticalScroll",
 	"FauxScrollFrame_Update",
+	"PanelTemplates_SetNumTabs",
+	"PanelTemplates_SetTab",
+	"PanelTemplates_Tab_OnClick",
 	"SCROLLING_MESSAGE_FRAME_INSERT_MODE_TOP",
+	"SOUNDKIT",
 
 	"AchievementFrame",
 	"AchievementFrame_LoadUI",

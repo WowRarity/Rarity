@@ -27,11 +27,13 @@ end
 function Debugging:EnterDebugMode()
 	R.db.profile.debugMode = true
 	R:Print(L["Debug mode ON"])
+	Rarity.GUI.DebugMenu:Show()
 end
 
 function Debugging:ExitDebugMode()
 	R.db.profile.debugMode = false
 	R:Print(L["Debug mode OFF"])
+	Rarity.GUI.DebugMenu:Hide()
 end
 
 Rarity.Debugging = Debugging
