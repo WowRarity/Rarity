@@ -343,6 +343,9 @@ do
 		end, 240)
 
 		self:Debug(L["Loaded (running in debug mode)"])
+		if self.db.profile.debugMode then
+			self.Debugging:EnterDebugMode()
+		end
 
 		if self.db.profile.verifyDatabaseOnLogin then
 			self.Validation:ValidateItemDB()
