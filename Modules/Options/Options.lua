@@ -2503,7 +2503,7 @@ function R:CreateGroup(options, group, isUser)
 								if strlen(s) > 0 then
 									s = s .. ","
 								end
-								s = s .. tostring(v)
+								s = s .. tostring(k)
 							end
 							return s
 						else
