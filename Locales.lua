@@ -2,6 +2,7 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Obtained by successfully casting a spell"] = true
 L["Steamwheedle Supplier"] = true
 L["Venture Co-ordinator"] = true
 L["Blackwater Bonecrusher"] = true
