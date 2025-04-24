@@ -2264,7 +2264,7 @@ function R:CreateGroup(options, group, isUser)
 						end
 					end,
 					hidden = function()
-						if item.method == ZONE or item.method == FISHING then
+						if item.method == ZONE or item.method == FISHING or item.method == SPELLCAST then
 							return false
 						else
 							return true
@@ -2418,6 +2418,103 @@ function R:CreateGroup(options, group, isUser)
 							return false
 						else
 							return true
+						end
+					end,
+					disabled = not isUser,
+				},
+				spells = {
+					type = "input",
+					order = newOrder(),
+					width = "double",
+					name = L["Spell IDs"],
+					desc = L["A comma-separated list of spell IDs that may result in a loot window or generate an item. Use WowHead or a similar service to look up spell IDs."],
+					set = function(info, val)
+						if strtrim(val) == "" then
+							alert(L["You must enter at least one spell ID."])
+						else
+							local list = { strsplit(",", val) }
+							for k, v in pairs(list) do
+								if strtrim(v) == "" or tonumber(strtrim(v)) == nil then
+									alert(L["Please enter a comma-separated list of spell IDs."])
+									return
+								elseif tonumber(strtrim(v)) <= 0 then
+									alert(L["Every spell ID must be a number greater than 0."]) -- TODO combine and generalize similar phrases
+									return
+								end
+							end
+							item.spells = {}
+							for k, v in pairs(list) do
+								table.insert(item.spells, tonumber(strtrim(v)))
+							end
+						end
+						self:Update("OPTIONS") -- TODO must add to spells_to_items table?
+					end,
+					get = function(into)
+						if item.spells and type(item.spells) == "table" then
+							local s = ""
+							for k, v in pairs(item.spells) do
+								if strlen(s) > 0 then
+									s = s .. ","
+								end
+								s = s .. tostring(v)
+							end
+							return s
+						else
+							return ""
+						end
+					end,
+					hidden = function()
+						if item.method ~= SPELLCAST then
+							return true
+						else
+							return false
+						end
+					end,
+					disabled = not isUser,
+				},
+				objects = {
+					type = "input",
+					order = newOrder(),
+					width = "double",
+					name = L["World Objects"],
+					desc = L["A comma-separated list of localized world object names that may trigger the tracked spell. Use WowHead or a similar service to look up object names."],
+					set = function(info, val)
+						if strtrim(val) == "" then
+							alert(L["You must enter at least one object name."])
+						else
+							local list = { strsplit(",", val) }
+							for k, v in pairs(list) do
+								if strtrim(v) == "" or strtrim(v) == nil then
+									alert(L["Please enter a comma-separated list of object names."])
+									return
+								end
+							end
+							item.objects = {}
+							for k, v in pairs(list) do
+								item.objects[v] = true
+							end
+						end
+						self:Update("OPTIONS")
+					end,
+					get = function(into)
+						if item.objects and type(item.objects) == "table" then
+							local s = ""
+							for k, v in pairs(item.objects) do
+								if strlen(s) > 0 then
+									s = s .. ","
+								end
+								s = s .. tostring(v)
+							end
+							return s
+						else
+							return ""
+						end
+					end,
+					hidden = function()
+						if item.method ~= SPELLCAST then
+							return true
+						else
+							return false
 						end
 					end,
 					disabled = not isUser,
