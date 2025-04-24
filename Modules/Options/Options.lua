@@ -47,6 +47,7 @@ local ARCH = "ARCH"
 local SPECIAL = "SPECIAL"
 local MINING = "MINING"
 local COLLECTION = "COLLECTION"
+local SPELLCAST = "SPELLCAST" -- TODO shared constant
 
 -- Feed text
 local FEED_MINIMAL = "FEED_MINIMAL"
@@ -1988,6 +1989,7 @@ function R:CreateGroup(options, group, isUser)
 						[FISHING] = R.string_methods[FISHING],
 						[ARCH] = R.string_methods[ARCH],
 						[COLLECTION] = R.string_methods[COLLECTION],
+						[SPELLCAST] = R.string_methods[SPELLCAST],
 					},
 					get = function()
 						return item.method
