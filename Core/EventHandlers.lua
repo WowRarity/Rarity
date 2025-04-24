@@ -898,10 +898,10 @@ function R:OnCursorChanged(event)
 	end
 	self.Profiling:StartTimer("EventHandlers.OnCursorChanged")
 	local t = stripColorCode(tooltipLeftText1:GetText())
-	if self.miningnodes[t] or self.fishnodes[t] or self.opennodes[t] then
-		Rarity.lastNode = t
-		Rarity:Debug("OnCursorChanged found lastNode = " .. tostring(t))
-	end
+	-- if self.miningnodes[t] or self.fishnodes[t] or self.opennodes[t] then
+	Rarity.lastNode = t
+	Rarity:Debug("OnCursorChanged found lastNode = " .. tostring(t))
+	-- end
 	if Rarity.relevantSpells[Rarity.previousSpell] then
 		self:GetWorldTarget()
 	end
@@ -1937,6 +1937,41 @@ function R:OnLootReady(event, ...)
 					v.attempts = v.attempts + 1
 				end
 				self:OutputAttempts(v)
+			end
+		end
+
+		local itemsGeneratedByThisSpell = R.spells_to_items[Rarity.previousSpell]
+		if itemsGeneratedByThisSpell then
+			Rarity:Debug(
+				format(
+					"Previous spell %s may result in %d tracked item(s)",
+					tostring(Rarity.previousSpell),
+					#itemsGeneratedByThisSpell
+				)
+			)
+			_G.DevTools_Dump(itemsGeneratedByThisSpell)
+			for k, v in pairs(itemsGeneratedByThisSpell) do
+				local item = v
+				local name = v.name
+				-- ASSERT no missing link (bug/missing update?)
+				if type(item.objects) and item.objects[Rarity.lastNode] then -- TODO doesn't work for IDs (NYI)
+					Rarity:Debug(format("Last node %s is required for item %s", Rarity.lastNode, name))
+					Rarity:Debug("Detected attempt for item " .. tostring(k))
+					if v and type(v) == "table" and v.enabled ~= false then
+						if v.attempts == nil then
+							v.attempts = 1
+						else
+							v.attempts = v.attempts + 1
+						end
+						self:OutputAttempts(v)
+					end
+				else
+					Rarity:Debug(
+						format("Last node %s is NOT one required for item %s", tostring(Rarity.lastNode), name)
+					)
+				end
+				-- TODO zone ID, object name/ID needs checking as well
+				-- if not GetBestMapForUnit("player") == v.zones --- etc
 			end
 		end
 

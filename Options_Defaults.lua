@@ -24,6 +24,7 @@ R.string_methods = {
 	[CONSTANTS.DETECTION_METHODS.SPECIAL] = L["Special case"],
 	[CONSTANTS.DETECTION_METHODS.MINING] = L["Obtained by mining"],
 	[CONSTANTS.DETECTION_METHODS.COLLECTION] = L["Obtained by collecting a number of items"],
+	[CONSTANTS.DETECTION_METHODS.SPELLCAST] = L["Obtained by successfully casting a spell"], -- TODO improve
 }
 
 -- Archaeology races

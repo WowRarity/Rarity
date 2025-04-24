@@ -589,7 +589,15 @@ function R:UpdateInterestingThings()
 							end
 							table.insert(Rarity.items_to_items[vvv], vv)
 						end
-					elseif vv.method == FISHING and vv.zones ~= nil and type(vv.zones) == "table" then
+					elseif vv.method == "SPELLCAST" and vv.spells ~= nil and type(vv.spells) == "table" then -- TODO const, zone
+						for index, spellID in pairs(vv.spells) do
+							-- Rarity.used[vvv] = vv
+							if Rarity.spells_to_items[spellID] == nil then
+								Rarity.spells_to_items[spellID] = {}
+							end
+							table.insert(Rarity.spells_to_items[spellID], vv)
+						end
+					elseif vv.method == FISHING and vv.zones ~= nil and type(vv.zones) == "table" then -- TODO spell also
 						for kkk, vvv in pairs(vv.zones) do
 							if lbz[vvv] then
 								Rarity.fishzones[lbz[vvv]] = vv

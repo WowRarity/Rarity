@@ -32,6 +32,7 @@ Rarity.guids = {}
 Rarity.npcs_to_items = {}
 Rarity.zones = {}
 Rarity.items_to_items = {}
+Rarity.spells_to_items = {}
 Rarity.bagitems = {}
 Rarity.tempbagitems = {}
 Rarity.used = {}

@@ -3,6 +3,18 @@ L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
 L["Void-Scarred Lynx"] = true
+L["Please enter a comma-separated list of object names."] = true
+L["You must enter at least one object name."] = true
+L["A comma-separated list of localized world object names that may trigger the tracked spell. Use WowHead or a similar service to look up object names."] =
+	true
+L["World Objects"] = true
+L["Every spell ID must be a number greater than 0."] = true
+L["Please enter a comma-separated list of spell IDs."] = true
+L["You must enter at least one spell ID."] = true
+L["A comma-separated list of spell IDs that may result in a loot window or generate an item. Use WowHead or a similar service to look up spell IDs."] =
+	true
+L["Spell IDs"] = true
+L["Obtained by successfully casting a spell"] = true
 L["Steamwheedle Supplier"] = true
 L["Venture Co-ordinator"] = true
 L["Blackwater Bonecrusher"] = true
