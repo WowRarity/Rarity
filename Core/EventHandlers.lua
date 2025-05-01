@@ -57,7 +57,7 @@ local DebugCache = Rarity.Utils.DebugCache
 
 function EventHandlers:Register()
 	self = Rarity
-	local WOW_INTERFACE_VER = select(4, GetBuildInfo())
+	local WOW_INTERFACE_VER = select(4, GetBuildInfo()) -- TODO remove
 
 	self:UnregisterAllEvents()
 	self:RegisterBucketEvent("BAG_UPDATE", 0.5, "OnBagUpdate")
@@ -77,7 +77,7 @@ function EventHandlers:Register()
 	self:RegisterEvent("UPDATE_MOUSEOVER_UNIT", "OnMouseOver")
 	self:RegisterEvent("CRITERIA_COMPLETE", "OnCriteriaComplete")
 	self:RegisterEvent("ENCOUNTER_END", "OnEncounterEnd")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "OnCombatEnded")
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "OnCombatEnded") -- TODO use combat event
 	self:RegisterEvent("PET_BATTLE_OPENING_START", "OnPetBattleStart")
 	self:RegisterEvent("PET_BATTLE_CLOSE", "OnPetBattleEnd")
 	self:RegisterEvent("ISLAND_COMPLETED", "OnIslandCompleted")
@@ -1982,16 +1982,19 @@ function R:OnLootReady(event, ...)
 		-- HANDLE NORMAL NPC LOOTING
 		local numItems = GetNumLootItems()
 
-		-- Legacy support for pre-5.0 single-target looting
+		-- Legacy support for pre-5.0 single-target looting // TODO Generalize for classic and retail?
 		local guid = UnitGUID("target")
 		local name = UnitName("target")
 		if not name or not guid then
+			R:Debug("Skipping LOOT_READY handling (no target unit and no SPECIAL handling)")
 			return
 		end -- No target when looting
 		if not UnitCanAttack("player", "target") then
+			R:Debug("Skipping LOOT_READY handling (target is not attackable by player)")
 			return
 		end -- You targeted something you can't attack
 		if UnitIsPlayer("target") then
+			R:Debug("Skipping LOOT_READY handling (target is a player, which cannot be looted)") -- ... well, actually...
 			return
 		end -- You targetted a player
 
@@ -2003,6 +2006,7 @@ function R:OnLootReady(event, ...)
 
 		-- Disallow "minus" NPCs; nothing good drops from them
 		if UnitClassification(guid) == "minus" then
+			R:Debug("Skipping LOOT_READY handling (target is a MINUS unit, which cannot be looted)") -- TBD still broken?
 			return
 		end -- (This doesn't actually work currently; UnitClassification needs a unit, not a GUID)
 
