@@ -198,6 +198,7 @@ function DebugMenu:UpdateSpellTracker()
 			.. "|n"
 			.. "|n"
 			.. format("Hovering: %s (%s)", colorizeBoolean(mouseoverGUID), mouseoverNPC)
+			.. "|n"
 			.. format("Targeting: %s (%s)", colorizeBoolean(Rarity.foundTarget), target)
 			.. "|n"
 			.. "|n"
