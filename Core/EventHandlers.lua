@@ -679,13 +679,10 @@ function R:OnMouseOver(event)
 	local guid = UnitGUID("mouseover")
 	local npcid = self:GetNPCIDFromGUID(guid)
 
-	Rarity:Debug("OnMouseOver")
 	if not npcid then
 		self.Profiling:EndTimer("EventHandlers.OnMouseOver")
-
 		return
 	end
-	Rarity:Debug("UnitGUID: " .. tostring(npcid))
 
 	if npcid == 50409 or npcid == 50410 then
 		if not Rarity.guids[guid] then
@@ -898,7 +895,6 @@ function R:OnCursorChanged(event)
 	local t = stripColorCode(tooltipLeftText1:GetText())
 	if self.miningnodes[t] or self.fishnodes[t] or self.opennodes[t] then
 		Rarity.lastNode = t
-		Rarity:Debug("OnCursorChanged found lastNode = " .. tostring(t))
 	end
 	if Rarity.relevantSpells[Rarity.previousSpell] then
 		self:GetWorldTarget()
