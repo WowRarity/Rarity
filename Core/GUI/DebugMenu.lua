@@ -192,13 +192,13 @@ function DebugMenu:UpdateSpellTracker()
 	local spellID = colorize(Rarity.previousSpell or "N/A", blue)
 	local name = colorize(Rarity.relevantSpells[Rarity.previousSpell] or "untracked", blue)
 	local target = colorize(Rarity.lastNode or "N/A", blue)
-	local mouseoverGUID = UnitGUID("mouseover")
+	local mouseoverGUID = colorize(UnitGUID("mouseover") or "N/A", blue)
 	local mouseoverNPC = colorize(Rarity:GetNPCIDFromGUID(mouseoverGUID), blue)
 	self.innerText:SetText(
 		format("Spell ID: %s (%s)", spellID, name)
 			.. "|n"
 			.. "|n"
-			.. format("Hovering: %s (%s)", colorizeBoolean(mouseoverGUID), mouseoverNPC)
+			.. format("Hovering: %s (%s)", mouseoverGUID, mouseoverNPC)
 			.. "|n"
 			.. format("Targeting: %s (%s)", colorizeBoolean(Rarity.foundTarget), target)
 			.. "|n"
