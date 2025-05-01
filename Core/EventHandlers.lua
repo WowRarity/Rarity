@@ -895,7 +895,6 @@ function R:OnCursorChanged(event)
 	local t = stripColorCode(tooltipLeftText1:GetText())
 	if self.miningnodes[t] or self.fishnodes[t] or self.opennodes[t] then
 		Rarity.lastNode = t
-		Rarity:Debug("OnCursorChanged found lastNode = " .. tostring(t))
 	end
 	if Rarity.relevantSpells[Rarity.previousSpell] then
 		self:GetWorldTarget()
