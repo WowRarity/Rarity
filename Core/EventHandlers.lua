@@ -831,8 +831,8 @@ function R:OnSpellcastSent(event, unit, target, castGUID, spellID)
 	end
 	self.Profiling:StartTimer("EventHandlers.OnSpellcastSent")
 
+	-- TBD target == "Crane Nest" - can use that?
 	Rarity.foundTarget = false
-	-- ga = "No" -- WTF is this?
 
 	if Rarity.relevantSpells[spellID] then -- An entry exists for this spell in the LUT -> It's one that needs to be tracked
 		Rarity:Debug(
@@ -943,7 +943,7 @@ function R:OnSpellcastStopped(event, unit)
 	if Rarity.relevantSpells[Rarity.previousSpell] then
 		self:GetWorldTarget()
 	end
-	Rarity.previousSpell, Rarity.currentSpell = Rarity.currentSpell, Rarity.currentSpell
+	Rarity.previousSpell, Rarity.currentSpell = Rarity.currentSpell, Rarity.currentSpell -- ???
 	self.Profiling:EndTimer("EventHandlers.OnSpellcastStopped")
 end
 
@@ -1252,16 +1252,18 @@ function R:OnLootReady(event, ...)
 		local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
 		local subzone_t = LibStub("LibBabble-SubZone-3.0"):GetReverseLookupTable()[subzone]
 
-		if Rarity.isFishing and Rarity.isOpening then
+		if Rarity.isOpening then
 			self:Debug("Opened something")
 		end
 
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode then
+		if Rarity.isOpening and Rarity.lastNode then
 			self:Debug("Opened a node: " .. Rarity.lastNode)
 		end
 
+		Rarity.GUI.DebugMenu:UpdateSelectedTabContent()
+
 		-- Handle opening Crane Nest
-		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Crane Nest"]) then
+		if Rarity.isOpening and Rarity.lastNode == L["Crane Nest"] then
 			Rarity:Debug("Detected Opening on " .. L["Crane Nest"] .. " (method = SPECIAL)")
 			local v = self.db.profile.groups.pets["Azure Crane Chick"]
 			if v and type(v) == "table" and v.enabled ~= false then
@@ -1274,7 +1276,7 @@ function R:OnLootReady(event, ...)
 			end
 		end
 
-		-- Handle opening Timeless Chest
+		-- Handle opening Timeless Chest [Test with those instead, repeatable]
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Timeless Chest"]) then
 			Rarity:Debug("Detected Opening on " .. L["Timeless Chest"] .. " (method = SPECIAL)")
 			local v = self.db.profile.groups.pets["Bonkers"]
