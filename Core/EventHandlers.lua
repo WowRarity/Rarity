@@ -683,7 +683,6 @@ function R:OnMouseOver(event)
 		self.Profiling:EndTimer("EventHandlers.OnMouseOver")
 		return
 	end
-	Rarity:Debug("UnitGUID: " .. tostring(npcid))
 
 	if npcid == 50409 or npcid == 50410 then
 		if not Rarity.guids[guid] then
