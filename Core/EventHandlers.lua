@@ -679,10 +679,8 @@ function R:OnMouseOver(event)
 	local guid = UnitGUID("mouseover")
 	local npcid = self:GetNPCIDFromGUID(guid)
 
-	Rarity:Debug("OnMouseOver")
 	if not npcid then
 		self.Profiling:EndTimer("EventHandlers.OnMouseOver")
-
 		return
 	end
 	Rarity:Debug("UnitGUID: " .. tostring(npcid))
