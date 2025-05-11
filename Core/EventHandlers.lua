@@ -1757,8 +1757,25 @@ function R:OnLootReady(event, ...)
 			end
 		end
 
-		if Rarity.isOpening and Rarity.lastNode and Rarity.lastNode == L["Awakened Cache"] then
-			Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
+		local function GetWorldObjectFromGUID(guid)
+			return tonumber(string.match(guid, "GameObject%-.-%-.-%-.-%-.-%-(.-)%-"))
+		end
+		local numLootItems = GetNumLootItems()
+		local didLootWorldObject = false
+		for slot = 1, numLootItems do
+			local guidList = { GetLootSourceInfo and GetLootSourceInfo(slot) or UnitGUID("target") }
+			if
+				not didLootWorldObject
+				and Rarity.isOpening
+				and Rarity.lastNode
+				and GetWorldObjectFromGUID(guidList[1]) == 464938
+			then
+				Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
+				didLootWorldObject = true
+			end
+		end
+
+		if didLootWorldObject then -- Only one attempt should be added (hacky)
 			addAttemptForItem("Machine Defense Unit 1-11", "mounts")
 		end
 
