@@ -4,17 +4,19 @@ local red = Rarity.Enum.Colors.Red
 local blue = Rarity.Enum.Colors.Blue
 
 local DebugMenu = {
-	minPanelWidth = 500,
+	minPanelWidth = 400,
 	minPanelHeight = 200,
-	defaultPanelWidth = 500,
-	defaultPanelHeight = 200,
+	defaultPanelWidth = 480,
+	defaultPanelHeight = 240,
 	tabs = {
 		"Map Info",
 		"Spell Tracking",
+		"Loot Sources",
 	},
 	selectedTab = "Map Info",
 	tabButtons = {},
 	events = {
+		"LOOT_READY",
 		"PLAYER_ENTERING_WORLD",
 		"UPDATE_MOUSEOVER_UNIT",
 		"UNIT_SPELLCAST_FAILED",
@@ -128,6 +130,8 @@ function DebugMenu:UpdateSelectedTabContent()
 		self:UpdateMapInfo()
 	elseif self.selectedTab == "Spell Tracking" then
 		self:UpdateSpellTracker()
+	elseif self.selectedTab == "Loot Sources" then
+		self:UpdateLootTracker()
 	else
 		self:ShowPlaceholderText()
 	end
@@ -210,6 +214,37 @@ function DebugMenu:UpdateSpellTracker()
 			.. format("Pool: %s", colorizeBoolean(Rarity.isPool))
 			.. "|n"
 	)
+end
+
+local function GetWorldObjectFromGUID(guid)
+	return tonumber(string.match(guid, "GameObject%-.-%-.-%-.-%-.-%-(.-)%-"))
+end
+
+function DebugMenu:UpdateLootTracker()
+	local targetGUID = UnitGUID("target") or colorize("N/A", red) -- Bad: This may not be relevant (or nil) if looting world objects
+	local numLootItems = GetNumLootItems() or 0
+	local lastLootSourceDetails = format("Target: %s|nLoot Slots: %s|n|n", targetGUID, colorize(numLootItems, blue))
+	lastLootSourceDetails = lastLootSourceDetails .. "Loot Sources:" -- TBD: Save full history or just the last one?
+	if numLootItems == 0 then
+		lastLootSourceDetails = lastLootSourceDetails .. colorize(" N/A", red)
+	else
+		lastLootSourceDetails = lastLootSourceDetails .. "|n|n"
+	end
+
+	for slot = 1, numLootItems do -- Bad: GetLootSourceInfo doesn't exist before MOP
+		local guidList = { GetLootSourceInfo and GetLootSourceInfo(slot) or UnitGUID("target") }
+		for index, guid in ipairs(guidList) do
+			lastLootSourceDetails = lastLootSourceDetails
+				.. format(
+					"GUID: %s (Slot: %s) - Object: %s|n",
+					colorize(guid, blue),
+					colorize(slot, blue),
+					GetWorldObjectFromGUID(guid) or colorize("N/A", red)
+				)
+		end
+	end
+
+	self.innerText:SetText(lastLootSourceDetails)
 end
 
 function DebugMenu:Show()
