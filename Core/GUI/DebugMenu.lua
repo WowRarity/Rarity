@@ -216,10 +216,6 @@ function DebugMenu:UpdateSpellTracker()
 	)
 end
 
-local function GetWorldObjectFromGUID(guid)
-	return tonumber(string.match(guid, "GameObject%-.-%-.-%-.-%-.-%-(.-)%-"))
-end
-
 function DebugMenu:UpdateLootTracker()
 	local targetGUID = UnitGUID("target") or colorize("N/A", red) -- Bad: This may not be relevant (or nil) if looting world objects
 	local numLootItems = GetNumLootItems() or 0
@@ -239,7 +235,7 @@ function DebugMenu:UpdateLootTracker()
 					"GUID: %s (Slot: %s) - Object: %s|n",
 					colorize(guid, blue),
 					colorize(slot, blue),
-					GetWorldObjectFromGUID(guid) or colorize("N/A", red)
+					Rarity.GUID:GetWorldObject(guid) or colorize("N/A", red)
 				)
 		end
 	end
