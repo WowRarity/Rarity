@@ -11,6 +11,7 @@ assert(_G.RARITY_ADDON_TABLE, "Uninitialized addon table")
 local specFiles = {
 	"Tests/test-items.spec.lua",
 	"Tests/test-database.spec.lua",
+	"Tests/test-guid.spec.lua",
 	"Tests/test-holiday-events.spec.lua",
 	"Tests/test-serialization.spec.lua",
 	"Tests/test-toc.spec.lua",

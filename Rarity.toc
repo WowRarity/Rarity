@@ -155,6 +155,7 @@ Core\Debugging.lua
 Core\Detection.lua
 Core\EventHandlers.lua
 Core\GUI.lua
+Core\GUID.lua
 Core\HolidayEvents.lua
 Core\Profiling.lua
 Core\Serialization.lua
