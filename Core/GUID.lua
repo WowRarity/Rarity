@@ -13,7 +13,13 @@ function Rarity:GetNPCIDFromGUID(guid)
 	return 0
 end
 
-function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, requiresPickpocket)
+local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
+
+local NPC = "NPC"
+
+local lbz = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
+local lbsz = LibStub("LibBabble-SubZone-3.0"):GetUnstrictLookupTable()
+function Rarity:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, requiresPickpocket)
 	if guid == nil then
 		return
 	end
@@ -132,6 +138,16 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
 			end
 		end
 	end
+end
+
+local match = string.match
+local tonumber = tonumber
+function GUID:GetWorldObject(guid)
+	return tonumber(match(guid, "GameObject%-.-%-.-%-.-%-.-%-(.-)%-"))
+end
+
+function GUID:GetCreatureID(guid)
+	return tonumber(match(guid, "Creature%-.-%-.-%-.-%-.-%-(.-)%-"))
 end
 
 return GUID
