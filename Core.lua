@@ -13,8 +13,7 @@ local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
   ]]
 R.modulesEnabled = {}
 
-local npcs = {}
-
+Rarity.npcs = {}
 Rarity.fishzones = {}
 Rarity.mount_sources = {}
 Rarity.pet_sources = {}
@@ -187,9 +186,6 @@ do
 		_G.BINDING_NAME_RARITY_DEBUGWINDOWTOGGLE = L["Toggle Debug Window"]
 
 		Rarity.GUI:RegisterDataBroker()
-
-		-- Expose private objects
-		R.npcs = npcs
 
 		Rarity.GUI:InitialiseBar()
 
@@ -529,7 +525,7 @@ function R:UpdateInterestingThings()
 		end
 	end
 
-	table.wipe(npcs)
+	table.wipe(Rarity.npcs)
 	table.wipe(Rarity.bosses)
 	table.wipe(Rarity.zones)
 	table.wipe(Rarity.items)
@@ -559,7 +555,7 @@ function R:UpdateInterestingThings()
 					end
 					if vv.method == NPC and vv.npcs ~= nil and type(vv.npcs) == "table" then
 						for kkk, vvv in pairs(vv.npcs) do
-							npcs[vvv] = vv
+							Rarity.npcs[vvv] = vv
 							if Rarity.npcs_to_items[vvv] == nil then
 								Rarity.npcs_to_items[vvv] = {}
 							end

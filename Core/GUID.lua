@@ -31,7 +31,7 @@ function Rarity:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpel
 	end -- Already seen this NPC
 
 	local npcid = self:GetNPCIDFromGUID(guid)
-	if npcs[npcid] == nil then -- Not an NPC we need, abort
+	if Rarity.npcs[npcid] == nil then -- Not an NPC we need, abort
 		self:Debug("NPC ID not on the list of needed NPCs: " .. (npcid or "nil"))
 
 		if
