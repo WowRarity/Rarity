@@ -1757,9 +1757,6 @@ function R:OnLootReady(event, ...)
 			end
 		end
 
-		local function GetWorldObjectFromGUID(guid)
-			return tonumber(string.match(guid, "GameObject%-.-%-.-%-.-%-.-%-(.-)%-"))
-		end
 		local numLootItems = GetNumLootItems()
 		local didLootWorldObject = false
 		for slot = 1, numLootItems do
@@ -1768,7 +1765,7 @@ function R:OnLootReady(event, ...)
 				not didLootWorldObject
 				and Rarity.isOpening
 				and Rarity.lastNode
-				and GetWorldObjectFromGUID(guidList[1]) == 464938
+				and Rarity.GUID:GetWorldObject(guidList[1]) == 464938
 			then
 				Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
 				didLootWorldObject = true
