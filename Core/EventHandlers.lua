@@ -141,6 +141,8 @@ end
 local function IsPlayerInHorrificVision()
 	return (GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND)
 		or (GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR)
+		or (GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.HORRIFIC_REVISION_OF_STORMWIND)
+		or (GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.HORRIFIC_REVISION_OF_ORGRIMMAR)
 end
 
 function R:OnSpellcastSucceeded(event, unitID, castGUID, spellID)
