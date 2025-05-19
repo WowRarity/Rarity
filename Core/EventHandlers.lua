@@ -161,6 +161,11 @@ function R:OnSpellcastSucceeded(event, unitID, castGUID, spellID)
 		addAttemptForItem("Mail Muncher", "mounts")
 	end
 
+	if IsPlayerInHorrificVision() and spellID == 1223438 then
+		self:Debug("Finished searching trash pile in a Horrific Vision")
+		addAttemptForItem("Nesting Swarmite", "mounts")
+	end
+
 	if spellID == 430315 then
 		addAttemptForItem("Writhing Transmutagen", "pets")
 	end

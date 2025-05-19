@@ -229,6 +229,21 @@ local twwMounts = {
 		chance = 125,
 		coords = { { m = CONSTANTS.UIMAPIDS.HALLOWFALL } },
 	},
+	["Nesting Swarmite"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		name = L["Nesting Swarmite"],
+		itemId = 223265,
+		spellId = 447189,
+		npcs = { 239581 },
+		tooltipNpcs = { 239581 },
+		chance = 100,
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_REVISION_OF_STORMWIND },
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_REVISION_OF_ORGRIMMAR },
+		},
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, twwMounts)
