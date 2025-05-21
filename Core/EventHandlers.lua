@@ -327,6 +327,7 @@ local encounterLUT = { -- See https://warcraft.wiki.gg/wiki/DungeonEncounterID
 	-- TODO Wyrmbane = Parrot Cage (Void-Scarred Parrot)
 	-- TODO Garona = Void-Scarred Scorpid
 	-- TODO Geya'rah = Void-Scarred Egg
+	-- TODO: Valeera's Corrupted Chest -> Old Town (SW) = Eye of Chaos
 }
 
 function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidSize, endStatus)
