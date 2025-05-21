@@ -556,7 +556,10 @@ local bfaToys = {
 		itemId = 174926,
 		npcs = { 158284 },
 		chance = 20,
-		coords = { { m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND } },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND },
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_REVISION_OF_STORMWIND },
+		},
 	},
 	["Hell-Bent Bracers"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -607,7 +610,10 @@ local bfaToys = {
 		name = L["Void-Touched Souvenir Totem"],
 		itemId = 174924,
 		chance = 100, -- Blind guess (no data)
-		coords = { { m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR } },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR },
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_REVISION_OF_ORGRIMMAR },
+		},
 	},
 	-- 8.0
 	["Pterrordax Egg"] = {

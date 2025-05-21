@@ -1930,7 +1930,10 @@ local bfaPets = {
 		itemId = 174460,
 		chance = 100,
 		creatureId = 161963,
-		coords = { { m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND } },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND },
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_REVISION_OF_STORMWIND },
+		},
 	},
 	["Swirling Black Bottle"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1944,6 +1947,8 @@ local bfaPets = {
 		coords = {
 			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND },
 			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR },
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_REVISION_OF_STORMWIND },
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_REVISION_OF_ORGRIMMAR },
 		},
 	},
 	["Voidwoven Cat Collar"] = {
@@ -1955,7 +1960,10 @@ local bfaPets = {
 		itemId = 174459,
 		chance = 100,
 		creatureId = 161962,
-		coords = { { m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND } },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND },
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_REVISION_OF_STORMWIND },
+		},
 	},
 	["Void-Link Frostwolf Collar"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1966,7 +1974,10 @@ local bfaPets = {
 		itemId = 174646,
 		chance = 100,
 		creatureId = 160196,
-		coords = { { m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR } },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR },
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_REVISION_OF_ORGRIMMAR },
+		},
 	},
 	["C'Thuffer"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1977,7 +1988,10 @@ local bfaPets = {
 		itemId = 174457,
 		chance = 100,
 		creatureId = 161959,
-		coords = { { m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR } },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR },
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_REVISION_OF_ORGRIMMAR },
+		},
 	},
 	["Void-Scarred Hare"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1988,7 +2002,10 @@ local bfaPets = {
 		itemId = 174458,
 		chance = 100,
 		creatureId = 161961,
-		coords = { { m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND } },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND },
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_REVISION_OF_STORMWIND },
+		},
 	},
 	["Box With Faintly Glowing 'Air' Holes"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -1999,7 +2016,10 @@ local bfaPets = {
 		itemId = 173726,
 		chance = 100,
 		creatureId = 160187,
-		coords = { { m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR } },
+		coords = {
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR },
+			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_REVISION_OF_ORGRIMMAR },
+		},
 	},
 	["K'uddly"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,

@@ -141,6 +141,8 @@ end
 local function IsPlayerInHorrificVision()
 	return (GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_STORMWIND)
 		or (GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.HORRIFIC_VISION_OF_ORGRIMMAR)
+		or (GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.HORRIFIC_REVISION_OF_STORMWIND)
+		or (GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.HORRIFIC_REVISION_OF_ORGRIMMAR)
 end
 
 function R:OnSpellcastSucceeded(event, unitID, castGUID, spellID)
@@ -157,6 +159,11 @@ function R:OnSpellcastSucceeded(event, unitID, castGUID, spellID)
 	if IsPlayerInHorrificVision() and spellID == 312881 then
 		self:Debug("Finished searching mailbox in a Horrific Vision")
 		addAttemptForItem("Mail Muncher", "mounts")
+	end
+
+	if IsPlayerInHorrificVision() and spellID == 1223438 then
+		self:Debug("Finished searching trash pile in a Horrific Vision")
+		addAttemptForItem("Nesting Swarmite", "mounts")
 	end
 
 	if spellID == 430315 then
@@ -293,7 +300,7 @@ end
 -- While it might work to change their method from NPC to BOSS,
 -- at this time I'm not sure if that wouldn't cause problems elsewhere... so I won't touch it
 -------------------------------------------------------------------------------------
-local encounterLUT = {
+local encounterLUT = { -- See https://warcraft.wiki.gg/wiki/DungeonEncounterID
 	[1140] = { "Stormforged Rune" }, -- The Assembly of Iron
 	[1133] = { "Blessed Seed" }, -- Freya
 	[1135] = { "Ominous Pile of Snow" }, -- Hodir
@@ -309,6 +316,18 @@ local encounterLUT = {
 	[2377] = { "Void-Scarred Hare" }, -- Magister Umbric
 	[2372] = { "Void-Touched Souvenir Totem", "Box With Faintly Glowing 'Air' Holes" }, -- Oblivion Elemental (Final objective for Zekhan's area)
 	[2374] = { 'Box Labeled "Danger: Void Rat Inside"' }, -- Therum Deepforge (Final objective for Kelsey's area)
+	-- 11.5 Horrific Revisions
+	[3081] = { "Swirling Black Bottle", "Voidwoven Cat Collar" }, -- Alleria Windrunner
+	[3082] = { 'Box Labeled "Danger: Void Rat Inside"' }, -- Therum Deepforge (Final objective for Kelsey's area)
+	[3085] = { "Void-Scarred Hare" }, -- Magister Umbric
+	[3086] = { "Swirling Black Bottle", "Void-Link Frostwolf Collar" }, -- Thrall the Corrupted
+	[3088] = { "Void-Touched Souvenir Totem", "Box With Faintly Glowing 'Air' Holes" }, -- Oblivion Elemental (Final objective for Zekhan's area)
+	[3090] = { "C'Thuffer" }, -- Rexxar
+	-- TBD: No encounters exist for the others?
+	-- TODO Wyrmbane = Parrot Cage (Void-Scarred Parrot)
+	-- TODO Garona = Void-Scarred Scorpid
+	-- TODO Geya'rah = Void-Scarred Egg
+	-- TODO: Valeera's Corrupted Chest -> Old Town (SW) = Eye of Chaos
 }
 
 function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidSize, endStatus)
