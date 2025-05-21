@@ -22,6 +22,9 @@ function Announcements:AnnounceAttemptForItem(item)
 		local attempts = item.attempts or 1
 		local total = item.attempts or 1
 		local chance
+
+		attempts = attempts - (item.lastAttempts or 0)
+
 		if item.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
 			chance = (item.attempts or 0) / (item.chance or 100)
 			if chance < 0 then
@@ -34,10 +37,6 @@ function Announcements:AnnounceAttemptForItem(item)
 		else
 			local dropChance = Rarity.Statistics.GetRealDropPercentage(item)
 			chance = 100 * (1 - math.pow(1 - dropChance, attempts))
-		end
-
-		if item.lastAttempts then
-			attempts = attempts - item.lastAttempts
 		end
 
 		if total <= attempts then
