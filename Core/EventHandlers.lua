@@ -160,8 +160,8 @@ function R:OnSpellcastSucceeded(event, unitID, castGUID, spellID)
 		self:Debug("Finished searching mailbox in a Horrific Vision")
 		addAttemptForItem("Mail Muncher", "mounts")
 	end
-
-	if IsPlayerInHorrificVision() and Rarity.lastNode and Rarity.lastNode == L["Trash"] then
+	
+	if IsPlayerInHorrificVision() and spellID == 1223438 then
 		self:Debug("Finished searching trash pile in a Horrific Vision")
 		addAttemptForItem("Nesting Swarmite", "mounts")
 	end
