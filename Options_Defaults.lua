@@ -108,6 +108,11 @@ function R:PrepareDefaults()
 
 			trackedGroup = "pets",
 			trackedItem = 8494,
+			trackedItems = {
+				itemList = {},
+				itemOrder = {},
+				itemCount = 0,
+			},
 			bar = {
 				point = "TOPLEFT",
 				relativePoint = "TOPLEFT",
@@ -116,6 +121,7 @@ function R:PrepareDefaults()
 				width = 150,
 				height = 12,
 				scale = 1.0,
+				maxElements = 1,
 				visible = false,
 				anchor = true,
 				locked = false,
