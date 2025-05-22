@@ -1,4 +1,11 @@
 local changes = {
+	["r743"] = {
+		additions = {
+			"Added tracking for Steamwheedle Supplier",
+			"Added tracking for Void-Scarred Lynx",
+		},
+		contributors = { "Ellezanor" },
+	},
 	["r742"] = {
 		additions = {
 			"Enabled defeat detection for Beledar's Spawn and Regurgitated Mole Reins",

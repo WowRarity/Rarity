@@ -3,6 +3,7 @@ L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
 L["Max Elements"] = true
+L["Void-Scarred Lynx"] = true
 L["Steamwheedle Supplier"] = true
 L["Venture Co-ordinator"] = true
 L["Blackwater Bonecrusher"] = true
