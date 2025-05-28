@@ -135,13 +135,13 @@ local sortConfigProgress = {
 	precomputer = function(item)
 		local dropChance = R.Statistics.GetRealDropPercentage(item)
 		return {
-			progressChance = item.attempts and math_pow(1 - dropChance, item.attempts) or 0,
+			progressChance = item.attempts and (1 - math_pow(1 - dropChance, item.attempts)) or 0,
 			name = item.name or "" -- For tie-breaking
 		}
 	end,
 	comparator_logic = function(a, b)
-		if a.progressChance < b.progressChance then return true end
-		if a.progressChance > b.progressChance then return false end
+		if a.progressChance > b.progressChance then return true end
+		if a.progressChance < b.progressChance then return false end
 		return a.name < b.name
 	end
 }
