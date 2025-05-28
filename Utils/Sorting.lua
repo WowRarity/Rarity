@@ -11,7 +11,6 @@ local CONSTANTS = addonTable.constants
 -- Lua APIs
 local type = type
 local pairs = pairs
-local Round = Round
 
 local catOrder = {
 	[CONSTANTS.ITEM_CATEGORIES.HOLIDAY] = 0,
@@ -29,12 +28,6 @@ local catOrder = {
 }
 
 local function compareCategory(a, b)
-	if not a or not b then
-		return 0
-	end
-	if type(a) ~= "table" or type(b) ~= "table" then
-		return 0
-	end
 	if (a.cat or "") == (b.cat or "") then
 		return (a.name or "") < (b.name or "")
 	end
@@ -42,112 +35,61 @@ local function compareCategory(a, b)
 end
 
 local function compareDifficulty(a, b)
-	if not a or not b then
-		return 0
+	local dropChanceA = Rarity.Statistics.GetRealDropPercentage(a)
+	local dropChanceB = Rarity.Statistics.GetRealDropPercentage(b)
+
+	return dropChanceA < dropChanceB
+	-- The following tiebreaks equal cases (alphabetical)
+	-- but is much slower and doesn't add much value:
+	--[[
+	-- If can't round to become equal, then we can skip the full calculation
+	if math.abs(dropChanceA - dropChanceB) > min(dropChanceA, dropChanceB) then
+		return dropChanceA < dropChanceB
 	end
-	if type(a) ~= "table" or type(b) ~= "table" then
-		return 0
-	end
 
-	local item
-	item = a
-	local dropChance = Rarity.Statistics.GetRealDropPercentage(item)
-	local medianLoots = Round(math.log(1 - 0.5) / math.log(1 - dropChance))
-	local median1 = medianLoots
+	local medianA = Round(math.log(1 - 0.5) / math.log(1 - dropChanceA))
+	local medianB = Round(math.log(1 - 0.5) / math.log(1 - dropChanceB))
 
-	item = b
-	dropChance = Rarity.Statistics.GetRealDropPercentage(item)
-	medianLoots = Round(math.log(1 - 0.5) / math.log(1 - dropChance))
-	local median2 = medianLoots
-
-	return (median1 or 0) < (median2 or 0)
+	return (medianA or 0) < (medianB or 0)
+	]]
 end
 
 local function compareProgress(a, b)
-	if not a or not b then
-		return 0
-	end
-	if type(a) ~= "table" or type(b) ~= "table" then
-		return 0
-	end
+	-- Optimization: probability of not having dropped; more progress = less chance
+	local chanceA = a.attempts and math.pow(1 - Rarity.Statistics.GetRealDropPercentage(a), a.attempts) or 0
+	local chanceB = b.attempts and math.pow(1 - Rarity.Statistics.GetRealDropPercentage(b), b.attempts) or 0
 
-	local item
-	item = a
-	local dropChance = Rarity.Statistics.GetRealDropPercentage(item)
-	local medianLoots = Round(math.log(1 - 0.5) / math.log(1 - dropChance))
-	local median1 = medianLoots
-	local progress1 = 0
-	if item.attempts or 0 > 0 then
-		progress1 = 100 * (1 - math.pow(1 - dropChance, item.attempts or 0))
-	end
-
-	item = b
-	dropChance = Rarity.Statistics.GetRealDropPercentage(item)
-	medianLoots = Round(math.log(1 - 0.5) / math.log(1 - dropChance))
-	local median2 = medianLoots
-	local progress2 = 0
-	if item.attempts or 0 > 0 then
-		progress2 = 100 * (1 - math.pow(1 - dropChance, item.attempts or 0))
-	end
-
-	return progress1 > progress2
+	return chanceA < chanceB
 end
 
 local function compareName(a, b)
-	if not a or not b then
-		return 0
-	end
-	if type(a) ~= "table" or type(b) ~= "table" then
-		return 0
-	end
 	return (a.name or "") < (b.name or "")
 end
 
 local function compareNum(a, b)
-	if not a or not b then
-		return 0
-	end
-	if type(a) ~= "table" or type(b) ~= "table" then
-		return 0
-	end
 	return (a.num or 0) < (b.num or 0)
 end
 
 local function compareZone(a, b)
-	-- Sort by zone text, unless there are multiple zones. Those go at the bottom, sorted by number of zones.
-	-- If the item is in your current zone as well as one or more other zones,
-	-- we sort it alphabetically instead of putting it at the bottom.
-	if not a or not b then
-		return 0
-	end
-	if type(a) ~= "table" or type(b) ~= "table" then
-		return 0
-	end
+	--- Alphabetical, if item is found in a single zone.
+	--- If the item comes from multiple zones, it goes at the bottom,
+	--- sorted by the count of how many zones it is found in.
+	--- Exception: items in the zone we're currently in get grouped with that zone
+	--- even if they are found in other zones as well.
 	local zoneInfoA = R.Waypoints:GetZoneInfoForItem(a)
 	local zoneInfoB = R.Waypoints:GetZoneInfoForItem(b)
-	local zoneTextA, inMyZoneA, zoneColorA, numZonesA =
-		zoneInfoA.zoneText, zoneInfoA.inMyZone, zoneInfoA.zoneColor, zoneInfoA.numZones
-	local zoneTextB, inMyZoneB, zoneColorB, numZonesB =
-		zoneInfoB.zoneText, zoneInfoB.inMyZone, zoneInfoB.zoneColor, zoneInfoB.numZones
-	if numZonesA > 1 and inMyZoneA ~= true then
-		zoneTextA = "ZZZZZZZZZZZZZZ"
+
+	if zoneInfoA.numZones > 1 and not zoneInfoA.inMyZone then
+		if zoneInfoB.numZones > 1 and not zoneInfoB.inMyZone then
+			return zoneInfoA.numZones < zoneInfoB.numZones
+		else
+			return false
+		end
+	elseif zoneInfoB.numZones > 1 and not zoneInfoB.inMyZone then
+		return true
 	end
-	if numZonesB > 1 and inMyZoneB ~= true then
-		zoneTextB = "ZZZZZZZZZZZZZZ"
-	end
-	if numZonesA < 10 and numZonesA > 1 and inMyZoneA ~= true then
-		zoneTextA = zoneTextA .. "0"
-	end
-	if numZonesB < 10 and numZonesB > 1 and inMyZoneB ~= true then
-		zoneTextB = zoneTextB .. "0"
-	end
-	if numZonesA > 1 and inMyZoneA ~= true then
-		zoneTextA = zoneTextA .. numZonesA
-	end
-	if numZonesB > 1 and inMyZoneB ~= true then
-		zoneTextB = zoneTextB .. numZonesB
-	end
-	return (zoneTextA or "") < (zoneTextB or "")
+
+	return (zoneInfoA.zoneText or "") < (zoneInfoB.zoneText or "")
 end
 
 function Sorting:SortGroup(group, method)
