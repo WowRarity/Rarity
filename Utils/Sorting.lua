@@ -216,9 +216,8 @@ function Sorting:SortGroup(group, method)
 		return self:DebugNoOp(group)
 	end
 
-	R.Profiling:StartTimer("SortGroup")
-	local sortedGroup = group -- Default, though a sort method should always match
-
+	Rarity.Profiling:StartTimer("SortGroup")
+	local sortedGroup = group
 	if method == CONSTANTS.SORT_METHODS.SORT_NAME then
 		sortedGroup = self:sort(group)
 	elseif method == CONSTANTS.SORT_METHODS.SORT_DIFFICULTY then
@@ -229,9 +228,8 @@ function Sorting:SortGroup(group, method)
 		sortedGroup = self:sort_zone(group)
 	elseif method == CONSTANTS.SORT_METHODS.SORT_PROGRESS then
 		sortedGroup = self:sort_progress(group)
-	-- No else, assuming method is always one of the above or SORT_NONE
 	end
-	R.Profiling:EndTimer("SortGroup")
+	Rarity.Profiling:EndTimer("SortGroup")
 
 	return sortedGroup
 end
@@ -244,7 +242,7 @@ end
 function Sorting:DebugNoOp(t)
 	local nt = {}
 	local n = 0
-	for _, v in pairs(t) do -- k unused
+	for _, v in pairs(t) do
 		if type(v) == "table" and v.name then
 			n = n + 1
 			nt[n] = v
@@ -277,5 +275,5 @@ function Sorting:sort_zone(t)
 	return createSortedList(t, sortConfigZone)
 end
 
-R.Utils.Sorting = Sorting
+Rarity.Utils.Sorting = Sorting
 return Sorting
