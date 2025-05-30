@@ -20,7 +20,7 @@ local Round = Round
       Cache to precompute expensive calculations for sorting
   ]]
 local precomputedValuesCache = setmetatable({}, { __mode = "k" })
- -- Weak keys to allow items to be GC'd if they are tables.
+-- Weak keys to allow items to be GC'd if they are tables.
 
 -- Helper to get (from cache or by computing) data for an item based on sort configuration
 local function getOrComputeSortData(item, sortConfigKey, precomputeFunction)
@@ -52,7 +52,9 @@ local function createSortedList(originalTable, sortConfig)
 		end
 	end
 
-	if n == 0 then return {} end -- Return empty table if no valid items
+	if n == 0 then
+		return {}
+	end -- Return empty table if no valid items
 
 	table_sort(itemsToSort, function(decoratedA, decoratedB)
 		return sortConfig.comparator_logic(decoratedA.computed, decoratedB.computed)
@@ -88,14 +90,18 @@ local sortConfigCategory = {
 	precomputer = function(item)
 		return {
 			catOrder = catOrder[item.cat or ""] or 999, -- Unknown categories sort last
-			name = item.name or "" -- For tie-breaking
+			name = item.name or "", -- For tie-breaking
 		}
 	end,
 	comparator_logic = function(a, b)
-		if a.catOrder < b.catOrder then return true end
-		if a.catOrder > b.catOrder then return false end
+		if a.catOrder < b.catOrder then
+			return true
+		end
+		if a.catOrder > b.catOrder then
+			return false
+		end
 		return a.name < b.name
-	end
+	end,
 }
 
 local useMediansInDifficultySort = true
@@ -105,29 +111,37 @@ local sortConfigDifficulty = {
 		local dropChance = R.Statistics.GetRealDropPercentage(item)
 		local computedData = {
 			dropChance = dropChance,
-			name = item.name or "" -- For tie-breaking
+			name = item.name or "", -- For tie-breaking
 		}
 		if useMediansInDifficultySort then
 			-- Calculate only if needed
 			computedData.median = (dropChance <= 0 and 1e7) -- Effectively infinite attempts for 0% chance
-								or (dropChance >= 0.5 and 1) -- 1 attempt if chance is 50% or more
-								or Round(math.log(0.5) / math.log(1 - dropChance)) -- Default calculation
+				or (dropChance >= 0.5 and 1) -- 1 attempt if chance is 50% or more
+				or Round(math.log(0.5) / math.log(1 - dropChance)) -- Default calculation
 		end
 		return computedData
 	end,
 	comparator_logic = function(a, b)
 		if useMediansInDifficultySort then
-			-- Sorts literally by median attempts expected as shown in UI
-			if a.median < b.median then return true end
-			if a.median > b.median then return false end
+			-- Sorts literally by median attempts expected
+			if a.median < b.median then
+				return true
+			end
+			if a.median > b.median then
+				return false
+			end
 			return a.name < b.name
 		else
 			-- Faster equivalent if dropChance is exact, but most are estimates
-			if a.dropChance > b.dropChance then return true end
-			if a.dropChance < b.dropChance then return false end
+			if a.dropChance > b.dropChance then
+				return true
+			end
+			if a.dropChance < b.dropChance then
+				return false
+			end
 			return a.name < b.name
 		end
-	end
+	end,
 }
 
 local sortConfigProgress = {
@@ -136,26 +150,30 @@ local sortConfigProgress = {
 		local dropChance = R.Statistics.GetRealDropPercentage(item)
 		return {
 			progressChance = item.attempts and (1 - math_pow(1 - dropChance, item.attempts)) or 0,
-			name = item.name or "" -- For tie-breaking
+			name = item.name or "", -- For tie-breaking
 		}
 	end,
 	comparator_logic = function(a, b)
-		if a.progressChance > b.progressChance then return true end
-		if a.progressChance < b.progressChance then return false end
+		if a.progressChance > b.progressChance then
+			return true
+		end
+		if a.progressChance < b.progressChance then
+			return false
+		end
 		return a.name < b.name
-	end
+	end,
 }
 
 local sortConfigName = {
 	key = "name",
 	precomputer = function(item)
 		return {
-			name = item.name or ""
+			name = item.name or "",
 		}
 	end,
 	comparator_logic = function(a, b)
 		return a.name < b.name
-	end
+	end,
 }
 
 local sortConfigNum = {
@@ -163,14 +181,18 @@ local sortConfigNum = {
 	precomputer = function(item)
 		return {
 			num = item.num or 0,
-			name = item.name or "" -- For tie-breaking
+			name = item.name or "", -- For tie-breaking
 		}
 	end,
 	comparator_logic = function(a, b)
-		if a.num < b.num then return true end
-		if a.num > b.num then return false end
+		if a.num < b.num then
+			return true
+		end
+		if a.num > b.num then
+			return false
+		end
 		return a.name < b.name
-	end
+	end,
 }
 
 local sortConfigZone = {
@@ -178,7 +200,7 @@ local sortConfigZone = {
 	precomputer = function(item)
 		return {
 			zoneInfo = R.Waypoints:GetZoneInfoForItem(item),
-			name = item.name or "" -- For tie-breaking
+			name = item.name or "", -- For tie-breaking
 		}
 	end,
 	comparator_logic = function(a, b)
@@ -192,8 +214,12 @@ local sortConfigZone = {
 
 		if treatAAsMultizone then
 			if treatBAsMultizone then
-				if a.zoneInfo.numZones < b.zoneInfo.numZones then return true end
-				if a.zoneInfo.numZones > b.zoneInfo.numZones then return false end
+				if a.zoneInfo.numZones < b.zoneInfo.numZones then
+					return true
+				end
+				if a.zoneInfo.numZones > b.zoneInfo.numZones then
+					return false
+				end
 				return a.name < b.name
 			else
 				return false -- multizone goes last
@@ -204,12 +230,20 @@ local sortConfigZone = {
 			-- Both are single-zone or in current zone.
 			local zoneTextA = a.zoneInfo.zoneText or ""
 			local zoneTextB = b.zoneInfo.zoneText or ""
-			if zoneTextA < zoneTextB then return true end
-			if zoneTextA > zoneTextB then return false end
+			if zoneTextA < zoneTextB then
+				return true
+			end
+			if zoneTextA > zoneTextB then
+				return false
+			end
 			return a.name < b.name
 		end
-	end
+	end,
 }
+
+--[[
+      Public-facing functions
+  ]]
 
 function Sorting:SortGroup(group, method)
 	if method == CONSTANTS.SORT_METHODS.SORT_NONE then
@@ -233,10 +267,6 @@ function Sorting:SortGroup(group, method)
 
 	return sortedGroup
 end
-
---[[
-      Public-facing functions
-  ]]
 
 -- Minimum impact NO OP "sort" (for debugging purposes)
 function Sorting:DebugNoOp(t)
