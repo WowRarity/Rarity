@@ -15,21 +15,16 @@ jobs:
         run: sudo apt-get install luajit libluajit-5.1-dev
 
       - name: Download LuaRocks
-        run: wget https://luarocks.org/releases/luarocks-3.9.0.tar.gz
+        run: wget https://luarocks.org/releases/luarocks-3.7.0.tar.gz
 
       - name: Unpack LuaRocks release
-        run: tar zxpf luarocks-3.9.0.tar.gz
+        run: tar zxpf luarocks-3.7.0.tar.gz
 
       - name: Install LuaRocks
-        run: cd luarocks-3.9.0 && ./configure && make && sudo make install
-
-      - name: Configure LuaRocks Mirrors
-        run: |
-          luarocks config init
-          luarocks config add server_list https://luarocks.org https://raw.githubusercontent.com/rocks-moonscript-org/moonrocks-mirror/master/ https://luafr.org/luarocks/
+        run: cd luarocks-3.7.0 && ./configure && make && sudo make install
 
       - name: Install LuaCheck
-        run: sudo luarocks install luacheck --lua-version=5.1
+        run: sudo luarocks install luacheck
 
       # We don't want LuaCheck to analyze LuaRocks itself
       # Ironically, it fails when doing that, but that's not useful here
