@@ -146,59 +146,6 @@ function R:PrepareDefaults()
 				[CONSTANTS.ITEM_TYPES.PET] = true,
 				[CONSTANTS.ITEM_TYPES.ITEM] = true,
 			},
-			-- These are achievements with the names of rare NPCs as criteria to kill
-			achNpcs = {
-				-- Burning Crusade
-				1312, -- Bloody Rare
-
-				-- Wrath of the Lich King
-				2257, -- Frostbitten
-
-				-- Mists of Pandaria
-				7439, -- Glorious!
-
-				-- Warlords of Draenor
-				9400, -- Gorgrond Monster Hunter
-				10070, -- Jungle Stalker
-
-				-- Legion
-				11261, -- Adventurer of Azsuna
-				11264, -- Adventurer of Highmountain
-				11263, -- Adventurer of Stormheim
-				11265, -- Adventurer of Suramar
-				11262, -- Adventurer of Val'sharah
-				12078, -- Adventurer of Argus > Commander of Argus
-
-				-- Battle for Azeroth
-				12939, -- Adventurer of Tiragarde Sound
-				12940, -- Adventurer of Stormsong Valley
-				12941, -- Adventurer of Drustvar
-				12942, -- Adventurer of Nazmir
-				12943, -- Adventurer of Vol'dun
-				12944, -- Adventurer of Zuldazar
-				13691, -- I Thought You Said They'd Be Rare? (Nazjatar)
-				13470, -- Rest In Pistons (Mechagon)
-
-				-- Shadowlands
-				14307, -- Adventurer of Bastion
-				14308, -- Adventurer of Maldraxxus
-				14309, -- Adventurer of Ardenweald
-				14310, -- Adventurer of Revendreth
-				14744, -- Better to Be Lucky Than Dead (The Maw)
-
-				-- Dragonflight
-				16676, -- Adventurer of The Waking Shores
-				16677, -- Adventurer of the Ohn'ahran Plains
-				16678, -- Adventurer of The Azure Span
-				16679, -- Adventurer of Thaldraszus
-				17525, -- Champion of the Forbidden Reach
-
-				-- The War Within
-				40435, -- Adventurer of the Isle of Dorn
-				40837, -- Adventurer of The Ringing Deeps
-				40840, -- Adventurer of Azj-Kahet
-				40851, -- Adventurer of Hallowfall
-			},
 			-- These are inventory items that may result in another CONSTANTS.ITEM_TYPES.ITEM that Rarity would like to make you aware of
 			extraTooltips = {
 				inventoryItems = {
