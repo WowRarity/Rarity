@@ -19,7 +19,8 @@ Rarity.relevantSpells = {
 	-- 8.2
 	[6478] = "Opening", -- Pile of Coins (Mechagon Island: Armored Vaultbot)
 	-- 8.3
-	[312881] = "Searching Mailbox",
+	[312881] = "Searching Mailbox", -- Mail Muncher
+	[1223438] = "Searching Junk", -- Nesting Swarmite
 	-- 9.0
 	[329997] = "Opening", -- Silver Strongbox (Bastion, Shadowlands)
 	[345071] = "Looting", -- Dirty Glinting Object (Shadowlands zones for Lucy's Lost Collar pet)

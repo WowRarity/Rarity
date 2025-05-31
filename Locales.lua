@@ -2,6 +2,11 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Void-Scarred Egg"] = true
+L["Void Scarred Scorpid"] = true
+L["Eye of Chaos"] = true
+L["Parrot Cage (Void-Scarred Parrot)"] = true
+L["Nesting Swarmite"] = true
 L["Void-Scarred Lynx"] = true
 L["Steamwheedle Supplier"] = true
 L["Venture Co-ordinator"] = true
