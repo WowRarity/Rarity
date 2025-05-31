@@ -1,4 +1,19 @@
 local changes = {
+	["r744"] = {
+		additions = {
+			"Added tracking for collectibles from 11.1.5's Revisited Horrific Visions",
+		},
+		changes = {
+			'Tooltip additions for "rare" achievement NPCs (Adventurer of ...) have been removed',
+		},
+		notes = {
+			"Tracking achievement progress isn't something that Rarity is well-known for, so this feature has been causing some confusion. For the time being, it's been removed. There are other addons more suited to this task, but if you prefer Rarity to keep tracking achievement progress for those rares then please do get in touch.",
+		},
+		fixes = {
+			"The luckiness percentage should correctly reset when repeatedly tracking an item",
+		},
+		contributors = { "Ellezanor" },
+	},
 	["r743"] = {
 		additions = {
 			"Added tracking for Steamwheedle Supplier",
