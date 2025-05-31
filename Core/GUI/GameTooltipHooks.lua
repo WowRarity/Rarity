@@ -220,27 +220,6 @@ local function onTooltipSetUnit(tooltip, data)
 
 	-- blankAdded = false -- Why?
 
-	-- NPC is required for an achievement
-	if Rarity.ach_npcs_achId[name] then
-		local link = GetAchievementLink(Rarity.ach_npcs_achId[name])
-		if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
-			blankAdded = true
-			GameTooltip:AddLine(" ")
-		end
-		if not Rarity.ach_npcs_isKilled[name] then
-			GameTooltip:AddLine(
-				colorize((not rarityAdded and L["Rarity: "] or ""), yellow)
-					.. colorize(format(L["Required for %s"], link), green)
-			)
-		else
-			GameTooltip:AddLine(
-				colorize((not rarityAdded and L["Rarity: "] or ""), yellow)
-					.. colorize(format(L["Already defeated for %s"], link), red)
-			)
-		end
-		rarityAdded = true
-	end
-
 	-- This whole zone is used for obtaining something
 	if not UnitCanAttack("player", unit) then
 		return

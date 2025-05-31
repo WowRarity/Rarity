@@ -261,19 +261,5 @@ function R:ScanStatistics(reason)
 		R.stats = rarity_stats
 	end
 
-	-- Scan rare NPC achievements
-	table.wipe(Rarity.ach_npcs_isKilled)
-	table.wipe(Rarity.ach_npcs_achId)
-	for k, v in pairs(self.db.profile.achNpcs) do
-		local count = GetAchievementNumCriteria(v) or 0
-		for i = 1, count do
-			local description, type, completed = GetAchievementCriteriaInfo(v, i)
-			Rarity.ach_npcs_achId[description] = v
-			if completed then
-				Rarity.ach_npcs_isKilled[description] = true
-			end
-		end
-	end
-
 	self.Profiling:EndTimer("Collections.ScanStatistics" .. reason or "UnknownReason")
 end
