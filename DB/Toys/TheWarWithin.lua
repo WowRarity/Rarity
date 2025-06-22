@@ -88,6 +88,28 @@ local twwToysAndItems = {
 		groupSize = 10,
 		equalOdds = true,
 	},
+		-- 11.2 toys
+	["Cosmic Hearthstone"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		name = L["Cosmic Hearthstone"],
+		itemId = 246565,
+		chance = 25,
+		npcs = { 99999 },
+		tooltipNpcs = { 230322 },
+		lockBossName = "Stix Bunkjunker",
+		statisticId = { 41663, 41662, 41661, 41664 },
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_RAID] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.LFR] = true,
+		},
+		coords = { { i = true, m = CONSTANTS.UIMAPIDS.MANAFORGE_OMEGA } },
+		groupSize = 10,
+		equalOdds = true,
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, twwToysAndItems)
