@@ -146,14 +146,28 @@ local twwPets = {
 	["Heka'Tarnos, Bringer of Discord"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
 		chance = 20,
-		creatureId = 245272,
+		creatureId = 245254,
+		itemId = 245272,
 		name = L["Heka'Tarnos, Bringer of Discord"],
-		itemId = 245504,
+		npcs = { 245998 },
 		spellId = 1238338,
 		coords = { { m = CONSTANTS.UIMAPIDS.KARESH } },
 	},
+	["Palek'ti, the Mouth of Nothingness"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		chance = 20,
+		creatureId = 245496,
+		itemId = 245214,
+		name = L["Palek'ti, the Mouth of Nothingness"],
+		npcs = { 245997 },
+		spellId = 1238330,
+		coords = { { m = CONSTANTS.UIMAPIDS.KARESH } },
+	},
+
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, twwPets)
