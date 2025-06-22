@@ -130,6 +130,30 @@ local twwPets = {
 		spellId = 1218383,
 		coords = { { m = CONSTANTS.UIMAPIDS.HORRIFIC_REVISION_OF_ORGRIMMAR } },
 	},
+-- 11.2 pets
+	["Duskthief"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		chance = 20,
+		creatureId = 245254,
+		itemId = 245500,
+		name = L["Duskthief"],
+		npcs = { 232111 },
+		spellId = 1238336,
+		coords = { { m = CONSTANTS.UIMAPIDS.KARESH } },
+	},
+	["Heka'Tarnos, Bringer of Discord"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		chance = 20,
+		creatureId = 245272,
+		name = L["Heka'Tarnos, Bringer of Discord"],
+		itemId = 245504,
+		spellId = 1238338,
+		coords = { { m = CONSTANTS.UIMAPIDS.KARESH } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, twwPets)
