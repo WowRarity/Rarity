@@ -181,7 +181,7 @@ local twwMounts = {
 		itemId = 229957,
 		spellId = 466024,
 		items = { 237132 },
-		chance = 3, -
+		chance = 3,
 		coords = { { m = CONSTANTS.UIMAPIDS.UNDERMINE } },
 	},
 	["Blackwater Bonecrusher"] = {
@@ -203,7 +203,7 @@ local twwMounts = {
 		itemId = 229951,
 		spellId = 466022,
 		items = { 237133 },
-		chance = 3, -
+		chance = 3,
 		coords = { { m = CONSTANTS.UIMAPIDS.UNDERMINE } },
 	},
 	["Steamwheedle Supplier"] = {
