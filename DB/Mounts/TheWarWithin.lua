@@ -147,7 +147,7 @@ local twwMounts = {
 		spellId = 466027,
 		npcs = { 231310 },
 		itemId = 229955,
-		chance = 20,
+		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.UNDERMINE, x = 41.2, y = 41.2, n = L["Darkfuse Precipitant"] } },
 		questId = 85010,
 	},
@@ -159,7 +159,7 @@ local twwMounts = {
 		itemId = 233064,
 		spellId = 473188,
 		items = { 232465 },
-		chance = 5,
+		chance = 3,
 		coords = { { m = CONSTANTS.UIMAPIDS.UNDERMINE } },
 	},
 	["Personalized Goblin S.C.R.A.Per"] = {
@@ -181,7 +181,7 @@ local twwMounts = {
 		itemId = 229957,
 		spellId = 466024,
 		items = { 237132 },
-		chance = 20, -- No data available
+		chance = 3,
 		coords = { { m = CONSTANTS.UIMAPIDS.UNDERMINE } },
 	},
 	["Blackwater Bonecrusher"] = {
@@ -192,7 +192,7 @@ local twwMounts = {
 		itemId = 229937,
 		spellId = 466001,
 		items = { 237135 },
-		chance = 20, -- No data available
+		chance = 3,
 		coords = { { m = CONSTANTS.UIMAPIDS.UNDERMINE } },
 	},
 	["Venture Co-ordinator"] = {
@@ -203,7 +203,7 @@ local twwMounts = {
 		itemId = 229951,
 		spellId = 466022,
 		items = { 237133 },
-		chance = 20, -- No data available
+		chance = 3,
 		coords = { { m = CONSTANTS.UIMAPIDS.UNDERMINE } },
 	},
 	["Steamwheedle Supplier"] = {
@@ -214,7 +214,7 @@ local twwMounts = {
 		itemId = 229943,
 		spellId = 466014,
 		items = { 237134 },
-		chance = 20, -- No data available
+		chance = 3,
 		coords = { { m = CONSTANTS.UIMAPIDS.UNDERMINE } },
 	},
 	-- 11.1.5 mounts
