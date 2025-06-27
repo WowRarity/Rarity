@@ -23,6 +23,17 @@ local holidayEventPetsTWW = {
 		questId = { 6983, 7043 },
 		coords = { { m = 87, x = 33.2, y = 67.8 }, { m = 25, x = 42.4, y = 41 }, { m = 86, x = 54.4, y = 77 } },
 	},
+	["Baa'lial Soulstone"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		spellId = 411791,
+		npcs = { 205490 },
+		itemId = 206018,
+		creatureId = 205637,
+		chance = 3,
+		name = L["Baa'lial Soulstone"],
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, holidayEventPetsTWW)
