@@ -130,44 +130,6 @@ local twwPets = {
 		spellId = 1218383,
 		coords = { { m = CONSTANTS.UIMAPIDS.HORRIFIC_REVISION_OF_ORGRIMMAR } },
 	},
-	-- 11.2 pets
-	["Duskthief"] = {
-		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
-		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		chance = 20,
-		creatureId = 245254,
-		itemId = 245500,
-		name = L["Duskthief"],
-		npcs = { 232111 },
-		spellId = 1238336,
-		coords = { { m = CONSTANTS.UIMAPIDS.KARESH } },
-	},
-	["Heka'Tarnos, Bringer of Discord"] = {
-		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
-		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		chance = 20,
-		creatureId = 245254,
-		itemId = 245272,
-		name = L["Heka'Tarnos, Bringer of Discord"],
-		npcs = { 245998 },
-		spellId = 1238338,
-		coords = { { m = CONSTANTS.UIMAPIDS.KARESH } },
-	},
-	["Palek'ti, the Mouth of Nothingness"] = {
-		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
-		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		chance = 20,
-		creatureId = 245496,
-		itemId = 245214,
-		name = L["Palek'ti, the Mouth of Nothingness"],
-		npcs = { 245997 },
-		spellId = 1238330,
-		coords = { { m = CONSTANTS.UIMAPIDS.KARESH } },
-	},
-
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, twwPets)
