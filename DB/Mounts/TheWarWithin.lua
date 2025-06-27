@@ -244,29 +244,6 @@ local twwMounts = {
 			{ m = CONSTANTS.UIMAPIDS.HORRIFIC_REVISION_OF_ORGRIMMAR },
 		},
 	},
-	-- 11.2 mounts
-	["Sthaarbs's Last Lunch"] = {
-		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
-		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Sthaarbs's Last Lunch"],
-		itemId = 223315,
-		spellId = 1241076,
-		npcs = { 234845 },
-		chance = 100,
-		coords = { { m = CONSTANTS.UIMAPIDS.KARESH } },
-	},
-		["Pearlescent Krolusk"] = {
-		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
-		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Pearlescent Krolusk"],
-		itemId = 246067,
-		spellId = 1240632,
-		npcs = { 232195 },
-		chance = 100,
-		coords = { { m = CONSTANTS.UIMAPIDS.KARESH } },
-	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, twwMounts)
