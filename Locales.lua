@@ -2,6 +2,9 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Baa'lial Soulstone"] = true
+L["Tyrael's Charger"] = true
+L["Inarius' Charger"] = true
 L["Void-Scarred Egg"] = true
 L["Void Scarred Scorpid"] = true
 L["Eye of Chaos"] = true
