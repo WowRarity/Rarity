@@ -16,7 +16,7 @@ local holidayEventMountsTWW = {
 		  spellId = 107203,
 		  itemId = 76755,
 		  npcs = { 205490 },
-		  chance = 100, 
+		  chance = 100,
 		},
 	["Inarius' Charger"] = {
 		  cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
@@ -26,7 +26,7 @@ local holidayEventMountsTWW = {
 		  spellId = 1241429,
 		  itemId = 246264,
 		  npcs = { 205490 },
-		  chance = 100, 
+		  chance = 100,
 	},
 }
 
