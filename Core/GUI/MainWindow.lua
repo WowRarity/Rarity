@@ -943,7 +943,7 @@ local function addGroup(group, requiresGroup)
 							duration = ""
 						end
 						local status = ""
-						if v.questId and not v.holidayTexture then
+						if v.questId and not v.holidayEvents then
 							if type(v.questId) == "table" then
 								status = colorize(L["Undefeated"], green)
 								for key, questId in pairs(v.questId) do
@@ -964,7 +964,7 @@ local function addGroup(group, requiresGroup)
 									status = colorize(L["Unavailable"], gray)
 								end
 							end
-						elseif v.questId and v.holidayTexture then
+						elseif v.questId and v.holidayEvents then
 							if not Rarity.HolidayEvents.IsItemAvailableToday(v) then
 								status = colorize(L["Unavailable"], gray)
 							elseif v.christmasOnly and dt.month == 12 and dt.day < 25 then
@@ -1084,7 +1084,7 @@ local function addGroup(group, requiresGroup)
 									status = colorize(L["Unavailable"], gray)
 								end
 							end
-						elseif v.holidayTexture and not Rarity.HolidayEvents.IsItemAvailableToday(v) then
+						elseif v.holidayEvents and not Rarity.HolidayEvents.IsItemAvailableToday(v) then
 							status = colorize(L["Unavailable"], gray)
 						end
 						if v.pickpocket then

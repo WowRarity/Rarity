@@ -18,7 +18,7 @@ local holidayEventPetsWoD = {
 		items = { 116404 },
 		chance = 33,
 		creatureId = 85846,
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.PILGRIMS_BOUNTY,
+		holidayEvents = CONSTANTS.HolidayEvents["Pilgrim's Bounty"],
 		coords = {
 			{ m = 523, x = 60, y = 34.2 },
 			{ m = 1, x = 46.4, y = 13.8 },
@@ -40,7 +40,7 @@ local holidayEventPetsWoD = {
 		obtain = L["Obtained by opening Snow Mound in Frostfire Ridge"],
 		chance = 20,
 		creatureId = 97229,
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		holidayEvents = CONSTANTS.HolidayEvents["Feast of Winter Veil"],
 		coords = { { m = 525, x = 45.8, y = 26.6, n = L["Snow Mound"] } },
 	},
 	["Syd the Squid"] = {
@@ -54,7 +54,7 @@ local holidayEventPetsWoD = {
 		chance = 50,
 		creatureId = 85527,
 		sourceText = L["This bag is rewarded for completing the pet battle daily offered by Christoph VonFeasel at the Darkmoon Faire."],
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.DARKMOON_FAIRE,
+		holidayEvents = CONSTANTS.HolidayEvents["Darkmoon Faire"],
 		questId = 36471,
 		coords = { { m = 407, x = 47.4, y = 62.2, n = L["Christoph VonFeasel"] } },
 	},
