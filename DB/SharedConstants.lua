@@ -25,6 +25,8 @@ C.UIMAPIDS = {
 	ELWYNN_FOREST = 37,
 	DARKSHORE = 62,
 	SILITHUS = 81,
+	STORMWIND_CITY = 84,
+	ORGRIMMAR = 85,
 	-- Wrath of the Lich King Zones
 	DRAGONBLIGHT = 115,
 	GRIZZLY_HILLS = 116,
@@ -124,6 +126,7 @@ C.UIMAPIDS = {
 	THE_AZURE_SPAN = 2024,
 	THALDRASZUS = 2025,
 	THE_PRIMALIST_FUTURE = 2085,
+	VALDRAKKEN = 2112,
 	THE_FORBIDDEN_REACH = 2151,
 	ZARALEK_CAVERN = 2133,
 	THE_THROUGHWAY = 2165,
@@ -245,6 +248,13 @@ C.HolidayEvents = {
 
 	[479] = "Darkmoon Faire", -- 1
 	["Darkmoon Faire"] = { 479 },
+
+	[1382] = "A Greedy Emissary", -- 422
+	[1688] = "A Greedy Emissary", -- 422
+	[1691] = "A Greedy Emissary", -- 422
+	[1692] = "A Greedy Emissary", -- 422
+	[1693] = "A Greedy Emissary", -- 422
+	["A Greedy Emissary"] = { 1382, 1688, 1691, 1692, 1693 },
 }
 
 C.ARCHAEOLOGY_RACES = {
