@@ -2,6 +2,13 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Duskthief"] = true
+L["Heka'Tarnos, Bringer of Discord"] = true
+L["Palek'ti, the Mouth of Nothingness"] = true
+L["Cosmic Hearthstone"] = true
+L["Brewfest Barrel Bomber"] = true
+L["Sthaarbs's Last Lunch"] = true
+L["Pearlescent Krolusk"] = true
 L["Void-Scarred Egg"] = true
 L["Void Scarred Scorpid"] = true
 L["Eye of Chaos"] = true
