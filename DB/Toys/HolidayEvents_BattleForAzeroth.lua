@@ -17,7 +17,7 @@ local holidayEventToysBfA = {
 		itemId = 172223,
 		items = { 116762 },
 		chance = 100, -- Blind guess
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		holidayEvents = CONSTANTS.HolidayEvents["Feast of Winter Veil"],
 		questId = { 6983, 7043 },
 		requiresAlliance = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6 } },
@@ -31,7 +31,7 @@ local holidayEventToysBfA = {
 		itemId = 172222,
 		items = { 116762 },
 		chance = 100, -- Blind guess
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		holidayEvents = CONSTANTS.HolidayEvents["Feast of Winter Veil"],
 		questId = { 6983, 7043 },
 		requiresHorde = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6 } },
@@ -45,7 +45,7 @@ local holidayEventToysBfA = {
 		itemId = 162973,
 		items = { 116762 },
 		chance = 100, -- Blind guess
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		holidayEvents = CONSTANTS.HolidayEvents["Feast of Winter Veil"],
 		questId = { 6983, 7043 },
 		coords = { { m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6 } },
 	},
@@ -58,7 +58,7 @@ local holidayEventToysBfA = {
 		itemId = 172219,
 		items = { 116762 },
 		chance = 100, -- Blind guess
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		holidayEvents = CONSTANTS.HolidayEvents["Feast of Winter Veil"],
 		questId = { 6983, 7043 },
 		coords = { { m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6 } },
 	},

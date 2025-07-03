@@ -19,7 +19,7 @@ local holidayEventPetsMoP = {
 		chance = 50,
 		creatureId = 67332,
 		sourceText = L["This bag is rewarded for completing the pet battle daily offered by Jeremy Feasel at the Darkmoon Faire."],
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.DARKMOON_FAIRE,
+		holidayEvents = CONSTANTS.HolidayEvents["Darkmoon Faire"],
 		questId = 32175,
 		coords = { { m = 407, x = 47.8, y = 62.6, n = L["Jeremy Feasel"] } },
 	},
@@ -33,7 +33,7 @@ local holidayEventPetsMoP = {
 		items = { 116762 },
 		chance = 100,
 		creatureId = 73741,
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		holidayEvents = CONSTANTS.HolidayEvents["Feast of Winter Veil"],
 		questId = { 6983, 7043 },
 		coords = { { m = 87, x = 33.2, y = 67.8 }, { m = 25, x = 42.4, y = 41 }, { m = 86, x = 54.4, y = 77 } },
 	},
@@ -47,7 +47,7 @@ local holidayEventPetsMoP = {
 		npcs = { 71992 },
 		chance = 17,
 		creatureId = 72160,
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.DARKMOON_FAIRE,
+		holidayEvents = CONSTANTS.HolidayEvents["Darkmoon Faire"],
 		coords = { { m = CONSTANTS.UIMAPIDS.DARKMOON_ISLAND, x = 39.8, y = 44.4, n = L["Moonfang"] } },
 	},
 	["Darkmoon Rabbit"] = {
@@ -61,7 +61,7 @@ local holidayEventPetsMoP = {
 		chance = 10,
 		creatureId = 59358,
 		coords = { { m = CONSTANTS.UIMAPIDS.DARKMOON_ISLAND, x = 75.6, y = 86.8 } },
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.DARKMOON_FAIRE,
+		holidayEvents = CONSTANTS.HolidayEvents["Darkmoon Faire"],
 	},
 }
 

@@ -17,7 +17,7 @@ local holidayEventToysDragonflight = {
 		itemId = 209859,
 		items = { 116762 },
 		chance = 4,
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		holidayEvents = CONSTANTS.HolidayEvents["Feast of Winter Veil"],
 		questId = { 6983, 7043 },
 		coords = { { m = CONSTANTS.UIMAPIDS.HILLSBRAD_FOOTHILLS, x = 43.6, y = 39.6 } },
 	},

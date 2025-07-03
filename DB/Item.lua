@@ -41,7 +41,7 @@ local Item = {
 		realAttempts = false,
 		enabled = false,
 		dates = false,
-		holidayTexture = false,
+		holidayEvents = false,
 		known = false,
 		finds = false,
 		found = false,
@@ -131,9 +131,9 @@ function Item:IsHolidayItem(entry)
 end
 
 function Item:IsValidHolidayItem(entry)
-	-- All holiday items should have holidayTexture set to represent which holiday it belongs to.
-	if not entry.holidayTexture then
-		Rarity:Print("Found holiday item without a holidayTexture property")
+	-- All holiday items should have holidayEvents set to represent which holiday it belongs to.
+	if not entry.holidayEvents then
+		Rarity:Print("Found holiday item without a holidayEvents property")
 		return false
 	end
 
@@ -141,7 +141,7 @@ function Item:IsValidHolidayItem(entry)
 end
 
 function Item:IsUsingHolidayProperties(entry)
-	return entry.holidayTexture ~= nil or entry.christmasOnly ~= nil
+	return entry.holidayEvents ~= nil or entry.christmasOnly ~= nil
 end
 
 function Item:IsPet(entry)

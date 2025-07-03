@@ -19,7 +19,7 @@ local holidayEventPetsTWW = {
 		chance = 150,
 		name = L["Grunch"],
 		sourceText = L["Available starting December 25th"],
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		holidayEvents = CONSTANTS.HolidayEvents["Feast of Winter Veil"],
 		questId = { 6983, 7043 },
 		coords = { { m = 87, x = 33.2, y = 67.8 }, { m = 25, x = 42.4, y = 41 }, { m = 86, x = 54.4, y = 77 } },
 	},

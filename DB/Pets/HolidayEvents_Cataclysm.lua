@@ -18,7 +18,7 @@ local holidayEventPetsCataclysm = {
 		items = { 116762 },
 		chance = 50,
 		creatureId = 55215,
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		holidayEvents = CONSTANTS.HolidayEvents["Feast of Winter Veil"],
 		questId = { 6983, 7043 },
 		coords = { { m = 87, x = 33.2, y = 67.8 }, { m = 25, x = 42.4, y = 41 }, { m = 86, x = 54.4, y = 77 } },
 	},
@@ -33,7 +33,7 @@ local holidayEventPetsCataclysm = {
 		chance = 1000,
 		requiresPool = false,
 		creatureId = 55386,
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.DARKMOON_FAIRE,
+		holidayEvents = CONSTANTS.HolidayEvents["Darkmoon Faire"],
 		coords = { { m = 407 } },
 	},
 }
