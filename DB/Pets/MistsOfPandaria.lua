@@ -483,7 +483,7 @@ local mopPets = {
 		npcs = { 15691 },
 		chance = 33,
 		creatureId = 71015,
-		coords = { { m = 794, i = true, x = 49.4, y = 36.6 } },
+		coords = { { m = 350, i = true, x = 49.4, y = 36.6 } },
 	},
 	["Netherspace Portal-Stone"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
@@ -543,7 +543,7 @@ local mopPets = {
 		npcs = { 15688 },
 		chance = 33,
 		creatureId = 71033,
-		coords = { { m = 794, x = 52.5, y = 69.6, i = true } },
+		coords = { { m = 350, x = 52.5, y = 69.6, i = true } },
 	},
 	["Shell of Tide-Calling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
