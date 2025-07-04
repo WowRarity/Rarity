@@ -10,12 +10,11 @@ local RarityBarContainer = {}
 
 ---Orientation constants for bar layout
 ---@enum RarityBarContainer.Orientation
-RarityBarContainer.Orientation =
-{
-    LEFT_TO_RIGHT = 1,
-    BOTTOM_TO_TOP = 2,
-    RIGHT_TO_LEFT = 3,
-    TOP_TO_BOTTOM = 4
+RarityBarContainer.Orientation = {
+	LEFT_TO_RIGHT = 1,
+	BOTTOM_TO_TOP = 2,
+	RIGHT_TO_LEFT = 3,
+	TOP_TO_BOTTOM = 4,
 }
 
 ---@class RarityBarContainer.CallbackObject
@@ -100,7 +99,19 @@ function RarityBarContainer:IterateBars() end
 ---@param isTimer? boolean Whether this is a timer bar
 ---@return RarityBarContainer.Bar bar The created bar
 ---@return boolean isNew Whether this is a newly created bar
-function RarityBarContainer:NewBarFromPrototype(prototype, name, text, value, maxVal, icon, orientation, length, thickness, isTimer) end
+function RarityBarContainer:NewBarFromPrototype(
+	prototype,
+	name,
+	text,
+	value,
+	maxVal,
+	icon,
+	orientation,
+	length,
+	thickness,
+	isTimer
+)
+end
 
 ---Create a new counter bar
 ---@param name string Unique name for the bar
