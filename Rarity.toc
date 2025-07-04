@@ -134,6 +134,7 @@ Utils\Sorting.lua
 Utils\String.lua
 Utils\Table.lua
 Utils\Time.lua
+Utils\RarityBarContainer.lua
 
 # Wrappers for external libraries (to provide a consistent API)
 Core\Interoperability\LibQTip\Tooltips.lua
