@@ -1,6 +1,6 @@
 ## Author: Allara
-## Interface: 110107, 40402, 11507
-## X-Min-Interface: 110107, 40402, 11507
+## Interface: 110107, 50500, 11507
+## X-Min-Interface: 110107, 50500, 11507
 ## Title: Rarity
 ## Version: 1.0 (@project-version@)
 ## X-Curse-Project-ID: 30801
@@ -71,6 +71,7 @@ DB\Mounts\HolidayEvents_TheBurningCrusade.lua
 DB\Mounts\HolidayEvents_WrathOfTheLichKing.lua
 DB\Mounts\HolidayEvents_WarlordsOfDraenor.lua
 DB\Mounts\HolidayEvents_Dragonflight.lua
+DB\Mounts\HolidayEvents_TheWarWithin.lua
 DB\Mounts\Classic.lua
 DB\Mounts\TheBurningCrusade.lua
 DB\Mounts\WrathOfTheLichKing.lua

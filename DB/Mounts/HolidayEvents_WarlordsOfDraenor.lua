@@ -17,7 +17,7 @@ local holidayEventMountsWoD = {
 		itemId = 128671,
 		items = { 128670 },
 		chance = 100,
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.WINTERS_VEIL,
+		holidayEvents = CONSTANTS.HolidayEvents["Feast of Winter Veil"],
 		coords = { { m = CONSTANTS.UIMAPIDS.LUNARFALL_GARRISON }, { m = CONSTANTS.UIMAPIDS.FROSTWALL_GARRISON } },
 	},
 }

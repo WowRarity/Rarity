@@ -521,6 +521,43 @@ local wodMounts = {
 			95886, -- Ash'Golm
 			99865, -- Glazer
 			95888, -- Cordana Felsong
+			-- BFA Dungeons
+			--- Atal'Dazar
+			129614, -- Priestess Alun'za
+			129399, -- Vol'kaal
+			143577, -- Rezan
+			129412, -- Yazma
+			--- Freehold
+			129732, -- Skycap'n Kragg
+			129431, -- Captain Eudora
+			126847, -- Captain Raoul
+			129432, -- Captain Jolly
+			126969, -- Trothak
+			129440, -- Harlan Sweete
+			--- Kings' Rest
+			135322, -- The Golden Serpent
+			134993, -- Mchimba the Embalmer
+			135470, -- The Council of Tribes
+			136160, -- King Dazar
+			--- Shrine of the Storm
+			134056, -- Aqu'sirr
+			134063, -- Brother Ironhull
+			134058, -- Galecaller Faye
+			139737, -- Lord Stormsong
+			134069, -- Vol'zith the Whisperer
+			--- Temple of Sethraliss
+			133379, -- Adderis
+			133944, -- Aspix
+			133384, -- Merektha
+			133389, -- Galvazzt
+			133392, -- Avatar of Sethraliss
+			--- Waycrest Manor
+			135360, -- Sister Briar
+			131667, -- Soulbound Goliath
+			131863, -- Raal the Gluttonous
+			131527, -- Lord Waycrest
+			131545, -- Lady Waycrest
+			131864, -- Gorak Tul
 		},
 		chance = 4000,
 		groupSize = 5,

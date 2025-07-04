@@ -1,4 +1,13 @@
 local changes = {
+	["r745"] = {
+		additions = {
+			"Added tracking for Treasure Goblins (A Greedy Emissary event)",
+		},
+		changes = {
+			"Battle for Azeroth Timewalking bosses should now register attempts for Infinite Timereaver",
+		},
+		contributors = { "Ellezanor" },
+	},
 	["r744"] = {
 		additions = {
 			"Added tracking for collectibles from 11.1.5's Revisited Horrific Visions",

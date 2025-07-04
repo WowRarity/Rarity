@@ -57,21 +57,21 @@ end
 function R:ScanCalendar(reason)
 	self:Debug("Scanning calendar (" .. reason .. ")")
 
-	table.wipe(Rarity.holiday_textures)
-	local dateInfo = C_DateAndTime.GetCurrentCalendarTime() -- This is the CURRENT date (always "today")
-	local month, day, year = dateInfo.month, dateInfo.monthDay, dateInfo.year
+	table.wipe(Rarity.activeHolidayEvents)
+	local today = C_DateAndTime.GetCurrentCalendarTime()
+	local month, day, year = today.month, today.monthDay, today.year
 	local monthInfo = C_Calendar.GetMonthInfo() -- This is the CALENDAR date (as selected)
-	local curMonth, curYear = monthInfo.month, monthInfo.year -- It should be noted that this is the calendar's "current" month... the name may be misleading, but I'll keep it as it was
+	local curMonth, curYear = monthInfo.month, monthInfo.year
 	local monthOffset = -12 * (curYear - year) + month - curMonth
 	local numEvents = C_Calendar.GetNumDayEvents(monthOffset, day)
 	local numLoaded = 0
 
 	for i = 1, numEvents, 1 do
-		local CalendarDayEvent = C_Calendar.GetDayEvent(monthOffset, day, i)
-		local calendarType, texture = CalendarDayEvent.calendarType, CalendarDayEvent.iconTexture
+		local calendarEvent = C_Calendar.GetDayEvent(monthOffset, day, i)
+		assert(calendarEvent.eventID, "Calendar event IDs should now be available in all WOW product lines")
 
-		if calendarType == "HOLIDAY" and texture ~= nil then
-			Rarity.holiday_textures[texture] = true
+		if calendarEvent.calendarType == "HOLIDAY" then
+			Rarity.activeHolidayEvents[calendarEvent.eventID] = calendarEvent
 		end
 	end
 end

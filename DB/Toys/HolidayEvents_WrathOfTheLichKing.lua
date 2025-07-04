@@ -21,7 +21,7 @@ local holidayEventToysWrath = {
 		equalOdds = true,
 		sourceText = L["Can be contained in Heart-Shaped Box, rewarded for defeating the World Event Dungeon during Love is in the Air."],
 		lockDungeonId = 288,
-		holidayTexture = CONSTANTS.HOLIDAY_TEXTURES.LOVE_IS_IN_THE_AIR,
+		holidayEvents = CONSTANTS.HolidayEvents["Love is in the Air"],
 		coords = { { m = 310, x = 40, y = 52.6, i = true } },
 	},
 }

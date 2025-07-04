@@ -25,6 +25,8 @@ C.UIMAPIDS = {
 	ELWYNN_FOREST = 37,
 	DARKSHORE = 62,
 	SILITHUS = 81,
+	STORMWIND_CITY = 84,
+	ORGRIMMAR = 85,
 	-- Wrath of the Lich King Zones
 	DRAGONBLIGHT = 115,
 	GRIZZLY_HILLS = 116,
@@ -124,6 +126,7 @@ C.UIMAPIDS = {
 	THE_AZURE_SPAN = 2024,
 	THALDRASZUS = 2025,
 	THE_PRIMALIST_FUTURE = 2085,
+	VALDRAKKEN = 2112,
 	THE_FORBIDDEN_REACH = 2151,
 	ZARALEK_CAVERN = 2133,
 	THE_THROUGHWAY = 2165,
@@ -216,53 +219,42 @@ C.SORT_METHODS = {
 
 C.COVENANT_IDS = { KYRIAN = 1, VENTHYR = 2, NIGHT_FAE = 3, NECROLORD = 4 }
 
--- These are now obsolete, but still used for items. TBD: Can move over to a different format or will it break things?
-C.HOLIDAY_TEXTURES = {
-	WINTERS_VEIL = "Calendar_WinterVeil",
-	DARKMOON_FAIRE = "calendar_darkmoonfaireterokkar",
-	BREWFEST = "Calendar_Brewfest",
-	HALLOWS_END = "Calendar_HallowsEnd",
-	PILGRIMS_BOUNTY = "Calendar_HarvestFestival",
-	LOVE_IS_IN_THE_AIR = "Calendar_LoveInTheAir",
-	MIDSUMMER_FESTIVAL = "Calendar_Midsummer",
-	NOBLEGARDEN = "Calendar_Noblegarden",
-}
+-- Maps region-specific calendar day event IDs (Holidays.dbc) to unique names (HolidayNames.dbc), and back
+-- Format: Holidays.ID -> HolidayNames.Name_lang -- HolidayNames.ID = Holidays.HolidayNameID
+-- AFAIK only the HolidayID itself can be obtained ingame, via C_Calendar.GetDayEvent
+C.HolidayEvents = {
+	[181] = "Noblegarden", -- 15
+	["Noblegarden"] = { 181 },
 
--- Copied from https://www.townlong-yak.com/framexml/live/Helix/ArtTextureID.lua
-C.ART_TEXTURES = {
-	BREWFEST = 235439,
-	BREWFEST_END = 235440,
-	BREWFEST_ONGOING = 235441,
-	BREWFEST_START = 235442,
-	DMF_ELWYNN_END = 235446,
-	DMF_ELWYNN_ONGOING = 235447,
-	DMF_ELWYNN_START = 235448,
-	DMF_MULGORE_END = 235449,
-	DMF_MULGORE_ONGOING = 235450,
-	DMF_MULGORE_START = 235451,
-	DMF_ONGOING = 235452,
-	DMF_TEROKKAR_END = 235453,
-	DMF_TEROKKAR_ONGOING = 235454,
-	DMF_TEROKKAR_START = 235455,
-	HALLOWS_END = 235460,
-	HALLOWS_ONGOING = 235461,
-	HALLOWS_START = 235462,
-	HARVEST_END = 235463,
-	HARVEST_ONGOING = 235464,
-	HARVEST_START = 235465,
-	LOVE_END = 235466,
-	LOVE_ONGOING = 235467,
-	LOVE_START = 235468,
-	MIDSUMMER_END = 235472,
-	MIDSUMMER_ONGOING = 235473,
-	MIDSUMMER_START = 235474,
-	NOBLEGARDEN_END = 235475,
-	NOBLEGARDEN_ONGOING = 235476,
-	NOBLEGARDEN_START = 235477,
-	WINTERVEIL_END = 235482,
-	WINTERVEIL_IEND = 235483,
-	WINTERVEIL_ONGOING = 235484,
-	WINTERVEIL_START = 235485,
+	[341] = "Midsummer Fire Festival", -- 11
+	["Midsummer Fire Festival"] = { 341 },
+
+	[404] = "Pilgrim's Bounty", -- 101
+	["Pilgrim's Bounty"] = { 404 },
+
+	[321] = "Hallow's End", -- 16
+	[1405] = "Hallow's End", -- 16
+	["Hallow's End"] = { 321, 1405 },
+
+	[372] = "Brewfest", -- 7
+	["Brewfest"] = { 372 },
+
+	[141] = "Feast of Winter Veil", -- 14
+	["Feast of Winter Veil"] = { 141 },
+
+	[335] = "Love is in the Air", -- 9
+	[423] = "Love is in the Air", -- 9
+	["Love is in the Air"] = { 335, 423 },
+
+	[479] = "Darkmoon Faire", -- 1
+	["Darkmoon Faire"] = { 479 },
+
+	[1382] = "A Greedy Emissary", -- 422
+	[1688] = "A Greedy Emissary", -- 422
+	[1691] = "A Greedy Emissary", -- 422
+	[1692] = "A Greedy Emissary", -- 422
+	[1693] = "A Greedy Emissary", -- 422
+	["A Greedy Emissary"] = { 1382, 1688, 1691, 1692, 1693 },
 }
 
 C.ARCHAEOLOGY_RACES = {
