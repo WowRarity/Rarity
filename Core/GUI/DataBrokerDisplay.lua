@@ -180,24 +180,17 @@ function GUI:UpdateText()
 	end
 	local text = format("%s: %d (%.2f%%)", itemName or trackedItem.name, attempts, chance)
 	if not self.bar then
-		self.bar =
-			self.barGroup:CreateBar("Track", itemTexture or [[Interface\Icons\spell_nature_forceofnature]], 100, chance)
+		self.bar = self.barGroup:NewCounterBar(
+			"Track",
+			text,
+			chance,
+			100,
+			itemTexture or [[Interface\Icons\spell_nature_forceofnature]]
+		)
 	else
-		-- Update icon
-		if self.bar.icon then
-			self.bar.icon:SetTexture(itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
-		end
-		-- Update text
-		if self.bar.text then
-			self.bar.text:SetText(text)
-		end
-		-- Update value
-		self.bar:SetMinMaxValues(0, 100)
-		self.bar:SetValue(chance)
-		-- Update color based on percentage
-		if self.barGroup.UpdateBarColor then
-			self.barGroup:UpdateBarColor(self.bar)
-		end
+		self.bar:SetIcon(itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
+		self.bar:SetLabel(text)
+		self.bar:SetValue(chance, 100)
 	end
 	if self.hadBarTwo then -- If we've transitioning from 2 bars to 1, hiding/showing the bars collapses them
 		self.barGroup:Hide()
@@ -209,24 +202,8 @@ function GUI:UpdateText()
 	-- Bar 2
 	local trackedItem2 = Rarity.Tracking:GetTrackedItem(2)
 	if trackedItem2 == nil or trackedItem2.itemId == nil then
-		if self.bar2 then
-			-- Remove from bars array
-			for i, bar in ipairs(self.barGroup.bars) do
-				if bar == self.bar2 then
-					table.remove(self.barGroup.bars, i)
-					break
-				end
-			end
-			-- Clean up the bar
-			if self.bar2.Anim and self.bar2.Anim:IsPlaying() then
-				self.bar2.Anim:Stop()
-			end
-			self.bar2:Hide()
-			self.bar2:SetParent(nil)
-			self.bar2 = nil
-			-- Update layout
-			self.barGroup:UpdateLayout()
-		end
+		self.barGroup:RemoveBar("Track2")
+		self.bar2 = nil
 	else
 		self.hadBarTwo = true
 		_, -- itemName,
@@ -279,28 +256,17 @@ function GUI:UpdateText()
 		end
 		text = format("%s: %d (%.2f%%)", trackedItem2.name or "", attempts, chance)
 		if not self.bar2 then
-			self.bar2 = self.barGroup:CreateBar(
+			self.bar2 = self.barGroup:NewCounterBar(
 				"Track2",
-				itemTexture or [[Interface\Icons\spell_nature_forceofnature]],
+				text,
+				chance,
 				100,
-				chance
+				itemTexture or [[Interface\Icons\spell_nature_forceofnature]]
 			)
 		else
-			-- Update icon
-			if self.bar2.icon then
-				self.bar2.icon:SetTexture(itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
-			end
-			-- Update text
-			if self.bar2.text then
-				self.bar2.text:SetText(text)
-			end
-			-- Update value
-			self.bar2:SetMinMaxValues(0, 100)
-			self.bar2:SetValue(chance)
-			-- Update color based on percentage
-			if self.barGroup.UpdateBarColor then
-				self.barGroup:UpdateBarColor(self.bar2)
-			end
+			self.bar2:SetIcon(itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
+			self.bar2:SetLabel(text)
+			self.bar2:SetValue(chance, 100)
 		end
 	end
 	self.Profiling:EndTimer("GUI.UpdateText")
