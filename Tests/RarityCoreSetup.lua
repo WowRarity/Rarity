@@ -15,7 +15,6 @@ LE_EXPANSION_LEVEL_CURRENT = LE_EXPANSION_WAR_WITHIN
 dofile("Libs/LibStub/LibStub.lua")
 dofile("Libs/CallbackHandler-1.0/CallbackHandler-1.0.lua")
 
-dofile("Libs/LibBars-1.0/LibBars-1.0.lua")
 dofile("Libs/LibCompress/LibCompress.lua")
 dofile("Libs/LibSink-2.0/LibSink-2.0/LibSink-2.0.lua")
 
@@ -34,7 +33,6 @@ local aceAddonObject = _G.LibStub("AceAddon-3.0"):NewAddon(
 	"AceTimer-3.0",
 	"LibSink-2.0",
 	"AceBucket-3.0",
-	"LibBars-1.0",
 	"AceSerializer-3.0"
 )
 aceAddonObject.Utils = {}

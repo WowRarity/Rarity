@@ -2107,6 +2107,7 @@ L["Reins of the Springtide Dreamtalon"] = true
 L["Reins of the Morning Flourish Dreamsaber"] = true
 L["Reins of the Rekindled Dreamstag"] = true
 L["Dreamseed Cache"] = true
+L["Max Elements"] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

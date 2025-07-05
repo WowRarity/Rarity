@@ -4,3 +4,5 @@ Libs/
 *.suo
 *.json
 *.sqlite
+
+Rarity/Utils/RarityBarContainer-Documentation.lua
