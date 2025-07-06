@@ -80,15 +80,13 @@ function GUI:UpdateBar()
 	else
 		self.barGroup:Show()
 	end
-	if not self.db.profile.bar.anchor then
-		self.barGroup:HideAnchor()
-	else
-		self.barGroup:ShowAnchor()
-	end
+
 	if not self.db.profile.bar.locked then
 		self.barGroup:Unlock()
+		self.barGroup:ShowAnchor()
 	else
 		self.barGroup:Lock()
+		self.barGroup:HideAnchor()
 	end
 end
 

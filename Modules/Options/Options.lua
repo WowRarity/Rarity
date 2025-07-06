@@ -998,19 +998,6 @@ function R:PrepareOptions()
 						order = newOrder(),
 						inline = true,
 						args = {
-							anchor = {
-								type = "toggle",
-								order = newOrder(),
-								name = L["Show anchor"],
-								get = function()
-									return self.db.profile.bar.anchor
-								end,
-								set = function(info, val)
-									self.db.profile.bar.anchor = val
-									Rarity.GUI:UpdateBar()
-									Rarity.GUI:UpdateText()
-								end,
-							},
 							locked = {
 								type = "toggle",
 								order = newOrder(),
