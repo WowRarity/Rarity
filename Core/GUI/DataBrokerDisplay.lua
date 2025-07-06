@@ -223,7 +223,7 @@ function GUI:CalculateItemStats(item)
 	attempts = min(attempts, 2 ^ 31 - 1)
 
 	local chance = 0
-    local dropChance
+	local dropChance
 	if item.found and not item.repeatable then
 		chance = 100.0
 	else

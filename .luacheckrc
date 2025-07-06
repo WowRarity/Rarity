@@ -30,6 +30,16 @@ ignore = {
 	"512", -- loop is executed at most once (no idea why, will also have to be reviewed later)
 	"231", -- variable is never accessed (still more readable than replacing everything with underscores... remove later?)
 }
+
+-- File-specific ignores
+files["Utils/RarityBarContainer-Documentation.lua"] = {
+	ignore = { "241" }, -- Variable is mutated but never accessed (documentation example code)
+}
+
+files["Core/GUI/DataBrokerDisplay.lua"] = {
+	ignore = { "311" }, -- Value assigned to a local variable is unused
+}
+
 globals = {
 
 	-- Lua environment
