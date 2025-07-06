@@ -84,6 +84,9 @@ L["Blaise"] = true
 L["Ambre"] = true
 L["Disable tracking for ALL mounts. You'll have to enable those that you wish to track manually afterwards."] = true
 L["Untrack all mounts"] = true
+L["Disable auto-tracking"] = true
+L["When enabled, the progress bar will not automatically switch to newly attempted items. You must manually select items to track."] =
+	true
 L["Echo of the Cave"] = true
 L["Echo of the Inferno"] = true
 L["Echo of the Depths"] = true
@@ -2106,6 +2109,9 @@ L["Reins of the Springtide Dreamtalon"] = true
 L["Reins of the Morning Flourish Dreamsaber"] = true
 L["Reins of the Rekindled Dreamstag"] = true
 L["Dreamseed Cache"] = true
+L["Max Elements"] = true
+L["Enable Progress Bar"] = true
+L["Disables the progress bar and all related options. You must re-enable to access these settings."] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

@@ -48,6 +48,8 @@ globals = {
 	-- This addon
 	"Rarity",
 	"RarityDB",
+	"RarityBarContainerBar",
+	"RarityBarContainerBarGroup",
 
 	-- Shared constants (Blizzard interface)
 	"UIERRORS_HOLD_TIME",
@@ -76,6 +78,7 @@ globals = {
 	"AuraUtil",
 	"BackdropTemplateMixin",
 	"ChatFontNormal",
+	"ChatFontSmall",
 	"FauxScrollFrame_GetOffset",
 	"FauxScrollFrame_OnVerticalScroll",
 	"FauxScrollFrame_Update",

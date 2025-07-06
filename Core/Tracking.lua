@@ -7,7 +7,7 @@ local Tracking = {}
 -- Globals
 local R = Rarity
 -- Locals
-local trackedItems = {}
+local trackedItems = {} -- Simple array of item IDs
 local lastAttemptItem
 local lastAttemptTime
 -- WOW APIs
@@ -20,65 +20,83 @@ Tracking.DUAL_TRACK_THRESHOLD = DUAL_TRACK_THRESHOLD
 -- Returns the first tracked item by default
 function Tracking:GetTrackedItem(index)
 	index = index or 1
-	return trackedItems[index]
+	if trackedItems[index] then
+		-- Look up the actual item data from the groups
+		return self:FindItemById(trackedItems[index])
+	end
+	return nil
 end
 
 function Tracking:GetTrackedItems()
 	return trackedItems
 end
 
--- Default: First item (only two were originally supported)
--- Note: If there are multiple, empty entries in between might cause weirdness.
--- But that's a problem for later... Right now there's always one, and sometimes a second one
-function Tracking:SetTrackedItem(item, index)
-	if not item then
-		Rarity:Debug("Usage: SetTrackedItem(item, [index]")
-		return
-	end
-
-	index = index or 1
-
-	local itemID = item.itemId
-	local itemName = item.name
-	Rarity:Debug("Setting tracked item to " .. tostring(itemID) .. " (" .. tostring(itemName) .. ")")
-
-	trackedItems[index] = item
-end
-
-function Tracking:Update(item)
-	self = Rarity
-	local trackedItem2 = Rarity.Tracking:GetTrackedItem(2)
-	self.Profiling:StartTimer("Tracking.Update")
+function Tracking:AddTrackedItem(item)
 	if not item or not item.itemId then
 		return
 	end
-	if self.db.profile.trackedItem == item.itemId then
-		return
-	end -- Already tracking this item
-	self.db.profile.trackedItem = item.itemId
-	for k, v in pairs(R.db.profile.groups) do
-		if type(v) == "table" then
-			for kk, vv in pairs(v) do
-				if type(vv) == "table" then
-					if vv.itemId == item.itemId then
-						self.db.profile.trackedGroup = k
-					end
+
+	-- Check if already tracking
+	for i, id in ipairs(trackedItems) do
+		if id == item.itemId then
+			return -- Already tracking
+		end
+	end
+
+	-- Add to the end
+	table.insert(trackedItems, item.itemId)
+
+	-- Enforce max elements (use existing bar system)
+	local maxElements = Rarity.db.profile.bar.maxElements or 5
+	if #trackedItems > maxElements then
+		table.remove(trackedItems, 1) -- Remove oldest
+	end
+
+	-- Save to database
+	Rarity.db.profile.trackedItems = trackedItems
+
+	-- Update the GUI
+	Rarity.GUI:UpdateText()
+end
+
+function Tracking:RemoveTrackedItem(itemId)
+	for i, id in ipairs(trackedItems) do
+		if id == itemId then
+			table.remove(trackedItems, i)
+			-- Save to database
+			Rarity.db.profile.trackedItems = trackedItems
+			Rarity.GUI:UpdateText()
+			break
+		end
+	end
+end
+
+-- Helper function to find item data
+function Tracking:FindItemById(itemId)
+	self = Rarity
+	for groupName, group in pairs(self.db.profile.groups) do
+		if type(group) == "table" then
+			for itemName, item in pairs(group) do
+				if type(item) == "table" and item.itemId == itemId then
+					return item
 				end
 			end
 		end
 	end
-	Rarity.Tracking:FindTrackedItem()
-	if lastAttemptItem and lastAttemptItem ~= item and GetTime() - (lastAttemptTime or 0) <= DUAL_TRACK_THRESHOLD then
-		Rarity.Tracking:SetTrackedItem(lastAttemptItem, 2)
-		self:Debug("Setting second tracked item to " .. lastAttemptItem.name)
-	else
-		if trackedItem2 then
-			self:Debug("Clearing second tracked item")
-			Rarity.Tracking:SetTrackedItem(nil, 2)
-		end
+	return nil
+end
+
+function Tracking:Update(item)
+	self = Rarity
+	self.Profiling:StartTimer("Tracking.Update")
+
+	if not item or not item.itemId then
+		return
 	end
-	Rarity.GUI:UpdateText()
-	-- if self:InTooltip() then self:ShowTooltip() end
+
+	-- Use the new simple system
+	Rarity.Tracking:AddTrackedItem(item)
+
 	self.Profiling:EndTimer("Tracking.Update")
 end
 
@@ -102,21 +120,28 @@ end
 -- TODO: What's up with the Hyacinth Macaw? Leaving it at "None" might be a better default?
 function Tracking:FindTrackedItem()
 	self = Rarity
-	Rarity.Tracking:SetTrackedItem(self.db.profile.groups.pets["Parrot Cage (Hyacinth Macaw)"])
 
-	local trackedItem = Rarity.Tracking:GetTrackedItem()
-	if self.db.profile.trackedGroup and self.db.profile.groups[self.db.profile.trackedGroup] then
-		if self.db.profile.trackedItem then
-			for k, v in pairs(self.db.profile.groups[self.db.profile.trackedGroup]) do
-				if type(v) == "table" and v.itemId and v.itemId == self.db.profile.trackedItem then
-					Rarity.Tracking:SetTrackedItem(v)
-					if self.db.profile.debugMode then
-						self:Debug("Setting first tracked item to " .. v.name)
-						R.trackedItem = trackedItem -- This seems entirely pointless?
-					end
-					return v
-				end
-			end
+	-- Load saved tracked items from database
+	if self.db.profile.trackedItems and type(self.db.profile.trackedItems) == "table" then
+		trackedItems = self.db.profile.trackedItems
+	else
+		-- Initialize empty array if no saved data
+		trackedItems = {}
+	end
+
+	-- Initialize with default item if no tracked items exist
+	if #trackedItems == 0 then
+		local defaultItem = self.db.profile.groups.pets["Parrot Cage (Hyacinth Macaw)"]
+		if defaultItem then
+			Rarity.Tracking:AddTrackedItem(defaultItem)
+		end
+	end
+
+	-- Legacy support: Load old single trackedItem if no new array exists
+	if #trackedItems == 0 and self.db.profile.trackedItem then
+		local item = Rarity.Tracking:FindItemById(self.db.profile.trackedItem)
+		if item then
+			Rarity.Tracking:AddTrackedItem(item)
 		end
 	end
 end

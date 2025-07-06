@@ -105,6 +105,7 @@ function R:PrepareDefaults()
 			sink20OutputSink = "ChatFrame",
 
 			tooltipShowDelay = 0.1,
+			disableAutoTracking = false,
 
 			trackedGroup = "pets",
 			trackedItem = 8494,
@@ -125,6 +126,8 @@ function R:PrepareDefaults()
 				rightAligned = false,
 				showIcon = true,
 				showText = true,
+				maxElements = 25,
+				enabled = true,
 			},
 			cats = {
 				[CONSTANTS.ITEM_CATEGORIES.CLASSIC] = true,
