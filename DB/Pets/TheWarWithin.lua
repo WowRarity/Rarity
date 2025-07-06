@@ -167,7 +167,18 @@ local twwPets = {
 		spellId = 1238330,
 		coords = { { m = CONSTANTS.UIMAPIDS.KARESH } },
 	},
-
+	["Jimmy"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		chance = 20,
+		creatureId = 245481,
+		itemId = 244915,
+		name = L["Jimmy"],
+		npcs = { 232108 },
+		spellId = 1238283,
+		coords = { { m = CONSTANTS.UIMAPIDS.KARESH } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, twwPets)
