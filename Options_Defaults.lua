@@ -117,7 +117,6 @@ function R:PrepareDefaults()
 				height = 12,
 				scale = 1.0,
 				visible = false,
-				anchor = true,
 				locked = false,
 				texture = nil,
 				font = nil,
