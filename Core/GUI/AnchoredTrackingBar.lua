@@ -1,5 +1,6 @@
 -- Upvalues
 local GUI = Rarity.GUI
+local RarityBarContainer = Rarity.Utils.BarContainer
 
 -- Externals
 local media = LibStub("LibSharedMedia-3.0")
@@ -20,6 +21,11 @@ end
 function GUI:InitialiseBar()
 	self = Rarity
 
+	-- Embed RarityBarContainer functionality into Rarity if not already embedded
+	if not RarityBarContainer.embeds[self] then
+		RarityBarContainer:Embed(self)
+	end
+
 	self.barGroup = self:NewBarGroup("Rarity", nil, self.db.profile.bar.width, self.db.profile.bar.height)
 	self.barGroup.RegisterCallback(Rarity.GUI, "AnchorClicked", "OnBarAnchorClicked")
 	Rarity.GUI:UpdateBar()
@@ -30,6 +36,10 @@ function GUI:UpdateBar()
 	self = Rarity
 
 	if not self.barGroup:GetBars() then
+		return
+	end
+	if not self.db.profile.bar.enabled then
+		self.barGroup:Hide()
 		return
 	end
 	if not self.db.profile.bar.font then
@@ -88,6 +98,9 @@ function GUI:UpdateBar()
 		self.barGroup:Lock()
 		self.barGroup:HideAnchor()
 	end
+
+	-- Set the maximum number of bars to display based on maxElements setting
+	self.barGroup:SetMaxBars(self.db.profile.bar.maxElements or 10)
 end
 
 function GUI:ToggleProgressBar()

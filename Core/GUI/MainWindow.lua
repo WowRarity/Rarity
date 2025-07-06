@@ -231,7 +231,6 @@ local function onClickItem(cell, item)
 		if trackedItem ~= item and Rarity.Session:IsActive() then
 			Rarity.Session:End()
 		end
-		Rarity.Tracking:SetTrackedItem(nil, 2)
 		Rarity.Tracking:Update(item)
 	end
 end
@@ -705,10 +704,7 @@ local function showSubTooltip(cell, item)
 				hasPrice = true
 				tooltip2AddDoubleLine(
 					colorize(lineInfo.localisedDisplayText, blue),
-					lineInfo.isMonetaryValue and formattedPrice,
-					nil,
-					nil
-				)
+					lineInfo.isMonetaryValue and formattedPrice)
 			end
 		end
 
@@ -766,13 +762,13 @@ local function showSubTooltip(cell, item)
 	tooltip2:Show()
 end
 
-local function showSubTooltipMe(cell, group)
-	showSubTooltip(cell, group, "")
-end
+-- local function showSubTooltipMe(cell, group)
+-- 	showSubTooltip(cell, group, "")
+-- end
 
-local function showSubTooltipPet(cell, group)
-	showSubTooltip(cell, group, "_pet")
-end
+-- local function showSubTooltipPet(cell, group)
+-- 	showSubTooltip(cell, group, "_pet")
+-- end
 
 local function onClickGroup(cell, group)
 	if type(group) == "table" then
