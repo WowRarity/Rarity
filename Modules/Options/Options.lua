@@ -1025,22 +1025,6 @@ function R:PrepareOptions()
 									Rarity.GUI:UpdateText()
 								end,
 							},
-							anchor = {
-								type = "toggle",
-								order = newOrder(),
-								name = L["Show anchor"],
-								disabled = function()
-									return not self.db.profile.bar.enabled
-								end,
-								get = function()
-									return self.db.profile.bar.anchor
-								end,
-								set = function(info, val)
-									self.db.profile.bar.anchor = val
-									Rarity.GUI:UpdateBar()
-									Rarity.GUI:UpdateText()
-								end,
-							},
 							locked = {
 								type = "toggle",
 								order = newOrder(),
