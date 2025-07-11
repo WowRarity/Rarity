@@ -1235,7 +1235,7 @@ function R:PrepareOptions()
 								max = 25,
 								step = 1,
 								get = function()
-									return self.db.profile.bar.maxElements or 10
+									return self.db.profile.bar.maxElements or 25
 								end,
 								set = function(_, val)
 									self.db.profile.bar.maxElements = val

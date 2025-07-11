@@ -72,25 +72,6 @@ local bars = RarityBarContainer.bars
 local barLists = RarityBarContainer.barLists
 local recycledBars = RarityBarContainer.recycledBars
 
--- Embedding function to add RarityBarContainer functionality to an object
-function RarityBarContainer:Embed(target)
-	if not target then
-		error("Cannot embed into nil target")
-	end
-
-	-- Store reference to this embed
-	self.embeds[target] = true
-
-	-- Copy all methods to target
-	for k, v in pairs(self) do
-		if type(v) == "function" and k ~= "Embed" then
-			target[k] = v
-		end
-	end
-
-	return target
-end
-
 local frame_defaults = {
 	bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
 	edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
@@ -99,6 +80,30 @@ local frame_defaults = {
 	tile = true,
 	insets = { left = 2, right = 2, top = 2, bottom = 2 },
 }
+
+do
+	local mixins = {
+		"NewCounterBar",
+		"NewTimerBar",
+		"NewBarFromPrototype",
+		"GetBar",
+		"GetBars",
+		"HasBar",
+		"IterateBars",
+		"NewBarGroup",
+		"ReleaseBar",
+		"GetBarGroup",
+		"GetBarGroups",
+	}
+	-- Embedding function to add RarityBarContainer functionality to an object
+	function RarityBarContainer:Embed(target)
+		for k, v in pairs(mixins) do
+			target[v] = self[v]
+		end
+		RarityBarContainer.embeds[target] = true
+		return target
+	end
+end
 
 local ComputeGradient
 do
@@ -144,6 +149,18 @@ do
 
 	local colors = {}
 	local function getColor(point)
+		-- Safety check: if colors table is too large, something went wrong
+		if #colors > 100 then
+			-- Fallback to simple interpolation between first and last color
+			local firstColor = colors[1]
+			local lastColor = colors[#colors]
+			local r = firstColor[2] + ((lastColor[2] - firstColor[2]) * point)
+			local g = firstColor[3] + ((lastColor[3] - firstColor[3]) * point)
+			local b = firstColor[4] + ((lastColor[4] - firstColor[4]) * point)
+			local a = firstColor[5] + ((lastColor[5] - firstColor[5]) * point)
+			return r, g, b, a
+		end
+		
 		local lowerBound = colors[1]
 		local upperBound = colors[#colors]
 		local lowerBoundIndex, upperBoundIndex = 0, 1
@@ -182,7 +199,13 @@ do
 			return
 		end
 
-		for _ = 1, #colors do
+		-- Safety check: if colors array is corrupted/too large, reset it
+		if #self.colors > 500 or (#self.colors % 5) ~= 0 then
+			-- Reset to a simple black-to-white gradient
+			self.colors = { 0, 0, 0, 0, 1, 1, 1, 1, 1, 1 }
+		end
+
+		for i = 1, #colors do
 			del(tremove(colors))
 		end
 		for i = 1, #self.colors, 5 do
@@ -672,6 +695,26 @@ end
 
 function barListPrototype:SetColorAt(at, r, g, b, a)
 	self.colors = self.colors or {}
+	
+	-- Check if this color point already exists and update it
+	for i = 1, #self.colors, 5 do
+		if self.colors[i] == at then
+			self.colors[i + 1] = r
+			self.colors[i + 2] = g
+			self.colors[i + 3] = b
+			self.colors[i + 4] = a
+			ComputeGradient(self)
+			self:UpdateColors()
+			return
+		end
+	end
+	
+	-- Safety check: prevent too many color stops
+	if #self.colors >= 500 then -- 100 color stops max (5 values each)
+		return
+	end
+	
+	-- Add new color point
 	tinsert(self.colors, at)
 	tinsert(self.colors, r)
 	tinsert(self.colors, g)
@@ -1310,6 +1353,26 @@ end
 
 function barPrototype:SetColorAt(at, r, g, b, a)
 	self.colors = self.colors or {}
+	
+	-- Check if this color point already exists and update it
+	for i = 1, #self.colors, 5 do
+		if self.colors[i] == at then
+			self.colors[i + 1] = r
+			self.colors[i + 2] = g
+			self.colors[i + 3] = b
+			self.colors[i + 4] = a
+			ComputeGradient(self)
+			self:UpdateColor()
+			return
+		end
+	end
+	
+	-- Safety check: prevent too many color stops
+	if #self.colors >= 500 then -- 100 color stops max (5 values each)
+		return
+	end
+	
+	-- Add new color point
 	tinsert(self.colors, at)
 	tinsert(self.colors, r)
 	tinsert(self.colors, g)
@@ -1820,5 +1883,4 @@ do
 	end
 end
 
-Rarity.Utils.BarContainer = RarityBarContainer
-return RarityBarContainer
+Rarity.Utils.BarContainer = RarityBarContainer -- We shouldn't need to return the object since we are assigning it into the Rarity.Utils table
