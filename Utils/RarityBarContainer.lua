@@ -160,7 +160,7 @@ do
 			local a = firstColor[5] + ((lastColor[5] - firstColor[5]) * point)
 			return r, g, b, a
 		end
-		
+
 		local lowerBound = colors[1]
 		local upperBound = colors[#colors]
 		local lowerBoundIndex, upperBoundIndex = 0, 1
@@ -695,7 +695,7 @@ end
 
 function barListPrototype:SetColorAt(at, r, g, b, a)
 	self.colors = self.colors or {}
-	
+
 	-- Check if this color point already exists and update it
 	for i = 1, #self.colors, 5 do
 		if self.colors[i] == at then
@@ -708,12 +708,12 @@ function barListPrototype:SetColorAt(at, r, g, b, a)
 			return
 		end
 	end
-	
+
 	-- Safety check: prevent too many color stops
 	if #self.colors >= 500 then -- 100 color stops max (5 values each)
 		return
 	end
-	
+
 	-- Add new color point
 	tinsert(self.colors, at)
 	tinsert(self.colors, r)
@@ -1353,7 +1353,7 @@ end
 
 function barPrototype:SetColorAt(at, r, g, b, a)
 	self.colors = self.colors or {}
-	
+
 	-- Check if this color point already exists and update it
 	for i = 1, #self.colors, 5 do
 		if self.colors[i] == at then
@@ -1366,12 +1366,12 @@ function barPrototype:SetColorAt(at, r, g, b, a)
 			return
 		end
 	end
-	
+
 	-- Safety check: prevent too many color stops
 	if #self.colors >= 500 then -- 100 color stops max (5 values each)
 		return
 	end
-	
+
 	-- Add new color point
 	tinsert(self.colors, at)
 	tinsert(self.colors, r)
