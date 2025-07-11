@@ -499,7 +499,7 @@ local legionPets = {
 		chance = 10,
 		statisticId = { 5569, 5570 },
 		doNotUpdateToHighestStat = true,
-		coords = { { m = 294, x = 42.5, 45.5, i = true } },
+		coords = { { m = 294, x = 42.5, y = 45.5, i = true } },
 	},
 	["Model D1-BB-L3R"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
@@ -646,7 +646,7 @@ local legionPets = {
 		chance = 10,
 		statisticId = { 5572, 5571 },
 		doNotUpdateToHighestStat = true,
-		coords = { { m = 294, x = 73.4, 75.4, i = true } },
+		coords = { { m = 294, x = 73.4, y = 75.4, i = true } },
 	},
 	["Vibrating Stone"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,

@@ -512,7 +512,7 @@ local mopPets = {
 		enableCoin = true,
 		blackMarket = true,
 		lockBossName = "Horridon",
-		coords = { { m = 508, 26.8, y = 78.7, i = true } },
+		coords = { { m = 508, x = 26.8, y = 78.7, i = true } },
 	},
 	["Quivering Blob"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,

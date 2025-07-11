@@ -315,7 +315,7 @@ local shadowlandsToys = {
 	},
 	["Wilderling Saddle"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
-		type = CONSTANTS.ITEM_TYPES.ITEMS,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
 		method = CONSTANTS.DETECTION_METHODS.LOOT_TOAST, -- This method doesn't exist, it's effectively SPECIAL but with a better name
 		name = L["Wilderling Saddle"],
 		itemId = 187281,

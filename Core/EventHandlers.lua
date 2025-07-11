@@ -831,7 +831,12 @@ function R:OnItemFound(itemId, item)
 		time = (item.time or 0) - (item.lastTime or 0),
 	})
 	item.lastTime = item.time
-	Rarity.Tracking:Update(item)
+	-- Remove found items from tracking (unless they're repeatable)
+	if not item.repeatable then
+		Rarity.Tracking:RemoveTrackedItem(item.itemId)
+	else
+		Rarity.Tracking:Update(item) -- Keep tracking repeatable items
+	end
 	self:UpdateInterestingThings()
 	if item.repeatable then
 		self:ScheduleTimer(function()

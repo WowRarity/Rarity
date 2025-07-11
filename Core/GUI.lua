@@ -105,8 +105,10 @@ function R:OutputAttempts(item, isForcedUpdate)
 	-- Update LDB text
 	Rarity.GUI:UpdateText()
 
-	-- Switch to track this item
-	Rarity.Tracking:Update(item)
+	-- Switch to track this item (unless auto-tracking is disabled)
+	if not self.db.profile.disableAutoTracking then
+		Rarity.Tracking:Update(item)
+	end
 
 	-- Save what we last tracked and when it happened
 	Rarity.Tracking:SetLastAttemptTime(GetTime())
