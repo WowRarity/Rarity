@@ -47,7 +47,7 @@ function Tracking:AddTrackedItem(item)
 	table.insert(trackedItems, item.itemId)
 
 	-- Enforce max elements (use existing bar system)
-	local maxElements = Rarity.db.profile.bar.maxElements or 5
+	local maxElements = Rarity.db.profile.bar.maxElements or 25
 	if #trackedItems > maxElements then
 		table.remove(trackedItems, 1) -- Remove oldest
 	end

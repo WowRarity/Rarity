@@ -177,29 +177,36 @@ function GUI:UpdateBars()
 	self = Rarity
 
 	-- Clear all existing bars
-	for i = 1, 10 do -- Clear up to 10 bars
+	for i = 1, 25 do -- Clear up to 25 bars to match maxElements
 		self.barGroup:RemoveBar("Track" .. i)
 	end
 
 	-- Get all tracked items
 	local allTrackedItems = Rarity.Tracking:GetTrackedItems()
 
-	-- Create bars for each tracked item
+	-- Create bars for each tracked item (skip completed items)
+	local barIndex = 1
 	for i, itemId in ipairs(allTrackedItems) do
 		local item = Rarity.Tracking:FindItemById(itemId)
 		if item then
 			local attempts, dropChance, chance = Rarity.GUI:CalculateItemStats(item)
-			local itemName, _, _, _, _, _, _, _, _, itemTexture = GetItemInfo(item.itemId)
 
-			local text = format("%s: %d (%.2f%%)", itemName or item.name, attempts, chance)
+			-- Skip items that are found/completed (unless they're repeatable)
+			local isCompleted = (item.found and not item.repeatable) or chance >= 100
 
-			self.barGroup:NewCounterBar(
-				"Track" .. i,
-				text,
-				chance,
-				100,
-				itemTexture or [[Interface\Icons\spell_nature_forceofnature]]
-			)
+			if not isCompleted then
+				local itemName, _, _, _, _, _, _, _, _, itemTexture = GetItemInfo(item.itemId)
+				local text = format("%s: %d (%.2f%%)", itemName or item.name, attempts, chance)
+
+				self.barGroup:NewCounterBar(
+					"Track" .. barIndex,
+					text,
+					chance,
+					100,
+					itemTexture or [[Interface\Icons\spell_nature_forceofnature]]
+				)
+				barIndex = barIndex + 1
+			end
 		end
 	end
 

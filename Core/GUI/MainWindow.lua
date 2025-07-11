@@ -231,7 +231,31 @@ local function onClickItem(cell, item)
 		if trackedItem ~= item and Rarity.Session:IsActive() then
 			Rarity.Session:End()
 		end
-		Rarity.Tracking:Update(item)
+
+		-- Toggle tracking: if already tracked, remove it; if not tracked, add it
+		local allTrackedItems = Rarity.Tracking:GetTrackedItems()
+		local isAlreadyTracked = false
+		for _, trackedItemId in ipairs(allTrackedItems) do
+			if trackedItemId == item.itemId then
+				isAlreadyTracked = true
+				break
+			end
+		end
+
+		if isAlreadyTracked then
+			Rarity.Tracking:RemoveTrackedItem(item.itemId)
+		else
+			Rarity.Tracking:Update(item)
+		end
+
+		-- Refresh the tooltip to update checkmarks immediately
+		if tooltip and tooltip:IsVisible() then
+			tooltip:Hide()
+			if Rarity.Tooltips:IsTooltipAcquired("RarityTooltip") then
+				Rarity.Tooltips:ReleaseTooltip("RarityTooltip")
+			end
+			Rarity:ShowTooltip()
+		end
 	end
 end
 
@@ -715,7 +739,7 @@ local function showSubTooltip(cell, item)
 	end
 
 	-- Click instructions
-	tooltip2AddLine(colorize(L["Click to switch to this item"], gray))
+	tooltip2AddLine(colorize(L["Click to track/untrack this item"], gray))
 	tooltip2AddLine(colorize(L["Shift-Click to link your progress to chat"], gray))
 
 	-- Waypoint instructions
@@ -815,6 +839,7 @@ end
 
 local function addGroup(group, requiresGroup)
 	local trackedItem = Rarity.Tracking:GetTrackedItem()
+	local allTrackedItems = Rarity.Tracking:GetTrackedItems()
 
 	R.Profiling:StartTimer("GUI.MainWindow.AddGroup." .. group.name)
 
@@ -906,8 +931,12 @@ local function addGroup(group, requiresGroup)
 						end
 
 						local icon = ""
-						if trackedItem == v then
-							icon = [[|TInterface\Buttons\UI-CheckBox-Check:0|t]]
+						-- Check if this item is in the list of tracked items
+						for _, trackedItemId in ipairs(allTrackedItems) do
+							if trackedItemId == v.itemId then
+								icon = [[|TInterface\Buttons\UI-CheckBox-Check:0|t]]
+								break
+							end
 						end
 						local duration = 0
 						if v.time then
@@ -916,6 +945,7 @@ local function addGroup(group, requiresGroup)
 						if v.lastTime then
 							duration = v.time - v.lastTime
 						end
+						-- Only add session time for the primary tracked item (index 1)
 						if Rarity.Session:IsActive() and trackedItem == v then
 							local len = Rarity.Session:GetLastTime() - Rarity.Session:GetStartTime()
 							duration = duration + len
