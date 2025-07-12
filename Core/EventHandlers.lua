@@ -83,6 +83,7 @@ function EventHandlers:Register()
 	self:RegisterEvent("ISLAND_COMPLETED", "OnIslandCompleted")
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", "OnSpellcastSucceeded")
 	self:RegisterEvent("QUEST_TURNED_IN", "OnQuestTurnedIn")
+	self:RegisterEvent("GET_ITEM_INFO_RECEIVED", "OnGetItemInfoReceived")
 
 	if LE_EXPANSION_LEVEL_CURRENT >= LE_EXPANSION_MISTS_OF_PANDARIA then
 		self:RegisterEvent("SHOW_LOOT_TOAST", "OnShowLootToast")
@@ -2172,6 +2173,23 @@ function R:OnPlayerInteractionFrameHide(event, playerInteractionTypeID)
 		Rarity.isTradeWindowOpen = false
 	elseif playerInteractionTypeID == Enum.PlayerInteractionType.MailInfo then
 		Rarity.isMailboxOpen = false
+	end
+end
+
+function R:OnGetItemInfoReceived(event, itemID, success)
+	if not success then
+		return
+	end
+	self:Debug("GET_ITEM_INFO_RECEIVED for item ID: " .. tostring(itemID))
+	-- Check if this item is currently being tracked
+	local allTrackedItems = Rarity.Tracking:GetTrackedItems()
+	for _, trackedItemId in ipairs(allTrackedItems) do
+		if trackedItemId == itemID then
+			self:Debug("Item info received for tracked item - refreshing bars")
+			-- Refresh the bars to update the icon
+			Rarity.GUI:UpdateBars()
+			break
+		end
 	end
 end
 
