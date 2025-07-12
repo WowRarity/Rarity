@@ -840,6 +840,37 @@ L["General Options"] = true
 L["Tooltip activation"] = true
 L["On hover"] = true
 L["On click"] = true
+L["Use new window display"] = true
+L["When enabled, Rarity will use the new tabbed window instead of the old tooltip system to display collection data."] = true
+
+-- Tabbed Window Interface
+L["Collection Tracking"] = true
+L["Search"] = true
+L["Clear"] = true
+L["Previous"] = true
+L["Next"] = true
+L["Page %d of %d (%d items)"] = true
+L["Found"] = true
+L["Disabled"] = true
+L["Tracking"] = true
+L["Click to track/untrack this item"] = true
+L["Shift-Click to link your progress to chat"] = true
+L["Ctrl-Click to create TomTom waypoint(s)"] = true
+L["Found in: "] = true
+L["Current Session"] = true
+L["Collected"] = true
+L["Progress"] = true
+L["Attempts"] = true
+L["Chance so far"] = true
+L["Unknown"] = true
+L["Now tracking %s"] = true
+L["No longer tracking %s"] = true
+L["Added %d waypoint(s) for %s"] = true
+
+-- Column Headers for Tabbed Window
+L["Name"] = true
+L["Source"] = true
+L["Status"] = true
 L['If "On click" is selected, activating the tracker is done via CTRL + SHIFT + Click, otherwise it\'s activated with a simple click.'] =
 	true
 L["Left click"] = true

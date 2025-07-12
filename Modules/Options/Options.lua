@@ -466,6 +466,19 @@ function R:PrepareOptions()
 								end,
 								order = newOrder(),
 							}, -- tooltipActivation
+							useNewWindow = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Use new window display"],
+								desc = L["When enabled, Rarity will use the new tabbed window instead of the old tooltip system to display collection data."],
+								get = function()
+									return self.db.profile.useNewWindow
+								end,
+								set = function(info, val)
+									self.db.profile.useNewWindow = val
+									self:Update("OPTIONS")
+								end,
+							}, -- useNewWindow
 						}, -- args
 					}, -- general
 					rarityTooltip = {

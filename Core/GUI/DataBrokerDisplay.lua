@@ -69,11 +69,17 @@ function dataobj:OnClick(button)
 	then
 		Rarity.GUI:ToggleProgressBar()
 	elseif self.db.profile.tooltipActivation == CONSTANTS.TOOLTIP.ACTIVATION_METHOD_CLICK and isLeftButton then
-		if Rarity.Tooltips:IsTooltipAcquired("RarityTooltip") then
-			Rarity:HideTooltip()
+		-- Use the new tabbed window or old tooltip system based on user preference
+		if self.db.profile.useNewWindow and Rarity.TabbedWindow then
+			Rarity.TabbedWindow:Toggle()
 		else
-			Rarity:HideQuicktip()
-			Rarity:ShowTooltip()
+			-- Use old tooltip system
+			if Rarity.Tooltips:IsTooltipAcquired("RarityTooltip") then
+				Rarity:HideTooltip()
+			else
+				Rarity:HideQuicktip()
+				Rarity:ShowTooltip()
+			end
 		end
 	end
 end

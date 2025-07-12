@@ -75,6 +75,7 @@ function R:PrepareDefaults()
 			feedText = CONSTANTS.LDB_TEXT_STYLES.FEED_NORMAL,
 			statusTip = CONSTANTS.TOOLTIP_POSITIONS.TIP_LEFT,
 			tooltipActivation = CONSTANTS.TOOLTIP.ACTIVATION_METHOD_HOVER,
+			useNewWindow = true,
 			sortMode = CONSTANTS.SORT_METHODS.SORT_CATEGORY,
 			hideHighChance = false,
 			enableTooltipAdditions = true,
