@@ -267,6 +267,16 @@ local twwMounts = {
 		chance = 100,
 		coords = { { m = CONSTANTS.UIMAPIDS.KARESH } },
 	},
+		["Curious Slateback"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Curious Slateback"],
+		itemId = 242734,
+		spellId = 1233561,
+		items = { 245611 },
+		chance = 20,
+		coords = { { m = CONSTANTS.UIMAPIDS.KARESH } },
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, twwMounts)
