@@ -10,6 +10,7 @@ Rarity = LibStub("AceAddon-3.0"):NewAddon(
 	"AceTimer-3.0",
 	"LibSink-2.0",
 	"AceBucket-3.0",
+	"LibBars-1.0",
 	"AceSerializer-3.0"
 )
 -- Rarity.MINOR_VERSION = tonumber(("$Revision: 650 $"):match("%d+"))  -- Disabled after switching entirely to Git (from SVN)

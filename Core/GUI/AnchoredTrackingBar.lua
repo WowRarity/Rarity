@@ -1,6 +1,5 @@
 -- Upvalues
 local GUI = Rarity.GUI
-local RarityBarContainer = Rarity.Utils.BarContainer
 
 -- Externals
 local media = LibStub("LibSharedMedia-3.0")
@@ -20,11 +19,6 @@ end
 
 function GUI:InitialiseBar()
 	self = Rarity
-
-	-- Embed RarityBarContainer functionality into Rarity if not already embedded
-	if not RarityBarContainer.embeds[self] then
-		RarityBarContainer:Embed(self)
-	end
 
 	self.barGroup = self:NewBarGroup("Rarity", nil, self.db.profile.bar.width, self.db.profile.bar.height)
 	self.barGroup.RegisterCallback(Rarity.GUI, "AnchorClicked", "OnBarAnchorClicked")

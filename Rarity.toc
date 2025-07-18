@@ -51,6 +51,7 @@ Libs\LibBabble-CreatureType-3.0\lib.xml
 Libs\LibBabble-Boss-3.0\lib.xml
 Libs\LibCompress\lib.xml
 #@end-no-lib-strip@
+Libs\LibBars-1.0\lib.xml
 
 # This must be loaded first
 Locales.lua
@@ -134,7 +135,6 @@ Utils\Sorting.lua
 Utils\String.lua
 Utils\Table.lua
 Utils\Time.lua
-Utils\RarityBarContainer.lua
 
 # Wrappers for external libraries (to provide a consistent API)
 Core\Interoperability\LibQTip\Tooltips.lua
