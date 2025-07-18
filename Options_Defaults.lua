@@ -75,6 +75,7 @@ function R:PrepareDefaults()
 			feedText = CONSTANTS.LDB_TEXT_STYLES.FEED_NORMAL,
 			statusTip = CONSTANTS.TOOLTIP_POSITIONS.TIP_LEFT,
 			tooltipActivation = CONSTANTS.TOOLTIP.ACTIVATION_METHOD_HOVER,
+			useNewWindow = true,
 			sortMode = CONSTANTS.SORT_METHODS.SORT_CATEGORY,
 			hideHighChance = false,
 			enableTooltipAdditions = true,
@@ -105,6 +106,7 @@ function R:PrepareDefaults()
 			sink20OutputSink = "ChatFrame",
 
 			tooltipShowDelay = 0.1,
+			disableAutoTracking = false,
 
 			trackedGroup = "pets",
 			trackedItem = 8494,
@@ -125,6 +127,8 @@ function R:PrepareDefaults()
 				rightAligned = false,
 				showIcon = true,
 				showText = true,
+				maxElements = 25,
+				enabled = true,
 			},
 			cats = {
 				[CONSTANTS.ITEM_CATEGORIES.CLASSIC] = true,

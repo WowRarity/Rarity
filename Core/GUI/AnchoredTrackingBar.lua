@@ -32,6 +32,10 @@ function GUI:UpdateBar()
 	if not self.barGroup:GetBars() then
 		return
 	end
+	if not self.db.profile.bar.enabled then
+		self.barGroup:Hide()
+		return
+	end
 	if not self.db.profile.bar.font then
 		self.barGroup:SetFont(self.db.profile.bar.font, self.db.profile.bar.fontSize or 8)
 	else
@@ -88,6 +92,9 @@ function GUI:UpdateBar()
 		self.barGroup:Lock()
 		self.barGroup:HideAnchor()
 	end
+
+	-- Set the maximum number of bars to display based on maxElements setting
+	self.barGroup:SetMaxBars(self.db.profile.bar.maxElements or 25)
 end
 
 function GUI:ToggleProgressBar()

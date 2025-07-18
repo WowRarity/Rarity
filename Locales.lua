@@ -84,6 +84,9 @@ L["Blaise"] = true
 L["Ambre"] = true
 L["Disable tracking for ALL mounts. You'll have to enable those that you wish to track manually afterwards."] = true
 L["Untrack all mounts"] = true
+L["Disable auto-tracking"] = true
+L["When enabled, the progress bar will not automatically switch to newly attempted items. You must manually select items to track."] =
+	true
 L["Echo of the Cave"] = true
 L["Echo of the Inferno"] = true
 L["Echo of the Depths"] = true
@@ -698,7 +701,7 @@ L["Please enter a comma-separated list of NPC IDs."] = true
 L["Every NPC ID must be a number greater than 0."] = true
 L["The name you entered is already being used by another item. Please enter a unique name."] = true
 L["You entered a reserved name. Please enter the correct item name as it appears in game."] = true
-L["Click to switch to this item"] = true
+L["Click to track/untrack this item"] = true
 L["Shift-Click to link your progress to chat"] = true
 L["%s: 0/%d attempts so far (%.2f%% - %s)"] = true
 L["%s: 0/%d attempt so far (%.2f%% - %s)"] = true
@@ -837,6 +840,37 @@ L["General Options"] = true
 L["Tooltip activation"] = true
 L["On hover"] = true
 L["On click"] = true
+L["Use new window display"] = true
+L["When enabled, Rarity will use the new tabbed window instead of the old tooltip system to display collection data."] = true
+
+-- Tabbed Window Interface
+L["Collection Tracking"] = true
+L["Search"] = true
+L["Clear"] = true
+L["Previous"] = true
+L["Next"] = true
+L["Page %d of %d (%d items)"] = true
+L["Found"] = true
+L["Disabled"] = true
+L["Tracking"] = true
+L["Click to track/untrack this item"] = true
+L["Shift-Click to link your progress to chat"] = true
+L["Ctrl-Click to create TomTom waypoint(s)"] = true
+L["Found in: "] = true
+L["Current Session"] = true
+L["Collected"] = true
+L["Progress"] = true
+L["Attempts"] = true
+L["Chance so far"] = true
+L["Unknown"] = true
+L["Now tracking %s"] = true
+L["No longer tracking %s"] = true
+L["Added %d waypoint(s) for %s"] = true
+
+-- Column Headers for Tabbed Window
+L["Name"] = true
+L["Source"] = true
+L["Status"] = true
 L['If "On click" is selected, activating the tracker is done via CTRL + SHIFT + Click, otherwise it\'s activated with a simple click.'] =
 	true
 L["Left click"] = true
@@ -2106,6 +2140,9 @@ L["Reins of the Springtide Dreamtalon"] = true
 L["Reins of the Morning Flourish Dreamsaber"] = true
 L["Reins of the Rekindled Dreamstag"] = true
 L["Dreamseed Cache"] = true
+L["Max Elements"] = true
+L["Enable Progress Bar"] = true
+L["Disables the progress bar and all related options. You must re-enable to access these settings."] = true
 
 --[[
 					The rest of this file is auto-generated using the WoWAce localization application.

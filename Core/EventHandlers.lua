@@ -83,6 +83,7 @@ function EventHandlers:Register()
 	self:RegisterEvent("ISLAND_COMPLETED", "OnIslandCompleted")
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", "OnSpellcastSucceeded")
 	self:RegisterEvent("QUEST_TURNED_IN", "OnQuestTurnedIn")
+	self:RegisterEvent("GET_ITEM_INFO_RECEIVED", "OnGetItemInfoReceived")
 
 	if LE_EXPANSION_LEVEL_CURRENT >= LE_EXPANSION_MISTS_OF_PANDARIA then
 		self:RegisterEvent("SHOW_LOOT_TOAST", "OnShowLootToast")
@@ -778,6 +779,16 @@ function R:OnChatCommand(input)
 		end
 	elseif strlower(input) == "tinspect" then --  TODO Document it?
 		Rarity.Profiling:InspectAccumulatedTimes()
+	elseif strlower(input) == "window" then -- Test command for the new tabbed window
+		if Rarity.TabbedWindow then
+			Rarity.TabbedWindow:Toggle()
+			self:Print("Toggled tabbed window")
+		else
+			self:Print("Tabbed window not available")
+		end
+		self:Print(
+			"You can now choose between the new tabbed window and old tooltip system in the Options menu under 'Use new window display'."
+		)
 	else
 		Rarity:TryShowOptionsUI()
 	end
@@ -831,7 +842,12 @@ function R:OnItemFound(itemId, item)
 		time = (item.time or 0) - (item.lastTime or 0),
 	})
 	item.lastTime = item.time
-	Rarity.Tracking:Update(item)
+	-- Remove found items from tracking (unless they're repeatable)
+	if not item.repeatable then
+		Rarity.Tracking:RemoveTrackedItem(item.itemId)
+	else
+		Rarity.Tracking:Update(item) -- Keep tracking repeatable items
+	end
 	self:UpdateInterestingThings()
 	if item.repeatable then
 		self:ScheduleTimer(function()
@@ -2167,6 +2183,23 @@ function R:OnPlayerInteractionFrameHide(event, playerInteractionTypeID)
 		Rarity.isTradeWindowOpen = false
 	elseif playerInteractionTypeID == Enum.PlayerInteractionType.MailInfo then
 		Rarity.isMailboxOpen = false
+	end
+end
+
+function R:OnGetItemInfoReceived(event, itemID, success)
+	if not success then
+		return
+	end
+	self:Debug("GET_ITEM_INFO_RECEIVED for item ID: " .. tostring(itemID))
+	-- Check if this item is currently being tracked
+	local allTrackedItems = Rarity.Tracking:GetTrackedItems()
+	for _, trackedItemId in ipairs(allTrackedItems) do
+		if trackedItemId == itemID then
+			self:Debug("Item info received for tracked item - refreshing bars")
+			-- Refresh the bars to update the icon
+			Rarity.GUI:UpdateBars()
+			break
+		end
 	end
 end
 
