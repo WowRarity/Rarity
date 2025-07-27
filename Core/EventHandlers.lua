@@ -307,7 +307,7 @@ local encounterLUT = {
 	[1133] = { "Blessed Seed" }, -- Freya
 	[1135] = { "Ominous Pile of Snow" }, -- Hodir
 	[1138] = { "Overcomplicated Controller" }, -- Mimiron
-	[1143] = { "Wriggling Darkness" }, -- Yogg-Saron (mount uses the BOSS method and is tracked separately)
+	[1143] = { "Wriggling Darkness", "Mimiron's Head" }, -- Yogg-Saron (loot from Titan's Cache)
 	[1500] = { "Celestial Gift" }, -- Elegon
 	[1505] = { "Azure Cloud Serpent Egg" }, -- Tsulong
 	[1506] = { "Spirit of the Spring" }, -- Lei Shi
@@ -1024,9 +1024,9 @@ function R:ProcessContainerItems()
 									then
 										local isHordePlayer = R.Caching:IsHorde()
 										local canPlayerObtainFactionSpecificItem = not (
-												(vv.requiresHorde and not isHordePlayer)
-												or (vv.requiresAlliance and isHordePlayer)
-											)
+											(vv.requiresHorde and not isHordePlayer)
+											or (vv.requiresAlliance and isHordePlayer)
+										)
 										if canPlayerObtainFactionSpecificItem then
 											for kkk, vvv in pairs(vv.items) do
 												if vvv == k then
