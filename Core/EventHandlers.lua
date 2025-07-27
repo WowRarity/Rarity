@@ -576,6 +576,49 @@ function R:OnIslandCompleted(event, mapID, winner)
 				self:OutputAttempts(v)
 			end
 		end
+
+		-- Handle skinning on Argus (Fossorial Bile Larva)
+		if
+			(
+				Rarity.relevantSpells[Rarity.previousSpell] == "Skinning"
+				or Rarity.relevantSpells[Rarity.previousSpell] == "Mother's Skinning Knife"
+			) -- Skinned something
+			and (
+				GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.KROKUUN
+				or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.MACAREE
+				or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.ANTORAN_WASTES
+			)
+		then -- Player is on Argus -> Can obtain the pet from skinning creatures
+			Rarity:Debug(
+				"Detected skinning on Argus - Can obtain " .. L["Fossorial Bile Larva"] .. " (method = SPECIAL)"
+			)
+			local v = self.db.profile.groups.pets["Fossorial Bile Larva"]
+			if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt
+				v.attempts = v.attempts ~= nil and v.attempts + 1 or 1 -- Defaults to 1 if this is the first attempt
+				self:OutputAttempts(v)
+			end
+		end
+
+		if Rarity.isOpening and Rarity.lastNode == L["Dreamseed Cache"] then
+			Rarity:OnDreamseedCacheOpened()
+		end
+
+		-- Handle herb gathering on Argus (Fel Lasher)
+		if
+			Rarity.relevantSpells[Rarity.previousSpell] == "Herb Gathering" -- Gathered a herbalism node
+			and (
+				GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.KROKUUN
+				or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.MACAREE
+				or GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.ANTORAN_WASTES
+			)
+		then -- Player is on Argus -> Can obtain the pet from gathering herbalism nodes
+			Rarity:Debug("Detected herb gathering on Argus - Can obtain " .. L["Fel Lasher"] .. " (method = SPECIAL)")
+			local v = self.db.profile.groups.pets["Fel Lasher"]
+			if v and type(v) == "table" and v.enabled ~= false then -- Add an attempt
+				v.attempts = v.attempts ~= nil and v.attempts + 1 or 1 -- Defaults to 1 if this is the first attempt
+				self:OutputAttempts(v)
+			end
+		end
 	end
 end
 
@@ -981,8 +1024,9 @@ function R:ProcessContainerItems()
 									then
 										local isHordePlayer = R.Caching:IsHorde()
 										local canPlayerObtainFactionSpecificItem = not (
-												vv.requiresHorde and not isHordePlayer
-											) or (vv.requiresAlliance and isHordePlayer)
+												(vv.requiresHorde and not isHordePlayer)
+												or (vv.requiresAlliance and isHordePlayer)
+											)
 										if canPlayerObtainFactionSpecificItem then
 											for kkk, vvv in pairs(vv.items) do
 												if vvv == k then
@@ -1033,8 +1077,6 @@ function R:ProcessCollectionItem(itemID)
 	if not self:IsCollectionItem(item) then
 		return
 	end
-
-	local inventoryItemCount = R:GetInventoryItemCount(itemID)
 
 	-- Our items hashtable only saves one item for this collected item, so we have to scan to find them all now.
 	-- Earlier, we pre-built a list of just the items that are COLLECTION items to save some time here.
@@ -1254,144 +1296,6 @@ function R:OnLootReady(event, ...)
 		end
 
 		self:HandleSpecialLoot()
-end
-
-function R:HandleSpecialLoot()
-	if not Rarity.isFishing or not Rarity.isOpening or not Rarity.lastNode then
-		return
-	end
-
-	local lootHandlers = {
-		[L["Crane Nest"]] = "HandleCraneNestLoot",
-		[L["Timeless Chest"]] = "HandleTimelessChestLoot",
-		[L["Snow Mound"]] = "HandleSnowMoundLoot",
-		[L["Curious Wyrmtongue Cache"]] = "HandleCuriousWyrmtongueCacheLoot",
-		[L["Glimmering Chest"]] = "HandleGlimmeringChestLoot",
-		[L["Penitence of Purity"]] = "HandlePenitenceOfPurityLoot",
-		[L["Silver Strongbox"]] = "HandleSilverStrongboxLoot",
-		[L["Gilded Chest"]] = "HandleSilverStrongboxLoot",
-		[L["Broken Bell"]] = "HandleBrokenBellLoot",
-		[L["Skyward Bell"]] = "HandleBrokenBellLoot",
-		[L["Cache of the Ascended"]] = "HandleCacheOfTheAscendedLoot",
-		[L["Slime-Coated Crate"]] = "HandleSlimeCoatedCrateLoot",
-		[L["Sprouting Growth"]] = "HandleSproutingGrowthLoot",
-		[L["Stewart's Stewpendous Stew"]] = "HandleStewartsStewpendousStewLoot",
-		[L["Bleakwood Chest"]] = "HandleBleakwoodChestLoot",
-		[L["Blackhound Cache"]] = "HandleBlackhoundCacheLoot",
-		[L["Secret Treasure"]] = "HandleSecretTreasureLoot",
-		[L["Forgotten Chest"]] = "HandleForgottenChestLoot",
-		[L["Cache of Eyes"]] = "HandleCacheOfEyesLoot",
-		[L["Gift of Thenios"]] = "HandleGildedWaderLoot",
-		[L["Hidden Hoard"]] = "HandleGildedWaderLoot",
-		[L["Memorial Offerings"]] = "HandleGildedWaderLoot",
-		[L["Treasure of Courage"]] = "HandleGildedWaderLoot",
-	}
-
-	local handlerName = lootHandlers[Rarity.lastNode]
-	if handlerName and self[handlerName] then
-		self[handlerName](self)
-	end
-end
-
-function R:HandleCraneNestLoot()
-	Rarity:Debug("Detected Opening on " .. L["Crane Nest"] .. " (method = SPECIAL)")
-	addAttemptForItem("Azure Crane Chick", "pets")
-end
-
-function R:HandleTimelessChestLoot()
-	Rarity:Debug("Detected Opening on " .. L["Timeless Chest"] .. " (method = SPECIAL)")
-	addAttemptForItem("Bonkers", "pets")
-end
-
-function R:HandleSnowMoundLoot()
-	if GetBestMapForUnit("player") ~= CONSTANTS.UIMAPIDS.FROSTFIRE_RIDGE then
-		return
-	end
-	Rarity:Debug("Detected Opening on " .. L["Snow Mound"] .. " (method = SPECIAL)")
-	addAttemptForItem("Grumpling", "pets")
-end
-
-function R:HandleCuriousWyrmtongueCacheLoot()
-	Rarity:Debug("Detected Opening on " .. L["Curious Wyrmtongue Cache"] .. " (method = SPECIAL)")
-	addAttemptForItem("Scraps", "pets")
-	addAttemptForItem("Pilfered Sweeper", "pets")
-end
-
-function R:HandleGlimmeringChestLoot()
-	Rarity:Debug("Detected Opening on " .. L["Glimmering Chest"] .. " (method = SPECIAL)")
-	addAttemptForItem("Sandclaw Nestseeker", "pets")
-end
-
-function R:HandlePenitenceOfPurityLoot()
-	Rarity:Debug("Detected Opening on " .. L["Penitence of Purity"] .. " (method = SPECIAL)")
-	addAttemptForItem("Phalynx of Humility", "mounts")
-end
-
-function R:HandleSilverStrongboxLoot()
-	Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
-	addAttemptForItem("Acrobatic Steward", "toys")
-	addAttemptForItem("Gilded Wader", "pets")
-end
-
-function R:HandleBrokenBellLoot()
-	Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
-	addAttemptForItem("Soothing Vesper", "toys")
-	addAttemptForItem("Gilded Wader", "pets")
-end
-
-function R:HandleCacheOfTheAscendedLoot()
-	Rarity:Debug("Detected Opening on " .. L["Cache of the Ascended"] .. " (method = SPECIAL)")
-	addAttemptForItem("Ascended Skymane", "mounts")
-end
-
-function R:HandleSlimeCoatedCrateLoot()
-	Rarity:Debug("Detected Opening on " .. L["Slime-Coated Crate"] .. " (method = SPECIAL)")
-	addAttemptForItem("Kevin's Party Supplies", "toys")
-	addAttemptForItem("Bubbling Pustule", "pets")
-end
-
-function R:HandleSproutingGrowthLoot()
-	Rarity:Debug("Detected Opening on " .. L["Sprouting Growth"] .. " (method = SPECIAL)")
-	addAttemptForItem("Skittering Venomspitter", "pets")
-end
-
-function R:HandleStewartsStewpendousStewLoot()
-	Rarity:Debug("Detected Opening on " .. L["Stewart's Stewpendous Stew"] .. " (method = SPECIAL)")
-	addAttemptForItem("Silvershell Snapper", "pets")
-end
-
-function R:HandleBleakwoodChestLoot()
-	Rarity:Debug("Detected Opening on " .. L["Bleakwood Chest"] .. " (method = SPECIAL)")
-	addAttemptForItem("Trapped Stonefiend", "pets")
-end
-
-function R:HandleBlackhoundCacheLoot()
-	Rarity:Debug("Detected Opening on " .. L["Blackhound Cache"] .. " (method = SPECIAL)")
-	addAttemptForItem("Battlecry of Krexus", "toys")
-end
-
-function R:HandleSecretTreasureLoot()
-	Rarity:Debug("Detected Opening on " .. L["Secret Treasure"] .. " (method = SPECIAL)")
-	addAttemptForItem("Soullocked Sinstone", "pets")
-end
-
-function R:HandleForgottenChestLoot()
-	if GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.STORMSONG_VALLEY then
-		return
-	end
-	Rarity:Debug("Detected Opening on " .. L["Forgotten Chest"] .. " (method = SPECIAL)")
-	addAttemptForItem("Stony's Infused Ruby", "pets")
-	addAttemptForItem("Silessa's Battle Harness", "mounts")
-end
-
-function R:HandleCacheOfEyesLoot()
-	Rarity:Debug("Detected Opening on " .. L["Cache of Eyes"] .. " (method = SPECIAL)")
-	addAttemptForItem("Luminous Webspinner", "pets")
-end
-
-function R:HandleGildedWaderLoot()
-	Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
-	addAttemptForItem("Gilded Wader", "pets")
 
 		-- Handle opening Zovaal's Vault (The Maw, Shadowlands treasure for Personal Ball and Chain & Jailer's Cage
 		if Rarity.isFishing and Rarity.isOpening and Rarity.lastNode and (Rarity.lastNode == L["Zovaal's Vault"]) then
@@ -1844,6 +1748,150 @@ function R:HandleGildedWaderLoot()
 			-- Pick Pocket triggers the same loot events, but it shouldn't prevent kills from counting afterwards
 			Rarity.guids[guid] = false
 		end
+	end
+end
+
+function R:HandleSpecialLoot()
+	if not Rarity.isFishing or not Rarity.isOpening or not Rarity.lastNode then
+		return
+	end
+
+	local lootHandlers = {
+		[L["Crane Nest"]] = "HandleCraneNestLoot",
+		[L["Timeless Chest"]] = "HandleTimelessChestLoot",
+		[L["Snow Mound"]] = "HandleSnowMoundLoot",
+		[L["Curious Wyrmtongue Cache"]] = "HandleCuriousWyrmtongueCacheLoot",
+		[L["Glimmering Chest"]] = "HandleGlimmeringChestLoot",
+		[L["Penitence of Purity"]] = "HandlePenitenceOfPurityLoot",
+		[L["Silver Strongbox"]] = "HandleSilverStrongboxLoot",
+		[L["Gilded Chest"]] = "HandleSilverStrongboxLoot",
+		[L["Broken Bell"]] = "HandleBrokenBellLoot",
+		[L["Skyward Bell"]] = "HandleBrokenBellLoot",
+		[L["Cache of the Ascended"]] = "HandleCacheOfTheAscendedLoot",
+		[L["Slime-Coated Crate"]] = "HandleSlimeCoatedCrateLoot",
+		[L["Sprouting Growth"]] = "HandleSproutingGrowthLoot",
+		[L["Stewart's Stewpendous Stew"]] = "HandleStewartsStewpendousStewLoot",
+		[L["Bleakwood Chest"]] = "HandleBleakwoodChestLoot",
+		[L["Blackhound Cache"]] = "HandleBlackhoundCacheLoot",
+		[L["Secret Treasure"]] = "HandleSecretTreasureLoot",
+		[L["Forgotten Chest"]] = "HandleForgottenChestLoot",
+		[L["Cache of Eyes"]] = "HandleCacheOfEyesLoot",
+		[L["Gift of Thenios"]] = "HandleGildedWaderLoot",
+		[L["Hidden Hoard"]] = "HandleGildedWaderLoot",
+		[L["Memorial Offerings"]] = "HandleGildedWaderLoot",
+		[L["Treasure of Courage"]] = "HandleGildedWaderLoot",
+	}
+
+	local handlerName = lootHandlers[Rarity.lastNode]
+	if handlerName and self[handlerName] then
+		self[handlerName](self)
+	end
+end
+
+function R:HandleCraneNestLoot()
+	Rarity:Debug("Detected Opening on " .. L["Crane Nest"] .. " (method = SPECIAL)")
+	addAttemptForItem("Azure Crane Chick", "pets")
+end
+
+function R:HandleTimelessChestLoot()
+	Rarity:Debug("Detected Opening on " .. L["Timeless Chest"] .. " (method = SPECIAL)")
+	addAttemptForItem("Bonkers", "pets")
+end
+
+function R:HandleTimelessChestLoot()
+	Rarity:Debug("Detected Opening on " .. L["Timeless Chest"] .. " (method = SPECIAL)")
+	addAttemptForItem("Bonkers", "pets")
+end
+
+function R:HandleSnowMoundLoot()
+	if GetBestMapForUnit("player") ~= CONSTANTS.UIMAPIDS.FROSTFIRE_RIDGE then
+		return
+	end
+	Rarity:Debug("Detected Opening on " .. L["Snow Mound"] .. " (method = SPECIAL)")
+	addAttemptForItem("Grumpling", "pets")
+end
+
+function R:HandleCuriousWyrmtongueCacheLoot()
+	Rarity:Debug("Detected Opening on " .. L["Curious Wyrmtongue Cache"] .. " (method = SPECIAL)")
+	addAttemptForItem("Scraps", "pets")
+	addAttemptForItem("Pilfered Sweeper", "pets")
+end
+
+function R:HandleGlimmeringChestLoot()
+	Rarity:Debug("Detected Opening on " .. L["Glimmering Chest"] .. " (method = SPECIAL)")
+	addAttemptForItem("Sandclaw Nestseeker", "pets")
+end
+
+function R:HandlePenitenceOfPurityLoot()
+	Rarity:Debug("Detected Opening on " .. L["Penitence of Purity"] .. " (method = SPECIAL)")
+	addAttemptForItem("Phalynx of Humility", "mounts")
+end
+
+function R:HandleSilverStrongboxLoot()
+	Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
+	addAttemptForItem("Acrobatic Steward", "toys")
+	addAttemptForItem("Gilded Wader", "pets")
+end
+
+function R:HandleBrokenBellLoot()
+	Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
+	addAttemptForItem("Soothing Vesper", "toys")
+	addAttemptForItem("Gilded Wader", "pets")
+end
+
+function R:HandleCacheOfTheAscendedLoot()
+	Rarity:Debug("Detected Opening on " .. L["Cache of the Ascended"] .. " (method = SPECIAL)")
+	addAttemptForItem("Ascended Skymane", "mounts")
+end
+
+function R:HandleSlimeCoatedCrateLoot()
+	Rarity:Debug("Detected Opening on " .. L["Slime-Coated Crate"] .. " (method = SPECIAL)")
+	addAttemptForItem("Kevin's Party Supplies", "toys")
+	addAttemptForItem("Bubbling Pustule", "pets")
+end
+
+function R:HandleSproutingGrowthLoot()
+	Rarity:Debug("Detected Opening on " .. L["Sprouting Growth"] .. " (method = SPECIAL)")
+	addAttemptForItem("Skittering Venomspitter", "pets")
+end
+
+function R:HandleStewartsStewpendousStewLoot()
+	Rarity:Debug("Detected Opening on " .. L["Stewart's Stewpendous Stew"] .. " (method = SPECIAL)")
+	addAttemptForItem("Silvershell Snapper", "pets")
+end
+
+function R:HandleBleakwoodChestLoot()
+	Rarity:Debug("Detected Opening on " .. L["Bleakwood Chest"] .. " (method = SPECIAL)")
+	addAttemptForItem("Trapped Stonefiend", "pets")
+end
+
+function R:HandleBlackhoundCacheLoot()
+	Rarity:Debug("Detected Opening on " .. L["Blackhound Cache"] .. " (method = SPECIAL)")
+	addAttemptForItem("Battlecry of Krexus", "toys")
+end
+
+function R:HandleSecretTreasureLoot()
+	Rarity:Debug("Detected Opening on " .. L["Secret Treasure"] .. " (method = SPECIAL)")
+	addAttemptForItem("Soullocked Sinstone", "pets")
+end
+
+function R:HandleForgottenChestLoot()
+	if GetBestMapForUnit("player") == CONSTANTS.UIMAPIDS.STORMSONG_VALLEY then
+		return
+	end
+	Rarity:Debug("Detected Opening on " .. L["Forgotten Chest"] .. " (method = SPECIAL)")
+	addAttemptForItem("Stony's Infused Ruby", "pets")
+	addAttemptForItem("Silessa's Battle Harness", "mounts")
+end
+
+function R:HandleCacheOfEyesLoot()
+	Rarity:Debug("Detected Opening on " .. L["Cache of Eyes"] .. " (method = SPECIAL)")
+	addAttemptForItem("Luminous Webspinner", "pets")
+end
+
+function R:HandleGildedWaderLoot()
+	Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
+	addAttemptForItem("Gilded Wader", "pets")
 	end
 end
 
