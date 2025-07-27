@@ -150,6 +150,7 @@ Core\Interoperability\Blizzard\MapInfo.lua
 # Addon Core
 Core\Announcements.lua
 Core\Caching.lua
+Core\TooltipCache.lua
 Core\Collections.lua
 Core\Database.lua
 Core\Debugging.lua
