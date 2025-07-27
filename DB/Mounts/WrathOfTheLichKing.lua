@@ -37,7 +37,10 @@ local wotlkMounts = {
 		npcs = { 33288 },
 		statisticId = { 2869, 2883 },
 		chance = 100,
-		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.NORMAL_RAID] = true },
+		instanceDifficulties = {
+			[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_10_NORMAL] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.RAID_25_NORMAL] = true
+		},
 		sourceText = L["Dropped by Yogg-Saron in Ulduar with no Keepers assisting"],
 		wasGuaranteed = true,
 		blackMarket = true,
