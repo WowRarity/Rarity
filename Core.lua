@@ -192,6 +192,7 @@ do
 
 		Rarity.GUI:InitialiseBar()
 
+		Rarity.EventHandlers:Register()
 		Rarity.Collections:ScanExistingItems("INITIALIZING") -- Checks for items you already have
 		self:ScanBags() -- Initialize our inventory list, as well as checking if you've obtained an item
 		self:OnBagUpdate() -- This will update counters for collection items
@@ -205,8 +206,6 @@ do
 		Rarity.GUI:UpdateBar()
 
 		Rarity.Serialization:ImportFromBunnyHunter()
-
-		Rarity.EventHandlers:Register()
 
 		if R.Options_DoEnable then
 			R:Options_DoEnable()

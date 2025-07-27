@@ -1892,7 +1892,6 @@ end
 function R:HandleGildedWaderLoot()
 	Rarity:Debug("Detected Opening on " .. Rarity.lastNode .. " (method = SPECIAL)")
 	addAttemptForItem("Gilded Wader", "pets")
-	end
 end
 
 function Rarity:OnChestOfMassiveGainsOpened()
