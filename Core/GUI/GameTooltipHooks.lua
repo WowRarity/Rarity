@@ -279,7 +279,7 @@ local function onTooltipSetUnit(tooltip, data)
 	local zone = GetRealZoneText()
 	local subzone = GetSubZoneText()
 	local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
-	subzone_t = LibStub("LibBabble-SubZone-3.0"):GetReverseLookupTable()[subzone]
+	local subzone_t = LibStub("LibBabble-SubZone-3.0"):GetReverseLookupTable()[subzone]
 	if
 		Rarity.zones[tostring(GetBestMapForUnit("player"))]
 		or Rarity.zones[zone]
