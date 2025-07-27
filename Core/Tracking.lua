@@ -59,10 +59,9 @@ function Tracking:Update(item)
 	for k, v in pairs(R.db.profile.groups) do
 		if type(v) == "table" then
 			for kk, vv in pairs(v) do
-				if type(vv) == "table" then
-					if vv.itemId == item.itemId then
-						self.db.profile.trackedGroup = k
-					end
+				if type(vv) == "table" and vv.itemId == item.itemId then
+					self.db.profile.trackedGroup = k
+					break
 				end
 			end
 		end
@@ -102,7 +101,14 @@ end
 -- TODO: What's up with the Hyacinth Macaw? Leaving it at "None" might be a better default?
 function Tracking:FindTrackedItem()
 	self = Rarity
-	Rarity.Tracking:SetTrackedItem(self.db.profile.groups.pets["Parrot Cage (Hyacinth Macaw)"])
+	local firstPet
+	for k, v in pairs(self.db.profile.groups.pets) do
+		firstPet = v
+		break
+	end
+	if firstPet then
+		Rarity.Tracking:SetTrackedItem(firstPet)
+	end
 
 	local trackedItem = Rarity.Tracking:GetTrackedItem()
 	if self.db.profile.trackedGroup and self.db.profile.groups[self.db.profile.trackedGroup] then
