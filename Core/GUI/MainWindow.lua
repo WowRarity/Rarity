@@ -38,6 +38,7 @@ local numHolidayReminders = 0
 local showedHolidayReminderOverflow = false
 local renderingTip = false
 local headers = {}
+local sortCacheInvalid = true
 
 -- Constants
 -- Sort parameters
@@ -836,11 +837,15 @@ local function addGroup(group, requiresGroup)
 	local headerAdded = false
 	local itemsExistInThisGroup = false
 
-	local addGroupSortStart = debugprofilestop()
+       local addGroupSortStart = debugprofilestop()
 
-	local sortedGroup = Rarity.Utils.Sorting:SortGroup(group, R.db.profile.sortMode)
+       if sortCacheInvalid or not group.sortedCache or not group.sortedCache[R.db.profile.sortMode] then
+               group.sortedCache = group.sortedCache or {}
+               group.sortedCache[R.db.profile.sortMode] = Rarity.Utils.Sorting:SortGroup(group, R.db.profile.sortMode)
+       end
+       local sortedGroup = group.sortedCache[R.db.profile.sortMode]
 
-	local addGroupSortEnd = debugprofilestop()
+       local addGroupSortEnd = debugprofilestop()
 
 	-- Inlining this because it has WAY too many interdependencies and I don't have time to unwrangle it now, but using early exit is easier this way (and more readable). It doesn't change the functionality and the small overhead shouldn't matter here
 	local function AddItem(k, v)
@@ -1340,9 +1345,20 @@ local function addGroup(group, requiresGroup)
 
 	local addGroupEnd = debugprofilestop()
 
-	R.Profiling:EndTimer("GUI.MainWindow.AddGroup." .. group.name)
+       R.Profiling:EndTimer("GUI.MainWindow.AddGroup." .. group.name)
 
-	return added, itemsExistInThisGroup
+       return added, itemsExistInThisGroup
+end
+
+function GUI:InvalidateSortCache()
+       sortCacheInvalid = true
+       if R.db and R.db.profile and R.db.profile.groups then
+               for _, g in pairs(R.db.profile.groups) do
+                       if type(g) == "table" then
+                               g.sortedCache = nil
+                       end
+               end
+       end
 end
 
 -- Module-level functions
@@ -1356,12 +1372,13 @@ function GUI:SelectNextSortOrder()
 		R.db.profile.sortMode = SORT_PROGRESS
 	elseif R.db.profile.sortMode == SORT_PROGRESS then
 		R.db.profile.sortMode = SORT_ZONE
-	else
-		R.db.profile.sortMode = SORT_NAME
-	end
-	if tooltip then
-		tooltip:Hide()
-	end
+       else
+               R.db.profile.sortMode = SORT_NAME
+       end
+       self:InvalidateSortCache()
+       if tooltip then
+               tooltip:Hide()
+       end
 	if Rarity.Tooltips:IsTooltipAcquired("RarityTooltip") then
 		Rarity.Tooltips:ReleaseTooltip("RarityTooltip")
 	end
@@ -1606,7 +1623,9 @@ function R:ShowTooltip(hidden)
 		end
 	end
 
-	self.Profiling:EndTimer("GUI.MainWindow.ShowTooltip")
+       self.Profiling:EndTimer("GUI.MainWindow.ShowTooltip")
+
+       sortCacheInvalid = false
 
 	if hidden == true or Rarity.frame == nil then
 		renderingTip = false

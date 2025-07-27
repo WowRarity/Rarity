@@ -79,7 +79,8 @@ function dataobj:OnClick(button)
 end
 
 function GUI:UpdateText()
-	dataobj = self.dataobj
+       self:InvalidateSortCache()
+       dataobj = self.dataobj
 
 	self = Rarity
 
