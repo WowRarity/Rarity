@@ -51,6 +51,24 @@ local function onTooltipSetUnit(tooltip, data)
 	if not unit then
 		return
 	end
+
+	local guid = UnitGUID(unit)
+	if not guid then
+		return
+	end
+
+	if R.TooltipCache:Get(guid) then
+		local cached = R.TooltipCache:Get(guid)
+		for k, line in pairs(cached) do
+			if line.isDouble then
+				GameTooltip:AddDoubleLine(line.left, line.right, line.leftR, line.leftG, line.leftB, line.rightR, line.rightG, line.rightB)
+			else
+				GameTooltip:AddLine(line.text, line.R, line.G, line.B, line.wrap)
+			end
+		end
+		return
+	end
+
 	local creatureType = UnitCreatureType(unit)
 	-- Rarity:Debug("Creature type: "..(creatureType or "nil").." (translation: "..(lbct[creatureType] or "nil")..")")
 	if
@@ -64,10 +82,6 @@ local function onTooltipSetUnit(tooltip, data)
 		return
 	end
 
-	local guid = UnitGUID(unit)
-	if not unit or not guid then
-		return
-	end
 	local npcid = R:GetNPCIDFromGUID(guid)
 	if not UnitCanAttack("player", unit) and not Rarity.db.profile.oneTimeItems[npcid] then
 		return
@@ -81,6 +95,17 @@ local function onTooltipSetUnit(tooltip, data)
 
 	local blankAdded = false
 	local rarityAdded = false
+	local tempCache = {}
+
+	local function AddLine(text, r, g, b, wrap)
+		table.insert(tempCache, {text = text, R = r, G = g, B = b, wrap = wrap, isDouble = false})
+		GameTooltip:AddLine(text, r, g, b, wrap)
+	end
+
+	local function AddDoubleLine(textLeft, textRight, r1, g1, b1, r2, g2, b2)
+		table.insert(tempCache, {left = textLeft, right = textRight, leftR = r1, leftG = g1, leftB = b1, rightR = r2, rightG = g2, rightB = b2, isDouble = true})
+		GameTooltip:AddDoubleLine(textLeft, textRight, r1, g1, b1, r2, g2, b2)
+	end
 
 	-- This NPC is known to be used for obtaining something
 	if Rarity.npcs_to_items[npcid] and type(Rarity.npcs_to_items[npcid]) == "table" then
@@ -102,7 +127,7 @@ local function onTooltipSetUnit(tooltip, data)
 						else
 							if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
 								blankAdded = true
-								GameTooltip:AddLine(" ")
+								AddLine(" ")
 							end
 							local attemptText = " "
 								.. colorize(format(L["(%d/%d attempts)"], v.attempts or 0, v.chance or 0), white)
@@ -113,7 +138,7 @@ local function onTooltipSetUnit(tooltip, data)
 							if v.known or Rarity.db.profile.tooltipAttempts == false then
 								attemptText = ""
 							end
-							GameTooltip:AddLine(
+							AddLine(
 								colorize(
 									(
 										not rarityAdded
@@ -134,10 +159,10 @@ local function onTooltipSetUnit(tooltip, data)
 								else
 									pickcolor = red
 								end
-								GameTooltip:AddLine(colorize(L["Requires Pickpocketing"], pickcolor))
+								AddLine(colorize(L["Requires Pickpocketing"], pickcolor))
 							end
 							if v.known then
-								GameTooltip:AddLine(colorize(L["Already known"], red))
+								AddLine(colorize(L["Already known"], red))
 								blankAdded = false
 							end
 							GameTooltip:Show()
@@ -163,9 +188,9 @@ local function onTooltipSetUnit(tooltip, data)
 					if not R.db.profile.hideKnownItemsInTooltip then
 						if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
 							-- blankAdded = true -- Why?
-							GameTooltip:AddLine(" ")
+							AddLine(" ")
 						end
-						GameTooltip:AddLine(
+						AddLine(
 							colorize(
 								(
 									not rarityAdded
@@ -175,19 +200,19 @@ local function onTooltipSetUnit(tooltip, data)
 								yellow
 							)
 						)
-						GameTooltip:AddLine(colorize(L["Already defeated"], red))
+						AddLine(colorize(L["Already defeated"], red))
 						blankAdded = false
 						rarityAdded = true
 					end
 				else
 					if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
 						blankAdded = true
-						GameTooltip:AddLine(" ")
+						AddLine(" ")
 					end
 					scanTip:ClearLines()
 					scanTip:SetItemByID(Rarity.db.profile.oneTimeItems[npcid].itemId)
 
-					GameTooltip:AddDoubleLine(
+					AddDoubleLine(
 						colorize(
 							(
 								not rarityAdded
@@ -208,9 +233,9 @@ local function onTooltipSetUnit(tooltip, data)
 						local txtRight = myRight:GetText()
 						local rightR, rightG, rightB, rightAlpha = myRight:GetTextColor()
 						if txtRight then
-							GameTooltip:AddDoubleLine(txtLeft, txtRight, leftR, leftG, leftB, rightR, rightB, rightG)
+							AddDoubleLine(txtLeft, txtRight, leftR, leftG, leftB, rightR, rightB, rightG)
 						else
-							GameTooltip:AddLine(txtLeft, leftR, leftG, leftB, true)
+							AddLine(txtLeft, leftR, leftG, leftB, true)
 						end
 					end
 				end -- showing item tooltip
@@ -243,7 +268,7 @@ local function onTooltipSetUnit(tooltip, data)
 	local unitType = guid:match(FIND_FIRST_GUID_TOKEN_PATTERN)
 
 	if R.db.profile.debugMode then
-		GameTooltip:AddLine("Type: " .. tostring(unitType), 255, 255, 255)
+		AddLine("Type: " .. tostring(unitType), 255, 255, 255)
 	end
 
 	if unitType ~= UNIT_TYPES.CREATURE and unitType ~= UNIT_TYPES.PET then
@@ -254,7 +279,7 @@ local function onTooltipSetUnit(tooltip, data)
 	local zone = GetRealZoneText()
 	local subzone = GetSubZoneText()
 	local zone_t = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()[zone]
-	local subzone_t = LibStub("LibBabble-SubZone-3.0"):GetReverseLookupTable()[subzone]
+	subzone_t = LibStub("LibBabble-SubZone-3.0"):GetReverseLookupTable()[subzone]
 	if
 		Rarity.zones[tostring(GetBestMapForUnit("player"))]
 		or Rarity.zones[zone]
@@ -307,7 +332,7 @@ local function onTooltipSetUnit(tooltip, data)
 									else
 										if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
 											blankAdded = true
-											GameTooltip:AddLine(" ")
+											AddLine(" ")
 										end
 										local chance = select(2, Rarity.Statistics.GetRealDropPercentage(vv))
 										local attemptText = " "
@@ -325,7 +350,7 @@ local function onTooltipSetUnit(tooltip, data)
 										if vv.known or Rarity.db.profile.tooltipAttempts == false then
 											attemptText = ""
 										end
-										GameTooltip:AddLine(
+										AddLine(
 											colorize(
 												(
 													not rarityAdded
@@ -339,7 +364,7 @@ local function onTooltipSetUnit(tooltip, data)
 										)
 										rarityAdded = true
 										if vv.known then
-											GameTooltip:AddLine(colorize(L["Already known"], red))
+											AddLine(colorize(L["Already known"], red))
 											blankAdded = false
 										end
 										GameTooltip:Show()
@@ -352,6 +377,7 @@ local function onTooltipSetUnit(tooltip, data)
 			end
 		end
 	end
+	R.TooltipCache:Set(guid, tempCache)
 end
 
 if not _G.TooltipDataProcessor then
