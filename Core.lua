@@ -178,6 +178,10 @@ do
 		self.db = LibStub("AceDB-3.0"):New("RarityDB", self.defaults, true)
 		Output:Setup()
 
+		if self.SetupSlashCommands then
+			self:SetupSlashCommands()
+		end
+
 		self:RegisterChatCommand("rarity", "OnChatCommand")
 		self:RegisterChatCommand("rare", "OnChatCommand")
 

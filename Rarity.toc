@@ -178,5 +178,7 @@ Core\GUI\MainWindow.lua
 # Addon loader
 Core.lua
 
+Modules\SlashCommands.lua
+
 # Initialization for the config UI
 Options_Defaults.lua
