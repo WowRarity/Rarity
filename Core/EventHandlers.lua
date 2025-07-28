@@ -21,6 +21,7 @@ local strlower = _G.strlower
 local format = _G.format
 
 -- WOW APIs
+local InCombatLockdown = InCombatLockdown
 local GetCurrencyInfo = _G.C_CurrencyInfo.GetCurrencyInfo
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
 local UnitGUID = UnitGUID
@@ -401,6 +402,9 @@ end
 -- This event also handles some special cases.
 -------------------------------------------------------------------------------------
 function R:OnCombat()
+	if not InCombatLockdown() then
+		return
+	end
 	self.Profiling:StartTimer("EventHandlers.OnCombat")
 
 	-- Extract event payload (it's no longer being passed by the event iself as of 8.0.1)
