@@ -225,6 +225,11 @@ local function alertWithCopy(msg, textToCopy)
 	StaticPopup_Show("RARITY_OPTIONS_ALERT_WITH_COPY")
 end
 
+local function updateOptionsAndClearCache(self)
+	self:Update("OPTIONS")
+	R.TooltipCache:ClearAll()
+end
+
 local function allitems()
 	local t = {}
 	for k, v in pairs(R.db.profile.groups.mounts) do
@@ -1405,6 +1410,7 @@ function R:PrepareOptions()
 							self:CreateGroup(self.options.args.custom, self.db.profile.groups.user, true)
 							self:Update("IMPORT")
 							self.db.profile.lastImportString = ""
+							R.TooltipCache:ClearAll()
 						end,
 						order = newOrder(),
 						disabled = function()
@@ -1782,6 +1788,7 @@ function R:CreateGroup(options, group, isUser)
 					self.db.profile.groups.user[val] = { name = val }
 					self:Update("OPTIONS")
 					self:CreateGroup(self.options.args.custom, self.db.profile.groups.user, true)
+					R.TooltipCache:ClearAll()
 				end
 			end,
 			hidden = not isUser,
@@ -1844,6 +1851,7 @@ function R:CreateGroup(options, group, isUser)
 						self.db.profile.groups.user[item.name] = nil
 						self:CreateGroup(self.options.args.custom, self.db.profile.groups.user, true)
 						self:Update("OPTIONS")
+						R.TooltipCache:ClearAll()
 					end,
 					order = newOrder(),
 					hidden = not isUser,
@@ -1981,7 +1989,7 @@ function R:CreateGroup(options, group, isUser)
 					end,
 					set = function(info, val)
 						item.method = val
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					order = newOrder(),
 					disabled = not isUser,
@@ -1996,7 +2004,7 @@ function R:CreateGroup(options, group, isUser)
 					end,
 					set = function(info, val)
 						item.type = val
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					order = newOrder(),
 					hidden = not isUser,
@@ -2025,7 +2033,7 @@ function R:CreateGroup(options, group, isUser)
 								item.itemId = tonumber(val)
 							end
 						end
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					get = function(into)
 						if item.itemId then
@@ -2057,7 +2065,7 @@ function R:CreateGroup(options, group, isUser)
 								table.insert(item.collectedItemId, strtrim(v))
 							end
 						end
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					get = function(into)
 						if item.collectedItemId and type(item.collectedItemId) == "table" then
@@ -2104,7 +2112,7 @@ function R:CreateGroup(options, group, isUser)
 								item.spellId = tonumber(val)
 							end
 						end
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					get = function(into)
 						if item.spellId then
@@ -2146,7 +2154,7 @@ function R:CreateGroup(options, group, isUser)
 								item.creatureId = tonumber(val)
 							end
 						end
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					get = function(into)
 						if item.creatureId then
@@ -2174,7 +2182,7 @@ function R:CreateGroup(options, group, isUser)
 					end,
 					set = function(info, val)
 						item.raceId = val
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					order = newOrder(),
 					disabled = not isUser,
@@ -2232,7 +2240,7 @@ function R:CreateGroup(options, group, isUser)
 								table.insert(item.zones, strtrim(v))
 							end
 						end
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					get = function(into)
 						if item.zones and type(item.zones) == "table" then
@@ -2282,7 +2290,7 @@ function R:CreateGroup(options, group, isUser)
 								table.insert(item.items, tonumber(strtrim(v)))
 							end
 						end
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					get = function(into)
 						if item.items and type(item.items) == "table" then
@@ -2332,7 +2340,7 @@ function R:CreateGroup(options, group, isUser)
 								table.insert(item.npcs, tonumber(strtrim(v)))
 							end
 						end
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					get = function(into)
 						if item.npcs and type(item.npcs) == "table" then
@@ -2382,7 +2390,7 @@ function R:CreateGroup(options, group, isUser)
 								table.insert(item.statisticId, tonumber(strtrim(v)))
 							end
 						end
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					get = function(into)
 						if item.statisticId and type(item.statisticId) == "table" then
@@ -2421,7 +2429,7 @@ function R:CreateGroup(options, group, isUser)
 					end,
 					set = function(info, val)
 						item.requiresPool = val
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					hidden = function()
 						if item.method == FISHING then
@@ -2447,7 +2455,7 @@ function R:CreateGroup(options, group, isUser)
 					end,
 					set = function(info, val)
 						item.enabled = val
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 				},
 				found = {
@@ -2463,7 +2471,7 @@ function R:CreateGroup(options, group, isUser)
 					end,
 					set = function(info, val)
 						item.found = val
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					hidden = function()
 						return not R.db.profile.debugMode
@@ -2486,7 +2494,7 @@ function R:CreateGroup(options, group, isUser)
 						if val then
 							item.enabled = true
 						end
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 				},
 				enableAnnouncements = {
@@ -2503,7 +2511,7 @@ function R:CreateGroup(options, group, isUser)
 					end,
 					set = function(info, val)
 						item.announce = val
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 				},
 				spacer4 = { type = "header", name = L["Attempts"], order = newOrder() },
@@ -2537,7 +2545,7 @@ function R:CreateGroup(options, group, isUser)
 								item.lastAttempts = 0
 							end
 						end
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					get = function(into)
 						return tostring((item.attempts or 0) - (item.lastAttempts or 0))
@@ -2572,7 +2580,7 @@ function R:CreateGroup(options, group, isUser)
 								item.chance = n
 							end
 						end
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					get = function(into)
 						if item.chance then
@@ -2596,7 +2604,7 @@ function R:CreateGroup(options, group, isUser)
 					end,
 					set = function(info, val)
 						item.enableCoin = val
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					hidden = function()
 						return item.method == COLLECTION
@@ -2616,7 +2624,7 @@ function R:CreateGroup(options, group, isUser)
 					end,
 					set = function(info, val)
 						item.holidayReminder = val
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					hidden = function()
 						return (item.cat ~= HOLIDAY and item.worldQuestId == nil)
@@ -2649,7 +2657,7 @@ function R:CreateGroup(options, group, isUser)
 								table.insert(item.questId, tonumber(strtrim(v)))
 							end
 						end
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					get = function(into)
 						if item.questId and type(item.questId) == "table" then
@@ -2687,7 +2695,7 @@ function R:CreateGroup(options, group, isUser)
 								item.lockDungeonId = n
 							end
 						end
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					get = function(into)
 						return tostring(item.lockDungeonId or "")
@@ -2702,7 +2710,7 @@ function R:CreateGroup(options, group, isUser)
 					desc = L["The boss name, in English (enUS), which appears in the instance lock inside the Raid Info panel. The name will be translated to your local language automatically using the LibBoss library (if detection fails, check that the translation exists in this library). IMPORTANT: This method of defeat detection only works when the boss exists in one place at a time. Certain bosses, such as Ragnaros and Kael'thas Sunstrider, exist in two instances at once. Those bosses can be used here, but killing them in either of their instances will result in this Defeat Detection triggering."],
 					set = function(info, val)
 						item.lockBossName = val
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					get = function(into)
 						return item.lockBossName or ""
@@ -2724,7 +2732,7 @@ function R:CreateGroup(options, group, isUser)
 					end,
 					set = function(info, val)
 						item.pickpocket = val
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					hidden = function()
 						return item.method ~= NPC
@@ -2750,7 +2758,7 @@ function R:CreateGroup(options, group, isUser)
 								item.groupSize = n
 							end
 						end
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					get = function(into)
 						if item.groupSize then
@@ -2777,7 +2785,7 @@ function R:CreateGroup(options, group, isUser)
 					end,
 					set = function(info, val)
 						item.equalOdds = val
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					hidden = function()
 						return item.method ~= BOSS and item.method ~= USE
@@ -2823,7 +2831,7 @@ function R:CreateGroup(options, group, isUser)
 							item.instanceDifficulties = {}
 						end
 						item.instanceDifficulties[key] = state
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 				},
 				disableForClass = {
@@ -2843,6 +2851,7 @@ function R:CreateGroup(options, group, isUser)
 							item.disableForClass = {}
 						end
 						item.disableForClass[key] = state
+						updateOptionsAndClearCache(self)
 					end,
 				},
 				requiresHorde = {
@@ -2862,7 +2871,7 @@ function R:CreateGroup(options, group, isUser)
 						if val then
 							item.requiresAlliance = false
 						end
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 				},
 				requiresAlliance = {
@@ -2882,7 +2891,7 @@ function R:CreateGroup(options, group, isUser)
 						if val then
 							item.requiresHorde = false
 						end
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 				},
 				spacer6 = { type = "header", name = "", order = newOrder(), hidden = not isUser },
@@ -2904,7 +2913,7 @@ function R:CreateGroup(options, group, isUser)
 								item.obtainedQuestId = n
 							end
 						end
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					get = function(into)
 						if item.obtainedQuestId then
@@ -2937,7 +2946,7 @@ function R:CreateGroup(options, group, isUser)
 								item.achievementId = tonumber(val)
 							end
 						end
-						self:Update("OPTIONS")
+						updateOptionsAndClearCache(self)
 					end,
 					get = function(into)
 						if item.achievementId then

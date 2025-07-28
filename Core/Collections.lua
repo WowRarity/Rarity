@@ -37,12 +37,16 @@ function Collections:ScanTransmog(reason)
 	self = Rarity
 	self:Debug("Scanning transmog (" .. (reason or "") .. ")")
 
+	local changed = false
 	for k, v in pairs(R.db.profile.groups) do
 		if type(v) == "table" then
 			for kk, vv in pairs(v) do
 				if type(vv) == "table" then
 					if vv.itemId and not vv.repeatable and select(2, C_TransmogCollection.GetItemInfo(vv.itemId)) then -- Don't scan for items that aren't gear that have a transmog collection appearance
 						if C_TransmogCollection.PlayerHasTransmog(vv.itemId) then -- You have the appearance of the item you're tracking
+							if not vv.known then
+								changed = true
+							end
 							vv.known = true
 							vv.enabled = false
 							vv.found = true
@@ -51,6 +55,9 @@ function Collections:ScanTransmog(reason)
 				end
 			end
 		end
+	end
+	if changed then
+		R.TooltipCache:ClearAll()
 	end
 end
 
@@ -74,12 +81,16 @@ function Collections:ScanToys(reason)
 
 	-- Scan all Rarity items to see if we already have a toy
 	Rarity.toysScanned = true
+	local changed = false
 	for k, v in pairs(R.db.profile.groups) do
 		if type(v) == "table" then
 			for kk, vv in pairs(v) do
 				if type(vv) == "table" then
 					if vv.itemId and not vv.repeatable then
 						if PlayerHasToy(vv.itemId) then
+							if not vv.known then
+								changed = true
+							end
 							vv.known = true
 							vv.enabled = false
 							vv.found = true
@@ -88,6 +99,9 @@ function Collections:ScanToys(reason)
 				end
 			end
 		end
+	end
+	if changed then
+		R.TooltipCache:ClearAll()
 	end
 end
 
@@ -104,6 +118,8 @@ function Collections:ScanExistingItems(reason)
 	self.Profiling:StartTimer("Collections.ScanExistingItems")
 
 	-- Scans need to index by spellId, creatureId, achievementId, raceId, itemId (for toys), statisticId (which is a table; for stats)
+
+	local changed = false
 
 	-- Mounts (pre-7.0)
 	if C_MountJournal.GetMountInfo ~= nil then
@@ -122,9 +138,15 @@ function Collections:ScanExistingItems(reason)
 						for kk, vv in pairs(v) do
 							if type(vv) == "table" then
 								if vv.spellId and vv.spellId == spellId then
+									if not vv.known then
+										changed = true
+									end
 									vv.known = true
 								end
 								if vv.spellId and vv.spellId == spellId and not vv.repeatable then
+									if vv.enabled then
+										changed = true
+									end
 									vv.enabled = false
 									vv.found = true
 								end
@@ -147,9 +169,15 @@ function Collections:ScanExistingItems(reason)
 						for kk, vv in pairs(v) do
 							if type(vv) == "table" then
 								if vv.spellId and vv.spellId == spellId then
+									if not vv.known then
+										changed = true
+									end
 									vv.known = true
 								end
 								if vv.spellId and vv.spellId == spellId and not vv.repeatable then
+									if vv.enabled then
+										changed = true
+									end
 									vv.enabled = false
 									vv.found = true
 								end
@@ -169,6 +197,9 @@ function Collections:ScanExistingItems(reason)
 				for kk, vv in pairs(v) do
 					if type(vv) == "table" then
 						if vv.spellId and vv.spellId == spellId and not vv.repeatable then
+							if vv.enabled then
+								changed = true
+							end
 							vv.enabled = false
 							vv.found = true
 						end
@@ -202,9 +233,15 @@ function Collections:ScanExistingItems(reason)
 					for kk, vv in pairs(v) do
 						if type(vv) == "table" then
 							if vv.creatureId and vv.creatureId == companionID then
+								if not vv.known then
+									changed = true
+								end
 								vv.known = true
 							end
 							if vv.creatureId and vv.creatureId == companionID and not vv.repeatable then
+								if vv.enabled then
+									changed = true
+								end
 								vv.enabled = false
 								vv.found = true
 							end
@@ -224,6 +261,9 @@ function Collections:ScanExistingItems(reason)
 						local IDNumber, Name, Points, Completed, Month, Day, Year, Description, Flags, Image, RewardText, isGuildAch =
 							GetAchievementInfo(vv.achievementId)
 						if Completed and not vv.repeatable then
+							if vv.enabled then
+								changed = true
+							end
 							vv.enabled = false
 							vv.found = true
 						end
@@ -254,6 +294,7 @@ function Collections:ScanExistingItems(reason)
 								if vv.raceId == x then
 									-- We've never seen any attempts for this race yet, so set our attempts to this character's current amount
 									if a > (vv.attempts or 0) then
+										changed = true
 										vv.attempts = a
 									end
 								end
@@ -272,6 +313,9 @@ function Collections:ScanExistingItems(reason)
 				if type(vv) == "table" then
 					if vv.obtainedQuestId and tonumber(vv.obtainedQuestId) then
 						if IsQuestComplete(tonumber(vv.obtainedQuestId)) then
+							if vv.enabled then
+								changed = true
+							end
 							vv.enabled = false
 							vv.found = true
 						end
@@ -303,6 +347,10 @@ function Collections:ScanExistingItems(reason)
 	self.Profiling:EndTimer("Collections.ScanInstanceLocks")
 
 	self.Profiling:EndTimer("Collections.ScanExistingItems")
+
+	if changed then
+		R.TooltipCache:ClearAll()
+	end
 end
 
 -------------------------------------------------------------------------------------
@@ -319,6 +367,7 @@ function R:ScanArchFragments(event)
 	if GetNumArchaeologyRaces() == 0 then
 		return
 	end
+	local changed = false
 	for race_id = 1, GetNumArchaeologyRaces() do
 		local _, _, _, currencyAmount = GetArchaeologyRaceInfo(race_id)
 		local diff = currencyAmount - (archfragments[race_id] or 0)
@@ -342,6 +391,7 @@ function R:ScanArchFragments(event)
 									else
 										vv.attempts = vv.attempts + 1
 									end
+									changed = true
 									self:OutputAttempts(vv)
 								end
 							end
@@ -369,6 +419,10 @@ function R:ScanArchFragments(event)
 		self:ScheduleTimer(function()
 			R:ScanArchProjects("SOLVED AN ARTIFACT - DELAYED 4")
 		end, 20)
+	end
+
+	if changed then
+		R.TooltipCache:ClearAll()
 	end
 end
 

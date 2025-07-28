@@ -35,6 +35,7 @@ function Database:PurgeObsoleteEntries()
 			Rarity.db.profile.groups[groupName][itemKey] = nil
 		end
 	end
+	R.TooltipCache:ClearAll()
 end
 
 function Database.IsItemAvailableToFactionGroup(item, englishFactionGroupName)
