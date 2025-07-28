@@ -1813,11 +1813,6 @@ function R:HandleTimelessChestLoot()
 	addAttemptForItem("Bonkers", "pets")
 end
 
-function R:HandleTimelessChestLoot()
-	Rarity:Debug("Detected Opening on " .. L["Timeless Chest"] .. " (method = SPECIAL)")
-	addAttemptForItem("Bonkers", "pets")
-end
-
 function R:HandleSnowMoundLoot()
 	if GetBestMapForUnit("player") ~= CONSTANTS.UIMAPIDS.FROSTFIRE_RIDGE then
 		return
