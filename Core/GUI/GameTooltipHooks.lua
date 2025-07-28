@@ -57,9 +57,9 @@ local function onTooltipSetUnit(tooltip, data)
 		return
 	end
 
-	if R.TooltipCache:Get(guid) then
-		local cached = R.TooltipCache:Get(guid)
-		for k, line in pairs(cached) do
+	local cachedData = R.TooltipCache:Get(guid)
+	if cachedData then
+		for k, line in pairs(cachedData) do
 			if line.isDouble then
 				GameTooltip:AddDoubleLine(line.left, line.right, line.leftR, line.leftG, line.leftB, line.rightR, line.rightG, line.rightB)
 			else
@@ -233,7 +233,7 @@ local function onTooltipSetUnit(tooltip, data)
 						local txtRight = myRight:GetText()
 						local rightR, rightG, rightB, rightAlpha = myRight:GetTextColor()
 						if txtRight then
-							AddDoubleLine(txtLeft, txtRight, leftR, leftG, leftB, rightR, rightB, rightG)
+							AddDoubleLine(txtLeft, txtRight, leftR, leftG, leftB, rightR, rightG, rightB)
 						else
 							AddLine(txtLeft, leftR, leftG, leftB, true)
 						end
