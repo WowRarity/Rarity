@@ -1,10 +1,8 @@
-**r745:**
+**r746:**
 
 Additions:
-> Added tracking for Treasure Goblins (A Greedy Emissary event)
-
-Changes:
-> Battle for Azeroth Timewalking bosses should now register attempts for Infinite Timereaver
+> Added tracking for 11.2 collectibles
 
 Contributors (in alphabetical order):
-> Ellezanor
+> DakJaniels
+<br>Ellezanor
