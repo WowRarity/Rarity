@@ -1,4 +1,10 @@
 local changes = {
+	["r746"] = {
+		additions = {
+			"Added tracking for 11.2 collectibles",
+		},
+		contributors = { "DakJaniels", "Ellezanor" },
+	},
 	["r745"] = {
 		additions = {
 			"Added tracking for Treasure Goblins (A Greedy Emissary event)",
