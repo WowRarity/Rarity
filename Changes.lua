@@ -3,6 +3,9 @@ local changes = {
 		additions = {
 			"Added tracking for 11.2 collectibles",
 		},
+		changes = {
+			"The progress bar settings 'Show Anchor' and 'Locked' have been merged",
+		},
 		contributors = { "DakJaniels", "Ellezanor" },
 	},
 	["r745"] = {
