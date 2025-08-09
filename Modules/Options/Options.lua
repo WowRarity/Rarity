@@ -346,6 +346,19 @@ function R:PrepareOptions()
 									Rarity.GUI:UpdateText()
 								end,
 							}, -- progressBar
+							disableAutoTracking = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Disable auto-tracking"],
+								desc = L["When enabled, the progress bar will not automatically switch to newly attempted items. You must manually select items to track."],
+								get = function()
+									return self.db.profile.disableAutoTracking
+								end,
+								set = function(info, val)
+									self.db.profile.disableAutoTracking = val
+									self:Update("OPTIONS")
+								end,
+							}, -- disableAutoTracking
 							holidayReminder = {
 								type = "toggle",
 								order = newOrder(),
@@ -453,6 +466,19 @@ function R:PrepareOptions()
 								end,
 								order = newOrder(),
 							}, -- tooltipActivation
+							useNewWindow = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Use new window display"],
+								desc = L["When enabled, Rarity will use the new tabbed window instead of the old tooltip system to display collection data."],
+								get = function()
+									return self.db.profile.useNewWindow
+								end,
+								set = function(info, val)
+									self.db.profile.useNewWindow = val
+									self:Update("OPTIONS")
+								end,
+							}, -- useNewWindow
 						}, -- args
 					}, -- general
 					rarityTooltip = {
@@ -998,10 +1024,27 @@ function R:PrepareOptions()
 						order = newOrder(),
 						inline = true,
 						args = {
+							enabled = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Enable Progress Bar"],
+								desc = L["Disables the progress bar and all related options. You must re-enable to access these settings."],
+								get = function()
+									return self.db.profile.bar.enabled
+								end,
+								set = function(_, val)
+									self.db.profile.bar.enabled = val
+									Rarity.GUI:UpdateBar()
+									Rarity.GUI:UpdateText()
+								end,
+							},
 							locked = {
 								type = "toggle",
 								order = newOrder(),
 								name = L["Locked"],
+								disabled = function()
+									return not self.db.profile.bar.enabled
+								end,
 								get = function()
 									return self.db.profile.bar.locked
 								end,
@@ -1015,6 +1058,9 @@ function R:PrepareOptions()
 								type = "toggle",
 								order = newOrder(),
 								name = L["Grow Up"],
+								disabled = function()
+									return not self.db.profile.bar.enabled
+								end,
 								get = function()
 									return self.db.profile.bar.growUp
 								end,
@@ -1028,6 +1074,9 @@ function R:PrepareOptions()
 								type = "toggle",
 								order = newOrder(),
 								name = L["Right-Aligned"],
+								disabled = function()
+									return not self.db.profile.bar.enabled
+								end,
 								get = function()
 									return self.db.profile.bar.rightAligned
 								end,
@@ -1041,6 +1090,9 @@ function R:PrepareOptions()
 								type = "toggle",
 								order = newOrder(),
 								name = L["Show Icon"],
+								disabled = function()
+									return not self.db.profile.bar.enabled
+								end,
 								get = function()
 									return self.db.profile.bar.showIcon
 								end,
@@ -1054,6 +1106,9 @@ function R:PrepareOptions()
 								type = "toggle",
 								order = newOrder(),
 								name = L["Show Text"],
+								disabled = function()
+									return not self.db.profile.bar.enabled
+								end,
 								get = function()
 									return self.db.profile.bar.showText
 								end,
@@ -1068,6 +1123,9 @@ function R:PrepareOptions()
 								type = "range",
 								width = "double",
 								name = L["Width"],
+								disabled = function()
+									return not self.db.profile.bar.enabled
+								end,
 								min = 10,
 								max = 1000,
 								step = 1,
@@ -1085,6 +1143,9 @@ function R:PrepareOptions()
 								type = "range",
 								width = "double",
 								name = L["Height"],
+								disabled = function()
+									return not self.db.profile.bar.enabled
+								end,
 								min = 1,
 								max = 300,
 								step = 1,
@@ -1102,6 +1163,9 @@ function R:PrepareOptions()
 								type = "range",
 								width = "double",
 								name = L["Scale"],
+								disabled = function()
+									return not self.db.profile.bar.enabled
+								end,
 								min = 0.1,
 								max = 5,
 								step = 0.05,
@@ -1120,6 +1184,9 @@ function R:PrepareOptions()
 								dialogControl = "LSM30_Font",
 								width = "double",
 								name = L["Font"],
+								disabled = function()
+									return not self.db.profile.bar.enabled
+								end,
 								values = media:HashTable("font"),
 								get = function()
 									return self.db.profile.bar.font
@@ -1135,6 +1202,9 @@ function R:PrepareOptions()
 								type = "range",
 								width = "double",
 								name = L["Font Size"],
+								disabled = function()
+									return not self.db.profile.bar.enabled
+								end,
 								min = 1,
 								max = 100,
 								step = 1,
@@ -1153,6 +1223,9 @@ function R:PrepareOptions()
 								dialogControl = "LSM30_Statusbar",
 								width = "double",
 								name = L["Texture"],
+								disabled = function()
+									return not self.db.profile.bar.enabled
+								end,
 								values = media:HashTable("statusbar"),
 								get = function()
 									return self.db.profile.bar.texture
@@ -1160,6 +1233,25 @@ function R:PrepareOptions()
 								set = function(_, key)
 									self.db.profile.bar.texture = key
 									Rarity.GUI:UpdateBar()
+									Rarity.GUI:UpdateText()
+								end,
+							},
+							elements = {
+								order = newOrder(),
+								type = "range",
+								width = "double",
+								name = L["Max Elements"],
+								disabled = function()
+									return not self.db.profile.bar.enabled
+								end,
+								min = 1,
+								max = 25,
+								step = 1,
+								get = function()
+									return self.db.profile.bar.maxElements or 25
+								end,
+								set = function(_, val)
+									self.db.profile.bar.maxElements = val
 									Rarity.GUI:UpdateText()
 								end,
 							},
