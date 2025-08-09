@@ -106,6 +106,43 @@ end
 describe("ItemDB", function()
 	local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 
+	local uniqueIdentifierFields = {
+		"creatureId",
+		"itemId",
+	}
+	local groupNames = { "mounts", "pets", "toys" }
+
+	it("should contain no duplicate identifiers", function()
+		for _, groupName in ipairs(groupNames) do
+			local group = Rarity.ItemDB[groupName]
+			local referencedIdentifiers = {}
+			for _, fieldName in ipairs(uniqueIdentifierFields) do
+				referencedIdentifiers[fieldName] = {}
+			end
+
+			assert(group, "Missing group: " .. groupName)
+			for englishItemName, itemDetails in pairs(group) do
+				for _, fieldName in ipairs(uniqueIdentifierFields) do
+					if englishItemName == "name" then
+					-- Legacy key: name (probably shouldn't be stored in this table?)
+					elseif itemDetails[fieldName] then
+						table.insert(referencedIdentifiers[fieldName], itemDetails[fieldName])
+						assert(
+							referencedIdentifiers[fieldName][itemDetails[fieldName]] == nil,
+							format(
+								"Duplicate value %s for field %s referenced by item: %s",
+								itemDetails[fieldName],
+								fieldName,
+								englishItemName
+							)
+						)
+						referencedIdentifiers[fieldName][itemDetails[fieldName]] = true
+					end
+				end
+			end
+		end
+	end)
+
 	describe("Nodes", function()
 		it("should register all recognized bonus roll currencies by default", function()
 			assertEquals(table.count(Rarity.coins), table.count(bonusRollCurrencies))
