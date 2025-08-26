@@ -264,7 +264,7 @@ local twwMounts = {
 		itemId = 246067,
 		spellId = 1240632,
 		npcs = { 232195 },
-		chance = 5,
+		chance = 10,
 		coords = { { m = CONSTANTS.UIMAPIDS.KARESH } },
 	},
 	["Curious Slateback"] = {
@@ -275,7 +275,7 @@ local twwMounts = {
 		itemId = 242734,
 		spellId = 1233561,
 		items = { 245611 },
-		chance = 20,
+		chance = 33,
 		coords = { { m = CONSTANTS.UIMAPIDS.KARESH } },
 	},
 }
