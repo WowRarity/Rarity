@@ -26,17 +26,19 @@ function CopyPastePopup:ConfigureStaticPopUp()
 				hasEditBox = true,
 				OnAccept = function(frame)
 					if popup.callback then
-						popup.callback(frame.editBox:GetText())
+						local editBox = frame.GetEditBox and frame:GetEditBox() or frame.editBox
+						popup.callback(editBox:GetText())
 					end
 				end,
 			}
 			StaticPopupDialogs["RarityCopyPastePopup"] = popup
 		end
 		popup.OnShow = function(frame, data)
-			frame.editBox:SetText(text)
-			frame.editBox:SetJustifyH("CENTER")
-			frame.editBox:SetWidth(240)
-			frame.editBox:HighlightText()
+			local editBox = frame.GetEditBox and frame:GetEditBox() or frame.editBox
+			editBox:SetText(text)
+			editBox:SetJustifyH("CENTER")
+			editBox:SetWidth(240)
+			editBox:HighlightText()
 		end
 		popup.text = msg or L["Use CTRL+C to copy and CTRL+V to paste"]
 		popup.callback = callback
@@ -56,6 +58,7 @@ function CopyPastePopup:SetInstructionText(text)
 end
 
 function CopyPastePopup:Show()
+	self.name = "RarityCopyPastePopup"
 	self.ShowPopupDialogWithEditBox(
 		self.instructionText,
 		self.editBoxText,
@@ -64,9 +67,8 @@ function CopyPastePopup:Show()
 		end,
 		nil -- autoCloseTimeoutInMilliseconds
 	)
-	local popup = StaticPopupDialogs["RarityCopyPastePopup"] or self.popup
+	local popup = StaticPopupDialogs[self.name] or self.popup
 	self.popup = popup
-	-- self:Hide()
 	StaticPopup_Show(self.name)
 end
 

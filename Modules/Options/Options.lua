@@ -200,16 +200,21 @@ local function alertWithCopy(msg, textToCopy)
 		hasEditBox = 1,
 		button2 = "",
 		OnShow = function(self)
-			self.editBox:SetText(textToCopy)
-			self.editBox:SetFocus()
-			self.editBox:HighlightText()
-			_G[self:GetName() .. "Button2"]:Hide()
-			_G[self:GetName() .. "Button1"]:ClearAllPoints()
-			_G[self:GetName() .. "Button1"]:SetPoint("TOP", self.editBox, "BOTTOM", 0, -8)
+			local editBox = self.GetEditBox and self:GetEditBox() or self.editBox
+			editBox:SetText(textToCopy)
+			editBox:SetFocus()
+			editBox:HighlightText()
+			local button2 = self.GetButton2 and self:GetButton2() or _G[self:GetName() .. "Button2"]
+			button2:Hide()
+			local button1 = self.GetButton1 and self:GetButton1() or _G[self:GetName() .. "Button1"]
+			button1:ClearAllPoints()
+			button1:SetPoint("TOP", editBox, "BOTTOM", 0, -8)
 		end,
 		OnHide = function(self)
-			self.editBox:SetText("")
-			_G[self:GetName() .. "Button2"]:Show()
+			local editBox = self.GetEditBox and self:GetEditBox() or self.editBox
+			editBox:SetText("")
+			local button2 = self.GetButton2 and self:GetButton2() or _G[self:GetName() .. "Button2"]
+			button2:Show()
 		end,
 		EditBoxOnEnterPressed = function(self)
 			self:GetParent():Hide()
