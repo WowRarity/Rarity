@@ -1,4 +1,10 @@
 local changes = {
+	["r747"] = {
+		fixes = {
+			"Fixed UI errors caused by 11.2 API changes to popup dialogs (item export/debug menu)",
+		},
+		contributors = { "DakJaniels", "Ellezanor" },
+	},
 	["r746"] = {
 		additions = {
 			"Added tracking for 11.2 collectibles",
