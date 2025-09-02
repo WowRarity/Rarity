@@ -58,6 +58,7 @@ function CopyPastePopup:SetInstructionText(text)
 end
 
 function CopyPastePopup:Show()
+	self.name = "RarityCopyPastePopup"
 	self.ShowPopupDialogWithEditBox(
 		self.instructionText,
 		self.editBoxText,
@@ -66,9 +67,8 @@ function CopyPastePopup:Show()
 		end,
 		nil -- autoCloseTimeoutInMilliseconds
 	)
-	local popup = StaticPopupDialogs["RarityCopyPastePopup"] or self.popup
+	local popup = StaticPopupDialogs[self.name] or self.popup
 	self.popup = popup
-	-- self:Hide()
 	StaticPopup_Show(self.name)
 end
 
