@@ -50,6 +50,22 @@ local holidayEventMountsTWW = {
 			{ m = CONSTANTS.UIMAPIDS.LIBERATION_OF_UNDERMINE },
 		},
 	},
+	["Brewfest Barrel Bomber"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Brewfest Barrel Bomber"],
+		spellId = 1247662,
+		itemId = 248761,
+		items = { 54535, 117393 },
+		chance = 25,
+		groupSize = 5,
+		equalOdds = true,
+		sourceText = L["Can be contained in Keg-Shaped Treasure Chest, rewarded for defeating the World Event Dungeon during Brewfest."],
+		lockDungeonId = 287,
+		holidayTexture = CONSTANTS.HolidayEvents["Brewfest"],
+		coords = { { m = 242, x = 46.6, y = 60, i = true } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, holidayEventMountsTWW)
