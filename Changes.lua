@@ -1,4 +1,11 @@
 local changes = {
+	["r748"] = {
+		fixes = {
+			"Anu'relos, Flame's Guidance should now correctly be detected once obtained",
+			"Brewfest Barrel Bomber should no longer be tracked in MOP Classic",
+		},
+		contributors = { "Ellezanor" },
+	},
 	["r747"] = {
 		fixes = {
 			"Fixed UI errors caused by 11.2 API changes to popup dialogs (item export/debug menu)",
