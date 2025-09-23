@@ -1,8 +1,8 @@
-**r747:**
+**r748:**
 
 Fixes:
-> Fixed UI errors caused by 11.2 API changes to popup dialogs (item export/debug menu)
+> Anu'relos, Flame's Guidance should now correctly be detected once obtained
+<br>Brewfest Barrel Bomber should no longer be tracked in MOP Classic
 
 Contributors (in alphabetical order):
-> DakJaniels
-<br>Ellezanor
+> Ellezanor
