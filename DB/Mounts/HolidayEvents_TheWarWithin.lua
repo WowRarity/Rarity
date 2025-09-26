@@ -58,6 +58,7 @@ local holidayEventMountsTWW = {
 		spellId = 1247662,
 		itemId = 248761,
 		items = { 54535, 117393 },
+		questId = { 91894 },
 		chance = 25,
 		groupSize = 5,
 		equalOdds = true,
