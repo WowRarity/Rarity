@@ -1055,6 +1055,19 @@ function R:PrepareOptions()
 									Rarity.GUI:UpdateText()
 								end,
 							},
+							showSpark = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Show Spark"],
+								get = function()
+									return self.db.profile.bar.showSpark
+								end,
+								set = function(info, val)
+									self.db.profile.bar.showSpark = val
+									Rarity.GUI:UpdateBar()
+									Rarity.GUI:UpdateText()
+								end,
+							},
 							showText = {
 								type = "toggle",
 								order = newOrder(),

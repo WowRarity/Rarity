@@ -125,6 +125,7 @@ function R:PrepareDefaults()
 				rightAligned = false,
 				showIcon = true,
 				showText = true,
+				showSpark = true,
 			},
 			cats = {
 				[CONSTANTS.ITEM_CATEGORIES.CLASSIC] = true,
