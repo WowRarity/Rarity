@@ -191,6 +191,7 @@ function GUI:UpdateText()
 		self.bar:SetIcon(itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
 		self.bar:SetLabel(text)
 		self.bar:SetValue(chance, 100)
+		self.GUI:UpdateSparks() -- NOTE: SetValue always enables sparks (remove once fixed)
 	end
 	if self.hadBarTwo then -- If we've transitioning from 2 bars to 1, hiding/showing the bars collapses them
 		self.barGroup:Hide()
@@ -267,6 +268,7 @@ function GUI:UpdateText()
 			self.bar2:SetIcon(itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
 			self.bar2:SetLabel(text)
 			self.bar2:SetValue(chance, 100)
+			self.GUI:UpdateSparks() -- NOTE: SetValue always enables sparks (remove once fixed)
 		end
 	end
 	self.Profiling:EndTimer("GUI.UpdateText")
