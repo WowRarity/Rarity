@@ -1,8 +1,7 @@
-**r748:**
+**r749:**
 
-Fixes:
-> Anu'relos, Flame's Guidance should now correctly be detected once obtained
-<br>Brewfest Barrel Bomber should no longer be tracked in MOP Classic
+Additions:
+> Progress bar sparks (visual highlights) can now be disabled in the Options UI
 
 Contributors (in alphabetical order):
 > Ellezanor
