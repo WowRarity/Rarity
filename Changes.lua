@@ -1,4 +1,10 @@
 local changes = {
+	["r749"] = {
+		additions = {
+			"Progress bar sparks (visual highlights) can now be disabled in the Options UI",
+		},
+		contributors = { "Ellezanor" },
+	},
 	["r748"] = {
 		fixes = {
 			"Anu'relos, Flame's Guidance should now correctly be detected once obtained",
