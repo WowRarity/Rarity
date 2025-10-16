@@ -67,6 +67,22 @@ local holidayEventMountsTWW = {
 		holidayTexture = CONSTANTS.HolidayEvents["Brewfest"],
 		coords = { { m = 242, x = 46.6, y = 60, i = true } },
 	},
+	["Love Witch's Sweeper"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Love Witch's Sweeper"],
+		spellId = 472479,
+		itemId = 232926,
+		items = { 54537 },
+		chance = 666,
+		groupSize = 5,
+		equalOdds = true,
+		holidayEvents = CONSTANTS.HolidayEvents["Love is in the Air"],
+		sourceText = L["Can be contained in Heart-Shaped Box, rewarded for defeating the World Event Dungeon during Love is in the Air."],
+		lockDungeonId = 288,
+		coords = { { m = 310, x = 40.8, y = 52.6, i = true } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, holidayEventMountsTWW)
