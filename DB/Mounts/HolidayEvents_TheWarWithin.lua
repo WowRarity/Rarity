@@ -62,7 +62,9 @@ local holidayEventMountsTWW = {
 		chance = 25,
 		groupSize = 5,
 		equalOdds = true,
-		sourceText = L["Can be contained in Keg-Shaped Treasure Chest, rewarded for defeating the World Event Dungeon during Brewfest."],
+		sourceText = L["Can be contained in Keg-Shaped Treasure Chest, rewarded for defeating the World Event Dungeon during Brewfest."]
+			.. " "
+			.. L["Only available on the first attempt each day."],
 		lockDungeonId = 287,
 		holidayTexture = CONSTANTS.HolidayEvents["Brewfest"],
 		coords = { { m = 242, x = 46.6, y = 60, i = true } },
@@ -79,9 +81,29 @@ local holidayEventMountsTWW = {
 		groupSize = 5,
 		equalOdds = true,
 		holidayEvents = CONSTANTS.HolidayEvents["Love is in the Air"],
-		sourceText = L["Can be contained in Heart-Shaped Box, rewarded for defeating the World Event Dungeon during Love is in the Air."],
+		sourceText = L["Can be contained in Heart-Shaped Box, rewarded for defeating the World Event Dungeon during Love is in the Air."]
+			.. " "
+			.. L["Only available on the first attempt each day."],
 		lockDungeonId = 288,
 		coords = { { m = 310, x = 40.8, y = 52.6, i = true } },
+	},
+	["The Headless Horseman's Ghoulish Charger"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["The Headless Horseman's Ghoulish Charger"],
+		spellId = 1245198,
+		itemId = 247721,
+		items = { 209024 },
+		chance = 25,
+		groupSize = 5,
+		equalOdds = true,
+		sourceText = L["Can be contained in Loot-Filled Pumpkin, rewarded for defeating the World Event Dungeon during Hallow's End."]
+			.. " "
+			.. L["Only available on the first attempt each day."],
+		lockDungeonId = 285,
+		holidayEvents = CONSTANTS.HolidayEvents["Hallow's End"],
+		coords = { { m = 435, i = true } },
 	},
 }
 
