@@ -1,4 +1,11 @@
 local changes = {
+	["r750"] = {
+		additions = {
+			" Added tracking for The Headless Horseman's Ghoulish Charger",
+			" Added tracking for Love Witch's Sweeper",
+		},
+		contributors = { "Ellezanor" },
+	},
 	["r749"] = {
 		additions = {
 			"Progress bar sparks (visual highlights) can now be disabled in the Options UI",
