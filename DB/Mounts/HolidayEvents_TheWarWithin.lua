@@ -83,6 +83,22 @@ local holidayEventMountsTWW = {
 		lockDungeonId = 288,
 		coords = { { m = 310, x = 40.8, y = 52.6, i = true } },
 	},
+	["The Headless Horseman's Ghoulish Charger"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["The Headless Horseman's Ghoulish Charger"],
+		spellId = 1245198,
+		itemId = 247721,
+		items = { 209024 },
+		chance = 25,
+		groupSize = 5,
+		equalOdds = true,
+		sourceText = L["Can be contained in Loot-Filled Pumpkin, rewarded for defeating the World Event Dungeon during Hallow's End."],
+		lockDungeonId = 285,
+		holidayEvents = CONSTANTS.HolidayEvents["Hallow's End"],
+		coords = { { m = 435, i = true } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, holidayEventMountsTWW)
