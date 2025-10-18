@@ -1,7 +1,8 @@
-**r749:**
+**r750:**
 
 Additions:
-> Progress bar sparks (visual highlights) can now be disabled in the Options UI
+>  Added tracking for The Headless Horseman's Ghoulish Charger
+<br> Added tracking for Love Witch's Sweeper
 
 Contributors (in alphabetical order):
 > Ellezanor
