@@ -1,0 +1,23 @@
+name: WowAce Localization
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches: [master]
+
+jobs:
+  toc:
+    name: Check localization phrases
+    runs-on: macos-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+
+      - name: Install Lua runtime # May be overkill, but removes the need for complex shell scripting
+        uses: evo-lua/evo-setup-action@main
+        with:
+          version: 'v0.0.20'
+
+      - name: Check for mismatching localization phrases
+        run: .github/export-wowace-localization.sh ${{ secrets.CURSEFORGE_API_TOKEN }}
