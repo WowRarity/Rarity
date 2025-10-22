@@ -19,6 +19,7 @@ local tinsert = table.insert
 local CONSTANTS = addonTable.constants
 local colorize = Rarity.Utils.String.Colorize
 local scanTip = Rarity.GUI.scanTip
+local DEBUG_MESSAGE_COLOR = Rarity.Enum.Colors.DebugMessageColor
 --- Constants
 local red = Rarity.Enum.Colors.Red
 local green = Rarity.Enum.Colors.Green
@@ -395,6 +396,12 @@ function Rarity.TooltipProcessItem(tooltip, itemID)
 	end
 
 	Rarity.TooltipAppendLines(tooltip, tooltipLines)
+	if Rarity.db.profile.debugMode then
+		local debugInfo = format("Item ID: %d", itemID)
+		debugInfo = colorize(debugInfo, DEBUG_MESSAGE_COLOR)
+		tooltip:AddLine(" ")
+		tooltip:AddLine(debugInfo)
+	end
 	tooltip:Show()
 
 	return tooltipLines -- Ignored ingame, but useful for debugging/testing
