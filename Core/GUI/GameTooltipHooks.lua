@@ -14,6 +14,7 @@ local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
 local IsQuestFlaggedCompleted = _G.C_QuestLog.IsQuestFlaggedCompleted
 local UnitFactionGroup = _G.UnitFactionGroup
 local GetItemInfo = _G.C_Item.GetItemInfo
+local tinsert = table.insert
 --- Addon API
 local CONSTANTS = addonTable.constants
 local colorize = Rarity.Utils.String.Colorize
@@ -360,157 +361,53 @@ else
 	_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Unit, onTooltipSetUnit)
 end
 
-local function processItem(id, tooltip)
-	local blankAdded = false
-	if id then
-		local item
-		local rarityAdded = false
+function Rarity.TooltipProcessItem(tooltip, itemID)
+	if not itemID then
+		return
+	end
 
-		-- This item is used to obtain another item
-		if Rarity.items_to_items[id] then
-			for k, v in pairs(Rarity.items_to_items[id]) do
-				local playerFaction = UnitFactionGroup("player")
-				local isItemAvailableToPlayer = Rarity.Database.IsItemAvailableToFactionGroup(v, playerFaction)
-				if v.itemId and isItemAvailableToPlayer then
-					local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
-						GetItemInfo(v.itemId)
-					if itemLink or itemName or v.name then
-						if
-							(v.known and R.db.profile.hideKnownItemsInTooltip)
-							or (not v.enabled and R.db.profile.hideUntrackedItemsInTooltip)
-						then
-							tooltip:Show()
-						else
-							if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
-								blankAdded = true
-								tooltip:AddLine(" ")
-							end
-							local chance = select(2, Rarity.Statistics.GetRealDropPercentage(v))
-							local attemptText = " "
-								.. colorize(format(L["(%d/%d attempts)"], v.attempts or 0, chance or 0), white)
-							if v.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
-								attemptText = " "
-									.. colorize(format(L["(%d/%d collected)"], v.attempts or 0, v.chance or 0), white)
-							end
-							if v.known or Rarity.db.profile.tooltipAttempts == false then
-								attemptText = ""
-							end
-							tooltip:AddLine(
-								colorize(
-									(
-										not rarityAdded
-											and L["Rarity: "] .. (R.db.profile.blankLineAfterRarity and "\n" or "")
-										or ""
-									)
-										.. (itemLink or itemName or v.name)
-										.. attemptText,
-									yellow
-								)
-							)
-							rarityAdded = true
-							if v.known then
-								tooltip:AddLine(colorize(L["Already known"], red))
-								blankAdded = false
-							end
-							tooltip:Show()
-						end
-					end
-				end
-			end
-		end
-
-		blankAdded = false
-
-		-- Extra item tooltips
-		if R.db.profile.extraTooltips.inventoryItems[id] then
-			for x, y in pairs(R.db.profile.extraTooltips.inventoryItems[id]) do
-				local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
-					GetItemInfo(y)
-				if itemLink or itemName then
-					if not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions then
-						blankAdded = true
-						tooltip:AddLine(" ")
-					end
-					for k, v in pairs(R.db.profile.groups) do
-						if type(v) == "table" then
-							for kk, vv in pairs(v) do
-								if type(vv) == "table" then
-									if vv.itemId == y then
-										if R:IsAttemptAllowed(vv) then
-											itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
-												GetItemInfo(vv.itemId)
-											if itemLink or itemName or vv.name then
-												if
-													(vv.known and R.db.profile.hideKnownItemsInTooltip)
-													or (not vv.enabled and R.db.profile.hideUntrackedItemsInTooltip)
-												then
-													tooltip:Show()
-												else
-													if
-														not blankAdded and R.db.profile.blankLineBeforeTooltipAdditions
-													then
-														blankAdded = true
-														tooltip:AddLine(" ")
-													end
-													local chance =
-														select(2, Rarity.Statistics.GetRealDropPercentage(vv))
-													local attemptText = " "
-														.. colorize(
-															format(L["(%d/%d attempts)"], vv.attempts or 0, chance or 0),
-															white
-														)
-													if vv.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
-														attemptText = " "
-															.. colorize(
-																format(
-																	L["(%d/%d collected)"],
-																	vv.attempts or 0,
-																	vv.chance or 0
-																),
-																white
-															)
-													end
-													if vv.known or Rarity.db.profile.tooltipAttempts == false then
-														attemptText = ""
-													end
-													tooltip:AddLine(
-														colorize(
-															(
-																not rarityAdded
-																	and L["Rarity: "] .. (R.db.profile.blankLineAfterRarity and "\n" or "")
-																or ""
-															)
-																.. (itemLink or itemName or vv.name)
-																.. attemptText,
-															yellow
-														)
-													)
-													rarityAdded = true
-													if vv.known then
-														tooltip:AddLine(colorize(L["Already known"], red))
-														blankAdded = false
-													end
-													tooltip:Show()
-												end
-											end
-										end
-									end
-								end
-							end
-						end
-					end
-				end
+	local tooltipLines = {}
+	-- This item is used to obtain another item (containers, paragon caches, etc.)
+	local containedItems = Rarity.items_to_items[itemID]
+	if containedItems then
+		for sourceItemID, itemInfo in ipairs(containedItems) do
+			local nextLine = Rarity.TooltipProcessItemInfo(tooltip, itemInfo)
+			local coloredLine = colorize(nextLine or "", yellow)
+			if nextLine then
+				tinsert(tooltipLines, coloredLine)
 			end
 		end
 	end
+
+	-- Extra item tooltips (for eggs and other items that will turn into containers later)
+	local linkedItems = R.db.profile.extraTooltips.inventoryItems[itemID]
+	if linkedItems then
+		for sourceItemID, linkedItemID in ipairs(linkedItems) do
+			-- Some items are part of the DB and others are not... should probably use a different approach
+			local itemName, itemLink = GetItemInfo(linkedItemID)
+			local itemInfo = Rarity.items[linkedItemID]
+			local nextLine = Rarity.TooltipProcessItemInfo(tooltip, itemInfo) or itemLink or itemName
+			local coloredLine = colorize(nextLine or "", yellow)
+			if nextLine then
+				tinsert(tooltipLines, coloredLine)
+			end
+		end
+	end
+
+	Rarity.TooltipAppendLines(tooltip, tooltipLines)
+	tooltip:Show()
+
+	return tooltipLines -- Ignored ingame, but useful for debugging/testing
 end
 
-local function onTooltipSetItem(tooltip, tooltipData)
-	if not R.db or R.db.profile.enableTooltipAdditions == false then
+function Rarity.OnGameTooltipSetToItem(tooltip, tooltipData)
+	if not R.db or not R.db.profile.enableTooltipAdditions then
+		Rarity:Debug("Failed to set GameTooltip text (tooltip additions have been disabled)")
 		return
 	end
 
 	if tooltip ~= _G.GameTooltip and tooltip ~= _G.ItemRefTooltip then
+		Rarity:Debug("Failed to set GameTooltip text (not a game tooltip)")
 		return
 	end
 
@@ -520,11 +417,88 @@ local function onTooltipSetItem(tooltip, tooltipData)
 		return
 	end
 
-	processItem(itemID, tooltip)
+	Rarity.TooltipProcessItem(tooltip, itemID)
 end
 
 if not _G.TooltipDataProcessor then
 	-- Blizzard hasn't ported the tooltip changes to their classic client, yet?
 else
-	_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Item, onTooltipSetItem)
+	_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Item, Rarity.OnGameTooltipSetToItem)
+end
+
+function Rarity.ShouldDisplayTooltipAdditionsForItem(item)
+	if not item.itemId then
+		return false
+	end
+
+	local playerFaction = UnitFactionGroup("player")
+	local isItemAvailableToPlayer = Rarity.Database.IsItemAvailableToFactionGroup(item, playerFaction)
+	if not isItemAvailableToPlayer then
+		return false
+	end
+
+	if item.known == true and R.db.profile.hideKnownItemsInTooltip then
+		return false
+	end
+
+	if item.enabled == false and R.db.profile.hideUntrackedItemsInTooltip then
+		return false
+	end
+
+	local itemName, itemLink = GetItemInfo(item.itemId)
+	if not itemLink or not itemName or not item.name then
+		return false
+	end
+
+	return true
+end
+
+function Rarity.TooltipAppendLines(tooltip, tooltipLines)
+	if #tooltipLines == 0 then
+		return
+	end
+
+	if R.db.profile.blankLineBeforeTooltipAdditions then
+		tooltip:AddLine(" ")
+	end
+
+	local separator = (R.db.profile.blankLineAfterRarity and "\n" or "")
+	local heading = colorize(L["Rarity: "], yellow) .. separator
+	tooltipLines[1] = heading .. tooltipLines[1]
+	for lineNumber, line in ipairs(tooltipLines) do
+		tooltip:AddLine(line)
+	end
+end
+
+function Rarity.TooltipProcessItemInfo(tooltip, item)
+	if not item then
+		return
+	end
+
+	if not Rarity.ShouldDisplayTooltipAdditionsForItem(item) then
+		return
+	end
+
+	local itemName, itemLink = GetItemInfo(item.itemId)
+	local itemText = (itemLink or itemName or item.name) or ""
+
+	local chance = select(2, Rarity.Statistics.GetRealDropPercentage(item))
+	local attemptText = " " .. colorize(format(L["(%d/%d attempts)"], item.attempts or 0, chance or 0), white)
+	if item.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
+		attemptText = " " .. colorize(format(L["(%d/%d collected)"], item.attempts or 0, item.chance or 0), white)
+	end
+
+	if item.known and not item.repeatable then
+		attemptText = attemptText
+			.. " "
+			.. colorize("(", white)
+			.. colorize(L["Already known"], red)
+			.. colorize(")", white)
+	end
+
+	if not Rarity.db.profile.tooltipAttempts then
+		attemptText = ""
+	end
+
+	return itemText .. attemptText
 end
