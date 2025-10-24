@@ -176,8 +176,8 @@ Core\GUI\FauxAchievementPopup.lua
 Core\GUI\GameTooltipHooks.lua
 Core\GUI\MainWindow.lua
 
+# Initialization for the config UI
+
+Options_Defaults.lua
 # Addon loader
 Core.lua
-
-# Initialization for the config UI
-Options_Defaults.lua
