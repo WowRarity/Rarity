@@ -13,7 +13,7 @@ local IsQuestFlaggedCompleted = _G.C_QuestLog.IsQuestFlaggedCompleted
 local C_Covenants = _G.C_Covenants
 
 local FormatTime = Rarity.Utils.PrettyPrint.FormatTime
-local sort2 = Rarity.Utils.Sorting.sort2
+local sort_num = Rarity.Utils.Sorting.sort_num
 local GetDate = Rarity.Utils.Time.GetDate
 local AuctionDB = Rarity.AuctionDB
 local scanTip = Rarity.GUI.scanTip
@@ -586,7 +586,7 @@ local function showSubTooltip(cell, item)
 		tooltip2AddDoubleLine(L["Total found"], item.totalFinds)
 		if item.finds then
 			tooltip2:AddSeparator(1, 1, 1, 1, 1)
-			local f = sort2(item.finds)
+			local f = sort_num(item.finds)
 			for k, v in pairs(f) do
 				dropChance = Rarity.Statistics.GetRealDropPercentage(v)
 				local chance = 100 * (1 - math.pow(1 - dropChance, v.attempts))
@@ -838,7 +838,7 @@ local function addGroup(group, requiresGroup)
 
 	local addGroupSortStart = debugprofilestop()
 
-	local sortedGroup = Rarity.Utils.Sorting:SortGroup(group, R.db.profile.sortMode)
+	local sortedGroup = Rarity.Utils.Sorting.SortGroup(group, R.db.profile.sortMode)
 
 	local addGroupSortEnd = debugprofilestop()
 
