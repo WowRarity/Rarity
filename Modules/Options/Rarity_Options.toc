@@ -6,6 +6,7 @@
 ## Dependencies: Rarity
 ## X-Part-Of: Rarity
 ## LoadOnDemand: 1
+## LoadSavedVariablesFirst: 1
 ## X-LoadOn-Slash: /rarity, /rare
 ## X-LoadOn-InterfaceOptions: Rarity
 
