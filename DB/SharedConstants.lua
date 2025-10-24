@@ -389,6 +389,7 @@ C.Colors = {
 	Gray = { r = 0.5, g = 0.5, b = 0.5 },
 	Black = { r = 0.0, g = 0.0, b = 0.0 },
 	White = { r = 1.0, g = 1.0, b = 1.0 },
+	DebugMessageColor = { r = 0x33 / 255, g = 0xFF / 255, b = 0x85 / 255 },
 }
 
 -- Legacy method of sharing constants (awkward, but better than not sharing them I guess)
