@@ -17,6 +17,8 @@
 ## Notes-itIT: @localization(locale="itIT", key="Notes", namespace="ToC - Table of Contents")@
 ## Notes-frFR: @localization(locale="frFR", key="Notes", namespace="ToC - Table of Contents")@
 
+## LoadSavedVariablesFirst: 1
+
 ## AddonCompartmentFunc: Rarity_OnAddonCompartmentClick
 ## AddonCompartmentFuncOnEnter: Rarity_OnAddonCompartmentEnter
 ## AddonCompartmentFuncOnLeave: Rarity_OnAddonCompartmentLeave
