@@ -35,7 +35,7 @@ local function onTooltipSetUnit(tooltip, data)
 
 	local self = tooltip -- For backwards compatibility with the legacy code below (should be refactored eventually...)
 
-	if not R.db or R.db.profile.enableTooltipAdditions == false then
+	if R.db.profile.enableTooltipAdditions == false then
 		return
 	end
 
@@ -408,7 +408,7 @@ function Rarity.TooltipProcessItem(tooltip, itemID)
 end
 
 function Rarity.OnGameTooltipSetToItem(tooltip, tooltipData)
-	if not R.db or not R.db.profile.enableTooltipAdditions then
+	if not R.db.profile.enableTooltipAdditions then
 		Rarity:Debug("Failed to set GameTooltip text (tooltip additions have been disabled)")
 		return
 	end
