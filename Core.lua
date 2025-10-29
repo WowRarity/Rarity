@@ -8,9 +8,6 @@ local lbb = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
 
 ---
 
-local GetMapNameByID = Rarity.MapInfo.GetMapNameByID
-
-
 --[[
       VARIABLES ----------------------------------------------------------------------------------------------------------------
   ]]
@@ -127,6 +124,230 @@ local GetRealDropPercentage = Rarity.Statistics.GetRealDropPercentage
 local FormatTime = Rarity.Utils.PrettyPrint.FormatTime
 local GetDate = Rarity.Utils.Time.GetDate
 
+do
+	-- Set up the debug cache (TODO: Move to initialisation routine after the refactoring is complete)
+	Rarity.Utils.DebugCache:SetOutputHandler(Rarity.Utils.PrettyPrint.DebugMsg)
+	function Rarity:Error(message, ...)
+		if R.db.profile.disableCustomErrors then
+			return
+		end
+		Rarity.Utils.PrettyPrint.Error(message, ...)
+	end
+end
+
+local GetMapNameByID = Rarity.MapInfo.GetMapNameByID
+
+--[[
+      LIFECYCLE ----------------------------------------------------------------------------------------------------------------
+  ]]
+function R:OnInitialize() end
+
+local Output = Rarity.Output
+
+do
+	local isInitialized = false
+
+	function R:OnEnable()
+		self:DoEnable()
+		-- The Options module is disabled to reduce memory usage and loading time
+		-- However, players can only see the menu entry once AceConfig has registered it
+		-- Workaround: Provide a generator (function) that creates the UI only when needed
+		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity", function()
+			return R:LazyLoadOptions("options")
+		end)
+		R.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity", "Rarity")
+		R.profileOptions = LibStub("AceDBOptions-3.0"):GetOptionsTable(R.db)
+		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity-Profiles", R.profileOptions)
+		R.profileFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity-Profiles", "Profiles", "Rarity")
+
+		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity-Advanced", function()
+			return R:LazyLoadOptions("advancedSettings")
+		end)
+		R.advancedSettingsFrame =
+			LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity-Advanced", "Advanced", "Rarity")
+	end
+
+	function R:DoEnable()
+		if isInitialized then
+			return
+		end
+		isInitialized = true
+
+		self:PrepareDefaults() -- Loads in any new items
+
+		self.db = LibStub("AceDB-3.0"):New("RarityDB", self.defaults, true)
+		Output:Setup()
+
+		self:RegisterChatCommand("rarity", "OnChatCommand")
+		self:RegisterChatCommand("rare", "OnChatCommand")
+
+		-- Register keybind(s): These must match the info from Bindings.xml (and use localized descriptions)
+		_G.BINDING_HEADER_Rarity = "Rarity"
+		_G.BINDING_NAME_RARITY_DEBUGWINDOWTOGGLE = L["Toggle Debug Window"]
+
+		Rarity.GUI:RegisterDataBroker()
+
+		-- Expose private objects
+		R.npcs = npcs
+
+		Rarity.GUI:InitialiseBar()
+
+		Rarity.Collections:ScanExistingItems("INITIALIZING") -- Checks for items you already have
+		self:ScanBags() -- Initialize our inventory list, as well as checking if you've obtained an item
+		self:OnBagUpdate() -- This will update counters for collection items
+		self:OnCurrencyUpdate("INITIALIZING") -- Prepare our currency list
+		self:UpdateInterestingThings()
+		Rarity.Tracking:FindTrackedItem()
+		Rarity.Caching:SetReadyState(false)
+		Rarity.GUI:UpdateText()
+		Rarity.Caching:SetReadyState(true)
+		Rarity.GUI:UpdateText()
+		Rarity.GUI:UpdateBar()
+
+		Rarity.Serialization:ImportFromBunnyHunter()
+
+		Rarity.EventHandlers:Register()
+
+		if R.Options_DoEnable then
+			R:Options_DoEnable()
+		end
+		self.db.profile.lastRevision = R.MINOR_VERSION
+
+		self.db.RegisterCallback(self, "OnProfileChanged", "OnProfileChanged")
+		self.db.RegisterCallback(self, "OnProfileCopied", "OnProfileChanged")
+		self.db.RegisterCallback(self, "OnProfileReset", "OnProfileChanged")
+		self.db.RegisterCallback(self, "OnProfileDeleted", "OnProfileChanged")
+
+		self:ScanAllArch("DoEnable")
+		RequestRaidInfo() -- Request raid lock info from the server
+		RequestLFDPlayerLockInfo() -- Request LFD data from the server; this is used for holiday boss detection
+		C_Calendar.OpenCalendar() -- Request calendar info from the server
+
+		-- Prepare a master list of all the items Rarity may need info for
+		table.wipe(R.itemsMasterList)
+		Rarity.Caching:SetPrimedItems(0)
+		Rarity.Caching:SetItemsToPrime(0)
+		for k, v in pairs(self.db.profile.groups) do
+			if type(v) == "table" then
+				for kk, vv in pairs(v) do
+					if type(vv) == "table" then
+						if vv.itemId then
+							R.itemsMasterList[vv.itemId] = true
+						end
+						if vv.collectedItemId then
+							if type(vv.collectedItemId) == "table" then
+								for kkk, vvv in pairs(vv.collectedItemId) do
+									R.itemsMasterList[vvv] = true
+								end
+							else
+								R.itemsMasterList[vv.collectedItemId] = true
+							end
+						end
+						if vv.items and type(vv.items) == "table" then
+							for kkk, vvv in pairs(vv.items) do
+								R.itemsMasterList[vvv] = true
+							end
+						end
+					end
+				end
+			end
+		end
+		for k, v in pairs(self.db.profile.oneTimeItems) do
+			if type(v) == "table" and v.itemId then
+				R.itemsMasterList[v.itemId] = true
+			end
+		end
+		for k, v in pairs(self.db.profile.extraTooltips.inventoryItems) do
+			for kk, vv in pairs(v) do
+				R.itemsMasterList[vv] = true
+			end
+		end
+		local temp = {}
+		for k, v in pairs(R.itemsMasterList) do
+			Rarity.Caching:SetItemsToPrime(Rarity.Caching:GetItemsToPrime() + 1)
+			temp[Rarity.Caching:GetItemsToPrime()] = k
+		end
+		R.itemsMasterList = temp
+
+		-- Progressively prime our item cache over time instead of hitting Blizzard's API all at once
+		Rarity.Caching:SetItemsToPrime(100) -- Just setting this temporarily to avoid a divide by zero
+		self:ScheduleTimer(function()
+			self:PrimeItemCache()
+		end, 2)
+
+		-- Scan instance locks 5 seconds after init
+		self:ScheduleTimer(function()
+			R:ScanInstanceLocks("DELAYED INIT")
+		end, 5)
+
+		-- Scan bags, currency, and instance locks 10 seconds after init
+		self:ScheduleTimer(function()
+			R:ScanBags()
+			R:OnCurrencyUpdate("DELAYED INIT")
+			R:OnBagUpdate()
+			R:ScanInstanceLocks("DELAYED INIT 2")
+		end, 10)
+
+		-- Clean up session info
+		for k, v in pairs(self.db.profile.groups) do
+			if type(v) == "table" then
+				for kk, vv in pairs(v) do
+					if type(vv) == "table" then
+						vv.session = nil
+					end
+				end
+			end
+		end
+
+		-- Delayed calendar init a few times
+		self:ScheduleTimer(function()
+			if type(CalendarFrame) ~= "table" or not CalendarFrame:IsShown() then
+				local CalendarTime = C_DateAndTime.GetCurrentCalendarTime()
+				local month, year = CalendarTime.month, CalendarTime.year
+				C_Calendar.SetAbsMonth(month, year)
+			end
+		end, 7)
+		self:ScheduleTimer(function()
+			if type(CalendarFrame) ~= "table" or not CalendarFrame:IsShown() then
+				local CalendarTime = C_DateAndTime.GetCurrentCalendarTime()
+				local month, year = CalendarTime.month, CalendarTime.year
+				C_Calendar.SetAbsMonth(month, year)
+			end
+		end, 20)
+
+		-- Update text again several times later - this helps get the icon right after login
+		self:ScheduleTimer(function()
+			R:DelayedInit()
+		end, 10)
+		self:ScheduleTimer(function()
+			R:DelayedInit()
+		end, 20)
+		self:ScheduleTimer(function()
+			R:DelayedInit()
+		end, 30)
+		self:ScheduleTimer(function()
+			R:DelayedInit()
+		end, 60)
+		self:ScheduleTimer(function()
+			R:DelayedInit()
+		end, 120)
+		self:ScheduleTimer(function()
+			R:DelayedInit()
+		end, 180)
+		self:ScheduleTimer(function()
+			self:ScanCalendar("FINAL INIT")
+			Rarity.Collections:ScanExistingItems("FINAL INIT")
+			Rarity.GUI:UpdateText()
+		end, 240)
+
+		self:Debug(L["Loaded (running in debug mode)"])
+
+		if self.db.profile.verifyDatabaseOnLogin then
+			self.Validation:ValidateItemDB()
+		end
+	end
+end
+
 local fallbackOptionsTable = {
 	type = "group",
 	name = L["Rarity"],
@@ -164,7 +385,7 @@ end
 function Rarity:TryShowOptionsUI()
 	local canLoadOptions, reason = IsAddOnLoadable("Rarity_Options")
 	if not canLoadOptions and reason == "DISABLED" then
-		Rarity:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
+		self:Print(L["The Rarity Options module has been disabled. Log out and enable it from your add-ons menu."])
 		return
 	end
 
@@ -175,8 +396,8 @@ function Rarity:TryShowOptionsUI()
 end
 
 function R:DelayedInit()
-	Rarity:ScanStatistics("DELAYED INIT")
-	Rarity:ScanCalendar("DELAYED INIT")
+	self:ScanStatistics("DELAYED INIT")
+	self:ScanCalendar("DELAYED INIT")
 	Rarity.Collections:ScanToys("DELAYED INIT")
 	Rarity.Collections:ScanTransmog("DELAYED INIT")
 	Rarity.GUI:UpdateText()
@@ -186,7 +407,7 @@ end
 function R:PrimeItemCache()
 	numPrimeAttempts = numPrimeAttempts + 1
 	if numPrimeAttempts >= 20 then
-		Rarity:Debug("Maximum number of cache prime attempts reached")
+		self:Debug("Maximum number of cache prime attempts reached")
 		return
 	end
 
@@ -206,8 +427,8 @@ function R:PrimeItemCache()
 	end
 
 	-- Prime the items
-	Rarity:Debug("Loading " .. Rarity.Caching:GetItemsToPrime() .. " item(s) from server...")
-	initTimer = Rarity:ScheduleRepeatingTimer(function()
+	self:Debug("Loading " .. Rarity.Caching:GetItemsToPrime() .. " item(s) from server...")
+	initTimer = self:ScheduleRepeatingTimer(function()
 		if Rarity.Caching:GetPrimedItems() <= 0 then
 			Rarity.Caching:SetPrimedItems(1)
 		end
@@ -219,12 +440,12 @@ function R:PrimeItemCache()
 			end
 		end
 		if Rarity.Caching:GetPrimedItems() >= Rarity.Caching:GetItemsToPrime() then
-			Rarity:CancelTimer(initTimer)
+			self:CancelTimer(initTimer)
 			-- First-time initialization finished
 			if not Rarity.Caching:IsReady() then
 				Rarity.Caching:SetReadyState(false)
 				-- Trigger holiday reminders
-				Rarity:ScheduleTimer(function()
+				self:ScheduleTimer(function()
 					Rarity:ShowTooltip(true)
 				end, 5)
 			end
@@ -238,12 +459,12 @@ function R:PrimeItemCache()
 				totalNeeded = totalNeeded + 1
 			end
 			if got < totalNeeded then
-				Rarity:Debug("Initialization failed to retrieve " .. (totalNeeded - got) .. " item(s)")
-				Rarity:ScheduleTimer(function()
-					Rarity:PrimeItemCache()
+				self:Debug("Initialization failed to retrieve " .. (totalNeeded - got) .. " item(s)")
+				self:ScheduleTimer(function()
+					self:PrimeItemCache()
 				end, 5)
 			else
-				Rarity:Debug("Finished loading " .. Rarity.Caching:GetItemsToPrime() .. " item(s) from server")
+				self:Debug("Finished loading " .. Rarity.Caching:GetItemsToPrime() .. " item(s) from server")
 			end
 		end
 		Rarity.GUI:UpdateText()
@@ -290,17 +511,17 @@ end
 -- Many of the events we handle fire quite frequently, so speed is of the essence.
 -- Any item that is not enabled for tracking won't show up in these lists.
 function R:UpdateInterestingThings()
-	Rarity:Debug("Updating interesting things tables")
+	self:Debug("Updating interesting things tables")
 
 	-- Store an internal table listing every MapID
-	if Rarity.db.profile.mapIds == nil then
-		Rarity.db.profile.mapIds = {}
+	if self.db.profile.mapIds == nil then
+		self.db.profile.mapIds = {}
 	else
-		table.wipe(Rarity.db.profile.mapIds)
+		table.wipe(self.db.profile.mapIds)
 	end
 	for map_id = 1, 5000 do -- 5000 seems arbitrarily high; right now (8.0.1) there are barely 100 uiMapIDs... but it shouldn't matter if the misses are skipped
 		if GetMapNameByID(map_id) ~= nil then
-			Rarity.db.profile.mapIds[map_id] = GetMapNameByID(map_id)
+			self.db.profile.mapIds[map_id] = GetMapNameByID(map_id)
 		end
 	end
 
@@ -318,7 +539,7 @@ function R:UpdateInterestingThings()
 	table.wipe(Rarity.items_with_stats)
 	table.wipe(Rarity.collection_items)
 
-	for k, v in pairs(Rarity.db.profile.groups) do
+	for k, v in pairs(self.db.profile.groups) do
 		if type(v) == "table" then
 			for kk, vv in pairs(v) do
 				if type(vv) == "table" then
@@ -578,9 +799,9 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
 		return
 	end -- Already seen this NPC
 
-	local npcid = Rarity:GetNPCIDFromGUID(guid)
+	local npcid = self:GetNPCIDFromGUID(guid)
 	if npcs[npcid] == nil then -- Not an NPC we need, abort
-		Rarity:Debug("NPC ID not on the list of needed NPCs: " .. (npcid or "nil"))
+		self:Debug("NPC ID not on the list of needed NPCs: " .. (npcid or "nil"))
 
 		if
 			Rarity.zones[tostring(GetBestMapForUnit("player"))] == nil
@@ -592,23 +813,23 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
 			and Rarity.zones[lbz[zone_t] or "."] == nil
 			and Rarity.zones[lbsz[subzone_t] or "."] == nil
 		then -- Not a zone we need, abort
-			Rarity:Debug("Map ID not on the list of needed zones: " .. tostring(GetBestMapForUnit("player")))
+			self:Debug("Map ID not on the list of needed zones: " .. tostring(GetBestMapForUnit("player")))
 			return
 		end
 	else
-		Rarity:Debug("NPC ID is one we need: " .. (npcid or "nil"))
+		self:Debug("NPC ID is one we need: " .. (npcid or "nil"))
 	end
 
 	-- If the loot is the result of certain spell casts (mining, herbing, opening, pick lock, archaeology, disenchanting, etc), stop here -> This is to avoid multiple attempts, since those methods are handled separately!
 	if Rarity.relevantSpells[curSpell] then
-		Rarity:Debug("Aborting because we were casting a disallowed spell: " .. curSpell)
+		self:Debug("Aborting because we were casting a disallowed spell: " .. curSpell)
 		return
 	end
 
 	-- If the loot is not from an NPC (could be from yourself or a world object), we don't want to process this
 	local unitType, _, _, _, _, mob_id = strsplit("-", guid)
 	if unitType ~= "Creature" and unitType ~= "Vehicle" then
-		Rarity:Debug(
+		self:Debug(
 			"This loot isn't from an NPC; disregarding. Loot source identified as unit type: " .. (unitType or "nil")
 		)
 		return
@@ -620,7 +841,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
 	if Rarity.npcs_to_items[npcid] and type(Rarity.npcs_to_items[npcid]) == "table" then
 		for k, v in pairs(Rarity.npcs_to_items[npcid]) do
 			if v.enabled ~= false and (v.method == NPC or v.method == ZONE) then
-				if Rarity:IsAttemptAllowed(v) then
+				if self:IsAttemptAllowed(v) then
 					-- Don't increment attempts if this NPC also has a statistic defined. This would result in two attempts counting instead of one.
 					if not v.statisticId or type(v.statisticId) ~= "table" or #v.statisticId <= 0 then
 						-- Don't increment attempts for unique items if you already have the item in your bags
@@ -635,7 +856,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
 								else
 									v.attempts = v.attempts + 1
 								end
-								Rarity:OutputAttempts(v)
+								self:OutputAttempts(v)
 							end
 						end
 					end
@@ -645,7 +866,7 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
 	end
 
 	-- Check for zone-wide items and increment them if needed
-	for k, v in pairs(Rarity.db.profile.groups) do
+	for k, v in pairs(self.db.profile.groups) do
 		if type(v) == "table" then
 			for kk, vv in pairs(v) do
 				if type(vv) == "table" then
@@ -672,13 +893,13 @@ function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, re
 							end
 						end
 						if found then
-							if Rarity:IsAttemptAllowed(vv) then
+							if self:IsAttemptAllowed(vv) then
 								if vv.attempts == nil then
 									vv.attempts = 1
 								else
 									vv.attempts = vv.attempts + 1
 								end
-								Rarity:OutputAttempts(vv)
+								self:OutputAttempts(vv)
 							end
 						end
 					end
@@ -693,212 +914,8 @@ end
   ]]
 function R:Update(reason)
 	Rarity.Collections:ScanExistingItems(reason)
-	Rarity:UpdateInterestingThings(reason)
+	self:UpdateInterestingThings(reason)
 	Rarity.Tracking:FindTrackedItem()
 	Rarity.GUI:UpdateText()
-	-- if Rarity:InTooltip() then Rarity:ShowTooltip() end
+	-- if self:InTooltip() then self:ShowTooltip() end
 end
-
--- Startup routines
-
-do
-	-- Set up the debug cache (TODO: Move to initialisation routine after the refactoring is complete)
-	Rarity.Utils.DebugCache:SetOutputHandler(Rarity.Utils.PrettyPrint.DebugMsg)
-	function Rarity:Error(message, ...)
-		if R.db.profile.disableCustomErrors then
-			return
-		end
-		Rarity.Utils.PrettyPrint.Error(message, ...)
-	end
-end
-
-local Output = Rarity.Output
-
-Rarity:PrepareDefaults() -- Loads in any new items -- TODO not yet loaded... sigh
-
-Rarity.db = LibStub("AceDB-3.0"):New("RarityDB", Rarity.defaults, true)
-Output:Setup()
-
-Rarity:RegisterChatCommand("rarity", "OnChatCommand")
-Rarity:RegisterChatCommand("rare", "OnChatCommand")
-
--- Register keybind(s): These must match the info from Bindings.xml (and use localized descriptions)
-_G.BINDING_HEADER_Rarity = "Rarity"
-_G.BINDING_NAME_RARITY_DEBUGWINDOWTOGGLE = L["Toggle Debug Window"]
-
-Rarity.GUI:RegisterDataBroker()
-
--- Expose private objects
-R.npcs = npcs
-
-Rarity.GUI:InitialiseBar()
-
-Rarity.Collections:ScanExistingItems("INITIALIZING") -- Checks for items you already have
-Rarity:ScanBags() -- Initialize our inventory list, as well as checking if you've obtained an item
-Rarity:OnBagUpdate() -- This will update counters for collection items
-Rarity:OnCurrencyUpdate("INITIALIZING") -- Prepare our currency list
-Rarity:UpdateInterestingThings()
-Rarity.Tracking:FindTrackedItem()
-Rarity.Caching:SetReadyState(false)
-Rarity.GUI:UpdateText()
-Rarity.Caching:SetReadyState(true)
-Rarity.GUI:UpdateText()
-Rarity.GUI:UpdateBar()
-
-Rarity.Serialization:ImportFromBunnyHunter()
-
-Rarity.EventHandlers:Register()
-
-if R.Options_DoEnable then
-	R:Options_DoEnable()
-end
-Rarity.db.profile.lastRevision = R.MINOR_VERSION
-
-Rarity.db.RegisterCallback(Rarity, "OnProfileChanged", "OnProfileChanged")
-Rarity.db.RegisterCallback(Rarity, "OnProfileCopied", "OnProfileChanged")
-Rarity.db.RegisterCallback(Rarity, "OnProfileReset", "OnProfileChanged")
-Rarity.db.RegisterCallback(Rarity, "OnProfileDeleted", "OnProfileChanged")
-
-Rarity:ScanAllArch("DoEnable")
-RequestRaidInfo() -- Request raid lock info from the server
-RequestLFDPlayerLockInfo() -- Request LFD data from the server; this is used for holiday boss detection
-C_Calendar.OpenCalendar() -- Request calendar info from the server
-
--- Prepare a master list of all the items Rarity may need info for
-table.wipe(R.itemsMasterList)
-Rarity.Caching:SetPrimedItems(0)
-Rarity.Caching:SetItemsToPrime(0)
-for k, v in pairs(Rarity.db.profile.groups) do
-	if type(v) == "table" then
-		for kk, vv in pairs(v) do
-			if type(vv) == "table" then
-				if vv.itemId then
-					R.itemsMasterList[vv.itemId] = true
-				end
-				if vv.collectedItemId then
-					if type(vv.collectedItemId) == "table" then
-						for kkk, vvv in pairs(vv.collectedItemId) do
-							R.itemsMasterList[vvv] = true
-						end
-					else
-						R.itemsMasterList[vv.collectedItemId] = true
-					end
-				end
-				if vv.items and type(vv.items) == "table" then
-					for kkk, vvv in pairs(vv.items) do
-						R.itemsMasterList[vvv] = true
-					end
-				end
-			end
-		end
-	end
-end
-for k, v in pairs(Rarity.db.profile.oneTimeItems) do
-	if type(v) == "table" and v.itemId then
-		R.itemsMasterList[v.itemId] = true
-	end
-end
-for k, v in pairs(Rarity.db.profile.extraTooltips.inventoryItems) do
-	for kk, vv in pairs(v) do
-		R.itemsMasterList[vv] = true
-	end
-end
-local temp = {}
-for k, v in pairs(R.itemsMasterList) do
-	Rarity.Caching:SetItemsToPrime(Rarity.Caching:GetItemsToPrime() + 1)
-	temp[Rarity.Caching:GetItemsToPrime()] = k
-end
-R.itemsMasterList = temp
-
--- Progressively prime our item cache over time instead of hitting Blizzard's API all at once
-Rarity.Caching:SetItemsToPrime(100) -- Just setting this temporarily to avoid a divide by zero
-Rarity:ScheduleTimer(function()
-	Rarity:PrimeItemCache()
-end, 2)
-
--- Scan instance locks 5 seconds after init
-Rarity:ScheduleTimer(function()
-	R:ScanInstanceLocks("DELAYED INIT")
-end, 5)
-
--- Scan bags, currency, and instance locks 10 seconds after init
-Rarity:ScheduleTimer(function()
-	R:ScanBags()
-	R:OnCurrencyUpdate("DELAYED INIT")
-	R:OnBagUpdate()
-	R:ScanInstanceLocks("DELAYED INIT 2")
-end, 10)
-
--- Clean up session info
-for k, v in pairs(Rarity.db.profile.groups) do
-	if type(v) == "table" then
-		for kk, vv in pairs(v) do
-			if type(vv) == "table" then
-				vv.session = nil
-			end
-		end
-	end
-end
-
--- Delayed calendar init a few times
-Rarity:ScheduleTimer(function()
-	if type(CalendarFrame) ~= "table" or not CalendarFrame:IsShown() then
-		local CalendarTime = C_DateAndTime.GetCurrentCalendarTime()
-		local month, year = CalendarTime.month, CalendarTime.year
-		C_Calendar.SetAbsMonth(month, year)
-	end
-end, 7)
-Rarity:ScheduleTimer(function()
-	if type(CalendarFrame) ~= "table" or not CalendarFrame:IsShown() then
-		local CalendarTime = C_DateAndTime.GetCurrentCalendarTime()
-		local month, year = CalendarTime.month, CalendarTime.year
-		C_Calendar.SetAbsMonth(month, year)
-	end
-end, 20)
-
--- Update text again several times later - this helps get the icon right after login
-Rarity:ScheduleTimer(function()
-	R:DelayedInit()
-end, 10)
-Rarity:ScheduleTimer(function()
-	R:DelayedInit()
-end, 20)
-Rarity:ScheduleTimer(function()
-	R:DelayedInit()
-end, 30)
-Rarity:ScheduleTimer(function()
-	R:DelayedInit()
-end, 60)
-Rarity:ScheduleTimer(function()
-	R:DelayedInit()
-end, 120)
-Rarity:ScheduleTimer(function()
-	R:DelayedInit()
-end, 180)
-Rarity:ScheduleTimer(function()
-	Rarity:ScanCalendar("FINAL INIT")
-	Rarity.Collections:ScanExistingItems("FINAL INIT")
-	Rarity.GUI:UpdateText()
-end, 240)
-
-Rarity:Debug(L["Loaded (running in debug mode)"])
-
-if Rarity.db.profile.verifyDatabaseOnLogin then
-	Rarity.Validation:ValidateItemDB()
-end
-
--- The Options module is disabled to reduce memory usage and loading time
--- However, players can only see the menu entry once AceConfig has registered it
--- Workaround: Provide a generator (function) that creates the UI only when needed
-LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity", function()
-	return R:LazyLoadOptions("options")
-end)
-R.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity", "Rarity")
-R.profileOptions = LibStub("AceDBOptions-3.0"):GetOptionsTable(R.db)
-LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity-Profiles", R.profileOptions)
-R.profileFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity-Profiles", "Profiles", "Rarity")
-
-LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity-Advanced", function()
-	return R:LazyLoadOptions("advancedSettings")
-end)
-R.advancedSettingsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity-Advanced", "Advanced", "Rarity")
