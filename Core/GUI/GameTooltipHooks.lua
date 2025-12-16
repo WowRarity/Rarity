@@ -115,19 +115,8 @@ local function onTooltipSetUnit(tooltip, data)
 							if v.known or Rarity.db.profile.tooltipAttempts == false then
 								attemptText = ""
 							end
-							GameTooltip:AddLine(
-								colorize(
-									(
-										not rarityAdded
-											and L["Rarity: "] .. (R.db.profile.blankLineAfterRarity and "\n" or "")
-										or ""
-									)
-										.. (itemLink or itemName or v.name)
-										.. attemptText,
-									yellow
-								)
-							)
-							rarityAdded = true
+							local knownText = v.known and (" " .. colorize(L["Already known"], red)) or ""
+							local pickpocketText = ""
 							if v.pickpocket then
 								local class, classFileName = UnitClass("player")
 								local pickcolor
@@ -136,12 +125,24 @@ local function onTooltipSetUnit(tooltip, data)
 								else
 									pickcolor = red
 								end
-								GameTooltip:AddLine(colorize(L["Requires Pickpocketing"], pickcolor))
+								pickpocketText = " " .. colorize(L["Requires Pickpocketing"], pickcolor)
 							end
-							if v.known then
-								GameTooltip:AddLine(colorize(L["Already known"], red))
-								blankAdded = false
-							end
+							GameTooltip:AddLine(
+								colorize(
+									(
+										not rarityAdded
+											and L["Rarity: "] .. (R.db.profile.blankLineAfterRarity and "\n" or "")
+										or ""
+									)
+										.. (itemLink or itemName or v.name)
+										.. attemptText
+										.. pickpocketText
+										.. knownText,
+									yellow
+								)
+							)
+							rarityAdded = true
+							blankAdded = false
 							GameTooltip:Show()
 						end
 					end
@@ -327,6 +328,7 @@ local function onTooltipSetUnit(tooltip, data)
 										if vv.known or Rarity.db.profile.tooltipAttempts == false then
 											attemptText = ""
 										end
+										local knownText = vv.known and (" " .. colorize(L["Already known"], red)) or ""
 										GameTooltip:AddLine(
 											colorize(
 												(
@@ -335,15 +337,14 @@ local function onTooltipSetUnit(tooltip, data)
 													or ""
 												)
 													.. (itemLink or itemName or vv.name)
-													.. attemptText,
+													.. attemptText
+													.. knownText,
 												yellow
 											)
 										)
 										rarityAdded = true
-										if vv.known then
-											GameTooltip:AddLine(colorize(L["Already known"], red))
-											blankAdded = false
-										end
+										blankAdded = false
+
 										GameTooltip:Show()
 									end
 								end
