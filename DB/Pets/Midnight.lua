@@ -9,3 +9,42 @@ end
 
 local MidnightPets = {
 	-- 12.0 pets
+	["Nova"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		chance = 20,
+		creatureId = 264892,
+		name = L["Nova"],
+		itemId = 257695,
+		items = { 267299 },
+		spellId = 1272755,
+		coords = { { m = CONSTANTS.UIMAPIDS.MASTERS_PERCH } },
+	},
+			["Ominous Domanus"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		chance = 100,
+		creatureId = 256265,
+		itemId = 262391,
+		name = L["Ominous Domanus"],
+		npcs = { 252892, 252101 }, --check multiple IDs --
+		spellId = 1268687,
+	},
+		["Princess Bloodshed"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
+		type = CONSTANTS.ITEM_TYPES.PET,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		chance = 20,
+		creatureId = 258281,
+		name = L["Princess Bloodshed"],
+		itemId = 265609,
+		npcs = { 255348 },
+		spellId = 1276430,
+		coords = { { m = CONSTANTS.UIMAPIDS.EVERSONG_WOODS } },
+			},
+	}
+
+Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, MidnightPets)
+return MidnightPets
