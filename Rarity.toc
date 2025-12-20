@@ -84,6 +84,7 @@ DB\Mounts\BattleForAzeroth.lua
 DB\Mounts\Shadowlands.lua
 DB\Mounts\Dragonflight.lua
 DB\Mounts\TheWarWithin.lua
+DB\Mounts\Midnight.lua
 
 ## Pets
 DB\Pets\HolidayEvents_Classic.lua
@@ -105,6 +106,7 @@ DB\Pets\BattleForAzeroth.lua
 DB\Pets\Shadowlands.lua
 DB\Pets\Dragonflight.lua
 DB\Pets\TheWarWithin.lua
+DB\Pets\Midnight.lua
 
 ## Toys (and other items, for now...)
 DB\Toys\HolidayEvents_TheBurningCrusade.lua
@@ -127,6 +129,7 @@ DB\Toys\BattleForAzeroth.lua
 DB\Toys\Shadowlands.lua
 DB\Toys\Dragonflight.lua
 DB\Toys\TheWarWithin.lua
+DB\Toys\Midnight.lua
 
 # Utility/Helpers
 Utils\DebugCache.lua
@@ -179,3 +182,4 @@ Core.lua
 
 # Initialization for the config UI
 Options_Defaults.lua
+
