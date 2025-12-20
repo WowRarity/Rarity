@@ -279,7 +279,7 @@ local twwMounts = {
 		coords = { { m = CONSTANTS.UIMAPIDS.KARESH } },
 	},
 	--Mythic Raid Mounts -- 
-		["Reins of the Ascendant Skyrazor."] = {
+		["Reins of the Ascendant Skyrazor"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.BOSS,
@@ -319,7 +319,7 @@ local twwMounts = {
 		coords = { { m = CONSTANTS.UIMAPIDS.LIBERATION_OF_UNDERMINE, i = true } },
 		wasGuaranteed = true,
 	},
-		["Unbound Star-Eater."] = {
+		["Unbound Star-Eater"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.BOSS,
