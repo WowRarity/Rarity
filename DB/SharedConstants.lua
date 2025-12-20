@@ -159,6 +159,7 @@ C.UIMAPIDS = {
 	ZULAMAN = 15947,
 	VOIDSTORM = 15458, --check this one -- 
 	HARANADAR = 15355,
+	MASTERS_PERCH = 15958,
 }
 
 -- Types of items
