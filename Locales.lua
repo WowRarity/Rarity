@@ -2,6 +2,18 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Nova"] = true
+L["Ominous Domanus"] = true
+L["Princess Bloodshed"] = true
+L["Sanguine Harrower"] = true
+L["Augmented Stormray"] = true
+L["Lost Nether Drake"] = true
+L["Amani Sharptalon"] = true
+L["Escaped Witherbark Pango"] = true
+L["Cerulean Hawkstrider"] = true
+L["Cobalt Dragonhawk"] = true
+L["Vibrant Petalwing"] = true
+L["Rootstalker Grimlynx"] = true
 L["Only available on the first attempt each day."] = true
 L["The Headless Horseman's Ghoulish Charger"] = true
 L["Love Witch's Sweeper"] = true
