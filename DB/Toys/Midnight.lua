@@ -9,3 +9,10 @@ end
 
 local MidnightToysAndItems = {
 	-- 12.0 items and toys
+
+
+	
+	}
+
+Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, MidnightToysAndItems)
+return MidnightToysAndItems
