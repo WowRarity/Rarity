@@ -17,7 +17,7 @@ local MidnightMounts = {
 		itemId = 260635,
 		spellId = 1266700,
 		npcs = { 244272,244272,256923,256925,256808,256770,245044,238498,256922,256924,256926,257027,245182,256821 },
-		chance = 5,
+		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.VOIDSTORM } },
 		},
 		["Augmented Stormray"] = {
@@ -28,7 +28,7 @@ local MidnightMounts = {
 		itemId = 257085,
 		spellId = 1261155,
 		npcs = { 244272,244272,256923,256925,256808,256770,245044,238498,256922,256924,256926,257027,245182,256821 },
-		chance = 5,
+		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.VOIDSTORM } },
 			},
 		["Lost Nether Drake"] = {
@@ -51,7 +51,7 @@ local MidnightMounts = {
 		itemId = 257152,
 		spellId = 1261316,
 		npcs = { 242023,242025,245975,242031,242033,242035,242027,245692,242024,242028,247976,242032,242034,242026,245691 },
-		chance = 5,
+		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.ZULAMAN } },
 					},
 		["Escaped Witherbark Pango"] = {
@@ -73,7 +73,7 @@ local MidnightMounts = {
 		itemId = 257156,
 		spellId = 1261323,
 		npcs = { 246332,240129,250719,250754,250841,250826,255302,255348,246633,250582,250683,250876,250780,250806,255329 },
-		chance = 5,
+		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.EVERSONG_WOODS } },
 		},
 			["Cobalt Dragonhawk"] = {
@@ -84,7 +84,7 @@ local MidnightMounts = {
 		itemId = 257147,
 		spellId = 1261302,
 		npcs = { 246332,240129,250719,250754,250841,250826,255302,255348,246633,250582,250683,250876,250780,250806,255329 },
-		chance = 5,
+		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.EVERSONG_WOODS } },
 		},
 			["Vibrant Petalwing"] = {
@@ -95,7 +95,7 @@ local MidnightMounts = {
 		itemId = 252012,
 		spellId = 1253927,
 		npcs = { 248741,249849,249962,250086,250226,250246,250321,250358,249844,249902,249997,250180,250231,250317,250347,246735 },
-		chance = 5,
+		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.HARANDAR } },
 		},
 			["Rootstalker Grimlynx"] = {
@@ -106,7 +106,7 @@ local MidnightMounts = {
 		itemId = 246735,
 		spellId = 1243597,
 		npcs = { 248741,249849,249962,250086,250226,250246,250321,250358,249844,249902,249997,250180,250231,250317,250347 },
-		chance = 5,
+		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.HARANDAR } },
 		},
 	}
