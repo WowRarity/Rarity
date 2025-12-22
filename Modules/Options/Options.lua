@@ -35,6 +35,7 @@ local BFA = "BFA"
 local SHADOWLANDS = "SHADOWLANDS"
 local DRAGONFLIGHT = "DRAGONFLIGHT"
 local TWW = "TWW"
+local MIDNIGHT = "MIDNIGHT"
 local HOLIDAY = "HOLIDAY"
 
 -- Methods of obtaining
