@@ -356,10 +356,18 @@ local function onTooltipSetUnit(tooltip, data)
 	end
 end
 
-if not _G.TooltipDataProcessor then
-	-- Blizzard hasn't ported the tooltip changes to their classic client, yet?
-else
-	_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Unit, onTooltipSetUnit)
+function Rarity:RegisterGameTooltipHooks()
+	if not _G.TooltipDataProcessor then
+		-- Blizzard hasn't ported the tooltip changes to their classic client, yet?
+	else
+		_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Unit, onTooltipSetUnit)
+	end
+
+	if not _G.TooltipDataProcessor then
+		-- Blizzard hasn't ported the tooltip changes to their classic client, yet?
+	else
+		_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Item, Rarity.OnGameTooltipSetToItem)
+	end
 end
 
 function Rarity.TooltipProcessItem(tooltip, itemID)
@@ -425,12 +433,6 @@ function Rarity.OnGameTooltipSetToItem(tooltip, tooltipData)
 	end
 
 	Rarity.TooltipProcessItem(tooltip, itemID)
-end
-
-if not _G.TooltipDataProcessor then
-	-- Blizzard hasn't ported the tooltip changes to their classic client, yet?
-else
-	_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Item, Rarity.OnGameTooltipSetToItem)
 end
 
 function Rarity.ShouldDisplayTooltipAdditionsForItem(item)
