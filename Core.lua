@@ -178,6 +178,7 @@ do
 		self.db = LibStub("AceDB-3.0"):New("RarityDB", self.defaults, true)
 		Output:Setup()
 
+		self:RegisterGameTooltipHooks()
 		self:RegisterChatCommand("rarity", "OnChatCommand")
 		self:RegisterChatCommand("rare", "OnChatCommand")
 
