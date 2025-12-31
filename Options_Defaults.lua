@@ -470,38 +470,3 @@ function R:PrepareDefaults()
 
 	self.PrepareDefaults = nil -- Why?
 end
-
---[[
-
-   NEW EXPANSION PACK
-   TO-DO LIST CHEAT SHEET
-
-			Items:
-			**- Reevaluate group sizes for all items (items from 2 expansions ago become soloable; items from last expansion become groups of 3)
-			**- New mounts
-			**- Guaranteed mounts from bosses convert to non-guaranteed (don't forget to set wasGuaranteed = true)
-			- New pets
-			- New toys
-			**- Toy conversions
-			**- New rare killing achievements (under the Exploration achievement tab, like: http://www.wowhead.com/achievements/character-achievements/exploration/15257-legion)
-			- New 100% drop items
-
-			Nodes and zones:
-			**- CONSTANTS.DETECTION_METHODS.FISHING nodes (GatherMate2/Constants.lua)
-			**- CONSTANTS.DETECTION_METHODS.MINING nodes
-			XX- NO LONGER: New zones for Sea Turtle (http://wowpedia.org/MapID) (they stopped putting it in new expansions starting with Warlords of Draenor)
-
-			APIs:
-			**- Check if CONSTANTS.DETECTION_METHODS.NPC ID format changed
-			**- Check if instance difficulty API or IDs changed
-			**- Check if COMBAT_LOG_EVENT_UNFILTERED changed
-			**- Check for other API changes (i.e. http://wowpedia.org/Patch_6.0.1/API_changes)
-
-			Other:
-			**- Good-luck coins
-			**- New Archaeology races: /run for race_id = 1, GetNumArchaeologyRaces() do Rarity:Print("race_id: "..race_id.." | "..GetArchaeologyRaceInfo(race_id)) end
-			**- Add a new category icon for the expansion
-			**- If a new class was added, add it to the list at the top of Options.lua in the Options module
-
-]]
---
