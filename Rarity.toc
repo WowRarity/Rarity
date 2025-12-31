@@ -1,6 +1,6 @@
 ## Author: Allara
-## Interface: 110205, 50501, 11508
-## X-Min-Interface: 110205, 50501, 11508
+## Interface: 110207, 50503, 11508
+## X-Min-Interface: 110207, 50503, 11508
 ## Title: Rarity
 ## Version: 1.0 (@project-version@)
 ## X-Curse-Project-ID: 30801
