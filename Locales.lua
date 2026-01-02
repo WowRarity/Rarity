@@ -2,6 +2,7 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Black Whirlwind"] = true
 L["Only available on the first attempt each day."] = true
 L["The Headless Horseman's Ghoulish Charger"] = true
 L["Love Witch's Sweeper"] = true
