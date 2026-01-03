@@ -35,7 +35,7 @@ local function onTooltipSetUnit(tooltip, data)
 
 	local self = tooltip -- For backwards compatibility with the legacy code below (should be refactored eventually...)
 
-	if not R.db or R.db.profile.enableTooltipAdditions == false then
+	if R.db.profile.enableTooltipAdditions == false then
 		return
 	end
 
@@ -356,10 +356,18 @@ local function onTooltipSetUnit(tooltip, data)
 	end
 end
 
-if not _G.TooltipDataProcessor then
-	-- Blizzard hasn't ported the tooltip changes to their classic client, yet?
-else
-	_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Unit, onTooltipSetUnit)
+function Rarity:RegisterGameTooltipHooks()
+	if not _G.TooltipDataProcessor then
+		-- Blizzard hasn't ported the tooltip changes to their classic client, yet?
+	else
+		_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Unit, onTooltipSetUnit)
+	end
+
+	if not _G.TooltipDataProcessor then
+		-- Blizzard hasn't ported the tooltip changes to their classic client, yet?
+	else
+		_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Item, Rarity.OnGameTooltipSetToItem)
+	end
 end
 
 function Rarity.TooltipProcessItem(tooltip, itemID)
@@ -408,7 +416,7 @@ function Rarity.TooltipProcessItem(tooltip, itemID)
 end
 
 function Rarity.OnGameTooltipSetToItem(tooltip, tooltipData)
-	if not R.db or not R.db.profile.enableTooltipAdditions then
+	if not R.db.profile.enableTooltipAdditions then
 		Rarity:Debug("Failed to set GameTooltip text (tooltip additions have been disabled)")
 		return
 	end
@@ -425,12 +433,6 @@ function Rarity.OnGameTooltipSetToItem(tooltip, tooltipData)
 	end
 
 	Rarity.TooltipProcessItem(tooltip, itemID)
-end
-
-if not _G.TooltipDataProcessor then
-	-- Blizzard hasn't ported the tooltip changes to their classic client, yet?
-else
-	_G.TooltipDataProcessor.AddTooltipPostCall(_G.Enum.TooltipDataType.Item, Rarity.OnGameTooltipSetToItem)
 end
 
 function Rarity.ShouldDisplayTooltipAdditionsForItem(item)
