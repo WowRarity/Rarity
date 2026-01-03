@@ -1,4 +1,10 @@
 local changes = {
+	["r751"] = {
+		additions = {
+			"Added tracking for Black Whirlwind (toy)",
+		},
+		contributors = { "Ellezanor" },
+	},
 	["r750"] = {
 		additions = {
 			" Added tracking for The Headless Horseman's Ghoulish Charger",
