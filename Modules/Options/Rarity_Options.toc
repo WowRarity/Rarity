@@ -1,6 +1,6 @@
 ## Author: Allara
-## Interface: 110207, 50503, 11508
-## X-Min-Interface: 110207, 50503, 11508
+## Interface: 120000, 50503, 11508
+## X-Min-Interface: 120000, 50503, 11508
 ## Notes: Rarity configuration. Should be loaded automatically on demand.
 ## Title: Rarity [|caaedc99fOptions|r]
 ## Dependencies: Rarity
