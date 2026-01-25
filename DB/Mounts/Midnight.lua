@@ -18,8 +18,9 @@ local MidnightMounts = {
 		npcs = { 244272,244272,256923,256925,256808,256770,245044,238498,256922,256924,256926,257027,245182,256821 },
 		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.VOIDSTORM } },
-		},
-		["Augmented Stormray"] = {
+	},
+	
+	["Augmented Stormray"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.NPC,
@@ -29,8 +30,9 @@ local MidnightMounts = {
 		npcs = { 244272,244272,256923,256925,256808,256770,245044,238498,256922,256924,256926,257027,245182,256821 },
 		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.VOIDSTORM } },
-			},
-		["Lost Nether Drake"] = {
+	},
+	
+	["Lost Nether Drake"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.FISHING,
@@ -41,8 +43,9 @@ local MidnightMounts = {
 		chance = 2000,
 		requiresPool = false,
 		coords = {	{ m = CONSTANTS.UIMAPIDS.VOIDSTORM } },
-			},	
-		["Amani Sharptalon"] = {
+	},	
+	
+	["Amani Sharptalon"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.NPC,
@@ -52,8 +55,9 @@ local MidnightMounts = {
 		npcs = { 242023,242025,245975,242031,242033,242035,242027,245692,242024,242028,247976,242032,242034,242026,245691 },
 		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.ZULAMAN } },
-					},
-		["Escaped Witherbark Pango"] = {
+	},
+	
+	["Escaped Witherbark Pango"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.NPC,
@@ -63,8 +67,9 @@ local MidnightMounts = {
 		npcs = { 242023,242025,245975,242031,242033,242035,242027,245692,242024,242028,247976,242032,242034,242026,245691 },
 		chance = 5,
 		coords = { { m = CONSTANTS.UIMAPIDS.ZULAMAN } },
-		},
-		["Cerulean Hawkstrider"] = {
+	},
+	
+	["Cerulean Hawkstrider"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.NPC,
@@ -74,8 +79,9 @@ local MidnightMounts = {
 		npcs = { 246332,240129,250719,250754,250841,250826,255302,255348,246633,250582,250683,250876,250780,250806,255329 },
 		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.EVERSONG_WOODS } },
-		},
-			["Cobalt Dragonhawk"] = {
+	},
+	
+	["Cobalt Dragonhawk"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.NPC,
@@ -85,8 +91,9 @@ local MidnightMounts = {
 		npcs = { 246332,240129,250719,250754,250841,250826,255302,255348,246633,250582,250683,250876,250780,250806,255329 },
 		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.EVERSONG_WOODS } },
-		},
-			["Vibrant Petalwing"] = {
+	},
+	
+	["Vibrant Petalwing"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.NPC,
@@ -96,8 +103,9 @@ local MidnightMounts = {
 		npcs = { 248741,249849,249962,250086,250226,250246,250321,250358,249844,249902,249997,250180,250231,250317,250347,246735 },
 		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.HARANDAR } },
-		},
-			["Rootstalker Grimlynx"] = {
+	},
+	
+	["Rootstalker Grimlynx"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.NPC,
@@ -107,8 +115,8 @@ local MidnightMounts = {
 		npcs = { 248741,249849,249962,250086,250226,250246,250321,250358,249844,249902,249997,250180,250231,250317,250347 },
 		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.HARANDAR } },
-		},
-	}
+	},
+}
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, MidnightMounts)
 return MidnightMounts
