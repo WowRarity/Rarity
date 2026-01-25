@@ -1,5 +1,4 @@
 local addonName, addonTable = ...
-
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
@@ -41,7 +40,7 @@ local MidnightMounts = {
 		itemId = 260916,
 		chance = 2000,
 		requiresPool = false,
-		coords = {	{ m = CONSTANTS.UIMAPIDS.VOIDSTORM },
+		coords = {	{ m = CONSTANTS.UIMAPIDS.VOIDSTORM } },
 				},
 		["Amani Sharptalon"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
