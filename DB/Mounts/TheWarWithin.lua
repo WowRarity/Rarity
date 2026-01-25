@@ -339,8 +339,6 @@ local twwMounts = {
 		coords = { { m = CONSTANTS.UIMAPIDS.MANAFORGE_OMEGA, i = true } },
 		wasGuaranteed = true,
 	},
-	
 }
-
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, twwMounts)
 return twwMounts
