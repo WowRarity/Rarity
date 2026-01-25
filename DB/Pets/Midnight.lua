@@ -32,7 +32,7 @@ local MidnightPets = {
 		npcs = { 255348 },
 		spellId = 1276430,
 		coords = { { m = CONSTANTS.UIMAPIDS.EVERSONG_WOODS } },
-	}
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, MidnightPets)
