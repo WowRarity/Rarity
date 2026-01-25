@@ -156,7 +156,7 @@ C.UIMAPIDS = {
 	ZULAMAN = 2437,
 	VOIDSTORM = 2405,
 	HARANADAR = 2576,
-	MASTERS_PERCH = 15958, --PVP area need to check --
+	MASTERS_PERCH = 15958, --PVP area need to check--
 }
 
 -- Types of items
