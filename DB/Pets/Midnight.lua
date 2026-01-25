@@ -21,7 +21,7 @@ local MidnightPets = {
 		spellId = 1272755,
 		coords = { { m = CONSTANTS.UIMAPIDS.MASTERS_PERCH } },
 	},
-		["Princess Bloodshed"] = {
+	["Princess Bloodshed"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.PET,
 		method = CONSTANTS.DETECTION_METHODS.NPC,
