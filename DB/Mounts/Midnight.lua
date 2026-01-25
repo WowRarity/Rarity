@@ -41,7 +41,7 @@ local MidnightMounts = {
 		chance = 2000,
 		requiresPool = false,
 		coords = {	{ m = CONSTANTS.UIMAPIDS.VOIDSTORM } },
-	},	
+	},
 	["Amani Sharptalon"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
