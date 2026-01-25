@@ -154,7 +154,7 @@ C.UIMAPIDS = {
 	--Midnight Zones--
 	EVERSONG_WOODS = 2395,
 	ZULAMAN = 2437,
-	VOIDSTORM = 2405,  
+	VOIDSTORM = 2405,
 	HARANADAR = 2576,
 	MASTERS_PERCH = 15958, --PVP area need to check --
 }
