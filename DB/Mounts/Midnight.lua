@@ -19,7 +19,6 @@ local MidnightMounts = {
 		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.VOIDSTORM } },
 	},
-	
 	["Augmented Stormray"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
@@ -31,7 +30,6 @@ local MidnightMounts = {
 		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.VOIDSTORM } },
 	},
-	
 	["Lost Nether Drake"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
@@ -44,7 +42,6 @@ local MidnightMounts = {
 		requiresPool = false,
 		coords = {	{ m = CONSTANTS.UIMAPIDS.VOIDSTORM } },
 	},	
-	
 	["Amani Sharptalon"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
@@ -56,7 +53,6 @@ local MidnightMounts = {
 		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.ZULAMAN } },
 	},
-	
 	["Escaped Witherbark Pango"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
@@ -68,7 +64,6 @@ local MidnightMounts = {
 		chance = 5,
 		coords = { { m = CONSTANTS.UIMAPIDS.ZULAMAN } },
 	},
-	
 	["Cerulean Hawkstrider"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
@@ -80,7 +75,6 @@ local MidnightMounts = {
 		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.EVERSONG_WOODS } },
 	},
-	
 	["Cobalt Dragonhawk"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
@@ -92,7 +86,6 @@ local MidnightMounts = {
 		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.EVERSONG_WOODS } },
 	},
-	
 	["Vibrant Petalwing"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
@@ -104,7 +97,6 @@ local MidnightMounts = {
 		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.HARANDAR } },
 	},
-	
 	["Rootstalker Grimlynx"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
@@ -117,6 +109,5 @@ local MidnightMounts = {
 		coords = { { m = CONSTANTS.UIMAPIDS.HARANDAR } },
 	},
 }
-
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, MidnightMounts)
 return MidnightMounts
