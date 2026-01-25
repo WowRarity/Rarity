@@ -278,7 +278,7 @@ local twwMounts = {
 		chance = 33,
 		coords = { { m = CONSTANTS.UIMAPIDS.KARESH } },
 	},
-	--Mythic Raid Mounts --
+	--Mythic Raid Mounts--
 	["Reins of the Ascendant Skyrazor"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
