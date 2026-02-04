@@ -350,6 +350,8 @@ C.AURAS = {
 -- Tooltip Filters (Note: Currently, this system is merely a stub. but more (and custom) filters may be added in the future)
 -- These are used to decide whether the tooltip should be extended to display information about an CONSTANTS.ITEM_TYPES.ITEM for the NPCs listed in its tooltipNpcs table. Useful if we want to draw attention to an CONSTANTS.ITEM_TYPES.ITEM, but not every player can obtain it
 local GetInstanceInfo = GetInstanceInfo
+-- 12.0.0 compatibility: IsSpellKnown moved to C_Spell.IsSpellKnown
+local IsSpellKnown = C_Spell and C_Spell.IsSpellKnown or IsSpellKnown
 C.TOOLTIP_FILTERS = {
 	IS_SPELL_KNOWN = IsSpellKnown,
 	IS_PLAYER_IN_LFR = function()

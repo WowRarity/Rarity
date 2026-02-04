@@ -22,7 +22,7 @@ local format = _G.format
 
 -- WOW APIs
 local GetCurrencyInfo = _G.C_CurrencyInfo.GetCurrencyInfo
-local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
+local CombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo or (C_CombatLog and C_CombatLog.GetCurrentEventInfo)
 local UnitGUID = UnitGUID
 local LoadAddOn = _G.C_AddOns.LoadAddOn
 local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
@@ -49,7 +49,12 @@ local GetArchaeologyRaceInfo = _G.GetArchaeologyRaceInfo
 local GetStatistic = _G.GetStatistic
 local GetLootSourceInfo = _G.GetLootSourceInfo
 local C_Timer = _G.C_Timer
-local IsSpellKnown = _G.IsSpellKnown
+local IsSpellKnown = IsSpellKnown or function(spellID, isPet)
+	if C_SpellBook and C_SpellBook.IsSpellInSpellBook then
+		return C_SpellBook.IsSpellInSpellBook(spellID, isPet and Enum.SpellBookSpellBank.Pet or Enum.SpellBookSpellBank.Player)
+	end
+	return false
+end
 local GetCurrentRenownLevel = C_MajorFactions and C_MajorFactions.GetCurrentRenownLevel
 
 -- Addon APIs
@@ -64,7 +69,12 @@ function EventHandlers:Register()
 	self:RegisterEvent("LOOT_READY", "OnLootReady")
 	self:RegisterEvent("CURRENCY_DISPLAY_UPDATE", "OnCurrencyUpdate")
 	self:RegisterEvent("RESEARCH_ARTIFACT_COMPLETE", "OnResearchArtifactComplete")
-	self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED", "OnCombat") -- Used to detect boss kills that we didn't solo
+	-- Version-gate combat log event registration for 12.0.0 compatibility
+	-- On 12.0.0+, boss tracking relies on ENCOUNTER_END which is already registered above
+	local _, _, _, interfaceVersion = GetBuildInfo()
+	if interfaceVersion < 120000 then
+		self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED", "OnCombat") -- Used to detect boss kills that we didn't solo
+	end
 	self:RegisterEvent("CURSOR_CHANGED", "OnCursorChanged") -- Fishing detection
 	self:RegisterEvent("UNIT_SPELLCAST_SENT", "OnSpellcastSent") -- Fishing detection
 	self:RegisterEvent("UNIT_SPELLCAST_STOP", "OnSpellcastStopped") -- Fishing detection
@@ -697,6 +707,11 @@ function R:OnMouseOver(event)
 	self.Profiling:StartTimer("EventHandlers.OnMouseOver")
 
 	local guid = UnitGUID("mouseover")
+	-- Guard against secret values returned during combat (WoW 12.0.0+)
+	if not guid or (issecretvalue and issecretvalue(guid)) then
+		self.Profiling:EndTimer("EventHandlers.OnMouseOver")
+		return
+	end
 	local npcid = self:GetNPCIDFromGUID(guid)
 
 	Rarity:Debug("OnMouseOver")
@@ -917,7 +932,12 @@ function R:OnCursorChanged(event)
 		return
 	end
 	self.Profiling:StartTimer("EventHandlers.OnCursorChanged")
-	local t = stripColorCode(tooltipLeftText1:GetText())
+	local rawText = tooltipLeftText1:GetText()
+	if issecretvalue and issecretvalue(rawText) then
+		self.Profiling:EndTimer("EventHandlers.OnCursorChanged")
+		return
+	end
+	local t = stripColorCode(rawText)
 	if self.miningnodes[t] or self.fishnodes[t] or self.opennodes[t] then
 		Rarity.lastNode = t
 		Rarity:Debug("OnCursorChanged found lastNode = " .. tostring(t))
@@ -1679,7 +1699,8 @@ function R:OnLootReady(event, ...)
 			and select(8, GetInstanceInfo()) == 1626
 		then -- Player is in Withered Army scenario and looted the reward chest
 			local bigChest = false
-			for _, slot in pairs(GetLootInfo()) do
+			local lootInfo = GetLootInfo and GetLootInfo() or {}
+			for _, slot in pairs(lootInfo) do
 				if slot.item == L["Ancient Mana"] and slot.quantity == 100 then
 					bigChest = true
 				end
@@ -2012,6 +2033,9 @@ function R:OnLootReady(event, ...)
 		if not name or not guid then
 			return
 		end -- No target when looting
+		if issecretvalue and (issecretvalue(guid) or issecretvalue(name)) then
+			return
+		end
 		if not UnitCanAttack("player", "target") then
 			return
 		end -- You targeted something you can't attack
@@ -2026,9 +2050,9 @@ function R:OnLootReady(event, ...)
 		end
 
 		-- Disallow "minus" NPCs; nothing good drops from them
-		if UnitClassification(guid) == "minus" then
+		if UnitClassification("target") == "minus" then
 			return
-		end -- (This doesn't actually work currently; UnitClassification needs a unit, not a GUID)
+		end
 
 		local numChecked = 0
 		self:Debug(numItems .. " slot(s) to loot")
@@ -2042,7 +2066,8 @@ function R:OnLootReady(event, ...)
 			local guidIndex
 			for k, v in pairs(guidlist) do -- Loop through all NPC Rarity.guids being looted (will be 1 for single-target looting pre-5.0)
 				guid = v
-				if guid and type(guid) == "string" then
+				-- Guard against secret values before type() or string concatenation
+				if guid and not (issecretvalue and issecretvalue(guid)) and type(guid) == "string" then
 					self:Debug("Checking NPC guid (" .. (numChecked + 1) .. "): " .. guid)
 					self:CheckNpcInterest(
 						guid,

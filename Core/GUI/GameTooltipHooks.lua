@@ -53,6 +53,14 @@ local function onTooltipSetUnit(tooltip, data)
 	if not unit then
 		return
 	end
+	-- Guard against secret values returned during combat (WoW 12.0.0+)
+	-- Also guard against non-string unit tokens which can cause API errors
+	if type(issecretvalue) == "function" and issecretvalue(unit) then
+		return
+	end
+	if type(unit) ~= "string" then
+		return
+	end
 	local creatureType = UnitCreatureType(unit)
 	-- Rarity:Debug("Creature type: "..(creatureType or "nil").." (translation: "..(lbct[creatureType] or "nil")..")")
 	if
@@ -68,6 +76,10 @@ local function onTooltipSetUnit(tooltip, data)
 
 	local guid = UnitGUID(unit)
 	if not unit or not guid then
+		return
+	end
+	-- Guard against secret values returned during combat (WoW 12.0.0+)
+	if type(issecretvalue) == "function" and issecretvalue(guid) then
 		return
 	end
 	local npcid = R:GetNPCIDFromGUID(guid)

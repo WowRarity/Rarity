@@ -1157,7 +1157,11 @@ local function addGroup(group, requiresGroup)
 											if type(CombatText_AddMessage) == "nil" then
 												UIParentLoadAddOn("Blizzard_CombatText")
 											end
-											CombatText_AddMessage(text, CombatText_StandardScroll, 1, 1, 1, true, false)
+											if CombatText_AddMessage then
+												CombatText_AddMessage(text, CombatText_StandardScroll, 1, 1, 1, true, false)
+											elseif UIErrorsFrame then
+												UIErrorsFrame:AddMessage(text, 1, 1, 1, 1.0)
+											end
 										else
 											UIErrorsFrame:AddMessage(text, 1, 1, 1, 1.0)
 										end

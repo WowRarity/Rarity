@@ -105,8 +105,13 @@ local GetLootSourceInfo = _G.GetLootSourceInfo
 local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
 local GetMapInfo = _G.C_Map.GetMapInfo
 local C_Timer = _G.C_Timer
-local IsSpellKnown = _G.IsSpellKnown
-local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
+local IsSpellKnown = IsSpellKnown or function(spellID, isPet)
+	if C_SpellBook and C_SpellBook.IsSpellInSpellBook then
+		return C_SpellBook.IsSpellInSpellBook(spellID, isPet and Enum.SpellBookSpellBank.Pet or Enum.SpellBookSpellBank.Player)
+	end
+	return false
+end
+local CombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo or (C_CombatLog and C_CombatLog.GetCurrentEventInfo)
 local IsQuestFlaggedCompleted = _G.C_QuestLog.IsQuestFlaggedCompleted
 local C_Covenants = _G.C_Covenants
 local EnableAddOn = C_AddOns.EnableAddOn
@@ -114,9 +119,15 @@ local IsAddOnLoadable = C_AddOns.IsAddOnLoadable
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 local LoadAddOn = _G.C_AddOns.LoadAddOn
 
-local COMBATLOG_OBJECT_AFFILIATION_MINE = _G.COMBATLOG_OBJECT_AFFILIATION_MINE
-local COMBATLOG_OBJECT_AFFILIATION_PARTY = _G.COMBATLOG_OBJECT_AFFILIATION_PARTY
-local COMBATLOG_OBJECT_AFFILIATION_RAID = _G.COMBATLOG_OBJECT_AFFILIATION_RAID
+local COMBATLOG_OBJECT_AFFILIATION_MINE = COMBATLOG_OBJECT_AFFILIATION_MINE
+	or (Enum.CombatLogObject and Enum.CombatLogObject.Affiliation_Mine)
+	or 0x00000001
+local COMBATLOG_OBJECT_AFFILIATION_PARTY = COMBATLOG_OBJECT_AFFILIATION_PARTY
+	or (Enum.CombatLogObject and Enum.CombatLogObject.Affiliation_Party)
+	or 0x00000002
+local COMBATLOG_OBJECT_AFFILIATION_RAID = COMBATLOG_OBJECT_AFFILIATION_RAID
+	or (Enum.CombatLogObject and Enum.CombatLogObject.Affiliation_Raid)
+	or 0x00000004
 
 -- Addon APIs
 local DebugCache = Rarity.Utils.DebugCache
@@ -688,14 +699,18 @@ function R:UpdateInterestingThings()
 end
 
 function R:GetNPCIDFromGUID(guid)
-	if guid then
-		local unit_type, _, _, _, _, mob_id = strsplit("-", guid)
-		if unit_type == "Pet" or unit_type == "Player" then
-			return 0
-		end
-		return (guid and mob_id and tonumber(mob_id)) or 0
+	-- Check nil/falsy FIRST, then secret value
+	if not guid then
+		return 0
 	end
-	return 0
+	if issecretvalue and issecretvalue(guid) then
+		return 0
+	end
+	local unit_type, _, _, _, _, mob_id = strsplit("-", guid)
+	if unit_type == "Pet" or unit_type == "Player" then
+		return 0
+	end
+	return (mob_id and tonumber(mob_id)) or 0
 end
 
 function R:IsAttemptAllowed(item)
@@ -790,7 +805,11 @@ function R:IsAttemptAllowed(item)
 end
 
 function R:CheckNpcInterest(guid, zone, subzone, zone_t, subzone_t, curSpell, requiresPickpocket)
-	if guid == nil then
+	-- Check nil/falsy FIRST, then secret value, then type
+	if not guid then
+		return
+	end
+	if issecretvalue and issecretvalue(guid) then
 		return
 	end
 	if type(guid) ~= "string" then
