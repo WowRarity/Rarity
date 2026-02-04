@@ -960,6 +960,11 @@ function R:GetWorldTarget()
 	self.Profiling:StartTimer("EventHandlers.GetWorldTarget")
 
 	local t = tooltipLeftText1:GetText()
+	-- Secret value guard: tooltip text can be secret in 12.0.0+, cannot use as table index
+	if issecretvalue and issecretvalue(t) then
+		self.Profiling:EndTimer("EventHandlers.GetWorldTarget")
+		return
+	end
 	Rarity:Debug("Getting world target " .. tostring(t))
 	if t and Rarity.previousSpell and t ~= Rarity.previousSpell and R.fishnodes[t] then
 		self:Debug("------YOU HAVE STARTED FISHING A NODE ------")
