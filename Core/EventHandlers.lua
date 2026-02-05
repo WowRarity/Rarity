@@ -1144,7 +1144,7 @@ function R:ProcessCollectionItemSingle(collectionItem, itemID)
 	local item = Rarity.items[itemID]
 
 	if
-		collectionItem.enabled
+		collectionItem.enabled ~= false
 		and (
 			collectionItem.collectedItemId == item.collectedItemId
 			or table_contains(item.collectedItemId, collectionItem.collectedItemId)
