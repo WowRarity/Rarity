@@ -21,9 +21,9 @@ local InCombatLockdown = InCombatLockdown
 local C_TransmogCollection = C_TransmogCollection
 local C_MountJournal = C_MountJournal
 local C_PetJournal = C_PetJournal
+local GetAchievementInfo = GetAchievementInfo
 local GetNumCompanions = GetNumCompanions
 local GetCompanionInfo = GetCompanionInfo
-local GetAchievementInfo = GetAchievementInfo
 local GetNumArchaeologyRaces = GetNumArchaeologyRaces or function()
 	return 0
 end
@@ -105,36 +105,9 @@ function Collections:ScanExistingItems(reason)
 
 	-- Scans need to index by spellId, creatureId, achievementId, raceId, itemId (for toys), statisticId (which is a table; for stats)
 
-	-- Mounts (pre-7.0)
-	if C_MountJournal.GetMountInfo ~= nil then
-		-- Mounts (7.0+)
-		for id = 1, C_MountJournal.GetNumMounts() do
-			local creatureName, spellId, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected =
-				C_MountJournal.GetMountInfo(id)
-			local creatureDisplayID, descriptionText, sourceText, isSelfMount, mountType =
-				C_MountJournal.GetMountInfoExtra(id)
-
-			Rarity.mount_sources[spellId] = sourceText
-
-			if isCollected then
-				for k, v in pairs(R.db.profile.groups) do
-					if type(v) == "table" then
-						for kk, vv in pairs(v) do
-							if type(vv) == "table" then
-								if vv.spellId and vv.spellId == spellId then
-									vv.known = true
-								end
-								if vv.spellId and vv.spellId == spellId and not vv.repeatable then
-									vv.enabled = false
-									vv.found = true
-								end
-							end
-						end
-					end
-				end
-			end
-		end
-	else
+	-- Mounts - use GetMountInfoByID if available (WoD+), otherwise fall back to GetMountInfo (pre-WoD)
+	if C_MountJournal and C_MountJournal.GetMountIDs and C_MountJournal.GetMountInfoByID then
+		-- Modern API (WoD+ / 6.0+) - uses mount IDs
 		for i, id in pairs(C_MountJournal.GetMountIDs()) do
 			local _, spellId, _, _, _, _, _, _, _, _, isCollected = C_MountJournal.GetMountInfoByID(id)
 			local _, _, sourceText = C_MountJournal.GetMountInfoExtraByID(id)
@@ -159,18 +132,31 @@ function Collections:ScanExistingItems(reason)
 				end
 			end
 		end
-	end
+	elseif C_MountJournal and C_MountJournal.GetNumMounts and C_MountJournal.GetMountInfo then
+		-- Legacy API (pre-WoD) - uses index iteration
+		for id = 1, C_MountJournal.GetNumMounts() do
+			local creatureName, spellId, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected =
+				C_MountJournal.GetMountInfo(id)
+			local creatureDisplayID, descriptionText, sourceText, isSelfMount, mountType =
+				C_MountJournal.GetMountInfoExtra(id)
 
-	-- Companions that this character learned
-	for id = 1, GetNumCompanions("CRITTER") or 0 do
-		local spellId = select(3, GetCompanionInfo("CRITTER", id))
-		for k, v in pairs(R.db.profile.groups) do
-			if type(v) == "table" then
-				for kk, vv in pairs(v) do
-					if type(vv) == "table" then
-						if vv.spellId and vv.spellId == spellId and not vv.repeatable then
-							vv.enabled = false
-							vv.found = true
+			if spellId then
+				Rarity.mount_sources[spellId] = sourceText
+
+				if isCollected then
+					for k, v in pairs(R.db.profile.groups) do
+						if type(v) == "table" then
+							for kk, vv in pairs(v) do
+								if type(vv) == "table" then
+									if vv.spellId and vv.spellId == spellId then
+										vv.known = true
+									end
+									if vv.spellId and vv.spellId == spellId and not vv.repeatable then
+										vv.enabled = false
+										vv.found = true
+									end
+								end
+							end
 						end
 					end
 				end
@@ -178,18 +164,51 @@ function Collections:ScanExistingItems(reason)
 		end
 	end
 
-	-- Battle pets across your account
-	if C_PetJournal.SetFlagFilter ~= nil then -- Pre-7.0
-		C_PetJournal.SetFlagFilter(_G.LE_PET_JOURNAL_FLAG_COLLECTED, true)
-		C_PetJournal.SetFlagFilter(_G.LE_PET_JOURNAL_FLAG_FAVORITES, false)
-		C_PetJournal.SetFlagFilter(_G.LE_PET_JOURNAL_FLAG_NOT_COLLECTED, true)
-		C_PetJournal.AddAllPetTypesFilter()
-		C_PetJournal.AddAllPetSourcesFilter()
-	else -- 7.0+
-		C_PetJournal.SetFilterChecked(_G.LE_PET_JOURNAL_FILTER_COLLECTED, true)
-		C_PetJournal.SetFilterChecked(_G.LE_PET_JOURNAL_FILTER_NOT_COLLECTED, true)
-		C_PetJournal.SetAllPetTypesChecked(true)
-		C_PetJournal.SetAllPetSourcesChecked(true)
+	-- Companions (pre-MoP API for Classic Era)
+	if GetNumCompanions and GetCompanionInfo then
+		for id = 1, GetNumCompanions("CRITTER") or 0 do
+			local spellId = select(3, GetCompanionInfo("CRITTER", id))
+			if spellId then
+				for k, v in pairs(R.db.profile.groups) do
+					if type(v) == "table" then
+						for kk, vv in pairs(v) do
+							if type(vv) == "table" then
+								if vv.spellId and vv.spellId == spellId and not vv.repeatable then
+									vv.enabled = false
+									vv.found = true
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+
+	-- Battle pets across your account - use SetFilterChecked (7.0+) or SetFlagFilter (pre-7.0)
+	if C_PetJournal then
+		if C_PetJournal.SetFilterChecked then
+			-- Modern API (Legion 7.0+)
+			C_PetJournal.SetFilterChecked(_G.LE_PET_JOURNAL_FILTER_COLLECTED, true)
+			C_PetJournal.SetFilterChecked(_G.LE_PET_JOURNAL_FILTER_NOT_COLLECTED, true)
+			if C_PetJournal.SetAllPetTypesChecked then
+				C_PetJournal.SetAllPetTypesChecked(true)
+			end
+			if C_PetJournal.SetAllPetSourcesChecked then
+				C_PetJournal.SetAllPetSourcesChecked(true)
+			end
+		elseif C_PetJournal.SetFlagFilter then
+			-- Legacy API (pre-Legion)
+			C_PetJournal.SetFlagFilter(_G.LE_PET_JOURNAL_FLAG_COLLECTED, true)
+			C_PetJournal.SetFlagFilter(_G.LE_PET_JOURNAL_FLAG_FAVORITES, false)
+			C_PetJournal.SetFlagFilter(_G.LE_PET_JOURNAL_FLAG_NOT_COLLECTED, true)
+			if C_PetJournal.AddAllPetTypesFilter then
+				C_PetJournal.AddAllPetTypesFilter()
+			end
+			if C_PetJournal.AddAllPetSourcesFilter then
+				C_PetJournal.AddAllPetSourcesFilter()
+			end
+		end
 	end
 	local total, numOwnedPets = C_PetJournal.GetNumPets()
 	for i = 1, total do
@@ -377,9 +396,13 @@ function R:ScanArchProjects(reason)
 	if GetNumArchaeologyRaces() == 0 then
 		return
 	end
+	-- Guard against GetActiveArtifactByRace being nil (removed in some API versions)
+	if not GetActiveArtifactByRace then
+		return
+	end
 	for race_id = 1, GetNumArchaeologyRaces() do
 		local name = GetActiveArtifactByRace(race_id)
-		if Rarity.architems[name] then
+		if name and Rarity.architems[name] then
 			-- We started a project we were looking for!
 			local id = Rarity.architems[name].itemId
 			if id then

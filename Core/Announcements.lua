@@ -11,12 +11,16 @@ local Output = Rarity.Output
 -- Upvalues
 local CONSTANTS = addonTable.constants
 
---- WoW API
-local GetItemInfo = _G.C_Item.GetItemInfo
+-- Rarity addon object (for cached API wrappers)
+local R = Rarity
+
+-- Default icon fallback (same as addon icon in TOC)
+local DEFAULT_ICON = [[Interface\Icons\spell_nature_forceofnature]]
 
 function Announcements:AnnounceAttemptForItem(item)
+	-- Use Rarity's cached GetItemInfo wrapper instead of raw C_Item.GetItemInfo
 	local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
-		GetItemInfo(item.itemId)
+		R:GetItemInfo(item.itemId)
 	if itemName or item.name then
 		local displayedText
 		local attempts = item.attempts or 1
@@ -58,7 +62,8 @@ function Announcements:AnnounceAttemptForItem(item)
 		if item.method == CONSTANTS.DETECTION_METHODS.COLLECTION then
 			displayedText = format(L["%s: %d collected - %.2f%%"], itemName or item.name, attempts, chance)
 		end
-		Output:DisplayText(displayedText, itemTexture)
+		-- Use default icon if texture is still nil (item not cached yet)
+		Output:DisplayText(displayedText, itemTexture or DEFAULT_ICON)
 	end
 end
 
