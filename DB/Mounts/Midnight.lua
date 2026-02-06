@@ -122,7 +122,7 @@ local MidnightMounts = {
 		equalOdds = true,
 		chance = 20,
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
-		coords = { { m = CONSTANTS.UIMAPIDS.MAGISTERS_TERRACE, i = true } },
+		coords = { { m = CONSTANTS.UIMAPIDS.MAGISTERS_TERRACE_MIDNIGHT, i = true } },
 	},
 },
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, MidnightMounts)
