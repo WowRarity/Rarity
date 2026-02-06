@@ -157,7 +157,7 @@ C.UIMAPIDS = {
 	VOIDSTORM = 2405,
 	HARANDAR = 2576,
 	MASTERS_PERCH = 15958, --PVP area need to check--
-	MAGISTERS_TERRACE_MIDNIGHT = --need to get this -- 
+	MAGISTERS_TERRACE_MIDNIGHT = 15829 --need to check this -- 
 }
 
 -- Types of items
