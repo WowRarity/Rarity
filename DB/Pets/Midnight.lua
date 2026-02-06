@@ -50,6 +50,5 @@ local MidnightPets = {
 			"2576", -- HARANDAR
 	},
 }
-
-Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, MidnightPets)
+Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, MidnightPets
 return MidnightPets
