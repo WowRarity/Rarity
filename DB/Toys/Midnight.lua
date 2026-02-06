@@ -21,6 +21,21 @@ local MidnightToysAndItems = {
 		sourceText = L["Dropped by any mob in Harandar (except minor mobs). 500 of these can be combined to pierce Alunira's shield, allowing combat and a guaranteed drop of Echo of Aln'sharan."],
 		coords = { { m = CONSTANTS.UIMAPIDS.HARANDAR } },
 		repeatable = true,
+	},
+		["Nether-Warped Egg"] = { --need to doublke check that this is the mount drop--
+		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.FISHING,
+		name = L["Nether-Warped Egg"],
+		itemId = 268730,
+		chance = 2500, 
+		sourceText = L["Chance to drop from a chest which can be fished up in any Midnight Zone."],
+		zones = {
+			"2395", -- Eversong woods
+			"2437", -- Zulaman
+			"2405", -- Voidstorm 
+			"2576", -- HARANDAR
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, MidnightToysAndItems)
