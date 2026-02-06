@@ -15,6 +15,7 @@ local expansionNamesByLevel = {
 	[LE_EXPANSION_SHADOWLANDS] = "LE_EXPANSION_SHADOWLANDS",
 	[LE_EXPANSION_DRAGONFLIGHT] = "LE_EXPANSION_DRAGONFLIGHT",
 	[LE_EXPANSION_WAR_WITHIN] = "LE_EXPANSION_WAR_WITHIN",
+	[LE_EXPANSION_MIDNIGHT] = "LE_EXPANSION_MIDNIGHT",
 }
 
 -- These could probably be obtained from the DBC files, but it's not worth the effort
