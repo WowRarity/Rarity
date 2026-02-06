@@ -108,6 +108,22 @@ local MidnightMounts = {
 		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.HARANDAR } },
 	},
-}
+		["Lucent Hawkstrider"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Lucent Hawkstrider"],
+		itemId = 260231,
+		spellId = 1265784,
+		tooltipNpcs = { 231865 },
+		npcs = { 99999 },
+		statisticId = { 61217 },
+		groupSize = 5,
+		equalOdds = true,
+		chance = 20,
+		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
+		coords = { { m = CONSTANTS.UIMAPIDS.MAGISTERS TERRACE, i = true } },
+	},
+},
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, MidnightMounts)
 return MidnightMounts
