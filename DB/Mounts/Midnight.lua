@@ -108,7 +108,7 @@ local MidnightMounts = {
 		chance = 25,
 		coords = { { m = CONSTANTS.UIMAPIDS.HARANDAR } },
 	},
-		["Lucent Hawkstrider"] = {
+	["Lucent Hawkstrider"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.NPC,
