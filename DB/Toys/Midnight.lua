@@ -18,7 +18,7 @@ local MidnightToysAndItems = {
 		spellId = 1259475, -- Irrelevant
 		zones = { tostring(CONSTANTS.UIMAPIDS.HARANDAR) },
 		chance = 1000,
-		sourceText = L["Dropped by any mob in Harandar (except minor mobs). 500 of these can be combined to pierce Alunira's shield, allowing combat and a guaranteed drop of Echo of Aln'sharan."],
+		sourceText = L["Dropped by any mob in Harandar (except minor mobs). 500 of these can be combined for a guaranteed drop of Echo of Aln'sharan."],
 		coords = { { m = CONSTANTS.UIMAPIDS.HARANDAR } },
 		repeatable = true,
 	},
