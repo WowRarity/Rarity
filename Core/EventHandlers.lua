@@ -1020,12 +1020,17 @@ function R:ProcessContainerItems()
 											for kkk, vvv in pairs(vv.items) do
 												if vvv == k then
 													local i = vv
-													if i.attempts == nil then
-														i.attempts = 1
-													else
-														i.attempts = i.attempts + 1
-													end
-													self:OutputAttempts(i)
+													local playerClass = select(2, UnitClass("player"))
+                                                    if i.disableForClass and i.disableForClass[playerClass] then
+                                                        Rarity:Debug(format("Attempts for item %s are disallowed (disabled for class %s)", i.name, playerClass))
+                                                    else
+                                                        if i.attempts == nil then
+                                                            i.attempts = 1
+                                                        else
+                                                            i.attempts = i.attempts + 1
+                                                        end
+                                                        self:OutputAttempts(i)
+                                                    end
 												end
 											end
 										end
