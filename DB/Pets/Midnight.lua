@@ -33,7 +33,7 @@ local MidnightPets = {
 		spellId = 1276430,
 		coords = { { m = CONSTANTS.UIMAPIDS.EVERSONG_WOODS } },
 	},
-		["Bubbly Snapling"] = { 
+		["Bubbly Snapling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.PET,
 		method = CONSTANTS.DETECTION_METHODS.FISHING,
@@ -41,12 +41,12 @@ local MidnightPets = {
 		itemId = 260942,
 		npcs = { 256201 },
 		spellId = 1267090,
-		chance = 500, 
+		chance = 500,
 		sourceText = L["Chance to drop from a chest which can be fished up in any Midnight Zone."],
 		zones = {
 			"2395", -- Eversong woods
 			"2437", -- Zulaman
-			"2405", -- Voidstorm 
+			"2405", -- Voidstorm
 			"2576", -- HARANDAR
 		},
 	},
