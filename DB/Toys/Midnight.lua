@@ -28,12 +28,12 @@ local MidnightToysAndItems = {
 		method = CONSTANTS.DETECTION_METHODS.FISHING,
 		name = L["Nether-Warped Egg"],
 		itemId = 268730,
-		chance = 2500, 
+		chance = 2500,
 		sourceText = L["Chance to drop from a chest which can be fished up in any Midnight Zone."],
 		zones = {
 			"2395", -- Eversong woods
 			"2437", -- Zulaman
-			"2405", -- Voidstorm 
+			"2405", -- Voidstorm
 			"2576", -- HARANDAR
 		},
 	},
