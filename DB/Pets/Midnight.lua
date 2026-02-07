@@ -35,7 +35,7 @@ local MidnightPets = {
 	},
 		["Bubbly Snapling"] = { 
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
-		type = CONSTANTS.ITEM_TYPES.ITEM,
+		type = CONSTANTS.ITEM_TYPES.PET,
 		method = CONSTANTS.DETECTION_METHODS.FISHING,
 		name = L["Bubbly Snapling"],
 		itemId = 260942,
@@ -48,7 +48,8 @@ local MidnightPets = {
 			"2437", -- Zulaman
 			"2405", -- Voidstorm 
 			"2576", -- HARANDAR
+		},
 	},
 }
-Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, MidnightPets
+Rarity.ItemDB.MergeItems(Rarity.ItemDB.pets, MidnightPets)
 return MidnightPets
