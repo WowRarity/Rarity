@@ -9,7 +9,7 @@ end
 
 local MidnightToysAndItems = {
 	-- 12.0 items and toys
-		["Mysterious Skyshards"] = { --this may not track with the addon changes in 12.0--
+	["Mysterious Skyshards"] = { --this may not track with the addon changes in 12.0--
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
 		method = CONSTANTS.DETECTION_METHODS.ZONE,
@@ -22,7 +22,7 @@ local MidnightToysAndItems = {
 		coords = { { m = CONSTANTS.UIMAPIDS.HARANDAR } },
 		repeatable = true,
 	},
-		["Nether-Warped Egg"] = { --need to doublke check that this is the mount drop--
+	["Nether-Warped Egg"] = { --need to doublke check that this is the mount drop--
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
 		method = CONSTANTS.DETECTION_METHODS.FISHING,
@@ -35,6 +35,7 @@ local MidnightToysAndItems = {
 			"2437", -- Zulaman
 			"2405", -- Voidstorm 
 			"2576", -- HARANDAR
+		},
 	},
 }
 
