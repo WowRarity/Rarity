@@ -1,6 +1,6 @@
 ## Author: Allara
-## Interface: 110207, 50503, 11508
-## X-Min-Interface: 110207, 50503, 11508
+## Interface: 120000, 50503, 11508
+## X-Min-Interface: 120000, 50503, 11508
 ## Title: Rarity
 ## Version: 1.0 (@project-version@)
 ## X-Curse-Project-ID: 30801
@@ -16,6 +16,8 @@
 ## Notes-zhTW: @localization(locale="zhTW", key="Notes", namespace="ToC - Table of Contents")@
 ## Notes-itIT: @localization(locale="itIT", key="Notes", namespace="ToC - Table of Contents")@
 ## Notes-frFR: @localization(locale="frFR", key="Notes", namespace="ToC - Table of Contents")@
+
+## LoadSavedVariablesFirst: 1
 
 ## AddonCompartmentFunc: Rarity_OnAddonCompartmentClick
 ## AddonCompartmentFuncOnEnter: Rarity_OnAddonCompartmentEnter
