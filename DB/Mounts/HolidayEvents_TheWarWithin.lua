@@ -105,6 +105,24 @@ local holidayEventMountsTWW = {
 		holidayEvents = CONSTANTS.HolidayEvents["Hallow's End"],
 		coords = { { m = 435, i = true } },
 	},
+	["Spring Butterfly"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.HOLIDAY,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Spring Butterfly"],
+		spellId = 1218013,
+		itemId = 235658,
+		items = { 54537 },
+		chance = 666,
+		groupSize = 5,
+		equalOdds = true,
+		holidayEvents = CONSTANTS.HolidayEvents["Love is in the Air"],
+		sourceText = L["Can be contained in Heart-Shaped Box, rewarded for defeating the World Event Dungeon during Love is in the Air."]
+			.. " "
+			.. L["Only available on the first attempt each day."],
+		lockDungeonId = 288,
+		coords = { { m = 310, x = 40.8, y = 52.6, i = true } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, holidayEventMountsTWW)

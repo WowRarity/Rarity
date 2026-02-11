@@ -110,6 +110,16 @@ local wodToys = {
 		chance = 8,
 		coords = { { m = CONSTANTS.UIMAPIDS.NAGRAND_DRAENOR } },
 	},
+	["Black Whirlwind"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		isToy = true,
+		name = L["Black Whirlwind"],
+		itemId = 119178,
+		npcs = { 85026 },
+		chance = 10,
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.toys, wodToys)
