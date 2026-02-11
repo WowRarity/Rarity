@@ -6,6 +6,7 @@ L["Unbound Star-Eater"] = true
 L["Keys to the Big G"] = true
 L["Reins of the Ascendant Skyrazor"] = true
 L["Black Whirlwind"] = true
+L["Spring Butterfly"] = true
 L["Only available on the first attempt each day."] = true
 L["The Headless Horseman's Ghoulish Charger"] = true
 L["Love Witch's Sweeper"] = true
