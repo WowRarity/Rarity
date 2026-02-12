@@ -155,7 +155,9 @@ do
 		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity", function()
 			return R:LazyLoadOptions("options")
 		end)
-		R.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity", "Rarity")
+		local optionsFrame, categoryID = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity", "Rarity")
+		R.optionsFrame = optionsFrame
+		R.optionsCategoryID = categoryID
 		R.profileOptions = LibStub("AceDBOptions-3.0"):GetOptionsTable(R.db)
 		LibStub("AceConfig-3.0"):RegisterOptionsTable("Rarity-Profiles", R.profileOptions)
 		R.profileFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Rarity-Profiles", "Profiles", "Rarity")
@@ -392,7 +394,7 @@ function Rarity:TryShowOptionsUI()
 
 	Rarity:LazyLoadOptions()
 	Rarity.Profiling:StartTimer("RarityOptions: OpenToCategory")
-	Settings.OpenToCategory("Rarity")
+	Settings.OpenToCategory(self.optionsCategoryID)
 	Rarity.Profiling:EndTimer("RarityOptions: OpenToCategory")
 end
 
