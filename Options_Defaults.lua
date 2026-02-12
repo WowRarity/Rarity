@@ -64,6 +64,7 @@ R.catIcons = {
 	[CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS] = "shadowlands",
 	[CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT] = "dragonflight",
 	[CONSTANTS.ITEM_CATEGORIES.TWW] = "tww",
+	[CONSTANTS.ITEM_CATEGORIES.MIDNIGHT] = "midnight",
 }
 
 function R:PrepareDefaults()
@@ -140,6 +141,7 @@ function R:PrepareDefaults()
 				[CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS] = true,
 				[CONSTANTS.ITEM_CATEGORIES.DRAGONFLIGHT] = true,
 				[CONSTANTS.ITEM_CATEGORIES.TWW] = true,
+				[CONSTANTS.ITEM_CATEGORIES.MIDNIGHT] = true,
 			},
 			collectionType = {
 				[CONSTANTS.ITEM_TYPES.MOUNT] = true,

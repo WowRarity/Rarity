@@ -35,6 +35,7 @@ local BFA = "BFA"
 local SHADOWLANDS = "SHADOWLANDS"
 local DRAGONFLIGHT = "DRAGONFLIGHT"
 local TWW = "TWW"
+local MIDNIGHT = "MIDNIGHT"
 local HOLIDAY = "HOLIDAY"
 
 -- Methods of obtaining
@@ -944,6 +945,21 @@ function R:PrepareOptions()
 								end,
 								hidden = function()
 									return LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_WAR_WITHIN
+								end,
+							},
+							midnight = {
+								type = "toggle",
+								order = newOrder(),
+								name = L["Midnight"],
+								get = function()
+									return self.db.profile.cats[MIDNIGHT]
+								end,
+								set = function(info, val)
+									self.db.profile.cats[MIDNIGHT] = val
+									Rarity.GUI:UpdateText()
+								end,
+								hidden = function()
+									return LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_MIDNIGHT
 								end,
 							},
 						}, -- args

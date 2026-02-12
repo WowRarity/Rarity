@@ -72,6 +72,7 @@ globals = {
 	"LE_EXPANSION_SHADOWLANDS",
 	"LE_EXPANSION_DRAGONFLIGHT",
 	"LE_EXPANSION_WAR_WITHIN",
+	"LE_EXPANSION_MIDNIGHT",
 
 	"AuraUtil",
 	"BackdropTemplateMixin",
