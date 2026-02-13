@@ -83,7 +83,7 @@ function EventHandlers:Register()
 	self:RegisterEvent("ISLAND_COMPLETED", "OnIslandCompleted")
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", "OnSpellcastSucceeded")
 	self:RegisterEvent("QUEST_TURNED_IN", "OnQuestTurnedIn")
-	
+
 	if LE_EXPANSION_LEVEL_CURRENT >= LE_EXPANSION_MISTS_OF_PANDARIA then
 		self:RegisterEvent("SHOW_LOOT_TOAST", "OnShowLootToast")
 	end
@@ -96,8 +96,6 @@ function EventHandlers:Register()
 
 	self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", "OnPlayerInteractionFrameShow")
 	self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_HIDE", "OnPlayerInteractionFrameHide")
-	
-	--]]
 end
 
 -- TODO: Move elsewhere/refactor
