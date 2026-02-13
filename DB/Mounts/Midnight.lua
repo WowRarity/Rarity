@@ -2,7 +2,7 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
-if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_MIDNIGHT then
+if not LE_EXPANSION_MIDNIGHT or LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_MIDNIGHT then
 	return {}
 end
 
