@@ -11,4 +11,24 @@ function MapInfo.GetMapNameByID(uiMapID)
 	return UiMapDetails and UiMapDetails.name
 end
 
+local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
+function MapInfo.GetLocalizedMapNamesForItem(item)
+	local zones = item.zones or {}
+	local mapNames = {}
+
+	for index, zoneID in ipairs(zones) do
+		local mapID = tonumber(zoneID)
+		if not mapID then -- Zone or subzone name (not an actual ID)
+			table.insert(mapNames, zoneID)
+		else
+			local mapName = MapInfo.GetMapNameByID(mapID) or L["Unknown"]
+			local prefix = mapName
+			local suffix = format(" (%s)", zoneID)
+			table.insert(mapNames, prefix .. suffix)
+		end
+	end
+
+	return mapNames
+end
+
 Rarity.MapInfo = MapInfo
