@@ -231,7 +231,7 @@ function Item:HasNPCMethod(entry)
 end
 
 function Item:HasBossMethod(entry)
-	return entry.method == CONSTANTS.DETECTION_METHODS.BOSS
+	return entry.method == CONSTANTS.DETECTION_METHODS.BOSS -- TODO
 end
 
 function Item:IsValidNPCItem(entry)
