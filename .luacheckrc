@@ -49,6 +49,9 @@ globals = {
 	"Rarity",
 	"RarityDB",
 
+	-- Builtins (Blizzard extensions)
+	"issecretvalue",
+
 	-- Shared constants (Blizzard interface)
 	"UIERRORS_HOLD_TIME",
 	"SHOW_COMBAT_TEXT",

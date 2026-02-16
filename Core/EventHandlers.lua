@@ -23,7 +23,6 @@ local format = _G.format
 -- WOW APIs
 local GetCurrencyInfo = _G.C_CurrencyInfo.GetCurrencyInfo
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
-local UnitGUID = UnitGUID
 local LoadAddOn = _G.C_AddOns.LoadAddOn
 local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
 local GetMapInfo = _G.C_Map.GetMapInfo
@@ -694,18 +693,17 @@ end
 -------------------------------------------------------------------------------------
 
 function R:OnMouseOver(event)
-	self.Profiling:StartTimer("EventHandlers.OnMouseOver")
-
-	local guid = UnitGUID("mouseover")
-	local npcid = self:GetNPCIDFromGUID(guid)
-
-	Rarity:Debug("OnMouseOver")
-	if not npcid then
-		self.Profiling:EndTimer("EventHandlers.OnMouseOver")
-
+	local guid = Rarity:GetUnitGUID("mouseover")
+	if not guid then
 		return
 	end
-	Rarity:Debug("UnitGUID: " .. tostring(npcid))
+
+	local npcid = self:GetNPCIDFromGUID(guid)
+	if not npcid then
+		return
+	end
+
+	self.Profiling:StartTimer("EventHandlers.OnMouseOver")
 
 	if npcid == 50409 or npcid == 50410 then
 		if not Rarity.guids[guid] then
@@ -721,6 +719,7 @@ function R:OnMouseOver(event)
 			end
 		end
 	end
+
 	self.Profiling:EndTimer("EventHandlers.OnMouseOver")
 end
 
@@ -913,14 +912,21 @@ function R:OnCursorChanged(event)
 	if Rarity.foundTarget then
 		return
 	end
+
 	if MinimapCluster:IsMouseOver() then
 		return
 	end
+
+	local tooltipText = tooltipLeftText1:GetText()
+	if issecretvalue and issecretvalue(tooltipText) then
+		return
+	end
+
 	self.Profiling:StartTimer("EventHandlers.OnCursorChanged")
-	local t = stripColorCode(tooltipLeftText1:GetText())
-	if self.miningnodes[t] or self.fishnodes[t] or self.opennodes[t] then
-		Rarity.lastNode = t
-		Rarity:Debug("OnCursorChanged found lastNode = " .. tostring(t))
+	local text = stripColorCode(tooltipText)
+	if self.miningnodes[text] or self.fishnodes[text] or self.opennodes[text] then
+		Rarity.lastNode = text
+		Rarity:Debug("OnCursorChanged found lastNode = " .. tostring(text))
 	end
 	if Rarity.relevantSpells[Rarity.previousSpell] then
 		self:GetWorldTarget()
@@ -933,15 +939,19 @@ function R:GetWorldTarget()
 	if Rarity.foundTarget or not Rarity.relevantSpells[Rarity.currentSpell] then
 		return
 	end
+
 	if MinimapCluster:IsMouseOver() then
 		return
 	end
 
-	self.Profiling:StartTimer("EventHandlers.GetWorldTarget")
+	local text = tooltipLeftText1:GetText()
+	if issecretvalue and issecretvalue(text) then
+		return
+	end
 
-	local t = tooltipLeftText1:GetText()
-	Rarity:Debug("Getting world target " .. tostring(t))
-	if t and Rarity.previousSpell and t ~= Rarity.previousSpell and R.fishnodes[t] then
+	self.Profiling:StartTimer("EventHandlers.GetWorldTarget")
+	Rarity:Debug("Getting world target " .. tostring(text))
+	if text and Rarity.previousSpell and text ~= Rarity.previousSpell and R.fishnodes[text] then
 		self:Debug("------YOU HAVE STARTED FISHING A NODE ------")
 		Rarity.isFishing = true
 		Rarity.isPool = true
@@ -1234,7 +1244,11 @@ end
 -------------------------------------------------------------------------------------
 function R:OnLootReady(event, ...)
 	do
-		self:Debug("LOOT_READY with target: " .. (UnitGUID("target") or "NO TARGET"))
+		local targetGUID = Rarity:GetUnitGUID("target")
+		if not targetGUID then
+			return
+		end
+		self:Debug("LOOT_READY with target: " .. targetGUID)
 
 		-- Two LOOT_READY events may trigger when the loot window opens, in which case this prevents double counting
 		if self.Session:IsLocked() then
@@ -2007,8 +2021,8 @@ function R:OnLootReady(event, ...)
 		local numItems = GetNumLootItems()
 
 		-- Legacy support for pre-5.0 single-target looting
-		local guid = UnitGUID("target")
-		local name = UnitName("target")
+		local guid = Rarity:GetUnitGUID("target")
+		local name = Rarity:GetUnitName("target")
 		if not name or not guid then
 			return
 		end -- No target when looting
@@ -2062,7 +2076,7 @@ function R:OnLootReady(event, ...)
 
 		-- If we failed to scan anything, scan the current target
 		if numChecked <= 0 then
-			self:CheckNpcInterest(UnitGUID("target"), zone, subzone, zone_t, subzone_t, Rarity.currentSpell)
+			self:CheckNpcInterest(Rarity:GetUnitGUID("target"), zone, subzone, zone_t, subzone_t, Rarity.currentSpell)
 		end
 
 		-- Scan the loot to see if we found something we're looking for

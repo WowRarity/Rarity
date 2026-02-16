@@ -16,8 +16,6 @@ local GetLFGRandomDungeonInfo = GetLFGRandomDungeonInfo
 local GetLFGDungeonInfo = GetLFGDungeonInfo
 local GetLFGDungeonRewards = GetLFGDungeonRewards
 local GetStatistic = GetStatistic
-local UnitName = UnitName
-local UnitGUID = UnitGUID
 local InCombatLockdown = InCombatLockdown
 local GetAchievementNumCriteria = GetAchievementNumCriteria
 
@@ -157,8 +155,8 @@ function R:BuildStatistics(reason)
 		if not Rarity.db.profile.accountWideStatistics then
 			Rarity.db.profile.accountWideStatistics = {}
 		end
-		local charName = UnitName("player")
-		local charGuid = UnitGUID("player")
+		local charName = Rarity:GetUnitName("player")
+		local charGuid = Rarity:GetUnitGUID("player")
 		if charName and charGuid then
 			if not Rarity.db.profile.accountWideStatistics[charGuid] then
 				Rarity.db.profile.accountWideStatistics[charGuid] = {}
