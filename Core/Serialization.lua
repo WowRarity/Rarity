@@ -83,7 +83,7 @@ function Serialization:CanItemBeExportedImported(item)
 		end
 	end
 
-	if item.method == CONSTANTS.DETECTION_METHODS.NPC or item.method == CONSTANTS.DETECTION_METHODS.BOSS then
+	if item.method == CONSTANTS.DETECTION_METHODS.NPC or item.method == CONSTANTS.DETECTION_METHODS.BOSS then -- TODO
 		if (not item.npcs or #item.npcs <= 0) and (not item.statisticId or #item.statisticId <= 0) then
 			return false
 		end

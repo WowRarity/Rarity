@@ -338,29 +338,29 @@ function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidS
 			.. tostring(endStatus)
 	)
 
-	local items = encounterLUT[encounterID]
+	local items = Rarity.encounters[encounterID] -- TODO add the others to the actual item DB
 	if type(items) ~= "table" then
 		-- Not a relevant encounter
 		return
 	end
-	for _, item in ipairs(items) do
-		if item and type(item) == "string" then -- This encounter has an entry in the LUT and needs special handling
-			R:Debug("Found item of interest for this encounter: " .. tostring(item))
-			local v = self.db.profile.groups.pets[item]
-				or self.db.profile.groups.items[item]
-				or self.db.profile.groups.mounts[item]
-			-- v = value = number of attempts for this item
 
-			if endStatus == 1 then -- Encounter succeeded -> Check if number of attempts should be increased
-				if v and type(v) == "table" and v.enabled ~= false and R:IsAttemptAllowed(v) then -- Add one attempt for this item
-					if v.attempts == nil then
-						v.attempts = 1
-					else
-						v.attempts = v.attempts + 1
-					end
-					R:OutputAttempts(v)
-				end
+	if endStatus ~= 1 then
+		-- Not a victory = no loot (presumably)
+		return
+	end
+
+	R:Debug(format("Found %d item(s) of interest for this encounter", #items))
+	R.encitems = items -- TODO remove
+	for _, item in pairs(items) do
+		R:Debug("Found item of interest for this encounter: " .. tostring(item.name))
+		-- TODO DRY
+		if item and type(item) == "table" and item.enabled ~= false and R:IsAttemptAllowed(item) then -- Add one attempt for this item
+			if item.attempts == nil then
+				item.attempts = 1
+			else
+				item.attempts = item.attempts + 1
 			end
+			R:OutputAttempts(item)
 		end
 	end
 end
@@ -411,53 +411,53 @@ end
 -- Handle boss kills. You may not ever open a loot window on a boss, so we need to watch the combat log for its death.
 -- This event also handles some special cases.
 -------------------------------------------------------------------------------------
-function R:OnCombat()
-	self.Profiling:StartTimer("EventHandlers.OnCombat")
+-- function R:OnCombat()
+-- 	self.Profiling:StartTimer("EventHandlers.OnCombat")
 
-	-- Extract event payload (it's no longer being passed by the event iself as of 8.0.1)
-	local timestamp, eventType, hideCaster, srcGuid, srcName, srcFlags, srcRaidFlags, dstGuid, dstName, dstFlags, dstRaidFlags, spellId, spellName, spellSchool, auraType =
-		CombatLogGetCurrentEventInfo()
+-- 	-- Extract event payload (it's no longer being passed by the event iself as of 8.0.1)
+-- 	local timestamp, eventType, hideCaster, srcGuid, srcName, srcFlags, srcRaidFlags, dstGuid, dstName, dstFlags, dstRaidFlags, spellId, spellName, spellSchool, auraType =
+-- 		CombatLogGetCurrentEventInfo()
 
-	if eventType == "UNIT_DIED" then -- A unit died near you
-		local npcid = self:GetNPCIDFromGUID(dstGuid)
-		if Rarity.bosses[npcid] then -- It's a boss we're interested in
-			R:Debug("Detected UNIT_DIED for relevant NPC with ID = " .. tostring(npcid))
-			if
-				bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_MINE)
-				or bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_PARTY)
-				or bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_RAID)
-			then -- You, a party member, or a raid member killed it
-				if not Rarity.guids[dstGuid] then
-					if not UnitAffectingCombat("player") and not UnitIsDead("player") then
-						Rarity:Debug("Ignoring this UNIT_DIED event because the player is alive, but not in combat")
-						self.Profiling:EndTimer("EventHandlers.OnCombat")
-						return
-					end
+-- 	if eventType == "UNIT_DIED" then -- A unit died near you
+-- 		local npcid = self:GetNPCIDFromGUID(dstGuid)
+-- 		if Rarity.bosses[npcid] then -- It's a boss we're interested in
+-- 			R:Debug("Detected UNIT_DIED for relevant NPC with ID = " .. tostring(npcid))
+-- 			if
+-- 				bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_MINE)
+-- 				or bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_PARTY)
+-- 				or bit_band(srcFlags, COMBATLOG_OBJECT_AFFILIATION_RAID)
+-- 			then -- You, a party member, or a raid member killed it
+-- 				if not Rarity.guids[dstGuid] then
+-- 					if not UnitAffectingCombat("player") and not UnitIsDead("player") then
+-- 						Rarity:Debug("Ignoring this UNIT_DIED event because the player is alive, but not in combat")
+-- 						self.Profiling:EndTimer("EventHandlers.OnCombat")
+-- 						return
+-- 					end
 
-					-- Increment attempts counter(s). One NPC might drop multiple things we want, so scan for them all.
-					if Rarity.npcs_to_items[npcid] and type(Rarity.npcs_to_items[npcid]) == "table" then
-						for k, v in pairs(Rarity.npcs_to_items[npcid]) do
-							local isBossDrop = (v.method == CONSTANTS.DETECTION_METHODS.BOSS)
-							local hasKillStatistics = type(v.statisticId) ~= "nil"
-							if v.enabled ~= false and isBossDrop and not hasKillStatistics then
-								if self:IsAttemptAllowed(v) then
-									Rarity.guids[dstGuid] = true
-									if v.attempts == nil then
-										v.attempts = 1
-									else
-										v.attempts = v.attempts + 1
-									end
-									self:OutputAttempts(v)
-								end
-							end
-						end
-					end
-				end
-			end
-		end
-	end
-	self.Profiling:EndTimer("EventHandlers.OnCombat")
-end
+-- 					-- Increment attempts counter(s). One NPC might drop multiple things we want, so scan for them all.
+-- 					if Rarity.npcs_to_items[npcid] and type(Rarity.npcs_to_items[npcid]) == "table" then
+-- 						for k, v in pairs(Rarity.npcs_to_items[npcid]) do
+-- 							local isBossDrop = (v.method == CONSTANTS.DETECTION_METHODS.BOSS)
+-- 							local hasKillStatistics = type(v.statisticId) ~= "nil"
+-- 							if v.enabled ~= false and isBossDrop and not hasKillStatistics then
+-- 								if self:IsAttemptAllowed(v) then
+-- 									Rarity.guids[dstGuid] = true
+-- 									if v.attempts == nil then
+-- 										v.attempts = 1
+-- 									else
+-- 										v.attempts = v.attempts + 1
+-- 									end
+-- 									self:OutputAttempts(v)
+-- 								end
+-- 							end
+-- 						end
+-- 					end
+-- 				end
+-- 			end
+-- 		end
+-- 	end
+-- 	self.Profiling:EndTimer("EventHandlers.OnCombat")
+-- end
 
 local worldEventQuests = {
 	[52196] = "Slightly Damp Pile of Fur", -- Dunegorger Kraulok

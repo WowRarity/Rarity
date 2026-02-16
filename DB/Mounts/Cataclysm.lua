@@ -225,11 +225,12 @@ local cataclysmMounts = {
 	["Reins of the Vitreous Stone Drake"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.CATA,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
 		name = L["Reins of the Vitreous Stone Drake"],
 		spellId = 88746,
 		itemId = 63043,
-		npcs = { 43214 },
+		encounters = { 1059 },
+		tooltipNpcs = { 43214 }, -- TODO secret = N/A
 		chance = 100,
 		sourceText = L["Any difficulty"],
 		blackMarket = true,
