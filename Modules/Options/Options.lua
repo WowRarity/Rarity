@@ -959,7 +959,8 @@ function R:PrepareOptions()
 									Rarity.GUI:UpdateText()
 								end,
 								hidden = function()
-									return LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_MIDNIGHT
+									return not LE_EXPANSION_MIDNIGHT
+										or (LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_MIDNIGHT)
 								end,
 							},
 						}, -- args
