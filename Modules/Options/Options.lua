@@ -2292,6 +2292,23 @@ function R:CreateGroup(options, group, isUser)
 					end,
 					disabled = not isUser,
 				},
+				zoneNamesLocalized = {
+					type = "input",
+					width = "double",
+					disabled = true,
+					order = newOrder(),
+					name = "",
+					get = function()
+						return colorize(table.concat(Rarity.MapInfo.GetLocalizedMapNamesForItem(item), ", "), green)
+					end,
+					hidden = function()
+						if item.method == ZONE or item.method == FISHING then
+							return false
+						else
+							return true
+						end
+					end,
+				},
 				items = {
 					type = "input",
 					order = newOrder(),
