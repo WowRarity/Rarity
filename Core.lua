@@ -53,7 +53,7 @@ local CONSTANTS = addonTable.constants
 
 -- Methods of obtaining
 local NPC = "NPC"
-local BOSS = "BOSS"
+local ENCOUNTER = "ENCOUNTER"
 local ZONE = "ZONE"
 local USE = "USE"
 local FISHING = "FISHING"
@@ -527,7 +527,7 @@ function R:UpdateInterestingThings()
 	end
 
 	table.wipe(npcs)
-	table.wipe(Rarity.bosses)
+	table.wipe(Rarity.encounters)
 	table.wipe(Rarity.zones)
 	table.wipe(Rarity.items)
 	table.wipe(Rarity.guids)
@@ -562,13 +562,10 @@ function R:UpdateInterestingThings()
 							end
 							table.insert(Rarity.npcs_to_items[vvv], vv)
 						end
-					elseif vv.method == BOSS and vv.npcs ~= nil and type(vv.npcs) == "table" then
-						for kkk, vvv in pairs(vv.npcs) do
-							Rarity.bosses[vvv] = vv
-							if Rarity.npcs_to_items[vvv] == nil then
-								Rarity.npcs_to_items[vvv] = {}
-							end
-							table.insert(Rarity.npcs_to_items[vvv], vv)
+					elseif vv.method == ENCOUNTER and vv.encounters ~= nil and type(vv.encounters) == "table" then
+						for kkk, vvv in ipairs(vv.encounters) do
+							Rarity.encounters[vvv] = Rarity.encounters[vvv] or {}
+							table.insert(Rarity.encounters[vvv], vv)
 						end
 					elseif vv.method == ZONE and vv.zones ~= nil and type(vv.zones) == "table" then
 						for kkk, vvv in pairs(vv.zones) do
