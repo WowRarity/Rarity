@@ -408,7 +408,7 @@ local mopPets = {
 		npcs = { 18805 },
 		chance = 20,
 		creatureId = 71021,
-		coords = { { m = 334, x = 74, y = 48.9, i = true } },
+		coords = { { m = 334, x = 74, y = 48.9, i = true } }, -- TBD: Map ID wrong? -> 334 (check ingame)
 	},
 	["Dark Quivering Blob"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
