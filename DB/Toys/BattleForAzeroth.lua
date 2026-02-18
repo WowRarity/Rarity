@@ -217,7 +217,7 @@ local bfaToys = {
 		itemId = 163828,
 		npcs = { 138122 },
 		questId = { 53001, 53002 }, -- Loot lockout
-		chance = 100, -- Need more data. Until then, this is a blind guess...
+		chance = 20,
 		requiresAlliance = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 37.09, y = 39.21, n = L["Doom's Howl"] } },
 		enableCoin = true,
@@ -232,7 +232,7 @@ local bfaToys = {
 		itemId = 163829,
 		npcs = { 137374 },
 		questId = { 53001, 53002 }, -- Loot Lockout
-		chance = 100, -- Blind guess :|
+		chance = 20,
 		requiresHorde = true,
 		coords = { { m = CONSTANTS.UIMAPIDS.ARATHI_HIGHLANDS, x = 37.09, y = 39.21, n = L["The Lion's Roar"] } },
 		enableCoin = true,
