@@ -242,12 +242,12 @@ local wodMounts = {
 	["Garn Nighthowl"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
 		name = L["Garn Nighthowl"],
 		spellId = 171851,
 		itemId = 116794,
 		npcs = { 81001 },
-		chance = 1,
+		chance = 1, -- TODO: ???
 		coords = { { m = 525, x = 16, y = 53.2 } },
 	},
 	["Ironhoof Destroyer"] = {
