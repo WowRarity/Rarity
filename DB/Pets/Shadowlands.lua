@@ -425,7 +425,6 @@ local shadowlandsPets = {
 		spellId = 333802,
 		creatureId = 171124,
 		npcs = { 162102 },
-		-- tooltipNpcs = { 162102 }, -- Not needed if using NPC instead of BOSS
 		chance = 100,
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 		coords = { { m = CONSTANTS.UIMAPIDS.SANGUINE_DEPTHS } },
