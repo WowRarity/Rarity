@@ -46,13 +46,20 @@ local function onTooltipSetUnit(tooltip, data)
 
 	-- If debug mode is on, find NPCID from mouseover target and append it to the tooltip
 	if R.db.profile.debugMode then
-		GameTooltip:AddLine("NPCID: " .. R:GetNPCIDFromGUID(UnitGUID("mouseover")), 255, 255, 255)
+		local npcID = R:GetNPCIDFromGUID(Rarity:GetUnitGUID("mouseover"))
+		local text = npcID or "<secret>"
+		GameTooltip:AddLine("NPC ID: " .. text, 255, 255, 255)
 	end
 
 	local name, unit = self:GetUnit()
 	if not unit then
 		return
 	end
+
+	if issecretvalue and issecretvalue(unit) then
+		return
+	end
+
 	local creatureType = UnitCreatureType(unit)
 	-- Rarity:Debug("Creature type: "..(creatureType or "nil").." (translation: "..(lbct[creatureType] or "nil")..")")
 	if
@@ -66,11 +73,14 @@ local function onTooltipSetUnit(tooltip, data)
 		return
 	end
 
-	local guid = UnitGUID(unit)
+	local guid = Rarity:GetUnitGUID(unit)
 	if not unit or not guid then
 		return
 	end
 	local npcid = R:GetNPCIDFromGUID(guid)
+	if not npcid then
+		return
+	end
 	if not UnitCanAttack("player", unit) and not Rarity.db.profile.oneTimeItems[npcid] then
 		return
 	end -- Something you can't attack (but allow this for one-time items)
@@ -129,7 +139,7 @@ local function onTooltipSetUnit(tooltip, data)
 							)
 							rarityAdded = true
 							if v.pickpocket then
-								local class, classFileName = UnitClass("player")
+								local class, classFileName = Rarity:GetUnitClass("player")
 								local pickcolor
 								if classFileName == "ROGUE" then
 									pickcolor = green
