@@ -1105,7 +1105,13 @@ local bfaPets = {
 	["Celestial Gift"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		method = CONSTANTS.DETECTION_METHODS.BOSS, -- TODO kill statistics
+-- https://www.wowhead.com/achievement=6987/elegon-kills-lfr-mogushan-vaults
+-- https://www.wowhead.com/achievement=6797/elegon-kills-10-player-normal-mogushan-vaults
+-- https://www.wowhead.com/achievement=6798/elegon-kills-10-player-heroic-mogushan-vaults
+-- https://www.wowhead.com/achievement=7923/elegon-kills-25-player-normal-mogushan-vaults
+-- https://www.wowhead.com/achievement=7924/elegon-kills-25-player-heroic-mogushan-vaults
+
 		name = L["Celestial Gift"],
 		itemId = 167049,
 		spellId = 291517,
