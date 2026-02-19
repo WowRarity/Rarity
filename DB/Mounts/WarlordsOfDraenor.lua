@@ -288,8 +288,12 @@ local wodMounts = {
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
 		-- TODO
 		encounters = {
-			-- Classic Dungeons
-			-- TBD Deadmines = CATA only in TW?
+			-- Classic
+			---- TBD Deadmines = CATA only in TW?
+			---- Dire Maul East (Warpwood Quarters)
+			---- Dire Maul West (Capital Gardens)
+			---- Stratholme Live (Main Gate)
+			---- Stratholme Dead (Service Entrance)
 			---- Dire Maul
 			343, -- Zevrim Thornhoof
 			344, -- Hydrospawn
@@ -307,6 +311,15 @@ local wodMounts = {
 			366, -- Captain Kromcrush
 			367, -- Cho'Rush the Observer
 			368, -- King Gordok
+			---- Zul'Farrak
+			593, -- Hydromancer Velratha
+			594, -- Gahz'rilla
+			595, -- Antu'sul
+			596, -- Theka the Martyr
+			597, -- Witch Doctor Zum'rah
+			598, -- Nekrum Gutchewer
+			599, -- Shadowpriest Sezz'ziz
+			600, -- Chief Ukorz Sandscalp
 			-- Cataclysm
 			---- Throne of the Tides
 			1047, -- Ozumat
@@ -341,15 +354,6 @@ local wodMounts = {
 		spellId = 201098,
 		itemId = 133543,
 		npcs = {
-
-			---- Zul Farrak
-			7272, -- Theka the Martyr
-			7795, -- Hydromancer Velratha
-			8127, -- Antu'sul
-			7271, -- Witch Doctor Zum'rah
-			7273, -- Gahz'rilla
-			7275, -- Nekrum & Sezz'ziz
-			7267, -- Chief Ukorz Sandscalp
 			---- Stratholme (Main Gate)
 			10813, -- Balnazzar
 			10516, -- The Unforgiven
