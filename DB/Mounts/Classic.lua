@@ -14,7 +14,7 @@ local classicMounts = {
 		npcs = { 99999 },
 		tooltipNpcs = { 45412 },
 		chance = 100,
-		statisticId = { 1097 },
+		statisticId = { 1097 }, -- TBD still broken? If not, close GitHub issue...
 		bonusSatchel = true,
 		blackMarket = true,
 		coords = { { m = 317, x = 38.6, y = 20, i = true } },
