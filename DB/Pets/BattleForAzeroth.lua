@@ -1994,7 +1994,11 @@ local bfaPets = {
 	["C'Thuffer"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			2370, -- Rexxar (8.3)
+			3090, -- Rexxar (11.1.5)
+		},
 		name = L["C'Thuffer"],
 		spellId = 315290,
 		itemId = 174457,
