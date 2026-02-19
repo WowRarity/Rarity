@@ -286,7 +286,15 @@ local wodMounts = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
-		encounters = { 0 }, -- TODO
+		-- TODO
+		encounters = {
+			-- CATA
+			1047, -- Ozumat
+			-- MOP
+			1304, -- Master Snowdrift
+			1306, -- Taran Zhu
+			1442, -- Trial of the King
+		},
 		name = L["Reins of the Infinite Timereaver"],
 		spellId = 201098,
 		itemId = 133543,
