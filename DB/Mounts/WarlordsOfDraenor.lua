@@ -366,9 +366,7 @@ local wodMounts = {
 		spellId = 201098,
 		itemId = 133543,
 		npcs = {
-
-
-			-- The Burning Crusade
+			-- TBC Timewalking
 			---- Magister's Terrace
 			1894, -- Kael'thas Sunstrider
 			1895, -- Priestess Delrissa
@@ -399,7 +397,7 @@ local wodMounts = {
 			1945, -- Ghaz'an
 			1947, -- Swamplord Musel'ek
 			1948, -- The Black Stalker
-			-- WOTLK
+			-- WOTLK Timewalking
 			---- The Nexus
 			576, -- Frozen Commander
 			2010, -- Grand Magus Telestra
@@ -429,7 +427,7 @@ local wodMounts = {
 			2026, -- Prince Keleseth
 			2024, -- Skarvold & Dalronn
 			2025, -- Ingvar the Plunderer
-			-- Cataclysm
+			-- CATA Timewalking
 			---- Throne of the Tides
 			1045, -- Lady Naz'jar
 			1044, -- Commander Ulthok
@@ -461,7 +459,7 @@ local wodMounts = {
 			1039, -- Karsh Steelbender
 			1037, -- Beauty
 			1036, -- Ascendant Lord Obsidius
-			-- MOP
+			-- MOP Timewalking
 			---- Gate of the Setting Sun
 			1397, -- Saboteur Kip'tilak
 			1405, -- Striker Ga'dok
@@ -554,7 +552,7 @@ local wodMounts = {
 			1816, -- Ash'Golm
 			1817, -- Glazer
 			1818, -- Cordana Felsong
-			-- BFA Dungeons
+			-- BFA Timewalking
 			--- Atal'Dazar
 			2084, -- Priestess Alun'za
 			2085, -- Vol'kaal
