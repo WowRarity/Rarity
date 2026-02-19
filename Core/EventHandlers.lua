@@ -576,15 +576,7 @@ function R:OnIslandCompleted(event, mapID, winner)
 	end
 end
 
-local timewalkingCriteriaLUT = {
-	[24801] = "Ozumat", -- Legacy (seems to no longer work? Perhaps the criterion ID was changed...)
-	[34414] = "Ozumat", -- Timewalking difficulty only? (need to test)
-	[24784] = "Trial of the King", -- [126952] = "Trial of the King", -- Object: Legacy of the Clan Leaders
-	[19244] = "Master Snowdrift", -- [123096] = "Master Snowdrift", -- Object: Snowdrift's Possessions
-	[34410] = "Taran Zhu", -- [123095] = "Taran Zhu", -- Object: Taran Zhu's Personal Stash
-}
-
-local timeRiftCriteriaLUT = {
+local timeRiftCriteriaLUT = { -- TBD: Can't remove this... I think? Would need to check ingame (etrace log)
 	[60685] = "Gill'dan (Azmerloth)",
 	[60688] = "Freya (Ulderoth)",
 	[60689] = "The Lich King (Azmourne)",
@@ -613,21 +605,8 @@ local timeRiftPets = {
 }
 
 function R:OnCriteriaComplete(event, id)
-	local timewalkingEncounterName = timewalkingCriteriaLUT[id]
 	local timeRiftEncounterName = timeRiftCriteriaLUT[id]
 	R:Debug("Detected achievement criteria completion: " .. tostring(id))
-	if timewalkingEncounterName then
-		R:Debug("Completed criteria for Timewalking encounter: " .. tostring(timewalkingEncounterName))
-		local v = self.db.profile.groups.mounts["Reins of the Infinite Timereaver"]
-		if v and type(v) == "table" and v.enabled ~= false and R:IsAttemptAllowed(v) then
-			if v.attempts == nil then
-				v.attempts = 1
-			else
-				v.attempts = v.attempts + 1
-			end
-			R:OutputAttempts(v)
-		end
-	end
 
 	if timeRiftEncounterName then
 		R:Debug("Completed criteria for Time Rift encounter: " .. timeRiftEncounterName)
