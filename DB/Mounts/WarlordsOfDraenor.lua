@@ -368,37 +368,37 @@ local wodMounts = {
 		npcs = {
 
 
-			-- TBC Dungeons
+			-- The Burning Crusade
 			---- Magister's Terrace
-			24723, -- Selin Fireheart
-			24744, -- Vexallus
-			24560, -- Priestess Velrissa
-			24664, -- Kael'thas Sunstrider
+			1894, -- Kael'thas Sunstrider
+			1895, -- Priestess Delrissa
+			1897, -- Selin Fireheart
+			1898, -- Vexallus
 			-- The Shattered Halls
-			16807, -- Grand Warlock Nethekurse
-			20923, -- Blood Guard Porung
-			16809, -- Warbringer O'mrogg
-			16808, -- Warchief Kargath Bladefist
+				1936, -- Grand Warlock Nethekurse
+			1935, -- Blood Guard Porung
+				1937, -- Warbringer O'mrogg
+				1938, -- Warchief Kargath Bladefist
 			---- The Mana Tombs
-			18341, -- Pandemonius
-			18343, -- Tavarok
-			18344, -- Nexus-Prince Shaffar
-			22930, -- Yor
+				1900, -- Pandemonius
+			1901, -- Tavarok
+				1899, -- Nexus-Prince Shaffar
+			250, -- Yor
 			---- Blood Furnace
-			17381, -- The Maker
-			17380, -- Broggok
-			17377, -- Keli'dan the Breaker
+			1922, -- The Maker
+			1924, -- Broggok
+			1923, -- Keli'dan the Breaker
 			---- The Botanica
-			17976, -- Commander Sarannis
-			17975, -- High Botanist Freywinn
-			17978, -- Thorngrin the Tender
-			17980, -- Laj
-			17977, -- Warp Splinter
+				1925, -- Commander Sarannis
+			1926, -- High Botanist Freywinn
+			1928, -- Thorngrin the Tender
+			1927, -- Laj
+			1929, -- Warp Splinter
 			---- The Underbog
-			17770, -- Hungarfen
-			18105, -- Ghaz'an
-			17826, -- Swamplord Musel'ek
-			17882, -- The Black Stalker
+			1946, -- Hungarfen
+			1945, -- Ghaz'an
+			1947, -- Swamplord Musel'ek
+			1948, -- The Black Stalker
 			-- WOTLK Dungeons
 			---- The Nexus
 			26731, -- Grand Magus Telestra
