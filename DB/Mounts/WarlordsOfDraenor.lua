@@ -461,37 +461,36 @@ local wodMounts = {
 			1039, -- Karsh Steelbender
 			1037, -- Beauty
 			1036, -- Ascendant Lord Obsidius
-			-- MOP Timewalking
+			-- MOP
 			---- Gate of the Setting Sun
-			56906, -- Saboteur Kip'tilak
-			56589, -- Striker Ga'dok
-			56636, -- Commander Ri'mok
-			56877, -- Raigonn
+			1397, -- Saboteur Kip'tilak
+			1405, -- Striker Ga'dok
+			1406, -- Commander Ri'mok
+			1419, -- Raigonn
 			---- Temple of the Jade Serpent
-			56448, -- Wise Mari
-			59051, -- Strife (Trial of the Yaungol)
-			58826, -- Zao Sunseeker (Champion of the Five Suns)
-			56732, -- Liu Flameheart
-			56439, -- Sha of Doubt
+			1418, -- Wise Mari
+			1417, -- Lorewalker Stonestep
+			1416, -- Liu Flameheart
+			1439, -- Sha of Doubt
 			---- Stormstout Brewery
-			56637, -- Ook-ook
-			56717, -- Hoptallus
-			59479, -- Yan-Zhu the Uncasked
+			1412, -- Ook-ook
+			1413, -- Hoptallus
+			1414, -- Yan-Zhu the Uncasked
 			---- Shado-Pan Monastery
-			56747, -- Gu Cloudstrike
-			56541, -- Master Snowdrift *
-			56719, -- Sha of Violence
-			56884, -- Taran Zhu *
+			1303, -- Gu Cloudstrike
+			1304, -- Master Snowdrift
+			1305, -- Sha of Violence
+			1306, -- Taran Zhu
 			---- Mogu'shan Palace
-			61444, -- Ming the Cunning *
-			61243, -- Gekkan *
-			61398, -- Xin the Weaponmaster
+			1442, -- Trial of the King
+			2129, -- Gekkan
+			1441, -- Xin the Weaponmaster
 			---- Scholomance
-			58633, -- Instructor Chillheart
-			59184, -- Jandice Barov
-			59153, -- Rattlegore
-			58722, -- Lilian Voss
-			59080, -- Darkmaster Gandling
+			1426, -- Instructor Chillheart
+			1427, -- Jandice Barov
+			1428, -- Rattlegore
+			1429, -- Lilian Voss
+			1430, -- Darkmaster Gandling
 			-- WoD Timewalking
 			---- The Everbloom
 			83846, -- Yalnu
