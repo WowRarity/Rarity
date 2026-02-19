@@ -355,20 +355,22 @@ local wodMounts = {
 		itemId = 133543,
 		npcs = {
 			---- Stratholme (Main Gate)
-			10813, -- Balnazzar
-			10516, -- The Unforgiven
-			10558, -- Hearthsinger Forresten
-			10808, -- Timmy the Cruel
-			11143, -- Postmaster Malown
-			11032, -- Commander Malor
-			10997, -- Willey Hopebreaker
-			10811, -- Instructor Galford
+			472, -- The Unforgiven
+			473, -- Hearthsinger Forresten
+			474, -- Timmy the Cruel
+			475, -- Willey Hopebreaker
+			476, -- Commander Malor
+			477, -- Instructor Galford
+			478, -- Balnazzar
+			1885, -- Postmaster Malown
 			---- Stratholme (Service Entrance)
-			10436, -- Baroness Anastari
-			10437, -- Nerub'enkan
-			10438, -- Maleki the Pallid
-			10435, -- Magistrate Barthilas
-			10439, -- Ramstein the Gorger
+			479, -- Baroness Anastari
+			480, -- Nerub'enkan
+			481, -- Maleki the Pallid
+			482, -- Magistrate Barthilas
+			483, -- Ramstein the Gorger
+			484, -- Lord Aurius Rivendare
+
 			-- TBC Dungeons
 			---- Magister's Terrace
 			24723, -- Selin Fireheart
