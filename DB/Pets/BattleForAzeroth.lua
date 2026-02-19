@@ -2026,6 +2026,10 @@ local bfaPets = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+				encounters = {
+			2377, -- Magister Umbric (8.3)
+			3085, -- Magister Umbric (11.1.5)
+		},
 		name = L["Void-Scarred Hare"],
 		spellId = 315297,
 		itemId = 174458,
