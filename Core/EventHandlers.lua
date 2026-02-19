@@ -301,7 +301,7 @@ end
 -------------------------------------------------------------------------------------
 local encounterLUT = {
 	-- See https://warcraft.wiki.gg/wiki/DungeonEncounterID
-	[1140] = { "Stormforged Rune" }, -- The Assembly of Iron
+	[1140] = { "Stormforged Rune" }, 
 	[1133] = { "Blessed Seed" }, -- Freya
 	[1135] = { "Ominous Pile of Snow" }, -- Hodir
 	[1138] = { "Overcomplicated Controller" }, -- Mimiron
