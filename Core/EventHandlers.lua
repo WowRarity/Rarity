@@ -307,7 +307,6 @@ local encounterLUT = {
 	-- 8.3: Horrific Visions
 	[2332] = { "Void-Link Frostwolf Collar" }, -- Thrall the Corrupted
 	[2338] = { "Voidwoven Cat Collar" }, -- Alleria Windrunner
-	[2370] = { "C'Thuffer" }, -- Rexxar
 	[2377] = { "Void-Scarred Hare" }, -- Magister Umbric
 	[2372] = { "Void-Touched Souvenir Totem", "Box With Faintly Glowing 'Air' Holes" }, -- Oblivion Elemental (Final objective for Zekhan's area)
 	[2374] = { 'Box Labeled "Danger: Void Rat Inside"' }, -- Therum Deepforge (Final objective for Kelsey's area)
@@ -320,7 +319,6 @@ local encounterLUT = {
 	[3087] = { "Void Scarred Scorpid" }, -- Inquistor Gnshal
 	[3088] = { "Void-Touched Souvenir Totem", "Box With Faintly Glowing 'Air' Holes" }, -- Oblivion Elemental (Final objective for Zekhan's area)
 	[3089] = { "Void-Scarred Egg" }, -- Vezokk
-	[3090] = { "C'Thuffer" }, -- Rexxar
 }
 
 function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidSize, endStatus)
