@@ -90,7 +90,7 @@ local twwPets = {
 	["Parrot Cage (Void-Scarred Parrot)"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL, -- TODO encounter or GUID?
 		chance = 12,
 		creatureId = 237852,
 		name = L["Parrot Cage (Void-Scarred Parrot)"],
@@ -101,7 +101,10 @@ local twwPets = {
 	["Eye of Chaos"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			3084, -- Mathias Shaw
+		},
 		chance = 12,
 		creatureId = 237850,
 		name = L["Eye of Chaos"],
@@ -112,7 +115,10 @@ local twwPets = {
 	["Void Scarred Scorpid"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			3087, -- Inquistor Gnshal (TBD Garona?)
+		},
 		chance = 12,
 		creatureId = 237855,
 		name = L["Void Scarred Scorpid"],
@@ -123,7 +129,10 @@ local twwPets = {
 	["Void-Scarred Egg"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			3089, -- Vezokk
+		},
 		chance = 12,
 		creatureId = 237856,
 		name = L["Void-Scarred Egg"],
