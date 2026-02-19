@@ -289,7 +289,6 @@ local wodMounts = {
 		-- TODO
 		encounters = {
 			-- Classic
-			---- TBD Deadmines = CATA only in TW?
 			---- Dire Maul
 			343, -- Zevrim Thornhoof
 			344, -- Hydrospawn
@@ -332,9 +331,6 @@ local wodMounts = {
 			599, -- Shadowpriest Sezz'ziz
 			600, -- Chief Ukorz Sandscalp
 
-			-- Cataclysm
-			---- Throne of the Tides
-			1047, -- Ozumat
 			---- The Deadmines
 			1081, -- Vanessa VanCleef
 			2967, -- Rhahk'Zor
@@ -354,18 +350,7 @@ local wodMounts = {
 			2981, -- Glubtok
 			2982, -- Helix Gearbreaker
 			2986, -- Cookie
-			-- Mists of Pandaria
-			1304, -- Master Snowdrift
-			1306, -- Taran Zhu
-			1442, -- Trial of the King
-			-- TBD Legion
-			-- TBD Shadowlands
-			--  TBD TWW
-		},
-		name = L["Reins of the Infinite Timereaver"],
-		spellId = 201098,
-		itemId = 133543,
-		npcs = {
+
 			-- TBC Timewalking
 			---- Magister's Terrace
 			1894, -- Kael'thas Sunstrider
@@ -397,6 +382,7 @@ local wodMounts = {
 			1945, -- Ghaz'an
 			1947, -- Swamplord Musel'ek
 			1948, -- The Black Stalker
+
 			-- WOTLK Timewalking
 			---- The Nexus
 			576, -- Frozen Commander
@@ -427,6 +413,7 @@ local wodMounts = {
 			2026, -- Prince Keleseth
 			2024, -- Skarvold & Dalronn
 			2025, -- Ingvar the Plunderer
+
 			-- CATA Timewalking
 			---- Throne of the Tides
 			1045, -- Lady Naz'jar
@@ -459,6 +446,7 @@ local wodMounts = {
 			1039, -- Karsh Steelbender
 			1037, -- Beauty
 			1036, -- Ascendant Lord Obsidius
+
 			-- MOP Timewalking
 			---- Gate of the Setting Sun
 			1397, -- Saboteur Kip'tilak
@@ -489,6 +477,7 @@ local wodMounts = {
 			1428, -- Rattlegore
 			1429, -- Lilian Voss
 			1430, -- Darkmaster Gandling
+
 			-- WoD Timewalking
 			---- The Everbloom
 			1756, -- Yalnu
@@ -520,6 +509,7 @@ local wodMounts = {
 			1715, -- Rocketspark and Borka
 			1732, -- Nitrogg Thundertower
 			1736, -- Skylord Tovra
+
 			-- Legion Timewalking
 			--- Black Rook Hold
 			1832, -- Amalgam of Souls
@@ -552,6 +542,7 @@ local wodMounts = {
 			1816, -- Ash'Golm
 			1817, -- Glazer
 			1818, -- Cordana Felsong
+
 			-- BFA Timewalking
 			--- Atal'Dazar
 			2084, -- Priestess Alun'za
@@ -616,6 +607,9 @@ local wodMounts = {
 			2362, -- Grand Proctor Beryllia
 			2363, -- General Kaal
 		},
+		name = L["Reins of the Infinite Timereaver"],
+		spellId = 201098,
+		itemId = 133543,
 		chance = 4000,
 		groupSize = 5,
 		equalOdds = true,
