@@ -288,27 +288,42 @@ local wodMounts = {
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
 		-- TODO
 		encounters = {
-			-- CATA
+			-- Classic Dungeons
+			-- TBD Deadmines = CATA only in TW?
+			-- Cataclysm
+			---- Throne of the Tides
 			1047, -- Ozumat
-			-- MOP
+			---- The Deadmines
+			1081, -- Vanessa VanCleef
+			2967, -- Rhahk'Zor
+			2968, -- Sneed
+			2969, -- Gilnid
+			2970, -- Mr. Smite
+			2971, -- Captain Greenskin
+			2972, -- Edwin VanCleef
+			2973, -- "Captain" Cookie
+			2974, -- Admiral Ripsnarl
+			2975, -- Foe Reaper 5000
+			2976, -- Glubtok
+			2977, -- Helix Gearbreaker
+			2978, -- "Captain" Cookie
+			2979, -- Admiral Ripsnarl
+			2980, -- Foe Reaper 5000
+			2981, -- Glubtok
+			2982, -- Helix Gearbreaker
+			2986, -- Cookie
+			-- Mists of Pandaria
 			1304, -- Master Snowdrift
 			1306, -- Taran Zhu
 			1442, -- Trial of the King
+			-- TBD Legion
+			-- TBD Shadowlands
+			--  TBD TWW
 		},
 		name = L["Reins of the Infinite Timereaver"],
 		spellId = 201098,
 		itemId = 133543,
 		npcs = {
-			-- NPCs marked with * can't be looted; they use a workaround and are detected via checking their achievement criteria. The entry here is mostly for the tooltip display....
-			-- Classic Dungeons
-			---- Deadmines
-			644, -- Rhahk'Zor
-			643, -- Sneed
-			1763, -- Gilnid
-			646, -- Mr. Smite
-			647, -- Captain Greenskin
-			639, -- Edwin VanCleef
-			645, -- Cookie
 			---- Dire Maul (Capital Gardens)
 			11489, -- Tendris Warpwood
 			11487, -- Magister Kalendris
