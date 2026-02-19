@@ -290,10 +290,6 @@ local wodMounts = {
 		encounters = {
 			-- Classic
 			---- TBD Deadmines = CATA only in TW?
-			---- Dire Maul East (Warpwood Quarters)
-			---- Dire Maul West (Capital Gardens)
-			---- Stratholme Live (Main Gate)
-			---- Stratholme Dead (Service Entrance)
 			---- Dire Maul
 			343, -- Zevrim Thornhoof
 			344, -- Hydrospawn
@@ -311,6 +307,21 @@ local wodMounts = {
 			366, -- Captain Kromcrush
 			367, -- Cho'Rush the Observer
 			368, -- King Gordok
+			---- Stratholme
+			472, -- The Unforgiven
+			473, -- Hearthsinger Forresten
+			474, -- Timmy the Cruel
+			475, -- Willey Hopebreaker
+			476, -- Commander Malor
+			477, -- Instructor Galford
+			478, -- Balnazzar
+			479, -- Baroness Anastari
+			480, -- Nerub'enkan
+			481, -- Maleki the Pallid
+			482, -- Magistrate Barthilas
+			483, -- Ramstein the Gorger
+			484, -- Lord Aurius Rivendare
+			1885, -- Postmaster Malown
 			---- Zul'Farrak
 			593, -- Hydromancer Velratha
 			594, -- Gahz'rilla
@@ -320,6 +331,7 @@ local wodMounts = {
 			598, -- Nekrum Gutchewer
 			599, -- Shadowpriest Sezz'ziz
 			600, -- Chief Ukorz Sandscalp
+
 			-- Cataclysm
 			---- Throne of the Tides
 			1047, -- Ozumat
@@ -354,22 +366,7 @@ local wodMounts = {
 		spellId = 201098,
 		itemId = 133543,
 		npcs = {
-			---- Stratholme (Main Gate)
-			472, -- The Unforgiven
-			473, -- Hearthsinger Forresten
-			474, -- Timmy the Cruel
-			475, -- Willey Hopebreaker
-			476, -- Commander Malor
-			477, -- Instructor Galford
-			478, -- Balnazzar
-			1885, -- Postmaster Malown
-			---- Stratholme (Service Entrance)
-			479, -- Baroness Anastari
-			480, -- Nerub'enkan
-			481, -- Maleki the Pallid
-			482, -- Magistrate Barthilas
-			483, -- Ramstein the Gorger
-			484, -- Lord Aurius Rivendare
+
 
 			-- TBC Dungeons
 			---- Magister's Terrace
