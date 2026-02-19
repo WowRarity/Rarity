@@ -1936,6 +1936,10 @@ local bfaPets = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			2374, -- Therum Deepforge (8.3)
+3082, --  Therum Deepforge (11.1.5)
+		},
 		name = L['Box Labeled "Danger: Void Rat Inside"'],
 		spellId = 315301,
 		itemId = 174460,
