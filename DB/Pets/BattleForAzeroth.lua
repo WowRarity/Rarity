@@ -2048,6 +2048,10 @@ local bfaPets = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+				encounters = {
+			2372, -- Oblivion Elemental (8.3)
+			3088, -- Oblivion Elemental (11.1.5)
+		},
 		name = L["Box With Faintly Glowing 'Air' Holes"],
 		spellId = 312029,
 		itemId = 173726,
