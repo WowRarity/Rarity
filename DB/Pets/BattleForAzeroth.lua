@@ -1944,7 +1944,13 @@ local bfaPets = {
 	["Swirling Black Bottle"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			2332, -- Thrall the Corrupted (8.3)
+			2338, -- Alleria Windrunner (8.3)
+			3086, -- Thrall the Corrupted (11.1.5)
+			3081, -- Alleria Windrunner (11.1.5)
+		},
 		name = L["Swirling Black Bottle"],
 		spellId = 315302,
 		itemId = 174461,
