@@ -292,41 +292,6 @@ function R:CheckForCoinItem()
 	end
 end
 
--------------------------------------------------------------------------------------
--- Raid encounter ended:
--- Used for detecting raid bosses that don't actually die when the encounter ends and
--- have no statistic tied to them (e.g., the Keepers of Ulduar)
--- While it might work to change their method from NPC to BOSS,
--- at this time I'm not sure if that wouldn't cause problems elsewhere... so I won't touch it
--------------------------------------------------------------------------------------
-local encounterLUT = {
-	-- See https://warcraft.wiki.gg/wiki/DungeonEncounterID
-	[1133] = { "Blessed Seed" }, -- Freya
-	[1135] = { "Ominous Pile of Snow" }, -- Hodir
-	[1138] = { "Overcomplicated Controller" }, -- Mimiron
-	[1143] = { "Wriggling Darkness" }, -- Yogg-Saron (mount uses the BOSS method and is tracked separately)
-	[1500] = { "Celestial Gift" }, -- Elegon
-	[1505] = { "Azure Cloud Serpent Egg" }, -- Tsulong
-	[1506] = { "Spirit of the Spring" }, -- Lei Shi
-	-- 8.3: Horrific Visions
-	[2332] = { "Swirling Black Bottle", "Void-Link Frostwolf Collar" }, -- Thrall the Corrupted
-	[2338] = { "Swirling Black Bottle", "Voidwoven Cat Collar" }, -- Alleria Windrunner
-	[2370] = { "C'Thuffer" }, -- Rexxar
-	[2377] = { "Void-Scarred Hare" }, -- Magister Umbric
-	[2372] = { "Void-Touched Souvenir Totem", "Box With Faintly Glowing 'Air' Holes" }, -- Oblivion Elemental (Final objective for Zekhan's area)
-	[2374] = { 'Box Labeled "Danger: Void Rat Inside"' }, -- Therum Deepforge (Final objective for Kelsey's area)
-	-- 11.1.5 Horrific Visions (Revisited)
-	[3081] = { "Swirling Black Bottle", "Voidwoven Cat Collar" }, -- Alleria Windrunner
-	[3082] = { 'Box Labeled "Danger: Void Rat Inside"' }, -- Therum Deepforge (Final objective for Kelsey's area)
-	[3084] = { "Eye of Chaos" }, -- Mathias Shaw (Old Town)
-	[3085] = { "Void-Scarred Hare" }, -- Magister Umbric
-	[3086] = { "Swirling Black Bottle", "Void-Link Frostwolf Collar" }, -- Thrall the Corrupted
-	[3087] = { "Void Scarred Scorpid" }, -- Inquistor Gnshal
-	[3088] = { "Void-Touched Souvenir Totem", "Box With Faintly Glowing 'Air' Holes" }, -- Oblivion Elemental (Final objective for Zekhan's area)
-	[3089] = { "Void-Scarred Egg" }, -- Vezokk
-	[3090] = { "C'Thuffer" }, -- Rexxar
-}
-
 function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidSize, endStatus)
 	R:Debug(
 		"ENCOUNTER_END with encounterID = "
@@ -459,10 +424,11 @@ end
 -- end
 
 local worldEventQuests = {
-	[52196] = "Slightly Damp Pile of Fur", -- Dunegorger Kraulok
+	[52196] = "Slightly Damp Pile of Fur", -- Dunegorger Kraulok (TODO: Use encounter also?)
 	[70867] = "Everlasting Horn of Lavaswimming", -- Scalebane Keep (scenario completion)
 	-- Not actually from a world quest/event
 	[85830] = "Parrot Cage (Void-Scarred Parrot)", -- More accurately detected via object GUID
+	-- TBD: Are object GUIDs also secret now? Sigh.
 }
 
 function R:OnQuestTurnedIn(event, questID, experience, money)
