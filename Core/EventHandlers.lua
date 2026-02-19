@@ -305,18 +305,18 @@ local encounterLUT = {
 	[1505] = { "Azure Cloud Serpent Egg" }, -- Tsulong
 	[1506] = { "Spirit of the Spring" }, -- Lei Shi
 	-- 8.3: Horrific Visions
-	[2332] = { "Swirling Black Bottle", "Void-Link Frostwolf Collar" }, -- Thrall the Corrupted
-	[2338] = { "Swirling Black Bottle", "Voidwoven Cat Collar" }, -- Alleria Windrunner
+	[2332] = { "Void-Link Frostwolf Collar" }, -- Thrall the Corrupted
+	[2338] = { "Voidwoven Cat Collar" }, -- Alleria Windrunner
 	[2370] = { "C'Thuffer" }, -- Rexxar
 	[2377] = { "Void-Scarred Hare" }, -- Magister Umbric
 	[2372] = { "Void-Touched Souvenir Totem", "Box With Faintly Glowing 'Air' Holes" }, -- Oblivion Elemental (Final objective for Zekhan's area)
 	[2374] = { 'Box Labeled "Danger: Void Rat Inside"' }, -- Therum Deepforge (Final objective for Kelsey's area)
 	-- 11.1.5 Horrific Visions (Revisited)
-	[3081] = { "Swirling Black Bottle", "Voidwoven Cat Collar" }, -- Alleria Windrunner
+	[3081] = { "Voidwoven Cat Collar" }, -- Alleria Windrunner
 	[3082] = { 'Box Labeled "Danger: Void Rat Inside"' }, -- Therum Deepforge (Final objective for Kelsey's area)
 	[3084] = { "Eye of Chaos" }, -- Mathias Shaw (Old Town)
 	[3085] = { "Void-Scarred Hare" }, -- Magister Umbric
-	[3086] = { "Swirling Black Bottle", "Void-Link Frostwolf Collar" }, -- Thrall the Corrupted
+	[3086] = { "Void-Link Frostwolf Collar" }, -- Thrall the Corrupted
 	[3087] = { "Void Scarred Scorpid" }, -- Inquistor Gnshal
 	[3088] = { "Void-Touched Souvenir Totem", "Box With Faintly Glowing 'Air' Holes" }, -- Oblivion Elemental (Final objective for Zekhan's area)
 	[3089] = { "Void-Scarred Egg" }, -- Vezokk
