@@ -608,7 +608,11 @@ local bfaToys = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
 		isToy = true,
-		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			2372, -- Oblivion Elemental (8.3)
+			3088, -- Oblivion Elemental (11.1.5)
+		},
 		name = L["Void-Touched Souvenir Totem"],
 		itemId = 174924,
 		chance = 100, -- Blind guess (no data)
