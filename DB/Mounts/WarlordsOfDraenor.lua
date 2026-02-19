@@ -3,6 +3,8 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+-- local DE = CONSTANTS.DungeonEncounter["Stradama Margrave"]
+
 if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_WARLORDS_OF_DRAENOR then
 	return {}
 end
@@ -286,10 +288,8 @@ local wodMounts = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
-		-- TODO
 		encounters = {
 			-- Classic
-			---- TBD Deadmines = CATA only in TW?
 			---- Dire Maul
 			343, -- Zevrim Thornhoof
 			344, -- Hydrospawn
@@ -331,10 +331,6 @@ local wodMounts = {
 			598, -- Nekrum Gutchewer
 			599, -- Shadowpriest Sezz'ziz
 			600, -- Chief Ukorz Sandscalp
-
-			-- Cataclysm
-			---- Throne of the Tides
-			1047, -- Ozumat
 			---- The Deadmines
 			1081, -- Vanessa VanCleef
 			2967, -- Rhahk'Zor
@@ -354,42 +350,29 @@ local wodMounts = {
 			2981, -- Glubtok
 			2982, -- Helix Gearbreaker
 			2986, -- Cookie
-			-- Mists of Pandaria
-			1304, -- Master Snowdrift
-			1306, -- Taran Zhu
-			1442, -- Trial of the King
-			-- TBD Legion
-			-- TBD Shadowlands
-			--  TBD TWW
-		},
-		name = L["Reins of the Infinite Timereaver"],
-		spellId = 201098,
-		itemId = 133543,
-		npcs = {
 
-
-			-- The Burning Crusade
+			-- TBC Timewalking
 			---- Magister's Terrace
 			1894, -- Kael'thas Sunstrider
 			1895, -- Priestess Delrissa
 			1897, -- Selin Fireheart
 			1898, -- Vexallus
 			-- The Shattered Halls
-				1936, -- Grand Warlock Nethekurse
+			1936, -- Grand Warlock Nethekurse
 			1935, -- Blood Guard Porung
-				1937, -- Warbringer O'mrogg
-				1938, -- Warchief Kargath Bladefist
+			1937, -- Warbringer O'mrogg
+			1938, -- Warchief Kargath Bladefist
 			---- The Mana Tombs
-				1900, -- Pandemonius
+			1900, -- Pandemonius
 			1901, -- Tavarok
-				1899, -- Nexus-Prince Shaffar
+			1899, -- Nexus-Prince Shaffar
 			250, -- Yor
 			---- Blood Furnace
 			1922, -- The Maker
 			1924, -- Broggok
 			1923, -- Keli'dan the Breaker
 			---- The Botanica
-				1925, -- Commander Sarannis
+			1925, -- Commander Sarannis
 			1926, -- High Botanist Freywinn
 			1928, -- Thorngrin the Tender
 			1927, -- Laj
@@ -399,7 +382,8 @@ local wodMounts = {
 			1945, -- Ghaz'an
 			1947, -- Swamplord Musel'ek
 			1948, -- The Black Stalker
-			-- WOTLK
+
+			-- WOTLK Timewalking
 			---- The Nexus
 			576, -- Frozen Commander
 			2010, -- Grand Magus Telestra
@@ -429,7 +413,8 @@ local wodMounts = {
 			2026, -- Prince Keleseth
 			2024, -- Skarvold & Dalronn
 			2025, -- Ingvar the Plunderer
-			-- Cataclysm
+
+			-- CATA Timewalking
 			---- Throne of the Tides
 			1045, -- Lady Naz'jar
 			1044, -- Commander Ulthok
@@ -461,7 +446,8 @@ local wodMounts = {
 			1039, -- Karsh Steelbender
 			1037, -- Beauty
 			1036, -- Ascendant Lord Obsidius
-			-- MOP
+
+			-- MOP Timewalking
 			---- Gate of the Setting Sun
 			1397, -- Saboteur Kip'tilak
 			1405, -- Striker Ga'dok
@@ -491,6 +477,7 @@ local wodMounts = {
 			1428, -- Rattlegore
 			1429, -- Lilian Voss
 			1430, -- Darkmaster Gandling
+
 			-- WoD Timewalking
 			---- The Everbloom
 			1756, -- Yalnu
@@ -522,6 +509,7 @@ local wodMounts = {
 			1715, -- Rocketspark and Borka
 			1732, -- Nitrogg Thundertower
 			1736, -- Skylord Tovra
+
 			-- Legion Timewalking
 			--- Black Rook Hold
 			1832, -- Amalgam of Souls
@@ -554,7 +542,8 @@ local wodMounts = {
 			1816, -- Ash'Golm
 			1817, -- Glazer
 			1818, -- Cordana Felsong
-			-- BFA Dungeons
+
+			-- BFA Timewalking
 			--- Atal'Dazar
 			2084, -- Priestess Alun'za
 			2085, -- Vol'kaal
@@ -586,6 +575,7 @@ local wodMounts = {
 			2115, -- Raal the Gluttonous
 			2116, -- Lord and Lady Waycrest
 			2117, -- Gorak Tul
+
 			-- Shadowlands Timewalking
 			---- The Necrotic Wake
 			2387, -- Blightbone
@@ -618,6 +608,9 @@ local wodMounts = {
 			2362, -- Grand Proctor Beryllia
 			2363, -- General Kaal
 		},
+		name = L["Reins of the Infinite Timereaver"],
+		spellId = 201098,
+		itemId = 133543,
 		chance = 4000,
 		groupSize = 5,
 		equalOdds = true,
@@ -652,6 +645,7 @@ local wodMounts = {
 			{ m = 457, i = true },
 			{ m = 443, i = true },
 			{ m = 453, i = true },
+			-- TODO add the missing IDs (Shadowlands, possibly others)
 		},
 	},
 }

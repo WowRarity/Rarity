@@ -49,7 +49,10 @@ local mopPets = {
 	["Anubisath Idol"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			715, -- Twin Emperors
+		},
 		name = L["Anubisath Idol"],
 		spellId = 135267,
 		itemId = 93040,
@@ -61,7 +64,10 @@ local mopPets = {
 	["Blackwing Banner"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			612, -- Broodlord Lashlayer
+		},
 		name = L["Blackwing Banner"],
 		spellId = 135265,
 		itemId = 93037,
@@ -73,7 +79,10 @@ local mopPets = {
 	["Blazing Rune"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			664, -- Magmadar
+		},
 		name = L["Blazing Rune"],
 		spellId = 135259,
 		itemId = 93034,
@@ -85,7 +94,10 @@ local mopPets = {
 	["Blighted Spore"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1115, -- Loatheb
+		},
 		name = L["Blighted Spore"],
 		spellId = 135255,
 		itemId = 93032,
@@ -97,7 +109,10 @@ local mopPets = {
 	["Core of Hardened Ash"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			670, -- Golemagg the Incinerator
+		},
 		name = L["Core of Hardened Ash"],
 		spellId = 135261,
 		itemId = 93035,
@@ -109,7 +124,10 @@ local mopPets = {
 	["Dusty Clutch of Eggs"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1116, -- Maexxna
+		},
 		name = L["Dusty Clutch of Eggs"],
 		spellId = 135254,
 		itemId = 93030,
@@ -121,7 +139,10 @@ local mopPets = {
 	["Gluth's Bone"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1108, -- Gluth
+		},
 		name = L["Gluth's Bone"],
 		spellId = 135257,
 		itemId = 93029,
@@ -157,7 +178,10 @@ local mopPets = {
 	["Jewel of Maddening Whispers"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			709, -- The Prophet Skeram
+		},
 		name = L["Jewel of Maddening Whispers"],
 		spellId = 135268,
 		itemId = 93041,
@@ -169,7 +193,10 @@ local mopPets = {
 	["Mark of Flame"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			669, -- Sulfuron Harbinger
+		},
 		name = L["Mark of Flame"],
 		spellId = 135258,
 		itemId = 93033,
@@ -181,7 +208,10 @@ local mopPets = {
 	["Unscathed Egg"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			610, -- Razorgore the Untamed
+		},
 		name = L["Unscathed Egg"],
 		spellId = 135263,
 		itemId = 93036,
@@ -193,7 +223,10 @@ local mopPets = {
 	["Viscidus Globule"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			713, -- Viscidus
+		},
 		name = L["Viscidus Globule"],
 		spellId = 135266,
 		itemId = 93039,
@@ -205,7 +238,10 @@ local mopPets = {
 	["Whistle of Chromatic Bone"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			616, -- Chromaggus
+		},
 		name = L["Whistle of Chromatic Bone"],
 		spellId = 135264,
 		itemId = 93038,
@@ -235,7 +271,7 @@ local mopPets = {
 	["Living Sandling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.BOSS, -- TODO Won't work in 12.0 or later!
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
 		name = L["Living Sandling"],
 		spellId = 137977,
 		itemId = 94125,
@@ -389,7 +425,10 @@ local mopPets = {
 	["Brilliant Phoenix Hawk Feather"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			730, -- Al'ar
+		},
 		name = L["Brilliant Phoenix Hawk Feather"],
 		spellId = 141449,
 		itemId = 97557,
@@ -402,14 +441,16 @@ local mopPets = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
-		encounters = { 732 },
+		encounters = {
+			732, -- High Astromancer Solarian
+		},
 		name = L["Crystal of the Void"],
 		spellId = 141448,
 		itemId = 97556,
 		npcs = { 18805 },
 		chance = 20,
 		creatureId = 71021,
-		coords = { { m = 334, x = 74, y = 48.9, i = true } }, -- TBD: Map ID wrong? -> 334 (check ingame)
+		coords = { { m = 334, x = 74, y = 48.9, i = true } },
 	},
 	["Dark Quivering Blob"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
@@ -438,7 +479,10 @@ local mopPets = {
 	["Dripping Strider Egg"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			628, -- Lady Vashj
+		},
 		name = L["Dripping Strider Egg"],
 		spellId = 141446,
 		itemId = 97554,
@@ -477,19 +521,25 @@ local mopPets = {
 	["Instant Arcane Sanctum Security Kit"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			656, -- The Curator
+		},
 		name = L["Instant Arcane Sanctum Security Kit"],
 		spellId = 141434,
 		itemId = 97549,
 		npcs = { 15691 },
 		chance = 33,
 		creatureId = 71015,
-		coords = { { m = 350, i = true, x = 49.4, y = 36.6 } },
+		coords = { { m = 350, i = true, x = 49.4, y = 36.6 } }, -- TBD UI map ID is 532?
 	},
 	["Netherspace Portal-Stone"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			661, -- Prince Malchezaar
+		},
 		name = L["Netherspace Portal-Stone"],
 		spellId = 141435,
 		itemId = 97550,
@@ -537,7 +587,10 @@ local mopPets = {
 	["Satyr Charm"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			657, -- Terestian Illhoof
+		},
 		name = L["Satyr Charm"],
 		spellId = 141451,
 		itemId = 97551,
@@ -549,7 +602,10 @@ local mopPets = {
 	["Shell of Tide-Calling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			627, -- Morogrim Tidewalker
+		},
 		name = L["Shell of Tide-Calling"],
 		spellId = 141436,
 		itemId = 97552,
@@ -561,7 +617,10 @@ local mopPets = {
 	["Spiky Collar"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER, -- TODO: Only one of the three drops it... can't track this?
+		encounters = {
+			655, -- Opera Hall
+		},
 		name = L["Spiky Collar"],
 		spellId = 141433,
 		itemId = 97548,
@@ -573,11 +632,15 @@ local mopPets = {
 	["Tainted Core"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			623, -- Hydross the Unstable
+			624, -- The Lurker Below
+		},
 		name = L["Tainted Core"],
 		spellId = 141437,
 		itemId = 97553,
-		npcs = { 21216 },
+		npcs = { 21216, 21217 }, -- TBD: Hydross vs. Lurker Below (bug or recent change?)
 		chance = 25,
 		creatureId = 71018,
 		coords = { { m = 332, x = 36.3, y = 84.7, i = true } },
@@ -585,7 +648,10 @@ local mopPets = {
 	["Tiny Fel Engine Key"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			731, -- Void Reaver
+		},
 		name = L["Tiny Fel Engine Key"],
 		spellId = 141447,
 		itemId = 97555,
@@ -696,7 +762,7 @@ local mopPets = {
 		sourceText = L["All raid formats except Raid Finder"],
 		lockBossName = "Sha of Pride",
 		coords = { { m = 556, x = 22.5, y = 69.5, i = true } },
-	}, -- SHA OF PRIDE (flex/normal/heroic)
+	},
 	["Gooey Sha-ling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
@@ -718,7 +784,7 @@ local mopPets = {
 		sourceText = L["Raid Finder or Flexible difficulty"],
 		lockBossName = "Sha of Pride",
 		coords = { { m = 556, x = 22.5, y = 69.5, i = true } },
-	}, -- SHA OF PRIDE (lfr/flex)
+	},
 	["Gu'chi Swarmling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
@@ -783,7 +849,7 @@ local mopPets = {
 		blackMarket = true,
 		lockBossName = "Paragons of the Klaxxi",
 		coords = { { m = 556, x = 68.3, y = 35.3, i = true } },
-	}, -- PARAGONS OF THE KLAXXI (all modes)
+	},
 	["Lil' Bling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,

@@ -95,6 +95,8 @@ function Serialization:CanItemBeExportedImported(item)
 		end
 	end
 
+	-- TODO ENCOUNTER
+
 	return true
 end
 

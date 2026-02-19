@@ -8,7 +8,10 @@ local classicToys = {
 		cat = CONSTANTS.ITEM_CATEGORIES.CLASSIC,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
 		isToy = true,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			473, -- Hearthsinger Forresten
+		},
 		name = L["Piccolo of the Flaming Fire"],
 		itemId = 13379,
 		npcs = { 10558 },
