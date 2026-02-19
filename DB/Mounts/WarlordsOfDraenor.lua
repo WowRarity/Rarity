@@ -566,29 +566,26 @@ local wodMounts = {
 			2094, -- Council o' Captains
 			2096, -- Lord Harlan Sweete
 			--- Kings' Rest
-			135322, -- The Golden Serpent
-			134993, -- Mchimba the Embalmer
-			135470, -- The Council of Tribes
-			136160, -- King Dazar
+			2139, -- The Golden Serpent
+			2142, -- Mchimba the Embalmer
+			2140, -- The Council of Tribes
+			2143, -- King Dazar
 			--- Shrine of the Storm
-			134056, -- Aqu'sirr
-			134063, -- Brother Ironhull
-			134058, -- Galecaller Faye
-			139737, -- Lord Stormsong
-			134069, -- Vol'zith the Whisperer
+			2130, -- Aqu'sirr
+			2131, -- Tidesage Council
+			2132, -- Lord Stormsong
+			2133, -- Vol'zith the Whisperer
 			--- Temple of Sethraliss
-			133379, -- Adderis
-			133944, -- Aspix
-			133384, -- Merektha
-			133389, -- Galvazzt
-			133392, -- Avatar of Sethraliss
+			2124, -- Adderis and Aspix
+			2125, -- Merektha
+			2126, -- Galvazzt
+			2127, -- Avatar of Sethraliss
 			--- Waycrest Manor
-			135360, -- Sister Briar
-			131667, -- Soulbound Goliath
-			131863, -- Raal the Gluttonous
-			131527, -- Lord Waycrest
-			131545, -- Lady Waycrest
-			131864, -- Gorak Tul
+			2113, -- Heartsbane Triad
+			2114, -- Soulbound Goliath
+			2115, -- Raal the Gluttonous
+			2116, -- Lord and Lady Waycrest
+			2117, -- Gorak Tul
 		},
 		chance = 4000,
 		groupSize = 5,
