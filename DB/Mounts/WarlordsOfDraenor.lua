@@ -493,67 +493,67 @@ local wodMounts = {
 			1430, -- Darkmaster Gandling
 			-- WoD Timewalking
 			---- The Everbloom
-			83846, -- Yalnu
-			82682, -- Archmage Sol
-			84550, -- Xeri'tac
-			83894, -- Dulhu
-			81522, -- Witherbark
+			1756, -- Yalnu
+			1751, -- Archmage Sol
+			1752, -- Xeri'tac
+			1757, -- Ancient Protectors
+			1746, -- Witherbark
 			---- Bloodmaul Slag Mines
-			74366, -- Forgemaster Gog'duh
-			74787, -- Slave Watcher Crushto
-			75786, -- Roltall
-			74790, -- GugÄrokk
+			1653, -- Slave Watcher Crushto
+			1652, -- Roltall
+			1655, -- Magmolatus
+			1654, -- Gug'rokk
 			---- Auchindoun
-			75839, -- Vigilant Kaathar
-			76177, -- Soulbinder Nyami
-			75927, -- Azzakel
-			77734, -- Teron'gor
+			1686, -- Vigilant Kaathar
+			1685, -- Soulbinder Nyami
+			1678, -- Azzakel, Vanguard of the Legion
+			1714, -- Teron'gor
 			---- Shadowmoon Burial Grounds
-			75509, -- Sadana Bloodfury
-			75829, -- Nhallish
-			75452, -- Bonemaw
-			76407, -- Ner'zhul
+			1677, -- Sadana Bloodfury
+			1688, -- Nhallish
+			1679, -- Bonemaw
+			1682, -- Ner'zhul
 			---- Skyreach
-			75964, -- Ranjit
-			76141, -- Araknath
-			76379, -- Rukhran
-			76266, -- High Sage Viryx
+			1698, -- Ranjit
+			1699, -- Araknath
+			1700, -- Rukhran
+			1701, -- High Sage Viryx
 			---- Grimrail Depot
-			77803, -- Railmaster Rocketspark
-			79545, -- Nitrogg Thundertower
-			80005, -- Skylord Tovra
+			1715, -- Rocketspark and Borka
+			1732, -- Nitrogg Thundertower
+			1736, -- Skylord Tovra
 			-- Legion Timewalking
 			--- Black Rook Hold
-			98542, -- Amalgam of Souls
-			98696, -- Illysanna Ravencrest
-			98949, -- Smashspite the Hateful
-			94923, -- Lord Kur'talos Ravencrest
+			1832, -- Amalgam of Souls
+			1833, -- Illysanna Ravencrest
+			1834, -- Smashspite the Hateful
+			1835, -- Lord Kur'talos Ravencrest
 			--- Court of Stars
-			104215, -- Patrol Captain Gerdo
-			104217, -- Talixae Flamewreath
-			101831, -- Advisor Melandrus
+			1868, -- Patrol Captain Gerdo
+			1869, -- Talixae Flamewreath
+			1870, -- Advisor Melandrus
 			--- Darkheart Thicket
-			96512, -- Archdruid Glaidalis
-			103344, -- Oakheart
-			99200, -- Dresaron
-			99192, -- Shade of Xavius
+			1836, -- Archdruid Glaidalis
+			1837, -- Oakheart
+			1838, -- Dresaron
+			1839, -- Shade of Xavius
 			--- Eye of Azshara
-			91784, -- Warlord Parjesh
-			91789, -- Lady Hatecoil
-			91797, -- King Deepbeard
-			91808, -- Serpentrix
-			96028, -- Wrath of Azshara
+			1810, -- Warlord Parjesh
+			1811, -- Lady Hatecoil
+			1812, -- King Deepbeard
+			1813, -- Serpentrix
+			1814, -- Wrath of Azshara
 			--- Neltharion's Lair
-			91003, -- Rokmora
-			91004, -- Ularogg Cragshaper
-			91005, -- Naraxas
-			91007, -- Dargrul
+			1790, -- Rokmora
+			1791, -- Ularogg Cragshaper
+			1792, -- Naraxas
+			1793, -- Dargrul the Underking
 			--- Vault of the Wardens
-			95885, -- Tirathon Saltheril
-			96015, -- Inquisitor Tormentorum
-			95886, -- Ash'Golm
-			99865, -- Glazer
-			95888, -- Cordana Felsong
+			1493, -- Tirathon Saltheril
+			1493, -- Inquisitor Tormentorum
+			1493, -- Ash'Golm
+			1493, -- Glazer
+			1493, -- Cordana Felsong
 			-- BFA Dungeons
 			--- Atal'Dazar
 			129614, -- Priestess Alun'za
