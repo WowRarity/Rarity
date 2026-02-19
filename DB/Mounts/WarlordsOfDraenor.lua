@@ -586,6 +586,37 @@ local wodMounts = {
 			2115, -- Raal the Gluttonous
 			2116, -- Lord and Lady Waycrest
 			2117, -- Gorak Tul
+			-- Shadowlands Timewalking
+			---- The Necrotic Wake
+			2387, -- Blightbone
+			2388, -- Amarth, The Harvester
+			2389, -- Surgeon Stitchflesh
+			2390, -- Nalthor the Rimebinder
+			---- Spires of Ascension
+			2356, -- Ventunax
+			2357, -- Kin-Tara
+			2358, -- Oryphrion
+			2359, -- Devos, Paragon of Loyalty
+			---- Plaguefall
+			2382, -- Globgrog
+			2384, -- Doctor Ickus
+			2385, -- Domina Venomblade
+			2386, -- Stradama Margrave
+			---- De Other Side
+			2394, -- The Manastorms
+			2395, -- Hakkar, the Soulflayer
+			2396, -- Mueh'zala
+			2400, -- Dealer Xy'exa
+			---- Halls of Atonement
+			2380, -- Echelon
+			2401, -- Halkias, the Sin-Stained Goliath
+			2381, -- Lord Chamberlain
+			2403, -- High Adjudicator Aleez
+			---- Sanguine Depths
+			2360, -- Kryxis the Voracious
+			2361, -- Executor Tarvold
+			2362, -- Grand Proctor Beryllia
+			2363, -- General Kaal
 		},
 		chance = 4000,
 		groupSize = 5,
