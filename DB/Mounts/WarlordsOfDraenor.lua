@@ -429,21 +429,21 @@ local wodMounts = {
 			2026, -- Prince Keleseth
 			2024, -- Skarvold & Dalronn
 			2025, -- Ingvar the Plunderer
-			-- Cataclysm Dungeons
+			-- Cataclysm
 			---- Throne of the Tides
-			40586, -- Lady Naz'jar
-			40765, -- Commander Ulthok
-			40788, -- Mindbender Ghur'sha
-			44566, -- Ozumat *
+			1045, -- Lady Naz'jar
+			1044, -- Commander Ulthok
+			1046, -- Mindbender Ghur'sha
+			1047, -- Ozumat
 			---- The Vortex Pinnacle
-			43878, -- Grand Vizier Ertan
-			43873, -- Altairus
-			43875, -- Asaad
+			1043, -- Grand Vizier Ertan
+			1041, -- Altairus
+			1042, -- Asaad
 			---- The Stonecore
-			43438, -- Corborus
-			43214, -- Slabhide
-			42188, -- Ozruk
-			42333, -- High Priestess Azil
+			1056, -- Corborus
+			1059, -- Slabhide
+			1058, -- Ozruk
+			1057, -- High Priestess Azil
 			---- Lost City of the Tol'vir
 			44577, -- General Husam
 			43612, -- High Prophet Barim
