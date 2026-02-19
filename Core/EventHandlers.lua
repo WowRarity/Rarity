@@ -301,12 +301,9 @@ end
 -------------------------------------------------------------------------------------
 local encounterLUT = {
 	-- See https://warcraft.wiki.gg/wiki/DungeonEncounterID
-	-- 8.3: Horrific Visions
-	[2372] = { "Void-Touched Souvenir Totem", "Box With Faintly Glowing 'Air' Holes" }, -- Oblivion Elemental (Final objective for Zekhan's area)
 	-- 11.1.5 Horrific Visions (Revisited)
 	[3084] = { "Eye of Chaos" }, -- Mathias Shaw (Old Town)
 	[3087] = { "Void Scarred Scorpid" }, -- Inquistor Gnshal
-	[3088] = { "Void-Touched Souvenir Totem", "Box With Faintly Glowing 'Air' Holes" }, -- Oblivion Elemental (Final objective for Zekhan's area)
 	[3089] = { "Void-Scarred Egg" }, -- Vezokk
 }
 
