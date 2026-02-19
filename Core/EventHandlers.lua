@@ -292,21 +292,6 @@ function R:CheckForCoinItem()
 	end
 end
 
--------------------------------------------------------------------------------------
--- Raid encounter ended:
--- Used for detecting raid bosses that don't actually die when the encounter ends and
--- have no statistic tied to them (e.g., the Keepers of Ulduar)
--- While it might work to change their method from NPC to BOSS,
--- at this time I'm not sure if that wouldn't cause problems elsewhere... so I won't touch it
--------------------------------------------------------------------------------------
-local encounterLUT = {
-	-- See https://warcraft.wiki.gg/wiki/DungeonEncounterID
-	-- 11.1.5 Horrific Visions (Revisited)
-	[3084] = { "Eye of Chaos" }, -- Mathias Shaw (Old Town)
-	[3087] = { "Void Scarred Scorpid" }, -- Inquistor Gnshal
-	[3089] = { "Void-Scarred Egg" }, -- Vezokk
-}
-
 function R:OnEncounterEnd(event, encounterID, encounterName, difficultyID, raidSize, endStatus)
 	R:Debug(
 		"ENCOUNTER_END with encounterID = "
@@ -439,10 +424,11 @@ end
 -- end
 
 local worldEventQuests = {
-	[52196] = "Slightly Damp Pile of Fur", -- Dunegorger Kraulok
+	[52196] = "Slightly Damp Pile of Fur", -- Dunegorger Kraulok (TODO: Use encounter also?)
 	[70867] = "Everlasting Horn of Lavaswimming", -- Scalebane Keep (scenario completion)
 	-- Not actually from a world quest/event
 	[85830] = "Parrot Cage (Void-Scarred Parrot)", -- More accurately detected via object GUID
+	-- TBD: Are object GUIDs also secret now? Sigh.
 }
 
 function R:OnQuestTurnedIn(event, questID, experience, money)
