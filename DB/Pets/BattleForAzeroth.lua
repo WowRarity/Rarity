@@ -1341,7 +1341,7 @@ local bfaPets = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
 		method = CONSTANTS.DETECTION_METHODS.BOSS,
-			-- [1506] = { "Spirit of the Spring" }, -- Lei Shi
+		-- [1506] = { "Spirit of the Spring" }, -- Lei Shi
 
 		name = L["Spirit of the Spring"],
 		itemId = 167052,
@@ -1938,7 +1938,7 @@ local bfaPets = {
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
 		encounters = {
 			2374, -- Therum Deepforge (8.3)
-3082, --  Therum Deepforge (11.1.5)
+			3082, --  Therum Deepforge (11.1.5)
 		},
 		name = L['Box Labeled "Danger: Void Rat Inside"'],
 		spellId = 315301,
@@ -1976,7 +1976,7 @@ local bfaPets = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
-				encounters = {
+		encounters = {
 			2338, -- Alleria Windrunner (8.3)
 			3081, -- Alleria Windrunner (11.1.5)
 		},
@@ -1994,7 +1994,7 @@ local bfaPets = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
-				encounters = {
+		encounters = {
 			2332, -- Thrall the Corrupted (8.3)
 			3086, -- Thrall the Corrupted (11.1.5)
 		},
@@ -2030,7 +2030,7 @@ local bfaPets = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
-				encounters = {
+		encounters = {
 			2377, -- Magister Umbric (8.3)
 			3085, -- Magister Umbric (11.1.5)
 		},
@@ -2048,7 +2048,7 @@ local bfaPets = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
-				encounters = {
+		encounters = {
 			2372, -- Oblivion Elemental (8.3)
 			3088, -- Oblivion Elemental (11.1.5)
 		},

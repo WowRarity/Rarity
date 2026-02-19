@@ -278,8 +278,8 @@ local legionPets = {
 		chance = 10,
 		statisticId = {
 			2860, -- Assembly of Iron kills (Ulduar 10 player)
-		2885, -- Assembly of Iron kills (Ulduar 25 player)
-	},
+			2885, -- Assembly of Iron kills (Ulduar 25 player)
+		},
 		doNotUpdateToHighestStat = true,
 		coords = { { m = 148, x = 15.5, y = 55.9, i = true } },
 	},
