@@ -324,17 +324,24 @@ local wodMounts = {
 		spellId = 201098,
 		itemId = 133543,
 		npcs = {
-			---- Dire Maul (Capital Gardens)
-			11489, -- Tendris Warpwood
-			11487, -- Magister Kalendris
-			11488, -- Illyanna Ravenoak
-			11496, --Immol'thar
-			11486, -- Prince Tortheldrin
+			---- Dire Maul
+			343, -- Zevrim Thornhoof
+			344, -- Hydrospawn
+			345, -- Lethtendris
+			346, -- Alzzin the Wildshaper
+			347, -- Illyanna Ravenoak
+			348, -- Magister Kalendris
+			349, -- Immol'thar
+			350, -- Tendris Warpwood
+			361, -- Prince Tortheldrin
+			362, -- Guard Mol'dar
+			363, -- Stomper Kreeg
+			364, -- Guard Fengus
+			365, -- Guard Slip'kik
+			366, -- Captain Kromcrush
+			367, -- Cho'Rush the Observer
+			368, -- King Gordok
 			---- Dire Maul (Warpwood Quarters)
-			14327, -- Lethtendris
-			13280, -- Hydrospawn
-			11490, -- Zevrim Thornhoof
-			11492, -- Alzzin the Wildshaper
 			---- Zul Farrak
 			7272, -- Theka the Martyr
 			7795, -- Hydromancer Velratha
