@@ -290,6 +290,23 @@ local wodMounts = {
 		encounters = {
 			-- Classic Dungeons
 			-- TBD Deadmines = CATA only in TW?
+			---- Dire Maul
+			343, -- Zevrim Thornhoof
+			344, -- Hydrospawn
+			345, -- Lethtendris
+			346, -- Alzzin the Wildshaper
+			347, -- Illyanna Ravenoak
+			348, -- Magister Kalendris
+			349, -- Immol'thar
+			350, -- Tendris Warpwood
+			361, -- Prince Tortheldrin
+			362, -- Guard Mol'dar
+			363, -- Stomper Kreeg
+			364, -- Guard Fengus
+			365, -- Guard Slip'kik
+			366, -- Captain Kromcrush
+			367, -- Cho'Rush the Observer
+			368, -- King Gordok
 			-- Cataclysm
 			---- Throne of the Tides
 			1047, -- Ozumat
@@ -324,24 +341,7 @@ local wodMounts = {
 		spellId = 201098,
 		itemId = 133543,
 		npcs = {
-			---- Dire Maul
-			343, -- Zevrim Thornhoof
-			344, -- Hydrospawn
-			345, -- Lethtendris
-			346, -- Alzzin the Wildshaper
-			347, -- Illyanna Ravenoak
-			348, -- Magister Kalendris
-			349, -- Immol'thar
-			350, -- Tendris Warpwood
-			361, -- Prince Tortheldrin
-			362, -- Guard Mol'dar
-			363, -- Stomper Kreeg
-			364, -- Guard Fengus
-			365, -- Guard Slip'kik
-			366, -- Captain Kromcrush
-			367, -- Cho'Rush the Observer
-			368, -- King Gordok
-			---- Dire Maul (Warpwood Quarters)
+
 			---- Zul Farrak
 			7272, -- Theka the Martyr
 			7795, -- Hydromancer Velratha
