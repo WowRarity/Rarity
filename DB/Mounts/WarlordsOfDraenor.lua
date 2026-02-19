@@ -399,36 +399,36 @@ local wodMounts = {
 			1945, -- Ghaz'an
 			1947, -- Swamplord Musel'ek
 			1948, -- The Black Stalker
-			-- WOTLK Dungeons
+			-- WOTLK
 			---- The Nexus
-			26731, -- Grand Magus Telestra
-			26763, -- Anomalus
-			26794, -- Ormorok the Tree-Shaper
-			26723, -- Keristrasza
-			26796, -- Commander Stoutbeard
-			26798, -- Commander Kolurg
+			576, -- Frozen Commander
+			2010, -- Grand Magus Telestra
+			2009, -- Anomalus
+			2012, -- Ormorok the Tree-Shaper
+			2011, -- Keristrasza
+			3017, -- Frozen Commander
 			---- Halls of Lightning
-			28586, -- General Bjarngrim
-			28587, -- Volkhan
-			28546, -- Ionar
-			28923, -- Loken
+			1987, -- General Bjarngrim
+			1985, -- Volkhan
+			1984, -- Ionar
+			1986, -- Loken
 			---- Gundrak
-			29304, -- Slad'ran
-			29573, -- Drakkari Elemental
-			29305, -- Moorabi
-			29306, -- Gal'darah
-			29932, -- Eck the Ferocious
+			1978, -- Slad'ran
+			1983, -- Drakkari Colossus
+			1980, -- Moorabi
+			1981, -- Gal'darah
+			1988, -- Eck the Ferocious
 			---- Azjol-Nerub
-			28684, -- Krik'thir the Gatewatcher
-			28921, -- Hadronox
-			29120, -- Anub'arak
+			1971, -- Krik'thir the Gatewatcher
+			1972, -- Hadronox
+			1973, -- Anub'arak
 			---- The Forge of Souls
-			36497, -- Bronjahm
-			36502, -- Devourer of Souls
+			2006, -- Bronjahm
+			2007, -- Devourer of Souls
 			---- Utgarde Keep
-			23953, -- Prince Keleseth
-			24201, -- Dalronn
-			23954, -- Ingvar the Plunderer
+			2026, -- Prince Keleseth
+			2024, -- Skarvold & Dalronn
+			2025, -- Ingvar the Plunderer
 			-- Cataclysm Dungeons
 			---- Throne of the Tides
 			40586, -- Lady Naz'jar
