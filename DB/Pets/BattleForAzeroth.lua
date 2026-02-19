@@ -1308,7 +1308,8 @@ local bfaPets = {
 	["Azure Cloud Serpent Egg"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		method = CONSTANTS.DETECTION_METHODS.BOSS, -- TODO encounter or stats?
+		-- encounters = { 1505 },
 		name = L["Azure Cloud Serpent Egg"],
 		itemId = 167051,
 		spellId = 291537,
@@ -1332,12 +1333,16 @@ local bfaPets = {
 			},
 		},
 		chance = 3,
+		-- TODO
+		-- https://www.wowhead.com/achievement=7967/tsulong-redemptions-25-player-normal-terrace-of-endless-spring
 		coords = { { m = 456, i = true } },
 	},
 	["Spirit of the Spring"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
 		method = CONSTANTS.DETECTION_METHODS.BOSS,
+			-- [1506] = { "Spirit of the Spring" }, -- Lei Shi
+
 		name = L["Spirit of the Spring"],
 		itemId = 167052,
 		spellId = 291547,
@@ -1930,7 +1935,7 @@ local bfaPets = {
 	['Box Labeled "Danger: Void Rat Inside"'] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
 		name = L['Box Labeled "Danger: Void Rat Inside"'],
 		spellId = 315301,
 		itemId = 174460,
@@ -1966,7 +1971,11 @@ local bfaPets = {
 	["Voidwoven Cat Collar"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+				encounters = {
+			2338, -- Alleria Windrunner (8.3)
+			3081, -- Alleria Windrunner (11.1.5)
+		},
 		name = L["Voidwoven Cat Collar"],
 		spellId = 315298,
 		itemId = 174459,
@@ -1980,7 +1989,11 @@ local bfaPets = {
 	["Void-Link Frostwolf Collar"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+				encounters = {
+			2332, -- Thrall the Corrupted (8.3)
+			3086, -- Thrall the Corrupted (11.1.5)
+		},
 		name = L["Void-Link Frostwolf Collar"],
 		spellId = 312030,
 		itemId = 174646,
@@ -2012,7 +2025,7 @@ local bfaPets = {
 	["Void-Scarred Hare"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
 		name = L["Void-Scarred Hare"],
 		spellId = 315297,
 		itemId = 174458,
@@ -2026,7 +2039,7 @@ local bfaPets = {
 	["Box With Faintly Glowing 'Air' Holes"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
 		name = L["Box With Faintly Glowing 'Air' Holes"],
 		spellId = 312029,
 		itemId = 173726,
