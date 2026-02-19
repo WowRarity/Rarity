@@ -288,285 +288,304 @@ local wodMounts = {
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
 		-- TODO
 		encounters = {
-			-- CATA
+			-- Classic
+			---- TBD Deadmines = CATA only in TW?
+			---- Dire Maul
+			343, -- Zevrim Thornhoof
+			344, -- Hydrospawn
+			345, -- Lethtendris
+			346, -- Alzzin the Wildshaper
+			347, -- Illyanna Ravenoak
+			348, -- Magister Kalendris
+			349, -- Immol'thar
+			350, -- Tendris Warpwood
+			361, -- Prince Tortheldrin
+			362, -- Guard Mol'dar
+			363, -- Stomper Kreeg
+			364, -- Guard Fengus
+			365, -- Guard Slip'kik
+			366, -- Captain Kromcrush
+			367, -- Cho'Rush the Observer
+			368, -- King Gordok
+			---- Stratholme
+			472, -- The Unforgiven
+			473, -- Hearthsinger Forresten
+			474, -- Timmy the Cruel
+			475, -- Willey Hopebreaker
+			476, -- Commander Malor
+			477, -- Instructor Galford
+			478, -- Balnazzar
+			479, -- Baroness Anastari
+			480, -- Nerub'enkan
+			481, -- Maleki the Pallid
+			482, -- Magistrate Barthilas
+			483, -- Ramstein the Gorger
+			484, -- Lord Aurius Rivendare
+			1885, -- Postmaster Malown
+			---- Zul'Farrak
+			593, -- Hydromancer Velratha
+			594, -- Gahz'rilla
+			595, -- Antu'sul
+			596, -- Theka the Martyr
+			597, -- Witch Doctor Zum'rah
+			598, -- Nekrum Gutchewer
+			599, -- Shadowpriest Sezz'ziz
+			600, -- Chief Ukorz Sandscalp
+
+			-- Cataclysm
+			---- Throne of the Tides
 			1047, -- Ozumat
-			-- MOP
+			---- The Deadmines
+			1081, -- Vanessa VanCleef
+			2967, -- Rhahk'Zor
+			2968, -- Sneed
+			2969, -- Gilnid
+			2970, -- Mr. Smite
+			2971, -- Captain Greenskin
+			2972, -- Edwin VanCleef
+			2973, -- "Captain" Cookie
+			2974, -- Admiral Ripsnarl
+			2975, -- Foe Reaper 5000
+			2976, -- Glubtok
+			2977, -- Helix Gearbreaker
+			2978, -- "Captain" Cookie
+			2979, -- Admiral Ripsnarl
+			2980, -- Foe Reaper 5000
+			2981, -- Glubtok
+			2982, -- Helix Gearbreaker
+			2986, -- Cookie
+			-- Mists of Pandaria
 			1304, -- Master Snowdrift
 			1306, -- Taran Zhu
 			1442, -- Trial of the King
+			-- TBD Legion
+			-- TBD Shadowlands
+			--  TBD TWW
 		},
 		name = L["Reins of the Infinite Timereaver"],
 		spellId = 201098,
 		itemId = 133543,
 		npcs = {
-			-- NPCs marked with * can't be looted; they use a workaround and are detected via checking their achievement criteria. The entry here is mostly for the tooltip display....
-			-- Classic Dungeons
-			---- Deadmines
-			644, -- Rhahk'Zor
-			643, -- Sneed
-			1763, -- Gilnid
-			646, -- Mr. Smite
-			647, -- Captain Greenskin
-			639, -- Edwin VanCleef
-			645, -- Cookie
-			---- Dire Maul (Capital Gardens)
-			11489, -- Tendris Warpwood
-			11487, -- Magister Kalendris
-			11488, -- Illyanna Ravenoak
-			11496, --Immol'thar
-			11486, -- Prince Tortheldrin
-			---- Dire Maul (Warpwood Quarters)
-			14327, -- Lethtendris
-			13280, -- Hydrospawn
-			11490, -- Zevrim Thornhoof
-			11492, -- Alzzin the Wildshaper
-			---- Zul Farrak
-			7272, -- Theka the Martyr
-			7795, -- Hydromancer Velratha
-			8127, -- Antu'sul
-			7271, -- Witch Doctor Zum'rah
-			7273, -- Gahz'rilla
-			7275, -- Nekrum & Sezz'ziz
-			7267, -- Chief Ukorz Sandscalp
-			---- Stratholme (Main Gate)
-			10813, -- Balnazzar
-			10516, -- The Unforgiven
-			10558, -- Hearthsinger Forresten
-			10808, -- Timmy the Cruel
-			11143, -- Postmaster Malown
-			11032, -- Commander Malor
-			10997, -- Willey Hopebreaker
-			10811, -- Instructor Galford
-			---- Stratholme (Service Entrance)
-			10436, -- Baroness Anastari
-			10437, -- Nerub'enkan
-			10438, -- Maleki the Pallid
-			10435, -- Magistrate Barthilas
-			10439, -- Ramstein the Gorger
-			-- TBC Dungeons
+
+
+			-- The Burning Crusade
 			---- Magister's Terrace
-			24723, -- Selin Fireheart
-			24744, -- Vexallus
-			24560, -- Priestess Velrissa
-			24664, -- Kael'thas Sunstrider
+			1894, -- Kael'thas Sunstrider
+			1895, -- Priestess Delrissa
+			1897, -- Selin Fireheart
+			1898, -- Vexallus
 			-- The Shattered Halls
-			16807, -- Grand Warlock Nethekurse
-			20923, -- Blood Guard Porung
-			16809, -- Warbringer O'mrogg
-			16808, -- Warchief Kargath Bladefist
+				1936, -- Grand Warlock Nethekurse
+			1935, -- Blood Guard Porung
+				1937, -- Warbringer O'mrogg
+				1938, -- Warchief Kargath Bladefist
 			---- The Mana Tombs
-			18341, -- Pandemonius
-			18343, -- Tavarok
-			18344, -- Nexus-Prince Shaffar
-			22930, -- Yor
+				1900, -- Pandemonius
+			1901, -- Tavarok
+				1899, -- Nexus-Prince Shaffar
+			250, -- Yor
 			---- Blood Furnace
-			17381, -- The Maker
-			17380, -- Broggok
-			17377, -- Keli'dan the Breaker
+			1922, -- The Maker
+			1924, -- Broggok
+			1923, -- Keli'dan the Breaker
 			---- The Botanica
-			17976, -- Commander Sarannis
-			17975, -- High Botanist Freywinn
-			17978, -- Thorngrin the Tender
-			17980, -- Laj
-			17977, -- Warp Splinter
+				1925, -- Commander Sarannis
+			1926, -- High Botanist Freywinn
+			1928, -- Thorngrin the Tender
+			1927, -- Laj
+			1929, -- Warp Splinter
 			---- The Underbog
-			17770, -- Hungarfen
-			18105, -- Ghaz'an
-			17826, -- Swamplord Musel'ek
-			17882, -- The Black Stalker
-			-- WOTLK Dungeons
+			1946, -- Hungarfen
+			1945, -- Ghaz'an
+			1947, -- Swamplord Musel'ek
+			1948, -- The Black Stalker
+			-- WOTLK
 			---- The Nexus
-			26731, -- Grand Magus Telestra
-			26763, -- Anomalus
-			26794, -- Ormorok the Tree-Shaper
-			26723, -- Keristrasza
-			26796, -- Commander Stoutbeard
-			26798, -- Commander Kolurg
+			576, -- Frozen Commander
+			2010, -- Grand Magus Telestra
+			2009, -- Anomalus
+			2012, -- Ormorok the Tree-Shaper
+			2011, -- Keristrasza
+			3017, -- Frozen Commander
 			---- Halls of Lightning
-			28586, -- General Bjarngrim
-			28587, -- Volkhan
-			28546, -- Ionar
-			28923, -- Loken
+			1987, -- General Bjarngrim
+			1985, -- Volkhan
+			1984, -- Ionar
+			1986, -- Loken
 			---- Gundrak
-			29304, -- Slad'ran
-			29573, -- Drakkari Elemental
-			29305, -- Moorabi
-			29306, -- Gal'darah
-			29932, -- Eck the Ferocious
+			1978, -- Slad'ran
+			1983, -- Drakkari Colossus
+			1980, -- Moorabi
+			1981, -- Gal'darah
+			1988, -- Eck the Ferocious
 			---- Azjol-Nerub
-			28684, -- Krik'thir the Gatewatcher
-			28921, -- Hadronox
-			29120, -- Anub'arak
+			1971, -- Krik'thir the Gatewatcher
+			1972, -- Hadronox
+			1973, -- Anub'arak
 			---- The Forge of Souls
-			36497, -- Bronjahm
-			36502, -- Devourer of Souls
+			2006, -- Bronjahm
+			2007, -- Devourer of Souls
 			---- Utgarde Keep
-			23953, -- Prince Keleseth
-			24201, -- Dalronn
-			23954, -- Ingvar the Plunderer
-			-- Cataclysm Dungeons
+			2026, -- Prince Keleseth
+			2024, -- Skarvold & Dalronn
+			2025, -- Ingvar the Plunderer
+			-- Cataclysm
 			---- Throne of the Tides
-			40586, -- Lady Naz'jar
-			40765, -- Commander Ulthok
-			40788, -- Mindbender Ghur'sha
-			44566, -- Ozumat *
+			1045, -- Lady Naz'jar
+			1044, -- Commander Ulthok
+			1046, -- Mindbender Ghur'sha
+			1047, -- Ozumat
 			---- The Vortex Pinnacle
-			43878, -- Grand Vizier Ertan
-			43873, -- Altairus
-			43875, -- Asaad
+			1043, -- Grand Vizier Ertan
+			1041, -- Altairus
+			1042, -- Asaad
 			---- The Stonecore
-			43438, -- Corborus
-			43214, -- Slabhide
-			42188, -- Ozruk
-			42333, -- High Priestess Azil
+			1056, -- Corborus
+			1059, -- Slabhide
+			1058, -- Ozruk
+			1057, -- High Priestess Azil
 			---- Lost City of the Tol'vir
-			44577, -- General Husam
-			43612, -- High Prophet Barim
-			44819, -- Siamat
-			49045, -- Augh
+			1052, -- General Husam
+			1053, -- High Prophet Barim
+			1055, -- Siamat
+			1054, -- Lockmaw
 			---- End Time
-			54431, -- Echo of Baine
-			54445, -- Echo of Jaina
-			54123, -- Echo of Sylvanas
-			54544, -- Echo of Tyrande
-			54432, -- Murozond *
+			1881, -- Echo of Baine
+			1883, -- Echo of Jaina
+			1882, -- Echo of Sylvanas
+			1884, -- Echo of Tyrande
+			1271, -- Murozond
 			---- Blackrock Caverns
-			39665, -- Rom'ogg Bonecrusher
-			39679, -- Corla
-			39698, -- Karsh Steelbender
-			39700, -- Beauty
-			39705, -- Ascendant Lord Obsidius
-			-- MOP Timewalking
+			1040, -- Rom'ogg Bonecrusher
+			1038, -- Corla, Herald of Twilight
+			1039, -- Karsh Steelbender
+			1037, -- Beauty
+			1036, -- Ascendant Lord Obsidius
+			-- MOP
 			---- Gate of the Setting Sun
-			56906, -- Saboteur Kip'tilak
-			56589, -- Striker Ga'dok
-			56636, -- Commander Ri'mok
-			56877, -- Raigonn
+			1397, -- Saboteur Kip'tilak
+			1405, -- Striker Ga'dok
+			1406, -- Commander Ri'mok
+			1419, -- Raigonn
 			---- Temple of the Jade Serpent
-			56448, -- Wise Mari
-			59051, -- Strife (Trial of the Yaungol)
-			58826, -- Zao Sunseeker (Champion of the Five Suns)
-			56732, -- Liu Flameheart
-			56439, -- Sha of Doubt
+			1418, -- Wise Mari
+			1417, -- Lorewalker Stonestep
+			1416, -- Liu Flameheart
+			1439, -- Sha of Doubt
 			---- Stormstout Brewery
-			56637, -- Ook-ook
-			56717, -- Hoptallus
-			59479, -- Yan-Zhu the Uncasked
+			1412, -- Ook-ook
+			1413, -- Hoptallus
+			1414, -- Yan-Zhu the Uncasked
 			---- Shado-Pan Monastery
-			56747, -- Gu Cloudstrike
-			56541, -- Master Snowdrift *
-			56719, -- Sha of Violence
-			56884, -- Taran Zhu *
+			1303, -- Gu Cloudstrike
+			1304, -- Master Snowdrift
+			1305, -- Sha of Violence
+			1306, -- Taran Zhu
 			---- Mogu'shan Palace
-			61444, -- Ming the Cunning *
-			61243, -- Gekkan *
-			61398, -- Xin the Weaponmaster
+			1442, -- Trial of the King
+			2129, -- Gekkan
+			1441, -- Xin the Weaponmaster
 			---- Scholomance
-			58633, -- Instructor Chillheart
-			59184, -- Jandice Barov
-			59153, -- Rattlegore
-			58722, -- Lilian Voss
-			59080, -- Darkmaster Gandling
+			1426, -- Instructor Chillheart
+			1427, -- Jandice Barov
+			1428, -- Rattlegore
+			1429, -- Lilian Voss
+			1430, -- Darkmaster Gandling
 			-- WoD Timewalking
 			---- The Everbloom
-			83846, -- Yalnu
-			82682, -- Archmage Sol
-			84550, -- Xeri'tac
-			83894, -- Dulhu
-			81522, -- Witherbark
+			1756, -- Yalnu
+			1751, -- Archmage Sol
+			1752, -- Xeri'tac
+			1757, -- Ancient Protectors
+			1746, -- Witherbark
 			---- Bloodmaul Slag Mines
-			74366, -- Forgemaster Gog'duh
-			74787, -- Slave Watcher Crushto
-			75786, -- Roltall
-			74790, -- GugÄrokk
+			1653, -- Slave Watcher Crushto
+			1652, -- Roltall
+			1655, -- Magmolatus
+			1654, -- Gug'rokk
 			---- Auchindoun
-			75839, -- Vigilant Kaathar
-			76177, -- Soulbinder Nyami
-			75927, -- Azzakel
-			77734, -- Teron'gor
+			1686, -- Vigilant Kaathar
+			1685, -- Soulbinder Nyami
+			1678, -- Azzakel, Vanguard of the Legion
+			1714, -- Teron'gor
 			---- Shadowmoon Burial Grounds
-			75509, -- Sadana Bloodfury
-			75829, -- Nhallish
-			75452, -- Bonemaw
-			76407, -- Ner'zhul
+			1677, -- Sadana Bloodfury
+			1688, -- Nhallish
+			1679, -- Bonemaw
+			1682, -- Ner'zhul
 			---- Skyreach
-			75964, -- Ranjit
-			76141, -- Araknath
-			76379, -- Rukhran
-			76266, -- High Sage Viryx
+			1698, -- Ranjit
+			1699, -- Araknath
+			1700, -- Rukhran
+			1701, -- High Sage Viryx
 			---- Grimrail Depot
-			77803, -- Railmaster Rocketspark
-			79545, -- Nitrogg Thundertower
-			80005, -- Skylord Tovra
+			1715, -- Rocketspark and Borka
+			1732, -- Nitrogg Thundertower
+			1736, -- Skylord Tovra
 			-- Legion Timewalking
 			--- Black Rook Hold
-			98542, -- Amalgam of Souls
-			98696, -- Illysanna Ravencrest
-			98949, -- Smashspite the Hateful
-			94923, -- Lord Kur'talos Ravencrest
+			1832, -- Amalgam of Souls
+			1833, -- Illysanna Ravencrest
+			1834, -- Smashspite the Hateful
+			1835, -- Lord Kur'talos Ravencrest
 			--- Court of Stars
-			104215, -- Patrol Captain Gerdo
-			104217, -- Talixae Flamewreath
-			101831, -- Advisor Melandrus
+			1868, -- Patrol Captain Gerdo
+			1869, -- Talixae Flamewreath
+			1870, -- Advisor Melandrus
 			--- Darkheart Thicket
-			96512, -- Archdruid Glaidalis
-			103344, -- Oakheart
-			99200, -- Dresaron
-			99192, -- Shade of Xavius
+			1836, -- Archdruid Glaidalis
+			1837, -- Oakheart
+			1838, -- Dresaron
+			1839, -- Shade of Xavius
 			--- Eye of Azshara
-			91784, -- Warlord Parjesh
-			91789, -- Lady Hatecoil
-			91797, -- King Deepbeard
-			91808, -- Serpentrix
-			96028, -- Wrath of Azshara
+			1810, -- Warlord Parjesh
+			1811, -- Lady Hatecoil
+			1812, -- King Deepbeard
+			1813, -- Serpentrix
+			1814, -- Wrath of Azshara
 			--- Neltharion's Lair
-			91003, -- Rokmora
-			91004, -- Ularogg Cragshaper
-			91005, -- Naraxas
-			91007, -- Dargrul
+			1790, -- Rokmora
+			1791, -- Ularogg Cragshaper
+			1792, -- Naraxas
+			1793, -- Dargrul the Underking
 			--- Vault of the Wardens
-			95885, -- Tirathon Saltheril
-			96015, -- Inquisitor Tormentorum
-			95886, -- Ash'Golm
-			99865, -- Glazer
-			95888, -- Cordana Felsong
+			1815, -- Tirathon Saltheril
+			1850, -- Inquisitor Tormentorum
+			1816, -- Ash'Golm
+			1817, -- Glazer
+			1818, -- Cordana Felsong
 			-- BFA Dungeons
 			--- Atal'Dazar
-			129614, -- Priestess Alun'za
-			129399, -- Vol'kaal
-			143577, -- Rezan
-			129412, -- Yazma
+			2084, -- Priestess Alun'za
+			2085, -- Vol'kaal
+			2086, -- Rezan
+			2087, -- Yazma
 			--- Freehold
-			129732, -- Skycap'n Kragg
-			129431, -- Captain Eudora
-			126847, -- Captain Raoul
-			129432, -- Captain Jolly
-			126969, -- Trothak
-			129440, -- Harlan Sweete
+			2093, -- Skycap'n Kragg
+			2095, -- Ring of Booty
+			2094, -- Council o' Captains
+			2096, -- Lord Harlan Sweete
 			--- Kings' Rest
-			135322, -- The Golden Serpent
-			134993, -- Mchimba the Embalmer
-			135470, -- The Council of Tribes
-			136160, -- King Dazar
+			2139, -- The Golden Serpent
+			2142, -- Mchimba the Embalmer
+			2140, -- The Council of Tribes
+			2143, -- King Dazar
 			--- Shrine of the Storm
-			134056, -- Aqu'sirr
-			134063, -- Brother Ironhull
-			134058, -- Galecaller Faye
-			139737, -- Lord Stormsong
-			134069, -- Vol'zith the Whisperer
+			2130, -- Aqu'sirr
+			2131, -- Tidesage Council
+			2132, -- Lord Stormsong
+			2133, -- Vol'zith the Whisperer
 			--- Temple of Sethraliss
-			133379, -- Adderis
-			133944, -- Aspix
-			133384, -- Merektha
-			133389, -- Galvazzt
-			133392, -- Avatar of Sethraliss
+			2124, -- Adderis and Aspix
+			2125, -- Merektha
+			2126, -- Galvazzt
+			2127, -- Avatar of Sethraliss
 			--- Waycrest Manor
-			135360, -- Sister Briar
-			131667, -- Soulbound Goliath
-			131863, -- Raal the Gluttonous
-			131527, -- Lord Waycrest
-			131545, -- Lady Waycrest
-			131864, -- Gorak Tul
+			2113, -- Heartsbane Triad
+			2114, -- Soulbound Goliath
+			2115, -- Raal the Gluttonous
+			2116, -- Lord and Lady Waycrest
+			2117, -- Gorak Tul
 		},
 		chance = 4000,
 		groupSize = 5,
