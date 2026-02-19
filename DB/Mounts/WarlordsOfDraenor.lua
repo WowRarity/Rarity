@@ -445,22 +445,22 @@ local wodMounts = {
 			1058, -- Ozruk
 			1057, -- High Priestess Azil
 			---- Lost City of the Tol'vir
-			44577, -- General Husam
-			43612, -- High Prophet Barim
-			44819, -- Siamat
-			49045, -- Augh
+			1052, -- General Husam
+			1053, -- High Prophet Barim
+			1055, -- Siamat
+			1054, -- Lockmaw
 			---- End Time
-			54431, -- Echo of Baine
-			54445, -- Echo of Jaina
-			54123, -- Echo of Sylvanas
-			54544, -- Echo of Tyrande
-			54432, -- Murozond *
+			1881, -- Echo of Baine
+			1883, -- Echo of Jaina
+			1882, -- Echo of Sylvanas
+			1884, -- Echo of Tyrande
+			1271, -- Murozond
 			---- Blackrock Caverns
-			39665, -- Rom'ogg Bonecrusher
-			39679, -- Corla
-			39698, -- Karsh Steelbender
-			39700, -- Beauty
-			39705, -- Ascendant Lord Obsidius
+			1040, -- Rom'ogg Bonecrusher
+			1038, -- Corla, Herald of Twilight
+			1039, -- Karsh Steelbender
+			1037, -- Beauty
+			1036, -- Ascendant Lord Obsidius
 			-- MOP Timewalking
 			---- Gate of the Setting Sun
 			56906, -- Saboteur Kip'tilak
