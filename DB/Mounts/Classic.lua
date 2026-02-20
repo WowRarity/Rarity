@@ -19,7 +19,7 @@ local classicMounts = {
 		blackMarket = true,
 		coords = { { m = 317, x = 38.6, y = 20, i = true } },
 	},
-	["Red Qiraji Resonating Crystal"] = {
+	["Red Qiraji Resonating Crystal"] = { -- TODO cannot be tracked now (12.0, Classic should still work?)
 		cat = CONSTANTS.ITEM_CATEGORIES.CLASSIC,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.NPC,

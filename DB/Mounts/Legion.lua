@@ -83,7 +83,9 @@ local legionMounts = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
-		encounters = { 2031 },
+		encounters = {
+			2031, -- Nightbane
+		},
 		name = L["Smoldering Ember Wyrm"],
 		spellId = 231428,
 		itemId = 142552,
@@ -356,7 +358,9 @@ local legionMounts = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
-		encounters = { 1960 },
+		encounters = {
+			1960, --Attumen the Huntsman
+		},
 		name = L["Midnight's Eternal Reins"],
 		spellId = 229499,
 		itemId = 142236,

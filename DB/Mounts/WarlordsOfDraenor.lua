@@ -288,7 +288,6 @@ local wodMounts = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
-		-- TODO
 		encounters = {
 			-- Classic
 			---- Dire Maul
@@ -332,7 +331,6 @@ local wodMounts = {
 			598, -- Nekrum Gutchewer
 			599, -- Shadowpriest Sezz'ziz
 			600, -- Chief Ukorz Sandscalp
-
 			---- The Deadmines
 			1081, -- Vanessa VanCleef
 			2967, -- Rhahk'Zor
@@ -577,6 +575,7 @@ local wodMounts = {
 			2115, -- Raal the Gluttonous
 			2116, -- Lord and Lady Waycrest
 			2117, -- Gorak Tul
+
 			-- Shadowlands Timewalking
 			---- The Necrotic Wake
 			2387, -- Blightbone
@@ -646,6 +645,7 @@ local wodMounts = {
 			{ m = 457, i = true },
 			{ m = 443, i = true },
 			{ m = 453, i = true },
+			-- TODO add the missing IDs (Shadowlands, possibly others)
 		},
 	},
 }

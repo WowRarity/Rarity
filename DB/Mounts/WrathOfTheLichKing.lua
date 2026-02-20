@@ -80,7 +80,10 @@ local wotlkMounts = {
 	["Reins of the Blue Proto-Drake"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOTLK,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			2029, -- Skadi the Ruthless
+		},
 		name = L["Reins of the Blue Proto-Drake"],
 		spellId = 59996,
 		itemId = 44151,
