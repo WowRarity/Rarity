@@ -92,7 +92,7 @@ local wotlkMounts = {
 		instanceDifficulties = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_DUNGEON] = true,
 			[CONSTANTS.INSTANCE_DIFFICULTIES.TIMEWALKING_DUNGEON] = true,
-			[CONSTANTS.INSTANCE_DIFFICULTIES.NONE] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NONE] = true, -- TODO WTF
 		},
 		sourceText = L["Heroic difficulty"],
 		bonusSatchel = true,
