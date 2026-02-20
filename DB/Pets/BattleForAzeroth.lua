@@ -1049,8 +1049,11 @@ local bfaPets = {
 	["Stoneclaw"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Stoneclaw"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1395, -- The Stone Guard
+		},
+				name = L["Stoneclaw"],
 		itemId = 167047,
 		spellId = 291513,
 		creatureId = 150354,
@@ -1077,8 +1080,11 @@ local bfaPets = {
 	["Wayward Spirit"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Wayward Spirit"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1434, -- Gara'jal the Spiritbinder
+		},
+				name = L["Wayward Spirit"],
 		itemId = 167048,
 		spellId = 291515,
 		creatureId = 150356,
@@ -1105,13 +1111,10 @@ local bfaPets = {
 	["Celestial Gift"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.BOSS, -- TODO kill statistics
-		-- https://www.wowhead.com/achievement=6987/elegon-kills-lfr-mogushan-vaults
-		-- https://www.wowhead.com/achievement=6797/elegon-kills-10-player-normal-mogushan-vaults
-		-- https://www.wowhead.com/achievement=6798/elegon-kills-10-player-heroic-mogushan-vaults
-		-- https://www.wowhead.com/achievement=7923/elegon-kills-25-player-normal-mogushan-vaults
-		-- https://www.wowhead.com/achievement=7924/elegon-kills-25-player-heroic-mogushan-vaults
-
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1500, -- Elegon
+		},
 		name = L["Celestial Gift"],
 		itemId = 167049,
 		spellId = 291517,
@@ -1140,8 +1143,11 @@ local bfaPets = {
 	["Mogu Statue"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Mogu Statue"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1407, -- Will of the Emperor
+		},
+				name = L["Mogu Statue"],
 		itemId = 167050,
 		spellId = 291533,
 		creatureId = 150360,
@@ -1168,7 +1174,10 @@ local bfaPets = {
 	["Kor'thik Swarmling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1507, -- Imperial Vizier Zor'lok
+		},
 		name = L["Kor'thik Swarmling"],
 		itemId = 167058,
 		spellId = 291548,
@@ -1196,8 +1205,11 @@ local bfaPets = {
 	["Tiny Amber Wings"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Tiny Amber Wings"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1504, -- Blade Lord Ta'yak
+		},
+				name = L["Tiny Amber Wings"],
 		itemId = 167053,
 		spellId = 291549,
 		creatureId = 150375,
@@ -1224,8 +1236,11 @@ local bfaPets = {
 	["Spawn of Garalon"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Spawn of Garalon"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1463, -- Garalon
+		},
+				name = L["Spawn of Garalon"],
 		itemId = 167054,
 		spellId = 291553,
 		creatureId = 150377,
@@ -1252,8 +1267,11 @@ local bfaPets = {
 	["Amber Goo Puddle"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC, -- TODO change all of these to use statistics as well... sigh
-		name = L["Amber Goo Puddle"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1499, -- Amber-Shaper Un'sok
+		},
+				name = L["Amber Goo Puddle"],
 		itemId = 167055,
 		spellId = 291556,
 		creatureId = 150380,
@@ -1280,8 +1298,11 @@ local bfaPets = {
 	["Essence of Pride"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Essence of Pride"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1501, -- Grand Empress Shek'zeer
+		},
+				name = L["Essence of Pride"],
 		itemId = 167056,
 		spellId = 291560,
 		creatureId = 150381,
@@ -1308,8 +1329,10 @@ local bfaPets = {
 	["Azure Cloud Serpent Egg"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.BOSS, -- TODO encounter or stats?
-		-- encounters = { 1505 },
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1505, -- Tsulong
+		},
 		name = L["Azure Cloud Serpent Egg"],
 		itemId = 167051,
 		spellId = 291537,
@@ -1333,16 +1356,15 @@ local bfaPets = {
 			},
 		},
 		chance = 3,
-		-- TODO
-		-- https://www.wowhead.com/achievement=7967/tsulong-redemptions-25-player-normal-terrace-of-endless-spring
 		coords = { { m = 456, i = true } },
 	},
 	["Spirit of the Spring"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.BOSS,
-		-- [1506] = { "Spirit of the Spring" }, -- Lei Shi
-
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1506, -- Lei Shi
+		},
 		name = L["Spirit of the Spring"],
 		itemId = 167052,
 		spellId = 291547,
@@ -1892,8 +1914,11 @@ local bfaPets = {
 	["Microbot 8D"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		npcs = { 150190 },
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			2291, -- HK-8 Aerial Oppression Unit
+		},
+				npcs = { 150190 },
 		name = L["Microbot 8D"],
 		spellId = 301056,
 		itemId = 169385,
