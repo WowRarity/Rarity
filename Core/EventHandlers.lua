@@ -1188,10 +1188,7 @@ end
 -------------------------------------------------------------------------------------
 function R:OnLootReady(event, ...)
 	do
-		local targetGUID = Rarity:GetUnitGUID("target")
-		if not targetGUID then
-			return
-		end
+		local targetGUID = Rarity:GetUnitGUID("target") or "N/A"
 		self:Debug("LOOT_READY with target: " .. targetGUID)
 
 		-- Two LOOT_READY events may trigger when the loot window opens, in which case this prevents double counting
