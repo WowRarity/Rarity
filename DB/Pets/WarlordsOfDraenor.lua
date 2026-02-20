@@ -391,7 +391,7 @@ local wodPets = {
 		encounters = {
 			727, -- Eredar Twins
 		},
-				name = L["Servant's Bell"],
+		name = L["Servant's Bell"],
 		spellId = 179840,
 		itemId = 122115,
 		npcs = { 25165, 25166 },
@@ -406,7 +406,7 @@ local wodPets = {
 		encounters = {
 			602, -- Supremus
 		},
-				name = L["Shard of Supremus"],
+		name = L["Shard of Supremus"],
 		spellId = 179831,
 		itemId = 122106,
 		npcs = { 22898 },
@@ -421,7 +421,7 @@ local wodPets = {
 		encounters = {
 			000000000000000000000000, -- AAAAAAAAAA
 		},
-				name = L["Slithershock Elver"],
+		name = L["Slithershock Elver"],
 		spellId = 177223,
 		itemId = 122534,
 		items = { 122535 },
@@ -437,7 +437,7 @@ local wodPets = {
 		encounters = {
 			619, -- Anetheron
 		},
-				name = L["Smelly Gravestone"],
+		name = L["Smelly Gravestone"],
 		spellId = 179836,
 		itemId = 122111,
 		npcs = { 17808 },
@@ -452,7 +452,7 @@ local wodPets = {
 		encounters = {
 			607, -- Mother Shahraz
 		},
-				name = L["Sultry Grimoire"],
+		name = L["Sultry Grimoire"],
 		spellId = 179835,
 		itemId = 122110,
 		npcs = { 22947 },
@@ -467,7 +467,7 @@ local wodPets = {
 		encounters = {
 			725, -- Brutallus
 		},
-				name = L["Sunblade Rune of Activation"],
+		name = L["Sunblade Rune of Activation"],
 		spellId = 179838,
 		itemId = 122113,
 		npcs = { 24882 },
@@ -482,7 +482,7 @@ local wodPets = {
 		encounters = {
 			728, -- M'uru
 		},
-				name = L["Void Collar"],
+		name = L["Void Collar"],
 		spellId = 179839,
 		itemId = 122114,
 		npcs = { 25840 },
