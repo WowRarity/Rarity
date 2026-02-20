@@ -1053,7 +1053,7 @@ local bfaPets = {
 		encounters = {
 			1395, -- The Stone Guard
 		},
-				name = L["Stoneclaw"],
+		name = L["Stoneclaw"],
 		itemId = 167047,
 		spellId = 291513,
 		creatureId = 150354,
@@ -1084,7 +1084,7 @@ local bfaPets = {
 		encounters = {
 			1434, -- Gara'jal the Spiritbinder
 		},
-				name = L["Wayward Spirit"],
+		name = L["Wayward Spirit"],
 		itemId = 167048,
 		spellId = 291515,
 		creatureId = 150356,
@@ -1147,7 +1147,7 @@ local bfaPets = {
 		encounters = {
 			1407, -- Will of the Emperor
 		},
-				name = L["Mogu Statue"],
+		name = L["Mogu Statue"],
 		itemId = 167050,
 		spellId = 291533,
 		creatureId = 150360,
@@ -1209,7 +1209,7 @@ local bfaPets = {
 		encounters = {
 			1504, -- Blade Lord Ta'yak
 		},
-				name = L["Tiny Amber Wings"],
+		name = L["Tiny Amber Wings"],
 		itemId = 167053,
 		spellId = 291549,
 		creatureId = 150375,
@@ -1240,7 +1240,7 @@ local bfaPets = {
 		encounters = {
 			1463, -- Garalon
 		},
-				name = L["Spawn of Garalon"],
+		name = L["Spawn of Garalon"],
 		itemId = 167054,
 		spellId = 291553,
 		creatureId = 150377,
@@ -1271,7 +1271,7 @@ local bfaPets = {
 		encounters = {
 			1499, -- Amber-Shaper Un'sok
 		},
-				name = L["Amber Goo Puddle"],
+		name = L["Amber Goo Puddle"],
 		itemId = 167055,
 		spellId = 291556,
 		creatureId = 150380,
@@ -1302,7 +1302,7 @@ local bfaPets = {
 		encounters = {
 			1501, -- Grand Empress Shek'zeer
 		},
-				name = L["Essence of Pride"],
+		name = L["Essence of Pride"],
 		itemId = 167056,
 		spellId = 291560,
 		creatureId = 150381,
@@ -1918,7 +1918,7 @@ local bfaPets = {
 		encounters = {
 			2291, -- HK-8 Aerial Oppression Unit
 		},
-				npcs = { 150190 },
+		npcs = { 150190 },
 		name = L["Microbot 8D"],
 		spellId = 301056,
 		itemId = 169385,
