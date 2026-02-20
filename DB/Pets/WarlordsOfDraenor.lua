@@ -297,7 +297,10 @@ local wodPets = {
 	["Fragment of Anger"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			606, -- Reliquary of Souls
+		},
 		name = L["Fragment of Anger"],
 		spellId = 179832,
 		itemId = 122107,
@@ -309,7 +312,10 @@ local wodPets = {
 	["Fragment of Desire"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			606, -- Reliquary of Souls
+		},
 		name = L["Fragment of Desire"],
 		spellId = 179834,
 		itemId = 122109,
@@ -321,7 +327,10 @@ local wodPets = {
 	["Fragment of Suffering"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			606, -- Reliquary of Souls
+		},
 		name = L["Fragment of Suffering"],
 		spellId = 179833,
 		itemId = 122108,
@@ -333,7 +342,10 @@ local wodPets = {
 	["Grotesque Statue"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			621, -- Azgalor
+		},
 		name = L["Grotesque Statue"],
 		spellId = 179811,
 		itemId = 122105,
@@ -345,7 +357,10 @@ local wodPets = {
 	["Hyjal Wisp"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			622, -- Archimonde
+		},
 		name = L["Hyjal Wisp"],
 		spellId = 179837,
 		itemId = 122112,
@@ -357,7 +372,10 @@ local wodPets = {
 	["Leviathan Egg"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			601, -- High Warlord Naj'entus
+		},
 		name = L["Leviathan Egg"],
 		spellId = 179830,
 		itemId = 122104,
@@ -369,8 +387,11 @@ local wodPets = {
 	["Servant's Bell"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Servant's Bell"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			727, -- Eredar Twins
+		},
+				name = L["Servant's Bell"],
 		spellId = 179840,
 		itemId = 122115,
 		npcs = { 25165, 25166 },
@@ -381,8 +402,11 @@ local wodPets = {
 	["Shard of Supremus"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Shard of Supremus"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			602, -- Supremus
+		},
+				name = L["Shard of Supremus"],
 		spellId = 179831,
 		itemId = 122106,
 		npcs = { 22898 },
@@ -393,8 +417,11 @@ local wodPets = {
 	["Slithershock Elver"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.USE,
-		name = L["Slithershock Elver"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			000000000000000000000000, -- AAAAAAAAAA
+		},
+				name = L["Slithershock Elver"],
 		spellId = 177223,
 		itemId = 122534,
 		items = { 122535 },
@@ -406,8 +433,11 @@ local wodPets = {
 	["Smelly Gravestone"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Smelly Gravestone"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			619, -- Anetheron
+		},
+				name = L["Smelly Gravestone"],
 		spellId = 179836,
 		itemId = 122111,
 		npcs = { 17808 },
@@ -418,8 +448,11 @@ local wodPets = {
 	["Sultry Grimoire"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Sultry Grimoire"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			607, -- Mother Shahraz
+		},
+				name = L["Sultry Grimoire"],
 		spellId = 179835,
 		itemId = 122110,
 		npcs = { 22947 },
@@ -430,8 +463,11 @@ local wodPets = {
 	["Sunblade Rune of Activation"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Sunblade Rune of Activation"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			725, -- Brutallus
+		},
+				name = L["Sunblade Rune of Activation"],
 		spellId = 179838,
 		itemId = 122113,
 		npcs = { 24882 },
@@ -442,8 +478,11 @@ local wodPets = {
 	["Void Collar"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Void Collar"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			728, -- M'uru
+		},
+				name = L["Void Collar"],
 		spellId = 179839,
 		itemId = 122114,
 		npcs = { 25840 },
