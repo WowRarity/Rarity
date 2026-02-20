@@ -406,7 +406,7 @@ local bfaMounts = {
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
 		encounters = {
-			2291 -- HK-8 Aerial Oppression Unit
+			2291, -- HK-8 Aerial Oppression Unit
 		},
 		name = L["Mechagon Peacekeeper"],
 		spellId = 299158,
