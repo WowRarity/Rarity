@@ -235,7 +235,7 @@ local mopPets = {
 	["Living Sandling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.BOSS, -- TODO Won't work in 12.0 or later!
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
 		name = L["Living Sandling"],
 		spellId = 137977,
 		itemId = 94125,
@@ -409,7 +409,7 @@ local mopPets = {
 		npcs = { 18805 },
 		chance = 20,
 		creatureId = 71021,
-		coords = { { m = 334, x = 74, y = 48.9, i = true } }, -- TBD: Map ID wrong? -> 334 (check ingame)
+		coords = { { m = 334, x = 74, y = 48.9, i = true } },
 	},
 	["Dark Quivering Blob"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
