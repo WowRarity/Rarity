@@ -15,7 +15,7 @@ local cataclysmMounts = {
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
 		encounters = {
 			1179, -- Bloodlord Mandokir
-		 },
+		},
 		name = L["Armored Razzashi Raptor"],
 		spellId = 96491,
 		itemId = 68823,
