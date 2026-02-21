@@ -53,7 +53,7 @@ local mopPets = {
 		encounters = {
 			715, -- Twin Emperors
 		},
-				name = L["Anubisath Idol"],
+		name = L["Anubisath Idol"],
 		spellId = 135267,
 		itemId = 93040,
 		npcs = { 15276 },
@@ -68,7 +68,7 @@ local mopPets = {
 		encounters = {
 			612, -- Broodlord Lashlayer
 		},
-				name = L["Blackwing Banner"],
+		name = L["Blackwing Banner"],
 		spellId = 135265,
 		itemId = 93037,
 		npcs = { 12017 },
@@ -83,7 +83,7 @@ local mopPets = {
 		encounters = {
 			664, -- Magmadar
 		},
-				name = L["Blazing Rune"],
+		name = L["Blazing Rune"],
 		spellId = 135259,
 		itemId = 93034,
 		npcs = { 11982 },
@@ -98,7 +98,7 @@ local mopPets = {
 		encounters = {
 			1115, -- Loatheb
 		},
-				name = L["Blighted Spore"],
+		name = L["Blighted Spore"],
 		spellId = 135255,
 		itemId = 93032,
 		npcs = { 16011 },
@@ -113,7 +113,7 @@ local mopPets = {
 		encounters = {
 			670, -- Golemagg the Incinerator
 		},
-				name = L["Core of Hardened Ash"],
+		name = L["Core of Hardened Ash"],
 		spellId = 135261,
 		itemId = 93035,
 		npcs = { 11988 },
@@ -128,7 +128,7 @@ local mopPets = {
 		encounters = {
 			1116, -- Maexxna
 		},
-				name = L["Dusty Clutch of Eggs"],
+		name = L["Dusty Clutch of Eggs"],
 		spellId = 135254,
 		itemId = 93030,
 		npcs = { 15952 },
@@ -143,7 +143,7 @@ local mopPets = {
 		encounters = {
 			1108, -- Gluth
 		},
-				name = L["Gluth's Bone"],
+		name = L["Gluth's Bone"],
 		spellId = 135257,
 		itemId = 93029,
 		npcs = { 15932 },
@@ -182,7 +182,7 @@ local mopPets = {
 		encounters = {
 			709, -- The Prophet Skeram
 		},
-				name = L["Jewel of Maddening Whispers"],
+		name = L["Jewel of Maddening Whispers"],
 		spellId = 135268,
 		itemId = 93041,
 		npcs = { 15263 },
@@ -197,7 +197,7 @@ local mopPets = {
 		encounters = {
 			669, -- Sulfuron Harbinger
 		},
-				name = L["Mark of Flame"],
+		name = L["Mark of Flame"],
 		spellId = 135258,
 		itemId = 93033,
 		npcs = { 12098 },
@@ -212,7 +212,7 @@ local mopPets = {
 		encounters = {
 			610, -- Razorgore the Untamed
 		},
-				name = L["Unscathed Egg"],
+		name = L["Unscathed Egg"],
 		spellId = 135263,
 		itemId = 93036,
 		npcs = { 12435 },
@@ -227,7 +227,7 @@ local mopPets = {
 		encounters = {
 			713, -- Viscidus
 		},
-				name = L["Viscidus Globule"],
+		name = L["Viscidus Globule"],
 		spellId = 135266,
 		itemId = 93039,
 		npcs = { 15299 },
@@ -242,7 +242,7 @@ local mopPets = {
 		encounters = {
 			616, -- Chromaggus
 		},
-				name = L["Whistle of Chromatic Bone"],
+		name = L["Whistle of Chromatic Bone"],
 		spellId = 135264,
 		itemId = 93038,
 		npcs = { 14020 },
@@ -429,7 +429,7 @@ local mopPets = {
 		encounters = {
 			730, -- Al'ar
 		},
-				name = L["Brilliant Phoenix Hawk Feather"],
+		name = L["Brilliant Phoenix Hawk Feather"],
 		spellId = 141449,
 		itemId = 97557,
 		npcs = { 19514 },
@@ -443,7 +443,7 @@ local mopPets = {
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
 		encounters = {
 			732, -- High Astromancer Solarian
-	 },
+		},
 		name = L["Crystal of the Void"],
 		spellId = 141448,
 		itemId = 97556,
@@ -483,7 +483,7 @@ local mopPets = {
 		encounters = {
 			628, -- Lady Vashj
 		},
-				name = L["Dripping Strider Egg"],
+		name = L["Dripping Strider Egg"],
 		spellId = 141446,
 		itemId = 97554,
 		npcs = { 21212 },
@@ -510,7 +510,7 @@ local mopPets = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
 		method = CONSTANTS.DETECTION_METHODS.NPC,
-				name = L["Half-Empty Food Container"],
+		name = L["Half-Empty Food Container"],
 		spellId = 142030,
 		itemId = 97961,
 		npcs = { 69251 },
@@ -525,7 +525,7 @@ local mopPets = {
 		encounters = {
 			656, -- The Curator
 		},
-				name = L["Instant Arcane Sanctum Security Kit"],
+		name = L["Instant Arcane Sanctum Security Kit"],
 		spellId = 141434,
 		itemId = 97549,
 		npcs = { 15691 },
@@ -540,7 +540,7 @@ local mopPets = {
 		encounters = {
 			661, -- Prince Malchezaar
 		},
-				name = L["Netherspace Portal-Stone"],
+		name = L["Netherspace Portal-Stone"],
 		spellId = 141435,
 		itemId = 97550,
 		npcs = { 15690 },
@@ -591,7 +591,7 @@ local mopPets = {
 		encounters = {
 			657, -- Terestian Illhoof
 		},
-				name = L["Satyr Charm"],
+		name = L["Satyr Charm"],
 		spellId = 141451,
 		itemId = 97551,
 		npcs = { 15688 },
@@ -606,7 +606,7 @@ local mopPets = {
 		encounters = {
 			627, -- Morogrim Tidewalker
 		},
-				name = L["Shell of Tide-Calling"],
+		name = L["Shell of Tide-Calling"],
 		spellId = 141436,
 		itemId = 97552,
 		npcs = { 21213 },
@@ -621,7 +621,7 @@ local mopPets = {
 		encounters = {
 			655, -- Opera Hall
 		},
-				name = L["Spiky Collar"],
+		name = L["Spiky Collar"],
 		spellId = 141433,
 		itemId = 97548,
 		npcs = { 17521 },
@@ -637,7 +637,7 @@ local mopPets = {
 			623, -- Hydross the Unstable
 			624, -- The Lurker Below
 		},
-				name = L["Tainted Core"],
+		name = L["Tainted Core"],
 		spellId = 141437,
 		itemId = 97553,
 		npcs = { 21216, 21217 }, -- TBD: Hydross vs. Lurker Below (bug or recent change?)
@@ -652,7 +652,7 @@ local mopPets = {
 		encounters = {
 			731, -- Void Reaver
 		},
-				name = L["Tiny Fel Engine Key"],
+		name = L["Tiny Fel Engine Key"],
 		spellId = 141447,
 		itemId = 97555,
 		npcs = { 19516 },
