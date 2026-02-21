@@ -70,8 +70,6 @@ local legionPets = {
 		chance = 10,
 		coords = { { m = CONSTANTS.UIMAPIDS.NONE } },
 	},
-	-- TODO: What's this and why is it here? Can remove?
-	-- ["Sting Ray Pup"] =                                 { cat = CONSTANTS.ITEM_CATEGORIES.LEGION, type = CONSTANTS.ITEM_TYPES.PET, method = CONSTANTS.DETECTION_METHODS.COLLECTION, name = L["Sting Ray Pup"], spellId = 217218, itemId = 138810, creatureId = 109216, collectedItemId = { 138777 }, chance = 50, },
 	-- 7.1
 	["Blessed Seed"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
