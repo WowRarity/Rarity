@@ -74,7 +74,7 @@ local legionPets = {
 	["Blessed Seed"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
 		name = L["Blessed Seed"],
 		itemId = 142091,
 		spellId = 229098,
@@ -88,7 +88,7 @@ local legionPets = {
 	["Call of the Frozen Blade"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
 		name = L["Call of the Frozen Blade"],
 		itemId = 142099,
 		spellId = 229106,
@@ -102,7 +102,7 @@ local legionPets = {
 	["Drudge Remains"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
 		name = L["Drudge Remains"],
 		itemId = 142098,
 		spellId = 229105,
@@ -116,8 +116,11 @@ local legionPets = {
 	["Fragment of Frozen Bone"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Fragment of Frozen Bone"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1101, -- Lord Marrowgar
+		},
+				name = L["Fragment of Frozen Bone"],
 		itemId = 142094,
 		spellId = 229101,
 		creatureId = 115146,
@@ -128,8 +131,11 @@ local legionPets = {
 	["Giant Worm Egg"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Giant Worm Egg"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1088, -- Northrend Beasts
+		},
+				name = L["Giant Worm Egg"],
 		itemId = 142083,
 		spellId = 229090,
 		creatureId = 115135,
@@ -140,8 +146,11 @@ local legionPets = {
 	["Glittering Ball of Yarn"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Glittering Ball of Yarn"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1131, -- Auriaya
+		},
+				name = L["Glittering Ball of Yarn"],
 		itemId = 142089,
 		spellId = 229096,
 		creatureId = 115141,
@@ -152,8 +161,11 @@ local legionPets = {
 	["Ironbound Collar"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Ironbound Collar"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1139, -- Razorscale
+		},
+				name = L["Ironbound Collar"],
 		itemId = 142087,
 		spellId = 229094,
 		creatureId = 115139,
@@ -164,8 +176,11 @@ local legionPets = {
 	["Magnataur Hunting Horn"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Magnataur Hunting Horn"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1088, -- Northrend Beasts
+		},
+				name = L["Magnataur Hunting Horn"],
 		itemId = 142084,
 		spellId = 229091,
 		creatureId = 115136,
@@ -176,8 +191,11 @@ local legionPets = {
 	["Nerubian Relic"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Nerubian Relic"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1085, -- Anub'arak
+		},
+				name = L["Nerubian Relic"],
 		itemId = 142085,
 		spellId = 229092,
 		creatureId = 115137,
@@ -188,7 +206,7 @@ local legionPets = {
 	["Ominous Pile of Snow"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
 		name = L["Ominous Pile of Snow"],
 		itemId = 142090,
 		spellId = 229097,
@@ -202,8 +220,8 @@ local legionPets = {
 	["Overcomplicated Controller"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Overcomplicated Controller"],
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+				name = L["Overcomplicated Controller"],
 		itemId = 142092,
 		spellId = 229099,
 		creatureId = 115144,
@@ -216,8 +234,11 @@ local legionPets = {
 	["Putricide's Alchemy Supplies"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Putricide's Alchemy Supplies"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1102, -- Professor Putricide
+		},
+				name = L["Putricide's Alchemy Supplies"],
 		itemId = 142096,
 		spellId = 229103,
 		creatureId = 115148,
@@ -228,8 +249,11 @@ local legionPets = {
 	["Red-Hot Coal"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Red-Hot Coal"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1136, -- Ignis the Furnace Master
+		},
+				name = L["Red-Hot Coal"],
 		itemId = 142086,
 		spellId = 229093,
 		creatureId = 115138,
@@ -240,8 +264,8 @@ local legionPets = {
 	["Remains of a Blood Beast"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Remains of a Blood Beast"],
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+				name = L["Remains of a Blood Beast"],
 		itemId = 142095,
 		spellId = 229102,
 		creatureId = 115147,
@@ -254,8 +278,11 @@ local legionPets = {
 	["Skull of a Frozen Whelp"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Skull of a Frozen Whelp"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1105, -- Sindragosa
+		},
+				name = L["Skull of a Frozen Whelp"],
 		itemId = 142097,
 		spellId = 229104,
 		creatureId = 115149,
@@ -266,7 +293,7 @@ local legionPets = {
 	["Stormforged Rune"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
 		name = L["Stormforged Rune"],
 		itemId = 142088,
 		spellId = 229095,
@@ -284,8 +311,11 @@ local legionPets = {
 	["Wriggling Darkness"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Wriggling Darkness"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			000000000000000000000000, -- AAAAAAAAAA
+		},
+				name = L["Wriggling Darkness"],
 		itemId = 142093,
 		spellId = 229100,
 		creatureId = 115145,
@@ -434,8 +464,11 @@ local legionPets = {
 	["Cinderweb Egg"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Cinderweb Egg"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1197, -- Beth'tilac
+		},
+				name = L["Cinderweb Egg"],
 		itemId = 152976,
 		spellId = 253918,
 		creatureId = 127948,
@@ -479,8 +512,11 @@ local legionPets = {
 	["Fandral's Pet Carrier"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Fandral's Pet Carrier"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1185, -- Majordomo Staghelm
+		},
+				name = L["Fandral's Pet Carrier"],
 		itemId = 152978,
 		spellId = 253925,
 		creatureId = 127951,
@@ -585,8 +621,11 @@ local legionPets = {
 	["Smoldering Treat"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Smoldering Treat"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1205, -- Shannox
+		},
+				name = L["Smoldering Treat"],
 		itemId = 152975,
 		spellId = 253916,
 		creatureId = 127947,
@@ -655,8 +694,11 @@ local legionPets = {
 	["Vibrating Stone"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
-		name = L["Vibrating Stone"],
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1200, -- Baleroc
+		},
+				name = L["Vibrating Stone"],
 		itemId = 152977,
 		spellId = 253924,
 		creatureId = 127950,
