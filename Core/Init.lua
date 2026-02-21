@@ -27,7 +27,7 @@ Rarity.Utils = {}
 -- Global lookup tables (will be replaced eventually, but let's maintain backwards compatibility for now)
 Rarity.items = {}
 Rarity.architems = {}
-Rarity.bosses = {}
+Rarity.encounters = {}
 Rarity.guids = {}
 Rarity.npcs_to_items = {}
 Rarity.zones = {}

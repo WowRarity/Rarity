@@ -9,7 +9,7 @@ local Statistics = {}
 -- @param item A table containing the data (itemDB entry) that is to be used
 -- @return The modified drop chance after accounting for shared loot, given as a percentage
 -- @return The modified drop chance after accounting for shared loot, given as a fraction (1 in X)
-function Statistics.GetRealDropPercentage(item)
+function Statistics.GetRealDropPercentage(item) -- TODO
 	local dropChance = (1.00 / (item.chance or 100))
 	local realDropChance = dropChance -- Default: Personal Loot -> group members don't matter
 	local fractionalDropChance = ((item.chance or 0) * (item.groupSize or 1))

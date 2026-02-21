@@ -12,7 +12,13 @@ local tbcToys = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TBC,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
 		isToy = true,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1894, -- Kael'thas Sunstrider
+			1895, -- Priestess Delrissa
+			1897, -- Selin Fireheart
+			1898, -- Vexallus
+		},
 		name = L["Orb of the Sin'dorei"],
 		itemId = 35275,
 		npcs = { 24664, 24744, 24723, 24560 },
