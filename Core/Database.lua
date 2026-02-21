@@ -1,5 +1,8 @@
 local _, addonTable = ...
 
+local pairs = pairs
+local tostring = tostring
+
 --- Basic DB abstraction layer.
 -- Intended to manage the currently active profile without having to worry about AceDB  and its shenanigans.
 local Database = {}
@@ -34,6 +37,37 @@ function Database:PurgeObsoleteEntries()
 			Rarity:Print(format(L["Removing data for obsolete item %s"], itemKey))
 			Rarity.db.profile.groups[groupName][itemKey] = nil
 		end
+	end
+end
+
+-- The "purge" command/logic should also be turned into a migration instead of running on demand
+-- Ideally, they'd be version-dependent as well. Note: Rarity.MINOR_VERSION is zero in development
+-- Since migrating from SVN to Git no one reviewed the versioning scheme, so this needs some thought
+local migrations = {
+	-- Beware: Although safe to apply unconditionally, if there are too many it might impact loading times
+	["Crashin' Thrashin' Battleship) -> Crashin' Thrashin' Battleship"] = function()
+		local old = Rarity.db.profile.groups.items["Crashin' Thrashin' Battleship)"]
+		if not old then
+			return nil, "No source entry (already patched?)"
+		end
+
+		-- It should probably also move the recorded attempts (dates/characters)? That's far riskier, though
+		local new = Rarity.db.profile.groups.items["Crashin' Thrashin' Battleship"]
+		if not new then
+			return nil, "No destination entry (Retail DB copied to Classic?)"
+		end
+
+		Rarity.db.profile.groups.items["Crashin' Thrashin' Battleship"] = old
+		Rarity.db.profile.groups.items["Crashin' Thrashin' Battleship)"] = nil
+		return true, "OK"
+	end,
+}
+
+function Database:ApplyMigrations()
+	for name, migration in pairs(migrations) do
+		Rarity:Debug("[DB] " .. name)
+		local result, message = migration()
+		Rarity:Debug("Result: " .. tostring(result) .. " - Message: " .. tostring(message))
 	end
 end
 

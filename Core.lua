@@ -346,6 +346,7 @@ do
 		if self.db.profile.verifyDatabaseOnLogin then
 			self.Validation:ValidateItemDB()
 		end
+		self.Database:ApplyMigrations()
 	end
 end
 
