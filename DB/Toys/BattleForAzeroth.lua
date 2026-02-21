@@ -212,7 +212,9 @@ local bfaToys = {
 		type = CONSTANTS.ITEM_TYPES.ITEM,
 		isToy = true,
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
-		encounters = { 2253 },
+		encounters = {
+			2253, -- Doom's Howl
+		},
 		name = L["Toy Siege Tower"],
 		itemId = 163828,
 		npcs = { 138122 },
@@ -227,7 +229,9 @@ local bfaToys = {
 		type = CONSTANTS.ITEM_TYPES.ITEM,
 		isToy = true,
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
-		encounters = { 2252 },
+		encounters = {
+			2252, -- The Lion's Roar
+		},
 		name = L["Toy War Machine"],
 		itemId = 163829,
 		npcs = { 137374 },
@@ -731,7 +735,10 @@ local bfaToys = {
 	["Viable Cobra Egg"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
 		type = CONSTANTS.ITEM_TYPES.ITEM,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			2125, -- Merektha
+		},
 		name = L["Viable Cobra Egg"],
 		itemId = 160832,
 		npcs = { 133384 },
