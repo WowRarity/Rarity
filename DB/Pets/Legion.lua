@@ -311,10 +311,7 @@ local legionPets = {
 	["Wriggling Darkness"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.LEGION,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
-		encounters = {
-			000000000000000000000000, -- AAAAAAAAAA
-		},
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
 		name = L["Wriggling Darkness"],
 		itemId = 142093,
 		spellId = 229100,
