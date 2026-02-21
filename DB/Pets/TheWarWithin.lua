@@ -69,7 +69,7 @@ local twwPets = {
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
 		encounter = {
 			3053, -- Swampface
-	 },
+		},
 		name = L["Craboom"],
 		chance = 5,
 		creatureId = 238393,
