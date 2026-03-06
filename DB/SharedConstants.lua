@@ -160,6 +160,7 @@ C.UIMAPIDS = {
 	VOIDSTORM = 2405,
 	HARANDAR = 2413,
 	MAGISTERS_TERRACE_MIDNIGHT = 2520, -- Not sure which subzone (can adjust later)
+	WINDRUNNER_SPIRE = 2492
 }
 
 -- Types of items
