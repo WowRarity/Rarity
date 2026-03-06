@@ -250,6 +250,23 @@ local midnightMounts = {
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 		coords = { { m = CONSTANTS.UIMAPIDS.MAGISTERS_TERRACE_MIDNIGHT, i = true } },
 	},
+		["Spectral Hawkstrider"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Spectral Hawkstrider"],
+		itemId = 262914,
+		spellId = 1263635,
+		tooltipNpcs = { 231636 },
+		npcs = { 99999 },
+		statisticId = { 41295 },
+		groupSize = 5,
+		equalOdds = true,
+		chance = 20,
+		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
+		coords = { { m = CONSTANTS.UIMAPIDS.MAGISTERS_TERRACE_MIDNIGHT, i = true } },
+	},
+}
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, midnightMounts)
