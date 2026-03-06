@@ -266,7 +266,18 @@ local midnightMounts = {
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 		coords = { { m = CONSTANTS.UIMAPIDS.MAGISTERS_TERRACE_MIDNIGHT, i = true } },
 	},
-}
+},
+	["Reins of the Contained Stormarion Defender"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Reins of the Contained Stormarion Defender"],
+		itemId = 257180,
+		spellId = 1261334,
+		items = { 268485, 260979 },
+		chance = 20,
+		coords = { { m = CONSTANTS.UIMAPIDS.VOIDSTORM } },
+	},
 }
 
 Rarity.ItemDB.MergeItems(Rarity.ItemDB.mounts, midnightMounts)
