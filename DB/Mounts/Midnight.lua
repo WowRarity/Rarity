@@ -264,7 +264,7 @@ local midnightMounts = {
 		equalOdds = true,
 		chance = 20,
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
-		coords = { { m = CONSTANTS.UIMAPIDS.MAGISTERS_TERRACE_MIDNIGHT, i = true } },
+		coords = { { m = CONSTANTS.UIMAPIDS.WINDRUNNER_SPIRE, i = true } },
 	},
 },
 	["Reins of the Contained Stormarion Defender"] = {
