@@ -30,7 +30,7 @@ local midnightMounts = {
 			245182,
 			256821,
 		},
-		chance = 25,
+		chance = 100,
 		coords = { { m = CONSTANTS.UIMAPIDS.VOIDSTORM } },
 	},
 	["Augmented Stormray"] = {
@@ -56,7 +56,7 @@ local midnightMounts = {
 			245182,
 			256821,
 		},
-		chance = 25,
+		chance = 100,
 		coords = { { m = CONSTANTS.UIMAPIDS.VOIDSTORM } },
 	},
 	["Lost Nether Drake"] = {
@@ -95,7 +95,7 @@ local midnightMounts = {
 			242026,
 			245691,
 		},
-		chance = 25,
+		chance = 100,
 		coords = { { m = CONSTANTS.UIMAPIDS.ZUL_AMAN_MIDNIGHT } },
 	},
 	["Escaped Witherbark Pango"] = {
@@ -122,7 +122,7 @@ local midnightMounts = {
 			242026,
 			245691,
 		},
-		chance = 5,
+		chance = 100,
 		coords = { { m = CONSTANTS.UIMAPIDS.ZUL_AMAN_MIDNIGHT } },
 	},
 	["Cerulean Hawkstrider"] = {
@@ -149,7 +149,7 @@ local midnightMounts = {
 			250806,
 			255329,
 		},
-		chance = 25,
+		chance = 100,
 		coords = { { m = CONSTANTS.UIMAPIDS.EVERSONG_WOODS_MIDNIGHT } },
 	},
 	["Cobalt Dragonhawk"] = {
@@ -176,7 +176,7 @@ local midnightMounts = {
 			250806,
 			255329,
 		},
-		chance = 25,
+		chance = 100,
 		coords = { { m = CONSTANTS.UIMAPIDS.EVERSONG_WOODS_MIDNIGHT } },
 	},
 	["Vibrant Petalwing"] = {
@@ -204,7 +204,7 @@ local midnightMounts = {
 			250347,
 			246735,
 		},
-		chance = 25,
+		chance = 100,
 		coords = { { m = CONSTANTS.UIMAPIDS.HARANDAR } },
 	},
 	["Rootstalker Grimlynx"] = {
@@ -231,7 +231,7 @@ local midnightMounts = {
 			250317,
 			250347,
 		},
-		chance = 25,
+		chance = 100,
 		coords = { { m = CONSTANTS.UIMAPIDS.HARANDAR } },
 	},
 	["Lucent Hawkstrider"] = {
