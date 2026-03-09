@@ -266,7 +266,6 @@ local midnightMounts = {
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 		coords = { { m = CONSTANTS.UIMAPIDS.WINDRUNNER_SPIRE, i = true } },
 	},
-},
 	["Reins of the Contained Stormarion Defender"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
