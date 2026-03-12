@@ -8,6 +8,21 @@ if not LE_EXPANSION_MIDNIGHT or LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_MIDNIG
 end
 
 local midnightToys = {
+	["Saptor Salve"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
+		method = CONSTANTS.DETECTION_METHODS.NPC,
+		name = L["Saptor Salve"],
+		itemId = 268728,
+		tooltipNpcs = { 247676 },
+		npcs = { 99999 },
+		statisticId = { 61661 },
+		groupSize = 5,
+		equalOdds = true,
+		chance = 20,
+		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
+		coords = { { m = CONSTANTS.UIMAPIDS.BLINDING_VALE, i = true } },
+	},
 	["Nether-Warped Egg"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.ITEM,

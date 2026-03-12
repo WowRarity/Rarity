@@ -161,7 +161,8 @@ C.UIMAPIDS = {
 	HARANDAR = 2413,
 	SLAYERS_RISE = 2444,
 	MAGISTERS_TERRACE_MIDNIGHT = 2520, -- Not sure which subzone (can adjust later)
-	WINDRUNNER_SPIRE = 2492
+	WINDRUNNER_SPIRE = 2492,
+	BLINDING_VALE = 2500,
 }
 
 -- Types of items
