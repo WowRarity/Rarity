@@ -22,7 +22,7 @@ local midnightToys = {
 	},
 	["Saptor Salve"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
-		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		type = CONSTANTS.ITEM_TYPES.ITEM,
 		method = CONSTANTS.DETECTION_METHODS.NPC,
 		name = L["Saptor Salve"],
 		itemId = 268728,
