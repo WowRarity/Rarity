@@ -163,6 +163,7 @@ C.UIMAPIDS = {
 	MAGISTERS_TERRACE_MIDNIGHT = 2520, -- Not sure which subzone (can adjust later)
 	WINDRUNNER_SPIRE = 2492,
 	BLINDING_VALE = 2500,
+	VOIDSPIRE = 2912, --double check when its released -- 
 }
 
 -- Types of items
