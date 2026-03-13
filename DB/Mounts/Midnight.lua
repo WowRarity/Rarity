@@ -266,6 +266,17 @@ local midnightMounts = {
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 		coords = { { m = CONSTANTS.UIMAPIDS.WINDRUNNER_SPIRE, i = true } },
 	},
+	["Duskbrute Harrower"] = {
+		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
+		type = CONSTANTS.ITEM_TYPES.MOUNT,
+		method = CONSTANTS.DETECTION_METHODS.USE,
+		name = L["Duskbrute Harrower"],
+		itemId = 257176,
+		spellId = 1261332,
+		items = { 267299 },
+		chance = 5,
+		coords = { { m = CONSTANTS.UIMAPIDS.SLAYERS_RISE } },
+	},
 	["Reins of the Contained Stormarion Defender"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
