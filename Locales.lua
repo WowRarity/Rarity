@@ -2,6 +2,11 @@ local L
 L = LibStub("AceLocale-3.0"):NewLocale("Rarity", "enUS", true)
 
 -- L["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"] = true
+L["Duskbrute Harrower"] = true
+L["Cosmic Ritual Stone"] = true
+L["Saptor Salve"] = true
+L["Reins of the Contained Stormarion Defender"] = true
+L["Spectral Hawkstrider"] = true
 L["Midnight"] = true
 L["Unbound Star-Eater"] = true
 L["Keys to the Big G"] = true

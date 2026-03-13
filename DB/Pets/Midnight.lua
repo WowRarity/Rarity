@@ -18,7 +18,7 @@ local midnightPets = {
 		itemId = 264892,
 		items = { 267299 },
 		spellId = 1272755,
-		coords = { { m = CONSTANTS.UIMAPIDS.VOIDSTORM } },
+		coords = { { m = CONSTANTS.UIMAPIDS.SLAYERS_RISE } },
 	},
 	["Princess Bloodshed"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
