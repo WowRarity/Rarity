@@ -842,7 +842,7 @@ local bfaPets = {
 		lockBossName = "Conclave of the Chosen",
 		chance = 20,
 		statisticId = { 13366 },
-		coords = { { m = 1364, i = true } },
+		coords = { { m = CONSTANTS.UIMAPIDS.BATTLE_FOR_DAZARALOR_RAID, i = true } },
 	},
 	["Thundering Scale of Akunda"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -857,7 +857,7 @@ local bfaPets = {
 		lockBossName = "Conclave of the Chosen",
 		chance = 20,
 		statisticId = { 13364, 13365, 13366 },
-		coords = { { m = 1364, i = true } },
+		coords = { { m = CONSTANTS.UIMAPIDS.BATTLE_FOR_DAZARALOR_RAID, i = true } },
 	},
 	["Enchanted Talon of Pa'ku"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
@@ -872,7 +872,7 @@ local bfaPets = {
 		lockBossName = "Conclave of the Chosen",
 		chance = 50,
 		statisticId = { 13364, 13365, 13366 },
-		coords = { { m = 1364, i = true } },
+		coords = { { m = CONSTANTS.UIMAPIDS.BATTLE_FOR_DAZARALOR_RAID, i = true } },
 	},
 	["Baby Stonehide"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.BFA,
