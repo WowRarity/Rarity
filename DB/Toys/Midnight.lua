@@ -8,18 +8,6 @@ if not LE_EXPANSION_MIDNIGHT or LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_MIDNIG
 end
 
 local midnightToys = {
-	["Mysterious Skyshards"] = {
-		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
-		type = CONSTANTS.ITEM_TYPES.ITEM,
-		method = CONSTANTS.DETECTION_METHODS.ZONE,
-		name = L["Mysterious Skyshards"],
-		itemId = 255826,
-		zones = { tostring(CONSTANTS.UIMAPIDS.HARANDAR) },
-		chance = 1000,
-		coords = { { m = CONSTANTS.UIMAPIDS.HARANDAR } },
-		repeatable = true,
-		requiresCompletedQuestId = { 90474 }, -- The Legend of Aln'sharan
-	},
 	["Nether-Warped Egg"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MIDNIGHT,
 		type = CONSTANTS.ITEM_TYPES.ITEM,

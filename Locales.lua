@@ -8,7 +8,6 @@ L["Keys to the Big G"] = true
 L["Reins of the Ascendant Skyrazor"] = true
 L["Black Whirlwind"] = true
 L["Spring Butterfly"] = true
-L["Mysterious Skyshards"] = true
 L["Nether-Warped Egg"] = true
 L["Lucent Hawkstrider"] = true
 L["Bubbly Snapling"] = true
