@@ -12,7 +12,10 @@ local twwPets = {
 	["Bop"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			2930, -- Goldie Baronbottom
+		},
 		name = L["Bop"],
 		npcs = { 218523, 214661 },
 		itemId = 223155,
@@ -64,7 +67,9 @@ local twwPets = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
 		type = CONSTANTS.ITEM_TYPES.PET,
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
-		encounter = { 3053 },
+		encounter = {
+			3053, -- Swampface
+		},
 		name = L["Craboom"],
 		chance = 5,
 		creatureId = 238393,
@@ -90,7 +95,7 @@ local twwPets = {
 	["Parrot Cage (Void-Scarred Parrot)"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.SPECIAL, -- TODO encounter or GUID?
+		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
 		chance = 12,
 		creatureId = 237852,
 		name = L["Parrot Cage (Void-Scarred Parrot)"],
