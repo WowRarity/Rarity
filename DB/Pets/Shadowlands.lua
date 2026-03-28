@@ -418,13 +418,15 @@ local shadowlandsPets = {
 	["Vial of Roiling Emotions"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC, -- Is this actually correct? Can't use statistics to reliably detect this, because there aren't any
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			2362, -- Grand Proctor Beryllia
+		},
 		name = L["Vial of Roiling Emotions"],
 		itemId = 180591,
 		spellId = 333802,
 		creatureId = 171124,
 		npcs = { 162102 },
-		-- tooltipNpcs = { 162102 }, -- Not needed if using NPC instead of BOSS
 		chance = 100,
 		instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
 		coords = { { m = CONSTANTS.UIMAPIDS.SANGUINE_DEPTHS } },
@@ -772,7 +774,10 @@ local shadowlandsPets = {
 	["Gizmo"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.SHADOWLANDS,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			2424, -- Mailroom Mayhem
+		},
 		name = L["Gizmo"],
 		itemId = 186534,
 		spellId = 353525,

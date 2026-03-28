@@ -30,7 +30,7 @@ local wotlkMounts = {
 	["Mimiron's Head"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOTLK,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		method = CONSTANTS.DETECTION_METHODS.BOSS, -- TBD change it to NPC/ENCOUNTER/STATISTICS?
 		name = L["Mimiron's Head"],
 		spellId = 63796,
 		itemId = 45693,
@@ -80,7 +80,10 @@ local wotlkMounts = {
 	["Reins of the Blue Proto-Drake"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOTLK,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			2029, -- Skadi the Ruthless
+		},
 		name = L["Reins of the Blue Proto-Drake"],
 		spellId = 59996,
 		itemId = 44151,
@@ -89,7 +92,7 @@ local wotlkMounts = {
 		instanceDifficulties = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_DUNGEON] = true,
 			[CONSTANTS.INSTANCE_DIFFICULTIES.TIMEWALKING_DUNGEON] = true,
-			[CONSTANTS.INSTANCE_DIFFICULTIES.NONE] = true,
+			[CONSTANTS.INSTANCE_DIFFICULTIES.NONE] = true, -- TODO WTF
 		},
 		sourceText = L["Heroic difficulty"],
 		bonusSatchel = true,

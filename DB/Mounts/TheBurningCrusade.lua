@@ -26,7 +26,10 @@ local tbcMounts = {
 	["Fiery Warhorse's Reins"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TBC,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			652, -- Attumen the Huntsman
+		},
 		name = L["Fiery Warhorse's Reins"],
 		spellId = 36702,
 		itemId = 30480,
@@ -39,7 +42,10 @@ local tbcMounts = {
 	["Reins of the Raven Lord"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TBC,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1904, -- Anzu
+		},
 		name = L["Reins of the Raven Lord"],
 		spellId = 41252,
 		itemId = 32768,
@@ -57,7 +63,10 @@ local tbcMounts = {
 	["Swift White Hawkstrider"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TBC,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.BOSS,
+		-- encounters = {
+		-- 	1894, -- Kael'thas Sunstrider
+		-- },
 		name = L["Swift White Hawkstrider"],
 		spellId = 46628,
 		itemId = 35513,
@@ -66,6 +75,9 @@ local tbcMounts = {
 		instanceDifficulties = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_DUNGEON] = true,
 			[CONSTANTS.INSTANCE_DIFFICULTIES.TIMEWALKING_DUNGEON] = true,
+		},
+		statisticId = {
+			1082, -- Kael'thas Sunstrider kills (Magister's Terrace)
 		},
 		sourceText = L["Heroic difficulty"],
 		bonusSatchel = true,
