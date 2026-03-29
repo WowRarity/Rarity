@@ -91,6 +91,31 @@ function Collections:ScanToys(reason)
 	end
 end
 
+-- Pre-build lookup tables from R.db.profile.groups to avoid O(n*m) nested loops
+-- when scanning mounts, companions, and pets. Fixes "script ran too long" for
+-- players with large collections (~2000+ pets/mounts). See issues #554, #753, #878, #895.
+local function BuildItemIndexes()
+	local spellIdIndex = {}
+	local creatureIdIndex = {}
+	for k, v in pairs(R.db.profile.groups) do
+		if type(v) == "table" then
+			for kk, vv in pairs(v) do
+				if type(vv) == "table" then
+					if vv.spellId then
+						spellIdIndex[vv.spellId] = spellIdIndex[vv.spellId] or {}
+						spellIdIndex[vv.spellId][#spellIdIndex[vv.spellId] + 1] = vv
+					end
+					if vv.creatureId then
+						creatureIdIndex[vv.creatureId] = creatureIdIndex[vv.creatureId] or {}
+						creatureIdIndex[vv.creatureId][#creatureIdIndex[vv.creatureId] + 1] = vv
+					end
+				end
+			end
+		end
+	end
+	return spellIdIndex, creatureIdIndex
+end
+
 function Collections:ScanExistingItems(reason)
 	self = Rarity
 	-- Don't allow this scan in combat; it takes too long and the script will receive a "script ran too long" error
@@ -102,6 +127,8 @@ function Collections:ScanExistingItems(reason)
 
 	self:Debug("Scanning for existing items (" .. reason .. ")")
 	self.Profiling:StartTimer("Collections.ScanExistingItems")
+
+	local spellIdIndex, creatureIdIndex = BuildItemIndexes()
 
 	-- Scans need to index by spellId, creatureId, achievementId, raceId, itemId (for toys), statisticId (which is a table; for stats)
 
@@ -117,18 +144,13 @@ function Collections:ScanExistingItems(reason)
 			Rarity.mount_sources[spellId] = sourceText
 
 			if isCollected then
-				for k, v in pairs(R.db.profile.groups) do
-					if type(v) == "table" then
-						for kk, vv in pairs(v) do
-							if type(vv) == "table" then
-								if vv.spellId and vv.spellId == spellId then
-									vv.known = true
-								end
-								if vv.spellId and vv.spellId == spellId and not vv.repeatable then
-									vv.enabled = false
-									vv.found = true
-								end
-							end
+				local entries = spellIdIndex[spellId]
+				if entries then
+					for _, vv in ipairs(entries) do
+						vv.known = true
+						if not vv.repeatable then
+							vv.enabled = false
+							vv.found = true
 						end
 					end
 				end
@@ -142,18 +164,13 @@ function Collections:ScanExistingItems(reason)
 			Rarity.mount_sources[spellId] = sourceText
 
 			if isCollected then
-				for k, v in pairs(R.db.profile.groups) do
-					if type(v) == "table" then
-						for kk, vv in pairs(v) do
-							if type(vv) == "table" then
-								if vv.spellId and vv.spellId == spellId then
-									vv.known = true
-								end
-								if vv.spellId and vv.spellId == spellId and not vv.repeatable then
-									vv.enabled = false
-									vv.found = true
-								end
-							end
+				local entries = spellIdIndex[spellId]
+				if entries then
+					for _, vv in ipairs(entries) do
+						vv.known = true
+						if not vv.repeatable then
+							vv.enabled = false
+							vv.found = true
 						end
 					end
 				end
@@ -164,15 +181,12 @@ function Collections:ScanExistingItems(reason)
 	-- Companions that this character learned
 	for id = 1, GetNumCompanions("CRITTER") or 0 do
 		local spellId = select(3, GetCompanionInfo("CRITTER", id))
-		for k, v in pairs(R.db.profile.groups) do
-			if type(v) == "table" then
-				for kk, vv in pairs(v) do
-					if type(vv) == "table" then
-						if vv.spellId and vv.spellId == spellId and not vv.repeatable then
-							vv.enabled = false
-							vv.found = true
-						end
-					end
+		local entries = spellIdIndex[spellId]
+		if entries then
+			for _, vv in ipairs(entries) do
+				if not vv.repeatable then
+					vv.enabled = false
+					vv.found = true
 				end
 			end
 		end
@@ -197,18 +211,13 @@ function Collections:ScanExistingItems(reason)
 			C_PetJournal.GetPetInfoByIndex(i)
 		Rarity.pet_sources[companionID] = tooltip
 		if owned then
-			for k, v in pairs(R.db.profile.groups) do
-				if type(v) == "table" then
-					for kk, vv in pairs(v) do
-						if type(vv) == "table" then
-							if vv.creatureId and vv.creatureId == companionID then
-								vv.known = true
-							end
-							if vv.creatureId and vv.creatureId == companionID and not vv.repeatable then
-								vv.enabled = false
-								vv.found = true
-							end
-						end
+			local entries = creatureIdIndex[companionID]
+			if entries then
+				for _, vv in ipairs(entries) do
+					vv.known = true
+					if not vv.repeatable then
+						vv.enabled = false
+						vv.found = true
 					end
 				end
 			end
