@@ -575,6 +575,8 @@ local wodMounts = {
 			2117, -- Gorak Tul
 
 		},
+		name = L["Reins of the Infinite Timereaver"],
+		spellId = 201098,
 		itemId = 133543,
 		chance = 4000,
 		groupSize = 5,
