@@ -2005,7 +2005,6 @@ function R:CreateGroup(options, group, isUser)
 					width = "double",
 					values = {
 						[NPC] = R.string_methods[NPC],
-						[BOSS] = R.string_methods[BOSS],
 						[ZONE] = R.string_methods[ZONE],
 						[USE] = R.string_methods[USE],
 						[FISHING] = R.string_methods[FISHING],
