@@ -460,7 +460,10 @@ local wodPets = {
 	["Sunblade Rune of Activation"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			725, -- Brutallus
+		},
 		name = L["Sunblade Rune of Activation"],
 		spellId = 179838,
 		itemId = 122113,
@@ -472,7 +475,10 @@ local wodPets = {
 	["Void Collar"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			728, -- M'uru
+		},
 		name = L["Void Collar"],
 		spellId = 179839,
 		itemId = 122114,
