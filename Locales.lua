@@ -7,6 +7,13 @@ L["Cosmic Ritual Stone"] = true
 L["Saptor Salve"] = true
 L["Reins of the Contained Stormarion Defender"] = true
 L["Spectral Hawkstrider"] = true
+L["Encounters"] = true
+L["A comma-separated list of encounter IDs that award this item. Use WowHead or a similar service to look up these IDs."] =
+	true
+L["You must enter at least one ID."] = true
+L["Please enter a comma-separated list of IDs"] = true
+L["Every ID must be a number greater than 0."] = true
+L["Obtained from a raid or dungeon encounter"] = true
 L["Midnight"] = true
 L["Unbound Star-Eater"] = true
 L["Keys to the Big G"] = true
