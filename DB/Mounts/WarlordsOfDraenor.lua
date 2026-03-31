@@ -285,56 +285,71 @@ local wodMounts = {
 	["Reins of the Infinite Timereaver"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.BOSS,
-		name = L["Reins of the Infinite Timereaver"],
-		spellId = 201098,
-		itemId = 133543,
-		npcs = {
-			-- NPCs marked with * can't be looted; they use a workaround and are detected via checking their achievement criteria. The entry here is mostly for the tooltip display....
-			-- Classic Dungeons
-			---- Deadmines
-			644, -- Rhahk'Zor
-			643, -- Sneed
-			1763, -- Gilnid
-			646, -- Mr. Smite
-			647, -- Captain Greenskin
-			639, -- Edwin VanCleef
-			645, -- Cookie
-			---- Dire Maul (Capital Gardens)
-			11489, -- Tendris Warpwood
-			11487, -- Magister Kalendris
-			11488, -- Illyanna Ravenoak
-			11496, --Immol'thar
-			11486, -- Prince Tortheldrin
-			---- Dire Maul (Warpwood Quarters)
-			14327, -- Lethtendris
-			13280, -- Hydrospawn
-			11490, -- Zevrim Thornhoof
-			11492, -- Alzzin the Wildshaper
-			---- Zul Farrak
-			7272, -- Theka the Martyr
-			7795, -- Hydromancer Velratha
-			8127, -- Antu'sul
-			7271, -- Witch Doctor Zum'rah
-			7273, -- Gahz'rilla
-			7275, -- Nekrum & Sezz'ziz
-			7267, -- Chief Ukorz Sandscalp
-			---- Stratholme (Main Gate)
-			10813, -- Balnazzar
-			10516, -- The Unforgiven
-			10558, -- Hearthsinger Forresten
-			10808, -- Timmy the Cruel
-			11143, -- Postmaster Malown
-			11032, -- Commander Malor
-			10997, -- Willey Hopebreaker
-			10811, -- Instructor Galford
-			---- Stratholme (Service Entrance)
-			10436, -- Baroness Anastari
-			10437, -- Nerub'enkan
-			10438, -- Maleki the Pallid
-			10435, -- Magistrate Barthilas
-			10439, -- Ramstein the Gorger
-			-- TBC Dungeons
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			-- Classic
+			---- Dire Maul
+			343, -- Zevrim Thornhoof
+			344, -- Hydrospawn
+			345, -- Lethtendris
+			346, -- Alzzin the Wildshaper
+			347, -- Illyanna Ravenoak
+			348, -- Magister Kalendris
+			349, -- Immol'thar
+			350, -- Tendris Warpwood
+			361, -- Prince Tortheldrin
+			362, -- Guard Mol'dar
+			363, -- Stomper Kreeg
+			364, -- Guard Fengus
+			365, -- Guard Slip'kik
+			366, -- Captain Kromcrush
+			367, -- Cho'Rush the Observer
+			368, -- King Gordok
+			---- Stratholme
+			472, -- The Unforgiven
+			473, -- Hearthsinger Forresten
+			474, -- Timmy the Cruel
+			475, -- Willey Hopebreaker
+			476, -- Commander Malor
+			477, -- Instructor Galford
+			478, -- Balnazzar
+			479, -- Baroness Anastari
+			480, -- Nerub'enkan
+			481, -- Maleki the Pallid
+			482, -- Magistrate Barthilas
+			483, -- Ramstein the Gorger
+			484, -- Lord Aurius Rivendare
+			1885, -- Postmaster Malown
+			---- Zul'Farrak
+			593, -- Hydromancer Velratha
+			594, -- Gahz'rilla
+			595, -- Antu'sul
+			596, -- Theka the Martyr
+			597, -- Witch Doctor Zum'rah
+			598, -- Nekrum Gutchewer
+			599, -- Shadowpriest Sezz'ziz
+			600, -- Chief Ukorz Sandscalp
+			---- The Deadmines
+			1081, -- Vanessa VanCleef
+			2967, -- Rhahk'Zor
+			2968, -- Sneed
+			2969, -- Gilnid
+			2970, -- Mr. Smite
+			2971, -- Captain Greenskin
+			2972, -- Edwin VanCleef
+			2973, -- "Captain" Cookie
+			2974, -- Admiral Ripsnarl
+			2975, -- Foe Reaper 5000
+			2976, -- Glubtok
+			2977, -- Helix Gearbreaker
+			2978, -- "Captain" Cookie
+			2979, -- Admiral Ripsnarl
+			2980, -- Foe Reaper 5000
+			2981, -- Glubtok
+			2982, -- Helix Gearbreaker
+			2986, -- Cookie
+
+			-- TBC Timewalking
 			---- Magister's Terrace
 			24723, -- Selin Fireheart
 			24744, -- Vexallus
