@@ -531,7 +531,7 @@ local mopPets = {
 		npcs = { 15691 },
 		chance = 33,
 		creatureId = 71015,
-		coords = { { m = 350, i = true, x = 49.4, y = 36.6 } },
+		coords = { { m = 350, i = true, x = 49.4, y = 36.6 } }, -- TBD UI map ID is 532?
 	},
 	["Netherspace Portal-Stone"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
