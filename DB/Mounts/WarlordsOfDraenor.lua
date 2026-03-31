@@ -376,29 +376,30 @@ local wodMounts = {
 			1927, -- Laj
 			1929, -- Warp Splinter
 			---- The Underbog
-			17770, -- Hungarfen
-			18105, -- Ghaz'an
-			17826, -- Swamplord Musel'ek
-			17882, -- The Black Stalker
-			-- WOTLK Dungeons
+			1946, -- Hungarfen
+			1945, -- Ghaz'an
+			1947, -- Swamplord Musel'ek
+			1948, -- The Black Stalker
+
+			-- WOTLK Timewalking
 			---- The Nexus
-			26731, -- Grand Magus Telestra
-			26763, -- Anomalus
-			26794, -- Ormorok the Tree-Shaper
-			26723, -- Keristrasza
-			26796, -- Commander Stoutbeard
-			26798, -- Commander Kolurg
+			576, -- Frozen Commander
+			2010, -- Grand Magus Telestra
+			2009, -- Anomalus
+			2012, -- Ormorok the Tree-Shaper
+			2011, -- Keristrasza
+			3017, -- Frozen Commander
 			---- Halls of Lightning
-			28586, -- General Bjarngrim
-			28587, -- Volkhan
-			28546, -- Ionar
-			28923, -- Loken
+			1987, -- General Bjarngrim
+			1985, -- Volkhan
+			1984, -- Ionar
+			1986, -- Loken
 			---- Gundrak
-			29304, -- Slad'ran
-			29573, -- Drakkari Elemental
-			29305, -- Moorabi
-			29306, -- Gal'darah
-			29932, -- Eck the Ferocious
+			1978, -- Slad'ran
+			1983, -- Drakkari Colossus
+			1980, -- Moorabi
+			1981, -- Gal'darah
+			1988, -- Eck the Ferocious
 			---- Azjol-Nerub
 			28684, -- Krik'thir the Gatewatcher
 			28921, -- Hadronox
