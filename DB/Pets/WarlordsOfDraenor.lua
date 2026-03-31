@@ -417,7 +417,10 @@ local wodPets = {
 	["Slithershock Elver"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.WOD,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.USE,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			000000000000000000000000, -- AAAAAAAAAA
+		},
 		name = L["Slithershock Elver"],
 		spellId = 177223,
 		itemId = 122534,
