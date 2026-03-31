@@ -504,30 +504,31 @@ local wodMounts = {
 			1700, -- Rukhran
 			1701, -- High Sage Viryx
 			---- Grimrail Depot
-			77803, -- Railmaster Rocketspark
-			79545, -- Nitrogg Thundertower
-			80005, -- Skylord Tovra
+			1715, -- Rocketspark and Borka
+			1732, -- Nitrogg Thundertower
+			1736, -- Skylord Tovra
+
 			-- Legion Timewalking
 			--- Black Rook Hold
-			98542, -- Amalgam of Souls
-			98696, -- Illysanna Ravencrest
-			98949, -- Smashspite the Hateful
-			94923, -- Lord Kur'talos Ravencrest
+			1832, -- Amalgam of Souls
+			1833, -- Illysanna Ravencrest
+			1834, -- Smashspite the Hateful
+			1835, -- Lord Kur'talos Ravencrest
 			--- Court of Stars
-			104215, -- Patrol Captain Gerdo
-			104217, -- Talixae Flamewreath
-			101831, -- Advisor Melandrus
+			1868, -- Patrol Captain Gerdo
+			1869, -- Talixae Flamewreath
+			1870, -- Advisor Melandrus
 			--- Darkheart Thicket
-			96512, -- Archdruid Glaidalis
-			103344, -- Oakheart
-			99200, -- Dresaron
-			99192, -- Shade of Xavius
+			1836, -- Archdruid Glaidalis
+			1837, -- Oakheart
+			1838, -- Dresaron
+			1839, -- Shade of Xavius
 			--- Eye of Azshara
-			91784, -- Warlord Parjesh
-			91789, -- Lady Hatecoil
-			91797, -- King Deepbeard
-			91808, -- Serpentrix
-			96028, -- Wrath of Azshara
+			1810, -- Warlord Parjesh
+			1811, -- Lady Hatecoil
+			1812, -- King Deepbeard
+			1813, -- Serpentrix
+			1814, -- Wrath of Azshara
 			--- Neltharion's Lair
 			91003, -- Rokmora
 			91004, -- Ularogg Cragshaper
