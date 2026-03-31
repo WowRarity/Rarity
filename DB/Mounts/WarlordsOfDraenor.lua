@@ -530,29 +530,28 @@ local wodMounts = {
 			1813, -- Serpentrix
 			1814, -- Wrath of Azshara
 			--- Neltharion's Lair
-			91003, -- Rokmora
-			91004, -- Ularogg Cragshaper
-			91005, -- Naraxas
-			91007, -- Dargrul
+			1790, -- Rokmora
+			1791, -- Ularogg Cragshaper
+			1792, -- Naraxas
+			1793, -- Dargrul the Underking
 			--- Vault of the Wardens
-			95885, -- Tirathon Saltheril
-			96015, -- Inquisitor Tormentorum
-			95886, -- Ash'Golm
-			99865, -- Glazer
-			95888, -- Cordana Felsong
-			-- BFA Dungeons
+			1815, -- Tirathon Saltheril
+			1850, -- Inquisitor Tormentorum
+			1816, -- Ash'Golm
+			1817, -- Glazer
+			1818, -- Cordana Felsong
+
+			-- BFA Timewalking
 			--- Atal'Dazar
-			129614, -- Priestess Alun'za
-			129399, -- Vol'kaal
-			143577, -- Rezan
-			129412, -- Yazma
+			2084, -- Priestess Alun'za
+			2085, -- Vol'kaal
+			2086, -- Rezan
+			2087, -- Yazma
 			--- Freehold
-			129732, -- Skycap'n Kragg
-			129431, -- Captain Eudora
-			126847, -- Captain Raoul
-			129432, -- Captain Jolly
-			126969, -- Trothak
-			129440, -- Harlan Sweete
+			2093, -- Skycap'n Kragg
+			2095, -- Ring of Booty
+			2094, -- Council o' Captains
+			2096, -- Lord Harlan Sweete
 			--- Kings' Rest
 			135322, -- The Golden Serpent
 			134993, -- Mchimba the Embalmer
