@@ -42,7 +42,6 @@ local cataclysmMounts = {
 	["Flametalon of Alysrazor"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.CATA,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.BOSS,
 		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
 		name = L["Flametalon of Alysrazor"],
 		spellId = 101542,
