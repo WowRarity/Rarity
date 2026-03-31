@@ -762,7 +762,7 @@ local mopPets = {
 		sourceText = L["All raid formats except Raid Finder"],
 		lockBossName = "Sha of Pride",
 		coords = { { m = 556, x = 22.5, y = 69.5, i = true } },
-	}, -- SHA OF PRIDE (flex/normal/heroic)
+	},
 	["Gooey Sha-ling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
@@ -784,7 +784,7 @@ local mopPets = {
 		sourceText = L["Raid Finder or Flexible difficulty"],
 		lockBossName = "Sha of Pride",
 		coords = { { m = 556, x = 22.5, y = 69.5, i = true } },
-	}, -- SHA OF PRIDE (lfr/flex)
+	},
 	["Gu'chi Swarmling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
@@ -849,7 +849,7 @@ local mopPets = {
 		blackMarket = true,
 		lockBossName = "Paragons of the Klaxxi",
 		coords = { { m = 556, x = 68.3, y = 35.3, i = true } },
-	}, -- PARAGONS OF THE KLAXXI (all modes)
+	},
 	["Lil' Bling"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
