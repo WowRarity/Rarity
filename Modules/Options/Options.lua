@@ -2011,6 +2011,7 @@ function R:CreateGroup(options, group, isUser)
 						[FISHING] = R.string_methods[FISHING],
 						[ARCH] = R.string_methods[ARCH],
 						[COLLECTION] = R.string_methods[COLLECTION],
+						[ENCOUNTER] = R.string_methods[ENCOUNTER],
 					},
 					get = function()
 						return item.method
