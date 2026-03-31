@@ -478,31 +478,31 @@ local wodMounts = {
 
 			-- WoD Timewalking
 			---- The Everbloom
-			83846, -- Yalnu
-			82682, -- Archmage Sol
-			84550, -- Xeri'tac
-			83894, -- Dulhu
-			81522, -- Witherbark
+			1756, -- Yalnu
+			1751, -- Archmage Sol
+			1752, -- Xeri'tac
+			1757, -- Ancient Protectors
+			1746, -- Witherbark
 			---- Bloodmaul Slag Mines
-			74366, -- Forgemaster Gog'duh
-			74787, -- Slave Watcher Crushto
-			75786, -- Roltall
-			74790, -- GugÄrokk
+			1653, -- Slave Watcher Crushto
+			1652, -- Roltall
+			1655, -- Magmolatus
+			1654, -- Gug'rokk
 			---- Auchindoun
-			75839, -- Vigilant Kaathar
-			76177, -- Soulbinder Nyami
-			75927, -- Azzakel
-			77734, -- Teron'gor
+			1686, -- Vigilant Kaathar
+			1685, -- Soulbinder Nyami
+			1678, -- Azzakel, Vanguard of the Legion
+			1714, -- Teron'gor
 			---- Shadowmoon Burial Grounds
-			75509, -- Sadana Bloodfury
-			75829, -- Nhallish
-			75452, -- Bonemaw
-			76407, -- Ner'zhul
+			1677, -- Sadana Bloodfury
+			1688, -- Nhallish
+			1679, -- Bonemaw
+			1682, -- Ner'zhul
 			---- Skyreach
-			75964, -- Ranjit
-			76141, -- Araknath
-			76379, -- Rukhran
-			76266, -- High Sage Viryx
+			1698, -- Ranjit
+			1699, -- Araknath
+			1700, -- Rukhran
+			1701, -- High Sage Viryx
 			---- Grimrail Depot
 			77803, -- Railmaster Rocketspark
 			79545, -- Nitrogg Thundertower
