@@ -63,7 +63,7 @@ local tbcMounts = {
 	["Swift White Hawkstrider"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TBC,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
 		name = L["Swift White Hawkstrider"],
 		spellId = 46628,
 		itemId = 35513,
@@ -72,6 +72,9 @@ local tbcMounts = {
 		instanceDifficulties = {
 			[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_DUNGEON] = true,
 			[CONSTANTS.INSTANCE_DIFFICULTIES.TIMEWALKING_DUNGEON] = true,
+		},
+		statisticId = {
+			1082, -- Kael'thas Sunstrider kills (Magister's Terrace)
 		},
 		sourceText = L["Heroic difficulty"],
 		bonusSatchel = true,
