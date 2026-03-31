@@ -617,7 +617,10 @@ local mopPets = {
 	["Spiky Collar"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER, -- TODO: Only one of the three drops it... can't track this?
+		encounters = {
+			655, -- Opera Hall
+		},
 		name = L["Spiky Collar"],
 		spellId = 141433,
 		itemId = 97548,
