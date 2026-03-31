@@ -401,31 +401,32 @@ local wodMounts = {
 			1981, -- Gal'darah
 			1988, -- Eck the Ferocious
 			---- Azjol-Nerub
-			28684, -- Krik'thir the Gatewatcher
-			28921, -- Hadronox
-			29120, -- Anub'arak
+			1971, -- Krik'thir the Gatewatcher
+			1972, -- Hadronox
+			1973, -- Anub'arak
 			---- The Forge of Souls
-			36497, -- Bronjahm
-			36502, -- Devourer of Souls
+			2006, -- Bronjahm
+			2007, -- Devourer of Souls
 			---- Utgarde Keep
-			23953, -- Prince Keleseth
-			24201, -- Dalronn
-			23954, -- Ingvar the Plunderer
-			-- Cataclysm Dungeons
+			2026, -- Prince Keleseth
+			2024, -- Skarvold & Dalronn
+			2025, -- Ingvar the Plunderer
+
+			-- CATA Timewalking
 			---- Throne of the Tides
-			40586, -- Lady Naz'jar
-			40765, -- Commander Ulthok
-			40788, -- Mindbender Ghur'sha
-			44566, -- Ozumat *
+			1045, -- Lady Naz'jar
+			1044, -- Commander Ulthok
+			1046, -- Mindbender Ghur'sha
+			1047, -- Ozumat
 			---- The Vortex Pinnacle
-			43878, -- Grand Vizier Ertan
-			43873, -- Altairus
-			43875, -- Asaad
+			1043, -- Grand Vizier Ertan
+			1041, -- Altairus
+			1042, -- Asaad
 			---- The Stonecore
-			43438, -- Corborus
-			43214, -- Slabhide
-			42188, -- Ozruk
-			42333, -- High Priestess Azil
+			1056, -- Corborus
+			1059, -- Slabhide
+			1058, -- Ozruk
+			1057, -- High Priestess Azil
 			---- Lost City of the Tol'vir
 			44577, -- General Husam
 			43612, -- High Prophet Barim
