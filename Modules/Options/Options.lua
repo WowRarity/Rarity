@@ -48,6 +48,7 @@ local ARCH = "ARCH"
 local SPECIAL = "SPECIAL"
 local MINING = "MINING"
 local COLLECTION = "COLLECTION"
+local ENCOUNTER = "ENCOUNTER" -- TODO use constants
 
 -- Feed text
 local FEED_MINIMAL = "FEED_MINIMAL"
