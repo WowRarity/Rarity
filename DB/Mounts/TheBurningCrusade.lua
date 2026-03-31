@@ -26,7 +26,10 @@ local tbcMounts = {
 	["Fiery Warhorse's Reins"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TBC,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			652, -- Attumen the Huntsman
+		},
 		name = L["Fiery Warhorse's Reins"],
 		spellId = 36702,
 		itemId = 30480,
@@ -39,7 +42,10 @@ local tbcMounts = {
 	["Reins of the Raven Lord"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TBC,
 		type = CONSTANTS.ITEM_TYPES.MOUNT,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			1904, -- Anzu
+		},
 		name = L["Reins of the Raven Lord"],
 		spellId = 41252,
 		itemId = 32768,
