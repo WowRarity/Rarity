@@ -120,7 +120,10 @@ local twwPets = {
 	["Void Scarred Scorpid"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.TWW,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.SPECIAL,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			3087, -- Inquistor Gnshal (TBD Garona?)
+		},
 		chance = 12,
 		creatureId = 237855,
 		name = L["Void Scarred Scorpid"],
