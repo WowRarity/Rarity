@@ -3,6 +3,8 @@ local addonName, addonTable = ...
 local L = LibStub("AceLocale-3.0"):GetLocale("Rarity")
 local CONSTANTS = addonTable.constants
 
+-- local DE = CONSTANTS.DungeonEncounter["Stradama Margrave"]
+
 if LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_WARLORDS_OF_DRAENOR then
 	return {}
 end
