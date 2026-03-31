@@ -575,6 +575,7 @@ local wodMounts = {
 			2117, -- Gorak Tul
 
 		},
+		itemId = 133543,
 		chance = 4000,
 		groupSize = 5,
 		equalOdds = true,
