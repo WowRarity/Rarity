@@ -632,11 +632,15 @@ local mopPets = {
 	["Tainted Core"] = {
 		cat = CONSTANTS.ITEM_CATEGORIES.MOP,
 		type = CONSTANTS.ITEM_TYPES.PET,
-		method = CONSTANTS.DETECTION_METHODS.NPC,
+		method = CONSTANTS.DETECTION_METHODS.ENCOUNTER,
+		encounters = {
+			623, -- Hydross the Unstable
+			624, -- The Lurker Below
+		},
 		name = L["Tainted Core"],
 		spellId = 141437,
 		itemId = 97553,
-		npcs = { 21216 },
+		npcs = { 21216, 21217 }, -- TBD: Hydross vs. Lurker Below (bug or recent change?)
 		chance = 25,
 		creatureId = 71018,
 		coords = { { m = 332, x = 36.3, y = 84.7, i = true } },
