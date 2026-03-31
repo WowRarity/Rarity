@@ -40,7 +40,6 @@ local HOLIDAY = "HOLIDAY"
 
 -- Methods of obtaining
 local NPC = "NPC"
-local BOSS = "BOSS"
 local ZONE = "ZONE"
 local USE = "USE"
 local FISHING = "FISHING"
@@ -2502,7 +2501,7 @@ function R:CreateGroup(options, group, isUser)
 						end
 					end,
 					hidden = function()
-						if item.method == NPC or item.method == BOSS then
+						if item.method == NPC or item.method == ENCOUNTER then
 							return false
 						else
 							return true
@@ -2863,7 +2862,7 @@ function R:CreateGroup(options, group, isUser)
 						end
 					end,
 					hidden = function()
-						return item.method ~= BOSS and item.method ~= USE
+						return item.method ~= ENCOUNTER and item.method ~= USE
 					end,
 				},
 				equalOdds = {
@@ -2883,7 +2882,7 @@ function R:CreateGroup(options, group, isUser)
 						self:Update("OPTIONS")
 					end,
 					hidden = function()
-						return item.method ~= BOSS and item.method ~= USE
+						return item.method ~= ENCOUNTER and item.method ~= USE
 					end,
 				},
 				instanceDifficulty = {

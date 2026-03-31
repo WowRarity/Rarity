@@ -172,7 +172,6 @@ C.ITEM_TYPES = { MOUNT = "MOUNT", PET = "PET", ITEM = "ITEM" }
 -- Types of different detection methods
 C.DETECTION_METHODS = {
 	NPC = "NPC",
-	BOSS = "BOSS",
 	ZONE = "ZONE",
 	USE = "USE",
 	FISHING = "FISHING",
@@ -180,6 +179,7 @@ C.DETECTION_METHODS = {
 	SPECIAL = "SPECIAL",
 	MINING = "MINING",
 	COLLECTION = "COLLECTION",
+	ENCOUNTER = "ENCOUNTER",
 	LOOT_TOAST = "LOOT_TOAST", -- Unused/NYI (but we'll get there later)
 }
 
