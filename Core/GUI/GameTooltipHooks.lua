@@ -51,8 +51,8 @@ local function onTooltipSetUnit(tooltip, data)
 		GameTooltip:AddLine("NPC ID: " .. text, 255, 255, 255)
 	end
 
-	local name, unit = self:GetUnit()
-	if not unit then
+	local name, unit, secret = Rarity.GetUnitFromTooltip(self)
+	if secret or not unit then
 		return
 	end
 
@@ -520,4 +520,23 @@ function Rarity.TooltipProcessItemInfo(tooltip, item)
 	end
 
 	return itemText .. attemptText
+end
+
+function Rarity.GetUnitFromTooltip(tooltip)
+	local unit, name
+
+	if tooltip:IsTooltipType(Enum.TooltipDataType.Unit) then
+		local tooltipData = tooltip:GetPrimaryTooltipData();
+		local guid = tooltipData.guid;
+		unit = guid and UnitTokenFromGUID(guid);
+
+		if issecretvalue and issecretvalue(unit) then
+			-- Run away!
+			return nil, nil, true
+		end
+
+		name = unit and UnitName(unit);
+
+		return name, unit, false
+	end
 end
