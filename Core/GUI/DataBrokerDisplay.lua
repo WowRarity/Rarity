@@ -178,18 +178,34 @@ function GUI:UpdateText()
 	if chance < 0 then
 		chance = 0
 	end
-	local text = format("%s: %d (%.2f%%)", itemName or trackedItem.name, attempts, chance)
+	-- Bar 1
+	if not chance then
+		chance = 0
+	end
+	if chance > 100 then
+		chance = 100
+	end
+	if chance < 0 then
+		chance = 0
+	end
+	local name1 = itemName or trackedItem.name
+	local stats1 = format("%d (%.2f%%)", attempts, chance)
+	-- Name on the left label, stats anchored to the right via timerLabel
 	if not self.bar then
 		self.bar = self.barGroup:NewCounterBar(
 			"Track",
-			text,
+			name1,
 			chance,
 			100,
 			itemTexture or [[Interface\Icons\spell_nature_forceofnature]]
 		)
+		self.bar:SetTimerLabel(stats1)
+		self.bar:ShowTimerLabel()
 	else
 		self.bar:SetIcon(itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
-		self.bar:SetLabel(text)
+		self.bar:SetLabel(name1)
+		self.bar:SetTimerLabel(stats1)
+		self.bar:ShowTimerLabel()
 		self.bar:SetValue(chance, 100)
 		self.GUI:UpdateSparks() -- NOTE: SetValue always enables sparks (remove once fixed)
 	end
@@ -255,18 +271,23 @@ function GUI:UpdateText()
 		if chance < 0 then
 			chance = 0
 		end
-		text = format("%s: %d (%.2f%%)", trackedItem2.name or "", attempts, chance)
+		local name2 = trackedItem2.name or ""
+		local stats2 = format("%d (%.2f%%)", attempts, chance)
 		if not self.bar2 then
 			self.bar2 = self.barGroup:NewCounterBar(
 				"Track2",
-				text,
+				name2,
 				chance,
 				100,
 				itemTexture or [[Interface\Icons\spell_nature_forceofnature]]
 			)
+			self.bar2:SetTimerLabel(stats2)
+			self.bar2:ShowTimerLabel()
 		else
 			self.bar2:SetIcon(itemTexture or [[Interface\Icons\spell_nature_forceofnature]])
-			self.bar2:SetLabel(text)
+			self.bar2:SetLabel(name2)
+			self.bar2:SetTimerLabel(stats2)
+			self.bar2:ShowTimerLabel()
 			self.bar2:SetValue(chance, 100)
 			self.GUI:UpdateSparks() -- NOTE: SetValue always enables sparks (remove once fixed)
 		end

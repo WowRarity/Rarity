@@ -103,7 +103,8 @@ local GetLootSourceInfo = _G.GetLootSourceInfo
 local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
 local GetMapInfo = _G.C_Map.GetMapInfo
 local C_Timer = _G.C_Timer
-local IsSpellKnown = _G.IsSpellKnown
+-- IsSpellKnown was moved to C_Spell.IsSpellKnown in WoW 12.0.0 (Midnight); use with fallback for compatibility
+local IsSpellKnown = (_G.C_Spell and _G.C_Spell.IsSpellKnown) or _G.IsSpellKnown
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
 local IsQuestFlaggedCompleted = _G.C_QuestLog.IsQuestFlaggedCompleted
 local C_Covenants = _G.C_Covenants

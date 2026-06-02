@@ -48,7 +48,8 @@ local GetArchaeologyRaceInfo = _G.GetArchaeologyRaceInfo
 local GetStatistic = _G.GetStatistic
 local GetLootSourceInfo = _G.GetLootSourceInfo
 local C_Timer = _G.C_Timer
-local IsSpellKnown = _G.IsSpellKnown
+-- IsSpellKnown was moved to C_Spell.IsSpellKnown in WoW 12.0.0 (Midnight); use with fallback for compatibility
+local IsSpellKnown = (_G.C_Spell and _G.C_Spell.IsSpellKnown) or _G.IsSpellKnown
 local GetCurrentRenownLevel = C_MajorFactions and C_MajorFactions.GetCurrentRenownLevel
 
 -- Addon APIs
@@ -65,7 +66,8 @@ function EventHandlers:Register()
 	self:RegisterEvent("RESEARCH_ARTIFACT_COMPLETE", "OnResearchArtifactComplete")
 	self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED", "OnCombat") -- Used to detect boss kills that we didn't solo
 	self:RegisterEvent("CURSOR_CHANGED", "OnCursorChanged") -- Fishing detection
-	self:RegisterEvent("UNIT_SPELLCAST_SENT", "OnSpellcastSent") -- Fishing detection
+	-- UNIT_SPELLCAST_SENT was removed in WoW 12.0.0 (Midnight); use UNIT_SPELLCAST_START instead
+	self:RegisterEvent("UNIT_SPELLCAST_START", "OnSpellcastSent") -- Fishing detection
 	self:RegisterEvent("UNIT_SPELLCAST_STOP", "OnSpellcastStopped") -- Fishing detection
 	self:RegisterEvent("UNIT_SPELLCAST_FAILED", "OnSpellcastFailed") -- Fishing detection
 	self:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED", "OnSpellcastFailed") -- Fishing detection
@@ -846,7 +848,9 @@ end
 
 local FISHING_DELAY = 22
 
-function R:OnSpellcastSent(event, unit, target, castGUID, spellID)
+function R:OnSpellcastSent(event, unit, castGUID, spellID)
+	-- Note: Previously used UNIT_SPELLCAST_SENT (removed in 12.0.0), now uses UNIT_SPELLCAST_START
+	-- UNIT_SPELLCAST_START signature: (unit, castGUID, spellID) - no "target" argument
 	if unit ~= "player" then
 		return
 	end
