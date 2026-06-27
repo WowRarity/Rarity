@@ -1025,6 +1025,13 @@ L["When on, Rarity will generate an achievement alert pop-up indicating that you
 L["Show achievement"] = true
 L["Primary tooltip show delay"] = true
 L["When you move your mouse over the Rarity minimap icon, it will take this long before the GUI opens."] = true
+L["Search"] = true
+L["Search mounts"] = true
+L["Search battle pets"] = true
+L["Search toys & items"] = true
+L["Clear"] = true
+L["Clear the search filter."] = true
+L["Filter the list by name or item ID."] = true
 
 -- Sources
 -- L[""] = true -> This seems pointless and breaks the import feature on WowAce, therefore I disabled it. I left it here because I really don't understand why it has been added and kept around for almost 4 years, so...eh ¯\_(ツ)_/¯
