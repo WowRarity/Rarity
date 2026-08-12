@@ -10,6 +10,7 @@ local GetItemInfo = _G.C_Item.GetItemInfo
 local GetBestMapForUnit = C_Map.GetBestMapForUnit
 local IsWorldQuestActive = C_TaskQuest.IsActive
 local IsQuestFlaggedCompleted = _G.C_QuestLog.IsQuestFlaggedCompleted
+local LoadAddOn = _G.C_AddOns.LoadAddOn
 local C_Covenants = _G.C_Covenants
 
 local FormatTime = Rarity.Utils.PrettyPrint.FormatTime
@@ -1155,7 +1156,7 @@ local function addGroup(group, requiresGroup)
 										Rarity:Print(text)
 										if CVarCallbackRegistry:GetCVarValueBool("enableFloatingCombatText") then
 											if type(CombatText_AddMessage) == "nil" then
-												UIParentLoadAddOn("Blizzard_CombatText")
+												LoadAddOn("Blizzard_CombatText")
 											end
 											CombatText_AddMessage(text, CombatText_StandardScroll, 1, 1, 1, true, false)
 										else
