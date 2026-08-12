@@ -18,6 +18,7 @@ local tonumber = tonumber
 -- WOW APIs
 local PlayerHasToy = PlayerHasToy
 local InCombatLockdown = InCombatLockdown
+local LoadAddOn = _G.C_AddOns.LoadAddOn
 local C_TransmogCollection = C_TransmogCollection
 local C_MountJournal = C_MountJournal
 local C_PetJournal = C_PetJournal
@@ -68,7 +69,7 @@ function Collections:ScanToys(reason)
 	if not Rarity.toysScanned then
 		if not ToyBox_OnLoad then
 			self:Debug("Loading Blizzard_Collections addon so the ToyBox can be scanned")
-			UIParentLoadAddOn("Blizzard_Collections")
+			LoadAddOn("Blizzard_Collections")
 		end
 	end
 
