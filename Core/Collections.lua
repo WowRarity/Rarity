@@ -68,7 +68,7 @@ function Collections:ScanToys(reason)
 	if not Rarity.toysScanned then
 		if not ToyBox_OnLoad then
 			self:Debug("Loading Blizzard_Collections addon so the ToyBox can be scanned")
-			UIParentLoadAddOn("Blizzard_Collections")
+			LoadAddOnWithErrorHandling("Blizzard_Collections")
 		end
 	end
 

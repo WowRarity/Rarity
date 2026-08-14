@@ -1,3 +1,14 @@
+**r753:**
+
+Fixes:
+> Updated TOC interface version to support WoW 12.1.0 (120100)
+> Replaced deprecated UIParentLoadAddOn with LoadAddOnWithErrorHandling in Collections.lua and MainWindow.lua (API renamed in 12.1.0)
+
+Contributors (in alphabetical order):
+> romeuwb
+
+---
+
 **r752:**
 
 Fixes:
